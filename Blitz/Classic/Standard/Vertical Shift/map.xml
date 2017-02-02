@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Vertical Shift</name>
+<version>1.0.1</version>
+<objective>Kill all of your opponents within 5 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- ajtag5 -->
+    <author uuid="216c4909-70e3-42f8-bc86-2a2839ea5502"/> <!-- Gartdw -->
+</authors>
+<contributors>
+    <contributor uuid="c6ac84b0-1b73-4fed-b852-97e2e092699c" contribution="Layout Assistance"/> <!-- Luigimasterx30 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML Assistance"/> <!-- dinner1111 -->
+</contributors>
+<rules>
+    <rule>Do not crouch to hide from opponents!</rule>
+</rules>
+<teams>
+    <team color="dark red" max="15" max-overfill="20">Red</team>
+    <team color="blue" max="15" max-overfill="20">Blue</team>
+</teams>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="24">arrow</item>
+        <helmet>iron helmet</helmet>
+        <leggings>chainmail leggings</leggings>
+        <boots>iron boots</boots>
+        <potion duration="oo" amplifier="3">speed</potion>
+        <potion duration="oo" amplifier="7">jump</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="ff0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0000ff">leather chestplate</chestplate>
+    </kit>
+    <kit name="heal">
+        <potion duration="5" amplifier="4">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <cuboid min="-1,55,-0" max="2,56,3"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="52,55,-0" max="56,56,3"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="26,31,59" max="28,32,61"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply kit="heal">
+        <cuboid name="red-heal" min="22,31,-1" max="26,34,4"/>
+        <cuboid name="blue-heal" min="28,31,-1" max="32,34,4"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>stone sword</item>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>bow</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage>falling block</damage>
+</disabledamage>
+<killreward>
+    <item amount="6">arrow</item>
+</killreward>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Blitz">
+        <message>
+            <line>This is a `c15v15 `aBlitz game`r. Each person has `c1 life`r.</line>
+            <line>In order to `awin`r, you must `4eliminate`r the other team!</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="0">27,29,36</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>This is where you will spawn once the game begins.</line>
+            <line>Do `cnot `rhide in the spawns of the map!</line>
+        </message>
+        <teleport>
+            <point yaw="56" pitch="25">27.5,29,36.5</point>
+        </teleport>
+    </stage>
+    <stage title="Healing Cubes">
+        <message>
+            <line>Each side of the map has a `ahealing cube`r.</line>
+            <line>If you enter the region, you will be given regen for 5 seconds.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="0">36.5,32,1.5</point>
+        </teleport>
+    </stage>
+    <stage title="Loot Chests">
+        <message>
+            <line>There are `aloot chests `rhidden around the map.</line>
+            <line>Find them and you get items that will help you!</line>
+        </message>
+        <teleport>
+            <point yaw="56" pitch="25">27.5,29,36.5</point>
+        </teleport>
+    </stage>
+    <stage title="Battle Areas">
+        <message>
+            <line>This map has a layout with specific area the most amount of</line>
+            <line>fighting will take place. This specific one has a hole to the</line>
+            <line>void, encouraging bow battle.</line>
+        </message>
+        <teleport>
+            <point yaw="110" pitch="15">38.5,3,3.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<include src="blitz-global.xml"/>
+</map>

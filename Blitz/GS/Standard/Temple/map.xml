@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Temple</name>
+<version>1.0.0</version>
+<objective>Kill the enemy squadron.</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/><!-- Timothee38 -->
+</authors>
+<teams>
+    <team color="dark red" id="red" max="8">Red</team>
+    <team color="blue" id="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="spawn">
+        <region><point yaw="-90">-124,2,-34</point></region>
+    </spawn>
+    <spawn team="blue" kit="spawn">
+        <region><point yaw="90">-118,2,17</point></region>
+    </spawn>
+    <default>
+        <region><point yaw="-90">-121,42,-8</point></region>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="28" amount="2">vine</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="allow-some">
+        <block>vine</block>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main" min="-oo,-oo" max="oo,oo"/>
+    <apply block-place="allow-some">
+        <region name="main"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">vine</item>
+</killreward>
+</map>

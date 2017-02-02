@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Drow's Crevice: Blitz</name>
+<version>1.0.1</version>
+<objective>Eliminate the enemy team in 8 minutes or less. You have one life!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+    <author uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27"/> <!-- HardstyleRaver2 -->
+</authors>
+<teams>
+    <team color="gold" max="16" max-overfill="20">Orange</team>
+    <team color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<blitz>
+    <time>8m</time>
+</blitz>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="-90">
+        <cuboid min="244,22,-2" max="241,21,1"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="156,21,1" max="153,21,-2"/>
+    </spawn>
+    <default yaw="0">
+        <block>198.5,14,-0.5</block>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="8">torch</item>
+        <item slot="3" amount="16">grilled pork</item>
+        <item slot="4" damage="8261">potion</item>
+        <item slot="8" amount="16">arrow</item>
+        <chestplate>iron chestplate</chestplate>
+        <boots>iron boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="D87F33">leather helmet</helmet>
+        <leggings color="D87F33">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="6699D8">leather helmet</helmet>
+        <leggings color="6699D8">leather leggings</leggings>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>grilled pork</item>
+    <item>torch</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<filters>
+    <filter name="only-torches" parents="deny-blocks">
+        <allow>
+            <block>torch</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-torches">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="4">arrow</item>
+    <item damage="8261">potion</item>
+</killreward>
+<tutorial>
+    <stage title="Regular Blitz">
+        <message>
+            <line>`rThis map is a `4`lBlitz`r map.</line>
+            <line>`rThis spawner spawns `bspeed potions (0:30)`r every 15 seconds.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="15">191,8,-0.5</point>
+        </teleport>
+    </stage>e
+    <stage title="Arrow Spawners">
+        <message>
+            <line>`rThis is one of the two `barrow`r spawners.</line>
+            <line>`r`a6 arrows`r spawn every 12 seconds.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="5">204,15,-30</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

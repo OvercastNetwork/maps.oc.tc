@@ -1,0 +1,298 @@
+<map proto="1.3.6">
+<name>Smoke</name>
+<version>1.2.1</version>
+<objective>You must capture 5 points (excluding top mid) sequentially before 12 minutes!</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!--  NixaniaXi  -->
+</authors>
+<contributors>
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="XML Coding"/> <!--  DoomRobotBoy  -->
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Tourney Edits"/> <!--  Reshif  -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="7" max-overfill="7">Red</team>
+    <team id="yellow" color="yellow" max="7" max-overfill="7">Yellow</team>
+</teams>
+<!-- Respawn Timer -->
+<respawn delay="5s" blackout="true"/>
+<spawns>
+    <default>
+        <regions yaw="45">
+            <cylinder base="23.5,20,-22.5" radius="2" height="1"/>
+        </regions>
+    </default>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <cylinder base="69.5,3,29.5" radius="1" height="1"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow">
+        <regions yaw="-90">
+            <cylinder base="-28.5,3,-68.5" radius="1" height="1"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" damage="8225" potions="regeneration:80:0:false;heal:1:0:false">potion</item>
+        <item slot="8" amount="16">arrow</item>
+        <leggings unbreakable="true" enchantment="protection fire:1" locked="true">iron leggings</leggings>
+        <boots unbreakable="true" enchantment="protection fall:1" locked="true">iron boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" locked="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="E5E533" unbreakable="true" locked="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <!--  Team Filters  -->
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!--  Portal Filters  -->
+    <filter name="yellow-has-2nd">
+        <all>
+            <objective id="yellow">yellow-2nd</objective>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <filter name="red-has-2nd">
+        <all>
+            <objective id="red">red-2nd</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="yellow-has-red">
+        <all>
+            <objective id="yellow">red-2nd</objective>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <filter name="red-has-yellow">
+        <all>
+            <objective id="red">yellow-2nd</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="red-has-mid">
+        <all>
+            <objective id="red">top-mid</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="yellow-has-mid">
+        <all>
+            <objective id="yellow">top-mid</objective>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <!--  Sequential Point Filters  -->
+    <filter name="to-capture-red-last">
+        <all>
+            <team>yellow</team>
+            <objective>red-2nd</objective>
+        </all>
+    </filter>
+    <filter name="to-capture-red-2nd">
+        <any>
+            <objective>red-last</objective>
+            <objective>bot-mid</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-mid">
+        <any>
+            <objective>red-2nd</objective>
+            <objective>yellow-2nd</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-yellow-2nd">
+        <any>
+            <objective>yellow-last</objective>
+            <objective>bot-mid</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-yellow-last">
+        <all>
+            <team>red</team>
+            <objective>yellow-2nd</objective>
+        </all>
+    </filter>
+</filters>
+<regions>
+    <!--  Block Rules  -->
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!--  Entry Rules  -->
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <rectangle name="red-spawn" min="67,11" max="72,32"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter the enemy spawn!">
+        <rectangle name="yellow-spawn" min="-10,-66" max="-31,-71"/>
+    </apply>
+</regions>
+<portals>
+    <!--  Portal to Red 2nd (Red)  -->
+    <portal x="@34" y="@9" z="@36" yaw="-90" filter="red-has-2nd">
+        <region>
+            <cuboid min="73,3,30" max="74,6,28"/>
+        </region>
+    </portal>
+    <!-- Portal to Mid (Red) -->
+    <portal x="@5.5" y="@12" z="@33" yaw="-90" filter="red-has-mid">
+        <region>
+            <cuboid min="73,3,23" max="74,6,20"/>
+        </region>
+    </portal>
+    <!-- Portal to Yellow 2nd (Red) -->
+    <portal x="@-16" y="@7" z="@-13" yaw="90" filter="red-has-yellow">
+        <region>
+            <cuboid min="73,3,15" max="74,6,12"/>
+        </region>
+    </portal>        
+    <!--  Portal to Yellow 2nd (Yellow)  -->
+    <portal x="@-35" y="@9" z="@-33" yaw="90" filter="yellow-has-2nd">
+        <region>
+            <cuboid min="-27,3,-72" max="-30,6,-73"/>
+        </region>
+    </portal>
+    <!--  Portal to Red 2nd (Yellow)  -->
+    <portal x="@14" y="@7" z="@17" yaw="-90" filter="yellow-has-red">
+        <region>
+            <cuboid min="-11,3,-72" max="-14,6,-73"/>
+        </region>
+    </portal>
+    <!--  Portal to Mid (Yellow)  -->
+    <portal x="@-32" y="@12" z="@-4.5" yaw="90" filter="yellow-has-mid">
+        <region>
+            <cuboid min="-19,3,-72" max="-22,6,-73"/>
+        </region>
+    </portal>        
+</portals>
+<control-points incremental="true" neutral-state="true" show-progress="true" time-multiplier="0.75">
+    <control-point initial-owner="red" id="red-last" name="Red Last" capture-time="3s">
+        <capture-region>
+            <cuboid min="58,6,18" max="51,22,25"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="58,6,18" max="51,22,25"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-2nd</objective>
+                <team>red</team>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="red" id="red-2nd" name="Red 2nd" capture-time="6s">
+        <capture-region>
+            <cuboid min="27,10,32" max="20,22,39"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="27,10,32" max="20,22,39"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-last</objective>
+                <all>
+                    <objective>bot-mid</objective>
+                </all>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="bot-mid" name="Bottom Mid" capture-time="5s">
+        <capture-region>
+            <cuboid min="2,2,-1" max="-7,22,8"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="2,2,-1" max="-7,22,8"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-2nd</objective>
+                <objective>yellow-2nd</objective>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="top-mid" name="Top Mid" required="false" capture-time="5s">
+        <capture-region>
+            <cuboid min="-17,9,18" max="-24,22,25"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-17,9,18" max="-24,22,25"/>
+        </progress-display-region>
+    </control-point>
+    <control-point initial-owner="yellow" id="yellow-2nd" name="Yellow 2nd" capture-time="6s">
+        <capture-region>
+            <cuboid min="-31,10,-19" max="-38,22,-26"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-31,10,-19" max="-38,22,-26"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>yellow-last</objective>
+                <all>
+                    <objective>bot-mid</objective>
+                </all>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="yellow" id="yellow-last" name="Yellow Last" capture-time="3s">
+        <capture-region>
+            <cuboid min="-17,6,-57" max="-24,22,-50"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-17,6,-57" max="-24,22,-50"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>yellow-2nd</objective>
+                <team>yellow</team>
+            </any>
+        </player-filter>
+    </control-point>
+</control-points>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>iron leggings</item>
+    <item>cooked beef</item>
+    <item>glass bottle</item>
+    <item>arrow</item>
+    <item>potion</item>
+</itemremove>
+<killreward>
+    <item amount="10">arrow</item>
+    <item damage="8225" potions="regeneration:80:0:false;heal:1:0:false">potion</item>
+</killreward>
+<time result="objectives">12m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<destroyables>
+    <destroyable id="closure-of-spawn-exits" name="Spawn Closure" completion="0%" materials="air" mode-changes="true" owner="red" show="false">
+      <region>
+        <cuboid name="redSpawn" min="65,3,19" max="66,5,24"/>
+        <cuboid name="yellowSpawn" min="-18,3,-64" max="-23,5,-65"/>
+      </region>
+    </destroyable>
+</destroyables>
+<modes show-before="90s">
+  <mode name="`6Extra Layer of Webs" show-before="20s" after="8m" material="web"/>
+</modes>
+</map>

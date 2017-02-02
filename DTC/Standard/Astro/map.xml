@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Astro</name>
+<version>1.0.5</version>
+<objective>Destroy the enemy team's core!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+</authors>
+<teams>
+    <team color="dark purple" max="40">Purple</team>
+    <team color="gold" max="40">Orange</team>
+</teams>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="all">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1">bow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" amount="64" damage="1">log</item>
+        <item slot="4" amount="64" damage="9">stained clay</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" name="TNT Defuser" lore="`7Right click to defuse teammate's TNT">shears</item>
+        <item slot="8" amount="64">cooked chicken</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>sapling</item>
+    <item>beacon</item>
+    <item>cooked chicken</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>iron pickaxe</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+    <item>shears</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<spawns>
+    <spawns>
+        <spawn team="purple" kit="teams" yaw="180">
+            <cylinder base="-1.5,120,-15.5" radius="2" height="0"/>
+        </spawn>
+        <spawn team="orange" kit="teams" yaw="0">
+            <cylinder base="-1.5,120,-268.5" radius="2" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="90" kit="all">
+        <cylinder base="73.5,34,-142" radius="2" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="anti-grief-orange">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>orange</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-grief-purple">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>purple</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="center" min="-24,-197" max="51,-87"/>
+    <!-- Orange Regions -->
+    <cylinder name="orange-ship" base="-1.5,106,-261.5" radius="23" height="oo"/>
+    <cuboid name="around-orange-portal" min="3,119,-266" max="-6,123,-257"/>
+    <cuboid name="orange-portal-a" min="-4,119,-259" max="1,123,-264"/>
+    <cuboid name="orange-base" min="-13,52,-274" max="3,63,-258"/>
+    <cuboid name="orange-portal-b" min="0,52,-268" max="1,55,-265"/>
+    <cuboid name="orange-portal-c" min="-4,52,-261" max="-7,55,-260"/>
+    <!-- Purpe Regions -->
+    <cylinder name="purple-ship" base="-1.5,104,-24.5" radius="23" height="oo"/>
+    <cuboid name="around-purple-portal" min="-6,119,-27" max="3,123,-18"/>
+    <cuboid name="purple-portal-a" min="1,119,-20" max="-4,123,-25"/>
+    <cuboid name="purple-base" min="-13,52,-10" max="3,63,-26"/>
+    <cuboid name="purple-portal-b" min="-7,52,-23" max="-4,55,-24"/>
+    <cuboid name="purple-portal-c" min="0,52,-19" max="1,55,-16"/>
+    <!-- Applied -->
+    <apply block="deny-all">
+        <region name="around-purple-portal"/>
+        <region name="around-orange-portal"/>
+        <region name="purple-base"/>
+        <region name="orange-base"/>
+    </apply>
+    <apply block="only-iron" message="You may not modify the base area">
+        <region name="orange-ship"/>
+        <region name="purple-ship"/>
+    </apply>
+    <apply block="deny-void" message="You may not build outside the map!">
+        <negative>
+            <region name="center"/>
+        </negative>
+    </apply>
+</regions>
+<portals>
+    <portal x="@-5.5" y="@55" z="@-266.5" pitch="@10" yaw="@-45" filter="only-orange">
+        <region name="orange-portal-a"/>
+    </portal>
+    <portal x="@-1.5" y="@120" z="@-274.5" pitch="@0" yaw="@0" filter="only-orange">
+        <region name="orange-portal-b"/>
+        <region name="orange-portal-c"/>
+    </portal>
+    <portal x="@-5.5" y="@55" z="@-17.5" pitch="@10" yaw="@-135" filter="only-purple">
+        <region name="purple-portal-a"/>
+    </portal>
+    <portal x="@-1.5" y="@120" z="@-9.5" pitch="@0" yaw="@180" filter="only-purple">
+        <region name="purple-portal-b"/>
+        <region name="purple-portal-c"/>
+    </portal>
+</portals>
+<maxbuildheight>100</maxbuildheight>
+<modes>
+    <mode after="20m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core name="Back Core" team="purple">
+        <cuboid min="18,58,-27" max="23,63,-32"/>
+    </core>
+    <core name="Front Core" team="purple">
+        <cuboid min="15,29,-63" max="20,34,-58"/>
+    </core>
+    <core name="Front Core" team="orange">
+        <cuboid min="20,29,-221" max="15,34,-226"/>
+    </core>
+    <core name="Back Core" team="orange">
+        <cuboid min="18,58,-252" max="23,63,-257"/>
+    </core>
+</cores>
+<tutorial>
+    <stage title="Destroy The Core">
+        <message>
+            <line>`rThis map is a `a`lDestroy The Core `r(DTC) map</line>
+            <line>The objective is to leak both of the enemy team's cores.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-73.5,34,-142</point>
+        </teleport>
+    </stage>
+    <stage title="Purple Team's Spawn">
+        <message>
+            <line>`rThis is the `5Purple Team's `rbase. You spawn with gear ready to go into battle!</line>
+            <line>There is iron located on the ship to help you suit up.</line>
+        </message>
+        <teleport>
+            <point yaw="-20">-1.5,120,-15.5</point>
+        </teleport>
+    </stage>
+    <stage title="Diamond Mines">
+        <message>
+            <line>These are the diamond mines, where you can get diamond armor and gear.</line>
+            <line>They are in the center of the map, so watch out for enemies!</line>
+        </message>
+        <teleport>
+            <point yaw="-111" pitch="15">18,5,-150</point>
+        </teleport>
+    </stage>
+    <stage title="Orange Cores">
+        <message>
+            <line>These are the `6Orange Team`r's cores.</line>
+            <line>They are both signified by a beacon on top of them.</line>
+            <line>Orange Team must defend their cores, while the Purple Team will try to leak it.</line>
+            <line>Purple Team has two identical cores on their side which they must protect.</line>
+        </message>
+        <teleport>
+            <point yaw="55" pitch="45">34.5,64,-255.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

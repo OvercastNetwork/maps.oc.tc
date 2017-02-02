@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Piston KoTH</name>
+<version>1.1.2</version>
+<objective>Control the capture points!</objective>
+<authors>
+    <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
+    <author uuid="c95e0a45-8208-430a-a1a2-1e27333445a4"/> <!-- skippy369 -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="XML and Initial Testing"/> <!-- ElectroidFilms -->
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Map Concept"/> <!-- pepsidawg00 -->
+</contributors>
+<teams>
+    <team color="dark red" max="32" max-overfill="36">Red</team>
+    <team color="blue" max="32" max-overfill="36">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="84.5,70,-21.5" max="85.5,71,-20.5" />
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cuboid min="-42.5,70,-21.5" max="-43.5,71,-20.5" />
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="21.5,67.5,-21.5" radius="2" height="0" />
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="2" amount="32">cooked fish</item>
+        <item slot="4" amount="2">golden apple</item>
+        <potion duration="8" amplifier="3">heal</potion>
+        <potion duration="8">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="cd0000" unbreakable="true" enchantment="protection fall:4">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="0066cc" unbreakable="true" enchantment="protection fall:4">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<king>
+    <hills>
+        <hill name="Sensor A" capture-time="10s" points="1">
+            <capture>
+                <cuboid min="28.5,54,19.5" max="13.5,56,34.5" />
+            </capture>
+            <progress>
+                <cuboid min="28.5,53,19.5" max="13.5,54,34.5" />
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0" />
+            </captured>
+        </hill>
+        <hill name="Sensor B" capture-time="10s" points="1">
+            <capture>
+                <cuboid min="13.5,54,-61.5" max="28.5,56,-76.5" />
+            </capture>
+            <progress>
+                <cuboid min="13.5,53,-61.5" max="28.5,54,-76.5" />
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0" />
+            </captured>
+        </hill>
+    </hills>
+</king>
+<broadcasts>
+    <tip after="1m">`7You can find iron swords in the center of the map!</tip>
+    <tip after="2m">`7Can you find all of the hidden potions?</tip>
+    <tip after="3m">`7Search for different ways to get to the hills!</tip>
+    <tip after="6m">`7You can find iron swords in the center of the map!</tip>
+    <tip after="9m">`7Can you find all of the hidden potions?</tip>
+    <tip after="12m">`7Search for different ways to get to the hills!</tip>
+    <tip after="15m">`7You can find iron swords in the center of the map!</tip>
+    <tip after="18m">`7Can you find all of the hidden potions?</tip>
+    <tip after="20m">`7Search for different ways to get to the hills!</tip>
+</broadcasts>
+<score>
+    <limit>750</limit>
+    <king />
+</score>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked fish</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="8">arrow</item>
+</killreward>
+</map>

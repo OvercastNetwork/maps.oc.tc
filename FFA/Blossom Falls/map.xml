@@ -1,0 +1,106 @@
+<map proto="1.4.0" game="FFA">
+    <name>Blossom Falls</name>
+    <version>1.0.0</version>
+    <objective>Get the most kills in 8 minutes!</objective>
+    <authors>
+        <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
+        <!-- AtlasGames -->
+        <author uuid="d31e22be-a729-417f-967e-3636c19e0909" />
+        <!-- ThirdKnight -->
+    </authors>
+    <timelock>off</timelock>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+    <disabledamage>
+        <damage>fall</damage>
+    </disabledamage>
+    <players min="2" max="20" max-overfill="24" />
+    <respawn auto="true" delay="2.5s" spectate="true" blackout="false" />
+    <score>
+        <kills>1</kills>
+    </score>
+    <rage/>
+    <time>8m</time>
+    <spawns>
+        <spawn kit="spawn-kit">
+            <regions>
+                <point yaw="-90">72.5, 30, -2.5</point>
+                <point yaw="9">145, 50, -2.5</point>
+                <point yaw="90">147.5, 56, -4.5</point>
+                <point yaw="135">174, 84, 18</point>
+                <point yaw="45">14, 59, 41</point>
+                <point yaw="150">0,70,89</point>
+                <point yaw="-132">-10,61,77</point>
+                <point yaw="128">163,76,13</point>
+                <point yaw="167">147,52,22</point>
+                <point yaw="-32">140,57,-12</point>
+                <point yaw="37">93,19,-14</point>
+                <point yaw="-104">75,25,-1</point>
+                <point yaw="177">16,73,91</point>
+                <point yaw="-45">-9,77,53</point>
+                <point yaw="138">9,76,64</point>
+                <point yaw="-148">10,64,70</point>
+                <point yaw="143">97,19,14</point>
+                <point yaw="124">95,25,9</point>
+                <point yaw="90">88,36,-3</point>
+                <point yaw="-48">75,7,2</point>
+                <point yaw="-16">92,7,-6</point>
+                <point yaw="-173">80,6,13</point>
+                <point yaw="-33">-1,58,41</point>
+                <point yaw="50">14,59,40</point>
+                <point yaw="110">68,18,2</point>
+                <point yaw="-45">78,20,-10</point>
+                <point yaw="51">94,17,1</point>
+                <point yaw="138">166,70,16</point>
+                <point yaw="22">166,77,-13</point>
+                <point yaw="177">145,47,21</point>
+            </regions>
+        </spawn>
+        <default>
+            <regions>
+                <point yaw="135">121, 121, 107</point>
+            </regions>
+        </default>
+    </spawns>
+    <kits>
+        <kit id="spawn-kit">
+            <helmet unbreakable="true">chainmail helmet</helmet>
+            <chestplate unbreakable="true">chainmail chestplate</chestplate>
+            <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+            <boots unbreakable="true" color="334CB2" enchantment="depth strider:3">leather boots</boots>
+            <item slot="0" enchantments="damage_all:10">iron sword</item>
+            <item slot="1" enchantments="arrow_damage:10">bow</item>
+            <item slot="2" amount="2">arrow</item>
+            <potion duration="2" amplifier="10">resistance</potion>
+            <double-jump/>
+        </kit>
+    </kits>
+    <itemremove>
+        <item>chainmail helmet</item>
+        <item>chainmail chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+        <item>iron sword</item>
+        <item>bow</item>
+        <item>arrow</item>
+    </itemremove>
+    <killreward>
+        <item slot="2">arrow</item>
+    </killreward>
+    <regions>
+        <cuboid min="25,60,44" max="28,61,47" id="pTOg-pad" />
+        <cuboid min="68,21,17" max="71,22,20" id="gTOp-pad" />
+        <cuboid min="101,22,-2" max="103,23,1" id="gTOpu-pad" />
+        <cuboid min="139,49,7" max="141,50,10" id="puTOg-pad" />
+        <cuboid min="117,121,103" max="119,122,105" id="obsspawn" />
+
+        <apply velocity="10,3.5,-10" region="pTOg-pad" />
+        <apply velocity="-12,10,10" region="gTOp-pad" />
+        <apply velocity="10,10,0" region="gTOpu-pad" />
+        <apply velocity="-10,2,0" region="puTOg-pad" />
+        <apply velocity="-10,2,-10" region="obsspawn"/>
+        
+        <apply block="never" />
+    </regions>
+</map>

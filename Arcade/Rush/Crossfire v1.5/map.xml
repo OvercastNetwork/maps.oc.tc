@@ -1,0 +1,198 @@
+<map proto="1.3.6">
+<name>Crossfire</name>
+<version>1.5.5</version>
+<slug>crossfire</slug>
+<objective>
+    Runners must get from one side of the map to the other without getting killed by the Defenders.
+</objective>
+<gamemode>ad</gamemode>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/>
+    <!--  SheriffSoco  -->
+</authors>
+<contributors>
+    <contributor contribution="Feedback">BlockDrop74</contributor>
+    <contributor contribution="Feedback">dinner1111</contributor>
+    <contributor contribution="Minor Terraforming">Avaleer</contributor>
+    <contributor contribution="Help with Oberver Spawn">yoyo_power</contributor>
+    <contributor contribution="XML Help">Anthonny</contributor>
+</contributors>
+<rules>
+    <rule>Fall Damage is Disabled.</rule>
+    <rule>Do NOT Hide in the Houses!</rule>
+</rules>
+<broadcasts>
+    <tip filter="defenders-only" after="5s" every="1m">Use the feather to go fast across the tracks</tip>
+</broadcasts>
+<destroyables>
+    <destroyable owner="Defenders" name="Monument" region="monument" materials="sponge" required="true"/>
+</destroyables>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Rush</title>
+</blitz>
+<include src="blitz-global.xml"/>
+<teams>
+    <team color="light purple" max="25" max-overfill="30" plural="true">Runners</team>
+    <team color="dark blue" max="4" plural="true">Defenders</team>
+</teams>
+<kits>
+    <kit name="hunger">
+        <saturation>20</saturation>
+        <foodlevel>20</foodlevel>
+    </kit>
+    <kit name="magenta" parents="hunger">
+        <helmet color="EBD2F5">leather helmet</helmet>
+        <chestplate color="EBD2F5">leather chestplate</chestplate>
+        <leggings color="EBD2F5">leather leggings</leggings>
+        <boots color="FFFFFF">leather boots</boots>
+        <item slot="0" damage="61">wood sword</item>
+        <item slot="1">boat</item>
+    </kit>
+    <kit name="dark-blue" parents="hunger">
+        <helmet color="293878">leather helmet</helmet>
+        <chestplate color="293878">leather chestplate</chestplate>
+        <leggings color="293878">leather leggings</leggings>
+        <boots color="191919">leather boots</boots>
+        <potion duration="600" amplifier="2">speed</potion>
+        <item slot="1" unbreakable="true" enchantment="ARROW_KNOCKBACK:1;ARROW_DAMAGE:3;ARROW_INFINITE:1">bow</item>
+        <item slot="8" lore="`4Speedy Feather" attributes="generic.movementSpeed:base:0.3">feather</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+    <kit name="heal">
+        <potion duration="3" amplifier="4">heal</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>string</item>
+    <item>sponge</item>
+    <item>arrow</item>
+    <item>stick</item>
+    <item>wood</item>
+</itemremove>
+<toolrepair>
+    <tool>wood sword</tool>
+</toolrepair>
+<killreward>
+    <filter>
+        <all>
+            <team>Defenders</team>
+            <kill-streak count="3"/>
+        </all>
+    </filter>
+    <kit force="true">
+        <item slot="1" enchantment="ARROW_KNOCKBACK:1;ARROW_DAMAGE:5;ARROW_INFINITE:1" name="`AUpgraded Bow">bow</item>
+    </kit>
+</killreward>
+<timelock>on</timelock>
+<filters>
+    <filter name="monument-cobwebs" parents="deny-all">
+        <allow>
+            <any>
+                <block>web</block>
+                <block>sponge</block>
+            </any>
+        </allow>
+    </filter>
+    <filter name="defenders-only" parents="deny-players">
+        <allow>
+            <team>Defenders</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <block name="monument">756.5,45,1085.5</block>
+    <cuboid name="spawnHouse" min="743,45,431" max="770,52,445"/>
+    <cuboid name="town" min="744,36,500" max="769,45,552"/>
+    <cuboid name="Mainland" min="743,0,431" max="770,256,1087"/>
+    <cuboid name="Runner-Spawn" min="748,47.5,437" max="765,47.5,442"/>
+    <cuboid name="Defender-Spawn" min="756,87,405" max="757,87,406"/>
+    <cuboid name="Observer-Spawn" min="756,95,375" max="757,95,376"/>
+    <rectangle name="Heal-1" min="742,761" max="770,762"/>
+    <!--  Portal Regions  -->
+    <union name="Spawn-A">
+        <cuboid min="761,86,405" max="762,87,409"/>
+        <cuboid min="759,86,408" max="762,87,409"/>
+    </union>
+    <union name="Spawn-B">
+        <cuboid min="751,86,405" max="752,87,409"/>
+        <cuboid min="751,86,408" max="754,87,409"/>
+    </union>
+    <block name="Start-A">787.5,48,441.5</block>
+    <!--  yaw:-45  -->
+    <block name="Start-B">725.5,48,441.5</block>
+    <!--  yaw:45  -->
+    <cuboid name="Portal-A" min="792,47,468" max="793,48,1032"/>
+    <cuboid name="Portal-B" min="720,47,468" max="721,48,1032"/>
+    <apply block="monument-cobwebs" message="You may only break cobwebs!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply kit="heal">
+        <region name="Heal-1"/>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter your spawn">
+        <region name="spawnHouse"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="Runners" kit="magenta">
+        <regions yaw="0">
+            <region name="Runner-Spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="Defenders" kit="dark-blue">
+        <regions yaw="0">
+            <region name="Defender-Spawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <region name="Observer-Spawn"/>
+        </regions>
+    </default>
+</spawns>
+<portals>
+    <portal yaw="@-45" region="Spawn-A" destination="Start-A"/>
+    <portal yaw="@45" region="Spawn-B" destination="Start-B"/>
+    <portal x="-69" y="@49" z="10" region="Portal-A"/>
+    <portal x="69" y="@49" z="10" region="Portal-B"/>
+</portals>
+<!-- <renewables>
+    <renewable rate="2.5" particles="true" sound="true" avoid-entities="true">
+        <region>
+            <region name="spawnHouse"/>
+            <region name="town"/>
+        </region>
+        <renew-filter>
+            <any>
+                <block>air</block>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>wood</block>
+                <block>stained glass pane</block>
+                <block>trap door</block>
+                <block>dark oak stairs</block>
+                <block>acacia stairs</block>
+                <block>glowstone</block>
+                <block>fence</block>
+                <block>flower pot</block>
+                <block>ladder</block>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables> -->
+<time result="Defenders">6m</time>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

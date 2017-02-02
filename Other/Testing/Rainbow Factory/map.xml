@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+  <name>Rainbow Factory</name> 
+  <version>1.0-Alpha</version>
+  <objective>Be the team with the least amount of deaths after 15 minutes.</objective>
+  <authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif --> 
+  </authors>
+  <teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+  </teams>
+  <kits>
+    <kit name="spawn">
+      <item slot="0">iron sword</item>
+      <item slot="1">bow</item>
+      <item slot="28" amount="16">arrow</item> 
+      <item slot="2">iron pickaxe</item>
+      <item slot="35" amount="1">apple</item>
+      <item slot="3" amount="2">golden apple</item>
+      <item slot="8" amount="1">gold block</item>
+      <helmet enchantment="protection fall:3">iron helmet</helmet>
+      <chestplate>iron chestplate</chestplate>
+      <leggings>leather leggings</leggings>
+      <boots>leather boots</boots>
+      <!-- spawn with a instant health potion to prevent spawn killing -->
+      <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+  </kits>
+  <toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+  </toolrepair>
+  <itemremove>
+    <item>apple</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+  </itemremove>
+  <filters>
+    <filter name="only-blue" parents="deny-all">
+      <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+      <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-gold" parents="deny-all">
+      <allow><block>gold block</block></allow>
+    </filter>
+  </filters>
+  <regions>
+    <apply enter="only-blue" message="You may not enter the enemy spawn.">
+      <rectangle name="spawn-blue" min="-265,-923" max="-195,-892"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn.">
+      <rectangle name="spawn-red" min="-265,-1211" max="-195,-1180"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own scorebox.">
+      <cuboid name="no-red" min="-253,52,-1181" max="-207,57,-1178"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own scorebox.">
+      <cuboid name="no-blue" min="-253,52,-925" max="-207,57,-922"/>
+    </apply>
+    <cuboid name="blue-score" min="-252,52,-1180" max="-208,53,-1181"/>
+    <cuboid name="red-score" min="-252,52,-924" max="-208,53,-923"/>
+    <apply block="only-gold" message="You may only place and destroy gold blocks.">
+      <rectangle name="main" min="-268,-1212" max="-191,-891"/>
+    </apply>
+  </regions>
+  <spawns>
+    <default yaw="270"><cylinder base="-242.5,55,-1051.5" radius="2" height="0"/></default>
+    <spawns kit="spawn">
+      <spawn team="blue" yaw="180"><cylinder base="-230,43,-898" radius="1.5" height="0"/></spawn>
+      <spawn team="red" yaw="0"><cylinder base="-230,45,-1205" radius="1.5" height="0"/></spawn>
+    </spawns>
+  </spawns>
+  <score>
+    <time>900</time>
+    <box value="5" team="blue"><region name="blue-score"/></box>
+    <box value="5" team="red"><region name="red-score"/></box>
+  </score>
+</map>

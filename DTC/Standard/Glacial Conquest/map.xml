@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<include src="tutorial.xml"/>
+<name>Glacial Conquest</name>
+<version>1.0.5</version>
+<objective>Leak lava from the enemy's obsidian core.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+    <author uuid="fb820bf4-5157-4d7b-8cca-e8ec759b87cd"/> <!-- Vetches -->
+</authors>
+<contributors>
+    <contributor uuid="c2a4c847-653e-482a-b62e-d7f8b64330cb" contribution="XML"/> <!-- NathanTheBook -->
+</contributors>
+<teams>
+    <team color="dark aqua" max="75">Cyan</team>
+    <team color="dark purple" max="75">Purple</team>
+</teams>
+<spawns>
+    <spawn team="cyan" kit="cyan" yaw="8"><cuboid min="4,55,-56" max="10,56,-50"/></spawn>
+    <spawn team="purple" kit="purple" yaw="-162"><cuboid min="-168,55,0" max="-162,56,6"/></spawn>
+    <default yaw="180"><cuboid min="-83,79,47" max="-77,82,53"/></default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item amount="1" enchantment="durability:1" name="`5Icy Dagger" slot="0">iron sword</item>
+        <item amount="1" enchantment="durability:1" name="`5Frost Bow" slot="1">bow</item>
+        <item amount="1" enchantment="durability:2;dig speed:1" name="`5Icy Pick" slot="2">iron pickaxe</item>
+        <item amount="1" enchantment="durability:2;dig speed:1" name="`5Icy Axe" slot="3">iron axe</item>
+        <item amount="64" slot="4">cooked chicken</item>
+        <item amount="2" slot="5">golden apple</item>
+        <item amount="64" slot="6">snow block</item>
+        <item amount="64" slot="33">snow block</item>
+        <item amount="64" damage="1" slot="7">log</item>
+        <item amount="64" damage="1" slot="34">log</item>
+        <item amount="64" slot="28">arrow</item>
+        <item amount="64" slot="19">arrow</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="5" amplifier="3">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+    </kit>
+    <kit name="cyan" parents="spawn">
+        <helmet color="00A7D0">leather helmet</helmet>
+        <chestplate color="00A7D0">leather chestplate</chestplate>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet color="A600FF">leather helmet</helmet>
+        <chestplate color="A600FF">leather chestplate</chestplate>
+    </kit>
+</kits>
+<regions>
+    <cuboid name="CyanSpawn" min="-1,51,-62" max="16,60,-42"/>
+    <cuboid name="PurpleSpawn" min="-174,52,-7" max="-157,60,12"/>
+    <cuboid name="near-cyan-spawn" min="-19,90,-2" max="25,28,-74"/>
+    <cuboid name="near-purple-spawn" min="-137,90,-46" max="-182,28,25"/>
+    <cuboid name="near-cyan-front" min="-50,70,-74" max="-4,28,-25"/>
+    <cuboid name="near-purple-front" min="-106,70,25" max="-152,28,-74"/>
+    <complement name="no-tnt-spawn-purple">
+        <region name="near-purple-spawn"/>
+        <region name="PurpleSpawn"/>
+    </complement>
+    <complement name="no-tnt-spawn-cyan">
+        <region name="near-cyan-spawn"/>
+        <region name="CyanSpawn"/>
+    </complement>
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <region name="CyanSpawn"/>
+        <region name="PurpleSpawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not build outside the map!">
+        <negative name="playable-inverse">
+            <rectangle min="-184,-75" max="26,26"/>
+        </negative>
+    </apply>
+    <apply block="deny-all">
+        <block>-135,109,-73</block>
+        <block>-23,109,23</block>
+    </apply>
+    <apply block-place="anti-grief-purple" message="You cannot place TNT too close to your supplies!">
+        <region name="near-purple-front"/>
+        <region name="no-tnt-spawn-purple"/>
+    </apply>
+    <apply block-place="anti-grief-cyan" message="You cannot place TNT too close to your supplies!">
+        <region name="near-cyan-front"/>
+        <region name="no-tnt-spawn-cyan"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="anti-grief-purple">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>purple</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-grief-cyan">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>cyan</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<cores material="obsidian" leak="5">
+    <core team="purple">
+        <cuboid min="-166,73,-57" max="-163,76,-54"/>
+    </core>
+    <core team="cyan">
+        <cuboid min="5,73,4" max="8,76,7"/>
+    </core>
+</cores>
+<maxbuildheight>110</maxbuildheight>
+<itemremove>
+    <item>sapling</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>snow ball</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>snow block</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>`rThis map is a `c`lDestroy the Core `r(DTC) map.</line>
+            <line>Your goal is to leak the enemy's `5cores`r.</line>
+        </message>
+        <teleport>
+            <point yaw="180">-79,79,50</point>
+        </teleport>
+    </stage>
+    <stage title="The Core">
+        <message>
+            <line>This is the `5Purple Team's `r`bCore.</line>
+            <line>The `3Cyan Team `rmust destroy the `bcore to win the game.</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="50">-159,78,-50</point>
+        </teleport>
+    </stage>
+    <stage title="The Mine">
+        <message>
+            <line>This is the `5Purple Team's `rmine.</line>
+            <line>Here, they can find `bdiamonds and `r`firon to mine</line>
+        </message>
+        <teleport>
+            <point yaw="11" pitch="10">-103,61,-45</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Moonlight Summit</name>
+<version>1.4</version>
+<objective>Destroy 90% of all three of the enemy's monuments.</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Feedback and XML"/> <!-- ElectroidFilms -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Feedback"/> <!-- moo88888888 -->
+    <contributor uuid="7d8f53ea-e0ca-4be0-9795-91221984a293" contribution="Map Name"/> <!-- Captainbrofist -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Feedback"/> <!-- Timothee38 -->
+    <contributor uuid="9d87acbf-81f0-4c18-b2aa-67a8900d6d08" contribution="Feedback"/> <!-- redalex457 -->
+    <contributor uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f" contribution="Feedback"/> <!-- Veiyl -->
+</contributors>
+<teams>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="180">
+        <cuboid min="-1,37,156" max="2,37,153"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="0">
+        <cuboid min="2,36,-447" max="-1,36,-444"/>
+    </spawn>
+    <default yaw="0">
+        <point>0.5,50,-421.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true" name="`rWooden Training Sword">wood sword</item>
+        <item slot="1" unbreakable="true" name="`rOak Training Bow">bow</item>
+        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:2">wood pickaxe</item>
+        <item slot="3" unbreakable="true" lore="`cStaff: `7Use /toggleeditwand to disable the world edit wand!" attributes="generic.attackDamage:add:2">wood axe</item>
+        <item slot="4" amount="32">wood</item>
+        <item slot="5" amount="32">bread</item>
+        <item slot="6" name="`6Golden Coins" amount="3">gold nugget</item>
+        <item slot="7" amount="4">torch</item>
+        <item slot="8" amount="32">arrow</item>
+        <chestplate unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="unlockable-a" force="true">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:3">stone pickaxe</item>
+        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:3">stone axe</item>
+        <helmet unbreakable="true">chainmail helmet</helmet>
+        <chestplate unbreakable="true">gold chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true" name="`rAgile Leather Boots" lore="`7Speed I" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.025">leather boots</boots>
+    </kit>
+    <kit name="unlockable-b" force="true">
+        <item slot="0" unbreakable="true" name="`rSharpened Stone Sword" enchantment="damage all:1" attributes="generic.attackDamage:add:5.75">stone sword</item>
+        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:4">iron pickaxe</item>
+        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:4">iron axe</item>
+        <helmet unbreakable="true" name="`rHard Iron Helmet" enchantment="protection projectile:2">iron helmet</helmet>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots unbreakable="true" name="`rAgile Golden Boots" lore="`7Speed II" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.05">gold boots</boots>
+    </kit>
+    <kit name="unlockable-c" force="true">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:5">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" attributes="generic.attackDamage:add:5">diamond axe</item>
+        <helmet unbreakable="true">diamond helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection environmental:1">iron chestplate</chestplate>
+        <leggings unbreakable="true" name="`rBlast Proof Iron Leggings" enchantment="protection explosions:1">iron leggings</leggings>
+        <boots unbreakable="true" name="`rAgile Iron Boots" lore="`7Speed III" enchantment="protection fall:3" attributes="generic.movementSpeed:base:0.075">iron boots</boots>
+    </kit>
+</kits>
+<modes>
+    <mode after="1s" material="obsidian" name="`aENDSTONE MONUMENT MODE in 5 minutes"/>
+    <mode after="5m" material="ender stone" name="`eENDSTONE MONUMENT MODE"/>
+    <mode after="1h" material="double step:9" name="`6SANDSTONE MONUMENT MODE"/>
+</modes>
+<destroyables materials="obsidian" completion="90%" mode-changes="true" repairable="false" show-progress="true">
+    <destroyables name="Front Monument">
+        <destroyable owner="blue">
+           <region name="blue-front-monument"/>
+        </destroyable>
+        <destroyable owner="red">
+           <region name="red-front-monument"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Mid Monument">
+        <destroyable owner="blue">
+           <region name="blue-mid-monument"/>
+        </destroyable>
+        <destroyable owner="red">
+           <region name="red-mid-monument"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Rear Monument">
+        <destroyable owner="blue">
+           <region name="blue-rear-monument"/>
+        </destroyable>
+        <destroyable owner="red">
+           <region name="red-rear-monument"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-blue-destroyable">
+        <not>
+            <all>
+                <team>blue</team>
+                <any>
+                    <block>obsidian</block>
+                    <block>ender stone</block>
+                    <block damage="9">double step</block>
+                </any>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-red-destroyable">
+        <not>
+            <all>
+                <team>red</team>
+                <any>
+                    <block>obsidian</block>
+                    <block>ender stone</block>
+                    <block damage="9">double step</block>
+                </any>
+            </all>
+        </not>
+    </filter>
+    <filter name="not-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="not-some-village">
+        <not>
+            <block>hopper</block>
+            <block>fence</block>
+            <block>trap door</block>
+            <block>beacon</block>
+            <block>anvil</block>
+            <block>enchantment table</block>
+            <block>furnace</block>
+            <block>burning furnace</block>
+            <block>fence gate</block>
+            <block>lever</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+            <block>dispenser</block>
+            <block>dropper</block>
+            <block>stone button</block>
+            <block>dispenser</block>
+        </not>
+    </filter>
+    <filter name="not-some-global">
+        <not>
+            <block>beacon</block>
+            <block>anvil</block>
+            <block>enchantment table</block>
+            <block>furnace</block>
+            <block>burning furnace</block>
+        </not>
+    </filter>
+    <filter name="only-redstone">
+        <any>
+            <all>
+                <any>
+                    <filter name="allow-world"/>
+                    <filter name="deny-all"/>
+                </any>
+                <any>
+                    <block>piston base</block>
+                    <block>piston extension</block>
+                    <block>piston moving piece</block>
+                    <block>piston sticky base</block>
+                    <block>air</block>
+                    <block>redstone wire</block>
+                    <block>redstone comparator on</block>
+                    <block>redstone comparator off</block>
+                    <block>redstone torch on</block>
+                    <block>redstone torch off</block>
+                    <block>redstone lamp on</block>
+                    <block>redstone lamp off</block>
+                    <block>diode block on</block>
+                    <block>diode block off</block>
+                    <block>smooth brick</block>
+                    <block>cobblestone stairs</block>
+                    <block>dispenser</block>
+                    <block>note block</block>
+                </any>
+            </all>
+            <filter name="deny-all"/>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <union name="villages">
+        <rectangle name="blue-village" min="-43,175" max="44,58"/>
+        <rectangle name="red-village" min="-43,-349" max="44,-466"/>
+    </union>
+    <complement name="above-65">
+        <cuboid min="-oo,66,-oo" max="oo,oo,oo"/>
+        <region name="villages"/>
+    </complement>
+    <union name="blue-monuments">
+        <sphere name="blue-front-monument" origin="13.5,42,-77.5" radius="5"/>
+        <sphere name="blue-mid-monument" origin="-20.5,49,-11.5" radius="5"/>
+        <sphere name="blue-rear-monument" origin="6.5,46,19.5" radius="5"/>
+    </union>
+    <union name="red-monuments">
+        <sphere name="red-front-monument" origin="-12.5,42,-213.5" radius="5"/>
+        <sphere name="red-mid-monument" origin="21.5,49,-279.5" radius="5"/>
+        <sphere name="red-rear-monument" origin="-5.5,46,-310.5" radius="5"/>
+    </union>
+    <union name="blue-alarms">
+        <cylinder name="blue-front-alarm" base="13.5,35,-77.5" radius="10" height="oo"/>
+        <cylinder name="blue-mid-alarm" base="-20.5,42,-11.5" radius="10" height="oo"/>
+        <cylinder name="blue-rear-alarm" base="6.5,39,19.5" radius="10" height="oo"/>
+    </union>
+    <union name="red-alarms">
+        <cylinder name="red-front-alarm" base="-12.5,35,-213.5" radius="10" height="oo"/>
+        <cylinder name="red-mid-alarm" base="21.5,42,-279.5" radius="10" height="oo"/>
+        <cylinder name="red-rear-alarm" base="-5.5,39,-310.5" radius="10" height="oo"/>
+    </union>
+    <union name="blue-portals">
+        <cuboid name="blue-portal-a" min="17,35,147" max="16,38,150"/>
+        <cuboid name="blue-portal-b" min="2,35,165" max="-1,38,164"/>
+        <cuboid name="blue-portal-c" min="-16,35,150" max="-15,38,147"/>
+    </union>
+    <union name="red-portals">
+        <cuboid name="red-portal-a" min="-16,35,-438" max="-15,38,-441"/>
+        <cuboid name="red-portal-b" min="-1,35,-456" max="2,38,-455"/>
+        <cuboid name="red-portal-c" min="17,35,-441" max="16,38,-438"/>
+    </union>
+    <!-- Applied -->
+    <apply use="not-some-village">
+        <region name="villages"/>
+    </apply>
+    <apply use="not-some-global" message="`aGo to spawn and trade your ores in for `6Golden Coins">
+        <negative>
+            <region name="villages"/>
+        </negative>
+    </apply>
+    <apply block="not-void" message="`aYou may not edit outside the map!">
+        <region name="all"/>
+    </apply>
+    <apply block="only-redstone">
+        <region name="villages"/>
+    </apply>
+    <apply block="deny-all" message="`aYou may not edit above the height limit! (`e65 Blocks`a)">
+        <region name="above-65"/>
+    </apply>
+    <apply enter="only-blue" message="`aYou may not enter the enemy village!">
+        <region name="blue-village"/>
+    </apply>
+    <apply enter="only-red" message="`aYou may not enter the enemy village!">
+        <region name="red-village"/>
+    </apply>
+    <apply block="deny-red-destroyable allow-world" message="`aYou may not damage your own monument!">
+        <region name="red-monuments"/>
+    </apply>
+    <apply block="deny-blue-destroyable allow-world" message="`aYou may not damage your own monument!">
+        <region name="blue-monuments"/>
+    </apply>
+    <apply kit="unlockable-a">
+        <region name="blue-portal-a"/>
+        <region name="red-portal-a"/>
+    </apply>
+    <apply kit="unlockable-b">
+        <region name="blue-portal-b"/>
+        <region name="red-portal-b"/>
+    </apply>
+    <apply kit="unlockable-c">
+        <region name="blue-portal-c"/>
+        <region name="red-portal-c"/>
+    </apply>
+</regions>
+<portals>
+    <portal x="@-1" y="@36" z="@156" yaw="@180" pitch="@0" filter="only-blue">
+        <region name="blue-portals"/>
+    </portal>
+    <portal x="@02" y="@36" z="@-447" yaw="@0" pitch="@0" filter="only-red">
+        <region name="red-portals"/>
+    </portal>
+</portals>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>coal ore</block>
+        </filter>
+        <drops>
+            <item amount="4">torch</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>leaves</block>
+        </filter>
+        <drops>
+            <item>sapling</item>
+        </drops>
+        <wrongtool>false</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>gold ore</block>
+        </filter>
+        <drops>
+            <item lore="`7Sell this to the Ore Trader in the village for coins!">gold ore</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>iron ore</block>
+        </filter>
+        <drops>
+            <item lore="`7Sell this to the Ore Trader in the village for coins!">iron ore</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>ender stone</block>
+        </filter>
+        <drops>
+            <item name="`6Golden Coins">gold nugget</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>mob spawner</block>
+        </filter>
+        <drops>
+            <item name="`6Golden Coins" amount="5">gold nugget</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <block>obsidian</block>
+        </filter>
+        <drops>
+            <item name="`6Golden Coins" amount="8">gold nugget</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+</blockdrops>
+<killreward>
+    <item name="`6Golden Coins" amount="2">gold nugget</item>
+</killreward>
+<multitrade/>
+<timelock>off</timelock>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<itemremove>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>wood pickaxe</item>
+    <item>wood axe</item>
+    <item>bread</item>
+    <item>arrow</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>stone sword</item>
+    <item>stone pickaxe</item>
+    <item>stone axe</item>
+    <item>chainmail helmet</item>
+    <item>gold chestplate</item>
+    <item>chainmail leggings</item>
+    <item>gold boots</item>
+    <item>iron sword</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond helmet</item>
+    <item>diamond sword</item>
+    <item>diamond boots</item>
+    <item>diamond leggings</item>
+    <item>diamond chestplate</item>
+    <item>leather helmet</item>
+    <item>diamond helmet</item>
+    <item>long grass</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>flint</item>
+    <item>seeds</item>
+    <item>obsidian</item>
+    <item>ender stone</item>
+    <item damage="9">double step</item>
+    <item>apple</item>
+    <item>clay ball</item>
+    <item>string</item>
+    <item>golden carrot</item>
+    <item>rotten flesh</item>
+    <item>iron ingot</item>
+    <item>potato</item>
+    <item>step</item>
+    <item>glass bottle</item>
+</itemremove>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>This map is a `bDTM`r, with a `bvillager trading system.</line>
+            <line>The objective is to destroy 90% of each of the `athree monuments`r. This is the `bfront monument`r.</line>
+        </message>
+        <teleport>
+            <point yaw="151" pitch="20">-8,45,-205</point>
+        </teleport>
+    </stage>
+    <stage title="Villager trading">
+        <message>
+            <line>This map has a `bvillager trading system.</line>
+            <line>`cKill people or sell recources `rto get `6Golden Coins `rto trade with the `cvilagers`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="5">14.5,34,-399.5</point>
+        </teleport>
+    </stage>
+    <stage title="Kits">
+        <message>
+            <line>By throwing any extra `6Golden Coins `rinto the water hole, you will help your team get closer to unlocking the next kit.</line>
+            <line>Reaching 2 stacks unlocks kit 1, reaching 5 stacks unlocks kit 2, and reaching 10 stacks unlocks kit 3.</line>
+            <line>You must unlock the previous kit in order to unlock the next one. For example, if you want to unlock kit two, you must first unlock the first kit upgrade.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="10">-5.5,35,-439.5</point>
+        </teleport>
+    </stage>
+    <stage title="Amount to Unlock Kits">
+        <message>
+            <line>Reaching `a2 `rstacks unlocks `6kit 1`r.</line>
+            <line>Reaching `a5 `rstacks unlocks `6kit 2`r.</line>
+            <line>Reaching `a10 `rstacks unlocks `6kit 3`r.</line>
+        </message>
+    </stage>
+    <stage title="Kit Portals">
+        <message>
+            <line>In front of you is the first unlockable kit for the `4Red Team`r.</line>
+            <line>To get new gear, you must simply walk through the portal. You will be given a new kit, and teleported back to your spawn.</line>
+            <line>Be careful, your sword, armor, and tools will be overridden.</line>
+            <line>You `lwill `rhave to go through the portal to recieve your new kit every time you respawn.</line>
+            <line>If you want to keep your items while going through the portal, take them out of your hotbar!</line>
+        </message>
+        <teleport>
+            <point yaw="90">-10.5,35,-439.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<!-- Proximity Alarms need more customization opions before bringing this feature back -->
+<!-- <proximity-alarms>
+    <proximity-alarm message="`7A player on the `4Red Team `7is at the `bFront Monument" flare-radius="5">
+        <region>
+            <region name="blue-front-alarm"/>
+            <region name="blue-front-monument"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`7A player on the `9Blue Team `7is at the `bFront Monument" flare-radius="5">
+        <region>
+            <region name="red-front-alarm"/>
+            <region name="red-front-monument"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`7A player on the `4Red Team `7is at the `bMid Monument" flare-radius="5">
+        <region>
+            <region name="blue-mid-alarm"/>
+            <region name="blue-mid-monument"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`7A player on the `9Blue Team `7is at the `bMid Monument" flare-radius="5">
+        <region>
+            <region name="red-mid-alarm"/>
+            <region name="red-mid-monument"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`7A player on the `4Red Team `7is at the `bRear Monument" flare-radius="5">
+        <region>
+            <region name="blue-rear-alarm"/>
+            <region name="blue-rear-monument"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`7A player on the `9Blue Team `7is at the `bRear Monument" flare-radius="5">
+        <region>
+            <region name="red-rear-alarm"/>
+            <region name="red-rear-monument"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms> -->
+</map>

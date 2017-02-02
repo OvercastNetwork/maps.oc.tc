@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Sky Traffic</name>
+<version>1.5.2</version>
+<objective>Leak lava from the enemy's obsidian core below their ship.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<include src="tutorial.xml"/>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="anti-chest-red">
+        <not>
+            <all>
+                <team>red</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-chest-blue">
+        <not>
+            <all>
+                <team>blue</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-tnt-red">
+        <not>
+            <all>
+                <team>red</team>
+                <block>tnt</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-tnt-blue">
+        <not>
+            <all>
+                <team>blue</team>
+                <block>tnt</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map-b" min="-178,-3" max="155,240"/>
+    <rectangle name="map-l" min="-180,-5" max="157,242"/>
+    <cuboid name="above-180" min="-oo,181,-oo" max="oo,oo,oo"/>
+    <union name="anti-grief">
+        <union name="red-chests">
+            <!-- left top front -->
+            <cuboid min="-85,89,4" max="-82,91,8"/>
+            <!-- right top front -->
+            <cuboid min="-88,89,4" max="-91,91,8"/>
+            <!-- left top back -->
+            <cuboid min="-85,89,27" max="-82,91,31"/>
+            <!-- right top back -->
+            <cuboid min="-88,89,27" max="-91,91,31"/>
+            <!-- left bottom -->
+            <cuboid min="-82,83,16" max="-85,85,20"/>
+            <!-- right bottom -->
+            <cuboid min="-91,83,16" max="-88,85,20"/>
+        </union>
+        <union name="red-no-tnt">
+            <!-- front path -->
+            <cuboid min="-89,80,-3" max="-81,95,9"/>
+            <!-- back path -->
+            <cuboid min="-81,82,38" max="-93,92,16"/>
+        </union>
+        <union name="blue-chests">
+            <cuboid min="65,89,4" max="68,91,8"/>
+            <cuboid min="62,89,4" max="59,91,8"/>
+            <cuboid min="65,89,27" max="68,91,31"/>
+            <cuboid min="62,89,27" max="59,91,31"/>
+            <cuboid min="68,83,16" max="65,85,20"/>
+            <cuboid min="59,83,16" max="62,85,20"/>
+        </union>
+        <union name="blue-no-tnt">
+            <cuboid min="61,80,-3" max="69,95,9"/>
+            <cuboid min="69,82,38" max="57,92,16"/>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="Don't edit outside the map area!">
+        <negative>
+            <region name="map-b"/>
+        </negative>
+    </apply>
+    <apply leave="deny-all" message="You may not leave the map area!">
+        <region name="map-l"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit above the height limit!">
+        <region name="above-180"/>
+    </apply>
+    <apply block-break="anti-chest-red" message="You are not allowed to break your own chests!">
+        <region name="red-chests"/>
+    </apply>
+    <apply block-break="anti-chest-blue" message="You are not allowed to break your own chests!">
+        <region name="blue-chests"/>
+    </apply>
+    <apply block-place="deny-chest">
+        <region name="red-chests"/>
+        <region name="blue-chests"/>
+    </apply>
+    <apply block-place="anti-tnt-red" message="You are not allowed to place TNT in your ship!">
+        <region name="red-no-tnt"/>
+    </apply>
+    <apply block-place="anti-tnt-blue" message="You are not allowed to place TNT in your ship!">
+        <region name="blue-no-tnt"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="teams">
+        <item slot="35" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="15s" amplifier="2">regeneration</potion>
+        <potion duration="5" amplifier="10">heal</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="teams" yaw="90">
+        <cuboid min="-29.5,91,-33" max="-28.5,91,-32"/>
+    </spawn>
+    <spawn team="blue" kit="teams" yaw="-90">
+        <cuboid min="4.5,91,-33" max="5.5,91,-32"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="-16,90,-37" max="-7,90,-28"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="4">
+    <core team="red">
+        <cuboid min="-90,86,10" max="-83,91,16"/>
+    </core>
+    <core team="blue">
+        <cuboid min="60,86,10" max="67,91,16"/>
+    </core>
+</cores>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>Welcome to `3Sky Traffic`r, by Reshif.</line>
+            <line>The objective is to leak lava from the other team's `ccore`r.</line>
+        </message>
+        <teleport>
+            <point pitch="3" yaw="0">-11,107,4</point>
+        </teleport>
+    </stage>
+    <stage title="The Core">
+        <message>
+            <line>This `5obsidian ball `ris the `ccore`r. You must drain lava from it to win.</line>
+            <line>It will turn to `6gold `rafter `915 `rminutes have passed, and `eglass `rafter `920`r.</line>
+        </message>
+        <teleport>
+            <point pitch="-10" yaw="24">65,85,8</point>
+        </teleport>
+    </stage>
+    <stage title="Supplies">
+        <message>
+            <line>There are `9supplies `rin your base. They contain useful items for taking on your opponents.</line>
+            <line>There are additional `9supplies `rscattered throughout the map in `4balloons`r.</line>
+        </message>
+        <teleport>
+            <point pitch="30" yaw="40">70.5,98,-3.5</point>
+        </teleport>
+    </stage>
+    <stage title="Yellow Submarine">
+        <message>
+            <line>There are `6special supplies `rinside of the `eyellow submarine`r.</line>
+            <line>These `9supplies `rincrease your power and mobility.</line>
+        </message>
+        <teleport>
+            <point pitch="15" yaw="60">1,13,47.5</point>
+        </teleport>
+    </stage>
+    <stage title="Diamonds">
+        <message>
+            <line>There are `3diamonds`r, like these, scattered throughout the map.</line>
+            <line>You can use the `3diamond blocks`r to make `2armor`r.</line>
+            <line>Use the blocks you got from `9supplies`r to bridge to them.</line>
+        </message>
+        <teleport>
+            <point yaw="90">26,111,41</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

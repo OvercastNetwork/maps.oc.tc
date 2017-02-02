@@ -1,0 +1,822 @@
+<map proto="1.4.1">
+<name>Chimeric II</name>
+<version>1.0.1</version>
+<objective>Capture the other team's wool and return it to your base, and destroy their monument.</objective>
+<authors>
+    <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/>
+    <!--  _DISTRACTION_  -->
+    <author uuid="af56fc4a-51d2-4a6e-b020-2c6d272b9cbf"/>
+    <!--  Ale  -->
+</authors>
+<broadcasts>
+    <alert after="1s" every="2m">You must capture your team's wool before mining the monument!</alert>
+    <alert after="11s" every="2m">The monument can only be mined with pickaxes from the wool room!</alert> 
+    <tip after="21s" every="2m">The wool room is located on the top of the map, behind each teams' spawns!</tip>
+    <tip after="31s" every="2m">The monument is located on the center lane of each teams' sides!</tip>
+</broadcasts>
+<teams>
+    <team id="green" color="dark green" max="14">Green</team>
+    <team id="purple" color="dark purple" max="14">Purple</team>
+</teams>
+<maxbuildheight>66</maxbuildheight>
+<spawns>
+    <spawn id="gspawn" team="green" kit="green-kit" yaw="-90">
+        <region>
+            <cylinder base="-81,27,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn id="pspawn" team="purple" kit="purple-kit" yaw="90">
+        <region>
+            <cylinder base="81,27,0" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <point>-0,85,1</point>
+        </region>
+    </default>
+</spawns>
+<crafting>
+    <disable>workbench</disable>
+    <disable>stick</disable>
+    <disable>iron pickaxe</disable>
+</crafting>
+<kits>
+    <kit id="spawn" parents="defender">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true" material="stone sword" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1" material="bow" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="Cannot be used to|mine the monument!" material="stone pickaxe" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="4" amount="32" material="cooked fish" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="5" amount="2" material="golden apple">
+        </item>
+        <item slot="6" amount="64" material="wood" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="7" amount="32" material="glass" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="5">regeneration</potion>
+    </kit>
+    <kit id="woolroom" force="true">
+        <item slot="0" unbreakable="true" material="iron sword" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1" material="bow" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:3" lore="Cannot be used to|mine the monument!" material="stone pickaxe" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2" material="stone axe" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="4" amount="32" material="cooked fish" show-can-destroy="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+        </item>
+        <item slot="5" amount="2" material="golden apple">
+        </item>
+        <item slot="6" amount="64" material="wood" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="7" damage="235" prevent-sharing="true" material="iron pickaxe" lore="Use this pickaxe to|mine the monument!|You keep it|when you die." show-can-destroy="true">
+            <can-destroy>
+                <material>diamond block</material>
+            </can-destroy>
+        </item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="5">regeneration</potion>
+        <clear/>
+    </kit>
+    <kit id="purple-kit" parents="spawn">
+        <helmet unbreakable="true" color="7d26cd">leather helmet</helmet>
+        <chestplate unbreakable="true" color="7d26cd">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="7d26cd">leather leggings</leggings>
+        <boots unbreakable="true" color="7d26cd">leather boots</boots>
+    </kit>
+    <kit id="green-kit" parents="spawn">
+        <helmet unbreakable="true" color="228b22">leather helmet</helmet>
+        <chestplate unbreakable="true" color="228b22">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="228b22">leather leggings</leggings>
+        <boots unbreakable="true" color="228b22">leather boots</boots>
+    </kit>
+    <kit id="purple-in-wool" parents="woolroom" force="true">
+        <item slot="8" amount="1" material="wool" damage="5" show-can-place-on="true">
+        <!-- Lime Wool -->
+            <can-place-on>
+                <material>bedrock</material>
+            </can-place-on>
+        </item>
+        <helmet unbreakable="true" color="7d26cd">leather helmet</helmet>
+        <chestplate material="iron chestplate"/>
+        <leggings unbreakable="true" color="7d26cd">leather leggings</leggings>
+        <boots unbreakable="true" color="7d26cd">leather boots</boots>
+    </kit>
+    <kit id="green-in-wool" parents="woolroom" force="true">
+        <item slot="8" amount="1" material="wool" damage="2" show-can-place-on="true">
+        <!-- Magenta Wool -->
+            <can-place-on>
+                <material>bedrock</material>
+            </can-place-on>
+        </item>
+        <helmet unbreakable="true" color="228b22">leather helmet</helmet>
+        <chestplate material="iron chestplate"/>
+        <leggings unbreakable="true" color="228b22">leather leggings</leggings>
+        <boots unbreakable="true" color="228b22">leather boots</boots>
+    </kit>
+    <kit id="defender">
+        <item slot="9" amount="64" material="fence" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="10" amount="64" material="wood" damage="1" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="11" amount="64" material="wood button" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="12" amount="64" material="wood plate" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+        <item slot="13" amount="64" material="wooden door" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <material>fence</material>
+                <material>quartz block</material>
+                <material>wood button</material>
+                <material>wood plate</material>
+                <material>wooden door</material>
+                <material>double step</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>quartz stairs</material>
+                <material>stained clay</material>
+                <material>stone</material>
+                <material>smooth brick</material>
+                <material>nether fence</material>
+                <material>iron fence</material>
+                <material>glass</material>
+                <material>stained glass</material>
+                <material>wool</material>
+                <material>stained glass pane</material>
+                <material>coal block</material>
+                <material>web</material>
+                <material>glowstone</material>
+                <material>wood</material>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </item>
+    </kit>
+    <kit id="no-knockback">
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+</kits>
+<kill-reward>
+    <item>golden apple</item>
+</kill-reward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemkeep>
+    <item>iron pickaxe</item>
+</itemkeep>
+<itemremove>
+<!-- All mined blocks should be on itemremove -->
+    <item>quartz block</item>
+    <item>iron chestplate</item>
+    <item>iron sword</item>
+    <item>cooked fish</item>
+    <item>string</item>
+    <item>golden apple</item>
+    <item>beacon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>obsidian</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>diamond block</item>
+    <item>double step</item>
+    <item>step</item>
+    <item>smooth stairs</item>
+    <item>quartz stairs</item>
+    <item>stained clay</item>
+    <item>stone</item>
+    <item>smooth brick</item>
+    <item>nether fence</item>
+    <item>iron fence</item>
+    <item>glass</item>
+    <item>stained glass</item>
+    <item>wool</item>
+    <item>stained glass pane</item>
+    <item>coal block</item>
+    <item>web</item>
+    <item>glowstone</item>
+    <item>wood</item>
+    <item>cobblestone</item>
+    <item>fence</item>
+    <item>wood button</item>
+    <item>wood plate</item>
+    <item>wooden door</item>
+</itemremove>
+<timelock>on</timelock>
+<destroyables id="Monument" repairable="false" sparks="true" show-progress="true" materials="diamond block" completion="100%">
+    <destroyable id="purple-monument" name="Monument" owner="purple">
+       <region><cuboid min="23,19,-2" max="27,15,2"/></region>
+    </destroyable>
+    <destroyable id="green-monument" name="Monument" owner="green">
+       <region><cuboid min="-23,19,-2" max="-27,15,2"/></region>
+    </destroyable>
+</destroyables>
+<wools team="green">
+    <wool color="magenta" id="purplewool" location="134,57,0">
+        <monument><block>-71,9,5</block></monument>
+    </wool>
+</wools>
+<wools team="purple">
+    <wool color="lime" id="greenwool" location="-134,57,0">
+        <monument><block>70,9,-6</block></monument>
+    </wool>
+</wools>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-purple">purple</team>
+    <team id="only-green">green</team>
+    <any id="only-green-until-wool-gone">
+        <team>green</team>
+        <objective>greenwool</objective>
+    </any>
+    <any id="only-purple-until-wool-gone">
+        <team>purple</team>
+        <objective>purplewool</objective>
+    </any>
+</filters>
+<portals>
+    <!-- Green Team -->
+    <portal destination="green1" yaw="90">
+        <region>
+            <cuboid min="-78,27,3" max="-82,31,4"/>
+        </region>
+    </portal>
+    <portal destination="green2" yaw="90">
+        <region>
+            <cuboid min="-78,27,-3" max="-82,31,-4"/>
+        </region>
+    </portal>
+    <portal destination="green2" yaw="0" filter="only-green">
+        <region>
+            <cuboid min="-88,51,-2" max="-87,55,2"/>
+        </region>
+    </portal>
+    <!-- Purple Team -->
+    <portal destination="purple1" yaw="90">
+        <region>
+            <cuboid min="78,27,-3" max="82,31,-4"/>
+        </region>
+    </portal>
+    <portal destination="purple2" yaw="90">
+        <region>
+            <cuboid min="78,27,3" max="82,31,4"/>
+        </region>
+    </portal>
+    <portal destination="purple2" yaw="0" filter="only-purple">
+        <region>
+            <cuboid min="88,51,-2" max="87,55,2"/>
+        </region>
+    </portal>
+</portals>
+<regions>
+    <cuboid id="green1" min="-88,51,0" max="-88,51,0"/>
+    <cuboid id="green2" min="-78,8,0" max="-78,8,0"/>
+    <cuboid id="purple1" min="88,51,0" max="88,51,0"/>
+    <cuboid id="purple2" min="78,8,0" max="78,8,0"/>
+    <apply lend-kit="no-knockback" filter="only-purple">
+        <region>
+            <cuboid min="87,51,-2" max="95,57,2"/>
+        </region>
+    </apply>
+    <apply lend-kit="no-knockback" filter="only-green">
+        <region>
+            <cuboid min="-87,51,-2" max="-95,57,2"/>
+        </region>
+    </apply>
+    <apply enter="only-green" message="You may not use the other team's portal!">
+        <region>
+            <cuboid min="-89,51,-2" max="-87,55,2"/>
+        </region>
+    </apply>
+    <apply enter="only-purple" message="You may not use the other team's portal!">
+        <region>
+            <cuboid min="89,51,-2" max="87,55,2"/>
+        </region>
+    </apply>
+    <apply kit="purple-in-wool">
+        <region>
+            <cuboid min="-146,57,-8" max="-153,62,8"/>
+        </region>
+    </apply>
+    <apply kit="green-in-wool">
+        <region>
+            <cuboid min="146,57,-8" max="153,62,8"/>
+        </region>
+    </apply>
+    <apply block="never" message="You have reached the build height limit over the central area.">
+        <region>
+            <cuboid min="-68,27,-oo" max="68,oo,oo"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not edit the area in front of the wool monument!">
+        <region>
+            <union>
+                <cuboid min="-69,8,3" max="-72,11,5"/>
+                <cuboid min="69,8,-3" max="72,11,-5"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="never" message="You may not edit the spawn!">
+        <region>
+            <union>
+                <cuboid min="-83,6,-3" max="-76,12,3"/>
+                <cuboid min="83,6,3" max="76,12,-3"/>
+                <cuboid min="-84,32,5" max="-77,26,-5"/>
+                <cuboid min="84,32,5" max="77,26,-5"/>
+                <cuboid min="-86,49,3" max="-93,57,-3"/>
+                <cuboid min="86,49,3" max="93,57,-3"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <union>
+                <!-- Center -->
+                <rectangle min="-21,9" max="21,17"/>
+                <rectangle min="-21,-9" max="21,-17"/>
+                <!-- Ends -->
+                <rectangle min="-72,-10" max="-101,10"/>
+                <rectangle min="-101,-10" max="-102,-1"/>
+                <rectangle min="-101,10" max="-102,1"/>
+                <rectangle min="-102,-10" max="-124,-2"/>
+                <rectangle min="-102,10" max="-124,2"/>
+                <rectangle min="72,-10" max="101,10"/>
+                <rectangle min="101,-10" max="102,-1"/>
+                <rectangle min="101,10" max="102,1"/>
+                <rectangle min="102,-10" max="124,-2"/>
+                <rectangle min="102,10" max="124,2"/>
+                <!-- Further out there is barrier blocks at y=0 so the void filter is used. -->
+            </union>
+        </region>
+    </apply>
+    <apply block="always" enter="only-green-until-wool-gone" message="The wool must be captured before you can enter the monument lane!">
+        <region>
+            <rectangle min="-37,-3" max="-21,3"/>
+        </region>
+    </apply>
+    <apply block="always" enter="only-purple-until-wool-gone" message="The wool must be captured before you can enter the monument lane!">
+        <region>
+            <rectangle min="37,-3" max="21,3"/>
+        </region>
+    </apply>
+    <apply enter="only-purple" block="only-purple" message="You may not enter the other team's wool room!">
+        <region>
+            <rectangle min="-oo,-oo" max="-141,oo"/>
+        </region>
+    </apply>
+    <apply enter="only-green" block="only-green" message="You may not enter the other team's wool room!">
+        <region>
+            <rectangle min="141,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not build outside the map!" region="everywhere"/>
+</regions>
+</map>

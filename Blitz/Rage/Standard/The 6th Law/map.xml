@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>The 6th Law</name>
+<version>1.0.3</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="14,25,44" radius="3" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cylinder base="14,25,-44" radius="3" height="0"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="67,12,0" radius="1" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`61-Hit Kill!">gold sword</item>
+        <item slot="1" enchantment="arrow damage:10;arrow fire:10" lore="`61-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <helmet locked="true">gold helmet</helmet>
+        <boots locked="true">gold boots</boots>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>gold sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>gold helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>glass bottle</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

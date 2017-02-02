@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Hallowed Harb</name>
+<version>1.1.1</version>
+<objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<authors>
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+</authors>
+<contributors>
+    <contributor contribution="Halloween Version!">H0B0's Friends</contributor>
+</contributors>
+<rules>
+   <rule>Trick or Treat</rule>
+   <rule>Smell my feat</rule>
+   <rule>Give me something good to eat!</rule>
+   <rule>Happy Halloween from the PGM Staff!</rule>
+</rules>
+<teams>
+    <team color="gold" max="50">Orange</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<filters>
+    <filter name="no-tnt">
+        <deny><block>TNT</block></deny>
+    </filter>
+    <filter name="no-spawner">
+        <deny><block>mob spawner</block></deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main-area" min="-50,-32" max="51,33"/>
+    <union name="bases">
+        <rectangle name="red-base" min="-20,-62" max="21,-32"/>
+        <rectangle name="orange-base" min="-20,33" max="21,63"/>
+    </union>
+    <complement name="portals-area">
+        <rectangle min="-56,-2" max="57,3"/>
+        <region name="main-area"/>
+    </complement>
+    <apply block="deny-all"> <!-- protect portal areas -->
+        <region name="portals-area"/>
+    </apply>
+    <apply block="no-tnt" message="You may not place TNT in the bases.">
+        <region name="bases"/>
+    </apply>
+    <apply block="no-spawner" message="You may not break mob spawners!">
+        <region name="main-area"/>
+    </apply>
+</regions>
+<playable>
+    <region name="main-area"/>
+    <region name="bases"/>
+    <region name="portals-area"/>
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="64">cooked chicken</item>
+        <item slot="3" amount="2">TNT</item>
+        <item slot="4" amount="32">ladder</item>
+        <item slot="5" damage="8194">potion</item> <!-- potion of swiftness 1 -->
+        <item slot="6" amount="1">359</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet>jack o lantern</helmet>
+        <chestplate color="cd0000" enchantment="protection explosions:3">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet>jack o lantern</helmet>
+        <chestplate color="eeb91a" enchantment="protection explosions:3">leather chestplate</chestplate>
+        <leggings color="eeb91a">leather leggings</leggings>
+        <boots color="eeb91a">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="spawn" safe="true" sequential="true">
+        <spawn team="red" kit="red" yaw="0">
+            <cuboid min="-15,32,-57" max="16,42,-32"/>
+            <point>0.5,33,-47.5</point>
+        </spawn>
+        <spawn team="orange" kit="orange" yaw="180">
+            <cuboid min="-15,32,33" max="16,42,58"/>
+            <point>0.5,33,48.5</point>
+        </spawn>
+    </spawns>
+    <default yaw="90"><cuboid min="-75.5,42.5,-0.5" max="-73.5,42.5,1.5"/></default>
+</spawns>
+<portals>
+    <portal x="110">
+        <cuboid min="-56,33,-1" max="-55,35,2"/>
+    </portal>
+    <portal x="-110">
+        <cuboid min="56,33,-1" max="57,35,2"/>
+    </portal>
+</portals>
+<score>
+    <time>10m</time>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<itemremove>
+    <item>jack o lantern</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>ladder</item> 
+    <item>cooked chicken</item>
+    <item>glass bottle</item>
+    <item>iron ingot</item>
+    <item>iron spade</item>
+    <item>iron sword</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>rotten flesh</item>
+    <item>359</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<mobs>
+    <filter parents="deny-all">
+        <allow>
+            <spawn>spawner</spawn>
+        </allow>
+    </filter>
+</mobs>
+<maxbuildheight>69</maxbuildheight>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+</map>

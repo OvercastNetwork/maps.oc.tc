@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Abaddon DS</name>
+<version>2.0</version>
+<objective>Capture points to insure your team's respawns, and eliminate your foes!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="red-team" color="dark red" min="2" max="8" max-overfill="8">Red</team>
+    <team id="blue-team" color="blue" min="2" max="8" max-overfill="8">Blue</team>
+</teams>
+<blitz>
+    <lives>8</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<score>
+    <limit>51</limit>
+    <kills>1</kills> <!-- +1 points for every kill -->
+    <deaths>1</deaths> <!-- -1 points for accidentally dying -->
+</score>
+<classes family="TriForce">
+    <class name="Guard" default="true" description="Live and die by the Sword!" icon="iron sword">
+        <kit>
+            <item slot="0" unbreakable="true">iron sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="4" amount="15">arrow</item>
+            <chestplate unbreakable="true">gold chestplate</chestplate>
+            <shield health="4" delay="20s"/>
+        </kit>
+    </class>
+    <class name="Archer" default="false" description="Bull's eye!" icon="bow">
+        <kit>
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+            <item slot="4" amount="40">arrow</item>
+            <chestplate unbreakable="true">iron chestplate</chestplate>
+            <shield health="4" delay="5s"/>
+        </kit>
+    </class>
+    <class name="Strider" default="false" description="Strike like lightning!" icon="feather">
+        <kit>
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="4" amount="30">arrow</item>
+            <chestplate unbreakable="true" color="FFFFFF">leather chestplate</chestplate>
+            <potion duration="oo" amplifier="1">speed</potion>
+            <potion duration="oo">night vision</potion>
+            <shield health="6" delay="10s"/>
+        </kit>
+    </class>
+</classes>
+<kits>
+    <kit id="spawn" force="true">
+        <potion duration="4" amplifier="2">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <helmet unbreakable="true" color="801515">leather helmet</helmet>
+        <leggings unbreakable="true" color="801515">leather leggings</leggings>
+        <boots unbreakable="true" color="801515">leather boots</boots>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <helmet unbreakable="true" color="1a1a80">leather helmet</helmet>
+        <leggings unbreakable="true" color="1a1a80">leather leggings</leggings>
+        <boots unbreakable="true" color="1a1a80">leather boots</boots>
+    </kit>
+    <kit id="Respawn">
+        <item amount="1">golden apple</item>
+        <potion duration="4" amplifier="2">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+</kits>
+<respawn delay="5s"/>
+<spawns>
+    <default><regions yaw="0"><region id="obs-spawn"/></regions></default>
+    <spawn team="red-team" yaw="90" kit="redKit" region="red-spawn-original" filter="only-first-spawn"/>
+    <spawn team="red-team" yaw="180" kit="Respawn" region="red-spawn-south" filter="red-captured-south"/>
+    <spawn team="red-team" yaw="-90" kit="Respawn" region="red-spawn-west" filter="red-captured-west"/>
+    <spawn team="red-team" yaw="-135" kit="Respawn" region="red-spawn-north-east" filter="red-captured-north-east"/>
+    <spawn team="blue-team" yaw="0" kit="blueKit" region="blue-spawn-original" filter="only-first-spawn"/>
+    <spawn team="blue-team" yaw="180" kit="Respawn" region="blue-spawn-south" filter="blue-captured-south"/>
+    <spawn team="blue-team" yaw="-90" kit="Respawn" region="blue-spawn-west" filter="blue-captured-west"/>
+    <spawn team="blue-team" yaw="-135" kit="Respawn" region="blue-spawn-north-east" filter="blue-captured-north-east"/>
+</spawns>
+<filters>
+    <not id="only-first-spawn">
+        <time>15s</time>
+    </not>
+    <any id="allowed-to-win">
+        <all>
+            <team>red-team</team>
+            <objective id="red-captured-south" team="red-team">South</objective>
+            <objective id="red-captured-west" team="red-team">West</objective>
+            <objective id="red-captured-north-east" team="red-team">North East</objective>
+        </all>
+        <all>
+            <team>blue-team</team>
+            <objective id="blue-captured-south" team="blue-team">South</objective>
+            <objective id="blue-captured-west" team="blue-team">West</objective>
+            <objective id="blue-captured-north-east" team="blue-team">North East</objective>
+        </all>
+    </any>
+    <not id="no-void">
+        <void/>
+    </not>
+    <all id="only-blue">
+        <team>blue-team</team>
+    </all>
+    <all id="only-red">
+        <team>red-team</team>
+    </all>
+    <not id="noteam">
+        <all>
+            <team>red-team</team>
+            <team>blue-team</team>
+        </all>
+    </not>
+</filters>
+<regions>
+    <block id="obs-spawn">2321,55,-1436</block>
+    <!-- Possible Red Spawns -->
+    <block id="red-spawn-original">2447,12,-1466.5</block>
+    <block id="red-spawn-south">2343.5,9,-1413.5</block>
+    <block id="red-spawn-west">2268.5,9,-1489.5</block>
+    <block id="red-spawn-north-east">2334.5,8,-1479.5</block>
+    <!-- Possible Blue Spawns -->
+    <block id="blue-spawn-original">2321.5,12,-1593.5</block>
+    <block id="blue-spawn-south">2343.5,9,-1413.5</block>
+    <block id="blue-spawn-west">2268.5,9,-1489.5</block>
+    <block id="blue-spawn-north-east">2334.5,8,-1479.5</block>
+
+    <!-- DA FINAL HILL -->
+    <cylinder base="2321.5,0,-1489.5" radius="200" height="40" id="WinTimer"/>
+    <cylinder base="2321.5,0,-1489.5" radius="200" height="40" id="WinTimerDisplay"/>
+    <!-- Hill's Capture Zones -->
+    <cylinder base="2343.5,2,-1445.5" radius="6" height="40" id="south point"/>
+    <cylinder base="2299.5,2,-1489.5" radius="6" height="40" id="west point"/>
+    <cylinder base="2361.5,3,-1507.5" radius="6" height="40" id="north east point"/>
+    <!-- Hill's Display Zone -->
+    <cylinder base="2343.5,2,-1445.5" radius="6" height="46" id="south point display"/>
+    <cylinder base="2299.5,2,-1489.5" radius="6" height="46" id="west point display"/>
+    <union id="north east point display">
+        <cylinder base="2361.5,2,-1507.5" radius="6" height="1" />
+        <cylinder base="2361.5,39,-1507.5" radius="6" height="5" />
+    </union>
+
+    <!-- regions of the map -->
+    <cylinder name="red spawn protection" base="2447,0,-1466.5" radius="35" height="40"/>
+    <cylinder name="blue spawn protection" base="2195,0,-1510.5" radius="35" height="40"/>
+    <!-- APPLY -->
+    <apply block="never">
+        <region>
+            <region id="everywhere"/>
+        </region>
+    </apply>
+    <!-- Prevent base entering -->
+    <apply enter="noteam" message="You may not return to this castle.">
+        <region name="red spawn protection"/>
+        <region name="blue spawn protection"/>
+    </apply>
+    <!-- Prevent building in the spawns -->
+    <apply block="never" message="You may not build inside the spawns">
+        <region name="red spawn protection"/>
+        <region name="blue spawn protection"/>
+    </apply>
+</regions>
+<!-- CP -->
+<control-points capture-players="lead" incremental="true" show-progress="true">
+    <control-point id="South" name="South" owner="red-team" capture-time="5s" points="0">
+        <capture><region id="south point"/></capture>
+        <progress><region id="south point display"/></progress>
+    </control-point>
+    <control-point id="West" name="West" capture-time="5s" points="0">
+        <capture><region id="west point"/></capture>
+        <progress><region id="west point display"/></progress>
+    </control-point>
+    <control-point id="North East" name="North East" capture-time="5s" points="0">
+        <capture><region id="north east point"/></capture>
+        <progress><region id="north east point display"/></progress>
+    </control-point>
+    <control-point capture-rule="exclusive" show="true" id="MapIsHill" filter="allowed-to-win" name="Map" capture-time="7s" points="0">
+        <capture><region id="WinTimer"/></capture>
+        <progress><region id="WinTimerDisplay"/></progress>
+    </control-point>
+</control-points>
+<portals>
+    <portal x="@2321.5" y="@8" z="@-1557.5" yaw="@0">
+        <region>
+            <cuboid min="2318.5,7,-1570.5" max="2324.5,12,-1572.5"/>
+        </region>
+    </portal>
+    <portal x="@2412.5" y="@8" z="@-1466.5" yaw="@90">
+        <region>
+            <cuboid min="2424.5,7,-1465.5" max="2426.5,12,-1469.5"/>
+        </region>
+    </portal>
+</portals>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="5">arrow</item>
+</killreward>
+<itemkeep>
+    <item>iron sword</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+</itemkeep>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+<broadcasts>
+    <tip after="2s" every="80s">`bCheck out the other classes with /classes!</tip>
+    <tip after="8s" every="80s">`bIf you don't own a hill, you won't be able to respawn!</tip>
+</broadcasts>
+</map>

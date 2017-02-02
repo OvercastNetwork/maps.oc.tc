@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Scorched Grove</name>
+<version>1.1.4</version>
+<objective>Destroy the enemy team's obsidian monument!</objective>
+<authors>
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29" contribution="Main Building and Initial Concept"/> <!-- Eclipsen -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Terraforming"/> <!-- khazhyk -->
+    <contributor uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba" contribution="Asethetics and Buildings"/> <!-- SajinZero -->
+    <contributor uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9" contribution="Gameplay Feedback"/> <!-- Kasicrafter -->
+    <contributor uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Aesthetics"/> <!-- EnarRikardz -->
+    <contributor contribution="Inspiration Source">Tijn1117</contributor>
+    <contributor uuid="a9a67a42-e298-4535-97ab-3c0e4c400989" contribution="Inspiration Source"/> <!-- MattyKingSam -->
+    <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Concept Development and Moral Support"/> <!-- i2 -->
+</contributors>
+<teams>
+    <team color="blue" max="75">Blue</team>
+    <team color="dark red" max="75">Red</team>
+</teams>
+<maxbuildheight>30</maxbuildheight>
+<spawns>
+    <spawns>
+        <spawn team="blue" kit="spawn" yaw="180">
+            <cuboid min="-52,15,182" max="-44,15,190"/>
+        </spawn>
+        <spawn team="red" kit="spawn" yaw="0">
+            <cuboid min="54,15,-149" max="46,15,-157"/>
+        </spawn>
+    </spawns>
+    <default yaw="0">
+        <cylinder base="1.5,76,16.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="48">wood</item>
+        <item slot="5" amount="32">cooked fish</item> 
+        <item slot="6" amount="16">torch</item> 
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="3">heal</potion>
+        <potion duration="7">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-fire-spread">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="allow-gold">
+        <block>gold block</block>
+    </filter>
+    <filter name="anti-ladders" parents="allow-all">
+        <deny>
+            <block>ladder</block>
+            <block>wool</block>
+        </deny>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="no-mountain" parents="allow-all">
+        <deny>
+            <block>stone</block>
+            <block>dirt</block>
+            <block>grass</block>
+        </deny>
+    </filter>
+    <filter name="no-lava" parents="allow-all">
+        <deny>
+            <block>lava</block>
+            <block>stationary lava</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply use="no-lava" message="The usage of lava is disabled on this map!">
+        <rectangle name="map" min="96,-185" max="-94,218"/>
+    </apply>
+    <apply block="deny-fire-spread" message="Fire spread is disabled on this map!">
+        <region name="map"/>
+    </apply>
+    <rectangle name="main" min="78,-172" max="-76,205"/>
+    <apply block="no-mountain" message="You may not build here">
+        <complement>
+            <region name="map"/>
+            <region name="main"/>
+        </complement>
+    </apply>
+    <apply block="deny-blocks">
+        <rectangle name="blue-zone" min="-67,148" max="-57,137"/>
+        <rectangle name="red-zone" min="68,-116" max="58,-105"/>
+    </apply>
+    <apply block="anti-ladders" message="You can only break gold blocks in your own base">
+        <cuboid min="-94,1,218" max="-15,20,148"/>
+        <cuboid min="96,1,-185" max="17,20,-116"/>
+    </apply>
+    <apply block-break="allow-gold" block-place="deny-all" message="You can only break gold blocks in your own base">
+        <cuboid name="blue-base" min="-94,12,218" max="-15,90,148"/>
+        <cuboid name="red-base" min="96,12,-185" max="17,90,-116"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <region name="blue-base"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region name="red-base"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not edit the sacred temple">
+        <cuboid min="-75,7,13" max="-30,1,41"/>
+        <cuboid min="77,7,19" max="31,1,-9"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not edit the void area!">
+        <negative>
+            <union name="main-area">
+                <rectangle min="-15,-112" max="-95,218"/>
+                <rectangle min="17,145" max="96,-186"/>
+                <rectangle min="-15,-112" max="17,145"/>
+            </union>
+        </negative>
+    </apply>
+    <apply enter="deny-players" message="You may not venture this high!">
+        <cuboid name="above-38" min="-oo,39,-oo" max="oo,oo,oo"/>
+    </apply>
+</regions>
+<playable>
+    <region name="map"/>
+</playable>
+<destroyables materials="obsidian" completion="100%">
+    <destroyables owner="blue">
+        <destroyable name="Monument A" owner="blue">
+            <cuboid min="-45,21,-54" max="-44,26,-53"/>
+        </destroyable>
+        <destroyable name="Monument B" owner="blue">
+            <cuboid min="-66,18,36" max="-65,22,37"/>
+        </destroyable>
+        <destroyable name="Monument C" owner="blue">
+            <cuboid min="-71,18,130" max="-70,21,131"/>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable name="Monument A">
+            <cuboid min="46,21,86" max="47,26,87"/>
+        </destroyable>
+        <destroyable name="Monument B">
+            <cuboid min="67,18,-4" max="68,22,-3"/>
+        </destroyable>
+        <destroyable name="Monument C">
+            <cuboid min="72,18,-98" max="73,21,-97"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<itemremove>
+    <item>stone sword</item>
+    <item>diamond pickaxe</item>
+    <item>stone axe</item>
+    <item>obsidian</item>
+    <item>flint</item>
+    <item>apple</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

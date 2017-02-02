@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Cacti Panic</name>
+<version>1.4.0</version>
+<objective>Be the last team standing!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="3a3dab52-a356-4eed-a506-a9a7e53a3f68"/> <!-- Akorlith --> 
+</authors>
+<blitz>
+    <time>150s</time>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+    <title>Blitz</title>
+</blitz>
+<teams>
+   <team color="dark red" max="2" max-overfill="3">Red</team>
+   <team color="blue" max="2" max-overfill="3">Blue</team>
+   <team color="dark green" max="2" max-overfill="3">Green</team>
+   <team color="gold" max="2" max-overfill="3">Yellow</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" amount="16">cactus</item>
+        <item slot="1" amount="1" unbreakable="true" name="`8Fishing Rod" projectile="lazer">fishing rod</item>
+		<potion duration="oo" amplifier="2">slow digging</potion>
+		<potion duration="oo" amplifier="20">weakness</potion>
+		<max-health>1</max-health>
+		<knockback-reduction>0.5</knockback-reduction>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>fishing rod</item>
+</itemremove>
+<itemkeep>
+    <item>cactus</item>
+</itemkeep>
+<tnt>
+    <instantignite>true</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>false</blockdamage>
+	<fuse>2s</fuse>
+</tnt>
+<timelock>on</timelock>
+<filters>
+	<filter name="play-filter">
+		<block>cactus</block>
+	</filter>
+</filters>
+<regions>
+	<cuboid name="map" min="-oo,-oo,-oo" max="oo,oo,oo"/>
+    <cuboid name="play-area" min="-oo,4,-oo" max="oo,6,oo"/>
+	<apply block="deny-all" message="You may not modify outside the playing area">
+		<negative>
+			<region name="play-area"/>
+		</negative>
+	</apply>
+</regions>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<spawns>
+    <spawn team="red" kit="spawn" yaw="-90">
+        <point>-10.5,4,0.5</point>
+    </spawn>
+    <spawn team="green" kit="spawn" yaw="90">
+        <point>10.5,4,0.5</point>
+    </spawn>
+	<spawn team="blue" kit="spawn" yaw="180">
+        <point>0.5,4,10.5</point>
+    </spawn>
+	<spawn team="yellow" kit="spawn" yaw="0">
+        <point>0.5,4,-10.5</point>
+    </spawn>
+    <default yaw="180">
+        <point>0.5,22,30.5</point>
+	</default>
+</spawns>
+<projectiles>
+    <projectile id="lazer" name="fishing rod" projectile="Egg" velocity="0.7" damage="0" throwable="false" cooldown="0.2s" click="right"/>
+</projectiles>
+</map>

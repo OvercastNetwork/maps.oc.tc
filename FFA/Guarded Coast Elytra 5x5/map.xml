@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Guarded Coast KoTF</name>
+<version>1.3.10</version>
+<objective>Hold the Flag to gain points</objective>
+<gamemode>FFA</gamemode>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
+</authors>
+<broadcasts>
+    <alert after="1s">This is a Elytra King of the Flag Map</alert>
+    <alert after="2s">Hold the flag to get points.</alert>
+    <alert after="3s">Flag Carriers can not use the portal.</alert>
+    <alert after="4s">Person with most points after 5 minutes wins.</alert>
+</broadcasts>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false" colors="true"/>
+<rage/>
+<projectiles>
+    <projectile
+        id="gun"
+        name="Machine Gun"
+        projectile="Arrow"
+        velocity="4.0"
+        damage="15"
+        throwable="false"
+        click="both"
+        cooldown="0.01"/>
+</projectiles>
+<kits>
+    <kit id="default-kit">
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+    </kit>
+    <kit id="spawn-kit">
+        <double-jump power="6" recharge-time="10s" recharge-before-landing="false"/>
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" projectile="gun" name="`eMachine Gun">gold hoe</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="flag-kit">
+        <potion duration="oo">glowing</potion>
+        <double-jump power="6" recharge-time="10s" recharge-before-landing="false"/>
+    </kit>
+    <kit id="instakill" force="true">
+        <effect duration="3" amplifier="1000">harm</effect>
+    </kit>
+    <kit id="levitation-kit-2">
+        <effect  duration="1" amplifier="80">levitation</effect>
+    </kit>
+</kits>
+​<flags>
+    <post id="post" return-time="0s" respawn-time="6s">
+        <block>11,81,1</block>
+        <block>15,91,-62</block>
+        <block>67,70,-6</block>
+        <block>20,70,-6</block>
+        <block>-33,71,15</block>
+        <block>-38,43,-34</block>
+        <block>-4,38,-15</block>
+        <block>20,32,32</block>
+        <block>60,16,14</block>
+        <block>43,14,-13</block>
+        <block>58,13,-27</block>
+        <block>81,18,17</block>
+        <block>-1,32,67</block>
+        <block>-27,21,51</block>
+        <block>-46,17,32</block>
+        <block>48,28,-69</block>
+    </post>
+    <flag id="flag" name="Flag" color="red" shared="true" post="post" points-rate="0.5" pickup-kit="flag-kit"/>
+</flags>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-107">-1.5,98.5,5.5</point>
+            <point yaw="-44">1.5,98.5,-8.5</point>
+            <point yaw="22">16.5,98.5,-11.5</point>
+            <point yaw="94">25.5,98.5,2.5</point>
+            <point yaw="167">14.5,98.5,15.5</point>
+        </regions>
+    </spawn>
+    <default kit="default-kit" yaw="179">
+        <regions>
+            <cuboid min="12,80,3" max="10,82,5"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <carrying id="carrying-flag">
+        <item material="banner"/>
+    </carrying>
+</filters>
+<regions>
+    <apply block="never"/>
+    <apply kit="instakill">
+        <region><cylinder base="1,-5,1" radius="400" height="3"/></region>
+    </apply>
+        <apply velocity="0.0,10,0.0" kit="levitation-kit-2" force="true">
+        <region>
+            <block>73,7,42</block>
+            <block>32,7,6</block>
+            <block>83,2,-38</block>
+            <block>16,20,-48</block>
+            <block>-46,18,-14</block>
+            <block>-4,7,32</block>
+            <block>-26,15,80</block>
+            <block>-57,4,53</block>
+            <block>-79,1,14</block>
+            <block>34,20,72</block>
+        </region>
+    </apply>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>elytra</item>
+    <item>gold hoe</item>
+</itemremove>
+<world-borders center="1,1">
+    <world-border size="250"/>
+</world-borders>
+<broadcasts>
+    <tip after="1s">Bows and swords are one hit kills</tip>
+</broadcasts>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<timelock>on</timelock>
+</map>

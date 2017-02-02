@@ -1,0 +1,68 @@
+<map proto="1.4.2" game="Infection">
+<name>Infection: Rummage</name>
+<version>1.0.0</version>
+<authors>
+    <author uuid="65722be1-29fd-4e7d-a47d-94ed616ed880"/> <!-- Kroest-->
+    <author uuid="7e7da86e-57a8-4b90-b297-4ef05e71dbdb"/> <!-- Whitever-->
+    <author uuid="6d24722c-dba4-4224-9d14-b3d08a8d9620"/> <!-- MrPetrus-->
+</authors>
+<contributors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="Xml base and tips"/><!-- Yoyo_-->
+</contributors>
+<include src="infection.xml"/>
+<spawns>
+    <spawn filter="before-10s" team="zombie-team" kit="zombie-kit-start">
+        <regions yaw="-70">
+            <point>-99.5,7,16.5</point>
+        </regions>
+        <regions yaw="120">
+            <point>50.5,17,26.5</point>
+        </regions>
+        <regions yaw="-15">
+            <point>-35.5,18,-75.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="before-10s" team="human-team" kit="human-kit">
+        <regions yaw="180">
+            <point>-14.5,16,70.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="zombie-team" kit="zombie-kit">
+        <regions yaw="-70">
+            <point>-99.5,7,16.5</point>
+        </regions>
+        <regions yaw="120">
+            <point>50.5,17,26.5</point>
+        </regions>
+        <regions yaw="-15">
+            <point>-35.5,18,-75.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="human-team" kit="zombie-switch-kit">
+        <region yaw="180">
+            <point>-14.5,16,70.5</point>
+        </region>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <point>-70.5,60,-71.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <above id="height-limit" y="50"/>
+    <apply block="never" message="You may not modify this area!">
+        <region>
+            <cuboid min="-103,6,14" max="-96,11,19"/>
+            <cuboid min="53,15,29" max="47,23,24"/>
+            <cuboid min="-38,16,-77" max="-33,20,-74"/>
+        </region>
+    </apply>
+    <apply block="deny-void" message="You may not build outside of the playable region!"/>
+</regions>
+</map>

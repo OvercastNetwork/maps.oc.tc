@@ -1,0 +1,291 @@
+<map proto="1.4.0">
+<name>The Pipes</name>
+<version>2.6.1</version>
+<objective>Get launched from "The Pipes" and capture the hills.</objective>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11" />
+    <!--  JTr -->
+</authors>
+<contributors>
+    <contributor uuid="7ab24d14-0801-48ba-8fea-147ddf400067" contribution="Chief map embellisher" />
+    <!-- samthecat43 -->
+</contributors>
+<score>
+    <limit>1000</limit>
+    <kills>25</kills>
+</score>
+<players min="2" max="16" max-overfill="16" show-name-tags="false" colors="true" />
+<respawn auto="true" />
+<broadcasts>
+    <alert after="1s">This is a Elytra capture the hill map.</alert>
+    <alert after="2s">Capture as many clay hills as possible.</alert>
+    <alert after="3s">Stand on the clay circle until it's your team's color.</alert>
+    <alert after="4s">First to a 1000 points wins.</alert>
+    <tip after="8s">Press space when falling to fly!</tip>
+    <tip after="1m">Press space when falling to fly!</tip>
+    <tip after="2m">Press space when falling to fly!</tip>
+    <tip after="3m">Press space when falling to fly!</tip>
+    <tip after="4m">Press space when falling to fly!</tip>
+    <tip after="5m">Press space when falling to fly!</tip>
+    <tip after="6m">Press space when falling to fly!</tip>
+    <tip after="7m">Press space when falling to fly!</tip>
+    <tip after="8m">Press space when falling to fly!</tip>
+    <tip after="9m">Press space when falling to fly!</tip>
+    <tip after="10m">Press space when falling to fly!</tip>
+</broadcasts>
+<structures>
+    <structure id="remove-cage" air="true">
+        <region>
+            <cuboid min="-297.5,29,-295" max="-290.5,31,-302.5"/>
+        </region>
+    </structure>
+    <dynamic structure="remove-cage" offset="0,-20,0">
+        <filter>
+                <time>5s</time>
+        </filter>
+    </dynamic>
+</structures>
+<control-points capture-players="lead" incremental="true" show="false" show-progress="true">
+    <control-point name="1" capture-time="5s">
+        <capture><cylinder base="-237.5,26,-293.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-237.5,4,-293.5" radius="15" height="45"/></progress>
+        <captured><cylinder base="-237.5,4,-293.5" radius="15" height="45"/></captured>
+    </control-point>
+    <control-point name="2" capture-time="5s">
+        <capture><cylinder base="-200.5,11,-195.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-200.5,11,-195.5" radius="9" height="12"/></progress>
+        <captured><cylinder base="-200.5,11,-195.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="3" capture-time="5s">
+        <capture><cylinder base="-276.5,52,-178.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-276.5,52,-178.5" radius="9" height="11"/></progress>
+        <captured><cylinder base="-276.5,52,-178.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="4" capture-time="5s">
+        <capture><cylinder base="-367.5,34,-181.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-367.5,34,-181.5" radius="9" height="12"/></progress>
+        <captured><cylinder base="-367.5,34,-181.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="5" capture-time="5s">
+        <capture><cylinder base="-416.5,27,-259.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-416.5,13,-259.5" radius="9" height="12"/></progress>
+        <captured><cylinder base="-416.5,27,-259.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="6" capture-time="5s">
+        <capture><cylinder base="-422.5,27,-346.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-422.5,27,-346.5" radius="9" height="12"/></progress>
+        <captured><cylinder base="-422.5,27,-346.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="7" capture-time="5s">
+        <capture><cylinder base="-421.5,47,-430.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-421.5,15,-430.5" radius="12" height="45"/></progress>
+        <captured><cylinder base="-421.5,47,-430.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="8" capture-time="5s">
+        <capture><cylinder base="-302.5,12,-418.5" radius="7" height="30"/></capture>
+        <progress><cylinder base="-302.5,12,-418.5" radius="9" height="30"/></progress>
+        <captured><cylinder base="-302.5,12,-418.5" radius="9" height="30"/></captured>
+    </control-point>
+    <control-point name="9" capture-time="5s">
+        <capture><cylinder base="-175.5,35,-418.5" radius="7" height="8"/></capture>
+        <progress><cylinder base="-175.5,35,-416.5" radius="9" height="12"/></progress>
+        <captured><cylinder base="-175.5,35,-416.5" radius="9" height="1"/></captured>
+    </control-point>
+    <control-point name="10" capture-time="5s">
+        <capture><cylinder base="-170.5,52,-323.5" radius="7" height="4"/></capture>
+        <progress><cylinder base="-170.5,0,-323.5" radius="12" height="63"/></progress>
+        <captured><cylinder base="-170.5,0,-323.5" radius="12" height="60"/></captured>
+    </control-point>
+</control-points>
+<spawns safe="false">
+    <default kit="default-kit" region="default-spawn" yaw="19" />
+    <spawn   kit="spawn-kit">
+        <regions>
+            <point yaw="-135">-291.5,9.0,-300.5</point> <!-- Smallest Pipe -->
+            <point yaw="-45">-291.5,9.0,-296.5</point>
+            <point yaw="45">-295.3,9.0,-296.5</point>
+            <point yaw="135">-295.3,9.0,-300.3</point> <!-- Largest Pipe -->
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="default-kit">
+        <item slot="slot.armor.chest" amount="1" material="443" />
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" material="stone sword" />
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="3" amount="12" material="wood" />
+        <item slot="4">442</item>
+        <item slot="8" amount="24" material="arrow" />
+        <helmet unbreakable="true" locked="true" material="leather helmet" />
+        <item slot="slot.armor.chest" amount="1" material="443" />
+        <boots unbreakable="true" locked="true" material="iron boots" />
+        <potion duration="1m30s">absorption</potion>
+        <potion duration="3s" amplifier="5">resistance</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo">glowing</potion>
+        <helmet lock="true" material="iron helmet"/>
+        <leggings lock="true" material="diamond leggings"/>
+        <boots lock="true" material="iron boots"/>
+        <double-jump power="4" recharge-time="2s" recharge-before-landing="true"/>
+    </kit>
+    <kit id="bomb">
+        <item slot="2" projectile="lazer" name="`eBomb Launcher" material="armor stand"/>
+    </kit>
+    <kit id="kill-boost">
+        <potion duration="4" amplifier="2">speed</potion>
+        <potion duration="3">night vision</potion>
+    </kit>
+    <kit id="levitation-kit">
+        <potion duration="3" amplifier="20">levitation</potion>
+    </kit>
+    <kit id="levitation-kit-2">
+        <potion duration="1" amplifier="50">levitation</potion>
+    </kit>
+</kits>
+<world-borders center="-294.5, -299.5">
+    <world-border size="500"/>
+</world-borders>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage>fly into wall</damage>
+    <damage self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<damage>
+    <deny>
+        <all>
+            <cuboid min="-297,0,-302" max="-290,12,-295"/>
+            <any>
+                <cause>explosion</cause>
+                <always/>
+            </any>
+        </all>
+    </deny>
+</damage>
+<killreward>
+    <kit id="kill-boost" />
+    <item material="golden apple" />
+</killreward>
+<regions>
+    <block id="default-spawn">-294,14,-299</block>
+    <union id="spawn-region">
+        <cuboid min="-290.5,6,-301.5" max="-290,57,-301"/>
+        <cuboid min="-290.5,6,-295.5" max="-290,57,-295"/>
+        <cuboid min="-296.5,6,-295.5" max="-296,57,-296"/>
+        <cuboid min="-296.5,6,-301.5" max="-296,57,-301"/>
+        <cuboid min="-290.5,6,-303.5" max="-298,11,-295"/> <!-- Spawn Area -->
+    </union>
+    <apply kit="bomb" force="true" filter="not-bomb">
+        <region>
+            <negative>
+                <region id="spawn-hole"/>
+            </negative>
+        </region>
+    </apply>
+    <cuboid id="spawn-hole" min="-297,0,-302" max="-290,30,-295"/>
+    <apply velocity="0.0,8,0.0" kit="levitation-kit" force="true">
+        <region>
+            <block>-291,6,-302</block>
+            <block>-291,6,-296</block>
+            <block>-297,6,-296</block>
+            <block>-297,6,-302</block>
+        </region>
+    </apply>
+    <apply velocity="0.0,10,0.0" kit="levitation-kit-2" force="true">
+        <region>
+            <block>-272,6,-284</block>
+            <block>-195,3,-279</block>
+            <block>-161,2,-206</block>
+            <block>-206,2,-230</block>
+            <block>-232,2,-204</block>
+            <block>-314,3,-200</block>
+            <block>-363,2,-211</block>
+            <block>-387,2,-166</block>
+            <block>-389,2,-237</block>
+            <block>-411,16,-313</block>
+            <block>-427,2,-392</block>
+            <block>-356,2,-394</block>
+            <block>-275,3,-397</block>
+            <block>-225,2,-387</block>
+            <block>-201,2,-432</block>
+            <block>-199,2,-361</block>
+            <block>-247,2,-327</block>
+            <block>-338,1,-317</block>
+        </region>
+    </apply>
+    <apply block-place="never" region="spawn-hole"/>
+    <apply block="allowed-blocks" region="everywhere"/>
+</regions>
+<filters>
+    <not id="not-bomb">
+        <carrying>
+            <item material="armor stand"/>
+        </carrying>
+    </not>
+    <any id="allowed-blocks">
+        <material>leaves</material>
+        <material>torch</material>
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>wood</material>
+    </any>
+</filters>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>stone spade</item>
+    <item>stone axe</item>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>red rose</item>
+    <item>carpet</item>
+    <item>wool</item>
+    <item>torch</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>diamond leggings</item>
+    <item>stained glass</item>
+    <item>443</item>
+    <item>442</item>
+    <item>stick</item>
+    <item>armor stand</item>
+    <item>dirt</item>
+</itemremove>
+<projectiles>
+    <projectile
+        id="lazer"
+        name="Bomber Stick"
+        projectile="TNTPrimed"
+        velocity="2"
+        damage="50"
+        throwable="false"
+        cooldown="2s"/>
+</projectiles>
+<blockdrops>
+    <rule>
+        <filter>
+            <any>
+                <material>leaves</material>
+            </any>
+        </filter>
+        <fall-chance>0.25</fall-chance>
+        <land-chance>0.5</land-chance>
+        <fall-speed>2</fall-speed>
+        <drops/>
+    </rule>
+</blockdrops>
+</map>

@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Thunderstorm</name>
+<version>1.1.0</version>
+
+<objective>
+    Capture the other team's wools and take it to your victory monument to win.
+</objective>
+
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+
+<teams>
+    <team color="yellow" max="12" max-overfill="14">Yellow</team>
+    <team color="dark red" max="12" max-overfill="14">Red</team>
+    <team color="green" max="12" max-overfill="14">Green</team>
+    <team color="blue" max="12" max-overfill="14">Blue</team>
+</teams>
+
+<wools team="yellow">
+    <wool color="red" location="-19.5,9,114.5">
+        <monument><block>-11,11,-54</block></monument>
+    </wool>
+    <wool color="green" location="-77.5,9,-53.5">
+        <monument><block>-10,11,-54</block></monument>
+    </wool>
+    <wool color="blue" location="-132.5,9,59.5">
+        <monument><block>-9,11,-54</block></monument>
+    </wool>
+</wools>
+
+<wools team="red">
+    <wool color="green" location="-77.5,9,-53.5">
+        <monument><block>35,11,68</block></monument>
+    </wool>
+    <wool color="blue" location="-132.5,9,59.5">
+        <monument><block>35,11,69</block></monument>
+    </wool>
+    <wool color="yellow" location="35.5,9,1.5">
+        <monument><block>35,11,70</block></monument>
+    </wool>
+</wools>
+
+<wools team="blue">
+    <wool color="green" location="-77.5,9,-53.5">
+        <monument><block>-89,11,114</block></monument>
+    </wool>
+    <wool color="yellow" location="35.5,9,1.5">
+        <monument><block>-87,11,114</block></monument>
+    </wool>
+    <wool color="red" location="-19.5,9,114.5">
+        <monument><block>-88,11,114</block></monument>
+    </wool>
+</wools>
+
+<wools team="green">
+    <wool color="yellow" location="35.5,9,1.5">
+        <monument><block>-133,11,-9</block></monument>
+    </wool>
+    <wool color="red" location="-19.5,9,114.5">
+        <monument><block>-133,11,-10</block></monument>
+    </wool>
+    <wool color="blue" location="-132.5,9,59.5">
+        <monument><block>-133,11,-8</block></monument>
+    </wool>
+</wools>
+
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" damage="-30000" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron spade</item>
+        <item slot="4">iron axe</item>
+        <item slot="5" amount="32">sandstone</item>
+        <item slot="6" amount="32" damage="2">wood</item>
+        <item slot="7" amount="32">cooked beef</item>
+        <item slot="8">golden apple</item>
+        <item slot="27">arrow</item>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+        <helmet damage="-30000">iron helmet</helmet>
+        <chestplate damage="-30000">chainmail chestplate</chestplate>
+        <boots damage="-30000">iron boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <leggings damage="-30000" color="E5E533">leather leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <leggings damage="-30000" color="993333">leather leggings</leggings>
+    </kit>
+    <kit name="green" parents="spawn">
+        <leggings damage="-30000" color="667F33">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <leggings damage="-30000" color="334CB2">leather leggings</leggings>
+    </kit>
+</kits>
+
+<spawns>
+    <spawn kit="yellow" team="yellow">
+        <regions yaw="0">
+            <block>-4.5,10,-49.5</block>
+        </regions>
+    </spawn>
+
+    <spawn kit="red" team="red">
+        <regions yaw="90">
+            <block>31.5,10,74.5</block>
+        </regions>
+    </spawn>
+
+    <spawn kit="green" team="green">
+        <regions yaw="-90">
+            <block>-128.5,10,-13.5</block>
+        </regions>
+    </spawn>
+
+    <spawn kit="blue" team="blue">
+        <regions yaw="179">
+            <block>-93.5,10,110.5</block>
+        </regions>
+    </spawn>
+
+    <default>
+        <regions yaw="0">
+            <cylinder name="obs-spawn" base="-48.5,9,30.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+
+<regions>
+    <apply block="deny-void" message=" You may not build outside the playable region.">
+        <negative>
+            <region name="center"/>
+            <region name="bridges"/>
+        </negative>
+    </apply>
+
+    <apply enter="woolroom-y" message="You may not enter your own wool room.">
+        <region name="yellow-wool-room"/>
+    </apply>
+
+    <apply use="woolroom-y" message="You may not open chests in own wool room.">
+        <region name="yellow-wool-room"/>
+    </apply>
+
+    <apply enter="woolroom-r" message="You may not enter your own wool room.">
+        <region name="red-wool-room"/>
+    </apply>
+
+    <apply use="woolroom-r" message="You may not open chests in own wool room.">
+        <region name="red-wool-room"/>
+    </apply>
+
+    <apply enter="woolroom-g" message="You may not enter your own wool room.">
+        <region name="green-wool-room"/>
+    </apply>
+
+    <apply use="woolroom-g" message="You may not open chests in own wool room.">
+        <region name="green-wool-room"/>
+    </apply>
+
+    <apply enter="woolroom-b" message="You may not enter your own wool room.">
+        <region name="blue-wool-room"/>
+    </apply>
+
+    <apply use="woolroom-b" message="You may not open chests in own wool room.">
+        <region name="blue-wool-room"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the wool rooms!">
+        <union name="wool-rooms">
+            <region name="yellow-wool-room"/>
+            <region name="red-wool-room"/>
+            <region name="green-wool-room"/>
+            <region name="blue-wool-room"/>
+        </union>
+    </apply>
+
+    <apply block="deny-blocks" message="You may not edit spawn.">
+        <region name="spawns"/>
+    </apply>
+
+    <circle name="center" center="-48.5,30.5" radius="46"/>
+
+    <union name="bridges">
+        <rectangle name="y-bridge" min="20,5" max="36,-19"/>
+        <rectangle name="r-bridge" min="-24,99" max="0,115"/>
+        <rectangle name="g-bridge" min="-74,-39" max="-98,-55"/>
+        <rectangle name="b-bridge" min="-118,55" max="-134,79"/>
+    </union>
+
+    <union name="spawns">
+        <rectangle name="y-spawn" min="-15,-37" max="2,-57"/>
+        <rectangle name="r-spawn" min="18,64" max="38,81"/>
+        <rectangle name="g-spawn" min="-116,-4" max="-136,-21"/>
+        <rectangle name="b-spawn" min="-83,97" max="-100,117"/>
+    </union>
+
+    <complement name="blue-wool-room">
+        <rectangle min="-129,56" max="-140,73"/>
+
+        <rectangle min="-140,73" max="-138,71"/>
+        <rectangle min="-140,73" max="-139,65"/>
+
+        <rectangle min="-140,56" max="-139,60"/>
+        <rectangle min="-140,56" max="-138,59"/>
+        <rectangle min="-140,56" max="-137,58"/>
+        <rectangle min="-140,56" max="-134,57"/>
+
+        <rectangle min="-129,56" max="-131,57"/>
+        <rectangle min="-129,56" max="-130,58"/>
+
+        <rectangle min="-129,74" max="-134,72"/>
+        <rectangle min="-129,74" max="-132,71"/>
+        <rectangle min="-129,74" max="-131,68"/>
+        <rectangle min="-129,74" max="-130,63"/>
+    </complement>
+
+    <complement name="green-wool-room">
+        <rectangle min="-74,-50" max="-91,-61"/>
+
+        <rectangle min="-91,-61" max="-89,-59"/>
+        <rectangle min="-91,-61" max="-83,-60"/>
+
+        <rectangle min="-74,-61" max="-78,-60"/>
+        <rectangle min="-74,-61" max="-77,-59"/>
+        <rectangle min="-74,-61" max="-76,-58"/>
+        <rectangle min="-74,-61" max="-75,-55"/>
+
+        <rectangle min="-74,-50" max="-75,-52"/>
+        <rectangle min="-74,-50" max="-76,-51"/>
+
+        <rectangle min="-91,-50" max="-90,-55"/>
+        <rectangle min="-91,-50" max="-89,-53"/>
+        <rectangle min="-91,-50" max="-86,-52"/>
+        <rectangle min="-91,-50" max="-81,-51"/>
+    </complement>
+
+    <complement name="yellow-wool-room">
+        <rectangle min="32,5" max="43,-12"/>
+
+        <rectangle min="41,-10" max="43,-12"/>
+        <rectangle min="42,-4" max="43,-12"/>
+
+        <rectangle min="43,5" max="42,1"/>
+        <rectangle min="43,5" max="41,2"/>
+        <rectangle min="43,5" max="40,3"/>
+        <rectangle min="43,5" max="37,4"/>
+
+        <rectangle min="32,5" max="34,4"/>
+        <rectangle min="32,5" max="33,3"/>
+
+        <rectangle min="32,-12" max="37,-11"/>
+        <rectangle min="32,-12" max="34,-10"/>
+        <rectangle min="32,-12" max="34,-7"/>
+        <rectangle min="32,-12" max="33,-2"/>
+    </complement>
+
+    <complement name="red-wool-room">
+        <rectangle min="-6,122" max="-23,111"/>
+
+        <rectangle min="-6,122" max="-8,120"/>
+        <rectangle min="-6,122" max="-14,121"/>
+
+        <rectangle min="-23,122" max="-19,121"/>
+        <rectangle min="-23,122" max="-20,120"/>
+        <rectangle min="-23,122" max="-21,119"/>
+        <rectangle min="-23,122" max="-22,116"/>
+
+        <rectangle min="-23,110" max="-22,113"/>
+        <rectangle min="-23,110" max="-21,112"/>
+
+        <rectangle min="-6,111" max="-7,116"/>
+        <rectangle min="-6,111" max="-8,114"/>
+        <rectangle min="-6,111" max="-11,113"/>
+        <rectangle min="-6,111" max="-16,112"/>
+    </complement>
+</regions>
+<filters>
+    <filter name="woolroom-y">
+        <deny>
+            <team>yellow</team>
+        </deny>
+    </filter>
+    <filter name="woolroom-r">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="woolroom-g">
+        <deny>
+            <team>green</team>
+        </deny>
+    </filter>
+    <filter name="woolroom-b">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+
+<itemremove>
+    <item>cooked beef</item>
+    <item>sandstone</item>
+    <item>wood</item>
+    <item>iron helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>seeds</item>
+    <item>wheat</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>wood plate</item>
+    <item>book</item>
+    <item>gold plate</item>
+    <item>sandstone stairs</item>
+    <item>step</item>
+    <item>dirt</item>
+    <item>sand</item>
+    <item>sand</item>
+    <item>wood step</item>
+    <item>gold ore</item>
+    <item>fence gate</item>
+    <item>dark oak stairs</item>
+    <item>fence</item>
+</itemremove>
+
+<timelock>on</timelock>
+<maxbuildheight>22</maxbuildheight>
+</map>

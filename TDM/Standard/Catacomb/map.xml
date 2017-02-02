@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Catacomb</name>
+<version>1.1</version>
+<objective>Be the team with the most points after 8 minutes.</objective>
+<authors>
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design and XML Code"/>
+    <!--  Mikeg542  -->
+</authors>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Team Death Match">
+        <message>
+            <line>This map is a `a`lTeam Death Match `r(TDM) map</line>
+            <line>The objective is to get the most points within 8 minutes.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-14,7,0</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>`rThis is where you spawn when the match starts or you die.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="0">-20,11,20</point>
+        </teleport>
+    </stage>
+    <stage title="Spawners">
+        <message>
+            <line>The spawner in the centre of the map gives `bGolden Apples `r.</line>
+            <line>There are also  arrow spawners in the four rooms on the sides in case you run out.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-14,7,0</point>
+        </teleport>
+    </stage>
+</tutorial>
+<teams>
+    <team color="dark red" max="7" max-overfill="9">Red</team>
+    <team color="dark purple" max="7" max-overfill="9">Purple</team>
+    <team color="gold" max="7" max-overfill="9">Orange</team>
+    <team color="dark green" max="7" max-overfill="9">Green</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="12">arrow</item>
+        <potion duration="4" amplifier="3">heal</potion>
+        <potion duration="4" amplifier="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet color="7F3FB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="7F3FB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="7F3FB2" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="D87F33" unbreakable="true">leather helmet</helmet>
+        <chestplate color="D87F33" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="D87F33" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="00cd00" unbreakable="true">leather helmet</helmet>
+        <chestplate color="00cd00" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="00cd00" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>stone sword</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>glass bottle</item>
+    <item damage="8229">potion</item>
+</itemremove>
+<spawns safe="true">
+    <spawns team="red" kit="red">
+		    <spawn yaw="-90">
+            <point>11,11,19</point>
+        </spawn>
+		    <spawn yaw="0">
+            <point>19,11,11</point>
+        </spawn>
+    </spawns>
+    <spawns team="orange" kit="orange">
+		    <spawn yaw="180">
+            <point>19,11,-11</point>
+        </spawn>
+		    <spawn yaw="-90">
+            <point>11,11,-19</point>
+        </spawn>
+    </spawns>
+    <spawns team="purple" kit="purple">
+		    <spawn yaw="90">
+            <point>-11,11,-19</point>
+        </spawn>
+		    <spawn yaw="180">
+            <point>-19,11,-11</point>
+        </spawn>
+    </spawns>
+    <spawns team="green" kit="green">
+		    <spawn yaw="90">
+            <point>-11,11,19</point>
+        </spawn>
+		    <spawn yaw="0">
+            <point>-19,11,11</point>
+        </spawn>
+    </spawns>
+    <default yaw="-90">
+        <cylinder base="0,16,0" radius="1" height="1"/>
+    </default>
+</spawns>
+<score>
+    <time>480</time>
+</score>
+<regions>
+    <apply block="deny-all" message="You may not modify blocks!">
+        <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<autorespawn/>
+<killreward>
+    <item damage="8229">potion</item>
+    <item amount="12">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <item damage="8194">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="4"/>
+    </filter>
+    <item>iron sword</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="6"/>
+    </filter>
+    <item unbreakable="true" enchantment="arrow damage:1">bow</item>
+</killreward>
+</map>

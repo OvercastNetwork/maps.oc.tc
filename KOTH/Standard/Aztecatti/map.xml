@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Aztecatti</name>
+<version>1.2.6</version>
+<objective>Control the center point until you reach 600 points!</objective>
+<authors>
+    <author uuid="ec80a24a-4e83-4049-8e1d-77abad67e8f3"/> <!-- Bamby_ -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML"/> <!-- ItsMiiOlly -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Spawners and Feedback"/> <!-- _IQ -->
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Server hosting"/> <!-- pepsidawg00 -->
+</contributors>
+<teams>
+    <team color="gold" max="16" max-overfill="20">Orange</team>
+    <team color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">wood sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="8">arrow</item>
+        <item slot="3" amount="16">apple</item>
+        <item slot="8">emerald</item>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="B06A34" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="B06A34" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="583F62" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="583F62" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit name="regen" force="true">
+        <potion duration="5" amplifier="5">regeneration</potion>
+        <potion duration="5" amplifier="5">saturation</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="orange" kit="orange" angle="17,52,25" safe="true">
+        <cylinder base="17,52,25" radius="3" height="0" />
+    </spawn>
+    <spawn team="blue" kit="blue" angle="91,52,25" safe="true">
+        <cylinder base="91,52,25" radius="3" height="0" />
+    </spawn>
+    <default yaw="0">
+        <cylinder base="54,53,25" radius="3" height="0" />
+    </default>
+</spawns>
+<filters>
+    <filter name="only-tnt">
+        <block>tnt</block>
+    </filter>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <cylinder name="blue-spawn" base="91,43,25" radius="9" height="23" />
+        <cylinder name="orange-spawn" base="17,43,25" radius="9" height="23" />
+    </union>
+    <apply block="only-tnt">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+    <apply kit="regen" block="deny-all">
+        <region name="spawns" />
+    </apply>
+    <apply enter="deny-all" message="`6[`2!!`6] `c`lCLIMBING ON THE TREES IS ILLEGAL `6[`2!!`6]">
+        <complement>
+            <cuboid min="-oo,20,-oo" max="oo,21,oo" />
+            <circle center="91,25" radius="9" />
+            <circle center="17,25" radius="9" />
+        </complement>
+    </apply>
+    <!-- orange front -->
+    <apply velocity="@0.0,1.2,0.0">
+        <cuboid min="33,6,23" max="37,8,27" />
+    </apply>
+    <!-- purple front -->
+    <apply velocity="0.0,1.2,0.0">
+        <cuboid min="71,6,23" max="75,8,27" />
+    </apply>
+    <!-- left -->
+    <apply velocity="@0.0,1.2,0.0">
+        <cuboid min="52,6,40" max="56,8,43" />
+    </apply>
+    <!-- right -->
+    <apply velocity="@0.0,1.2,0.0">
+        <cuboid min="52,6,11" max="56,8,8" />
+    </apply>
+</regions>
+<portals>
+    <!-- orange top portal -->
+    <portal x="@15" y="@52" z="@25" yaw="@-90" filter="only-orange">
+        <cuboid min="4,14,27" max="3,18,24" />
+    </portal>
+    <!-- purple top portal -->
+    <portal x="@93" y="@52" z="@25" yaw="@90" filter="only-blue">
+        <cuboid min="104,14,24" max="105,18,27" />
+    </portal>
+    <!-- orange bottom portal -->
+    <portal x="@15" y="@52" z="@25" yaw="@-90" filter="only-orange">
+        <cuboid min="6,6,27" max="5,9,24" />
+    </portal>
+    <!-- purple bottom portal -->
+    <portal x="@93" y="@52" z="@25" yaw="@90" filter="only-blue">
+        <cuboid min="102,6,24" max="103,9,27" />
+    </portal>
+</portals>
+<king>
+    <hills>
+        <hill name="Center" capture-time="10s" points="1">
+            <capture>
+                <cylinder base="54,13,25" radius="11" height="7" />
+            </capture>
+            <progress>
+                <cylinder base="54,13,25" radius="11" height="7" />
+            </progress>
+            <captured>
+                <cuboid min="44,19,35" max="64,23,15" />
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>650</limit>
+    <king/>
+</score>
+<killreward>
+    <item>emerald</item>
+    <item amount="4">arrow</item>
+</killreward>
+<itemkeep>
+    <!-- armor -->
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather helmet</item>
+    <item>iron helmet</item>
+    <item>leather boots</item>
+    <item>iron boots</item>
+    <!-- food -->
+    <item>cooked beef</item>
+    <item>golden apple</item>
+    <item>golden apple:1</item>
+    <!-- weapons -->
+    <item>wood sword</item>
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemkeep>
+<itemremove>
+    <item>arrow</item>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>apple</item>
+    <item>wood sword</item>
+    <item>bow</item>
+</itemremove>
+<timelock>on</timelock>
+<multitrade/>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>false</blockdamage>
+    <power>6</power>
+</tnt>
+<disabledamage>
+    <!-- TNT damages enemies and self, but not teammates -->
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    <damage>fall</damage>
+</disabledamage>
+<tutorial>
+    <stage title="KOTH Gear">
+        <message>
+            <line>Welcome to `6Aztecatti`r!</line>
+            <line>Aztecatti is a `6KOTH `5Gear`r.</line>
+            <line>Every kill will award you with an `aemerald`r.</line>
+            <line>You can use your `aemeralds`r to buy stuff at spawn!</line>
+        </message>
+    </stage>
+    <stage title="The Hill">
+        <message>
+            <line>This is `6The Hill`r.</line>
+            <line>You team must `4capture`r this hill and get as many points as they can to `2win`r!</line>
+        </message>
+        <teleport>
+            <point yaw="123" pitch="25">65,23,32</point>
+        </teleport>
+    </stage>
+    <stage title="Villager Shops">
+        <message>
+            <line>These are the `6villager shops`r.</line>
+            <line>Here is where you can `btrade items`r to get better gear!</line>
+            <line>`c`lREMEMBER:`r You keep your gear even if you die! (but `cnot`r emeralds)</line>
+            <line>To get back to your spawn, use the `9portals`r on the `ledge of your side`r!</line>
+        </message>
+        <teleport>
+            <point yaw="-150" pitch="30">86,59,33</point>
+        </teleport>
+    </stage>
+    <stage title="Emerald Spawner">
+        <message>
+            <line>Here is the `aemerald spawner`r.</line>
+            <line>Use this to snag some quick `aemeralds`r!</line>
+        </message>
+        <teleport>
+            <point yaw="133" pitch="40">56,9,27</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

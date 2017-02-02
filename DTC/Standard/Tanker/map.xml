@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Tanker</name>
+<version>1.4</version>
+<objective>
+Leak lava from the enemy's obsidian cores.
+</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="18" max-overfill="25">Blue</team>
+    <team color="dark red" max="18" max-overfill="25">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64" damage="2">log</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6" amount="64">cooked fish</item>
+        <item slot="7" amount="2">golden apple</item>
+        <potion duration="10">heal</potion>
+        <potion duration="15">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1">iron leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1">iron leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="2018,21,-2063" radius="1.5" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder base="2007,21,-1871" radius="1.5" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="2013,87,-1968" radius="1.5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-players" message="You are not allowed to build in your spawn">
+        <union name="blue-spawn-ship">
+            <cylinder name="blue-ship" base="2018,0,-2063" radius="30" height="oo"/>
+        </union>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+            <region name="blue-spawn-ship"/>
+    </apply>
+    <apply block="deny-players" message="You are not allowed to build in your spawn">
+        <union name="red-spawn-ship">
+            <cylinder name="red-ship" base="2007,0,-1871" radius="30" height="oo"/> 
+        </union>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+            <region name="red-spawn-ship"/>
+    </apply>
+    <apply block="deny-void" message="You may not build in the void">
+        <negative>
+            <rectangle min="1922,-1902" max="2104,-2032"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="3">
+    <cores team="red">
+        <core name="Prow Core">
+            <sphere origin="1960,27,-1918" radius="6"/>
+        </core>
+        <core name="Stern Core">
+            <sphere origin="2071,12,-1918" radius="6"/>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="Prow Core">
+            <sphere origin="2066,27,-2016" radius="6"/>
+        </core>
+        <core name="Stern Core">
+            <sphere origin="1955,12,-2016" radius="6"/>
+        </core>
+    </cores>
+</cores>
+<modes>
+    <mode after="20m" material="gold block" name="`eGold Mode"/>
+</modes>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>obsidian</item>
+    <item>cooked fish</item>
+    <item>iron leggings</item>
+    <item>cooked fish</item>
+    <item>log</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<maxbuildheight>62</maxbuildheight>
+</map>

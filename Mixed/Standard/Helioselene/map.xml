@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.6">
+<name>Helioselene</name>
+<version>1.1.0</version>
+<objective>Destroy the monument and core before the enemy team!</objective>
+<authors>
+    <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi_ -->
+</authors>
+
+<contributors>
+    <contributor uuid="94812eb7-1160-4db4-b349-c2eac0792218" contribution="Feedback and XML"/> <!-- Szboy422 -->
+    <contributor uuid="17feaec5-9616-49d8-a507-83026050dd8f" contribution="Feedback and Provision of Server"/> <!-- ShinyDialga45 -->
+</contributors>
+
+<teams>
+    <team id="Red" color="blue" max="30" max-overfill="36" >Blue</team>
+    <team id="Blue" color="dark red" max="30" max-overfill="36">Red</team>
+</teams>
+
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" enchantment="durability:1">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1;durability:1">diamond pickaxe</item>
+        <item slot="3" amount="32" damage="2">log</item>
+        <item slot="4" amount="64">glass</item>
+        <item slot="5" amount="1">golden apple</item>
+        <item slot="6" amount="32">cooked beef</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8" amount="2">stick</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+</kits>
+
+<spawns>
+    <spawn team="Red" safe="true" kit="spawn">
+        <regions yaw="180">
+            <cuboid min="-268,90,-599" max="-271,90,-598"/>
+        </regions>
+        <regions yaw="-90">
+            <cuboid min="-275,90,-606" max="-278,90,-605"/>
+        </regions>
+        <regions yaw="0">
+            <cuboid min="-268,90,-611" max="-271,90,-614"/>
+        </regions>
+        <regions yaw="90">
+            <cuboid min="-261,90,-604" max="-264,90,-606"/>
+        </regions>
+    </spawn>
+    <spawn team="Blue" safe="true" kit="spawn">
+        <regions yaw="-90">
+            <cuboid min="-73,90,-604" max="-76,90,-607"/>
+        </regions>
+        <regions yaw="180">
+            <cuboid min="-66,90,-599" max="-69,89,-598"/>
+        </regions>
+        <regions yaw="0">
+            <cuboid min="-67,90,-611" max="-69,90,-612"/>
+        </regions>
+        <regions yaw="90">
+            <cuboid min="-59,90,-606" max="-62,90,-605"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <block>-168.5,99,-605.5</block>
+        </regions>
+    </default>
+</spawns>
+
+<destroyables name="Monument" materials="beacon;emerald block" completion="100%" reparirable="false">
+    <destroyable owner="Red" id="red-monument">
+        <region><cuboid min="-316,43,-605" max="-317,47,-606"/></region>
+    </destroyable>
+    <destroyable owner="Blue" id="blue-monument">
+        <region><cuboid min="-21,43,-606" max="-20,47,-605"/></region>
+    </destroyable>
+</destroyables>
+
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core team="Red">
+        <region name="red-core"><cuboid min="-268,29,-607" max="-271,34,-604"/></region>
+    </core>
+    <core team="Blue">
+        <region name="blue-core"><cuboid min="-69,29,-604" max="-66,34,-607"/></region>
+    </core>
+</cores>
+
+<portals>
+    <portal>
+        <region><cuboid min="-269,36,-605" max="-270,38,-606"/></region>
+        <destination><block>-269,42,-605</block></destination>
+    </portal>
+    <portal>
+        <region><cuboid min="-67,36,-605" max="-68,38,-606"/></region>
+        <destination><block>-67,42,-605</block></destination>
+    </portal>
+</portals>
+
+<filters>
+    <filter name="only-red">
+        <team>Red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>Blue</team>
+    </filter>
+    <filter name="only-blocks">
+        <block>log:1</block>
+        <block>wood:1</block>
+        <block>glass</block>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+
+<maxbuildheight>64</maxbuildheight>
+
+<regions>
+    <!-- Red Filters -->
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <cylinder name="red-spawn" base="-270,42,-606" radius="16.5" height="4"/>
+    </apply>
+
+    <apply block="only-iron" message="You can only break iron blocks in spawn!">
+        <cylinder name="red-base" base="-270,35,-606" radius="22" height="23"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <cylinder name="red-drop" base="-270,89,-606" radius="8" height="6"/>
+    </apply>
+
+    <!-- Blue Filters -->
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <cylinder name="blue-spawn" base="-68,42,-606" radius="16.5" height="4"/>
+    </apply>
+
+    <apply block="only-iron" message="You can only break iron blocks in spawn!">
+        <cylinder name="blue-base" base="-68,35,-606" radius="22" height="23"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <cylinder name="blue-drop" base="-68,89,-606" radius="8" height="6"/>
+    </apply>
+
+    <!-- Main Filters -->
+    <apply block="deny-all" message="You may not build outside the playable region!">
+        <negative>
+            <rectangle name="playable-region" min="-320,-555" max="-17,-656"/>
+        </negative>
+    </apply>
+</regions>
+
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+
+<itemremove>
+    <item>obsidian</item>
+    <item>ladder</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>stick</item>
+    <item>emerald block</item>
+    <item>beacon</item>
+    <item>arrow</item>
+    <item>sapling</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>seeds</item>
+    <item>smooth stairs</item>
+    <item>cooked beef</item>
+    <item>dirt</item>
+    <item>glowstone dust</item>
+    <item>cobble wall</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>cobblestone</item>
+    <item>stained clay</item>
+    <item>step</item>
+</itemremove>
+
+<modes>
+    <mode after="15m" material="gold block"/>
+</modes>
+<modes>
+    <mode after="20m" material="glass"/>
+</modes>
+</map>

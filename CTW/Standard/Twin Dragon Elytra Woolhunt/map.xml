@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Twin Dragons: Elytra Woolhunt</name>
+<version>1.1</version>
+<objective>Be the first team to gather your 4 wools!</objective>
+<authors>
+    <author uuid="657b93a7-3f50-4e94-ae3b-189506124836"/> <!-- Tjandra -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="RedT" color="red" max="2" max-overfill="2">Red</team>
+    <team id="YellowT" color="yellow" max="2" max-overfill="2">Yellow</team>
+    <team id="BlueT" color="blue" max="2" max-overfill="2">Blue</team>
+    <team id="GreenT" color="green" max="2" max-overfill="2">Green</team>   
+</teams>
+<kits>
+    <kit id="spawn">
+        <chestplate locked="true" enchantment="protection environmental:1" unbreakable="true">elytra</chestplate>
+        <potion duration="oo" amplifier="6">jump</potion>
+        <double-jump recharge-before-landing="true"/>
+    </kit>
+    <kit id="obs">
+        <chestplate locked="true" enchantment="protection environmental:1" unbreakable="true">elytra</chestplate>
+        <potion duration="oo" amplifier="6">jump</potion>
+    </kit>
+</kits> 
+<spawns>
+    <spawn team="RedT" kit="spawn">
+        <regions yaw="-90"><cuboid min="133,222,127" max="133,222,127"/></regions>
+    </spawn>
+    <spawn team="GreenT" kit="spawn">
+        <regions yaw="0"><cuboid min="145,222,115" max="145,222,115"/></regions>
+    </spawn>
+    <spawn team="BlueT" kit="spawn">
+        <regions yaw="90"><cuboid min="157,222,127" max="157,222,127"/></regions>
+    </spawn>
+    <spawn team="YellowT" kit="spawn">
+        <regions yaw="180"><cuboid min="145,222,139" max="145,222,139"/></regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="-90"><point>131,247,128</point></regions>
+    </default>
+</spawns>
+<portals>
+    <portal x="@145.5" y="@224" z="@127.5">
+        <region>
+            <cuboid min="155,17,-7" max="154,256,-6"/>
+            <cuboid min="484,19,127" max="483,256,126"/>
+            <cuboid min="172,28,229" max="173,256,230"/>
+            <cuboid min="297,56,128" max="296,256,127"/>
+        </region>
+    </portal>
+    <portal x="@135" y="@253" z="@128">
+        <region><cuboid min="146,219,127" max="145,221,128"/></region>
+    </portal>
+</portals>
+<wools>
+    <wool team="RedT" color="pink" location="146,219,127">
+        <monument><block>139.5,222,136.5</block></monument>
+    </wool>
+    <wool team="RedT" color="orange" location="146,219,127">
+        <monument><block>138.5,222,135.5</block></monument>
+    </wool>
+    <wool team="RedT" color="red" location="146,219,127">
+        <monument><block>137.5,222,134.5</block></monument>
+    </wool>
+    <wool team="RedT" color="magenta" location="146,219,127">
+        <monument><block>136.5,222,133.5</block></monument>
+    </wool>
+    <wool team="GreenT" color="lime" location="146,219,127">
+        <monument><block>136.5,222,121.5</block></monument>
+    </wool>
+    <wool team="GreenT" color="brown" location="146,219,127">
+        <monument><block>137.5,222,120.5</block></monument>
+    </wool>
+    <wool team="GreenT" color="black" location="146,219,127">
+        <monument><block>138.5,222,119.5</block></monument>
+    </wool>
+    <wool team="GreenT" color="green" location="146,219,127">
+        <monument><block>139.5,222,118.5</block></monument>
+    </wool>
+    <wool team="BlueT" color="blue" location="146,219,127">
+        <monument><block>151.5,222,118.5</block></monument>
+    </wool>
+    <wool team="BlueT" color="purple" location="146,219,127">
+        <monument><block>152.5,222,119.5</block></monument>
+    </wool>
+    <wool team="BlueT" color="cyan" location="146,219,127">
+        <monument><block>153.5,222,120.5</block></monument>
+    </wool>
+    <wool team="BlueT" color="light blue" location="146,219,127">
+        <monument><block>154.5,222,121.5</block></monument>
+    </wool>
+    <wool team="YellowT" color="white" location="146,219,127">
+        <monument><block>154.5,222,133.5</block></monument>
+    </wool>
+    <wool team="YellowT" color="gray" location="146,219,127">
+        <monument><block>153.5,222,134.5</block></monument>
+    </wool>
+    <wool team="YellowT" color="yellow" location="146,219,127">
+        <monument><block>152.5,222,135.5</block></monument>
+    </wool>
+    <wool team="YellowT" color="silver" location="146,219,127">
+        <monument><block>151.5,222,136.5</block></monument>
+    </wool>
+</wools>
+<regions>
+    <apply block="never" region="everywhere"/>
+</regions>
+<time>8m</time>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+    <damage>entity attack</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>elytra</item>
+</itemremove>
+<!-- 
+<structures>
+    <structure id="wool0" air="false">
+        <region>
+            <cuboid min="0.5,0,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool1" air="false">
+        <region>
+            <cuboid min="0.5,1,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool2" air="false">
+        <region>
+            <cuboid min="0.5,2,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool3" air="false">
+        <region>
+            <cuboid min="0.5,3,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool4" air="false">
+        <region>
+            <cuboid min="0.5,4,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool5" air="false">
+        <region>
+            <cuboid min="0.5,5,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool6" air="false">
+        <region>
+            <cuboid min="0.5,6,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool7" air="false">
+        <region>
+            <cuboid min="0.5,7,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool8" air="false">
+        <region>
+            <cuboid min="0.5,8,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool9" air="false">
+        <region>
+            <cuboid min="0.5,9,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool10" air="false">
+        <region>
+            <cuboid min="0.5,10,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool11" air="false">
+        <region>
+            <cuboid min="0.5,11,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool12" air="false">
+        <region>
+            <cuboid min="0.5,12,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool13" air="false">
+        <region>
+            <cuboid min="0.5,13,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool14" air="false">
+        <region>
+            <cuboid min="0.5,14,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <structure id="wool15" air="false">
+        <region>
+            <cuboid min="0.5,15,0.5" size="1,1,1"/>
+        </region>
+    </structure>
+    <dynamic structure="wool0" location="3.5,1,3.5"> This location has 100% chance to be white
+        <filter>
+            <all>
+                <random>1</random>
+                <time>3s</time>
+            </all>
+        </filter>
+    </dynamic>
+    <dynamic structure="wool1" location="3.5,1,3.5"> This location has 10% chance to be orange
+        <filter>
+            <all>
+                <random>0.1</random>
+                <time>6s</time>
+            </all>
+        </filter>
+    </dynamic>
+</structures>
+
+156,210,118
+149,204,139
+174,194,128
+174,178,118
+134,174,131
+155,160,145
+192,144,117
+159,147,112
+134,107,112
+160,102,148
+219,73,154
+199,11,208
+164,9,241
+126,3,253
+181,45,180
+129,65,142
+139,39,98
+135,18,70
+147,13,68
+166,86,100
+166,17,46
+162,5,-33
+198,34,50
+213,47,78
+340,11,104
+432,15,111
+391,34,124
+274,38,116
+267,58,132
+331,39,124
+376,11,150
+445,8,146
+433,28,124
+236,8,181
+137,7,182
+ -->
+</map>

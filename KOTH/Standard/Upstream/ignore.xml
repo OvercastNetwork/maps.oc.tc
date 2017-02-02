@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Upstream</name>
+<version>0.2</version>
+<objective>You must capture and hold all 3 hills!</objective>
+<authors>
+    <author>chickolympics</author>
+    <author>ElectroidFilms</author>
+</authors>
+<rules>
+    <rule>Spawn camping and killing is allowed; as long as you don't postpone the end of the game!</rule>
+</rules>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="teams" angle="-16.5,51,57.5">
+        <cuboid min="-15,31,-82" max="-19,32,-76"/>
+    </spawn>
+    <spawn team="red" kit="teams" angle="-16.5,51,57.5">
+        <cuboid min="-18,31,197" max="-14,32,191"/>
+    </spawn>
+    <default kit="obs">
+        <point yaw="0">-55.5,62,57.5</point>
+        <point yaw="90">-55.5,62,57.5</point>
+        <point yaw="180">-55.5,62,57.5</point>
+        <point yaw="-90">-55.5,62,57.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="6" amount="64" name="`aSolid Blocks">wood</item>
+        <item slot="7" amount="16" name="`aTransparent Blocks">glass</item>
+        <item slot="8" amount="16" name="`aClimbable Blocks">ladder</item>
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<classes family="upstream" restrict="false">
+    <class name="Melee" description="Use your iron sword, which is the best on the map!" icon="iron sword" default="true">
+        <kit name="melee">
+            <item slot="0" unbreakable="true" name="`aStrong Sword">iron sword</item>
+            <item slot="1" unbreakable="true" attributes="generic.attackDamage:add:0">iron axe</item>
+            <chestplate unbreakable="true">iron chestplate</chestplate>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <boots unbreakable="true">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Demo" description="Comes with tnt with blast resistance!" icon="tnt">
+        <kit name="demo">
+            <item slot="0" unbreakable="true">wood sword</item>
+            <item slot="1" unbreakable="true" attributes="generic.attackDamage:add:0">iron axe</item>
+            <item slot="2" unbreakable="true" name="`aLighter">flint and steel</item>
+            <item slot="3" amount="4" name="`cExplosives">tnt</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true" enchantment="protection explosions:5">leather chestplate</chestplate>
+            <leggings unbreakable="true">leather leggings</leggings>
+            <boots unbreakable="true">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Ranger" description="A variety of bows to work with for the best aimer!" icon="bow">
+        <kit name="ranger">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:3" name="`aWeak Sword">wood sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:1" attributes="generic.movementSpeed:base:-0.10" name="`aSniper Rifle">bow</item>
+            <item slot="2" unbreakable="true" attributes="generic.attackDamage:add:0">iron axe</item>
+            <item slot="28">arrow</item>
+            <chestplate unbreakable="true" enchantment="protection projectile:2">chainmail chestplate</chestplate>
+            <helmet unbreakable="true">leather helmet</helmet>
+        </kit>
+    </class>
+    <class name="Builder" description="Has a super fast pickaxe with blocks to create structures!" icon="diamond pickaxe">
+        <kit name="builder">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="dig speed:5" name="`aFast Pickaxe">diamond pickaxe</item>
+            <item slot="2" unbreakable="true" enchantment="dig speed:5" name="`aFast Axe">diamond axe</item>
+            <item slot="3" amount="8" name="`aClay Blocks">hard clay</item>
+            <item slot="4" amount="16" name="`aFence Blocks">fence</item>
+            <item slot="5" amount="32" name="`aGravity Blocks">gravel</item>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">leather chestplate</chestplate>
+            <boots unbreakable="true">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Alchemist" description="Comes with special potions never seem before!" icon="potion">
+        <kit name="alchemist">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" attributes="generic.attackDamage:add:0">iron axe</item>
+            <item slot="2" amount="3" damage="16424" potions="weakness:600:1:false" name="`aWeakness Potions">potion</item>
+            <item slot="3" amount="2" damage="16426" potions="slow:600:0:false" name="`aSlowness Potions">potion</item>
+            <item slot="4" damage="16388" potions="slow:200:0:false" name="`aPoison Potion">potion</item>
+            <chestplate unbreakable="true">gold chestplate</chestplate>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <boots unbreakable="true">leather boots</boots>
+        </kit>
+    </class>
+</classes>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-tnt">
+        <block>tnt</block>
+    </filter>
+    <filter name="only-some" parents="deny-all">
+        <allow>
+            <block>stained clay:4</block>
+            <block>glass</block>
+            <block>leaves</block>
+            <block>long grass</block>
+            <block>175</block> <!-- Double Long Grass -->
+            <block>red rose</block>
+            <block>yellow flower</block>
+            <block>ladder</block>
+            <block>tnt</block>
+            <block>hard clay</block>
+            <block>gravel</block>
+            <block>wood</block>
+            <block>fence</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="1,200" max="-34,-85"/>
+    <cuboid name="above-55" min="-oo,55,-oo" max="oo,oo,oo"/>
+    <!-- Applied -->
+    <apply block="only-tnt" message="You may not edit the capture points!">
+        <cylinder base="-20.5,35,-16.5" radius="7" height="oo"/>
+        <cylinder base="-16.5,51,57.5" radius="7" height="oo"/>
+        <cylinder base="-12.5,35,131.5" radius="7" height="oo"/>
+    </apply>
+    <apply block-place="deny-all" message="You may not build above the map!">
+        <region name="above-55"/>
+    </apply>
+    <apply block="only-some">
+        <region name="all"/>
+    </apply>
+</regions>
+<control-points incremental="true" scaled-time="true" show-progress="true">
+    <control-point name="North Hill" initial-owner="blue" capture-time="30s">
+        <capture-region>
+            <cylinder base="-20.5,36,-16.5" radius="7" height="oo"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="-20.5,35,-16.5" radius="8" height="5"/>
+        </progress-display-region>
+    </control-point>
+    <control-point name="Center Hill" capture-time="90s">
+        <capture-region>
+            <cylinder base="-16.5,51,57.5" radius="7" height="oo"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="-16.5,50,57.5" radius="8" height="5"/>
+        </progress-display-region>
+    </control-point>
+    <control-point name="South Hill" initial-owner="red" capture-time="30s">
+        <capture-region>
+            <cylinder base="-12.5,36,131.5" radius="7" height="oo"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="-12.5,35,131.5" radius="8" height="5"/>
+        </progress-display-region>
+    </control-point>
+</control-points>
+<itemremove>
+    <item>iron sword</item>
+    <item>iron pickaxe</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail chestplate</item>
+    <item>stone sword</item>
+    <item>leather boots</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>wood sword</item>
+    <item>tnt</item>
+    <item>flint and steel</item>
+    <item>chainmail leggings</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>diamond pickaxe</item>
+    <item>glass</item>
+    <item>stained clay</item>
+    <item>gold chestplate</item>
+    <item>potion</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>stone sword</item>
+    <item>ladder</item>
+    <item>gravel</item>
+    <item>wood</item>
+    <item>iron axe</item>
+    <item>hard clay</item>
+    <item>diamond axe</item>
+    <item>flint</item>
+    <item>fence</item>
+</itemremove>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    <damage>fire</damage>
+    <damage>fire tick</damage>
+</disabledamage>
+<tnt>
+    <power>7</power>
+    <fuse>2s</fuse>
+    <blockdamage>true</blockdamage>
+    <instantignite>false</instantignite>
+</tnt>
+<time result="objectives">30m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<autorespawn/>
+</map>

@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Desert Trouble</name>
+<version>1.0</version>
+<objective>Get the enemy's wool and place it in your victory monument</objective>
+<authors>
+    <author contribution="Map Design and XML code">_CakeSmasher_</author>
+    <author contribution="Map Design">mhwerkman123</author>
+</authors>
+<contributors>
+    <contributor contribution="Additional XML code and fixes">pigdevil2010</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="90">
+        <cylinder base="2293.5,14,1433.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="-90">
+        <cylinder base="2057.5,14,1433.5" radius="3" height="0"/>
+    </spawn>
+    <default yaw="0">
+         <cylinder base="2175.5,51,1474.5" radius="4" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="green-wool-room" min="2421,1414" max="2410,1425"/>
+    <rectangle name="lime-wool-room" min="2421,1442" max="2410,1453"/>
+    <rectangle name="purple-wool-room" min="1930,1453" max="1941,1442"/>
+    <rectangle name="pink-wool-room" min="1940,1425" max="1930,1414"/>
+    <apply block="deny-all" message="You may not modify the base!">
+        <cuboid min="2306,12,1423" max="2283,25,1444"/>
+        <cuboid min="2045,12,1444" max="2068,25,1423"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <cuboid min="2306,12,1423" max="2283,oo,1444"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <cuboid min="2045,12,1444" max="2068,oo,1423"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="green-wool-room"/>
+        <region name="lime-wool-room"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="purple-wool-room"/>
+        <region name="pink-wool-room"/>
+    </apply>
+    <apply block="only-red" use="only-red">
+        <region name="green-wool-room"/>
+        <region name="lime-wool-room"/>
+    </apply>
+    <apply block="only-blue" use="only-blue">
+        <region name="purple-wool-room"/>
+        <region name="pink-wool-room"/>
+    </apply>
+    <apply block="deny-all">
+        <negative>
+            <rectangle min="1930,1414" max="2421,1453"/>
+        </negative>
+        <rectangle min="1973,1425" max="1930,1442"/>
+        <rectangle min="2421,1425" max="2378,1442"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron spade</item>
+        <item slot="4" amount="32">cooked beef</item>
+        <item slot="5" amount="64" damage="1">wood</item>
+        <item slot="6" amount="64">sandstone</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8">bucket</item>
+        <item slot="28">arrow</item>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>sandstone</item>
+    <item>bucket</item>
+    <item>sugar cane</item>
+    <item>string</item>
+    <item>glowstone dust</item>
+</itemremove>
+<wools team="blue">
+    <wool color="green">
+        <block>2046,17,1433</block>
+    </wool>
+    <wool color="lime">
+        <block>2046,15,1433</block>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="purple">
+        <block>2304,17,1433</block>
+    </wool>
+    <wool color="pink">
+        <block>2304,15,1433</block>
+    </wool>
+</wools>
+<maxbuildheight>60</maxbuildheight>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="80" pitch="15">2230,32,1418</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Rooms">
+        <message>
+            <line>These are `9Blue team`r's wool rooms housing `alime `rand `2Green`r.</line>
+            <line>`cRed Team `rhas `5purple `rand `dpink`r wools.</line>
+            <line>Blue Team should defend these rooms against Red Team invaders who are trying to steal the wool and make it back alive.</line>
+            <line>There are special goodies inside that will help you fight your way out.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="10">2382,35,1432</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>Here is the `cRed Team `rvictory monument and spawn where the captured wool must be placed.</line>
+            <line>Both wool must be placed to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">2297,14,1433</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Supplies">
+        <message>
+            <line>Here is the iron supply for `9Blue Team`r. Note that `cRed Team `rhas the same thing on their side.</line>
+            <line>You can craft iron armor to prepare yourself for battle.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">2262,32,1433</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

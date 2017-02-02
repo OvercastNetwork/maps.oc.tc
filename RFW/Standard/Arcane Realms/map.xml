@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+<name>Arcane Realms</name>
+<version>1.2.1</version>
+<objective>Find and complete the Statue of Completion</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<rules>
+    <rule>The players may not leave their lanes, or enter the void</rule>
+    <rule>Find wool in chests, do not use dyes for wool.</rule>
+</rules>
+<teams>
+    <team color="blue" max="4">Blue</team>
+    <team color="dark red" max="4">Red</team>
+</teams>
+<friendlyfire>on</friendlyfire>
+<timelock>off</timelock>
+<mobs>
+    <filter>
+        <deny><mob>slime</mob></deny>
+    </filter>
+</mobs>
+<spawns bedspawn="on">
+    <spawn team="blue" yaw="180"><point>72,80.5,260</point></spawn>
+    <spawn team="red" yaw="180"><point>104,80.5,260</point></spawn>
+    <default yaw="0"><cuboid min="86.5,84,279.5" max="89.5,84,282.5"/></default>
+</spawns>
+<filters>
+    <filter name="only-liquids" parents="deny-players">
+        <allow>
+            <block>water</block><block>stationary water</block>
+            <block>lava</block><block>stationary lava</block>
+        </allow>
+    </filter>
+    <filter name="monument-protection">
+        <deny>
+            <block>obsidian</block>
+            <block>wall sign</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- protect monuments -->
+    <apply block="monument-protection">
+        <cuboid name="blue-monument" min="68,94,201" max="73,97,206"/>
+        <cuboid name="red-monument" min="103,94,201" max="108,97,206"/>
+    </apply>
+
+    <!-- spawn protection -->
+    <apply block="deny-all" message="You may not break blocks at spawn">
+        <rectangle name="spawn" min="-oo,256" max="oo,oo"/>
+    </apply>
+
+    <!-- prevent blocks from being placed / destroyed in the lane -->
+    <apply block="only-liquids" message="You may not place or break blocks outside of your lane">
+        <negative>
+            <rectangle name="blue-lane" min="64,-oo" max="80,264"/>
+            <rectangle name="red-lane" min="96,-oo" max="112,264"/>
+        </negative>
+    </apply>
+
+    <!-- prevent players from entering the spawn area -->
+    <apply leave="deny-all" message="You may not leave the playing field">
+        <rectangle name="playable" min="-oo,-oo" max="oo,256"/>
+        <rectangle name="red-spawn-area" min="96,256" max="112,264"/>
+        <rectangle name="blue-spawn-area" min="64,256" max="80,264"/>
+    </apply>
+</regions>
+<lanes>
+    <lane team="blue"><region name="blue-lane"/></lane>
+    <lane team="red"><region name="red-lane"/></lane>
+</lanes>
+<wools team="blue">
+    <wool color="cyan"  ><block>68,95,205</block></wool>
+    <wool color="lime"  ><block>68,95,201</block></wool>
+    <wool color="orange"><block>72,95,203</block></wool>
+</wools>
+<wools team="red">
+    <wool color="cyan"  ><block>107,95,205</block></wool>
+    <wool color="lime"  ><block>107,95,201</block></wool>
+    <wool color="orange"><block>103,95,203</block></wool>
+</wools>
+</map>

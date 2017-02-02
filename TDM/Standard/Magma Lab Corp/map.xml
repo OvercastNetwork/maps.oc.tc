@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Magma Lab Corp</name>
+<version>0.3</version>
+<objective>Get the most points in 6 minutes!</objective>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="7" max-overfill="10">Blue</team>
+    <team id="green" color="green" max="7" max-overfill="10">Green</team>
+</teams>
+<rage/>
+
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true" enchantment="damage all:10" projectile="blast" name="`6Blast Cannon`7">gold barding</item>
+        <potion duration="3" amplifier="25">heal</potion>
+        <potion duration="3" amplifier="25">damage resistance</potion>
+        <fly flying="true" can-fly="true" fly-speed="0.1"/>
+    </kit>
+    <kit id="greenkit" parents="spawn" filter="green-only">
+        <helmet color="00ff00" unbreakable="true">leather helmet</helmet>
+        <chestplate color="00ff00" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="00ff00" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+    </kit>
+    <kit id="bluekit" parents="spawn" filter="blue-only">
+        <helmet color="74BBFB" unbreakable="true">leather helmet</helmet>
+        <chestplate color="74BBFB" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="74BBFB" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+    </kit>
+</kits>
+
+<projectiles>
+    <projectile
+        id="blast"
+        name="blast"
+        projectile="Fireball"
+        velocity="5"
+        damage="50"
+        throwable="false"
+        click="both"
+        cooldown="1.1s"/>
+</projectiles>
+
+
+<respawn delay="2s" blackout="false"/>
+<spawns>
+    <default>
+        <regions yaw="90">
+            <cylinder name="obs-spawn" base="203.5,41,-5.5" radius="2" height="0"/>
+        </regions>
+    </default>
+    <spawn kit="greenkit" team="green">
+        <regions yaw="180">
+            <cylinder name="green-spawn" base="201.5,24,72.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn kit="bluekit" team="blue">
+        <regions yaw="0">
+            <cylinder name="blue-spawn" base="201.5,24,-83.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+
+<filters>
+    <team id="green-only">green</team>
+    <team id="blue-only">blue</team>
+</filters>
+
+<regions>
+    <!-- Team Spawn Protections -->
+    <rectangle id="walls" min="-48.5,49.5" max="63.5,-62.5"/>
+    <cuboid id="roof" min="-50.5,75,51.5" max="65.5,91,-64.5"/>
+
+    <!-- Applications -->
+    <apply block="never">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+
+    <apply enter="green-only" message="`eYou may not enter the spawn area!">
+        <region>
+            <cylinder base="201.5,16,72.5" radius="12" height="15"/>
+            <cylinder base="201.5,17,-83.5" radius="12" height="15"/>
+        </region>
+    </apply>
+
+    <apply enter="blue-only" message="`eYou may not enter the spawn area!">
+        <region>
+            <cylinder base="201.5,16,-83.5" radius="12" height="15"/>
+            <cylinder base="201.5,17,72.5" radius="12" height="15"/>
+        </region>
+    </apply>
+</regions>
+
+<score>
+    <kills>1</kills>
+</score>
+<time>6m</time>
+
+<disabledamage>
+    <damage>fall</damage>
+    <damage>starvation</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+    <item>gold barding</item>
+</itemremove>
+
+<broadcasts>
+    <tip after="3s" every="2m">`fYou can `6Fly`f on this map.</tip>
+    <tip after="4s" every="1m">`fBe careful, the `6Lava `fcan burn you!</tip>
+</broadcasts>
+
+</map>

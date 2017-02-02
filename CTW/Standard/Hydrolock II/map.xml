@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Hydrolock II</name>
+<version>1.0.2</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Did stuff"/> <!-- Zelocksurian -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90"><cuboid min="-74,29,-3" max="-67,29,4"/></spawn>
+    <spawn team="red" kit="red" yaw="-90"><cuboid min="68,29,-3" max="75,29,4"/></spawn>
+    <default yaw="180">0.5,61,-75.5</default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="2" amount="64" name="Water-Melon" enchantment="water worker:1">melon</item>
+        <item slot="3" amount="1">golden apple</item>
+        <item slot="35" amount="1">arrow</item>
+        <potion duration="3">heal</potion>
+        <potion duration="7">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>cobblestone</item>
+    <item>golden apple</item>
+    <item>melon</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>fence</item>
+    <item>sign</item>
+    <item>ladder</item>
+    <item>rails</item>
+</itemremove>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="break-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>ladder</block>
+            <block>rails</block>
+        </allow>
+    </filter>
+    <filter name="inverse-void" parents="deny-all">
+        <allow>
+            <void/>
+        </allow>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Map definition -->
+    <union name="playable">
+        <!-- Red base -->
+        <union name="red-base">
+            <rectangle min="65,-24" max="89,25"/>
+            <rectangle min="63,14" max="65,25"/> <!-- Stage left -->
+            <rectangle min="63,-24" max="65,-13"/>
+            <circle center="88.5,-16.5" radius="7"/>
+            <circle center="88.5,17.5" radius="7"/>
+        </union>
+        <rectangle name="red-base-inversevoid" min="38,-56" max="65,57"/>
+        <union name="red-base-inversevoid-cleanup">
+            <!-- Left side -->
+            <rectangle min="38,51" max="46,54"/>
+            <rectangle min="38,54" max="65,57"/>
+            <rectangle min="56,47" max="65,54"/>
+            <rectangle min="60,36" max="65,47"/>
+            <rectangle min="62,29" max="65,36"/>
+            <!-- Right side -->
+            <rectangle min="38,-53" max="46,-50"/>
+            <rectangle min="38,-57" max="65,-53"/>
+            <rectangle min="56,-53" max="65,-46"/>
+            <rectangle min="60,-46" max="65,-35"/>
+            <rectangle min="62,-35" max="65,-28"/>
+        </union>
+        <!-- Blue base -->
+        <union name="blue-base">
+            <rectangle min="-88,-24" max="-64,25"/>
+            <rectangle min="-64,-24" max="-62,-13"/> <!-- Stage left -->
+            <rectangle min="-64,14" max="-62,-25"/>
+            <circle center="-87.5,-16.5" radius="7"/>
+            <circle center="-87.5,17.5" radius="7"/>
+        </union>
+        <rectangle name="blue-base-inversevoid" min="-64,-56" max="-37,57"/>
+        <union name="blue-base-inversevoid-cleanup">
+            <!-- Left side -->
+            <rectangle min="-45,51" max="-37,54"/>
+            <rectangle min="-64,54" max="-37,57"/>
+            <rectangle min="-64,47" max="-55,54"/>
+            <rectangle min="-64,36" max="-59,47"/>
+            <rectangle min="-64,29" max="-61,36"/>
+            <!-- Right side -->
+            <rectangle min="-45,-53" max="-37,-50"/>
+            <rectangle min="-64,-57" max="-37,-53"/>
+            <rectangle min="-64,-53" max="-55,-46"/>
+            <rectangle min="-64,-46" max="-59,-35"/>
+            <rectangle min="-64,-35" max="-61,-28"/>
+        </union>
+        <!-- Battlefield -->
+        <rectangle min="-39,-46" max="40,47"/>
+    </union>
+    <!-- Outside of map protection -->
+    <apply block="deny-all" message="You may not build outside of the playing field!">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <!-- Red Base Protection -->
+    <apply block="inverse-void" message="You may not build outside of the playing field!">
+        <complement>
+            <region name="red-base-inversevoid"/>
+            <region name="red-base-inversevoid-cleanup"/>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="You may not build outside of the playing field!">
+        <region name="red-base-inversevoid-cleanup"/>
+    </apply>
+    <apply block="break-iron" message="You may only break iron blocks in your base"> <!-- Apply this one after inversevoid -->
+        <region name="red-base"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter red team's base!">
+        <region name="red-base"/>
+    </apply>
+    <!-- Red Base Protection -->
+    <apply block="inverse-void" message="You may not build outside of the playing field!">
+        <complement>
+            <region name="blue-base-inversevoid"/>
+            <region name="blue-base-inversevoid-cleanup"/>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="You may not build outside of the playing field!">
+        <region name="blue-base-inversevoid-cleanup"/>
+    </apply>
+    <apply block="break-iron" message="You may only break iron blocks in your base">
+        <region name="blue-base"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue team's base!">
+        <region name="blue-base"/>
+    </apply>
+    <!-- Wool room protections -->
+    <apply enter="only-blue" block="only-blue" use="only-blue-usage" message="Only blue may enter and modify this wool room.">
+        <!-- Orange Room -->
+        <circle center="41.5,30.5" radius="8.5"/> <!-- Why we have to use 8.5, I'll never know... -->
+        <!-- Pink Room -->
+        <circle center="41.5,-29.5" radius="8.5"/>
+    </apply>
+    <apply enter="only-red" block="only-red" use="only-red-usage" message="Only red may enter and modify this wool room.">
+        <!-- Purple Room -->
+        <circle center="-40.5,-29.5" radius="8.5"/>
+        <!-- Light Blue Room -->
+        <circle center="-40.5,30.5" radius="8.5"/>
+    </apply>
+</regions>
+<maxbuildheight>35</maxbuildheight>
+<wools>
+    <wool team="blue" color="orange"><!-- Left to attackers -->
+        <block location="-70,29,19"/>
+    </wool>
+    <wool team="blue" color="pink">
+        <block location="-70,29,-19"/>
+    </wool>
+    <wool team="red" color="purple"><!-- Left to attackers -->
+        <block location="70,29,-19"/>
+    </wool>
+    <wool team="red" color="light blue">
+        <block location="70,29,19"/>
+    </wool>
+</wools>
+</map>

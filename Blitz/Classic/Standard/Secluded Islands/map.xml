@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="blitz-global.xml" />
+<name>Secluded Lakes</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
+</authors>
+<contributors>
+    <contributor uuid="d2ab256b-cd6c-4497-9cf1-ef1e348f8751" contribution="Huge Helper"/> <!-- kingcarl123 -->
+    <contributor uuid="5f676611-0615-4a04-b57f-2e17a4c9359c" contribution="Initial Feedback + Testing"/> <!-- powertheyoyo -->
+</contributors>
+<teams>
+    <team color="blue" max="20">Blue</team>
+    <team color="red" max="20">Red</team>
+</teams>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="16">cooked chicken</item>
+        <item slot="3" damage="8229">potion</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="657,13,123" max="661,13,121" />
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="605,13,165" max="601,13,167" />
+    </spawn>
+    <default yaw="0">
+        <cuboid min="633,23,102" max="629,23,98" />
+    </default>
+</spawns>
+<killreward>
+    <item damage="8229">potion</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>ladder</item>
+    <item>cooked chicken</item>
+    <item>glass bottle</item>
+</itemremove>
+</map>

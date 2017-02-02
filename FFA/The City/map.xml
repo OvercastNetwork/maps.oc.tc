@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<include src="killrewards.xml"/>
+<name>The City</name>
+<version>1.0</version>
+<objective>Get the most kills before time runs out!</objective>
+<authors>
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<players max="50" show-name-tags="false"/>
+<time>10m</time>
+<score>
+    <kills>1</kills>
+</score>
+<spawns safe="true" spread="true" angle="-91,18,-11">
+    <spawn kit="players" region="spawn"/>
+    <default kit="obs" yaw="180" region="obs-spawn"/>
+</spawns>
+<kits>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="players">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <helmet unbreakable="true" color="191919">leather helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection projectile:1">iron chestplate</chestplate>
+        <leggings unbreakable="true" color="191919">leather leggings</leggings>
+        <boots unbreakable="true" color="191919">leather boots</boots>
+        <potion duration="5" amplifier="2">damage resistance</potion>
+        <potion duration="oo" amplifier="-1">health boost</potion>
+        <shield health="4" delay="4s"/>
+    </kit>
+</kits>
+<filters>
+    <not id="deny-use">
+        <any>
+            <material>beacon</material>
+            <material>hopper</material>
+            <material>chest</material>
+            <material>workbench</material>
+            <material>furnace</material>
+            <material>burning furnace</material>
+        </any>
+    </not>
+    <material id="only-tnt">tnt</material>
+    <material id="only-glass">glass</material>
+</filters>
+<regions>
+    <apply block-place="only-tnt" block-break="only-glass" use="deny-use" region="everywhere"/>
+    <cuboid id="obs-spawn" min="-91,69,-14" max="-88,69,-10"/>
+    <cuboid id="spawn" min="8,4,-59" max="-191,28,68"/>
+    <block id="portal-a" location="-126.5,8,4.5"/>
+    <block id="portal-b" location="-55.5,8,4.5"/>
+</regions>
+<portals y="7" yaw="360" sound="false" bidirectional="true" smooth="true">
+    <portal x="7" region="portal-a"/>
+    <portal x="-7" region="portal-b"/>
+</portals>
+<tnt>
+    <power>500</power>
+    <fuse>1s</fuse>
+    <yield>0</yield>
+    <instantignite>true</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<disabledamage>
+    <damge>suffocation</damge>
+</disabledamage>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<gamerules>
+    <doMobLoot>false</doMobLoot>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>stone sword</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>monster egg</item>
+    <item>ender pearl</item>
+    <item>tnt</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>milk bucket</item>
+    <item>bucket</item>
+    <item>diamond sword</item>
+    <item>bone</item>
+</itemremove>
+</map>

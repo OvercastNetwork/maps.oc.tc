@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<time result="objectives">45m</time>
+<name>Runes of Ruin</name>
+<version>1.1.4</version>
+<objective>Leak lava from the enemy's obsidian core</objective>
+<authors>
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="XML Coding"/> <!-- Plastix -->
+    <contributor uuid="445da9ac-d32f-4874-86e5-4846d61e02d0" contribution="Map Design"/> <!-- 911chandler -->
+    <contributor uuid="900b844e-747c-4d5b-b9e3-afa714ec9bd5" contribution="Team Spawns"/> <!-- Unphair -->
+    <contributor uuid="c46af832-71b5-4b3a-829c-837509d9f3eb" contribution="Cave Design"/> <!-- Umopaplsdn -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="8">Red</team>
+    <team id="blue-team" color="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <spawns kit="potion">
+        <spawn team="blue-team" yaw="180">
+            <region>
+                <cylinder base="422,11,685" radius="3" height="0"/>
+            </region>
+        </spawn>
+        <spawn team="red-team" yaw="180">
+            <region>
+                <cylinder base="314,11,685" radius="3" height="0"/>
+            </region>
+        </spawn>
+    </spawns>
+    <default yaw="180">
+        <region>
+            <cylinder base="368,14,726" radius="3" height="0"/>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="potion">
+        <potion duration="3" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<filters>
+    <not id="deny-blue">
+        <team>blue-team</team>
+    </not>
+    <not id="deny-red">
+        <team>red-team</team>
+    </not>
+</filters>
+<maxbuildheight>70</maxbuildheight>
+<regions>
+    <apply enter="deny-red" message="You are not allowed in the enemy team's supply room!">
+        <region>
+            <cuboid min="415,10,675" max="430,16,697"/>
+        </region>
+    </apply>
+    <apply enter="deny-blue" message="You are not allowed in the enemy team's supply room!">
+        <region>
+            <cuboid min="322,10,675" max="307,16,697"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not place or break blocks in the supply rooms!">
+        <region>
+            <cuboid min="415,10,674" max="430,18,697"/>
+            <cuboid min="322,10,674" max="307,18,697"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not build outside the playable region!">
+        <region>
+            <negative>
+                <rectangle min="305,701" max="432,600"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="25m" material="packed ice" name="PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="red-team">
+        <region>
+            <cuboid min="321,20,631" max="328,27,638"/>
+        </region>
+    </core>
+    <core team="blue-team">
+        <region>
+            <cuboid min="409,20,631" max="416,27,638"/>
+        </region>
+    </core>
+</cores>
+<itemremove>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<crafting>
+    <disable>shield</disable>
+</crafting>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+<respawn delay="7s"/>
+<autorespawn/>
+</map>

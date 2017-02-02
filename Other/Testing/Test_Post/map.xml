@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+<name>Test Map Please Don't Ignore</name>
+<version>0.1a-ragequit</version>
+<objective>Test things.</objective>
+<authors>
+    <author uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff"/> <!-- khazhyk -->
+</authors>
+<rules>
+    <rule>Count to ten, then SHOOT!</rule>
+    <rule>When your hunger runs out, you can kill!t</rule>
+</rules>
+<teams>
+    <team color="red" max="50">red</team>
+    <team color="blue" max="50">blue</team>
+</teams>
+<friendlyfire>off</friendlyfire>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:100" lore="§91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:100" lore="§91-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="10" amplifier="9001">damage resistance</potion>
+        <potion duration="10" amplifier="1">hunger</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<spawns>
+    <default>0.5,64,0.5</default>
+    <spawn kit="red" team="red">0.5,64,0.5</spawn>
+    <spawn kit="blue" team="blue">0.5,64,0.5</spawn>
+</spawns>
+</map>
+

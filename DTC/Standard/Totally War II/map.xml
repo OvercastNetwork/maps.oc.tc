@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Totally War II</name>
+<version>1.0.6</version>
+<objective>Destroy and leak both of the enemy team's obsidian core.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <contributor uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+    <contributor uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+</contributors>
+<teams>
+    <team color="dark purple" max="50">Purple</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<modes>
+    <mode after="20m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <cores name="Front Core">
+        <core team="purple">
+            <region name="purple-front-core"/>
+        </core>
+        <core team="red">
+            <region name="red-front-core"/>
+        </core>
+    </cores>
+    <cores name="Back Core">
+        <core team="purple">
+            <region name="purple-back-core"/>
+        </core>
+        <core team="red">
+            <region name="red-back-core"/>
+        </core>
+    </cores>
+</cores>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:1">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="28">arrow</item>
+        <item slot="5" damage="8229">potion</item>
+        <item slot="6" damage="8229">potion</item>
+        <item slot="7" amount="64">baked potato</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+        <potion duration="5">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+    </kit>
+    <kit name="purple" parents="teams">
+        <helmet unbreakable="true" color="7F3FB2">leather helmet</helmet>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="deny-web">
+        <deny>
+            <block>web</block>
+        </deny>
+    </filter>
+    <filter name="deny-water">
+        <deny>
+            <block>water</block>
+            <block>stationary water</block>
+        </deny>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>  
+    </filter>
+    <filter name="only-red">
+        <team>red</team>  
+    </filter>
+    <filter name="anti-grief-red">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-grief-purple">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>purple</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <negative name="outside-center">
+        <complement name="center">
+            <rectangle min="13,-25" max="-12,26"/>
+            <cuboid min="13,21,-25" max="-12,oo,26"/>
+        </complement>
+    </negative>
+    <cuboid name="above-55" min="-oo,56,-oo" max="oo,oo,oo"/>
+    <union name="bases-e"> <!-- For enter scope only -->
+        <cuboid name="purple-base-e" min="13,8,-80" max="35,19,-60"/>
+        <cuboid name="red-base-e" min="-12,8,81" max="-34,19,61"/>
+    </union>
+    <union name="bases-b"> <!-- For block scope only -->
+        <rectangle name="purple-base-b" min="13,-80" max="35,-60"/>
+        <rectangle name="red-base-b" min="-12,81" max="-34,61"/>
+    </union>
+    <union name="cores">
+        <union name="front-cores">
+            <cuboid name="purple-front-core" min="35,40,-37" max="30,45,-42"/>
+            <cuboid name="red-front-core" min="-34,40,38" max="-29,45,43"/>
+        </union>
+        <union name="back-cores">
+            <cuboid name="purple-back-core" min="-26,45,-61" max="-21,50,-66"/>
+            <cuboid name="red-back-core" min="27,45,62" max="22,50,67"/>
+        </union>
+    </union>
+    <union name="no-tnt-regions">
+        <union name="purple-no-tnt-regions">
+            <cuboid name="purple-no-tnt-a" min="14,-oo,-44" max="-13,32,-80"/>
+            <cuboid name="purple-no-tnt-b" min="35,-oo,-60" max="13,32,-44"/>
+            <cuboid name="purple-no-tnt-c" min="-12,-oo,-20" max="13,14,-38"/>
+        </union>
+        <union name="red-no-tnt-regions">
+            <cuboid name="red-no-tnt-a" min="-13,-oo,45" max="14,32,81"/>
+            <cuboid name="red-no-tnt-b" min="-34,-oo,61" max="-12,32,45"/>
+            <cuboid name="red-no-tnt-c" min="13,-oo,21" max="-12,14,39"/>
+        </union>
+    </union>
+    <union name="no-water-regions">
+        <union name="purple-no-water">
+            <cylinder name="purple-front-no-water" base="32,33,-40" radius="5" height="oo"/>
+            <cylinder name="purple-back-no-water" base="-24,38,-64" radius="5" height="oo"/>
+        </union>
+        <union name="red-no-water">
+            <cylinder name="red-front-no-water" base="-32,33,40" radius="5" height="oo"/>
+            <cylinder name="red-back-no-water" base="24,38,64" radius="5" height="oo"/>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block-place="deny-void" block-break="deny-web" message="`7You may not edit the void area!">
+        <region name="outside-center"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not edit the spawn area!">
+        <region name="bases-b"/>
+    </apply>
+    <apply block="deny-chest" message="`aChests `7are disabled on this map!">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not edit above the height limit! (`c55 Blocks`7)">
+        <region name="above-55"/>
+    </apply>
+    <apply enter="only-purple" message="`7You may not enter the `5PURPLE TEAM`7's base!">
+        <region name="purple-base-e"/>
+    </apply>
+    <apply enter="only-red" message="`7You may not enter the `cRED TEAM`7's base!">
+        <region name="red-base-e"/>
+    </apply>
+    <apply block-place="anti-grief-purple" message="`cTNT `7is not allowed in this area!">
+        <region name="purple-no-tnt-regions"/>
+    </apply>
+    <apply block-place="anti-grief-red" message="`cTNT `7is not allowed in this area!">
+        <region name="red-no-tnt-regions"/>
+    </apply>
+    <apply block-place="deny-water" message="`bWater `7is not allowed around the core!">
+        <region name="no-water-regions"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="-25,10,64" max="-16,10,69"/>
+    </spawn>
+    <spawn team="purple" kit="purple" yaw="180">
+        <cuboid min="26,10,-63" max="17,10,-68"/>
+    </spawn>
+    <default yaw="90">
+        <point>-61.5,30,0.5</point>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>glass bottle</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>potion</item>
+    <item>baked potato</item>
+    <item>gold block</item>
+    <item>string</item>
+    <item>obsidian</item>
+</itemremove>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>`7This map is a `a`lDestroy the Core `7(DTC) map.</line>
+            <line>`7The objective is to `cleak the lava `7from both of the enemy's `ccores`7.</line>
+        </message>
+        <teleport>
+            <point yaw="-128" pitch="15">-34,25,22</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn Building">
+        <message>
+            <line>`7You will spawn in this building located in the back of the base.</line>
+            <line>`7You will `cnot `7be able to enter the enemy's base.</line>
+            <line>`7Nor be allowed to break and/or place blocks there.</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="5">0,12,-86</point>
+        </teleport>
+    </stage>
+    <stage title="Cannon Platforms and TNT Supplies">
+        <message>
+            <line>`7Build cannons on each of your two platforms to destroy the enemy side.</line>
+            <line>`7Behind in the wall are some chests with supplys to make TNT and other redstone goodies.</line>
+            <line>`7Please remember to `cONLY `7use other teammates' cannons with their `cPERMISSION`7!</line>
+        </message>
+        <teleport>
+            <point yaw="125" pitch="15">34,16,-19</point>
+        </teleport>
+    </stage>
+    <stage title="Both Cores">
+        <message>
+            <line>`7In each tower their lies your obsidian core; you must defend this.</line>
+            <line>`7Go to the enemy side and leak both of them to win.</line>
+            <line>`c`lREMEMBER: `r`7Water is disabled for flowing around the cores!</line>
+        </message>
+        <teleport>
+            <point yaw="50" pitch="5">42,45,50</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

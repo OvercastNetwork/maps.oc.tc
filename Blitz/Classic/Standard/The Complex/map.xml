@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>The Complex</name>
+<version>1.0.4</version>
+<objective>Blitz: Eliminate the other team before 10 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
+</authors>
+<contributors>
+    <contributor uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0" contribution="Map Feedback"/> <!-- koipen -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Map Help"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Map Feedback and Fixing portals"/> <!-- i2 -->
+</contributors>
+<teams>
+    <team color="blue" max="20">Blue</team>
+    <team color="dark red" max="20">Red</team>
+</teams>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+    <title>Blitz</title>
+</blitz>
+<maxbuildheight>40</maxbuildheight>
+<regions>
+    <!-- Protect Portals -->
+    <apply block="deny-all">
+        <cuboid name="red-portal-main" min="29,11,-23" max="24,17,-28"/>
+        <cuboid name="blue-portal-main" min="-28,11,24" max="-23,17,29"/>
+        <cuboid name="red-portal-center" min="17,23,-11" max="12,29,-16"/>
+        <cuboid name="blue-portal-center" min="-16,23,12" max="-11,29,17"/>
+        <cuboid name="red-portal-base-left" min="46,23,-50" max="41,29,-54"/>
+        <cuboid name="red-portal-base-right" min="55,23,-45" max="51,29,-40"/>
+        <cuboid name="blue-portal-base-left" min="-45,23,51" max="-40,29,55"/>
+        <cuboid name="blue-portal-base-right" min="-54,23,46" max="-50,29,41"/>
+        <cuboid name="mid-portal-left1" min="24,17,48" max="29,23,52"/>
+        <cuboid name="mid-portal-left2" min="-51,17,-23" max="-47,23,-28"/>
+        <cuboid name="mid-portal-right1" min="52,17,24" max="48,23,29"/>
+        <cuboid name="mid-portal-right2" min="-23,17,-47" max="-28,23,-51"/>
+        <cuboid name="top-portal1" min="34,35,29" max="29,41,34"/>
+        <cuboid name="top-portal2" min="-33,35,-28" max="-28,41,-33"/>
+        <cuboid name="bottom-portal1" min="51,5,46" max="46,11,51"/>
+        <cuboid name="bottom-portal2" min="-50,5,-45" max="-45,11,-50"/>
+    </apply>
+</regions>
+<portals>
+    <portal name="red-portal-main" x="-14" y="12" z="14" yaw="@45">
+        <cuboid min="26,12,-26" max="27,15,-25"/>
+    </portal>
+    <portal name="red-portal-center" x="14" y="-12" z="-14" yaw="@-145">
+        <cuboid min="15,27,-13" max="14,24,-14"/>
+    </portal>
+    <portal name="blue-portal-main" x="14" y="12" z="-14" yaw="@-145">
+        <cuboid min="-25,14,27" max="-26,12,26"/>
+    </portal>
+    <portal name="blue-portal-center" x="-14" y="-12" z="14" yaw="@45">
+        <cuboid min="-13,27,15" max="-14,24,14"/>
+    </portal>
+    <portal name="top-portal-1" x="15" y="-30" z="15" yaw="@135">
+        <cuboid min="32,39,32" max="31,36,31"/>
+    </portal>
+    <portal name="bottom-portal-1" x="-19" y="30" z="-19" yaw="@135">
+        <cuboid min="49,9,49" max="48,6,48"/>
+    </portal>
+    <portal name="top-portal-2" x="-15" y="-30" z="-15" yaw="@-45">
+        <cuboid min="-30,39,-30" max="-31,36,-31"/>
+    </portal>
+    <portal name="bottom-portal-2" x="19" y="30" z="19" yaw="@-45">
+        <cuboid min="-47,9,-47" max="-48,6,-48"/>
+    </portal>
+    <portal name="red-portal-base-left" x="-71" y="-6" z="3" yaw="@90">
+        <cuboid min="43,24,-51" max="44,27,-53"/>
+    </portal>
+    <portal name="mid-portal-right2" x="71" y="6" z="-3" yaw="@-90">
+        <cuboid min="-25,21,-48" max="-26,18,-50"/>
+    </portal>
+    <portal name="red-portal-base-right" x="-3" y="-6" z="71" yaw="@0">
+        <cuboid min="54,27,-42" max="52,24,-43"/>
+    </portal>
+    <portal name="mid-portal-right1" x="3" y="6" z="-71" yaw="@180">
+        <cuboid min="51,18,27" max="49,21,26"/>
+    </portal>
+    <portal name="blue-portal-base-left" x="71" y="-6" z="-3" yaw="@-90">
+        <cuboid min="-43,24,52" max="-42,27,54"/>
+    </portal>
+    <portal name="mid-portal-left1" x="-71" y="6" z="3" yaw="@90">
+        <cuboid min="26,18,49" max="27,21,51"/>
+    </portal>
+    <portal name="blue-portal-base-right" x="3" y="-6" z="-71" yaw="@180">
+        <cuboid min="-53,24,43" max="-51,27,44"/>
+    </portal>
+    <portal name="mid-portal-left2" x="-3" y="6" z="71" yaw="@0">
+        <cuboid min="-50,18,-26" max="-48,21,-25"/>
+    </portal>
+</portals>
+<playable>
+    <rectangle name="playable" min="-59,-59" max="60,60"/>
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="64">ladder</item>
+        <item slot="3" amount="64">bread</item>
+        <item slot="4" amount="1">golden apple</item>
+        <item slot="5" damage="16450">potion</item> <!-- Potion of Swiftness 1 (3:00) -->
+        <chestplate enchantment="durability:1">gold chestplate</chestplate>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <cuboid min="-43,6,44" max="-47,6,48"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="35">
+        <cuboid min="44,6,-43" max="48,6,-47"/>
+    </spawn>
+    <default yaw="135">
+        <cuboid min="78,60,78" max="75,60,75"/>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>ladder</item>
+    <item>bread</item>
+    <item>glass bottle</item>
+    <item>golden apple</item>
+    <item>sign</item>
+    <item>chest</item>
+    <item>glowstone dust</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.6">
+<name>Halfway Home</name>
+<version>0.3</version>
+<objective>Detonate all 3 blast zones under your enemy's pillboxes to win</objective>
+<authors>
+    <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="50">Red</team>
+    <team id="blue" color="blue" max="50">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions>
+            <point yaw="80">17.5,72,-64.5</point>
+            <point yaw="170">-16.5,72,-64.5</point>
+            <point yaw="-100">-16.5,72,-98.5</point>
+            <point yaw="-10">17.5,72,-89.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions>
+            <point yaw="-100">-16.5,72,65.5</point>
+            <point yaw="-10">17.5,72,65.5</point>
+            <point yaw="90">17.5,72,99.5</point>
+            <point yaw="170">-16.5,72,99.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="270">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>                  
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="blast-zone">
+        <any>
+            <all>
+                <block>tnt:1</block>
+                <cause>player</cause>
+                <any>
+                    <team>red</team>
+                    <team>blue</team>
+                </any>
+            </all>
+            <all>
+                <block>tnt:0</block>
+                <cause>explosion</cause>
+                <not>
+                    <any>
+                        <team>red</team>
+                        <team>blue</team>
+                    </any>
+                </not>
+            </all>
+        </any>
+    </filter>
+    <filter name="red-has-hill">
+        <all>
+            <objective team="red">hill</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="blue-has-hill">
+        <all>
+            <objective team="blue">hill</objective>
+            <team>blue</team>
+        </all>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="everything" min="-oo,-oo" max="oo,oo"/>
+    <cylinder name="hill-protection" base="0.5,5,0.5" radius="10" height="oo"/>
+    <cylinder name="hill" base="0.5,0,0.5" radius="10" height="30"/>
+    <cylinder name="hill-top" base="0.5,18,0.5" radius="10" height="10"/>
+    <cylinder name="obs-spawn" base="62,39,0" radius="3" height="0"/>
+ 
+    <cuboid name="red-home" min="-1,72,-65" max="1,73,-64"/>
+    <cuboid name="blue-home" min="-1,72,64" max="1,73,66"/>
+ 
+    <cuboid name="red-blast-zone-1" min="9,8,168" max="10,9,169"/>
+    <cuboid name="red-blast-zone-2" min="0,8,168" max="1,9,169"/>
+    <cuboid name="red-blast-zone-3" min="-9,8,168" max="-8,9,169"/>
+ 
+    <cuboid name="blue-blast-zone-1" min="-9,8,-168" max="-8,9,-167"/>
+    <cuboid name="blue-blast-zone-2" min="0,8,-168" max="1,9,-167"/>
+    <cuboid name="blue-blast-zone-3" min="9,8,-168" max="10,9,-167"/>
+    <negative name="outside-main">
+        <rectangle name="main" min="-15,157" max="16,-156"/>
+    </negative>
+    <union name="hill-destinations">
+        <cylinder name="mid-hill-destination" base="0.5,12,0.5" radius="5" height="1"/>
+        <cylinder name="bottom-hill-destination" base="0.5,5,0.5" radius="5" height="1"/>
+    </union>
+    <union name="bases">
+        <cuboid name="blue-base" min="-21,67,61" max="22,75,104"/>
+        <cuboid name="red-base" min="-21,67,-103" max="22,75,-60"/>
+    </union>
+    <union name="spawn-zones">
+        <cuboid name="red-spawn-zone" min="-15,14,-166" max="16,25,-155"/>
+        <cuboid name="blue-spawn-zone" min="-15,14,156" max="16,25,167"/>
+    </union>
+    <union name="pillboxes">
+        <cuboid name="red-pillbox" min="-10,21,-165" max="11,22,-162"/>
+        <cuboid name="blue-pillbox" min="-10,21,163" max="11,22,166"/>
+    </union>
+    <union name="blast-pits">
+        <cuboid name="red-target-blast-pit" min="-14,5,167" max="15,20,171"/>
+        <cuboid name="blue-target-blast-pit" min="-14,5,-170" max="15,20,-166"/>
+    </union>
+    <union name="catch-zones">
+        <cuboid name="red-target-catch-zone" min="-16,5,166" max="17,7,171"/>
+        <cuboid name="blue-target-catch-zone" min="-16,5,-170" max="17,7,-165"/>
+    </union>
+    <union name="portals">
+        <union name="pillbox-portals">
+            <cuboid name="red-pillbox-portal" min="-4,68,-102" max="5,70,-101"/>
+            <cuboid name="blue-pillbox-portal" min="-4,68,102" max="5,70,103"/>
+        </union>
+        <union name="portal-indicators">
+            <cuboid name="red-portal-indicator" min="-6,69,-62" max="7,71,-61"/>
+            <cuboid name="blue-portal-indicator" min="-6,69,62" max="7,71,63"/>
+        </union>
+        <union name="bottom-portals">
+            <cuboid name="red-bottom-portal" min="-5,68,-62" max="-1,70,-61"/>
+            <cuboid name="blue-bottom-portal" min="-5,68,62" max="-1,70,63"/>
+        </union>
+        <union name="mid-portals">
+            <cuboid name="red-mid-portal" min="2,68,-62" max="6,70,-61"/>
+            <cuboid name="blue-mid-portal" min="2,68,62" max="6,70,63"/>
+        </union>
+    </union>
+    <apply block="deny-all" region="hill-protection" message="You may not edit the hill area"/>
+    <apply block="deny-all" region="bases" message="You may not edit your base"/>
+    <apply enter="only-blue" region="blue-target-blast-pit" message="You cannot enter your own Blast Zone!"/>
+    <apply enter="only-red" region="red-target-blast-pit" message="You cannot enter your own Blast Zone!"/>
+    <apply block="blast-zone" region="blast-pits" message="You are not allowed to do that"/>
+    <apply block="deny-void" region="outside-main" message="You may not edit outside of the map"/>
+    <apply enter="red-has-hill" region="red-bottom-portal" message="You need to control the center hill to use this portal"/>
+    <apply enter="red-has-hill" region="red-mid-portal" message="You need to control the center hill to use this portal"/>
+    <apply enter="blue-has-hill" region="blue-bottom-portal" message="You need to control the center hill to use this portal"/>
+    <apply enter="blue-has-hill" region="blue-mid-portal" message="You need to control the center hill to use this portal"/>
+    <apply kit="blaster-master" region="blast-pits"/>
+    <apply kit="fall-stopper" region="pillboxes"/>
+</regions>
+<control-points capture-time="15s" capture-players="majority" time-multiplier="0.25" incremental="true" show-progress="true">
+    <control-point name="Hill" id="hill" capture-region="hill-top" progress-display-region="hill" owner-display-region="portal-indicators"/>
+</control-points>
+<destroyables sparks="true" materials="tnt:1">
+    <destroyable name="Red Blast Zone 1" id="red-blast-1" region="blue-blast-zone-1" owner="red"/>
+    <destroyable name="Red Blast Zone 2" id="red-blast-2" region="blue-blast-zone-2" owner="red"/> xxx
+    <destroyable name="Red Blast Zone 3" id="red-blast-3" region="blue-blast-zone-3" owner="red"/>
+ 
+    <destroyable name="Blue Blast Zone 1" id="blue-blast-1" region="red-blast-zone-1" owner="blue"/> v
+    <destroyable name="Blue Blast Zone 2" id="blue-blast-2" region="red-blast-zone-2" owner="blue"/> v
+    <destroyable name="Blue Blast Zone 3" id="blue-blast-3" region="red-blast-zone-3" owner="blue"/>
+</destroyables>
+<portals>
+    <portals filter="only-red">
+        <portal region="red-bottom-portal" destination="bottom-hill-destination"/>
+        <portal region="red-mid-portal" destination="mid-hill-destination"/>
+        <portal region="red-pillbox-portal" destination="red-pillbox" yaw="0"/>
+    </portals>
+    <portals filter="only-blue">
+        <portal region="blue-bottom-portal" destination="bottom-hill-destination"/>
+        <portal region="blue-mid-portal" destination="mid-hill-destination"/>
+        <portal region="blue-pillbox-portal" destination="blue-pillbox" yaw="180"/>
+    </portals>
+    <portal region="red-target-catch-zone" destination="red-home"/>
+    <portal region="blue-target-catch-zone" destination="blue-home"/>
+</portals>
+<kits>
+    <kit name="teams" potion-particles="false">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">stone axe</item>
+        <item slot="3" unbreakable="true">stone spade</item>
+        <item slot="4">water bucket</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="6" amount="16">ladder</item>
+        <item slot="7" amount="32">arrow</item>
+        <item slot="8" amount="64">cooked beef</item>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet locked="true" unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="cd0000">leather chestplate</chestplate>
+        <leggings locked="true" unbreakable="true" color="cd0000">leather leggings</leggings>
+        <boots locked="true" unbreakable="true" color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet locked="true" unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="0066cc">leather chestplate</chestplate>
+        <leggings locked="true" unbreakable="true" color="0066cc">leather leggings</leggings>
+        <boots locked="true" unbreakable="true" color="0066cc">leather boots</boots>
+    </kit>
+    <kit name="blaster-master">
+        <potion duration="8" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit name="fall-stopper">
+        <potion duration="1" amplifier="10">damage resistance</potion>
+    </kit>
+</kits>
+<broadcasts>
+    <tip after="5s" every="250" count="oo">The enemy blast zones are the boxes behind the enemy team's spawn at the ends of the map!</tip>
+    <tip after="10s" every="250" count="oo">To capture the hill, go to the top floor of the building in the center!</tip>
+    <tip after="20s" every="250" count="oo">Once the center hill is captured, you can teleport there from your base using the two special portals!</tip>
+    <tip after="30s" every="250" count="oo">You MUST have the hill captured to win the match!</tip>
+</broadcasts>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone axe</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>tnt</item>
+    <item>stone plate</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>cooked beef</item>
+    <item>sign</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+<maxbuildheight>40</maxbuildheight>
+</map>

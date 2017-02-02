@@ -1,0 +1,170 @@
+<book>
+    <title>`b`lHow-To Guide`r</title>
+    <author>`6Overcast Network</author>
+    <pages>
+        <page>
+            `9`l    How-To Guide
+            `6`o   Table of Contents
+
+            `91. `1About Us
+            `92. `1Joining a Game
+            `93. `1Switch Servers
+            `94. `1Chat
+            `95. `1Commands
+            `96. `1Gamemodes
+            `97. `1Premium Perks
+            `98. `1Ranks
+            `99. `1Website
+            `910. `1Rules
+            `911. `1TNT License
+        </page>
+        <page>
+            `6`l      About Us
+
+            `0  We provide a variety of servers for casual PvP.
+
+            `0  Each server has a different set of maps that is cycled through.
+            
+            `0  New maps and rotations are added often.
+        </page>
+        <page>
+            `6`l  Joining a Game
+
+            `0  When you join a server you are in `9Observers`0. This means you can't interact with anything in the game.
+
+            `0  Right click the `cleather hat `0in your inventory to join a team.
+        </page>
+        <page>
+            `6`l  Switch Servers
+
+            `c  Right click `0the `csign `0in your inventory. `0The signs represent the status of each match.
+            
+            `l Enchanted`0: Match Cycling to New Map
+            `6 Not Enchanted`0: Match in Progress
+        </page>
+        <page>
+            `6`l       Chat
+
+            `0  Talking normally will only send messages to players on your team.
+
+            `9/g `o(message) `0talk to all players on the server
+
+            `9/msg `0send a private message to a player (network-wide)
+        </page>
+        <page>
+            `6`l  Commands `7(1)
+   
+            `9/servers `0servers list
+            `9/server `0switch server
+
+            `9/join `0join a team
+            `9/leave `0join observers
+
+            `9/staff `0list of staff
+            `9/report `0report player
+            
+            `9/rate `o(1-5) `0rate map
+        </page>
+        <page>
+            `6`l  Commands `7(2)
+   
+            `9/match `0match info
+            `9/map `0map info
+            
+            `9/seen `0find player
+            
+            `9/fr `0list of friends
+        </page>
+        <page>
+            `6`l    Gamemodes `7(1)
+
+            `9DTC
+            `1 Destroy the Core
+            `9DTM
+            `1 Destroy the Monument
+            `9CTW
+            `1 Capture the Wool
+            `9TDM
+            `1 Team Deathmatch
+            `9KotH
+            `1 King of the Hill
+        </page>
+        <page>
+            `6`l    Gamemodes `7(2)
+   
+            `9CTF
+            `1  Capture the Flag
+            `9Blitz
+            `1  Only 1 Respawn
+            `9Rage
+            `1  1 Hit Kill Weapons
+            `9GS
+            `1  Ghost Squadron
+            `9FFA
+            `1 Free for all
+        </page>
+        <page>
+            `6`l   Premium Perks
+
+            `0  Go to `2oc.tc/shop `0to see the list of all premium ranks. 
+
+            `0  You get perks like: joining `9full `0teams, join a `9specific `0team, cool `9star `0in-game, forum `9badge`0, and raindrop multipliers.
+        </page>
+        <page>
+            `6`l     Ranks `7(1)
+            `9Staff:
+            `6❖ `0Administrator
+            `4❖ `0Senior Moderator
+            `c❖ `0Moderator
+            `d❖ `0Junior Moderator       
+            `9Premium Users:
+            `4* `0Imperator
+            `3* `0Praetor
+            `5* `0Dux
+            `e* `0Centurion
+            `a* `0Optio
+        </page>
+        <page>
+            `6`l     Ranks `7(2)
+            `9Other:
+            `f* `0Tournament Winner
+            `9* `0Map Maker
+            `1* `0Internet Famous
+        </page>
+        <page>
+            `6`l      Website
+    
+            `0  Use the forums, add friends, customize your profile, and more.
+    
+            `2oc.tc/register
+            `0sign up for the website.
+            `2oc.tc/forums
+            `0Socialize with friends.
+            `2oc.tc/report
+            `0report a rule breaker.
+        </page>
+        <page>
+            `6`l        Rules
+            `0    Link: `2oc.tc/rules
+
+            `0  If you break too many rules you may be `cpermanently banned`0, so please follow the rules.
+
+            `0  If you have any questions ask a staff member, denoted by their `c❖ `0star.
+        </page>
+        <page>
+            `6`l    TNT License
+
+            `0  To use TNT you must earn a license. Request one using `9/tnt`0. Excessive `cteam killing `0will result in a `closs`0 of your license.
+
+            `0  The requirement is for you to figure out. It shouldn't take long, just play normally.
+        </page>
+        <page>
+            `6`l     Thank You
+
+            `0  Thank you for coming on our servers. We hope that your experience is enjoyable and that you have a blast with our unique gamemodes.
+
+            `0Sincerely,
+            `0  Overcast Staff Team  
+        </page>
+    </pages>
+</book>

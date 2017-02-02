@@ -1,0 +1,107 @@
+<map proto="1.3.6">
+<version>1.0.1</version>
+<name>Rubik's Rage</name>
+<objective>Kill all the player's in the enemy team's before the time runs out!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="08f38600-083e-4917-97d5-3e18e4c0c9de"/>
+    <!--Edde-->
+</authors>
+<contributors>
+    <contributor uuid="d4faae7a-6cca-4695-abc8-20230500aa73" contribution="PvP god, oh and he helped me with the map"/>
+</contributors>
+<teams>
+    <team id="red" max="10" max-overfill="15" color="dark red">Red</team>
+    <team id="blue" max="10" max-overfill="15" color="blue">Blue</team>
+    <team id="orange" max="10" max-overfill="15" color="gold">Orange</team>
+    <team id="green" max="10" max-overfill="15" color="green">Green</team>
+</teams>
+<spawns>
+    <default safe="true">
+        <regions yaw="90">
+            <block>-439.5,31,-727.5</block>
+        </regions>
+    </default>
+    <spawn team="red" safe="true" kit="red">
+        <regions yaw="45">
+            <block>-421.5,1,-745.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" safe="true" kit="blue">
+        <regions yaw="135">
+            <block>-421.5,1,-709.5</block>
+        </regions>
+    </spawn>
+    <spawn team="orange" safe="true" kit="orange">
+        <regions yaw="-135">
+            <block>-457.5,1,-709.5</block>
+        </regions>
+    </spawn>
+    <spawn team="green" safe="true" kit="green">
+        <regions yaw="-45">
+            <block>-457.5,1,-745.5</block>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<blitz>
+    <lives>2</lives>
+    <time>5m</time>
+    <broadcastlives>true</broadcastlives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit kill!">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet locked="true" color="993333">leather helmet</helmet>
+        <chestplate locked="true" color="993333">leather chestplate</chestplate>
+        <leggings locked="true" color="993333">leather leggings</leggings>
+        <boots locked="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet locked="true" color="334CB2">leather helmet</helmet>
+        <chestplate locked="true" color="334CB2">leather chestplate</chestplate>
+        <leggings locked="true" color="334CB2">leather leggings</leggings>
+        <boots locked="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet locked="true" color="7FCC19">leather helmet</helmet>
+        <chestplate locked="true" color="7FCC19">leather chestplate</chestplate>
+        <leggings locked="true" color="7FCC19">leather leggings</leggings>
+        <boots locked="true" color="7FCC19">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet locked="true" color="D87F33">leather helmet</helmet>
+        <chestplate locked="true" color="D87F33">leather chestplate</chestplate>
+        <leggings locked="true" color="D87F33">leather leggings</leggings>
+        <boots locked="true" color="D87F33">leather boots</boots>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<itemremove>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<include src="blitz-global.xml"/>
+</map>

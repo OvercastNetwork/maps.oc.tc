@@ -1,0 +1,828 @@
+<map proto="1.4.2" game="Skywars">
+<objective>Free for all, be the last man standing!</objective>
+<gamemode>Skywars</gamemode>
+<broadcasts>
+    <alert after="3s">broadcast.chestsRefillIn3And5</alert>
+    <alert after="3m">broadcast.allChestsRefilled</alert>
+    <alert after="5m">broadcast.allChestsRefilled</alert>
+    <alert after="6m">broadcast.allPlayersGlowing</alert>
+</broadcasts>
+<players min="4" max="8" max-overfill="8"/>
+<time result="objectives">8m</time>
+<score>
+    <kills>1</kills>
+</score>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<gamerules>
+    <doFireTick>true</doFireTick>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>2s</fuse>
+    <licensing>false</licensing>
+</tnt>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<kits>
+    <kit id="spawn-effects" parents="all-effects">
+        <potion duration="8" amplifier="5">resistance</potion>
+        <potion duration="8" amplifier="10">saturation</potion>
+    </kit>
+    <give filter="spectral-filter">
+        <kit id="glowing-effects" force="true">
+            <potion duration="oo">glowing</potion>
+        </kit>
+    </give>
+</kits>
+<filters>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>2m30s</time>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>4m30s</time>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.glowingEffect">
+        <all>
+            <time>5m30s</time>
+            <match-running/>
+        </all>
+    </countdown>
+    <any id="chest-refill">
+        <all>
+            <time>3m</time>
+            <not>
+                <time>3m1s</time>
+            </not>
+        </all>
+        <all>
+            <time>5m</time>
+            <not>
+                <time>5m1s</time>
+            </not>
+        </all>
+    </any>
+    <all id="spectral-filter">
+        <time>6m</time>
+        <participating/>
+    </all>
+    <all id="tier-1-only-chests-after-5m">
+        <all id="tier-1-only-chests">
+            <region id="tier-1-chests"/>
+            <material>chest</material>
+        </all>
+        <time>4m59s</time>
+    </all>
+    <all id="tier-2-only-chests-after-5m">
+        <all id="tier-2-only-chests">
+            <region id="tier-2-chests"/>
+            <material>chest</material>
+        </all>
+        <time>4m59s</time>
+    </all>
+    <all id="tier-3-only-chests">
+        <region id="tier-3-chests"/>
+        <material>chest</material>
+    </all>
+    <not id="not-chest">
+        <material id="only-chest">chest</material>
+    </not>
+</filters>
+<regions>
+    <union id="tier-1-chests">
+        <region id="player-1-chests"/>
+        <region id="player-2-chests"/>
+        <region id="player-3-chests"/>
+        <region id="player-4-chests"/>
+        <region id="player-5-chests"/>
+        <region id="player-6-chests"/>
+        <region id="player-7-chests"/>
+        <region id="player-8-chests"/>
+    </union>
+    <apply region="everywhere" block="not-chest" message="You may not modify this chest!"/>
+</regions>
+<kill-rewards>
+    <kill-reward>
+        <kit>
+            <effect duration="10">absorption</effect>
+        </kit>
+    </kill-reward>
+</kill-rewards>
+<crafting>
+    <disable>chest</disable>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood</ingredient>
+    </shaped>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood:1</ingredient>
+    </shaped>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood:2</ingredient>
+    </shaped>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood:3</ingredient>
+    </shaped>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood:4</ingredient>
+    </shaped>
+    <shaped>
+        <result material="trapped chest" name="`rChest"/>
+        <shape>
+            <row>WWW</row>
+            <row>W.W</row>
+            <row>WWW</row>
+        </shape>
+        <ingredient symbol="W">wood:5</ingredient>
+    </shaped>
+</crafting>
+<lootables>
+    <loot id="tier-1">
+        <any>
+            <option weight="4">
+                <item material="wood sword">
+                    <enchantment>damage all</enchantment>
+                </item>
+            </option>
+            <option weight="9">
+                <item material="stone sword"/>
+            </option>
+            <option weight="3">
+                <item material="stone sword">
+                    <enchantment>damage all</enchantment>
+                </item>
+            </option>
+            <option weight="6">
+                <item material="iron sword"/>
+            </option>
+            <option weight="0.5">
+                <item material="gold sword">
+                    <enchantment>fire aspect</enchantment>
+                </item>
+            </option>
+        </any>
+        <any>
+            <option>
+                <any>
+                    <option weight="9">
+                        <item material="leather helmet"/>
+                    </option>
+                    <option weight="4">
+                        <item material="leather helmet">
+                            <enchantment>protection environmental</enchantment>
+                        </item>
+                    </option>
+                    <option weight="2">
+                        <item material="leather helmet">
+                            <enchantment level="2">protection environmental</enchantment>
+                        </item>
+                    </option>
+                    <option weight="3">
+                        <any>
+                            <item material="gold helmet"/>
+                            <item material="chainmail helmet"/>
+                        </any>
+                    </option>
+                </any>
+                <any>
+                    <option weight="9">
+                        <item material="leather chestplate"/>
+                    </option>
+                    <option weight="2">
+                        <item material="leather chestplate">
+                            <enchantment>protection environmental</enchantment>
+                        </item>
+                    </option>
+                    <item material="leather chestplate">
+                        <enchantment level="2">protection environmental</enchantment>
+                    </item>
+                </any>
+                <any>
+                    <option weight="9">
+                        <item material="leather leggings"/>
+                    </option>
+                    <option weight="2">
+                        <item material="leather leggings">
+                            <enchantment>protection environmental</enchantment>
+                        </item>
+                    </option>
+                    <item material="leather leggings">
+                        <enchantment level="2">protection environmental</enchantment>
+                    </item>
+                </any>
+                <any>
+                    <option weight="9">
+                        <any>
+                            <item material="leather boots"/>
+                            <item material="gold boots"/>
+                            <item material="chainmail boots"/>
+                        </any>
+                    </option>
+                    <option weight="2">
+                        <item material="leather boots">
+                            <enchantment>protection environmental</enchantment>
+                        </item>
+                    </option>
+                    <item material="leather boots">
+                        <enchantment level="2">protection environmental</enchantment>
+                    </item>
+                    <option weight="3">
+                        <any>
+                            <item material="gold boots">
+                                <enchantment>protection environmental</enchantment>
+                                <enchantment>protection fall</enchantment>
+                            </item>
+                            <item material="chainmail boots">
+                                <enchantment>protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <item material="iron boots"/>
+                    </option>
+                </any>
+            </option>
+            <any count="2">
+                <option>
+                    <any>
+                        <option weight="3">
+                            <any>
+                                <item material="gold helmet"/>
+                                <item material="chainmail helmet"/>
+                                <item material="iron helmet"/>
+                            </any>
+                        </option>
+                        <option weight="2">
+                            <any>
+                                <item material="gold helmet">
+                                    <enchantment>protection environmental</enchantment>
+                                    <enchantment>protection fall</enchantment>
+                                </item>
+                                <item material="chainmail helmet">
+                                    <enchantment>protection projectile</enchantment>
+                                </item>
+                                <item material="iron helmet">
+                                    <enchantment>protection environmental</enchantment>
+                                </item>
+                            </any>
+                        </option>
+                        <item material="diamond helmet"/>
+                    </any>
+                    <any>
+                        <option weight="3">
+                            <item material="iron boots"/>
+                        </option>
+                        <option weight="2">
+                            <item material="iron boots">
+                                <enchantment>protection environmental</enchantment>
+                            </item>
+                        </option>
+                        <item material="diamond boots"/>
+                    </any>
+                </option>
+                <any>
+                    <option weight="3">
+                        <any>
+                            <item material="gold chestplate"/>
+                            <item material="chainmail chestplate"/>
+                        </any>
+                    </option>
+                    <any>
+                        <item material="gold chestplate">
+                            <enchantment>protection environmental</enchantment>
+                            <enchantment>protection fall</enchantment>
+                        </item>
+                        <item material="chainmail chestplate">
+                            <enchantment>protection projectile</enchantment>
+                        </item>
+                    </any>
+                </any>
+                <any>
+                    <option weight="3">
+                        <any>
+                            <item material="gold leggings"/>
+                            <item material="chainmail leggings"/>
+                        </any>
+                    </option>
+                    <any>
+                        <item material="gold leggings">
+                            <enchantment>protection environmental</enchantment>
+                            <enchantment>protection fall</enchantment>
+                        </item>
+                        <item material="chainmail leggings">
+                            <enchantment>protection projectile</enchantment>
+                        </item>
+                    </any>
+                </any>
+            </any>
+        </any>
+        <any>
+            <option weight="4">
+                <item material="wood pickaxe">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="9">
+                <item material="stone pickaxe"/>
+            </option>
+            <option weight="3">
+                <item material="stone pickaxe">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="6">
+                <item material="iron pickaxe"/>
+            </option>
+            <option weight="2">
+                <item material="gold pickaxe">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+        </any>
+        <any>
+            <option weight="4">
+                <item material="wood axe">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="9">
+                <item material="stone axe"/>
+            </option>
+            <option weight="3">
+                <item material="stone axe">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="6">
+                <item material="iron axe"/>
+            </option>
+            <option weight="2">
+                <item material="gold axe">
+                    <enchantment>durability</enchantment>
+                </item>
+            </option>
+        </any>
+        <any count="0..1">
+            <option weight="4">
+                <item material="wood spade">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="9">
+                <item material="stone spade"/>
+            </option>
+            <option weight="3">
+                <item material="stone spade">
+                    <enchantment>dig speed</enchantment>
+                </item>
+            </option>
+            <option weight="6">
+                <item material="iron spade"/>
+            </option>
+            <option weight="2">
+                <item material="gold spade">
+                    <enchantment>durability</enchantment>
+                </item>
+            </option>
+            <option weight="48"/>
+        </any>
+        <any>
+            <any>
+                <item material="wood" damage="1" amount="32"/>
+                <item material="smooth brick" amount="32"/>
+            </any>
+            <option>
+                <any>
+                    <item material="wood" damage="1" amount="24"/>
+                    <item material="smooth brick" amount="24"/>
+                </any>
+                <any>
+                    <item material="wood" damage="1" amount="8"/>
+                    <item material="smooth brick" amount="8"/>
+                </any>
+            </option>
+            <option weight="2">
+                <any>
+                    <item material="wood" damage="1" amount="16"/>
+                    <item material="smooth brick" amount="16"/>
+                </any>
+                <any>
+                    <any>
+                        <item material="wood" damage="1" amount="16"/>
+                        <item material="smooth brick" amount="16"/>
+                    </any>
+                    <any count="2" unique="false">
+                        <item material="wood" damage="1" amount="8"/>
+                        <item material="smooth brick" amount="8"/>
+                    </any>
+                </any>
+            </option>
+            <any count="4" unique="false">
+                <item material="wood" damage="1" amount="8"/>
+                <item material="smooth brick" amount="8"/>
+            </any>
+        </any>
+        <any count="1..2" unique="false">
+            <item material="wood" damage="1" amount="8"/>
+            <item material="smooth brick" amount="8"/>
+            <item material="wood" damage="1" amount="12"/>
+            <item material="smooth brick" amount="12"/>
+        </any>
+        <any>
+            <item material="golden apple"/>
+            <item material="potion" name="`rRegeneration `7(0:30, 6`4❤`7)">
+                <effect duration="30s">regeneration</effect>
+            </item>
+            <item material="splash potion" name="`rInstant Health `7(2`4❤`7)">
+                <effect duration="0s">instant_health</effect>
+            </item>
+        </any>
+        <item material="water bucket"/>
+        <any>
+            <item material="fireball" amount="2"/>
+            <item material="fireball" amount="1"/>
+        </any>
+        <any>
+            <any>
+                <item material="snow ball" amount="6"/>
+                <item material="egg" amount="6"/>
+                <item material="snow ball" amount="5"/>
+                <item material="egg" amount="5"/>
+                <item material="snow ball" amount="4"/>
+                <item material="egg" amount="4"/>
+            </any>
+        </any>
+        <any>
+            <item material="cooked fish" amount="9" damage="1"/>
+            <item material="cooked fish" amount="8" damage="1"/>
+            <item material="cooked fish" amount="7" damage="1"/>
+        </any>
+    </loot>
+    <loot id="tier-2">
+        <any count="1..2">
+            <item material="iron sword"/>
+            <item material="stone sword">
+                <enchantment>damage all</enchantment>
+            </item>
+            <item material="chainmail helmet"/>
+            <item material="iron chestplate"/>
+            <item material="chainmail leggings"/>
+            <item material="iron boots"/>
+            <option weight="0.75">
+                <item material="bow"/>
+                <any>
+                    <item material="arrow" amount="8"/>
+                    <item material="arrow" amount="6"/>
+                    <item material="arrow" amount="4"/>
+                </any>
+            </option>
+        </any>
+        <any count="2..3">
+            <any>
+                <item material="fireball" amount="5"/>
+                <item material="fireball" amount="3"/>
+            </any>
+            <option weight="2">
+                <any>
+                    <item material="iron pickaxe"/>
+                    <item material="iron axe"/>
+                </any>
+            </option>
+            <option weight="2">
+                <any>
+                    <item material="smooth brick" amount="24"/>
+                    <item material="smooth brick" amount="20"/>
+                    <item material="smooth brick" amount="16"/>
+                    <item material="log" amount="10" damage="1"/>
+                    <item material="log" amount="8" damage="1"/>
+                    <item material="log" amount="6" damage="1"/>
+                </any>
+            </option>
+            <item material="water bucket"/>
+            <option weight="2">
+                <any>
+                    <item material="snow ball" amount="7"/>
+                    <item material="egg" amount="7"/>
+                    <item material="snow ball" amount="6"/>
+                    <item material="egg" amount="6"/>
+                    <item material="snow ball" amount="5"/>
+                    <item material="egg" amount="5"/>
+                </any>
+            </option>
+            <any>
+                <item material="arrow" amount="10"/>
+                <item material="arrow" amount="8"/>
+                <item material="arrow" amount="6"/>
+            </any>
+            <option weight="1.5">
+                <any>
+                    <item material="golden carrot" amount="5"/>
+                    <item material="golden carrot" amount="4"/>
+                    <item material="golden carrot" amount="3"/>
+                </any>
+            </option>
+            <any>
+                <item material="golden apple"/>
+                <item material="potion" name="`rRegeneration `7(0:30, 6`4❤`7)">
+                    <effect duration="30s">regeneration</effect>
+                </item>
+                <item material="splash potion" name="`rInstant Health `7(2`4❤`7)">
+                    <effect duration="0s">instant_health</effect>
+                </item>
+            </any>
+            <option weight="2">
+                <any>
+                    <option weight="1.5">
+                        <any>
+                            <item material="exp bottle" amount="10"/>
+                            <item material="exp bottle" amount="8"/>
+                            <item material="exp bottle" amount="6"/>
+                        </any>
+                        <any>
+                            <item material="ink sack" amount="3" damage="4"/>
+                            <item material="ink sack" amount="2" damage="4"/>
+                        </any>
+                    </option>
+                    <any>
+                        <item material="enchanted book">
+                            <stored-enchantment>damage all</stored-enchantment>
+                        </item>
+                        <item material="enchanted book">
+                            <stored-enchantment>protection environmental</stored-enchantment>
+                        </item>
+                        <item material="enchanted book">
+                            <stored-enchantment>arrow damage</stored-enchantment>
+                        </item>
+                    </any>
+                </any>
+            </option>
+        </any>
+    </loot>
+    <loot id="tier-3">
+        <any count="1..2">
+            <item material="iron sword">
+                <enchantment>fire aspect</enchantment>
+            </item>
+            <item material="diamond sword"/>
+            <item material="diamond helmet"/>
+            <item material="iron chestplate"/>
+            <item material="chainmail chestplate">
+                <enchantment power="4">protection explosions</enchantment>
+            </item>
+            <item material="iron leggings"/>
+            <item material="diamond boots"/>
+            <option weight="1.5">
+                <any>
+                    <option weight="4">
+                        <item material="bow"/>
+                    </option>
+                    <item material="bow">
+                        <enchantment>arrow damage</enchantment>
+                    </item>
+                </any>
+                <any>
+                    <item material="arrow" amount="16"/>
+                    <item material="arrow" amount="12"/>
+                    <item material="arrow" amount="8"/>
+                </any>
+            </option>
+        </any>
+        <any count="2..3">
+            <any>
+                <option weight="3">
+                    <item material="lava bucket"/>
+                </option>
+                <item material="fireball" amount="12"/>
+                <item material="fireball" amount="10"/>
+                <item material="fireball" amount="8"/>
+            </any>
+            <option weight="2">
+                <any>
+                    <item material="iron pickaxe">
+                        <enchantment>dig speed</enchantment>
+                    </item>
+                    <item material="diamond pickaxe"/>
+                    <item material="iron axe">
+                        <enchantment>dig speed</enchantment>
+                    </item>
+                    <item material="diamond axe"/>
+                </any>
+            </option>
+            <option weight="2">
+                <any>
+                    <item material="smooth brick" amount="48"/>
+                    <item material="smooth brick" amount="40"/>
+                    <item material="smooth brick" amount="32"/>
+                    <item material="log" amount="20" damage="1"/>
+                    <item material="log" amount="16" damage="1"/>
+                    <item material="log" amount="12" damage="1"/>
+                </any>
+            </option>
+            <item material="water bucket"/>
+            <option weight="1.7">
+                <any>
+                    <item material="snow ball" amount="14"/>
+                    <item material="egg" amount="14"/>
+                    <item material="snow ball" amount="12"/>
+                    <item material="egg" amount="12"/>
+                    <item material="snow ball" amount="10"/>
+                    <item material="egg" amount="10"/>
+                </any>
+            </option>
+            <option weight="2">
+                <any>
+                    <any>
+                        <item material="arrow" amount="20"/>
+                        <item material="arrow" amount="16"/>
+                        <item material="arrow" amount="12"/>
+                    </any>
+                    <any>
+                        <item name="`rSlowness Arrow `7(0:03)" material="tipped arrow" amount="6">
+                            <effect duration="3s">slowness</effect>
+                        </item>
+                        <item name="`rPoison Arrow `7(0:03, 1`2❤`7)" material="tipped arrow" amount="6">
+                            <effect duration="3s">poison</effect>
+                        </item>
+                        <item name="`rWeakness Arrow `7(0:03)" material="tipped arrow" amount="6">
+                            <effect duration="3s">weakness</effect>
+                        </item>
+                        <item name="`rLevitation Arrow `7(0:04)" material="tipped arrow" amount="6">
+                            <effect duration="4s">levitation</effect>
+                        </item>
+                        <item name="`rSlowness Arrow `7(0:03)" material="tipped arrow" amount="5">
+                            <effect duration="3s">slowness</effect>
+                        </item>
+                        <item name="`rPoison Arrow `7(0:03, 1`2❤`7)" material="tipped arrow" amount="5">
+                            <effect duration="3s">poison</effect>
+                        </item>
+                        <item name="`rWeakneses Arrow `7(0:03)" material="tipped arrow" amount="5">
+                            <effect duration="3s">weakness</effect>
+                        </item>
+                        <item name="`rLevitation Arrow `7(0:04)" material="tipped arrow" amount="5">
+                            <effect duration="4s">levitation</effect>
+                        </item>
+                        <item name="`rSlowness Arrow `7(0:03)" material="tipped arrow" amount="4">
+                            <effect duration="3s">slowness</effect>
+                        </item>
+                        <item name="`Poison Arrow `7(0:03, 1`2❤`7)" material="tipped arrow" amount="4">
+                            <effect duration="3s">poison</effect>
+                        </item>
+                        <item name="`rWeakness Arrow `7(0:03)" material="tipped arrow" amount="4">
+                            <effect duration="3s">weakness</effect>
+                        </item>
+                        <item name="`rLevitation Arrow `7(0:04)" material="tipped arrow" amount="4">
+                            <effect duration="4s">levitation</effect>
+                        </item>
+                    </any>
+                </any>
+            </option>
+            <option weight="1.4">
+                <any>
+                    <item material="golden carrot" amount="10"/>
+                    <item material="golden carrot" amount="8"/>
+                    <item material="golden carrot" amount="6"/>
+                </any>
+            </option>
+            <option weight="1.4">
+                <any>
+                    <any>
+                        <item material="golden apple"/>
+                        <item material="golden apple" amount="2"/>
+                    </any>
+                    <item material="potion" name="`rRegeneration II `7(0:20, 8`4❤`7)">
+                        <effect duration="20s" amplifier="2">regeneration</effect>
+                    </item>
+                    <item material="splash potion" name="`rInstant Health II `7(4`4❤`7)">
+                        <effect duration="1s" amplifier="2">instant_health</effect>
+                    </item>
+                    <item material="potion" name="`rSpeed `7(1:00)">
+                        <effect duration="1m">speed</effect>
+                    </item>
+                    <item material="potion" name="`rFire Resistance `7(2:00)">
+                        <effect duration="2m">fire_resistance</effect>
+                    </item>
+                </any>
+            </option>
+            <option weight="3.15">
+                <any>
+                    <option weight="1.25">
+                        <any>
+                            <item material="exp bottle" amount="20"/>
+                            <item material="exp bottle" amount="16"/>
+                            <item material="exp bottle" amount="12"/>
+                        </any>
+                        <any>
+                            <item material="ink sack" amount="5" damage="4"/>
+                            <item material="ink sack" amount="4" damage="4"/>
+                            <item material="ink sack" amount="3" damage="4"/>
+                        </any>
+                    </option>
+                    <any count="1..2">
+                        <item material="enchanted book">
+                            <stored-enchantment>damage all</stored-enchantment>
+                        </item>
+                        <item material="enchanted book">
+                            <stored-enchantment>protection environmental</stored-enchantment>
+                        </item>
+                        <item material="enchanted book">
+                            <stored-enchantment>arrow damage</stored-enchantment>
+                        </item>
+                    </any>
+                </any>
+            </option>
+            <option weight="1.1">
+                <any>
+                    <item material="tnt" amount="4"/>
+                    <item material="tnt" amount="3"/>
+                    <item material="tnt" amount="2"/>
+                </any>
+                <!--<any>
+                    <option weight="0.4">
+                        <item material="redstone torch on" amount="2"/>
+                    </option>
+                    <item material="redstone torch on"/>
+                </any>-->
+            </option>
+            <any>
+                <option weight="0.2">
+                    <any>
+                        <item material="elytra" damage="422"/>
+                        <any count="1..3">
+                            <item material="monster egg" damage="50"/> <!-- Creeper -->
+                            <item material="monster egg" damage="56"/> <!-- Ghast -->
+                            <option weight="0.1">
+                                <item material="monster egg" damage="61"/> <!-- Blaze -->
+                            </option>
+                        </any>
+                    </any>
+                </option>
+                <item material="ender pearl">
+                    <enchantment>knockback</enchantment>
+                </item>
+            </any>
+        </any>
+    </loot>
+    <loot id="tier-1-refill">
+        <item material="ender pearl"/>
+    </loot>
+    <loot id="tier-2-refill">
+        <any count="0..1">
+            <item material="ender pearl"/>
+        </any>
+    </loot>
+    <cache region="player-1-chests" filter="only-chest"/>
+    <cache region="player-2-chests" filter="only-chest"/>
+    <cache region="player-3-chests" filter="only-chest"/>
+    <cache region="player-4-chests" filter="only-chest"/>
+    <cache region="player-5-chests" filter="only-chest"/>
+    <cache region="player-6-chests" filter="only-chest"/>
+    <cache region="player-7-chests" filter="only-chest"/>
+    <cache region="player-8-chests" filter="only-chest"/>
+    <fill refill-trigger="chest-refill" refill-clear="false" loot="tier-1" filter="tier-1-only-chests"/>
+    <fill refill-trigger="chest-refill" refill-clear="false" loot="tier-2" filter="tier-2-only-chests"/>
+    <fill refill-trigger="chest-refill" refill-clear="false" loot="tier-3" filter="tier-3-only-chests"/>
+    <fill refill-trigger="chest-refill" refill-clear="false" loot="tier-1-refill" filter="tier-1-only-chests-after-5m"/>
+    <fill refill-trigger="chest-refill" refill-clear="false" loot="tier-2-refill" filter="tier-2-only-chests-after-5m"/>
+</lootables>
+</map>

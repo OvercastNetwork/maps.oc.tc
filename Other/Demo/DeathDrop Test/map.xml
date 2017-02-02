@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>DeathDrop Test</name>
+<version>0.1</version>
+<objective>Test death drops</objective>
+
+<authors>
+    <author>Pi</author>
+</authors>
+
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+
+<broadcast>
+    <alert after="0s">Each gray platform has a different death drop</alert>
+</broadcast>
+
+<kits>
+    <kit name="test">
+        <item slot="0">tnt</item>
+        <item slot="1">cooked beef</item>
+        <item slot="2">wool</item>
+        <item slot="3">bone</item>
+        <item slot="4">iron helmet</item>
+    </kit>
+</kits>
+
+<spawns yaw="180" pitch="0">
+    <spawn team="blue" kit="test">
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="red" kit="test">
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </spawn>
+    <default>
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </default>
+</spawns>
+
+<regions>
+
+    <union name="origin">
+        <cuboid name="capture" min="1,65,1" max="6,66,6"/>
+        <cuboid name="progress" min="1,64,1" max="6,65,6"/>
+        <cuboid name="owner" min="1,65,1" max="6,66,6"/>
+    </union>
+
+    <translate name="1" region="origin" offset="10,0,0"/>
+    <translate name="2" region="origin" offset="20,0,0"/>
+    <translate name="3" region="origin" offset="30,0,0"/>
+
+</regions>
+
+<death-drops>
+    <rule>
+        <filter>
+            <region name="origin"/>
+        </filter>
+        <keep>
+            <item>tnt</item>
+        </keep>
+        <drop>
+            <item>cooked beef</item>
+        </drop>
+        <destroy>
+            <item>bone</item>
+        </destroy>
+        <extra>
+            <item name="`cTEST">bone</item>
+        </extra>
+        <experience>5</experience>
+    </rule>
+    <rule>
+        <filter>
+            <region name="1"/>
+        </filter>
+        <drop>
+            <item>wool</item>
+        </drop>
+        <extra>
+            <item enchantment="protection fall">gold block</item>
+        </extra>
+        <experience>0</experience>
+    </rule>
+    <rule>
+        <filter>
+            <region name="2"/>
+        </filter>
+        <drop>
+            <item>iron helmet</item>
+        </drop>
+        <extra>
+            <item enchantment="protection fall:10">diamond block</item>
+        </extra>
+        <experience>100</experience>
+    </rule>
+    <rule>
+        <filter>
+            <region name="3"/>
+        </filter>
+        <drop>
+            <item>iron helmet</item>
+        </drop>
+        <extra>
+            <item>golden apple</item>
+        </extra>
+    </rule>
+</death-drops>
+
+</map>

@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Cubed</name>
+<include src="blitz-global.xml"/>
+<version>1.1.0</version>
+<objective>Be the last team standing.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="d341db34-f1ab-406e-b290-da6a6703565e"/> <!-- MlgCheetoPuff -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML Consultant"/> <!-- dinner1111 -->
+</contributors>
+<teams>
+    <team color="gold" max="18">Orange</team>
+    <team color="light purple" max="18">Magenta</team>
+</teams>
+<rage />
+<blitz>
+    <time>5m</time>
+    <lives>2</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns safe="true">
+    <spawn team="orange" kit="orange" yaw="-135">
+        <block>-18.5,1.5,19.5</block>
+        <block>-18.5,11.5,19.5</block>
+        <block>-18.5,21.5,19.5</block>
+    </spawn>
+    <spawn team="magenta" kit="magenta" yaw="45">
+        <block>19.5,1.5,-18.5</block>
+        <block>19.5,11.5,-18.5</block>
+        <block>19.5,21.5,-18.5</block>
+    </spawn>
+    <default yaw="-45">
+        <cuboid min="-30.5,12.5,-30.5" max="-28.5,12.5,-28.5" />
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not modify the map.">
+        <cuboid min="-35,0,-35" max="25,26,25" />
+    </apply>
+    <union name="jumppads">
+        <!-- red/purple facing SE -->
+        <block>21,1,20</block>
+        <block>21,1,21</block>
+        <block>20,1,21</block>
+        <!-- purple facing NE -->
+        <block>3,1,-4</block>
+        <block>4,1,-4</block>
+        <block>4,1,-3</block>
+        <!-- red facing SW -->
+        <block>-3,1,4</block>
+        <block>-4,1,4</block>
+        <block>-4,1,3</block>
+        <!-- red/purple facing NW -->
+        <block>-21,1,-20</block>
+        <block>-21,1,-21</block>
+        <block>-20,1,-21</block>
+        <!-- orange/magenta facing SE (outer) -->
+        <block>-15,11,-16</block>
+        <block>-15,11,-15</block>
+        <block>-16,11,-15</block>
+        <!-- orange/magenta facing NW (inner) -->
+        <block>-4,11,-3</block>
+        <block>-4,11,-4</block>
+        <block>-3,11,-4</block>
+        <!-- orange/magenta facing SE (inner) -->
+        <block>4,11,3</block>
+        <block>4,11,4</block>
+        <block>3,11,4</block>
+        <!--  orange/magenta facing NW (outer) -->
+        <block>15,11,16</block>
+        <block>15,11,15</block>
+        <block>16,11,15</block>
+    </union>
+    <apply velocity="@0,1.5,0">
+        <region name="jumppads"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:4" lore="`4`lOne-Hit`r `6`oSword">iron sword</item>
+        <item slot="1" enchantment="arrow damage:4" lore="`4`lOne-Show`r `6`oBow">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <helmet locked="true">iron helmet</helmet>
+        <leggings locked="true">iron leggings</leggings>
+        <potion duration="4" amplifier="25">heal</potion>
+        <potion duration="4" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="FF7F00" locked="true">leather chestplate</chestplate>
+        <boots color="FF7F00" locked="true">leather boots</boots>
+    </kit>
+    <kit name="magenta" parents="spawn">
+        <chestplate color="b24cd8" locked="true">leather chestplate</chestplate>
+        <boots color="b24cd8" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<itemremove>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

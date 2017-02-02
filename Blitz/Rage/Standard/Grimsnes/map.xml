@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Grimsnes</name>
+<version>1.0.4</version>
+<objective>Eliminate the enemy team within 6 minutes!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="a02e9415-05bc-40f8-be9f-7b1b521b6a0e"/> <!-- CacklingPanda -->
+</authors>
+<contributors>
+    <contributor uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Random feedback and minor help with snow."/> <!-- EnarRikardz -->
+</contributors>
+<teams>
+    <team color="blue" max="25">Blue</team>
+    <team color="red" max="25">Red</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="682,12,162" max="688,12,168"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="682,12,64" max="688,12,70"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="601,51,120" max="609,51,112"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`l`bA Pointy Object">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`l`bOne Shot, One Kill">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="1">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>
+        

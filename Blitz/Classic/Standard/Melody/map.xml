@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Melody</name>
+<version>1.0.1</version>
+<objective>Capture the wool in the middle of the map, and bring it back to spawn, and place it!</objective>
+<gamemode>blitz</gamemode>
+<gamemode>ctw</gamemode>
+<teams>
+    <team color="dark aqua" max="12" max-overfill="16">Cyan</team>
+    <team color="dark green" max="12" max-overfill="16">Green</team>
+</teams>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<authors>
+    <author uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f"/> <!-- Veiyl -->
+</authors>
+<contributors>
+    <contributor uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="XML Writing"/> <!-- BlockDrop74 -->
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="MapDev Host"/> <!-- pepsidawg00 -->
+</contributors>
+<wools>
+    <wool team="cyan" color="purple">
+        <block>40,24,0</block>
+    </wool>
+    <wool team="green" color="purple">
+        <block>-42,24,0</block>
+    </wool>
+</wools>
+<blitz>
+    <time>8m</time>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+    <title>Blitz: CTW</title>
+</blitz>
+<kits>
+    <kit name="all">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="20">arrow</item>
+        <item slot="3" amount="1" damage="0">golden apple</item>
+        <leggings enchantment="protection projectile:1">chainmail leggings</leggings>
+    </kit>
+    <kit name="cyan" parents="all">
+        <helmet color="00b2b2">leather helmet</helmet>
+        <chestplate color="00b2b2">leather chestplate</chestplate>
+        <boots color="00b2b2">leather boots</boots>
+    </kit>
+    <kit name="green" parents="all">
+        <helmet color="008000">leather helmet</helmet>
+        <chestplate color="008000">leather chestplate</chestplate>
+        <boots color="008000">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="cyan" kit="cyan" yaw="90">
+        <block>42.5,23,0.5</block>
+    </spawn>
+    <spawn team="green" kit="green" yaw="-90">
+        <block>-43.5,23,0.5</block>
+    </spawn>
+    <default yaw="133">
+        <block>1.5,53.7,2.5</block>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle max="oo,oo" min="-oo,-oo"/>
+    </apply>
+    <apply velocity="@0,1.4,0">
+        <cylinder base="-0,20,-13" radius="1" height="1"/>
+        <cylinder base="-0,20,14" radius="1" height="1"/>
+    </apply>
+</regions>
+<portals>
+    <portal x="@-43.5" y="@28" z="@28.5">
+        <cuboid min="-42,23,6" max="-45,30,7"/>
+    </portal>
+    <portal x="@-43.5" y="@23" z="@5.5">
+        <cuboid min="-45,28,28" max="-42,31,27"/>
+    </portal>
+    <portal x="@-43.5" y="@28" z="@-27.5">
+        <cuboid min="-45,23,-5" max="-42,30,-6"/>
+    </portal>
+    <portal x="@-43.5" y="@23" z="@-4.5">
+        <cuboid min="-42,28,-27" max="-45,30,-26"/>
+    </portal>
+    <portal x="@42.5" y="@28" z="@28.5">
+        <cuboid min="44,23,6" max="41,30,7"/>
+    </portal>
+    <portal x="@42.5" y="@23" z="@5.5">
+        <cuboid min="41,28,28" max="44,31,27"/>
+    </portal>
+    <portal x="@42.5" y="@28" z="@-27.5">
+        <cuboid min="41,23,-5" max="44,30,-6"/>
+    </portal>
+    <portal x="@42.5" y="@23" z="@-4.5">
+        <cuboid min="44,28,-27" max="41,30,-26"/>
+    </portal>
+</portals>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tutorial>
+    <stage title="Blitz-CTW">
+        <message>
+            <line>This map is a `3Blitz-CTW`r. Every player will get `4one life`r to start, however, `4cannot`r join or rejoin</line>
+            <line>a match once it has started. Players must obtain the `dwool`r in the middle, and bring it back to spawn</line>
+            <line>to place.</line>
+        </message>
+    </stage>
+    <stage title="Spawnkit">
+        <message>
+            <line>Everyone will spawn with full leather armor, chainmail leggings, a stone sword, a bow, 20 arrows and</line>
+            <line>one singular golden apple. More golden apples can be rewarded from kills.</line>
+        </message>
+    </stage>
+    <stage title="Portals">
+        <message>
+            <line>The `bwaterfalls`r outside of the spawns teleport people onto the regular part of the map, these are two</line>
+            <line>way portals, they can leave spawn, and go back to spawn.</line>
+        </message>
+        <teleport>
+            <point yaw="-145" pitch="50">-47,29,12</point>
+        </teleport>
+    </stage>
+    <stage title="Wool room">
+        <message>
+            <line>Here is the `5wool room`r, located in the `4center`r of the map.</line>
+            <line>Players must collect the `dwool`r at spawns and bring it back to spawn to place on their wool monument.</line>
+        </message>
+        <teleport>
+            <point yaw="-137" pitch="50">-8,32,9</point>
+        </teleport>
+    </stage>
+    <stage title="Jumpads">
+        <message>
+            <line>Finally, players can use jumpads to get back up from the center. Fall damage is disabled for this.</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="75">-3,25,17</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

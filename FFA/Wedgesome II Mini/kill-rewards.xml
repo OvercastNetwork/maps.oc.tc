@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<kill-rewards>
+    <!-- Give a "Killstreak Counter" and eight cobblestone for each kill -->
+    <kill-reward>
+        <kit force="true">
+            <item amount="1" name="`bKillstreak Counter" material="nether star"/>
+            <item amount="2" material="golden apple"/>
+            <item amount="8" material="cobblestone"/>
+            <potion duration="3s" amplifier="6">regeneration</potion>
+        </kit>
+    </kill-reward>
+
+    <!-- 2 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="2"/>
+        </filter>
+        <kit force="true">
+            <item slot="2" unbreakable="true" material="iron pickaxe"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 2 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="2"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" enchantment="damage all:1" material="stone sword">
+                <attribute amount="6">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <!-- 3 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="3"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:2" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 3 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="3" repeat="true"/>
+        </filter>
+        <item material="tnt"/>
+    </kill-reward>
+
+    <!-- 4 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="4"/>
+        </filter>
+        <kit force="true">
+            <item slot="3" unbreakable="true" material="iron spade"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 4 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="4"/>
+        </filter>
+        <kit force="true">
+            <boots unbreakable="true" enchantment="protection environmental:1" material="leather boots"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 5 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" material="iron sword">
+                <attribute amount="7">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <!-- 6 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="6"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:3" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 8 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="8"/>
+        </filter>
+        <kit force="true">
+            <helmet unbreakable="true" enchantment="protection environmental:1" material="leather helmet"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 8 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="8"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" enchantment="damage all:1" material="iron sword">
+                <attribute amount="8">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <!-- 9 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="9"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:4" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 12 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="12"/>
+        </filter>
+        <kit force="true">
+            <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 12 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="12"/>
+        </filter>
+        <kit force="true">
+            <leggings unbreakable="true" enchantment="protection environmental:1" material="chainmail leggings"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 12 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="12"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" material="diamond sword">
+                <attribute amount="9">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <!-- 13 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="13"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:5" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 14 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="14"/>
+        </filter>
+        <kit force="true">
+            <item slot="3" unbreakable="true" material="diamond spade"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 16 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="16"/>
+        </filter>
+        <kit force="true">
+            <chestplate unbreakable="true" enchantment="protection environmental:1" material="chainmail chestplate"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 16 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="16"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" enchantment="damage all:1" material="diamond sword">
+                <attribute amount="10">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <!-- 20 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="20"/>
+        </filter>
+        <kit force="true">
+            <boots unbreakable="true" enchantment="protection environmental:1" material="chainmail boots"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 22 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="22"/>
+        </filter>
+        <kit force="true">
+            <item slot="2" unbreakable="true" enchantment="dig speed:1" material="diamond pickaxe"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 24 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="24"/>
+        </filter>
+        <kit force="true">
+            <item slot="3" unbreakable="true" enchantment="dig speed:1" material="diamond spade"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 24 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="24"/>
+        </filter>
+        <kit force="true">
+            <helmet unbreakable="true" enchantment="protection environmental:1" material="chainmail helmet"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 28 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="28"/>
+        </filter>
+        <kit force="true">
+            <leggings unbreakable="true" enchantment="protection environmental:1" material="iron leggings"/>
+        </kit>
+    </kill-reward>
+
+    <!-- 30 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="30" repeat="true"/>
+        </filter>
+        <item damage="1" material="golden apple"/>
+    </kill-reward>
+    <!-- 32 Kills -->
+    <kill-reward>
+        <filter>
+            <kill-streak count="32"/>
+        </filter>
+        <kit force="true">
+            <chestplate unbreakable="true" enchantment="protection environmental:1" material="iron chestplate"/>
+        </kit>
+    </kill-reward>
+</kill-rewards>
+</map>

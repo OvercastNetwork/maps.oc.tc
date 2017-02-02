@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<include src="kill-rewards.xml"/>
+<include src="item-remove.xml"/>
+<include src="falling-blocks.xml"/>
+<name>Wedgesome II</name>
+<version>0.0.5</version>
+<objective>Kill as many players as you can before the time limit is up!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
+</authors>
+<contributors>
+    <contributor contribution="Murder testing and salt" uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9"/><!-- BrettOgden -->
+    <contributor contribution="Map feedback" uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/><!--  Strangey  -->
+</contributors>
+
+<rules>
+    <rule>Teaming with other players is allowed.</rule>
+</rules>
+
+<players min="2" max="48" max-overfill="64" show-name-tags="true"/>
+
+<spawns>
+    <spawn safe="true" spread="true" kit="spawn">
+        <regions yaw="90">
+            <cylinder base="64,30,64" radius="100" height="15"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cylinder base="-70.5,37.5,147.5" radius="1" height="1"/>
+        </regions>
+    </default>
+</spawns>
+
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:1" material="bow"/>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" unbreakable="true">stone spade</item>
+        <item slot="4" amount="2">golden apple</item>
+        <item slot="5" amount="16">cobblestone</item>
+        <item slot="28" amount="1">arrow</item>
+        <helmet unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+
+<score>
+   <kills>1</kills>
+</score>
+
+<time>15m</time>
+
+<block-drops>
+    <rule>
+        <fall-chance>0.5</fall-chance>
+        <land-chance>1</land-chance>
+   </rule>
+</block-drops>
+
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>2s</fuse>
+    <licensing>false</licensing>
+</tnt>
+
+<world-borders center="64, 64">
+    <world-border size="640"/>
+</world-borders>
+
+<broadcasts>
+    <tip after="10s" every="2m">`7`l[`cKill Streaks`7`l]`r`8Your `7`nGEAR`r`8 will be upgraded every `7`nKILL`r`8 get in a row!</tip>
+</broadcasts>
+
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

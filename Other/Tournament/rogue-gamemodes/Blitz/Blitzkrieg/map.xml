@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<map proto="1.4.2" game="Blitz">
+<name>Blitzkrieg</name>
+<version>1.4.6</version>
+<objective>Eliminate the other team before the 10 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<gamemode>koth</gamemode>
+<broadcasts>
+    <alert after="1s">You have 1 life remaining.</alert>
+    <alert after="2s">You will be given blindness and will be frozen after you die.</alert>
+</broadcasts>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="1c74c430-29a0-471f-b30b-cc2d9031ebcb" contribution="XML Code"/> <!-- MrTazz4077 -->
+    <contributor uuid="b3c3aaa7-5f6e-4549-b7c7-5e73815d89d0" contribution="XML Check"/> <!-- RiceOpenOrange -->
+</contributors>
+<teams>
+   <team id="orange" color="gold" max="8" max-overfill="8">Orange</team>
+   <team id="blue" color="blue" max="8" max-overfill="8">Blue</team>
+</teams>
+<time>10m</time>
+<blitz>
+    <lives>2</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<spawns>
+    <spawn team="orange" kit="orangekit" yaw="0" filter="respawn">
+        <regions>
+            <point>-784.5,27.5,-957.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="bluekit" yaw="180" filter="respawn">
+        <regions>
+            <point>-784.5,27.5,-833.5</point>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <point>-724.5,99,-895.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawns>
+    <respawn blackout="true" auto="true" message="You may not move until the match is over!"/>
+</respawns>
+<kits>
+    <kit id="spawn">
+         <item slot="0" enchantment="durability:2" id="Topaz Axe">gold axe</item>
+         <item slot="1" id="Deer Horn Bow">bow</item>
+         <item slot="3" amount="16">arrow</item>
+         <item slot="4" amount="16">cooked beef</item>
+         <potion duration="oo" amplifier="1">speed</potion>
+         <potion duration="3" amplifier="20">regeneration</potion>
+    </kit>
+    <kit id="orangekit" parents="spawn">
+        <helmet color="FF7F00">leather helmet</helmet>
+        <boots color="FF7F00" enchantment="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+    <kit id="bluekit" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <boots color="0066cc" enchantment="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<regions>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-833.5" radius="3" height="5"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-957.5" radius="3" height="5"/>
+    </apply>
+</regions>
+<filters>
+    <team id="only-orange">orange</team>
+    <team id="only-blue">blue</team>
+    <not id="respawn">
+        <time>1s</time>
+    </not>
+</filters>
+<toolrepair>
+    <tool>gold axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+</itemremove>
+<control-points capture-time="1s">
+    <control-point name="Win" required="true">
+        <capture-region>
+            <everywhere/>
+        </capture-region>
+    </control-point>
+</control-points>
+<world-borders buffer="0" center="-784.5,-895.5">
+    <world-border size="130"/>
+    <world-border size="10" after="0s" duration="10m"/>
+</world-borders>
+</map>

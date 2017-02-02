@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Old Fortress Battles</name>
+<version>2.1.1</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+</authors>
+<rules>
+    <rule>Rushing is discouraged.</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit name="shears">
+        <item slot="35" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<spawns>
+    <spawn team="blue" kit="shears" yaw="270">
+        <cuboid min="1284,27,520" max="1287,27,517"/>
+    </spawn>
+    <spawn team="red" kit="shears" yaw="90">
+        <cuboid min="1250,27,517" max="1246,27,520"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="1267,27,518" radius="7" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable region">
+    <negative name="playable-inverse">
+        <rectangle min="1336,549" max="1199,637"/>
+    </negative>
+    </apply>
+    <apply enter="deny-all" message="You may not enter spawns">
+        <rectangle min="1301,547" max="1234,517"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="7">
+    <core team="blue">
+        <cuboid min="1302,22,589" max="1307,29,597"/>
+    </core>
+    <core team="red">
+        <cuboid min="1228,22,589" max="1233,29,597"/>
+    </core>
+</cores>
+</map>

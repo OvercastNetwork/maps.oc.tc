@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>The Fenland CTF</name>
+<genre>Objectives</genre>
+<time>30m</time>
+<respawn delay="8s" spectate="true"/>
+<version>2.0</version>
+<objective>Capture the enemy flag and bring it back to your side</objective>
+<authors>
+    <author uuid="e5953ddf-c1fc-4405-9ac9-6939631cd185"/> <!-- McSpider -->
+</authors>
+<teams>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+</teams>
+<score>
+    <limit>3</limit>
+</score>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue">
+        <post yaw="130" pickup-filter="only-red">45,12,25</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="red">
+        <post yaw="-45" pickup-filter="only-blue">-45,12,-25</post>
+    </flag>
+    <net points="1" flag="blue-flag" return="red-flag">
+        <region>
+            <cuboid min="-46,12,-26" max="-43,14,-23"/>
+        </region>
+        <capture-filter>
+            <not>
+                <flag-carried>red-flag</flag-carried>
+            </not>
+        </capture-filter>
+    </net>
+    <net points="1" flag="red-flag" return="blue-flag">
+        <region>
+            <cuboid min="44,12,24" max="47,14,27"/>
+        </region>
+        <capture-filter>
+            <not>
+                <flag-carried>blue-flag</flag-carried>
+            </not>
+        </capture-filter>
+    </net>
+</flags>
+<spawns>
+    <spawns kit="spawn" safe="true">
+        <spawn team="red">
+            <regions yaw="-90">
+                <cuboid min="-43,11,-2" max="-46,11,3"/>
+            </regions>
+        </spawn>
+        <spawn team="blue">
+            <regions yaw="90">
+                <cuboid min="44,11,3" max="47,11,-2"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions yaw="180">
+            <cuboid min="-3,25,-44" max="3,25,-50"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="no-beacon">
+        <material>beacon</material>
+    </not>
+    <deny id="no-red-flag">
+        <carrying-flag>red-flag</carrying-flag>
+    </deny>
+    <deny id="no-blue-flag">
+        <carrying-flag>blue-flag</carrying-flag>
+    </deny>
+</filters>
+<regions>
+    <apply enter="no-blue-flag" message="You may not enter your base with the flag!">
+        <region>
+            <cuboid min="-49,13,-4" max="-40,10,4"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region>
+            <cuboid min="-49,13,-4" max="-40,10,4"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not modify the base!">
+        <region>
+            <cuboid min="-49,7,5" max="-36,16,-4"/>
+        </region>
+    </apply>
+    <apply enter="no-red-flag" message="You may not enter your base with the flag!">
+        <region>
+            <cuboid min="49,13,4" max="41,10,-4"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <region>
+            <cuboid min="49,13,4" max="41,10,-4"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not modify the base!">
+        <region>
+            <cuboid min="50,7,-4" max="37,16,5"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not destroy the flag platform!">
+        <region>
+            <union>
+                <cuboid min="44,11,24" max="47,14,27"/>
+                <cuboid min="-46,11,-26" max="-43,14,-23"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="never" message="You may not build outside the playing area!">
+        <region>
+            <negative name="playable-inverse">
+                <cuboid name="playable" min="64,0,-38" max="-63,31,39"/>
+            </negative>
+        </region>
+    </apply>
+    <apply enter="never" message="Don't enter the observers spawn area!">
+        <region>
+            <cylinder base="0.5,19,-46.5" radius="6" height="oo"/>
+        </region>
+    </apply>
+    <apply use="no-beacon" region="everywhere"/>
+</regions>
+<kits>
+    <kit id="spawn">
+        <item slot="0" enchantment="durability:1">diamond axe</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="4" amount="64">log</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="7" amount="4">gold nugget</item>
+        <item slot="8" amount="32">cooked fish</item>
+        <item slot="28">arrow</item>
+        <chestplate unbreakable="true" locked="true" enchantment="protection projectile:2">iron chestplate</chestplate>
+        <boots unbreakable="true" locked="true">iron boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>diamond axe</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+    <item>glass</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>cooked fish</item>
+    <item>obsidian</item>
+    <item>beacon</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<maxbuildheight>25</maxbuildheight>
+</map>

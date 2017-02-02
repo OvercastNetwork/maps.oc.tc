@@ -1,0 +1,187 @@
+<map proto="1.4.0">
+<name>Drastic Change</name>
+<version>1.2.1</version>
+<objective>Capture the two enemy's wools!</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+</authors>
+<teams>
+    <team id="red-team" color="dark red" max="16" max-overfill="18">Red</team>
+    <team id="blue-team" color="blue" max="16" max-overfill="18">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:2" unbreakable="true">stone axe</item>
+        <item slot="4" unbreakable="true">stone spade</item>
+        <item slot="5" amount="48" damage="2">wood</item>
+        <item slot="6"  unbreakable="true">shears</item>
+        <item slot="7" amount="16">cooked beef</item>
+        <item slot="8">web</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots unbreakable="true">leather boots</boots>
+        <potion duration="5" amplifier="25">heal</potion>
+    </kit>
+    <kit id="red" parents="spawn">
+        <helmet color="ff0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate> 
+    </kit>
+    <kit id="blue" parents="spawn">
+        <helmet color="0000ff" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0000ff" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red">
+        <regions yaw="90">
+            <cylinder base="-655.5,8.5,-687.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="blue">
+        <regions yaw="-90">
+            <cylinder base="-821.5,8.5,-687.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="-738.5,26.5,-687.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <any id="only-some">
+        <material>wood</material>
+        <material>wool</material>
+        <material>web</material>
+    </any>
+</filters>
+<regions>
+    <complement id="bridge">
+        <rectangle id="inside" min="-776,-658" max="-701,-717"/>
+        <rectangle id="outside" min="-756,-682" max="-721,-693"/>
+    </complement>
+    <negative id="no-bridge">
+        <region id="bridge"/>
+    </negative>
+    <union id="red-wool-rooms">
+        <rectangle min="-636,-671" max="-653,-654"/>
+        <!-- Yellow -->
+        <rectangle min="-636,-721" max="-653,-704"/>
+        <!-- Orange -->
+    </union>
+    <union id="blue-wool-rooms">
+        <rectangle min="-824,-671" max="-841,-654"/>
+        <!-- Magenta -->
+        <rectangle min="-824,-721" max="-841,-704"/> 
+        <!-- Pink -->
+    </union>
+    <union id="spawns">
+        <rectangle id="red-spawn" min="-670,-700" max="-649,-675"/>
+        <rectangle id="blue-spawn" min="-807,-675" max="-828,-700"/>
+    </union>
+    <union id="gold-renew">
+        <cuboid min="-692,6,-650" max="-687,13,-655"/>
+        <cuboid min="-692,6,-725" max="-687,13,-720"/>
+        <cuboid min="-785,6,-650" max="-790,13,-655"/>
+        <cuboid min="-785,6,-725" max="-790,13,-720"/>
+    </union>
+    <!-- Applyness -->
+    <apply enter="only-red" use="only-red">
+        <region>
+            <region id="red-spawn"/>
+            <region id="blue-wool-rooms"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" use="only-blue">
+        <region>
+            <region id="blue-spawn"/>
+            <region id="red-wool-rooms"/>
+        </region>    
+    </apply> 
+    <apply block-break="only-some" block-place="only-red" region="blue-wool-rooms"/>
+    <apply block-break="only-some" block-place="only-blue" region="red-wool-rooms"/>
+    <apply block="never" region="spawns"/>
+    <apply block="no-void" region="no-bridge" message="You may not modify the void area!"/>
+</regions>
+<wools team="red-team">
+    <wool color="magenta" location="-835.5,9,-662.5">
+        <monument>
+            <block>-667,9,-686</block>
+        </monument>
+    </wool>
+    <wool color="pink" location="-835.5,9,-712.5">
+        <monument>
+            <block>-667,9,-690</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="blue-team">
+    <wool color="orange" location="-641.5,9,-662.5">
+        <monument>
+            <block>-811,9,-690</block>
+        </monument>
+    </wool>
+    <wool color="yellow" location="-641.5,9,-712.5">
+        <monument>
+            <block>-811,9,-686</block>
+        </monument>
+    </wool>
+</wools>
+<renewables>
+    <renewable rate="2.5" grow="true" particles="true" sound="true" avoid-entities="true" region="gold-renew">
+        <renew>gold block</renew>
+        <replace>air</replace>
+        <replace>quartz block</replace>
+        <replace>log:2</replace>
+        <replace>wood:2</replace>
+    </renewable>
+</renewables>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>stone sword</tool>
+    <tool>stone pickaxe</tool> 
+    <tool>stone axe</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>stone spade</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>gold helmet</item>
+    <item>gold pickaxe</item>
+    <item>gold spade</item>
+    <item>gold axe</item>
+    <item>gold sword</item>
+    <item>cooked beef</item>
+    <item>wood:2</item>
+    <item>wood:1</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>seeds</item>
+    <item>carpet</item>
+    <item>31</item>
+    <item>38</item>
+    <item>string</item>
+</itemremove>
+<maxbuildheight>16</maxbuildheight>
+<killreward>
+    <item amount="8" damage="2">wood</item>
+</killreward> 
+</map>

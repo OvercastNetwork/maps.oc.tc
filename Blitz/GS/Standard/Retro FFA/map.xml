@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.2">
+<include src="gs.xml" />
+<include src="gs-ffa.xml" />
+<name>Retro: FFA</name>
+<gamemode>gs</gamemode>
+<version>1.0.1</version>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
+    <!-- matic0basle -->
+</authors>
+<contributors>
+    <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="Modifications" />
+    <!-- ParaSpider -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML" />
+    <!-- ItsMiiOlly -->
+</contributors>
+<regions>
+    <apply enter="deny-all">
+        <cuboid min="-oo,56,-oo" max="oo,57,oo" />
+    </apply>
+</regions>
+<spawns>
+    <spawn safe="true" angle="-24,49,35">
+        <cuboid min="0,47,11" max="-48,48,59" />
+    </spawn>
+    <default yaw="-179">
+        <cuboid min="-25,64,36" max="-22,64,35" />
+    </default>
+</spawns>
+</map>

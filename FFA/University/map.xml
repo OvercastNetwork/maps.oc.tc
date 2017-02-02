@@ -1,0 +1,120 @@
+<map proto="1.4.0">
+<name>University</name>
+<version>1.0.0</version>
+<objective>Have the most kills after 8 minutes</objective>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
+    <!--  Yoyo  -->
+</authors>
+<score>
+    <kills>1</kills>
+    <deaths>1</deaths>
+</score>
+<time>8m</time>
+<players min="2" max="16"/>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>seeds</item>
+</itemremove>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" damage="-3000">stone sword</item>
+        <item slot="1" damage="-3000">bow</item>
+        <item slot="2" amount="4">glass</item>
+        <item slot="28" amount="16">arrow</item>
+        <item slot="3">golden apple</item>
+        <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+        <chestplate color="cd0000" damamge="-3000">chainmail chestplate</chestplate>
+        <leggings color="cd0000" damage="-3000">iron leggings</leggings>
+        <boots color="cd0000" damage="-3000">leather boots</boots>
+    </kit>
+    <kit id="kill-reward">
+        <item slot="3">golden apple</item>
+        <potion duration="3" amplifier="4">regeneration</potion>
+        <item slot="2" amount="2">glass</item>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward kit="kill-reward"/>
+</kill-rewards>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <any id="apply-some">
+        <material>glass</material>
+        <material>stained glass pane</material>
+        <material>leaves</material>
+        <material>leaves 2</material>
+        <material>long grass</material>
+    </any>
+</filters>
+<regions>
+    <apply block-place="no-void" message="You may not modify the void region">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+    <apply block="apply-some" message="You may only modify glass and leaves">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+    <apply block-place="no-void" message="You may not modify the void region">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn kit="spawn" spread="true" safe="true">
+        <regions angle="61.5,5,-29.5">
+            <point>30.5,6,-1.5</point>
+            <point>30.5,13,-1.5</point>
+            <point>30.5,13,-29.5</point>
+            <point>30.5,13,-56.5</point>
+            <point>30.5,13,-56.5</point>
+            <point>61.5,6,12.5</point>
+            <point>61.5,6,-71.5</point>
+            <point>61.5,2,-36.5</point>
+            <point>61.5,2,-23.5</point>
+            <point>51.5,9,-29.5</point>
+            <point>71.5,9,-29.5</point>
+            <point>92.5,6,-1.5</point>
+            <point>92.5,13,-1.5</point>
+            <point>92.5,13,-29.5</point>
+            <point>92.5,13,-56.5</point>
+            <point>92.5,13,-56.5</point>
+            <point>36.5,5,-29.5</point>
+            <point>86.5,5,-29.5</point>
+            <point>61.5,2,-45.5</point>
+            <point>61.5,2,-14.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="59,16,-31" max="63,16,-27"/>
+        </regions>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<maxbuildheight>22</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

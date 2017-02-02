@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Wintry Way</name>
+<version>1.1.1</version>
+<objective>Eliminate the other team!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+</authors>
+<teams>
+    <team color="dark green" max="10">Green</team>
+    <team color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="3">arrow</item>
+        <item slot="8" amount="3">grilled pork</item>
+        <potion duration="4" amplifier="10">heal</potion>
+        <potion duration="4" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit name="green" parents="spawn">
+        <chestplate color="45b711">leather chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+</kits>
+<blitz>
+    <time>10m</time>
+    <lives>3</lives>
+</blitz>
+<rage/>
+<spawns>
+    <spawn team="green" kit="green" yaw="179">
+        <cylinder base="-95,2,496" radius="1" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cylinder base="-95,2,428" radius="1" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-95,13,462" radius="1" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>grilled pork</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+</map>

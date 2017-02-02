@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Temple Run</name>
+<version>1.2.3</version>
+<objective>Destroy the enemy core while protecting your own core.</objective>
+<authors>
+    <author uuid="8f450ecb-184a-4fdd-9f17-bf1da547ab64"/> <!-- Chicago_T3d -->
+    <author uuid="3881e2f3-b393-4435-80a1-ff4c87fb4236"/> <!-- MrArchy -->
+</authors>
+<contributors>
+    <contributor contribution="Freelion Statue">boozha</contributor>
+    <contributor contribution="Morale Support">Freelion Alliance</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="64">Blue</team>
+    <team color="dark red" max="64">Red</team>
+</teams>
+<maxbuildheight>113</maxbuildheight>
+<spawns>
+    <default yaw="0">
+        <cylinder base="5,88,147.5" radius="2" height="0"/>
+    </default>
+    <spawn team="red" yaw="90">
+        <cylinder base="166,79,48" radius="4" height="0"/>
+    </spawn>
+    <spawn team="blue" yaw="270">
+        <cylinder base="-157,79,48" radius="4" height="0"/>
+    </spawn>
+</spawns>
+<regions>
+    <union name="blue-storage">
+        <cuboid name="blue-storage-main" min="-144,85,61" max="-170,77,35"/>
+        <cuboid name="blue-hidden1" min="-175,83,53" max="-185,79,43"/>
+    </union>
+    <union name="red-storage">
+        <cuboid name="red-storage-main" min="153,85,35" max="179,78,61"/>
+        <cuboid name="red-hidden1" min="184,83,43" max="194,79,53"/>
+    </union>
+    <apply block="deny-blocks" message="You may not break or place blocks in or near the pyramid rooms!">
+        <region name="blue-storage"/>
+        <region name="red-storage"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not build off of the map!">
+        <negative name="playable-inverse">
+            <rectangle min="211,1" max="-202,95"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="3">
+    <core team="blue">
+        <cuboid min="-162,111,46" max="-158,107,50"/>
+    </core>
+    <core team="red">
+        <cuboid min="171,111,50" max="167,107,46"/>
+    </core>
+</cores>
+</map>
+

@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Anathema CTF</name>
+<version>0.3</version>
+<objective>Capture the enemy team's flag 3 times to win!</objective>
+<authors>
+    <author uuid="75d87bcf-3921-4871-9330-e83736580a95"/> <!-- Rixiot -->
+    <author uuid="5cbdeae7-824e-494e-8667-91165718c30b"/> <!-- xSugoix -->
+</authors>
+<rules><rule>Class mixing is not allowed!</rule></rules>
+<teams>
+    <team id="blue" color="blue" max="75">Blue</team>
+    <team id="red" color="dark red" max="75">Red</team>
+</teams>
+<broadcast>
+    <alert after="10s" every="5m">After the flag is moved, it will not be returned to its original position.</alert>
+</broadcast>
+<flags pickup-kit="flag-pickup" drop-kit="flag-dropoff">
+    <flag id="blue-flag" name="Blue Flag" color="blue">
+        <post yaw="-90" pickup-filter="only-red" return-time="oo">196.5,32,-39.5</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" color="red">
+        <post yaw="90" pickup-filter="only-blue" return-time="oo">-228.5,32,-38.5</post>
+    </flag>
+    <net points="1" flag="blue-flag" return="red-flag">
+        <region>
+            <cuboid min="-232,32,-36" max="-226,35,-42"/>
+        </region>
+        <capture-filter>
+            <not>
+                <flag-carried>red-flag</flag-carried>
+            </not>
+        </capture-filter>
+    </net>
+    <net points="1" flag="red-flag" return="blue-flag">
+        <region>
+            <cuboid min="200,32,-42" max="194,35,-36"/>
+        </region>
+        <capture-filter>
+            <not>
+                <flag-carried>blue-flag</flag-carried>
+            </not>
+        </capture-filter>
+    </net>
+</flags>
+<score>
+    <deaths>0</deaths>
+    <kills>0</kills>
+    <limit>1</limit>
+</score>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-fire">
+        <deny>
+            <block>fire</block>
+            <block>bed block</block>
+        </deny>
+    </filter>
+    <filter name="deny-iron">
+        <deny>
+            <block>beacon</block>
+            <block>iron block</block>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="red-base-tnt">
+        <all>
+            <any>
+                <not>
+                    <all>
+                        <team>red</team>
+                        <block>tnt</block>
+                    </all>
+                </not>
+                <team>blue</team>
+            </any>
+            <filter name="deny-fire"/>
+        </all>
+    </filter>
+    <filter name="blue-base-tnt">
+        <all>
+            <any>
+                <not>
+                    <all>
+                        <team>blue</team>
+                        <block>tnt</block>
+                    </all>
+                </not>
+                <team>red</team>
+            </any>
+            <filter name="deny-fire"/>
+        </all>
+    </filter>
+</filters>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<regions>
+    <rectangle name="main-area" min="227,1" max="-259,-79"/>
+    <!-- blue classes -->
+    <cuboid name="b-knight"  min="-16,26,-100" max="-15,32,-98"/>
+    <cuboid name="b-archer"  min="-16,26,-103" max="-15,32,-101"/>
+    <cuboid name="b-builder" min="-16,26,-106" max="-15,32,-104"/>
+    <cuboid name="b-sapper"  min="-16,26,-109" max="-15,32,-107"/>
+    <!-- red classes -->
+    <cuboid name="r-knight"  min="-17,26,-109" max="-16,32,-107"/>
+    <cuboid name="r-archer"  min="-17,26,-106" max="-16,32,-104"/>
+    <cuboid name="r-builder" min="-17,26,-103" max="-16,32,-101"/>
+    <cuboid name="r-sapper"  min="-17,26,-100" max="-16,32,-98"/>
+    <!-- red beacons -->
+    <union name="r-beacons">
+        <cuboid min="-212,33,-15" max="-207,38,-10"/>
+        <cuboid min="-212,33,-68" max="-207,38,-63"/>
+        <cuboid min="-249,40,-75" max="-244,45,-70"/>
+        <cuboid min="-249,40,-8"  max="-244,45,-3"/>
+    </union>
+    <!-- blue beacons -->
+    <union name="b-beacons">
+        <cuboid min="175,33,-15" max="180,38,-10"/>
+        <cuboid min="175,33,-68" max="180,38,-63"/>
+        <cuboid min="212,40,-75" max="217,45,-70"/>
+        <cuboid min="212,40,-8"  max="217,45,-3"/>
+    </union>
+    <apply kit="knight">
+        <region name="r-knight"/>
+        <region name="b-knight"/>
+    </apply>
+    <apply kit="archer">
+        <region name="r-archer"/>
+        <region name="b-archer"/>
+    </apply>
+    <apply kit="builder">
+        <region name="r-builder"/>
+        <region name="b-builder"/>
+    </apply>
+    <apply kit="sapper">
+        <region name="r-sapper"/>
+        <region name="b-sapper"/>
+    </apply>
+    <apply block="deny-all" message="You may not place blocks in the void">
+        <negative>
+            <region name="main-area"/>
+        </negative>
+    </apply>
+    <apply block="deny-iron" use="deny-beacon" message="You may not modify the beacon area">
+        <region name="b-beacons"/>
+        <region name="r-beacons"/>
+    </apply>
+    <rectangle name="blue-spawn" min="217,-79" max="227,1"/>
+    <rectangle name="red-spawn" min="-259,1" max="-249,-79"/>
+    <apply block="deny-all" message="You may not modify spawn">
+        <region name="red-spawn"/>
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the flag platform">
+        <cuboid name="blue-platform" min="200,29,-42" max="194,oo,-36"/>
+        <cuboid name="red-platform" min="-232,29,-36" max="-226,oo,-42"/>
+    </apply>
+    <apply block-place="blue-base-tnt" message="You may not place TNT in your fortress!">
+        <complement name="blue-tnt-prot">
+            <union>
+                <rectangle min="147,-79" max="227,1"/> <!-- Standard protection - inside fortress -->
+                <rectangle min="95,-79" max="147,1"/> <!-- Extended protection -->
+            </union>
+            <region name="blue-spawn"/>
+            <region name="blue-platform"/>
+        </complement>
+    </apply>
+    <apply block-place="red-base-tnt" message="You may not place TNT in your fortress!">
+        <complement name="red-tnt-prot">
+            <union>
+                <rectangle min="-259,-79" max="-178,1"/> <!-- Standard protection - inside fortress -->
+                <rectangle min="-178,-79" max="-127,1"/> <!-- Extended public server anti-teamgrief -->
+            </union>
+            <region name="red-spawn"/>
+            <region name="red-platform"/>
+        </complement>
+    </apply>
+    <apply block="deny-fire">
+        <complement>
+            <region name="main-area"/>
+            <union>
+                <region name="blue-spawn"/>
+                <region name="blue-tnt-prot"/>
+                <region name="blue-platform"/>
+                <region name="red-spawn"/>
+                <region name="red-tnt-prot"/>
+                <region name="red-platform"/>
+            </union>
+        </complement>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <potion duration="15" amplifier="1">heal</potion>
+    </kit>
+    <kit name="builder">
+        <item slot="0" unbreakable="true" enchantment="damage all:2;knockback:1">iron axe</item>
+        <item slot="1" unbreakable="true" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="2" amount="8" damage="16389">potion</item> <!-- instant health 1 -->
+        <item slot="3" amount="4" damage="16396">potion</item> <!-- instant damage 1 -->
+        <item slot="4" amount="64" damage="3">smooth brick</item>
+        <item slot="31" amount="64" damage="3">smooth brick</item>
+        <item slot="22" amount="64" damage="3">smooth brick</item>
+        <item slot="32" amount="64" damage="2">wood</item>
+        <item slot="23" amount="64" damage="2">wood</item>
+        <item slot="5" amount="64">carrot item</item>
+        <item slot="6" amount="4">cake</item>
+        <item slot="7" amount="32">gravel</item>
+        <item slot="8" amount="12">web</item>
+        <helmet locked="true" unbreakable="true" enchantment="oxygen:2;water worker:2">gold helmet</helmet>
+        <chestplate locked="true" unbreakable="true">leather chestplate</chestplate>
+        <boots locked="true" unbreakable="true" enchantment="protection fall:3;protection fall:2">leather boots</boots>
+        <potion duration="oo" amplifier="2">fast digging</potion>
+        <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+    <kit name="knight" force="true">
+        <item slot="0" unbreakable="true" enchantment="damage all:1">iron axe</item>
+        <item slot="1" unbreakable="true" enchantment="knockback:1">iron spade</item>
+        <item slot="2" amount="4">cooked beef</item>
+        <item slot="3" amount="32">bread</item>
+        <item slot="4">golden apple</item>
+        <item slot="5" amount="64">golden carrot</item>
+        <item slot="6" damage="100" amount="2">monster egg</item>
+        <item slot="7">iron barding</item>
+        <item slot="8">saddle</item>
+        <helmet locked="true" unbreakable="true" enchantment="protection environmental:1">chainmail helmet</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection environmental:1">iron chestplate</chestplate>
+        <leggings locked="true" unbreakable="true" enchantment="protection environmental:1">chainmail leggings</leggings>
+        <boots locked="true" unbreakable="true" enchantment="protection environmental:1;protection fall:2">iron boots</boots>
+        <potion duration="10" amplifier="1">heal</potion>
+        <potion duration="30" amplifier="1">slow</potion>
+        <walk-speed>0.75</walk-speed>
+    </kit>
+    <kit name="sapper">
+        <item slot="0" unbreakable="true" enchantment="damage all:1">stone pickaxe</item>
+        <item slot="1" unbreakable="true">stone spade</item>
+        <item slot="2" unbreakable="true" enchantment="fire aspect:3">flint and steel</item>
+        <item slot="3" amount="16">TNT</item>
+        <item slot="4" amount="64">gravel</item>
+        <item slot="5" amount="64">cooked chicken</item>
+        <helmet locked="true" unbreakable="true" enchantment="protection explosions:5;protection projectile:1">diamond helmet</helmet>
+        <boots locked="true" unbreakable="true" enchantment="protection explosions:5;protection fall:4">diamond boots</boots>
+        <potion duration="oo" amplifier="2">jump</potion>
+        <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+    <kit name="archer">
+        <item slot="0" unbreakable="true" enchantment="arrow damage:2;arrow infinite:1">bow</item>
+        <item slot="1" unbreakable="true" enchantment="dig speed:1">stone axe</item>
+        <item slot="2" amount="36">ladder</item>
+        <item slot="3" amount="64">cooked fish</item>
+        <item slot="28" amount="1">arrow</item>
+        <helmet locked="true" unbreakable="true">chainmail helmet</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <leggings locked="true" unbreakable="true">chainmail leggings</leggings>
+        <boots locked="true" unbreakable="true" enchantment="protection projectile:1;protection fall:2">leather boots</boots>
+        <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+    <kit name="observer">
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit name="flag-pickup" force="true">
+        <walk-speed>0.75</walk-speed>
+    </kit>
+    <kit name="flag-dropoff" force="true">
+        <walk-speed>1</walk-speed>
+    </kit>
+</kits>
+<classes family="anathema-ctf" sticky="false">
+    <class name="Builder" description="An array of blocks to build with." icon="iron pickaxe" default="true">
+        <kit parents="builder"/>
+    </class>
+    <class name="Knight" description="Heavy armor with a trusty steed to help." icon="iron sword">
+        <kit parents="knight"/>
+    </class>
+    <class name="Sapper" description="Swift and fast with some TNT too." icon="tnt">
+        <kit parents="sapper"/>
+    </class>
+    <class name="Archer" description="Stealthy and ranged with a powerful bow" icon="bow">
+        <kit parents="archer"/>
+    </class>
+</classes>
+<spawns safe="true">
+    <spawns team="blue" kit="spawn">
+        <spawn yaw="0" pitch="-5">
+            <point>222,17.5,-13</point>
+        </spawn>
+        <spawn yaw="-90" pitch="-10">
+            <point>219,18,-34</point>
+        </spawn>
+        <spawn yaw="-90" pitch="-10">
+            <point>219,18,-44</point>
+        </spawn>
+        <spawn yaw="180" pitch="-5">
+            <point>222,17.5,-66</point>
+        </spawn>
+    </spawns>
+    <spawns team="red" kit="spawn">
+        <spawn yaw="-180" pitch="-5">
+            <point>-254,17.5,-65</point>
+        </spawn>
+        <spawn yaw="90" pitch="-10">
+            <point>-251,18,-44</point>
+        </spawn>
+        <spawn yaw="90" pitch="-10">
+            <point>-251,18,-34</point>
+        </spawn>
+        <spawn yaw="0" pitch="-5">
+            <point>-254,17.5,-13</point>
+        </spawn>
+    </spawns>
+    <default yaw="0" kit="observer">
+        <cylinder base="-16,33,-104.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<maxbuildheight>65</maxbuildheight>
+<itemremove>
+    <item>sponge</item>
+    <!-- armor -->
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail leggings</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+    <item>diamond helmet</item>
+    <item>diamond boots</item>
+    <item>gold helmet</item>
+    <!-- tools -->
+    <item>wood sword</item>
+    <item>stone pickaxe</item>
+    <item>stone spade</item>
+    <item>iron pickaxe</item>
+    <item>iron spade</item>
+    <item>iron axe</item>
+    <item>stone axe</item>
+    <item>stone sword</item>
+    <item>flint and steel</item>
+    <!-- food -->
+    <item>golden apple</item>
+    <item>carrot item</item>
+    <item>cake block</item>
+    <item>cooked beef</item>
+    <item>bread</item>
+    <item>cooked chicken</item>
+    <item>cooked fish</item>
+    <!-- misc -->
+    <item>web</item>
+    <item>TNT</item>
+    <item>bow</item>
+    <item>ladder</item>
+    <item>arrow</item>
+    <item>potion</item>
+    <item>carrot stick</item>
+    <item>golden carrot</item>
+    <item>monster egg</item>
+    <item>saddle</item>
+    <item>smooth brick:3</item>
+    <item>wood</item>
+    <item>iron barding</item>
+</itemremove>
+</map>

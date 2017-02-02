@@ -1,0 +1,103 @@
+<map proto="1.3.5">
+<name>Deserted Sanctuary</name>
+<version>1.0.1</version>
+<objective>Hold the flag for 250 seconds to win!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+    <!--  thestrangeboy1  -->
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/>
+    <!--  Avaleer  -->
+</authors>
+<teams>
+    <team color="dark purple" max="20" max-overfill="24">Purple</team>
+    <team color="gold" max="20" max-overfill="24">Orange</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="32">arrow</item>
+        <helmet>jack o lantern</helmet>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <item slot="2" amount="64">pumpkin pie</item>
+        <item slot="3">golden apple</item>
+        <health>20</health>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <leggings color="D87F33" unbreakable="true">leather leggings</leggings>
+        <boots color="D87F33" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <leggings color="7F3FB2" unbreakable="true">leather leggings</leggings>
+        <boots color="7F3FB2" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="flag" force="true">
+        <potion duration="oo" amplifier="-3">health boost</potion>
+        <potion duration="3" amplifier="2">absorption</potion>
+    </kit>
+    <kit name="reset-health" force="true">
+        <potion duration="1" amplifier="0">health boost</potion>
+        <potion duration="1" amplifier="10">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="purple" kit="purple" yaw="0" filter="no-flag">
+        <point>11.5,16,-47.5</point>
+    </spawn>
+    <spawn team="orange" kit="orange" yaw="180" filter="no-flag">
+        <point>11.5,16,96.5</point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="11.5,51,24.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<respawn spectate="true">
+    <message>
+        { translate: "death.respawn.confirmed.waiting.flagDropped" }
+    </message>
+</respawn>
+<filters>
+    <filter name="no-flag">
+        <not>
+            <same-team>
+                <carrying-flag>flag</carrying-flag>
+            </same-team>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-players">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>jack o lantern</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>pumpkin pie</item>
+    <item>golden apple</item>
+</itemremove>
+<score>
+    <limit>250</limit>
+    <kills>0</kills>
+    <deaths>0</deaths>
+</score>
+<killreward>
+    <item amount="8">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<flags>
+    <post id="post" return-time="0s" respawn-time="20s">
+        <block>11.5,9,24.5</block>
+        <block>36.5,14,24.5</block>
+        <block>-13.5,14,24.5</block>
+    </post>
+    <flag id="flag" name="Flag" color="lime" shared="true" post="post" points-rate="1" pickup-kit="flag" drop-kit="reset-health"/>
+</flags>
+</map>

@@ -1,0 +1,175 @@
+<map proto="1.4.0" game="`lBlitz">
+<name>Neyud</name>
+<version>1.7</version>
+<objective>Kill the opposing team before the time limit is up!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+	<author uuid="10c1b730-49b9-4f75-9212-91facc371477"/>
+	<!--  Qixit  -->
+</authors>
+<time>16m</time>
+<blitz>
+    <lives>3</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<broadcasts>
+	<tip after="0s" every="5m">Change your offhand preferences with `l/classes</tip>
+</broadcasts>
+<respawn auto="true" spectate="false" delay="4s" blackout="false" />
+<teams>
+	<team id="red-team" color="dark red" max="14" max-overfill="16">Red</team>
+	<team id="blue-team" color="blue" max="14" max-overfill="16">Blue</team>
+</teams>
+<kits>
+	<kit id="red">
+		<helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+		<boots color="cd0000" unbreakable="true">leather boots</boots>
+	</kit>
+	<kit id="blue">
+		<helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+		<boots color="0066cc" unbreakable="true">leather boots</boots>
+	</kit>
+</kits>
+<classes family="Classes" sticky="false">
+    <class name="Duel Wield" default="false" description="Bow will be placed in offhand, making you a duel wielder." icon="enchanted book">
+        <kit>
+        	<potion duration="3" amplifier="2" ambient="false">damage resistance</potion>
+        	<item slot="0" unbreakable="true">stone sword</item>
+        	<item slot="slot.weapon.offhand" unbreakable="true">bow</item>
+        	<item slot="8" amount="8">arrow</item>
+        	<item slot="1" amount="3">golden apple</item>
+        	<chestplate unbreakable="true">iron chestplate</chestplate>
+        	<leggings unbreakable="true">iron leggings</leggings>
+    	</kit>
+    </class>
+    <class name="No Offhand" default="true" description="Bow will be placed in second slot, as opposed to offhand." icon="enchanted book">
+        <kit>
+        	<potion duration="3" amplifier="2" ambient="false">damage resistance</potion>
+        	<item slot="0" unbreakable="true">stone sword</item>
+        	<item slot="1" unbreakable="true">bow</item>
+        	<item slot="8" amount="8">arrow</item>
+        	<item slot="2" amount="3">golden apple</item>
+        	<chestplate unbreakable="true">iron chestplate</chestplate>
+        	<leggings unbreakable="true">iron leggings</leggings>
+    	</kit>
+    </class>
+</classes>
+<killreward>
+	<item>golden apple</item>
+	<item amount="6">arrow</item>
+</killreward>
+<itemremove>
+	<item>leather helmet</item>
+	<item>chainmail leggings</item>
+	<item>leather boots</item>
+	<item>pumpkin pie</item>
+	<item>iron chestplate</item>
+	<item>wood button</item>
+	<item>stone plate</item>
+	<item>seeds</item>
+	<item>armor stand</item>
+	<item>gold helmet</item>
+	<item>gold chestplate</item>
+	<item>gold leggings</item>
+	<item>gold boots</item>
+	<item>hay block</item>
+	<item>redstone</item>
+	<item>red rose</item>
+</itemremove>
+<modes>
+	<mode name="Gates Removed" after="8s" material="air"/>
+</modes>
+<portals>
+	<portal y="3">
+        <region><cuboid min="28,45,-191" max="31,42.5,-188"/></region>
+    </portal>
+</portals>
+<destroyables>
+	<destroyable name="blue-castle-1" owner="blue-team" mode-changes="true" materials="iron fence" completion="0%" repairable="false" sparks="true" show="false">
+		<region>
+			<cylinder base="40.5,47,-226.5" radius="1" height="5"/>
+		</region>
+	</destroyable>
+	<destroyable name="blue-castle-2" owner="blue-team" mode-changes="true" materials="iron fence" completion="0%" repairable="false" sparks="true" show="false">
+		<region>
+			<cylinder base="13.5,55,-222.5" radius="1" height="5"/>
+		</region>
+	</destroyable>
+	<destroyable name="red-castle-1" owner="red-team" mode-changes="true" materials="iron fence" completion="0%" repairable="false" sparks="true" show="false">
+		<region>
+			<cylinder base="18.5,47,-152.5" radius="1" height="7"/>
+		</region>
+	</destroyable>
+	<destroyable name="red-castle-2" owner="red-team" mode-changes="true" materials="iron fence" completion="0%" repairable="false" sparks="true" show="false">
+		<region>
+			<cylinder base="45.5,55,-156.5" radius="1" height="7"/>
+		</region>
+	</destroyable>
+</destroyables>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<filters>
+	<deny id="button-destroy">
+		<any>
+        	<material>wood button</material>
+        	<material>fence gate</material>
+        	<material>anvil</material>
+        	<material>furnace</material>
+        </any>
+    </deny>
+    <deny id="stone-destroy">
+        <material>stone plate</material>
+    </deny>
+	<any id="breakable-blocks">
+		<material>long grass</material>
+		<material>vine</material>
+		<material>double plant</material>
+		<material>redstone wire</material>
+		<material>red rose</material>
+		<material>hay block</material>
+	</any>
+</filters>
+<regions>
+	<apply block-physics="never">
+		<everywhere/>
+	</apply>
+	<apply use="button-destroy">
+        <everywhere/>
+    </apply>
+	<apply enter="never" message="Your lungs are too weak for this altitude!">
+		<region>
+			<above id="deny-above" y="62"/>
+		</region>
+	</apply>
+	<apply block="breakable-blocks">
+		<everywhere/>
+	</apply>
+	<apply block="never">
+		<everywhere/>
+	</apply>
+</regions>
+<spawns>
+	<spawn team="blue-team" kit="blue">
+		<regions>
+			<point yaw="121">46.5,48,-230.5</point>
+		</regions>
+	</spawn>
+	<spawn team="red-team" kit="red">
+		<regions>
+			<point yaw="-58">12.5,48,-148.5</point>
+		</regions>
+	</spawn>
+	<default>
+		<regions>
+			<point yaw="-90">29.5,41,-189.5</point>
+		</regions>
+	</default>
+</spawns>
+<disabledamage>
+	<damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Blitz">
+<name>Spaceship Battles: Blitz</name>
+<version>1.0.5</version>
+<objective>Leak lava from the enemy's obsidian core and destory the monuments.</objective>
+<gamemode>blitz</gamemode>
+<gamemode>mixed</gamemode>
+<authors>
+    <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
+</authors>
+<timelock>on</timelock>
+<rules>
+    <rule>Dispensers are disabled</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="blue" color="blue" max="24">Blue</team>
+</teams>
+<blitz>
+    <lives>3</lives>
+</blitz>
+<kits>
+    <kit id="shears">
+        <item slot="17" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+    <kit id="give-resistance" force="true">
+        <potion duration="7" amplifier="3">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+      <deny id="deny-dispenser">
+          <material>dispenser</material>
+      </deny>
+</filters>
+<regions>
+    <apply block="never" message="You may not place or break blocks in the water drops.">
+      <region>
+        <union>
+            <rectangle min="239,75" max="244,80"/>
+            <rectangle min="239,136" max="244,141"/>
+        </union>
+      </region>
+    </apply>
+    <!-- Playable region -->
+    <cuboid id="play" min="170,-oo,50" max="260,70,170"/>
+    <apply block-place="deny-dispenser" region="play"/>
+    <apply block="never" message="You may not interact with blocks outside the playing field.">
+      <region>
+        <negative>
+            <region id="play"/>
+        </negative>
+      </region>
+    </apply>
+    <apply enter="never" message="You may not re-enter the spawn area!">
+      <region>
+        <union id="spawn-areas">
+            <cuboid id="red-tunnel" min="238,70,142" max="294,oo,135"/>
+            <cuboid id="horizontal-tunnel" min="300,70,142" max="294,oo,74"/>
+            <cuboid id="blue-tunnel" min="294,70,81" max="238,oo,74"/>
+            <cuboid id="obs-spawn" min="283,70,92" max="315,oo,124"/>
+        </union>
+      </region>
+    </apply>
+    <apply kit="give-resistance">
+      <region>
+        <union id="resist-drops">
+            <cuboid id="red-resist-drop" min="243,71,140" max="240,72,137"/>
+            <cuboid id="blue-resist-drop" min="243,71,79" max="240,72,76"/>
+        </union>
+      </region>
+    </apply>
+</regions>
+<maxbuildheight>70</maxbuildheight>
+<spawns>
+    <spawn team="blue" kit="shears">
+        <regions yaw="180">
+            <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="shears">
+        <regions yaw="0">
+            <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="298.5,71,108.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<modes>
+    <mode material="gold block" after="15m" name="GOLD CORE MODE"/>
+    <mode material="glass" after="20m" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="0" mode-changes="true">
+    <core team="blue">
+        <region><cuboid min="208,42,76" max="211,48,79"/></region>
+    </core>
+    <core team="red">
+        <region><cuboid min="208,42,137" max="211,48,140"/></region>
+    </core>
+</cores>
+<destroyables name="Antenna A" completion="100%" materials="coal ore">
+    <destroyable owner="blue">
+        <region><cuboid min="226,49,68" max="229,58,71"/></region>
+    </destroyable>
+</destroyables>
+<destroyables name="Antenna B" completion="100%" materials="coal ore">
+    <destroyable owner="blue">
+        <region><cuboid min="242,49,68" max="245,58,71"/></region>
+    </destroyable>
+</destroyables>
+<destroyables name="Antenna A" completion="100%" materials="coal ore">
+    <destroyable owner="red">
+        <region><cuboid min="226,49,145" max="229,58,148"/></region>
+    </destroyable>
+</destroyables>
+<destroyables name="Antenna B" completion="100%" materials="coal ore">
+    <destroyable owner="red">
+        <region><cuboid min="242,49,145" max="245,58,148"/></region>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>obsidian</item>
+    <item>shears</item>
+    <item>coal</item>
+</itemremove>
+</map>

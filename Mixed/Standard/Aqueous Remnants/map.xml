@@ -1,0 +1,181 @@
+<map proto="1.4.0">
+<name>Aqueous Remnants</name>
+<version>1.2.1</version>
+<objective>
+Leak lava from the enemy's obsidian core and destroy the monument inside their tower.
+</objective>
+<authors>
+    <author uuid="b4b31396-312d-49aa-b9c2-1ee9bf8261f2" contribution="Design, Aesthetics, Building, XML"/>
+    <!--  Afr0  -->
+</authors>
+<contributors>
+    <contributor uuid="d9420f7f-517b-45e3-bdf5-e92f4cb93b98" contribution="Seaweed"/>
+    <!--  Narcolepsy  -->
+    <contributor uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906" contribution="Kraken"/>
+    <!--  Neet0 a.k.a. easton  -->
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Fixing"/>
+    <!--  DoomRobotBoy  -->
+    <contributor uuid="895aa202-9e46-4818-8a3d-aa91017e0767" contribution="Minor Gameplay Advice"/>
+    <!--  DeltaDragon222  -->
+</contributors>
+<teams>
+    <team id="red" color="dark_red" max="20" max-overfill="25">Red</team>
+    <team id="blue" color="blue" max="20" max-overfill="25">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow">
+            <enchantment level="1">infinity</enchantment>
+        </item>
+        <item slot="2" material="diamond pickaxe">
+            <enchantment level="1">efficiency</enchantment>
+        </item>
+        <item slot="29" material="iron spade"/>
+        <item slot="3" material="iron axe"/>
+        <item slot="4" material="log 2" amount="32"/>
+        <item slot="5" material="glass" amount="64"/>
+        <item slot="28" material="arrow"/>
+        <item slot="6" material="golden carrot" amount="64"/>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>golden carrot</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>44:0</item>
+    <item>prismarine</item>
+    <item>sea lantern</item>
+    <item>sapling</item>
+    <item>leaves</item>
+    <item>fence</item>
+    <item>birch fence</item>
+    <item>spruce fence</item>
+    <item>126:2</item>
+    <item>43:8</item>
+    <item>38</item>
+    <item>135</item>
+    <item>1</item>
+    <item>171</item>
+    <item>5:2</item>
+    <item>390</item>
+    <item>3</item>
+    <item>17:3</item>
+    <item>138</item>
+    <item>113</item>
+    <item>72</item>
+    <item>24</item>
+    <item>12</item>
+    <item>4</item>
+    <item>159</item>
+    <item>428</item>
+    <item>5:0</item>
+    <item>53</item>
+    <item>126:0</item>
+    <item>409</item>
+    <item>410</item>
+    <item>31:1</item>
+    <item>76</item>
+</itemremove>
+<cores mode-changes="true">
+    <core team="red">
+        <region>
+            <cuboid min="-13,15,12" max="-8,21,17"/>
+        </region>
+    </core>
+    <core team="blue">
+        <region>
+            <cuboid min="11,15,154" max="16,21,159"/>
+        </region>
+    </core>
+</cores>
+<destroyables name="Monument" materials="obsidian">
+    <destroyable owner="red">
+        <region>
+            <cuboid min="27,43,-1" max="30,46,2"/>
+        </region>
+    </destroyable>
+    <destroyable owner="blue">
+        <region>
+            <cuboid min="-27,43,169" max="-24,46,172"/>
+        </region>
+    </destroyable>
+</destroyables>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <doTileDrops>true</doTileDrops>
+</gamerules>
+<crafting>
+    <disable>boat</disable>
+    <disable>259</disable>
+</crafting>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+</filters>
+<regions>
+    <rectangle id="map" min="-43,-44" max="46,215"/>
+    <cylinder id="red-spawn" base="-32,33,-28" radius="3" height="0"/>
+    <cylinder id="blue-spawn" base="34,33,198" radius="3" height="0"/>
+    <rectangle id="red-building" min="-38,-34" max="-26,-16"/>
+    <rectangle id="blue-building" min="28,186" max="40,204"/>
+    <apply block="never" message="`cYou may not place blocks outside the map!">
+        <region>
+            <negative>
+                <region id="map"/>
+            </negative>
+        </region>
+    </apply>
+    <apply block="never" block-physics="never" message="`cYou may not edit the spawn buildings!">
+        <region>
+            <region id="red-building"/>
+            <region id="blue-building"/>
+    </region>
+    </apply>
+    <apply enter="red-only" message="`cYou may not enter the enemy team's spawn!">
+        <region>
+            <region id="red-building"/>
+        </region>
+    </apply>
+    <apply enter="blue-only" message="`cYou may not enter the enemy team's spawn!">
+        <region>
+            <region id="blue-building"/>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="spawn">
+        <regions yaw="-90">
+            <region id="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="spawn">
+        <regions yaw="90">
+            <region id="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>51.5,59,85.5</point>
+        </regions>
+    </default>
+</spawns>
+<maxbuildheight>48</maxbuildheight>
+<modes>
+    <mode after="30m" material="gold block" name="`eGOLD CORE MODE"/>
+</modes>
+</map>

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Cloud Nine PearlBow RAGE</name>
+<version>1.2.0</version>
+<objective>Collect wool dyes from the shrines, and the string from killing players. Craft the colored wool and place it on your monument.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="2fa85349-2276-4850-b7b5-d18c4f4c8376"/> <!-- Solo_Runner -->
+</authors>
+<contributors>
+    <contributor uuid="4978504c-ba2f-4b93-9890-38fbaa8e0b5e" contribution="XML"/> <!-- Hydro_Seeds -->
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Ragification"/> <!-- Tywnis -->
+</contributors>
+<teams>
+    <team color="dark red" max="12">Red</team>
+    <team color="blue" max="12">Blue</team>
+</teams>
+<rage/>
+<modifybowprojectile>
+    <projectile>EnderPearl</projectile>
+    <potion duration="5">confusion</potion>
+    <potion duration="2">blindness</potion>
+    <potion amplifier="99" duration="1">slow</potion>
+</modifybowprojectile>
+<kits>
+    <kit name="night-vision">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">speed</potion>
+    </kit>
+    <kit name="spawn" parents="night-vision">
+        <item slot="0" unbreakable="true" enchantment="damage all:10" lore="`aDual-purpose teleporter and melee weapon">bow</item>
+        <item slot="28" amount="5">arrow</item>
+        <item slot="2" amount="16">golden carrot</item>
+        <item slot="1" amount="16">snow ball</item>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+    </kit>
+    <kit name="take-speed" force="true">
+        <potion duration="0" amplifier="0">speed</potion>
+        <potion duration="oo">slow</potion>
+    </kit>
+    <kit name="give-speed" force="true">
+        <potion duration="0" amplifier="0">slow</potion>
+        <potion duration="oo">speed</potion>
+    </kit>
+    <kit parents="spawn" name="red">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="993333" unbreakable="true">leather leggings</leggings>
+        <boots color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit parents="spawn" name="blue">
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+        <boots color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="1">string</item>
+    <item amount="2">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>string</item>
+    <item>golden carrot</item>
+    <item>snow ball</item>
+    <item>arrow</item>
+    <item>wool</item>
+</itemremove>
+<wools craftable="true">
+    <wools team="red">
+        <wool color="yellow">
+            <block>21.5,15,42.5</block>
+        </wool>
+        <wool color="lime">
+            <block>-20.5,15,42.5</block>
+        </wool>
+        <wool color="purple">
+            <block>0.5,15,63.5</block>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="yellow">
+            <block>21.5,15,-41.5</block>
+        </wool>
+        <wool color="lime">
+            <block>-20.5,15,-41.5</block>
+        </wool>
+        <wool color="purple">
+            <block>0.5,15,-62.5</block>
+        </wool>
+    </wools>
+</wools>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder base="0.5,19,42.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="0.5,19,-41.5" radius="2" height="0"/>
+    </spawn>
+    <default kit="night-vision" yaw="0">
+        <cylinder base="0.5,54.2,0.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <union name="dyes">
+        <circle name="lime-dye" center="44.5,0.5" radius="6"/>
+        <circle name="purple-dye" center="0.5,0.5" radius="11"/>
+        <circle name="yellow-dye" center="-43.5,0.5" radius="6"/>
+    </union>
+    <apply kit="take-speed">
+        <region name="dyes"/>
+    </apply>
+    <apply kit="give-speed">
+        <negative>
+            <region name="dyes"/>
+        </negative>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>This map is a `a`lCapture the Wool `r(CTW) map.</line>
+            <line>The objective is to kill the enemy for `adye `rand `astring`r.</line>
+            <line>Then you must craft the `cwool`r and place it at the monuments.</line>
+        </message>
+        <teleport>
+            <point yaw="145" pitch="10">28,26,30</point>
+        </teleport>
+    </stage>
+    <stage title="Dye Spawners">
+        <message>
+            <line>There are three dye spawners.</line>
+            <line>`aLime Dye`r, `5Purple Dye`r, and `eYellow Dye.</line>
+            <line>Watch out. Each spawner will give you slowness.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-55,18,0</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monuments">
+        <message>
+            <line>Behind your base, there are the `cthree`r wool monuments.</line>
+            <line>After crafting the wool with `a4 String`r and `a1 Dye`r.</line>
+            <line>Place in on the piston block.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-32,13,-41</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

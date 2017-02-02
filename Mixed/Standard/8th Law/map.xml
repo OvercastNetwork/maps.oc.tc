@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>The 8th Law</name>
+<version>1.1.3</version>
+<objective>Destroy the monuments and capture both wools.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<maxbuildheight>40</maxbuildheight>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="109.5,66,0.5" radius="2" height="0.1"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cylinder base="-108.5,66,0.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="0.5,63,0.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="32" name="`eSand Fish">cooked fish</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" amount="64">log</item>
+        <item slot="7" amount="64">glass</item>
+        <item slot="28">arrow</item>
+        <potion duration="8" amplifier="4">regeneration</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>beacon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>obsidian</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemremove>
+<destroyables materials="obsidian" completion="100%" mode-changes="true">
+    <destroyables name="Left Monument">
+        <destroyable owner="red">
+            <cuboid min="77,32,-46" max="73,20,-42"/>
+        </destroyable>
+        <destroyable owner="blue">
+            <cuboid min="-77,32,46" max="-73,20,42"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Right Monument">
+        <destroyable owner="red">
+            <cuboid min="77,32,46" max="73,20,42"/>
+        </destroyable>
+        <destroyable owner="blue">
+            <cuboid min="-77,32,-46" max="-73,20,-42"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<wools team="red">
+    <wool color="light blue">
+        <block>75.5,15.5,-7.5</block>
+    </wool>
+    <wool color="cyan">
+        <block>75.5,15.5,8.5</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="green">
+        <block>-74.5,15.5,8.5</block>
+    </wool>
+    <wool color="lime">
+        <block>-74.5,15.5,-7.5</block>
+    </wool>
+</wools>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>ladder</block>
+            <block>wood stairs</block>
+        </allow>
+    </filter>
+    <filter name="deny-dispenser">
+        <deny>
+            <any>
+                <block>dispenser</block>
+                <block>dropper</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply use="deny-dispenser deny-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Only Red can enter, deny building in the area above y=31 -->
+    <apply block="deny-players" message="You are not allowed to build in the wool rooms!">
+        <union name="red-access-top">
+            <cuboid name="cyan-room-t" min="-170,31,10" max="-140,oo,35"/>
+            <cuboid name="blue-room-t" min="-170,31,-9" max="-140,oo,-34"/>
+        </union>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="red-access-top"/>
+    </apply>
+    <!-- Only Red can enter their base and break iron and ladders. Deny building in the whole base. -->
+    <apply block-break="only-iron" block-place="deny-all" message="`7You may only break `6iron blocks `7in the base!">
+        <complement name="red-base">
+            <rectangle min="62,-9" max="116,10"/>
+            <block>75.5,15.5,-7.5</block>
+            <block>75.5,15.5,8.5</block>
+        </complement>
+    </apply>
+    <apply enter="only-red" message="`7Don't enter the `cRED TEAM `7base!">
+        <region name="red-base"/>
+    </apply>
+    <!-- Only Blue can enter, deny building in the area above y=31 -->
+    <apply block="deny-players" message="You are not allowed to build in the wool rooms!">
+        <union name="blue-access-top">
+            <cuboid name="green-room-t" min="171,31,-9" max="140,oo,-34"/>
+            <cuboid name="lime-room-t" min="171,31,10" max="140,oo,35"/>
+        </union>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="blue-access-top"/>
+    </apply>
+    <!-- Only Blue can enter their base and break iron and ladders. Deny building in the whole base. -->
+    <apply block-break="only-iron" block-place="deny-all" message="`7You may only break `6iron blocks `7in the base!">
+        <complement name="blue-base">
+            <rectangle min="-61,10" max="-116,-9"/>
+            <block>-74.5,15.5,8.5</block>
+            <block>-74.5,15.5,-7.5</block>
+        </complement>
+    </apply>
+    <apply enter="only-blue" message="`7Don't enter the `9BLUE TEAM `7base!">
+        <region name="blue-base"/>
+    </apply>
+    <!--  No building outside the map  -->
+    <apply block-place="deny-void" message="You may not build in the void">
+        <negative>
+            <rectangle min="169,-34" max="117,-9"/>
+            <rectangle min="169,34" max="117,9"/>
+            <rectangle min="50,-44" max="-50,44"/>
+            <rectangle min="-169,34" max="-117,9"/>
+            <rectangle min="-169,-34" max="-117,-9"/>
+        </negative>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Destroy the Monument/Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lDestroy the Monument and Capture the Wool Combo `r(DTM/CTW) map</line>
+            <line>First team to destroy both `cmonuments `rand capture both `bwools `rwins.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="90">0.5,57,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Supplies">
+        <message>
+            <line>Iron Supplies are located directly `bunder `rboth team spawns.</line>
+        </message>
+        <teleport>
+            <point yaw="90">-86.5,17,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Monument">
+        <message>
+            <line>This stick of `5obsidian `ris a monument.</line>
+            <line>Monuments like this are located to the `bleft `rand to the `bright `rof each team spawn.</line>
+            <line>Teams should defend these rooms against invaders who are trying to destroy the monuments.</line>
+        </message>
+        <teleport>
+            <point yaw="135">-69.5,35,-38.5</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Teams Wool Rooms">
+        <message>
+            <line>These are `9Blue team`r's wool rooms housing `3cyan`r and `blight blue `rwools.</line>
+            <line>`cRed Team `rhas `alime`r and `2green `rwools.</line>
+            <line>Teams should defend these rooms against invaders who are trying to steal the wool and make it back alive.</line>
+            <line>There are special goodies inside that will help you fight your way out.</line>
+            <line>The wool is spawned from walking over a dispenser.</line>
+        </message>
+        <teleport>
+            <point yaw="90">-125.5,49,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>There are `atwo `bvictory monuments`r. One for each wool from the enemys side.</line>
+            <line>The monuments are to the `6left `rand `6right `rof each team spawn.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">-81.5,14,0.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

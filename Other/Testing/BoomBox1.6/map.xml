@@ -1,0 +1,289 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<map proto="1.3.2" internal="true">
+<name>BoomBox 1.6</name>
+<version>0.1</version>
+<objective>Attackers have 15 minutes to destroy the Endstone pillar. The Defenders must hold them back.</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<teams>
+    <team color="dark red" max="20">Attackers</team>
+    <team color="blue" max="20">Defenders</team>
+</teams>
+
+<spawns yaw="135" pitch="0">
+    <default kit="all">
+        <cuboid min="38,47,38" max="46,47,46"/>
+    </default>
+    <spawn team="attackers" kit="attacker">
+        <cylinder base="42,47,42" radius="3" height="0"/>
+    </spawn>
+    <spawn team="defenders" kit="defender">
+        <cylinder base="74.5,5,74.5" radius="3" height="0"/>
+    </spawn>
+</spawns>
+
+<kits>
+    <!-- kit given to everyone, including observers -->
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+
+    <!-- kit given to both teams -->
+    <kit name="team" parents="all">
+        <item slot="0">diamond pickaxe</item>
+        <item slot="9">workbench</item>
+        
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="10">shears</item>
+        
+        <item slot="2" amount="64">vine</item>
+        
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="13" amount="16">trap door</item>
+        
+        <item slot="5" amount="16">stone plate</item>
+        <item slot="32" amount="16">piston base</item>
+        <item slot="23" amount="16">redstone block</item>
+        <item slot="14" amount="64">redstone</item>
+        
+        <item slot="6" amount="16">stone button</item>
+        <item slot="33" amount="16">lever</item>
+        <item slot="24" amount="16">redstone torch on</item>
+        <item slot="15" amount="16">diode</item>
+        
+        <item slot="7">water bucket</item>
+        <item slot="34">water bucket</item>
+        <item slot="25">water bucket</item>
+        <item slot="16">water bucket</item>
+
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+    </kit>
+
+    <kit name="attacker" parents="team">
+        <potion duration="oo" amplifier="4">speed</potion>
+
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="12" damage="14" amount="64">glass</item>
+        
+        <helmet enchantment="protection explosions:3">iron helmet</helmet>
+        <chestplate color="dd5566">leather chestplate</chestplate>
+        <leggings color="dd5566">leather leggings</leggings>
+        <boots enchantment="protection fall:3">iron boots</boots>
+    </kit>
+
+    <kit name="defender" parents="team">
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="12" damage="11" amount="64">glass</item>
+        
+        <helmet enchantment="protection explosions:3">iron helmet</helmet>
+        <chestplate color="5e55dd">leather chestplate</chestplate>
+        <leggings>iron leggings</leggings>
+        <boots enchantment="protection fall:3"
+               attributes="generic.knockbackResistance:add:1"
+               lore="You cannot be knocked back while wearing these!"
+            >iron boots</boots>
+    </kit>
+
+    <!-- kit given to attackers when they drop into the box -->
+    <kit name="attacker-drop" force="true">
+        <potion amplifier="0" duration="0">speed</potion>
+        <potion amplifier="5" duration="3">damage resistance</potion>
+    </kit>
+</kits>
+
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>shears</item>
+</itemremove>
+
+<filters>
+    <filter name="defenders-only">
+        <team>defenders</team>
+    </filter>
+
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+
+    <filter name="deny-water">
+        <deny>
+            <any>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </deny>
+    </filter>
+
+    <filter name="deny-manual-endstone">
+        <not>
+            <all>
+                <block>ender stone</block>
+                <any>
+                    <filter name="allow-players"/>
+                    <filter name="deny-all"/>
+                </any>
+            </all>
+        </not>
+    </filter>
+</filters>
+
+<regions>
+    <!-- the entire inside of the box -->
+    <cuboid name="box" min="2,0,2" max="82,45,82"/>
+
+    <!-- the attacker drop chute, including walls -->
+    <union name="attacker-drop">
+        <cuboid min="2,9,2" max="8,45,8"/>
+        <cuboid min="2,0,2" max="13,9,13"/>
+    </union>
+
+    <!-- the defender spawn structure -->
+    <cuboid name="defender-spawn" min="69,2,69" max="80,10,80"/>
+
+    <!-- the icicle -->
+    <cuboid name="icicle" min="72,10,72" max="77,35,77"/>
+
+    <!-- water exclusion region around the icicle -->
+    <cuboid name="icicle-zone" min="67,0,67" max="82,45,82"/>
+
+    <!-- protected regions around portals -->
+    <union name="portals">
+        <!-- left side entrances -->
+        <cuboid min="54,29,78" max="57,33,81"/>
+        <cuboid min="49,19,73" max="52,23,76"/>
+        <cuboid min="44,9,78" max="47,13,81"/>
+
+        <!-- left side exits -->
+        <cuboid min="3,29,78" max="6,33,81"/>
+        <cuboid min="3,19,73" max="6,23,76"/>
+        <cuboid min="8,9,78" max="11,13,81"/>
+        
+        <!-- right side entrances -->
+        <cuboid min="78,29,54" max="81,33,57"/>
+        <cuboid min="73,14,49" max="76,18,52"/>
+        <cuboid min="78,4,44" max="81,8,47"/>
+
+        <!-- right side exits -->
+        <cuboid min="78,29,3" max="81,33,6"/>
+        <cuboid min="73,14,3" max="76,18,6"/>
+        <cuboid min="78,4,8" max="81,8,11"/>
+    </union>
+
+    <!-- no-build/no-destroy zones -->
+    <apply block="deny-all" message="You may not place or break blocks outside of the BoomBox">
+        <negative>
+            <region name="box"/>
+        </negative>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the drop chute area">
+        <region name="attacker-drop"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not modify the spawn area">
+        <region name="defender-spawn"/>
+    </apply>
+
+    <!-- don't allow water around the Icicle -->
+    <apply block="deny-water" message="You may not place `9water`c inside the fortress walls">
+        <region name="icicle-zone"/>
+    </apply>
+
+    <!-- remove speed and apply resistance when an attacker drops into the box -->
+    <apply kit="attacker-drop">
+        <region name="box"/>
+    </apply>
+
+    <!-- prevent manual mining of the monument -->
+    <apply block-break="deny-manual-endstone" message="The monument can only be damaged with TNT">
+        <region name="icicle"/>
+    </apply>
+
+    <!-- protect the area around portals -->
+    <apply block="deny-all" message="You may not modify the teleporters">
+        <region name="portals"/>
+    </apply>
+
+    <!-- prevent beacons from being used -->
+    <apply use="deny-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+
+<destroyables>
+    <destroyable name="Endstone Pillar" owner="defenders" show-progress="true" materials="ender stone">
+        <region name="icicle"/>
+    </destroyable>
+</destroyables>
+
+<time result="defenders">15m</time>
+
+<portals>
+    <!-- left side -->
+    <portal x="-51" filter="defenders-only">
+        <block location="55,30,79"/>
+    </portal>
+    <portal x="-46" filter="defenders-only">
+        <block location="50,20,74"/>
+    </portal>
+    <portal x="-36" filter="defenders-only">
+        <block location="45,10,79"/>
+    </portal>
+
+    <!-- right side -->
+    <portal z="-51" filter="defenders-only">
+        <block location="79,30,55"/>
+    </portal>
+    <portal z="-46" filter="defenders-only">
+        <block location="74,15,50"/>
+    </portal>
+    <portal z="-36" filter="defenders-only">
+        <block location="79,5,45"/>
+    </portal>
+</portals>
+
+</map>

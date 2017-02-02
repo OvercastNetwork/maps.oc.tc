@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Fort Wars</name>
+<version>1.1.2</version>
+<objective>Destroy the enemy's flag!</objective>
+<authors>
+    <author uuid="5bd4f5c6-f60c-44b1-9c37-c27a7db35ec6"/> <!-- whiskers434 -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Fix some stuff."/> <!-- IM_A_H0B0 -->
+</contributors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<kits>
+    <kit name="shears">
+        <item slot="35" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<spawns>
+    <spawn team="red" safe="true" kit="shears" yaw="0">
+        <point>-151.5,38,-141.5</point>
+    </spawn>
+    <spawn team="blue" safe="true" kit="shears" yaw="180">
+        <point>-151.5,38,-165.5</point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-152,38,-154" radius="4" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="blue-base-tnt">
+        <any>
+            <not>
+                <all>
+                    <team>blue</team>
+                    <block>tnt</block>
+                </all>
+            </not>
+            <team>red</team>
+        </any>
+    </filter>
+    <filter name="red-base-tnt">
+        <any>
+            <not>
+                <all>
+                    <team>red</team>
+                    <block>tnt</block>
+                </all>
+            </not>
+            <team>blue</team>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable region!">
+    <negative name="playable-inverse">
+        <rectangle min="-16,-254" max="-117,-53"/>
+    </negative>
+    </apply>
+    <apply enter="only-blue">
+        <cuboid min="-62,8,-254" max="-71,13,-253"/>
+    </apply>
+    <apply enter="only-red">
+        <cuboid min="-71,8,-54" max="-62,13,-53"/>
+    </apply>
+    <apply block="deny-all">
+        <cuboid min="-117,1,-254" max="-16,2,-198"/>
+        <cuboid min="-117,1,-109" max="-16,2,-53"/>
+    </apply>
+    <apply block-place="red-base-tnt" message="You may not place TNT in your own base!">
+        <rectangle min="-88,-96" max="-45,-53"/>
+    </apply>
+    <apply block-place="blue-base-tnt" message="You may not place TNT in your own base!">
+        <rectangle min="-88,-254" max="-45,-211"/>
+    </apply>
+    <apply enter="deny-all" message="`eYou may not enter the observers spawn!">
+        <rectangle min="-162,-164" max="-141,-143"/>
+    </apply>
+</regions>
+<destroyables name="Flag" completion="100%" materials="wool:14;wool:11;wool:15">
+    <destroyable owner="blue">
+        <cuboid min="-72,36,-233" max="-62,24,-232"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="-61,36,-74" max="-71,24,-75"/>
+    </destroyable>
+</destroyables>
+<tutorial>
+    <stage title="Fort Wars">
+        <message>
+            <line>This is Fort Wars, `aDestroy the Monument (DTM) `rmap.</line>
+            <line>The objective is to destroy the other team's `bflag`r, on the top of their `bcastle`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-70" pitch="10">-144,60,-203</point>
+        </teleport>
+    </stage>
+    <stage title="Supplies">
+        <message>
+            <line>This is the `bsupply room`r.</line>
+            <line>It gets blown up easily, `cbe careful`r!</line>
+            <line>It has everything you need to go into battle.</line>
+        </message>
+        <teleport>
+            <point yaw="0">-66.5,8,-238</point>
+        </teleport>
+    </stage>
+    <stage title="The Flag">
+        <message>
+            <line>This is the `bflag`r. If it gets `cdestroyed`r, the other team wins.</line>
+        </message>
+        <teleport>
+            <point yaw="140" pitch="10">-54,35,-218</point>
+        </teleport>
+    </stage>
+    <stage title="The Blimp">
+        <message>
+            <line>This is the `bblimp`r.</line>
+            <line>It has ready-made TNT cannons aimed at the flag.</line>
+            <line>It also has some hidden goodies at it's center.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">-121.5,55,-152</point>
+        </teleport>
+    </stage>
+</tutorial>s
+</map>

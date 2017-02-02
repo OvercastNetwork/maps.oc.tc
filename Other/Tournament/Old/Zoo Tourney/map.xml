@@ -1,0 +1,89 @@
+<map proto="1.3.0">
+<name>Zoo:TD</name>
+<version>1.0.1-tourney</version>
+<objective>Be the team with the least deaths after the time limit is reached</objective>
+<authors>
+    <author uuid="2fa85349-2276-4850-b7b5-d18c4f4c8376"/> <!-- Solo_Runner -->
+</authors>
+<contributors>
+    <contributor uuid="acc5d8bf-09db-44d2-903a-4a01f8d82356" contribution="XML"/> <!-- sillybillypiggy -->
+    <contributor contribution="Giving use of heads">The Project Ares community</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<regions>
+    <apply block="deny-all">
+        <cuboid name="Main-Area" min="345,-oo,-1413" max="486,104,-1270"/>
+    </apply>
+</regions>
+<playable>
+    <complement>
+        <region name="Main-Area"/>
+        <union>
+            <circle center="365.5,-1362.5" radius="19" />
+            <circle center="365.5,-1320.5" radius="19" />
+            <rectangle min="377,-1336" max="380,-1332" />
+            <rectangle min="377,-1351" max="380,-1347" />
+            <rectangle min="338,-1351" max="379,-1332" />
+
+            <!-- Other side -->
+            <circle center="465.5,-1362.5" radius="19" />
+            <circle center="465.5,-1320.5" radius="19" />
+            <rectangle min="451,-1336" max="454,-1332" />
+            <rectangle min="451,-1351" max="454,-1347" />
+            <rectangle min="452,-1351" max="492,-1332" />
+        </union>
+    </complement>
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="16">cooked fish</item>
+        <item slot="3" damage="8258">potion</item><!-- potion of swiftness 1 -->
+        <item slot="4" amount="2">golden apple</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid name="spawn-blue" min="413,81,-1423" max="417,81,-1419"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid name="spawn-red" min="417,81,-1260" max="413,81,-1263"/>
+    </spawn>
+    <default>310,110,-1342</default>
+</spawns>
+<score>
+    <time>600</time>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>glass bottle</item>
+</itemremove>
+</map>

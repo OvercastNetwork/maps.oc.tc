@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>War Wars</name>
+<version>150</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="177803b2-797c-4089-aae1-5702ca259e2c"/> <!-- Onsole -->
+</authors>
+<rules>
+    <rule>No building at spawn</rule>
+    <rule>No fighting at spawn</rule>
+    <rule>No using a bucket on lava</rule>
+    <rule>No damaging your own core</rule>
+</rules>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<teams>
+    <team color="blue" max="100">Blue</team>
+    <team color="dark red" max="100">Red</team>
+</teams>
+<regions>
+    <negative name="outside"><rectangle name="playable" min="-4,16" max="46,45" /></negative>
+</regions>
+<portals>
+    <portal y="-15000">
+        <region name="outside"/>
+    </portal>
+</portals>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+</blitz>
+<spawns>
+    <spawn team="blue" yaw="90">29.5,22,29.5</spawn>
+    <spawn team="red" yaw="-90">17.5,22,29.5</spawn>
+    <default yaw="180">24,22,37</default>
+</spawns>
+<cores material="obsidian" leak="3">
+    <core team="blue"><cuboid min="31,27,28" max="34,30,31"/></core>
+    <core team="red"><cuboid min="14,27,28" max="17,30,31"/></core>
+</cores>
+</map>

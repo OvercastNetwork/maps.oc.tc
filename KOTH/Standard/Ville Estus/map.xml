@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Villa Estus</name>
+<version>1.0.2</version>
+<objective>Capture the hill to gain 500 points first!</objective>
+<authors>
+    <author uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f"/> <!-- Veiyl -->
+</authors>
+<teams>
+    <team color="blue" max="12">Blue</team>
+    <team color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="29" amount="64">arrow</item>
+        <item slot="2" amount="16">glass</item>
+        <item slot="3" damage="8261">potion</item>
+        <item slot="4" amount="32">bread</item>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <potion duration="3">heal</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="allow-glass" parents="deny-all">
+        <allow>
+            <block>glass</block>
+        </allow>
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="allow-glass" use="deny-beacon">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-blue" message="This is the `9BLUE TEAM `cspawn area.">
+        <cylinder base="-9.5,13,47.5" radius="5" height="oo"/>
+    </apply>
+    <apply enter="only-red" message="This is the `4RED TEAM `cspawn area.">
+        <cylinder base="10.5,13,-46.5" radius="5" height="oo"/>
+    </apply>
+    <apply block="deny-all">
+        <cylinder base="10.5,13,-46.5" radius="7" height="oo"/>
+        <cylinder base="-9.5,13,47.5" radius="7" height="oo"/>
+        <cylinder base="0.5,14,0.5" radius="5" height="6"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <cylinder base="-9.5,14,47.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="45">
+        <cylinder base="10.5,14,-46.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-91.5,23,0.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<king>
+    <hills>
+        <hill name="Hill" capture-time="10s" points="1">
+            <capture>
+                <cylinder base="0.5,14,0.5" radius="5" height="3"/>
+            </capture>
+            <progress>
+                <cuboid min="-5,14,-5" max="6,15,6"/>
+            </progress>
+            <!-- Hacks at its finest -->
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>500</limit>
+    <king/>
+</score>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>exp bottle</item>
+    <item>bread</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>glass</item>
+    <item>stick</item>
+    <item>wood</item>
+    <item>gold ingot</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+</itemremove>
+<killreward>
+    <item>exp bottle</item>
+    <item damage="8261">potion</item>
+    <item amount="8">glass</item>
+    <item>gold ingot</item>
+</killreward>
+<tutorial>
+    <stage title="King of the Hill (KotH)">
+        <message>
+            <line>`rThis map is a `aKing of the Hill `r(KotH) map</line>
+            <line>`rThe objective is to capture the center hill.</line>
+            <line>`rBe the first team to get `c500 `rpoints!</line>
+        </message>
+        <teleport>
+            <point yaw="-65" pitch="15">-55,32,-17</point>
+        </teleport>
+    </stage>
+    <stage title="Center Hill">
+        <message>
+            <line>`rYour team gets points whenever you `ahave `rcontrol on this hill.</line>
+            <line>`rIf you `close `rcontrol, you no longer get any points.</line>
+        </message>
+        <teleport>
+            <point yaw="155" pitch="5">6,15,12</point>
+        </teleport>
+    </stage>
+    <stage title="Enchantment Tables">
+        <message>
+            <line>`rOn 2 of the 4 balloons, there is an `aenchanting table`r.</line>
+            <line>`rUse your glass to tower up to reach it!</line>
+        </message>
+        <teleport>
+            <point yaw="-115" pitch="10">-42,22,15</point>
+        </teleport>
+    </stage>
+    <stage title="Kill Rewards">
+        <message>
+            <line>`rEvery time you kill someone, you get.</line>
+            <line>`rAn exp bottleer, an `cinstant health potion`r, some glass, and a `6golden ingot`r.</line>
+            <line>`rUse the `aworkbench `rhere or in the houses to craft gold armor.</line>
+        </message>
+        <teleport>
+            <point yaw="-140" pitch="20">9,15,-45</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

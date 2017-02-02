@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Inheritance</name>
+<version>1.5.2</version>
+<objective>Leak lava from both of the enemy's obsidian cores</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="green" max="32">Green</team>
+</teams>
+<kits>
+    <kit name="potion">
+        <potion duration="10" amplifier="4">damage resistance</potion>
+        <potion duration="10" amplifier="1">heal</potion>
+        <potion duration="20" amplifier="1">increase damage</potion>
+    </kit>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" damage="2" amount="64">log</item>
+        <item slot="7" damage="8229">potion</item> <!-- instant health 2 -->
+        <item slot="8" amount="64">apple</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="7FCC19" unbreakable="true">leather helmet</helmet>
+        <chestplate color="7FCC19" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="7FCC19" unbreakable="true">leather leggings</leggings>
+        <boots color="7FCC19" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="potion">
+        <spawn team="blue" kit="blue" yaw="90">
+            <cylinder base="947,31,969" radius="3" height="0"/>
+        </spawn>
+        <spawn team="green" kit="green" yaw="270">
+            <cylinder base="733,31,969" radius="3" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="180">
+        <cylinder base="839,152,936" radius="5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+</filters>
+<regions>
+    <!-- Main Area -->
+    <apply block="deny-all" message="You may not build outside the playable region!">
+    <negative name="playable-inverse">
+        <rectangle min="724,1020" max="957,919"/>
+    </negative>
+    </apply>
+    <!-- Spawn Protection -->
+    <apply block="deny-all" message="You may not modify the spawn areas!">
+        <!-- Blue Side-->
+        <cylinder base="944,15,969" radius="9" height="27"/>
+        <cuboid name="blue-spawn-front" min="936,28,962" max="932,36,977"/>
+        <!-- Green Side -->
+        <cylinder base="736,15,969" radius="9" height="27"/>
+        <cuboid name="green-spawn-front" min="745,28,977" max="749,36,962"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter the Green Team's spawn!">
+        <region name="green-spawn-front"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the Blue Team's spawn!">
+        <region name="blue-spawn-front"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="5">
+    <cores team="green">
+        <core name="Left Core">
+            <cuboid min="773,41,995" max="768,46,1000"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="773,41,944" max="768,46,939"/>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="Left Core">
+            <cuboid min="908,41,944" max="913,46,939"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="908,41,995" max="913,46,1000"/>
+        </core>
+    </cores>
+</cores>
+<maxbuildheight>50</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>glass bottle</item>
+    <item>string</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>seeds</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold block</item>
+</itemremove>    
+</map>

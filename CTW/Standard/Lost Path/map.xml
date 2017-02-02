@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Lost Path</name>
+<version>1.1.1</version>
+<objective>Capture the two enemy wools and place it at your victory monument!</objective>
+<authors>
+    <author uuid="421c2643-938d-400c-bbf6-4f9623735f82"/> <!-- _CakeSmasher_ -->
+</authors>
+<contributors>
+    <contributor uuid="faacdbc5-3d96-4d24-908c-24d0d977852f"/> <!-- mhwerkman123 -->
+</contributors>
+<teams>
+    <team color="dark red" max="24">Red</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="teams" yaw="170">
+        <point>601,24,-990</point>
+    </spawn>
+    <spawn team="blue" kit="teams" yaw="-10">
+        <point>601,24,-1225</point>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="728,64,-1107" radius="3" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="30" enchantment="durability:3">iron spade</item>
+        <item slot="4" amount="64" damage="1">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64">cooked beef</item>
+        <item slot="7" amount="3">golden apple</item>
+        <item slot="8" amount="32">ladder</item>
+        <potion duration="8" amplifier="1">heal</potion>
+        <potion duration="8" amplifier="2">damage resistance</potion>
+    </kit>
+</kits>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-55" min="-oo,56,-oo" max="oo,oo,oo"/>
+    <cuboid name="below-10" min="-oo,-oo,-oo" max="oo,10,oo"/>
+    <union name="void-a">
+        <rectangle name="main-void" min="621,-1020" max="582,-1195"/>
+        <rectangle name="purple-side-void" min="621,-1144" max="705,-1123"/>
+        <rectangle name="pink-side-void" min="582,-1159" max="498,-1180"/>
+        <rectangle name="green-side-void" min="582,-1071" max="498,-1092"/>
+        <rectangle name="lime-side-void" min="621,-1056" max="705,-1035"/>
+    </union>
+    <union name="under">
+        <cuboid name="under-green-pink" min="545,-oo,-1071" max="513,23,-1180"/>
+        <cuboid name="under-green" min="514,-oo,-1071" max="498,31,-1092"/>
+        <cuboid name="under-pink" min="514,-oo,-1159" max="498,31,-1180"/>
+        <cuboid name="under-lime-purple" min="658,-oo,-1144" max="690,23,-1035"/>
+        <cuboid name="under-lime" min="689,-oo,-1056" max="705,31,-1035"/>
+        <cuboid name="under-purple" min="514,-oo,-1159" max="498,31,-1180"/>
+    </union>
+    <complement name="void-b">
+        <region name="all"/>
+        <region name="void-a"/>
+    </complement>
+    <union name="spawn-islands">
+        <rectangle name="blue-spawn-island" min="582,-1195" max="641,-1220"/>
+        <rectangle name="red-spawn-island" min="621,-1020" max="562,-995"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="blue-spawn-block" min="598,16,-1219" max="605,29,-1231"/>
+        <rectangle name="blue-spawn-enter" min="598,-1219" max="605,-1231"/>
+        <cuboid name="red-spawn-block" min="605,16,-996" max="598,29,-598"/>
+        <rectangle name="red-spawn-enter" min="605,-996" max="598,-598"/>
+    </union>
+    <union name="blue-wool-rooms"> <!-- Blue must enter -->
+        <rectangle name="green-wool-room" min="514,-1071" max="498,-1092"/>
+        <block name="green-xtra-block">514,45,-1082</block>
+        <rectangle name="lime-wool-room" min="689,-1056" max="705,-1035"/>
+        <block name="lime-xtra-block">688,45,-1046</block>
+    </union>
+    <union name="red-wool-rooms"> <!-- Red must enter -->
+        <rectangle name="purple-wool-room" min="689,-1144" max="705,-1123"/>
+        <block name="purple-xtra-block">688,45,-1134</block>
+        <rectangle name="pink-wool-room" min="514,-1159" max="498,-1180"/>
+        <block name="pink-xtra-block">514,45,-1170</block>
+    </union>
+    <!-- Applied -->
+    <apply block="no-void" message="Don't edit the void area!">
+        <region name="void-b"/>
+    </apply>
+    <apply block="deny-all" message="You have reach the maximum build height!">
+        <region name="above-55"/>
+    </apply>
+    <apply block="deny-all" message="You have reach the minimum build height!">
+        <region name="below-10"/>
+    </apply>
+    <apply block="deny-all" message="Don't modify the spawns!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="only-red" message="This is a `4`lRED TEAM `r`conly wool room.">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply block="wool-room-red" use="only-red-usage">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="This is a `9`lBLUE TEAM `r`conly wool room."> 
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block="wool-room-blue" use="only-blue-usage">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block-break="allow-iron" block-place="deny-all" message="You may only break iron blocks in the spawn area!">
+        <region name="spawn-islands"/>
+    </apply>
+    <apply enter="only-blue" message="This is a `9`lBLUE TEAM `r`conly spawn area."> 
+        <region name="blue-spawn-enter"/>
+    </apply>
+    <apply enter="only-red" message="This is a `4`lRED TEAM `r`conly spawn area."> 
+        <region name="red-spawn-enter"/>
+    </apply>
+    <apply block="deny-all" message="Under bridging is illegal on this map!">
+        <region name="under"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="allow-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="wool-room-red" parents="only-red">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="wool-room-blue" parents="only-blue">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<wools team="red">
+    <wool color="pink">
+        <block>602,25,-986</block>
+    </wool>
+    <wool color="purple">
+        <block>600,25,-986</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="green">
+        <block>602,25,-1230</block>
+    </wool>
+    <wool color="lime">
+        <block>600,25,-1230</block>
+    </wool>
+</wools>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>log</item>
+    <item>redstone</item>
+    <item>cooked beef</item>
+    <item>ladder</item>
+    <item>glass</item>
+</itemremove>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="40" pitch="10">672,52,-1145</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Tents">
+        <message>
+            <line>`rDefend `rthe tents on your side, and `center `rthe ones on the emeny side.</line>
+            <line>There are `aspecial goodies `rinside that will help you fight your way out.</line>
+        </message>
+        <teleport>
+            <point yaw="-125" pitch="10">675,44,-1120</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Supplies">
+        <message>
+            <line>Here is the iron supply for `9Blue Team`r. Note that `cRed Team `rhas the same thing on their side.</line>
+            <line>You can craft iron armor to prepare yourself for battle.</line>
+        </message>
+        <teleport>
+            <point yaw="125" pitch="10">650,35,-1188</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Roar</name>
+<version>1.0.1</version>
+<objective>Destroy both core and monument.</objective>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="32" max-overfill="45">Red</team>
+    <team id="blue" color="blue" max="32" max-overfill="45">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">diamond sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">cooked fish</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64">ladder</item>
+        <item slot="7" amount="64">log</item>
+        <item slot="8" amount="3">golden apple</item>
+        <item slot="27" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="29" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate enchantment="protection explosions:2;protection projectile:1">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <cuboid min="-185,251,126" max="-187,251,128"/>
+            <cuboid min="-123,251,126" max="-125,251,128"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <cuboid min="-125,251,12" max="-123,251,14"/>
+            <cuboid min="-187,251,15" max="-185,251,13"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="-103,38,70" max="-101,38,72"/>
+        </regions>
+    </default>
+</spawns>
+<itemremove>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ladder</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>shears</item>
+    <item>wood</item>
+    <item>glass</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="blue">
+        <region><cuboid min="-151,27,45" max="-159,35,37"/></region>
+    </core>
+    <core team="red">
+        <region><cuboid min="-159,27,104" max="-151,35,96"/></region>
+    </core>
+</cores>
+<destroyables name="Monument" materials="gold block" completion="100%">
+    <destroyable owner="blue">
+        <region><cuboid min="-157,22,-12" max="-153,27,-8"/></region>
+    </destroyable>
+    <destroyable owner="red">
+        <region><cuboid min="-157,22,150" max="-153,27,154"/></region>
+    </destroyable>
+</destroyables>
+<regions>
+    <cuboid name="main" min="-200,0,157" max="-110,44,-17"/>
+    <apply block="deny-all" message="You may not build outside the map!">
+        <negative><region name="main"/></negative>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn drops!">
+        <circle name="red-spawn-1" center="-186.5,127.5" radius="6"/>
+        <circle name="red-spawn-2" center="-124.5,127.5" radius="6"/>
+        <circle name="blue-spawn-1" center="-124.5,14.5" radius="6"/>
+        <circle name="blue-spawn-2" center="-186.5,14.5" radius="6"/>
+    </apply>
+</regions>
+<modes>
+    <mode after="15m" material="gold block" name="`6Gold Core Mode"/>
+    <mode after="25m" material="glass" name="`7Glass Core Mode"/>
+</modes>
+<timelock>on</timelock>
+</map>

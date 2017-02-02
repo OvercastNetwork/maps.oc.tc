@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="blitz-global.xml"/>
+<name>Horizon</name>
+<version>1.1.3</version>
+<objective>Eliminate the other team before 7 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="a6a99e23-34c4-4957-8974-b78b4da9ce7c"/> <!-- AntonyMo -->
+</contributors>
+<teams>
+    <team color="dark red" max="15">Red</team>
+    <team color="blue" max="15">Blue</team>
+</teams>
+<blitz>
+    <time>7m</time> 
+    <lives>3</lives> 
+    <title>Blitz: DTM</title>
+</blitz>
+<destroyables name="Left Monument" completion="100%">
+    <destroyable owner="blue" materials="wool:11">
+        <cylinder base="1460.5,3,-665.5" radius="1" height="6"/>
+    </destroyable>
+    <destroyable owner="red" materials="wool:14">
+        <cylinder base="1398.5,3,-577.5" radius="1" height="6"/>
+    </destroyable>
+</destroyables>
+<destroyables name="Right Monument" completion="100%">
+    <destroyable owner="blue" materials="wool:11">
+        <cylinder base="1398.5,3,-665.5" radius="1" height="6"/>
+    </destroyable>
+    <destroyable owner="red" materials="wool:14">
+        <cylinder base="1460.5,3,-577.5" radius="1" height="6"/>
+    </destroyable>
+</destroyables>
+<spawns>
+    <spawn team="red" kit="red" yaw="-180">
+        <point>1429.5,3,-544.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <point>1429.5,3,-698.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="1428,31,-623" max="1431,31,-620"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="3" amount="8">snow ball</item>
+        <helmet color="000000">leather helmet</helmet>
+        <boots color="000000">leather boots</boots>
+        <leggings>iron leggings</leggings>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo" amplifier="6">jump</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="allow-wool">
+        <allow>
+            <block>wool:11</block>
+            <block>wool:14</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="allow-wool" block-place="deny-all" use="deny-beacon">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>off</timelock>
+<killreward>
+    <item amount="6">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>snow ball</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item damage="11">wool</item>
+    <item damage="14">wool</item>
+</itemremove>
+</map>

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Directrix</name>
+<version>0.3</version>
+<gamemode>ctf</gamemode>
+<gamemode>rage</gamemode>
+<objective>Capture the enemy's flag 3 times to win!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Inspiration">NOVA 2</contributor>
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<flags>
+    <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue">
+        <post yaw="-180">-8.5,22,139.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-8.5,22,-16.5" radius="2" height="2"/>
+            </region>
+            <capture-filter>
+                <not>
+                    <flag-carried>blue-flag</flag-carried>
+                </not>
+            </capture-filter>
+        </net>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red" return-time="45s">
+        <post yaw="0">-8.5,22,-16.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-8.5,22,139.5" radius="2" height="2"/>
+            </region>
+            <capture-filter>
+                <not>
+                    <flag-carried>red-flag</flag-carried>
+                </not>
+            </capture-filter>
+        </net>
+    </flag>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+<spawns>
+    <spawn team="blue" kit="blue" spread="true">
+        <regions>
+            <point yaw="180">-8.5,12,1.5</point>
+            <point yaw="0">-8.5,12,1.5</point>
+            <point yaw="-90">-1.5,12,14.5</point>
+            <point yaw="90">-15.5,12,14.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red" spread="true">
+        <regions>
+            <point yaw="180">-8.5,12,121.5</point>
+            <point yaw="0">-8.5,12,121.5</point>
+            <point yaw="-90">-1.5,12,108.5</point>
+            <point yaw="90">-15.5,12,108.5</point>
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions yaw="90" pitch="-5">
+            <point>40.5,23,61.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="all">
+        <item slot="0" name="`aDagger" unbreakable="true" enchantment="damage all:10">stone sword</item>
+        <item slot="1" name="`bInstagib" unbreakable="true" enchantment="arrow damage:10">bow</item>
+        <item slot="8" amount="3">arrow</item>
+        <chestplate color="191919" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="191919" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="191919" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="3" amplifier="5">damage resistance</potion>
+        <potion duration="3">absorption</potion>
+        <potion duration="oo">speed</potion>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="334CB2" unbreakable="true" locked="true">leather helmet</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333" unbreakable="true" locked="true">leather helmet</helmet>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="no-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" use="no-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Top level jump pads -->
+    <apply velocity="0, 0.8, -3">
+        <cuboid    name="r-1" min="9,21,119" max="12,23,117"/>
+        <translate region="r-1" offset="-38,0,0"/>
+        <translate region="r-1" offset="0,0,-97"/>
+    </apply>
+    <apply velocity="0, 0.8, 3">
+        <cuboid    name="r-2" min="-26,21,101" max="-29,23,103"/>
+        <translate region="r-2" offset="0,0,-97"/>
+        <translate region="r-2" offset="38,0,-97"/>
+    </apply>
+    <!-- To center sides jump pads -->
+    <apply velocity="-6.7, 1.8, 0">
+        <cuboid name="n-1" min="-25,12,63" max="-28,14,60"/>
+    </apply>
+    <apply velocity="6.7, 1.8, 0">
+        <cuboid name="n-2" min="8,12,60" max="11,14,63"/>
+    </apply>
+    <!-- To top center jump pads -->
+    <apply velocity="10, 2.2, 0">
+        <cuboid name="n-3" min="-51,23,60" max="-48,25,63"/>
+    </apply>
+    <apply velocity="-10, 2.2, 0">
+        <cuboid name="n-4" min="34,23,63" max="32,25,60"/>
+    </apply>
+    <!-- High angle jump pads -->
+    <apply velocity="0, 1.5, 1.7">
+        <cuboid    name="r-3" min="7,12,111" max="4,14,113"/>
+        <translate region="r-3" offset="-28,0,0"/>
+    </apply>
+    <apply velocity="0, 1.5, -1.7">
+        <translate region="r-3" offset="0,0,-101"/>
+        <translate region="r-3" offset="-28,0,-101"/>
+    </apply>
+    <!-- "Chicago-midway" jump pads -->
+    <apply velocity="0, 0.8, 3.7">
+        <cuboid name="r-4" min="-7,12,129" max="-10,14,131"/>
+    </apply>
+    <apply velocity="0, 0.8, -3.7">
+        <mirror region="r-4" origin="-8.5,0,61.5" normal="0,0,-1"/>
+    </apply>
+    <!-- To above the flag jump pads -->
+    <apply velocity="0, 2.3, -0.7">
+        <cuboid name="r-5" min="-7,11,152" max="-10,14,155"/>
+    </apply>
+    <apply velocity="0, 2.3, 0.7">
+        <mirror region="r-5" origin="-8.5,0,61.5" normal="0,0,-1" name="b-5"/>
+    </apply>
+    <!-- Next to high angle jump pads -->
+    <apply velocity="-0.3, 1.1, 3.6">
+        <cuboid name="r-6" min="-37,15,102" max="-34,17,104"/>
+    </apply>
+    <apply velocity="0.3, 1.1, -3.6">
+        <translate region="r-6" offset="54,0,-83"/>
+    </apply>
+    <!-- Up to the tower jump pads -->
+    <apply velocity="0, 1.7, 0">
+        <cuboid name="r-7" min="39,15,20" max="40,16,22"/>
+        <translate region="r-7" offset="-96,0,81"/>
+    </apply>
+    <!-- Tower side to side jump pads -->
+    <apply velocity="0, 2, 9">
+        <cuboid name="r-8" min="40,15,28" max="37,17,30"/>
+    </apply>
+    <apply velocity="0, 2, -9">
+        <translate region="r-8" offset="-94,0,63"/>
+    </apply>
+    <!-- Side island to side jump pads -->
+    <apply velocity="0, 1.5, -7">
+        <cuboid name="r-9" min="37,21,91" max="40,23,89"/>
+    </apply>
+    <apply velocity="0, 1.5, 7">
+        <translate region="r-9" offset="-94,0,-57"/>
+    </apply>
+    <!-- Side island to base jump pads -->
+    <apply velocity="-3.1, 1.3, 0">
+        <cuboid name="r-10" min="35,21,126" max="33,23,123"/>
+    </apply>
+    <apply velocity="3.1, 1.3, 0">
+        <translate region="r-10" offset="-85,0,-126"/>
+    </apply>
+    <!-- Second island to side island jump pads -->
+    <apply velocity="3.5, 1, 0">
+        <cuboid name="r-11" min="15,21,95" max="17,23,98"/>
+    </apply>
+    <apply velocity="-3.5, 1, 0">
+        <translate region="r-11" offset="-49,0,-70"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bow</item>
+    <item>stone sword</item>
+</itemremove>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="3">arrow</item>
+</killreward>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<rage/>
+<respawn delay="3.5s"/>
+</map>

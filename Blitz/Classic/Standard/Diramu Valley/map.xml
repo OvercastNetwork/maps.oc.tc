@@ -1,0 +1,97 @@
+<map proto="1.4.0" game="Blitz">
+<include src="blitz-global.xml" />
+<name>Diramu Valley</name>
+<version>0.1.2</version>
+<objective>Eliminate the other team within 8 minutes.</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<blitz />
+<time>8m</time>
+<teams>
+    <team id="redTeam"  color="dark red" max="16">Red</team>
+    <team id="blueTeam" color="blue"     max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="main">
+        <item slot="0"                                     unbreakable="true"  material="stone sword" />
+        <item slot="1"                                     unbreakable="true"  material="bow" />
+        <item slot="8" amount="28"                                             material="arrow" />
+        <chestplate enchantment="protection environmental" unbreakable="true"  material="gold chestplate" />
+        <potion duration="5"     amplifier="25">damage resistance</potion>
+        <potion duration="3"     amplifier="25">heal</potion>
+        <potion duration="2m"                  >absorption</potion>
+    </kit>
+    <kit id="redKit" parents="main">
+        <item slot="2" amount="8" damage="14"                                    material="stained glass" />
+        <helmet color="cd0000"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="cd0000" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+    <kit id="blueKit" parents="main">
+        <item slot="2" amount="8" damage="11"                                    material="stained glass" />
+        <helmet color="0066cc"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="0066cc" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+</kits>
+<spawns>
+    <default                               region="defaultSpawn" yaw="-90" />
+    <spawn   team="redTeam"  kit="redKit"  region="redSpawn"     yaw="180" />
+    <spawn   team="blueTeam" kit="blueKit" region="blueSpawn"    yaw="0" />
+</spawns> 
+<filters>
+    <all id="allowedBlocks">
+        <any>
+            <material>long grass</material>
+            <material>double plant</material>
+            <material>red rose</material>
+            <material>vine</material>
+            <material>water lily</material>
+            <material>stained glass</material>
+            <material>water</material>
+            <material>stationary water</material>
+            <material>leaves</material>
+            <material>sugar cane block</material>
+            <material>tripwire</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+</filters>
+<regions>
+    <point id="defaultSpawn">-91.5,8,141.5</point>
+    <point id="redSpawn"    >-91.5,24,259.5</point>
+    <point id="blueSpawn"   >-91.5,24,145.5</point>
+    <apply block="allowedBlocks" message="You may not interact with that block here!" />
+</regions>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>gold chestplate</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>seeds</item>
+    <item>double plant</item>
+    <item>red rose</item>
+    <item>vine</item>
+    <item>water lily</item>
+    <item>stained glass</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>sugar cane</item>
+    <item>string</item>
+</itemremove>
+<killreward>
+    <item amount="6">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>  
+<maxbuildheight>32</maxbuildheight>
+</map>

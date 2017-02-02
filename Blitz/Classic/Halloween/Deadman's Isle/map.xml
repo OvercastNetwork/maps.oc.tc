@@ -1,0 +1,85 @@
+<map proto="1.4.0" game="Blitz">
+<include src="blitz-global.xml" />
+<name>Deadwater: Deadman's Isle</name>
+<version>1.1.0</version>
+<objective>Eliminate the other team within 8 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<blitz />
+<time>8m</time>
+<teams>
+    <team id="redTeam"  color="dark red" max="12">Red</team>
+    <team id="blueTeam" color="blue"     max="12">Blue</team>
+</teams>
+<kits>
+    <kit id="main">
+        <item slot="0"                                     unbreakable="true"  material="stone sword" />
+        <item slot="1"                                     unbreakable="true"  material="bow" />
+        <item slot="7"                                                         material="milk bucket" />
+        <item slot="8" amount="28"                                             material="arrow" />
+        <chestplate enchantment="protection environmental" unbreakable="true"  material="gold chestplate" />
+        <potion duration="5"     amplifier="25">damage resistance</potion>
+        <potion duration="3"     amplifier="25">heal</potion>
+        <potion duration="2m"                  >absorption</potion>
+    </kit>
+    <kit id="redKit" parents="main">
+        <helmet color="cd0000"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="cd0000" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+    <kit id="blueKit" parents="main">
+        <helmet color="0066cc"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="0066cc" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+    <kit id="wither" force="true">
+        <potion duration="oo" amplifier="3">wither</potion>
+    </kit>
+</kits> 
+<spawns>
+    <default                               region="defaultSpawn" yaw="-90" />
+    <spawn   team="redTeam"  kit="redKit"  region="redSpawn"     yaw="135" />
+    <spawn   team="blueTeam" kit="blueKit" region="blueSpawn"    yaw="40" />
+</spawns>
+<filters>
+    <any id="allowedBlocks">
+        <material>long grass</material>
+        <material>double plant</material>
+        <material>red mushroom</material>
+        <material>brown mushroom</material>
+        <material>vine</material>
+    </any>
+</filters>
+<regions>
+    <point id="defaultSpawn">-3,14.5,1</point>
+    <point id="redSpawn"    >3,7.5,41</point>
+    <point id="blueSpawn"   >3,7.5,-39</point>
+    <below id="applyWither" y="2" />
+
+    <apply kit="wither" region="applyWither" />
+    <apply block="allowedBlocks" />
+</regions>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>gold chestplate</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>seeds</item>
+    <item>red mushroom</item>
+    <item>brown mushroom</item>
+    <item>vine</item>
+</itemremove>
+<killreward>
+    <item amount="6">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

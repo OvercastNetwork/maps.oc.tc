@@ -1,0 +1,87 @@
+<map proto="1.3.6">
+<name>The Suburbs Blitz</name>
+<version>1.0.1</version>
+<objective>Eliminate the enemy team before time runs out!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/>
+    <!-- DoomRobotBoy -->
+</authors>
+<teams>
+    <team show-name-tags="allies" color="dark red" max="14" max-overfill="16">Red</team>
+    <team show-name-tags="allies" color="blue" max="14" max-overfill="16">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="30">
+            <cylinder base="93.5,1.5,67.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="30">
+            <cylinder base="-3.5,3,157.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="135">
+            <cylinder base="41.5,13,162.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true" >stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="32">bread</item>
+        <item slot="3">golden apple</item>
+        <item slot="4">torch</item>
+        <item slot="5" name="`4Brick`7`o" projectile="brick">clay brick</item>
+        <item slot="28" amount="32">arrow</item>
+        <helmet locked="true" unbreakable="true">iron helmet</helmet>
+        <leggings locked="true" unbreakable="true">chainmail leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate locked="true" color="907D66" unbreakable="true">leather chestplate</chestplate>
+        <boots locked="true" color="907D66" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate locked="true" color="907D66" unbreakable="true">leather chestplate</chestplate>
+        <boots locked="true" color="907D66" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="brick" name="Brick" velocity="5" damage="1" projectile="Snowball" throwable="true" cooldown="2s"/>
+</projectiles>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<filters>
+    <filter name="allow-some">
+        <any>
+            <block>stained glass pane</block>
+            <block>thin glass</block>
+            <block>torch</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="allow-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<blitz>
+    <time>8m</time>
+    <lives>1</lives>
+    <title>Blitz</title>
+</blitz>
+<itemremove>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>bread</item>
+    <item>golden apple</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Streamline II</name>
+<version>1.0</version>
+<objective>Destroy and leak the enemy team's obsidian cores.</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="red" color="blue" max="25">Blue</team>
+    <team id="blue" color="dark red" max="25">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue">
+        <regions yaw="180">
+            <cylinder base="0.5,10,89.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red">
+        <regions yaw="0">
+            <cylinder base="0.5,10,-89.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>-72.5,10,0.5</point>
+        </regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="4">
+    <core id="red-back-core"  name="Back Core" team="red"  region="red-back-core"/>
+    <core id="red-front-core"   name="Front Core"  team="red"  region="red-front-core"/>
+    <core id="blue-back-core" name="Back Core" team="blue" region="blue-back-core"/>
+    <core id="blue-front-core"  name="Front Core"  team="blue" region="blue-front-core"/>
+</cores>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="32" amount="64">wood</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="31" amount="64">smooth brick</item>
+        <item slot="8" amount="32">arrow</item>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+        <potion duration="5" amplifier="4">heal</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333" enchantment="protection projectile;protection explosions;durability:2">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="334CB2" enchantment="protection projectile;protection explosions;durability:2">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="core-materials">
+        <block>obsidian</block>
+    </filter>
+    <filter name="no-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+    <filter name="no-water">
+        <not>
+            <any>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </not>
+    </filter>
+    <filter name="manual-break-core">
+        <not>
+            <all>
+                <cause>explosion</cause>
+                <filter name="core-materials"/>
+            </all>
+        </not>
+    </filter>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not modify the void area!">
+        <rectangle name="blue-center" min="28,77" max="-27,33"/>
+        <rectangle name="red-center" min="-27,-77" max="28,-33"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawns!">
+        <cylinder base="0.5,9,89.5" radius="5" height="4"/>
+        <cylinder base="0.5,9,-89.5" radius="5" height="4"/>
+    </apply>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <negative name="outside-cores">
+        <union name="cores">
+            <sphere name="blue-front-core" origin="-19.5,15,26.5"  radius="3.5"/>
+            <sphere name="blue-back-core"  origin="35.5,16,48.5"   radius="3.5"/>
+            <sphere name="red-front-core"  origin="20.5,15,-26.5"  radius="3.5"/>
+            <sphere name="red-back-core"   origin="-34.5,16,-48.5" radius="3.5"/>
+        </union>
+    </negative>
+    <union name="no-water">
+        <circle name="blue-front-water" center="-19.5,26.5"  radius="5"/>
+        <circle name="blue-back-water"  center="35.5,48.5"   radius="5"/>
+        <circle name="red-front-water"  center="20.5,-26.5"  radius="5"/>
+        <circle name="red-back-water"   center="-34.5,-48.5" radius="5"/>
+    </union>
+    <union name="diamond-islands">
+        <cuboid name="island-a" min="-27,9,4" max="-32,12,-3"/>
+        <mirror name="island-b" region="island-a" origin="0.5,0,0.5" normal="-1,0,0"/>
+    </union>
+    <apply block="deny-all" message="You may not bridge outside of the map!">
+        <negative>
+            <rectangle min="44,96" max="-43,-96"/>
+        </negative>
+    </apply>
+    <apply block-place="no-water" region="no-water" message="No water around the core"/>
+    <apply block-break="manual-break-core" region="cores"/>
+    <apply use="no-beacon" region="all" message="Beacons cannot be opened"/>
+</regions>
+<renewables>
+    <renewable rate="0.35" grow="true" particles="true" avoid-entities="true">
+        <region>
+            <region name="diamond-islands"/>
+        </region>
+        <renew>diamond block</renew>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>obsidian</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>clay ball</item>
+    <item>item frame</item>
+    <item>beacon</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron chestplate</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="16">arrow</item>
+    <item amount="16">smooth brick</item>
+    <item amount="16">wood</item>
+    <item amount="16">tnt</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>18</maxbuildheight>
+</map>

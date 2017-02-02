@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Amazing Race">
+<name>The Amazing Race</name>
+<version>1.1.7</version>
+<objective>Get to the finish line!</objective>
+<gamemode>Arcade</gamemode>
+<authors>
+    <author uuid="657b93a7-3f50-4e94-ae3b-189506124836"/> <!-- Tjandra -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+    <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b"/> <!-- Brottweiler -->
+</authors>
+<players min="4" max="8" colors="true"/>
+<spawns>
+    <spawn kit="spawn" yaw="270" region="spawn-point"/>
+    <default>
+        <regions yaw="180"><point>-12,16,9</point></regions>
+    </default>    
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">boat</item>
+        <item slot="1" unbreakable="true">boat</item>
+        <game-mode>adventure</game-mode>
+        <helmet locked="true" color="4C4C4C">leather helmet</helmet>
+        <leggings locked="true" color="4C4C4C">leather leggings</leggings>
+        <boots locked="true" color="4C4C4C">leather boots</boots>
+    </kit>
+    <kit id="air" force="true">
+        <item slot="0">air</item>
+        <item slot="1">air</item>
+        <item slot="2">air</item>
+        <item slot="3">air</item>
+        <item slot="4">air</item>
+        <item slot="5">air</item>
+        <item slot="6">air</item>
+        <item slot="7">air</item>
+        <item slot="8">air</item>
+        <item slot="9">air</item>
+        <item slot="10">air</item>
+        <item slot="11">air</item>
+        <item slot="12">air</item>
+        <item slot="13">air</item>
+        <item slot="14">air</item>
+        <item slot="15">air</item>
+        <item slot="16">air</item>
+        <item slot="17">air</item>
+        <item slot="18">air</item>
+        <item slot="19">air</item>
+        <item slot="20">air</item>
+        <item slot="21">air</item>
+        <item slot="22">air</item>
+        <item slot="23">air</item>
+        <item slot="24">air</item>
+        <item slot="25">air</item>
+        <item slot="26">air</item>
+        <item slot="27">air</item>
+        <item slot="28">air</item>
+        <item slot="29">air</item>
+        <item slot="30">air</item>
+        <item slot="31">air</item>
+        <item slot="32">air</item>
+        <item slot="33">air</item>
+        <item slot="34">air</item>
+        <item slot="35">air</item>
+    </kit>
+    <kit id="elytra kit">
+        <chestplate enchantment="protection environmental:1" unbreakable="true" locked="true">elytra</chestplate>
+    </kit>
+    <kit id="observers">
+        <potion duration="oo" amplifier="3">jump</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+        <chestplate>elytra</chestplate>
+    </kit>
+</kits>
+<filters>
+    <not><filter id="carrying-elytra"/></not>
+    <wearing id="carrying-elytra"><item enchantment="protection environmental:1" unbreakable="true">elytra</item></wearing>
+    <score id="score-0">0</score>
+    <score id="score-1">1</score>
+    <score id="score-2">2</score>
+    <score id="score-3">3</score>
+    <score id="score-4">4</score>
+    <score id="score-5">5</score>
+    <score id="score-6">6</score>
+    <score id="score-7">7</score>
+    <score id="score-8">8</score>
+    <score id="score-9">9</score>
+</filters>
+<portals>
+    <portal x="@-43" y="@72" z="@90">
+        <region><rectangle min="-34,86" max="-37,82"/></region>
+    </portal>
+    <portal x="@-22.5" y="@16" z="@185" yaw="@-135">
+        <region>
+            <cuboid min="-20,14,104" max="45,14.75,184"/>
+        </region>
+    </portal>
+</portals>
+<regions>
+    <apply kit="air">
+        <region>
+            <cuboid min="6,0,205" max="11,50,247"/>
+        </region>
+    </apply>
+    <apply kit="elytra kit">
+        <region>
+            <cuboid min="-56,72,97" max="-49,73,104"/>
+        </region>
+    </apply>
+    <cuboid id="spawn-point" min="-7,16,6" max="-7,16,20"/>
+    <cuboid id="hill-portal" min="0,32,-25" max="-31,70,30"/>
+    <union id="checkpoints">
+        <rectangle id="checkpoint-1" min="53,28" max="58,-3"/> 
+        <rectangle id="checkpoint-2" min="102,67" max="144,73"/>
+        <rectangle id="checkpoint-3" min="59,177" max="116,180"/>
+        <rectangle id="checkpoint-4" min="32,209" max="26,240"/>
+        <rectangle id="checkpoint-5" min="1,190" max="-37,186"/>
+        <rectangle id="checkpoint-6" min="50,104" max="6,100"/>
+        <rectangle id="checkpoint-7" min="-20,96" max="-29,62"/>
+        <rectangle id="checkpoint-8" min="-130,128" max="-172,125"/>
+        <rectangle id="checkpoint-9" min="-50,41" max="-205,35"/>
+    </union>
+</regions>
+<score>
+    <box points="1" filter="score-0" region="checkpoint-1" silent="true"/>
+    <box points="1" filter="score-1" region="checkpoint-2" silent="true"/>
+    <box points="1" filter="score-2" region="checkpoint-3" silent="true"/>
+    <box points="1" filter="score-3" region="checkpoint-4" silent="true"/>
+    <box points="1" filter="score-4" region="checkpoint-5" silent="true"/>
+    <box points="1" filter="score-5" region="checkpoint-6" silent="true"/>
+    <box points="1" filter="score-6" region="checkpoint-7" silent="true"/>
+    <box points="1" filter="score-7" region="checkpoint-8" silent="true"/>
+    <box points="1" filter="score-8" region="checkpoint-9" silent="true"/>
+    <box points="1" filter="score-9" silent="false">
+        <region><cuboid id="FinishLine" min="-66,17,-37" max="-68,50,-5"/></region>
+    </box>
+    <limit>10</limit>
+</score>
+<blitz>
+    <lives>1</lives>    
+</blitz>
+<time>8m</time>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+    <damage>entity attack</damage>
+    <damage>lava</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>sapling</item>
+    <item>elytra</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>water lily</item>
+</itemremove>
+</map>

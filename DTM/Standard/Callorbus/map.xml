@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Callorbus</name>
+<version>1.0.1</version>
+<objective>Destroy the obsidian from the enemy team's monument to win the match.</objective>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<rules>
+    <rule>You cannot jump onto your own monument pad!</rule>
+    <rule>Fall damage has been entirely disabled on this map.</rule>
+</rules>
+<contributors>
+    <contibutor contribution="Moral support">Zelocksurian</contibutor>
+</contributors>
+<teams>
+    <team color="dark red" max="24">Red</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<spawns>
+    <spawn kit="red" team="red" yaw="180">
+        <cylinder base="-59,21,53" radius="5" height="0"/>
+    </spawn>
+    <spawn kit="blue" team="blue" yaw="0">
+        <cylinder base="-59,21,-61" radius="5" height="0"/>
+    </spawn>
+    <default kit="observers" yaw="0">
+        <point yaw="0">
+            <cuboid min="-61,2,-15" max="-56,2,-13"/>
+        </point>
+        <point yaw="180">
+            <cuboid min="-61,2,6" max="-56,2,8"/>
+        </point>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:3">diamond pickaxe</item>
+        <item slot="3" amount="32">bread</item>
+        <item slot="28">arrow</item>
+        <potion duration="5">damage resistance</potion>
+        <potion duration="5">heal</potion>
+        <potion duration="oo" amplifier="2">jump</potion>
+        <chestplate>chainmail chestplate</chestplate>
+        <helmet>iron helmet</helmet>
+        <leggings color="A0A1A0">leather leggings</leggings>
+    </kit>
+    <kit name="red" parents="teams">
+        <boots color="C40000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <boots color="000099" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-obsidian">
+        <block>obsidian</block>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="only-obsidian" block-place="deny-all">
+        <circle center="-59,-4" radius="200"/>
+    </apply>
+    <apply enter="only-blue" message="You cannot jump into the blue objective pad!">
+        <circle center="-59,24" radius="8.5"/>
+    </apply>
+    <apply enter="only-red" message="You cannot jump into the red objective pad!">
+        <circle center="-59,-32" radius="8.5"/>
+    </apply>
+</regions>
+<destroyables name="Monument" materials="obsidian" completion="100%">
+    <destroyable owner="red">
+        <cuboid min="-59,16,24" max="-59,18,24"/>
+    </destroyable>
+    <destroyable owner="blue">
+        <cuboid min="-59,16,-32" max="-59,18,-32"/>
+    </destroyable>
+</destroyables>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<killreward>
+    <item>iron ingot</item>
+</killreward>
+<itemremove>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>chainmail chestplate</item>
+    <item>iron helmet</item>
+    <item>iron ingot</item>
+    <item>arrow</item>
+    <item>obsidian</item>
+</itemremove>
+</map>

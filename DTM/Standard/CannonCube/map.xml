@@ -1,0 +1,515 @@
+<?xml version="1.0"?>
+<map proto="1.3.4">
+<name>CannonCube</name>
+<version>1.5.0</version>
+<objective>Attackers have 20 minutes to destroy the Endstone Pillar, while the Defenders must prevent them from doing so.</objective>
+<gamemode>ad</gamemode>
+<authors>
+    <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888"/> <!-- Elijahyap -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Large sections of XML and help with bug fixing"/> <!-- last_username -->
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Gamemode Inspiration and Aesthetics"/> <!-- last_username -->
+    <contributor uuid="44af0625-b926-4492-a573-f5a8586c5110" contribution="More aesthetic inspiration"/> <!-- himan22566 -->
+</contributors>
+<rules>
+    <rule>There are NO restrictions on spawn camping/killing</rule>
+    <rule>Attacker pickaxes do double damage</rule>
+    <rule>Smooth quartz blocks are fully blast resistant (and can be mined)</rule>
+    <rule>Spawn platforms refill your health and give you full resistance</rule>
+    <rule>Defenders are allowed to blow up th</rule>
+</rules>
+<teams>
+    <team id="attackers" color="dark red" max="32" max-overfill="40" plural="true">Attackers</team>
+    <team id="defenders" color="blue" max="32" max-overfill="40" plural="true">Defenders</team>
+</teams>
+<spawns>
+    <default kit="all" yaw="0" pitch="0">
+        <cuboid min="-2,91,-111" max="3,91,-106"/>
+    </default>
+    <spawn team="attackers" kit="attacker" yaw="0" pitch="0">
+        <cuboid min="-9,49,-231" max="10,49,-230"/>
+    </spawn>
+    <spawn team="defenders" kit="defender" safe="true" yaw="180" pitch="0">
+        <cuboid min="-4,2,-14" max="5,2,-5"/>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+    <kit name="team" parents="all">
+        <item slot="9">workbench</item>
+        <item slot="18" amount="3">dispenser</item>
+        <item slot="10">shears</item>
+        <item slot="28">arrow</item>
+        <item slot="29" amount="64">vine</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="14" amount="16">piston base</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+    </kit>
+    <kit name="attacker" parents="team">
+        <item slot="0" attributes="generic.attackDamage:add:10" name="Sharpened Diamond Pickaxe">diamond pickaxe</item>
+        <item slot="1" amount="32">snow ball</item>
+        <item slot="11" name="Blade of Icarus">wood sword</item>
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <helmet enchantment="protection explosions:3;water worker:3">iron helmet</helmet>
+        <chestplate color="dd5566">leather chestplate</chestplate>
+        <leggings color="dd5566">leather leggings</leggings>
+        <boots color="dd5566" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+    <kit name="defender" parents="team">
+        <item slot="1">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="0">diamond pickaxe</item>
+        <item slot="12" damage="11" amount="64">stained glass</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <helmet enchantment="protection explosions:3">iron helmet</helmet>
+        <chestplate color="5e55dd">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:2">iron leggings</leggings>
+        <boots enchantment="protection fall:3">iron boots</boots>
+        <!-- This will be removed when they leave spawn -->
+        <potion duration="oo" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="spawn-buff-apply" force="true">
+        <potion amplifier="5" duration="oo">damage resistance</potion>
+        <potion amplifier="10" duration="1">heal</potion>
+    </kit>
+    <kit name="drop-buff-apply" force="true">
+        <potion amplifier="5" duration="7">damage resistance</potion>
+    </kit>
+    <kit name="launch-buff-apply" force="true">
+        <potion amplifier="5" duration="3">damage resistance</potion>
+    </kit>
+    <kit name="spawn-buff-remove" force="true">
+        <potion amplifier="0" duration="0">damage resistance</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>snow ball</item>
+</itemremove>
+<killreward>
+    <filter>
+        <team>defenders</team>
+    </filter>
+    <item amount="8">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <team>attackers</team>
+    </filter>
+    <item amount="32">snow ball</item>
+</killreward>
+<filters>
+    <filter name="attackers-only">
+        <team>attackers</team>
+    </filter>
+    <filter name="defenders-only">
+        <team>defenders</team>
+    </filter>
+    <filter name="deny-unbreakable-blocks">
+        <deny>
+            <any>
+                <block>quartz block:2</block>
+                <block>quartz stairs</block>
+                <block>stained glass:15</block>
+                <block>wall sign</block>
+                <block>iron door block</block>
+                <block>beacon</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="deny-tnt">
+        <deny>
+            <block>tnt</block>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="deny-water">
+        <deny>
+        <any>
+            <block>water</block>
+            <block>stationary water</block>
+        </any>
+        </deny>
+    </filter>
+    <filter name="defender-only-explosives">
+        <any>
+            <team>attackers</team>
+            <all>
+                <team>defenders</team>
+                <any>
+                    <block>tnt</block>
+                    <block>stone plate</block>
+                    <block>redstone torch on</block>
+                    <block>lever</block>
+                    <block>redstone block</block>
+                    <block>stone button</block>
+                </any>
+            </all>
+        </any>
+    </filter>
+    <filter name="deny-manual-endstone">
+        <not>
+        <all>
+            <block>ender stone</block>
+            <any>
+                <filter name="allow-players"/>
+                <filter name="deny-all"/>
+            </any>
+        </all>
+    </not>
+    </filter>
+    <filter name="deny-quartz-world">
+        <not>
+            <all>
+                <block>quartz block:0</block>
+                <any>
+                    <filter name="allow-world"/>
+                    <filter name="deny-all"/>
+                </any>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="cuboid" min="-44,0,-222" max="45,40,1"/>
+    <cuboid name="platform" min="0,0,0" max="9,6,9"/>
+    <union name="attacker-spawn-platforms">
+        <translate offset="36,31,-212">
+            <region name="platform"/>
+        </translate>
+        <translate offset="-44,31,-212">
+            <region name="platform"/>
+        </translate>
+        <translate offset="-4,9,-222">
+            <region name="platform"/>
+        </translate>
+    </union>
+    <!-- The 3 iron door holding cells -->
+    <cuboid name="holding-area" min="0,0,0" max="11,5,11"/>
+    <union name="holding-areas">
+        <translate offset="35,32,-213">
+            <region name="holding-area"/>
+        </translate>
+        <translate offset="-45,32,-213">
+            <region name="holding-area"/>
+        </translate>
+        <translate offset="-5,10,-223">
+            <region name="holding-area"/>
+        </translate>
+    </union>
+    <cuboid name="attacker-spawn-room" min="-11,48,-233" max="12,52,-200"/>
+    <cuboid name="portal-origin" min="0,0,0" max="3,1,3"/>
+    <translate name="portal-a" offset="4,50,-206">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-b" offset="-6,50,-206">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-c" offset="-1,50,-212">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-d" offset="3,50,-218">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-e" offset="-5,50,-218">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-f" offset="5,50,-224">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-g" offset="-1,50,-225">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="portal-h" offset="-7,50,-224">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="return-portal-a" offset="29,65,-73">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="return-portal-b" offset="-31,65,-73">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="return-portal-c" offset="-1,65,-113">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="return-portal-d" offset="19,65,-152">
+        <region name="portal-origin"/>
+    </translate>
+    <translate name="return-portal-e" offset="-21,65,-152">
+        <region name="portal-origin"/>
+    </translate>
+    <cuboid name="pillar" min="-2,5,-12" max="3,34,-7"/>
+    <cuboid name="defender-spawn" min="-4,2,-14" max="5,5,-5"/>
+    <cuboid name="water-free-zone" min="-11,0,-21" max="12,35,2"/>
+    <cuboid name="above-monument" min="-11,35,-21" max="12,40,2"/>
+    <cuboid name="chute" min="0,0,0" max="9,43,9"/>
+    <union name="forward-drop-chutes">
+        <translate offset="-34,43,-73">
+            <region name="chute"/>
+        </translate>
+        <translate offset="26,43,-73">
+            <region name="chute"/>
+        </translate>
+        <translate offset="-4,43,-113">
+            <region name="chute"/>
+        </translate>
+        <translate offset="-24,43,-152">
+            <region name="chute"/>
+        </translate>
+        <translate offset="16,43,-152">
+            <region name="chute"/>
+        </translate>
+    </union>
+    <cuboid name="drop" min="0,0,0" max="9,43,9"/>
+    <union name="below-drop-chutes">
+        <translate offset="-34,0,-73">
+            <region name="drop"/>
+        </translate>
+        <translate offset="26,0,-73">
+            <region name="drop"/>
+        </translate>
+        <translate offset="-4,0,-113">
+            <region name="drop"/>
+        </translate>
+        <translate offset="-24,0,-152">
+            <region name="drop"/>
+        </translate>
+        <translate offset="16,0,-152">
+            <region name="drop"/>
+        </translate>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not modify the drop chute area">
+        <region name="forward-drop-chutes"/>
+    </apply>
+    <apply block="deny-water" message="You may not place `9water`c beneath the spawn chutes">
+        <region name="below-drop-chutes"/>
+    </apply>
+    <apply block="defender-only-explosives" message="You may only place and ignite `4TNT`c beneath drop chutes">
+        <region name="below-drop-chutes"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks above the monument area">
+        <region name="above-monument"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks outside of the map">
+        <negative>
+            <region name="cuboid"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn area">
+        <union>
+            <region name="defender-spawn"/>
+            <region name="attacker-spawn-room"/>
+            <region name="attacker-spawn-platforms"/>
+        </union>
+    </apply>
+    <apply block="deny-unbreakable-blocks" use="deny-beacon" message="This type of block is unbreakable and useable">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-water" message="You may not place `9water`c inside the fortress walls">
+        <region name="water-free-zone"/>
+    </apply>
+    <apply enter="defenders-only" message="You may not enter the `9Defender`c spawn">
+        <region name="defender-spawn"/>
+    </apply>
+    <apply enter="attackers-only" message="You may not enter the `4Attacker`c spawn">
+        <region name="attacker-spawn-platforms"/>
+    </apply>
+    <apply kit="spawn-buff-apply" filter="attackers-only">
+        <region name="attacker-spawn-platforms"/>
+        <region name="attacker-spawn-room"/>
+    </apply>
+    <apply kit="spawn-buff-apply" filter="defenders-only">
+        <region name="defender-spawn"/>
+    </apply>
+    <apply kit="spawn-buff-remove">
+        <negative>
+            <union>
+                <region name="attacker-spawn-room"/>
+                <region name="attacker-spawn-platforms"/>
+                <region name="defender-spawn"/>
+            </union>
+        </negative>
+    </apply>
+    <apply kit="drop-buff-apply" filter="attackers-only">
+        <region name="forward-drop-chutes"/>
+    </apply>
+    <apply block-break="deny-manual-endstone" message="The Endstone Pillar can only be damaged with TNT">
+	    <region name="pillar"/>
+    </apply>
+    <apply block-break="deny-quartz-world">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Fast Track System -->
+    <!-- A velocity pad system for defenders to move around easier -->
+    <apply velocity="-1.5,1.2,0" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>20.5,10.5,-9.5</block>
+    </apply>
+    <apply velocity="1.5,1.2,0" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>-19.5,10.5,-9.5</block>
+    </apply>
+    <!-- Lower Cubes -->
+    <apply velocity="-1.8,2,-1.8" enter="defenders-only" kit="launch-buff-apply" message="You cannot use the defenders' fast track system">
+        <block>-3.5,10.5,-33.5</block>
+    </apply>
+    <apply velocity="1.8,2,-1.8" enter="defenders-only" kit="launch-buff-apply" message="You cannot use the defenders' fast track system">
+        <block>4.5,10.5,-33.5</block>
+    </apply>
+    <!-- Outward on Upper Cubes -->
+    <apply velocity="1.8,2,-1.8" enter="defenders-only" kit="launch-buff-apply" message="You cannot use the defenders' fast track system">
+        <block>24.5,21.5,-33.5</block>
+    </apply>
+    <apply velocity="-1.8,2,-1.8" enter="defenders-only" kit="launch-buff-apply" message="You cannot use the defenders' fast track system">
+        <block>-23.5,21.5,-33.5</block>
+    </apply>
+    <!-- Inward on Upper Cubes -->
+    <apply velocity="0.65,1.2,0.65" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>-15.5,21.5,-25.5</block>
+    </apply>
+    <apply velocity="-0.65,1.2,0.65" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>16.5,21.5,-25.5</block>
+    </apply>
+    <!-- Lower Ring -->
+    <apply velocity="-1.3,1.6,-1.3" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>-9.5,15.5,-19.5</block>
+    </apply>
+    <apply velocity="1.3,1.6,-1.3" enter="defenders-only" message="You cannot use the defenders' fast track system">
+        <block>10.5,15.5,-19.5</block>
+    </apply>
+</regions>
+<destroyables>
+    <destroyable id="holding-area" name="holding" owner="Attackers" completion="0%" materials="stained glass:0" mode-changes="true" show="false">
+        <region name="holding-areas"/>
+    </destroyable>
+    <destroyable id="pillar" name="Endstone Pillar" owner="Defenders" show-progress="true" materials="ender stone" sparks="true" completion="100%">
+        <region name="pillar"/>
+    </destroyable>
+</destroyables>
+<modes boss-bar="false">
+    <mode after="30s" material="air" name="The `4attackers `chave been released"/>
+</modes>
+<time result="defenders">20m30s</time>
+<disabledamage>
+    <damage self="false" ally="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<portals filter="attackers-only">
+    <!-- Portals to the chutes -->
+    <!-- Chute A -->
+    <portal x="25" y="15" z="133">
+        <region name="portal-a"/>
+    </portal>
+    <!-- Chute b -->
+    <portal x="-25" y="15" z="133">
+        <region name="portal-b"/>
+    </portal>
+	<!-- Chute C -->
+    <portal x="0" y="15" z="99">
+        <region name="portal-c"/>
+    </portal>
+    <!-- Chute D -->
+    <portal x="16" y="15" z="66">
+        <region name="portal-d"/>
+    </portal>
+    <!-- Chute E -->
+    <portal x="-16" y="15" z="66">
+        <region name="portal-e"/>
+    </portal>
+    <!-- Portals to the platforms -->
+    <!-- Platform A -->
+    <portal x="34" y="-17" z="15">
+        <region name="portal-f"/>
+    </portal>
+    <!-- Platform B -->
+    <portal x="0" y="-36" z="6">
+        <region name="portal-g"/>
+    </portal>
+    <!-- Platform C -->
+    <portal x="-34" y="-17" z="15">
+        <region name="portal-h"/>
+    </portal>
+    <!-- Portals from the chutes -->
+    <!-- Chute A -->
+    <portal x="-30" y="-15" z="-158">
+        <region name="return-portal-a"/>
+    </portal>
+    <!-- Chute B -->
+    <portal x="30" y="-15" z="-158">
+        <region name="return-portal-b"/>
+    </portal>
+	<!-- Chute C -->
+    <portal x="0" y="-15" z="-118">
+        <region name="return-portal-c"/>
+    </portal>
+    <!-- Chute D -->
+    <portal x="-20" y="-15" z="-79">
+        <region name="return-portal-d"/>
+    </portal>
+    <!-- Chute E -->
+    <portal x="20" y="-15" z="-79">
+        <region name="return-portal-e"/>
+    </portal>
+</portals>
+</map>

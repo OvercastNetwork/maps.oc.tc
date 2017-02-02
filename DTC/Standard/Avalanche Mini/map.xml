@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Avalanche: Mini</name>
+<version>1.0.0</version>
+<objective>Leak lava from the enemy's obsidian core on the mountain!</objective>
+<authors>
+     <author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48" contribution="Map design"/> <!-- oib5 -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Feedback"/> <!-- Stealth5061 -->
+    <contributor uuid="36dc036a-dfbc-4627-b66a-501223f08075" contribution="Core area design"/> <!-- ieatboulders2 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML"/> <!-- dinner1111 -->
+</contributors>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="gold" max="16">Orange</team>
+</teams>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="20m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="red">
+        <cuboid min="49,31,-1" max="52,36,2"/>
+    </core>
+    <core team="orange">
+        <cuboid min="-89,31,2" max="-86,36,-1"/>
+    </core>
+</cores>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:1;durability:1">stone axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="6" amount="32">bread</item>
+        <item slot="7" damage="8229" name="`cLife Elixir">potion</item>
+        <item slot="8">snow ball</item>
+        <item slot="28">arrow</item>
+        <potion duration="4">damage resistance</potion>
+        <potion duration="4" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet unbreakable="true" color="FF0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FF0000" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="FF0000">leather leggings</leggings>
+        <boots unbreakable="true" color="000000">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet unbreakable="true" color="FF6600">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FF6600" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="FF6600">leather leggings</leggings>
+        <boots unbreakable="true" color="000000">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="61.5,14,1.5" max="59.5,14,-0.5"/>
+    </spawn>
+    <spawn team="orange" kit="orange" yaw="270">
+        <cuboid min="-98.5,14,-0.5" max="-96.5,14,1.5"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-18.5,31,-60.5" radius="2" height="1"/>
+    </default>
+</spawns>
+<killreward>
+    <item damage="8229" name="`cLife Elixir">potion</item>
+</killreward>
+<timelock>on</timelock>
+<maxbuildheight>44</maxbuildheight>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>bread</item>
+    <item>obsidian</item>
+</itemremove>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-spawner">
+        <deny>
+            <block>mob spawner</block>
+        </deny>
+    </filter>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cylinder name="middle-island" base="-18.5,0,0.5" radius="4" height="14"/>
+    <union name="void-areas">
+        <rectangle name="outer-void" min="-70,31" max="33,-30"/>
+        <rectangle name="inner-void" min="8,-32" max="-45,33"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="orange-spawn" min="-93,17,-3" max="-101,13,4"/>
+        <cuboid name="red-spawn" min="56,17,4" max="64,13,-3"/>
+    </union>
+    <union name="bases">
+        <union name="orange-base">
+            <cuboid min="-103,13,-5" max="-93,32,6"/>
+            <cuboid min="-94,13,15" max="-82,26,-14"/>
+        </union>
+        <union name="red-base">
+            <cuboid min="66,13,6" max="56,32,-5"/>
+            <cuboid min="57,13,-14" max="46,26,15"/>
+        </union>
+    </union>
+    <union name="elixir-areas">
+        <cuboid min="42,4,1" max="39,8,4"/>
+        <cuboid min="-76,4,-3" max="-79,8,0"/>
+    </union>
+    <!-- Applied -->
+    <apply block-break="deny-spawner" message="You may not break the spawner!">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-void" message="You may not edit the void area!">
+        <negative>
+            <region name="void-areas"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not modify the middle island!">
+        <region name="middle-island"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the elixir areas!">
+        <region name="elixir-areas"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy spawn area!">
+        <region name="orange-spawn"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify around the bases!">
+        <region name="bases"/>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>This map is a `aDestroy the Core `r(DTC) map.</line>
+            <line>The objective is to destroy the enemy's obsidian core on their monuntain!</line>
+        </message>
+        <teleport>
+            <point yaw="-40" pitch="20">-38,30,-46</point>
+        </teleport>
+    </stage>
+    <stage title="Core">
+        <message>
+            <line>Each team has an `aobsidian core `rthat they must defend from the enemy!</line>
+            <line>You must leak the lava 3 blocks down from the bottom of the core.</line>
+            <line>Use the vertical stairs from spawn to get quick access back.</line>
+        </message>
+        <teleport>
+            <point yaw="-115" pitch="20">44,33,6</point>
+        </teleport>
+    </stage>
+    <stage title="TNT Spawner">
+        <message>
+            <line>In the center island of the map, there is a `cTNT `rspawner.</line>
+            <line>It will spawn a couple pieces of TNT every second.</line>
+            <line>Collect enough to make a cannon or blow up their side!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="15">-18.5,5,-2.5</point>
+        </teleport>
+    </stage>
+    <stage title="Miner's Elixir">
+        <message>
+            <line>In each team's cave, you will find the `cMiner's Elixir `rspawner.</line>
+            <line>This will spawn a `eHaste II `rpotion that lasts `e4 seconds`r!</line>
+            <line>Use it wisely!</line>
+        </message>
+        <teleport>
+            <point yaw="-60" pitch="5">38.5,6,1.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

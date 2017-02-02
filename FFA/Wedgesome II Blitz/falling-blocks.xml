@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<falling-blocks>
+    <rule>
+        <filter>
+            <any>
+                <material>grass</material>
+                <material>stone</material>
+                <material>clay</material>
+                <material>dirt</material>
+                <material>cobblestone</material>
+                <material>double step</material>
+                <material>cobble wall</material>
+                <material>mossy cobblestone</material>
+                <material>thin glass</material>
+            </any>
+        </filter>
+    </rule>
+</falling-blocks>
+<!--
+<falling-blocks>
+    <rule>
+        <filter>
+            <any>
+                <material>leaves</material>
+            </any>
+        </filter>
+        <sticky>
+            <any>
+                <material>log</material>
+            </any>
+        </sticky>
+        <delay>10</delay>
+    </rule>
+</falling-blocks>
+-->
+<falling-blocks>
+    <rule>
+        <filter>
+            <any>
+                <material>smooth brick</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>cobblestone stairs</material>
+                <material>dark oak stairs</material>
+                <material>wood step</material>
+                <material>spruce wood stairs</material>
+                <material>log</material>
+                <material>bookshelf</material>
+                <material>furnace</material>
+                <material>burning furnace</material>
+                <material>workbench</material>
+                <material>web</material>
+                <material>wood</material>
+                <material>monster eggs</material>
+                <material>fence</material>
+                <material>torch</material>
+            </any>
+        </filter>
+        <sticky>
+            <any>
+                <material>smooth brick</material>
+                <material>step</material>
+                <material>smooth stairs</material>
+                <material>cobblestone stairs</material>
+                <material>dark oak stairs</material>
+                <material>wood step</material>
+                <material>spruce wood stairs</material>
+                <material>bookshelf</material>
+                <material>furnace</material>
+                <material>burning furnace</material>
+                <material>workbench</material>
+                <material>web</material>
+                <material>wood</material>
+                <material>monster eggs</material>
+                <material>fence</material>
+            </any>
+        </sticky>
+        <delay>2</delay>
+    </rule>
+</falling-blocks>
+
+</map>

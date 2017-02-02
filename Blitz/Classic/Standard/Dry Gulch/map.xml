@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="blitz-global.xml"/>
+<name>Dry Gulch</name>
+<version>1.0.1</version>
+<objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
+    <author uuid="c95e0a45-8208-430a-a1a2-1e27333445a4"/> <!-- skippy369 -->
+</authors>
+<teams>
+    <team color="blue" max="12">Blue</team>
+    <team color="dark red" max="12">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="3">golden apple</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion duration="3">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet unbreakable="true" color="FF0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="FF0000">leather chestplate</chestplate>
+        <boots unbreakable="true" color="FF0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet unbreakable="true" color="0000FF">leather helmet</helmet>
+        <chestplate unbreakable="true" color="0000FF">leather chestplate</chestplate>
+        <boots unbreakable="true" color="0000FF">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="45">
+        <point>14.5,6.5,-12.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <point>-13.5,6.5,13.5</point>
+    </spawn>
+    <default yaw="90">
+        <point>23.5,3.5,0.5</point>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-tnt">
+        <block>tnt</block>
+    </filter>
+    <filter name="not-some">
+        <not>
+            <block>fence</block>
+            <block>trap door</block>
+            <block>hopper</block>
+            <block>anvil</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block-place="only-tnt" block-break="deny-all" use="not-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>exp bottle</item>
+    <item>ink sack</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <fuse>2s</fuse>
+</tnt>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<killreward>
+    <item amount="8">arrow</item>
+    <item>exp bottle</item>
+    <item damage="4">ink sack</item>
+</killreward>
+</map>

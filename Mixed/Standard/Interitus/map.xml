@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Interitus</name>
+<version>2.2.1</version>
+<objective>Leak lava from the enemy's obsidian core and break their two endstone monuments.</objective>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="v2.0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Help and Feedback"/> <!-- khazhyk -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <default kit="observer" yaw="90">
+        <cylinder base="-84,33,0" radius="2" height="0"/>
+    </default>
+    <spawns team="blue" kit="blue">
+        <spawn yaw="270">
+            <cuboid min="-58,4,-56" max="-56,4,-54"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="-62,4,-50" max="-64,4,-48"/>
+        </spawn>
+        <spawn yaw="90">
+            <cuboid min="59,4,-54" max="57,4,-56"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="65,4,-48" max="63,4,-50"/>
+        </spawn>
+    </spawns>
+    <spawns team="red" kit="red">
+        <spawn yaw="270">
+            <cuboid min="-56,4,55" max="-58,4,57"/>
+        </spawn>
+        <spawn yaw="180">
+            <cuboid min="-64,4,49" max="-62,4,51"/>
+        </spawn>
+        <spawn yaw="180">
+            <cuboid min="63,4,49" max="65,4,51"/>
+        </spawn>
+        <spawn yaw="90">
+            <cuboid min="57,4,57" max="59,4,55"/>
+        </spawn>
+    </spawns>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:2">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed">iron axe</item>
+        <item slot="4" amount="64" damage="1">wood</item>
+        <item slot="5" amount="64" damage="1">wood</item>
+        <item slot="6" unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <potion duration="5">heal</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <chestplate unbreakable="true" color="993333" enchantment="protection explosions:3">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2" enchantment="protection explosions:3">leather chestplate</chestplate>
+    </kit>
+    <kit name="observer">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="no-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build outside the map">
+        <negative name="map-inverse">
+            <rectangle name="map" min="61,53" max="-60,-52"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawns">
+    <intersect>
+        <region name="map"/>
+        <union>
+            <circle name="red-spawn-a" center="-63,55" radius="15"/>
+            <circle name="red-spawn-b" center="63,55" radius="15"/>
+            <circle name="blue-spawn-a" center="-63,-55" radius="15"/>
+            <circle name="blue-spawn-b" center="63,-55" radius="15"/>
+        </union>
+    </intersect>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn">
+        <region name="red-spawn-a"/>
+        <region name="red-spawn-b"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn">
+        <region name="blue-spawn-a"/>
+        <region name="blue-spawn-b"/>
+    </apply>
+    <apply use="no-beacon" message="You may not right click beacons">
+        <region name="map"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core id="red-core" team="red">
+        <cuboid min="3,22,39" max="-2,30,44"/>
+    </core>
+    <core id="blue-core" team="blue">
+        <cuboid min="3,22,-43" max="-2,30,-38"/>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<destroyables materials="ender stone" sparks="true" show-progress="true">
+    <destroyables owner="red">
+        <destroyable id="red-west-monument" name="West Monument">
+            <cylinder base="-32.5,10,37.5" radius="3" height="12"/>
+        </destroyable>
+        <destroyable id="red-east-monument" name="East Monument">
+            <cylinder base="33.5,10,37.5" radius="3" height="12"/>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="blue">
+        <destroyable id="blue-east-monument" name="East Monument">
+            <cylinder base="33.5,10,-36.5" radius="3" height="12"/>
+        </destroyable>
+        <destroyable id="blue-west-monument" name="West Monument">
+            <cylinder base="-32.5,10,-36.5" radius="3" height="12"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>arrow</item>
+    <item>clay ball</item>
+    <item>beacon</item>
+    <item>shears</item>
+    <item>golden carrot</item>
+    <item>obsidian</item>
+    <item>ender stone</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<killreward>
+    <item amount="16">tnt</item>
+    <item amount="16" damage="1">wood</item>
+</killreward>
+<maxbuildheight>40</maxbuildheight>
+<timelock>on</timelock>
+</map>

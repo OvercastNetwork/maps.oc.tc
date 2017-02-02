@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Fallen Courtyard</name>
+<version>1.1.4</version>
+<objective>One in the chamber!</objective>
+<game-mode>rage</game-mode>
+<authors>    
+    <author uuid="4cdc642e-36a9-4208-8ca2-81a9461b497d"/> <!-- raid3r -->    
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->    
+    <author uuid="d556bcdf-57ad-4220-92f6-150a9b12380b"/> <!-- three_two -->    
+    <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+</authors>
+<teams>
+    <team color="dark aqua" max="20">Cyan</team> 
+    <team color="dark purple" max="20">Purple</team>
+</teams>
+<rage/>
+<blitz>
+    <time>6m</time>        
+    <lives>1</lives>
+    <title>Blitz: Rage</title>        
+</blitz>
+<spawns>
+    <spawn team="cyan" kit="cyan" yaw="-90">
+        <cylinder base="3,6,30" radius="2" height="0"/>        
+    </spawn>
+    <spawn team="purple" kit="purple" yaw="90">    
+        <cylinder base="53,6,30" radius="2" height="0"/>        
+    </spawn>
+    <default yaw="0">
+        <point>28,19,-21</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`9`l1-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <item slot="3" amount="1">golden carrot</item>
+    </kit>
+    <kit name="cyan" parents="spawn">
+        <helmet color="4C7F99" locked="true">chainmail helmet</helmet>
+        <chestplate color="4C7F99" locked="true">chainmail chestplate</chestplate>
+        <leggings color="4C7F99" locked="true">leather leggings</leggings>
+        <boots color="4C7F99" enchantment="protection fall:2" locked="true">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet color="7F3F82" locked="true">chainmail helmet</helmet>
+        <chestplate color="7F3F82" locked="true">chainmail chestplate</chestplate>
+        <leggings color="7F3F82" locked="true">leather leggings</leggings>
+        <boots color="7F3F82" enchantment="protection fall:2" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="deny-all" message="You are not allowed to enter this area!">
+        <cuboid name="back-base-purple" min="59,8,28" max="60,13,32"/>
+        <cuboid name="back-base-cyan" min="-4,8,28" max="-3,13,32"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden_carrot</item>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>arrow</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

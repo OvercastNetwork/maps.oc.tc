@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Two Way Road</name>
+<version>1.1.0</version>
+<objective>Be the player with the most points after 10 minutes!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="a53ab2da-36ed-4886-ac2a-49696de4622f"/> <!-- SailorMojo -->
+    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/> <!-- SheriffSoco -->
+</authors>
+<broadcasts>
+    <tip after="3m" count="3">Every emerald is worth one point after they are spent in the underground wells!</tip>
+</broadcasts>
+<players min="2" max="20" max-overfill="24"/>
+<time>10m</time>
+<score>
+   <kills>2</kills>
+   <box region="Wells">
+   		<redeemables>
+   			<item points="1">emerald</item>
+   		</redeemables>
+   	</box>
+</score>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material="stone sword" unbreakable="true"/>
+        <item slot="1" material="bow" unbreakable="true"/>
+        <item slot="3" amount="24" material="arrow"/>
+        <item slot="8" amount="32" material="cooked beef"/>
+        <helmet material="leather helmet" color="4C7F99" unbreakable="true"/>
+        <chestplate material="leather chestplate" color="F27FA5" unbreakable="true"/>
+        <leggings material="chainmail leggings" unbreakable="true"/>
+        <boots material="chainmail boots" unbreakable="true">
+        	<enchantment level="1">feather_falling</enchantment>
+        </boots>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit id="resistance">
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="emerald"/>
+        <item amount="16" material="arrow"/>
+    </kill-reward>
+</kill-rewards>
+<filters> 
+</filters>
+<regions>
+    <cuboid id="stalactiteWell" min="185,12,6" max="194,13,15"/>
+    <cuboid id="columnWell" min="232,7,4" max="239,8,12"/>
+    <cuboid id="observerSpawn" min="259,66,63" max="260,67,64"/>
+    <cuboid id="playerSpawn" min="179,5,2" max="244,53,60"/>
+    <union id="Wells">
+    	<region id="stalactiteWell"/>
+    	<region id="columnWell"/>
+    </union>
+    <apply block="never">
+    	<region>
+    		<everywhere/>
+    	</region>
+    </apply>
+    <apply kit="resistance">
+        <region>
+            <region id="Wells"/>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn kit="spawn" safe="true" spread="true">
+        <regions>
+            <region id="playerSpawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="135">
+            <region id="observerSpawn"/>
+        </regions>
+    </default>
+</spawns>
+<portals>
+    <portal destination="playerSpawn">
+        <region><region id="Wells"/></region>
+    </portal>
+</portals>
+</map>

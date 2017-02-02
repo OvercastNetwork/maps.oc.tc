@@ -1,0 +1,30 @@
+<map proto="1.4.0" game="`eProgress">
+<name>BR: Classic</name>
+<version>1.0.0</version>
+<slug>block_runner</slug>
+<include src="void-death.xml"/>
+<include src="block-runner.xml"/> <!-- Required by all Block Runner maps -->
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
+</authors>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="90">
+            <region id="spawn-location"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>-61,11.5,103</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <block id="spawn-location">-70,6,103</block>
+    <cuboid id="mon" min="-72,2,101" max="-70,3,104"/>
+    <below id="checkpoint1" x="-110"/>
+    <below id="checkpoint2" x="-176"/>
+    <below id="checkpoint3" x="-238"/>
+    <cuboid id="box-win" min="-314,10,101" max="-310,0,105"/>
+</regions>
+</map>

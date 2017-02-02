@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Wilson's Hill</name>
+<version>1.1.0</version>
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml" />
+<authors>
+    <author uuid="cf1b2da8-3718-45a9-8836-bb70b0628773"/> <!-- Andruew -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- xCLAFx -->
+    <author uuid="c8738c5b-79ec-4eb7-92ec-e2364558b05f"/> <!-- Anzorith -->
+    <author uuid="d9420f7f-517b-45e3-bdf5-e92f4cb93b98"/> <!-- Kokois696 -->
+    <author uuid="071f7256-2577-443b-b2e8-7cdcac64db0e"/> <!-- cutsiebear38 -->
+</authors>
+<teams>
+    <team color="blue" max="10">Blue</team>
+    <team color="dark red" max="10">Red</team>
+</teams>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<timelock>on</timelock>
+<spawns>
+    <spawns>
+        <spawn team="blue" yaw="-45">
+            <cuboid min="188,21,460" max="190,20,462" />
+        </spawn>
+        <spawn team="red" yaw="130">
+            <cuboid min="243,21,515" max="241,20,513" />
+        </spawn>
+    </spawns>
+    <default yaw="-90">
+        <cuboid min="171,36,487" max="171,35,488" />
+    </default>
+</spawns>
+</map>

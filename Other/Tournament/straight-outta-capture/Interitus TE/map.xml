@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<time result="objectives">45m</time>
+<name>Interitus TE</name>
+<version>1.6.2</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="1379cb6e-f291-4498-9807-e636f9674ac0"/> <!-- SH4D0W_HAWK -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Help and Feedback"/> <!-- Khazhyk -->
+</contributors>
+<teams>
+    <team id="blue-team" color="blue" max="8">Blue</team>
+    <team id="red-team" color="dark red" max="8">Red</team>
+</teams>
+<spawns>
+    <default yaw="90">
+        <regions>
+            <cylinder base="-84,33,0" radius="2" height="0"/>
+        </regions>
+    </default>
+    <spawns kit="spawn">
+        <spawn team="red-team" yaw="180" kit="spawn">
+            <regions>
+                <point>0.5,8,99.5</point>
+            </regions>
+        </spawn>
+        <spawn team="blue-team" yaw="0" kit="spawn">
+            <regions>
+                <point>0.5,8,-98.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="4" amount="64" damage="1">wood</item>
+        <item slot="5" amount="32" damage="1">wood</item>
+        <item slot="8" amount="64">bread</item>
+    </kit>
+</kits>
+<filters>
+    <not id="deny-blue">
+        <team>blue-team</team>
+    </not>
+    <not id="deny-red">
+        <team>red-team</team>
+    </not>
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+</filters>
+<regions>
+    <negative id="playable-inverse">
+        <rectangle id="playable" min="61,53" max="-60,-52"/>
+    </negative>
+    <!-- e = enter | b = block | r = re-entry -->
+    <union id="tunnels">
+        <cuboid id="red-tunnel-e" min="4,-oo,102" max="-3,11,49"/>
+        <rectangle id="red-tunnel-b" min="4,102" max="-3,49"/>
+        <rectangle id="red-tunnel-r" min="4,102" max="-3,65"/>
+        <cuboid id="blue-tunnel-e" min="-3,-oo,-101" max="4,11,-48"/>
+        <rectangle id="blue-tunnel-b" min="-3,-101" max="4,-48"/>
+        <rectangle id="blue-tunnel-r" min="-3,-101" max="4,-58"/>
+    </union>
+    <!-- Applications -->
+    <apply block="never" message="You may not edit outside the playable area!">
+        <region>
+            <region id="playable-inverse"/>
+        </region>
+    </apply>
+    <apply use="deny-beacon">
+        <region>
+            <region id="playable"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not modify the spawns!">
+        <region>
+            <region id="red-tunnel-b"/>
+            <region id="blue-tunnel-b"/>
+        </region>
+    </apply>
+    <apply enter="never" message="You may not re-enter the spawns!">
+        <region>
+            <region id="red-tunnel-r"/>
+            <region id="blue-tunnel-r"/>
+        </region>
+    </apply>
+    <apply enter="deny-blue" message="You may not enter the enemy spawn tunnel!">
+        <region>
+            <region id="red-tunnel-e"/>
+        </region>
+    </apply>
+    <apply enter="deny-red" message="You may not enter the enemy spawn tunnel!">
+        <region>
+            <region id="blue-tunnel-e"/>
+        </region>
+    </apply>
+</regions>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="25m" material="packed ice" name="PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core team="blue-team">
+        <region>
+            <cuboid min="3,23,-39" max="-2,29,-2"/>
+        </region>
+    </core>
+    <core team="red-team">
+        <region>
+            <cuboid min="-2,23,40" max="3,29,35"/>
+        </region>
+    </core>
+</cores>
+<destroyables materials="ender stone" completion="100%">
+    <destroyables name="Left Monument">
+        <destroyable owner="red-team">
+            <region>
+                <cuboid min="-26,16,36" max="-23,22,39"/>
+            </region>
+        </destroyable>
+        <destroyable owner="blue-team">
+            <region>
+                <cuboid min="27,16,-35" max="24,22,-38"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Right Monument">
+        <destroyable owner="red-team">
+            <region>
+                <cuboid min="24,16,36" max="27,22,39"/>
+            </region>
+        </destroyable>
+        <destroyable owner="blue-team">
+            <region>
+                <cuboid min="-23,16,-35" max="-26,22,-38"/>
+            </region>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>bread</item>
+    <item>clay ball</item>
+    <item>beacon</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ender stone</item>
+</itemremove>
+<tnt>
+    <dispenser-tnt-limit>0</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0</dispenser-tnt-multiplier>
+</tnt>
+<crafting>
+    <disable>shield</disable>
+</crafting>
+<maxbuildheight>40</maxbuildheight>
+<respawn delay="4s"/>
+<autorespawn/>
+</map>

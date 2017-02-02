@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Outback</name>
+<version>2.3.1</version>
+<objective>Capture the two enemy's wools!</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
+    <!--  rockymine  -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML and Map Fixing" />
+    <!--  ollyj  -->
+</contributors>
+<teams>
+    <team color="yellow" max="36">Yellow</team>
+    <team color="dark purple" max="36">Purple</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:1" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">diamond axe</item>
+        <item slot="4" unbreakable="true">diamond spade</item>
+        <item slot="5" amount="64" damage="1">wood</item>
+        <item slot="7" amount="32">cooked beef</item>
+        <item slot="8" amount="1">golden apple</item>
+        <item slot="17" amount="2">web</item>
+        <boots enchantment="protection fall:2" unbreakable="true">iron boots</boots>
+    </kit>
+    <kit name="yellow-spawn" parents="spawn">
+        <item slot="6" damage="4" amount="32">stained clay</item>
+        <chestplate color="E5E533">leather chestplate</chestplate>
+    </kit>
+    <kit name="purple-spawn" parents="spawn">
+        <item slot="6" damage="10" amount="32">stained clay</item>
+        <chestplate color="800080">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="yellow-spawn" yaw="0">
+        <cylinder base="0.5,9,-77.5" radius="2" height="0" />
+    </spawn>
+    <spawn team="purple" kit="purple-spawn" yaw="-180">
+        <cylinder base="0.5,9,78.5" radius="2" height="0" />
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="0,50,0" radius="3" height="0" />
+    </default>
+</spawns>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void />
+        </deny>
+    </filter>
+    <filter name="iron-only" parents="deny-blocks">
+        <allow>
+            <block>iron block</block>
+        </allow>
+    </filter>
+    <filter name="breakable-woolroom" parents="deny-blocks">
+        <allow>
+            <block>stained glass</block>
+            <block>web</block>
+        </allow>
+    </filter>
+    <filter name="only-purple-web">
+        <any>
+            <block>web</block>
+            <block>stained glass</block>
+        </any>
+        <team>purple</team>
+    </filter>
+    <filter name="only-yellow-web">
+        <any>
+            <block>web</block>
+            <block>stained glass</block>
+        </any>
+        <team>yellow</team>
+    </filter>
+</filters>
+<regions>
+    <union name="denied-area">
+        <rectangle name="denied-area-yellow" min="-28,-142" max="29,-72" />
+        <rectangle name="denied-area-purple" min="-28,73" max="29,141" />
+    </union>
+    <union name="yellow-wool-rooms">
+        <union name="magenta-wool">
+            <rectangle min="39,-123" max="43,-136" />
+            <rectangle min="34,-122" max="39,-135" />
+            <rectangle min="29,-121" max="34,-134" />
+        </union>
+        <union name="pink-wool">
+            <rectangle min="-38,-123" max="-43,-136" />
+            <rectangle min="-33,-122" max="-38,-135" />
+            <rectangle min="-28,-121" max="-33,-134" />
+        </union>
+    </union>
+    <union name="purple-wool-rooms">
+        <union name="blue-wool">
+            <rectangle min="39,124" max="43,137" />
+            <rectangle min="34,123" max="39,136" />
+            <rectangle min="29,122" max="34,135" />
+        </union>
+        <union name="lightblue-wool">
+            <rectangle min="-38,124" max="-43,137" />
+            <rectangle min="-33,123" max="-38,136" />
+            <rectangle min="-28,122" max="-33,135" />
+        </union>
+    </union>
+    <union name="spawns">
+        <union name="purple-spawn">
+            <rectangle min="-16,73" max="12,109" />
+            <rectangle name="purple-entrance" min="3,73" max="-2,69" />
+        </union>
+        <union name="yellow-spawn">
+            <rectangle min="-13,-109" max="16,-72" />
+            <rectangle name="yellow-entrance" min="-2,-72" max="3,-68" />
+        </union>
+    </union>
+    <apply block="deny-void" message="You may not build in the void!">
+        <negative>
+            <rectangle min="-43,-136" max="44,137" />
+        </negative>
+        <region name="denied-area" />
+    </apply>
+    <apply block="deny-all" use="deny-all">
+        <cylinder base="0,30,0" radius="10" height="30" />
+    </apply>
+    <apply block="breakable-woolroom">
+        <region name="yellow-wool-rooms" />
+        <region name="purple-wool-rooms" />
+    </apply>
+    <apply enter="only-purple" message="Only purple may enter this area!">
+        <region name="yellow-wool-rooms" />
+        <region name="purple-entrance" />
+    </apply>
+    <apply enter="only-yellow" message="Only yellow may enter this area!">
+        <region name="purple-wool-rooms" />
+        <region name="yellow-entrance" />
+    </apply>
+    <apply use="only-purple" block-break="only-purple-web">
+        <region name="yellow-wool-rooms" />
+    </apply>
+    <apply use="only-yellow" block-break="only-yellow-web">
+        <region name="purple-wool-rooms" />
+    </apply>
+    <apply block-break="iron-only" block-place="deny-all allow-world" message="You may only break iron!">
+        <region name="spawns" />
+    </apply>
+</regions>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>stained clay</item>
+    <item>cooked beef</item>
+    <item>web</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>emerald block</item>
+    <item>beacon</item>
+    <item>diamond axe</item>
+    <item>diamond spade</item>
+    <item>ladder</item>
+</itemremove>
+<toolrepair>
+    <tool>arrow</tool>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<renewables>
+    <renewable rate="0.5" grow="true" particles="true" sound="false" avoid-entities="true">
+        <region>
+            <union name="iron">
+                <rectangle name="purple-iron" min="11,84" max="-11,104" />
+                <rectangle name="yellow-iron" min="-11,-84" max="11,-104"/>
+            </union>
+        </region>
+        <renew-filter>
+            <any>
+                <block>iron block</block>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<maxbuildheight>28</maxbuildheight>
+<wools team="yellow">
+    <wool color="blue">
+        <block>-5,10,-78</block>
+    </wool>
+    <wool color="light blue">
+        <block>5,10,-78</block>
+    </wool>
+</wools>
+<wools team="purple">
+    <wool color="magenta">
+        <block>-5,10,78</block>
+    </wool>
+    <wool color="pink">
+        <block>5,10,78</block>
+    </wool>
+</wools>
+</map>

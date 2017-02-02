@@ -1,0 +1,38 @@
+<map proto="1.4.0">
+<broadcasts>
+    <!-- Map Explanation -->
+    <alert after="1">`r`4`l**************************************</alert>
+    <alert after="1.1s">`r`6`lFall into the void to score points!</alert>
+    <alert after="1.2s">`r`4`l**************************************</alert>
+    <alert after="5.1s">`r`6`lLook Down!</alert>
+    
+    <!-- Easy Rounds -->
+    <alert after="5s">`r`6Round 1 `8(`aEASY `910 seconds`8)</alert>
+    <alert after="18s">`r`6Round 2 `8(`aEASY `910 seconds`8)</alert>
+    <alert after="31s">`r`6Round 3 `8(`aEASY `910 seconds`8)</alert>
+    <alert after="44s">`r`6Round 4 `8(`aEASY `910 seconds`8)</alert>
+    
+    <!-- HARD Rounds -->
+    <alert after="58s">`r`6Round 5 `8(`eMEDIUM `95 seconds`8)</alert>
+    <alert after="66s">`r`6Round 6 `8(`eMEDIUM `95 seconds`8)</alert>
+    <alert after="74s">`r`6Round 7 `8(`eMEDIUM `95 seconds`8)</alert>
+    <alert after="82s">`r`6Round 8 `8(`eMEDIUM `95 seconds`8)</alert>
+    <alert after="90s">`r`6Round 9 `8(`eMEDIUM `95 seconds`8)</alert>
+    <alert after="98s">`r`6Round 10 `8(`eMEDIUM `95 seconds`8)</alert>
+    
+    <!-- Sudden Death -->
+    <alert after="106">`r`cSUDDEN DEATH</alert>
+    
+    <!-- Countdown 10 second rounds-->
+    <alert after="12s" every="13s" count="4">`r`b3...</alert>
+    <alert after="13s" every="13s" count="4">`r`b2...</alert>
+    <alert after="14s" every="13s" count="4">`r`b1...</alert>
+    <alert after="15s" every="13s" count="4">`r`bDrop!</alert>
+    
+    <!-- Countdown 5 second rounds -->
+    <alert after="60s" every="8s">`r`b3...</alert>
+    <alert after="61s" every="8s">`r`b2...</alert>
+    <alert after="62s" every="8s">`r`b1...</alert>
+    <alert after="63s" every="8s">`r`bDrop!</alert>
+</broadcasts>
+</map>

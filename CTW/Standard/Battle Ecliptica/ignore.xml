@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Battle Ecliptica</name>
+<version>1.0.3</version>
+<objective>Capture the other teams wools</objective>
+<authors>
+    <author>chickolympics</author>
+    <author>DoctorTardi</author>
+</authors>
+<maxbuildheight>40</maxbuildheight>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a four team Capture the Wool (CTW) map</line>
+            <line>The objective is to grab one wool from each of the opposing</line>
+            <line>teams sides, and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="50">99,63,-180</point>
+        </teleport>
+    </stage>
+    <stage title="Purple Team Base">
+        <message>
+            <line>`rThis is the `5Purple Team's `rbase. You spawn with gear ready to go into battle!</line>
+            <line>You can find Iron Blocks inside your base, and use them to craft armor</line>
+        </message>
+        <teleport>
+            <point yaw="0">99,7,-5</point>
+        </teleport>
+    </stage>
+    <stage title="Red Wool Rooms">
+        <message>
+            <line>These are `4Red `4team's `rwool rooms.</line>
+            <line>The `4Red Team `rshould defend these rooms against all attackers from the three other teams who will be trying to steal the wool and make it back alive.</line>
+            <line>In order for players from the opposing teams to capture the red wool, they must run into the wool room with their teams corresponding color.</line>
+            <line>For example, players from the `5Purple Team`r, will be running into the room with purple clay around it. They cannot go into the wool rooms for the `6Orange`r, or `2Green`r teams.</line>
+            <line>There are special goodies inside that will help you fight your way out.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="50">-73,37,-180</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>This the `5Purple Teams`r Victory Monument.</line>
+            <line>The `5Purple Team`r must return one each of the opposing teams wools, to win the match!</line>
+        </message>
+        <teleport>
+            <point yaw="0">99,7,22</point>
+        </teleport>
+    </stage>
+    <stage title="Center Island">
+        <message>
+            <line>This is the center island! There is a spawner that spawns different types of gear, which may be very useful to gain an advantage over your opponents.</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="30">99,25,-158</point>
+        </teleport>
+    </stage>
+</tutorial>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:2;durability:3">iron pickaxe</item>
+        <item slot="3" amount="64">Bread</item>
+        <item slot="4" damage="1" amount="64">Log</item>
+        <item slot="5" amount="64">Smooth Brick</item>
+        <item slot="6" amount="64">Smooth Brick</item>
+        <item slot="7" amount="64">Smooth Brick</item>
+        <item slot="8" amount="64">glass</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="31" damage="1" amount="64">Log</item>
+    </kit>
+</kits>
+<teams>
+    <team color="dark red" max="35">Red</team>
+    <team color="dark purple" max="35">Purple</team>
+    <team color="dark green" max="35">Green</team>
+    <team color="gold" max="35">Orange</team>
+</teams>
+<spawns>
+    <spawn team="Red Team" yaw="-90" kit="spawn">
+        <cylinder base="-86,9,-181" radius="8" height="1"/>
+    </spawn>
+    <spawn team="Purple Team" yaw="-180" kit="spawn">
+        <cylinder base="99,9,4" radius="8" height="1"/>
+    </spawn>
+    <spawn team="Green Team" yaw="90" kit="spawn">
+        <cylinder base="284,9,-181" radius="8" height="1"/>
+    </spawn>
+    <spawn team="Orange Team" yaw="0" kit="spawn">
+        <cylinder base="99,9,-366" radius="8" height="1"/>
+    </spawn>
+    <default><point>-31,127,-50</point></default>
+</spawns>
+<filters>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+    <filter name="only-purple" parents="deny-all">
+        <allow>
+            <team>purple</team>
+        </allow>
+    </filter>
+    <filter name="only-green" parents="deny-all">
+        <allow>
+            <team>green</team>
+        </allow>
+    </filter>
+    <filter name="only-orange" parents="deny-all">
+        <allow>
+            <team>orange</team>
+        </allow>
+    </filter>
+    <filter name="only-red-b" parents="only-red">
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="only-purple-b" parents="only-purple">
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="only-green-b" parents="only-green">
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="only-orange-b" parents="only-orange">
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="no-void" parents="allow-all">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="Team-Spawn" parents="deny-blocks deny-world">
+        <allow>
+            <block>iron block</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <union name="Green">
+        <cylinder base="57,8,-366" radius="10" height="35"/>
+        <cylinder base="57,8,4" radius="10" height="35"/>
+        <cylinder base="-128,8,-181" radius="10" height="35"/>
+    </union>
+    <union name="Purple">
+        <cylinder base="99,8,-408" radius="10" height="35"/>
+        <cylinder base="284,8,-223" radius="10" height="35"/>
+        <cylinder base="-86,8,-223" radius="10" height="35"/>
+    </union>
+    <union name="Red">
+        <cylinder base="141,8,-366" radius="10" height="35"/>
+        <cylinder base="326,8,-181" radius="10" height="35"/>
+        <cylinder base="141,8,4" radius="10" height="35"/>
+    </union>
+    <union name="Orange">
+        <cylinder base="-86,8,-139" radius="10" height="35"/>
+        <cylinder base="284,8,-139" radius="10" height="35"/>
+        <cylinder base="99,8,46" radius="10" height="35"/>
+    </union>
+    <union name="region2a">
+        <region name="Red"/>
+        <region name="Purple"/>
+        <region name="Green"/>
+        <region name="Orange"/>
+    </union>
+    <cuboid name="G-Entrance" min="261,10,-184" max="263,43,-178"/>
+    <cuboid name="P-Entrance" min="102,10,-19" max="96,43,-17"/>
+    <cuboid name="O-Entrance" min="96,10,-343" max="102,43,-345"/>
+    <cuboid name="R-Entrance" min="-63,10,-178" max="-65,43,-184"/>
+    <cylinder name="CC" base="99,1,-181" radius="24" height="40"/>
+    <union name="Green-WRooms">
+        <cylinder base="57,6,-366" radius="12" height="oo"/>
+        <cylinder base="57,6,4" radius="12" height="oo"/>
+        <cylinder base="-128,6,-181" radius="12" height="oo"/>
+    </union>
+    <union name="Purple-WRooms">
+        <cylinder base="99,6,-408" radius="12" height="oo"/>
+        <cylinder base="284,6,-223" radius="12" height="oo"/>
+        <cylinder base="-86,6,-223" radius="12" height="oo"/>
+    </union>
+    <union name="Red-WRooms">
+        <cylinder base="141,6,-366" radius="12" height="oo"/>
+        <cylinder base="326,6,-181" radius="12" height="oo"/>
+        <cylinder base="141,6,4" radius="12" height="oo"/>
+    </union>
+    <union name="Orange-WRooms">
+        <cylinder base="-86,6,-139" radius="12" height="oo"/>
+        <cylinder base="284,6,-139" radius="12" height="oo"/>
+        <cylinder base="99,6,46" radius="12" height="oo"/>
+    </union>
+    <union name="No-UnderBuilding">
+        <cylinder base="99,1,-181" radius="20" height="16"/>
+        <cylinder base="99,1,-181" radius="60" height="11"/>
+        <cylinder base="99,1,-181" radius="100" height="6"/>
+    </union>
+    <union name="spawns">
+        <cylinder name="Orange-Spawn" base="99,5,-365" radius="23" height="9"/>
+        <cylinder name="Green-Spawn" base="284,5,-181" radius="23" height="9"/>
+        <cylinder name="Purple-Spawn" base="99,5,4" radius="23" height="9"/>
+        <cylinder name="Red-Spawn" base="-85,5,-180" radius="23" height="9"/>
+    </union>
+    <cylinder name="OuterLimit" base="99,1,-181" radius="300" height="40"/>
+    <cylinder name="Limit" base="99,1,-181" radius="141.5" height="40"/>
+    <union name="Void-filter">
+        <rectangle min="-39,-121" max="-447,-239"/>
+        <rectangle min="39,-319" max="160,-420"/>
+        <rectangle min="238,-241" max="346,-120"/>
+        <rectangle min="160,-42" max="30,70"/>
+    </union>
+    <union name="NoRegion">
+        <cuboid min="-39,0,-121" max="-447,41,-239"/>
+        <cuboid min="39,0,-319" max="160,41,-420"/>
+        <cuboid min="238,0,-241" max="346,41,-120"/>
+        <cuboid min="160,0,-42" max="30,41,70"/>
+    </union>
+    <union name="region1">
+        <complement>
+            <region name="NoRegion"/>
+            <region name="spawns"/>
+        </complement>
+    </union>
+    <union name="region2">
+        <complement>
+            <region name="region1"/>
+            <region name="region2a"/>
+        </complement>
+    </union>
+    <union name="MainCircle">
+        <complement>
+            <region name="OuterLimit"/>
+            <region name="NoRegion"/>
+        </complement>
+    </union>
+    <apply block="deny-all">
+        <complement>
+            <region name="MainCircle"/>
+            <region name="Limit"/>
+        </complement>
+    </apply>
+    <apply enter="only-red" message="You may not enter red teams spawn!">
+        <region name="R-Entrance"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter purple teams spawn!">
+        <region name="P-Entrance"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter green teams spawn!">
+        <region name="G-Entrance"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter orange teams spawn!">
+        <region name="O-Entrance"/>
+    </apply>
+    <apply enter="only-red-b" message="You may not enter a wool room belonging to another team">
+        <region name="Red-WRooms"/>
+    </apply>
+    <apply enter="only-purple-b" message="You may not enter a wool room belonging to another team">
+        <region name="Purple-WRooms"/>
+    </apply>
+    <apply enter="only-green-b" message="You may not enter a wool room belonging to another team">
+        <region name="Green-WRooms"/>
+    </apply>
+    <apply enter="only-orange-b" message="You may not enter a wool room belonging to another team">
+        <region name="Orange-WRooms"/>
+    </apply>
+    <apply block="only-red-b">
+        <region name="Red-WRooms"/>
+    </apply>
+    <apply block="only-purple-b">
+        <region name="Purple-WRooms"/>
+    </apply>
+    <apply block="only-green-b">
+        <region name="Green-WRooms"/>
+    </apply>
+    <apply block="only-orange-b">
+        <region name="Orange-WRooms"/>
+    </apply>
+    <apply block="deny-all" message="No Building bridges down here, Sorry!">
+        <region name="No-UnderBuilding"/>
+    </apply>
+    <apply block="no-void" message="You may not edit the void area">
+        <region name="region2"/>
+    </apply>
+    <apply block="Team-Spawn">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all">
+        <block>99,23,-181</block>
+    </apply>
+</regions>
+<wools team="purple">
+    <wool color="red">
+        <block>101,8,25</block>
+    </wool>
+    <wool color="orange">
+        <block>99,8,25</block>
+    </wool>
+    <wool color="green">
+        <block>97,8,25</block>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="orange">
+        <block>-107,8,-179</block>
+    </wool>
+    <wool color="green">
+        <block>-107,8,-181</block>
+    </wool>
+    <wool color="purple">
+        <block>-107,8,-183</block>
+    </wool>
+</wools>
+<wools team="orange">
+    <wool color="green">
+        <block>97,8,-387</block>
+    </wool>
+    <wool color="purple">
+        <block>99,8,-387</block>
+    </wool>
+    <wool color="red">
+        <block>-101,8,-387</block>
+    </wool>
+</wools>
+<wools team="green">
+    <wool color="purple">
+        <block>305,8,-183</block>
+    </wool>
+    <wool color="red">
+        <block>305,8,-181</block>
+    </wool>
+    <wool color="orange">
+        <block>305,8,-179</block>
+    </wool>
+</wools>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>98</item>
+    <item>glass</item>
+    <item>wood</item>
+    <item>bread</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>arrow</item>
+</itemremove>
+</map>

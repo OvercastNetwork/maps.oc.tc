@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Thunder</name>
+<version>1.4.1</version>
+<objective>Capture the other team's wools and take it to your victory monument to win.</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="XML"/> <!-- TheZaner -->
+</contributors>
+<teams>
+    <team color="green" max="9" max-overfill="12">Green</team>
+    <team color="red" max="9" max-overfill="12">Red</team>
+    <team color="blue" max="9" max-overfill="12">Blue</team>
+    <team color="yellow" max="9" max-overfill="12">Yellow</team>
+</teams>
+<wools craftable="false">
+    <wool team="green" color="yellow">
+        <block>20,2,-71</block>
+    </wool>
+    <wool team="green" color="red">
+        <block>20,2,-70</block>
+    </wool>
+    <wool team="green" color="blue">
+        <block>20,2,-69</block>
+    </wool>
+    <wool team="blue" color="green">
+        <block>-71,2,-20</block>
+    </wool>
+    <wool team="blue" color="yellow">
+        <block>-70,2,-20</block>
+    </wool>
+    <wool team="blue" color="red">
+        <block>-69,2,-20</block>
+    </wool>
+    <wool team="red" color="blue">
+        <block>-20,2,71</block>
+    </wool>
+    <wool team="red" color="green">
+        <block>-20,2,70</block>
+    </wool>
+    <wool team="red" color="yellow">
+        <block>-20,2,69</block>
+    </wool>
+    <wool team="yellow" color="red">
+        <block>71,2,20</block>
+    </wool>
+    <wool team="yellow" color="blue">
+        <block>70,2,20</block>
+    </wool>
+    <wool team="yellow" color="green">
+        <block>69,2,20</block>
+    </wool>
+</wools>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" damage="-30000" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="32">grilled pork</item>
+        <item slot="7" amount="16" damage="2">wood</item>
+        <item slot="27">arrow</item>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+        <helmet damage="-30000">iron helmet</helmet>
+        <chestplate damage="-30000">chainmail chestplate</chestplate>
+        <boots damage="-30000">iron boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <item slot="5" amount="32" damage="14">stained glass</item>
+        <item slot="6" amount="32" damage="14">stained clay</item>
+        <leggings damage="-30000" color="993333">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <item slot="5" amount="32" damage="11">stained glass</item>
+        <item slot="6" amount="32" damage="11">stained clay</item>
+        <leggings damage="-30000" color="334CB2">leather leggings</leggings>
+    </kit>
+    <kit name="green" parents="spawn">
+        <item slot="5" amount="32" damage="13">stained glass</item>
+        <item slot="6" amount="32" damage="13">stained clay</item>
+        <leggings damage="-30000" color="667F33">leather leggings</leggings>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <item slot="5" amount="32" damage="4">stained glass</item>
+        <item slot="6" amount="32" damage="4">stained clay</item>
+        <leggings damage="-30000" color="E5E533">leather leggings</leggings>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>grilled pork</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>iron helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>18</maxbuildheight>
+<filters>
+    <filter name="woolroom-b">
+        <deny><team>blue</team></deny>
+    </filter>
+    <filter name="woolroom-r">
+        <deny><team>red</team></deny>
+    </filter>
+    <filter name="woolroom-g">
+        <deny><team>green</team></deny>
+    </filter>
+    <filter name="woolroom-y">
+        <deny><team>yellow</team></deny>
+    </filter>
+    <filter name="deny-void">
+        <deny><void/></deny>
+    </filter>
+</filters>
+<regions>
+    <apply enter="woolroom-b" message="You may not enter your own wool room.">
+        <region name="blue-wool-room"/>
+    </apply>
+    <apply enter="woolroom-r" message="You may not enter your own wool room.">
+        <region name="red-wool-room"/>
+    </apply>
+    <apply enter="woolroom-y" message="You may not enter your own wool room.">
+        <region name="yellow-wool-room"/>
+    </apply>
+    <apply enter="woolroom-g" message="You may not enter your own wool room.">
+        <region name="green-wool-room"/>
+    </apply>        
+    <apply block="woolroom-b">
+        <region name="blue-wool-room"/>
+    </apply>
+    <apply block="woolroom-r">
+        <region name="red-wool-room"/>
+    </apply>
+    <apply block="woolroom-y">
+        <region name="yellow-wool-room"/>
+    </apply>
+    <apply block="woolroom-g">
+        <region name="green-wool-room"/>
+    </apply>    
+    <apply block="deny-blocks" message="You may not edit spawn.">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not break the wool monument.">
+        <region name="monuments"/>
+    </apply>
+    <apply block="deny-void" message="You may not build outside the playable region.">
+        <negative>
+            <region name="main"/>
+            <region name="bridges"/>
+        </negative>
+    </apply>
+    <circle name="main" center="0.5,0.5" radius="52"/>
+    <union name="bridges">
+        <rectangle name="blue-bridge" min="-88,29" max="-72,24"/>
+        <rectangle name="green-bridge" min="-28,-88" max="-23,-72"/>
+        <rectangle name="yellow-bridge" min="89,-28" max="73,-23"/>
+        <rectangle name="red-bridge" min="29,89" max="24,73"/>
+    </union>
+    <union name="monuments">
+        <cuboid min="21,4,-69" max="20,0,-71"/>
+        <cuboid min="-71,4,-21" max="-69,0,-20"/>
+        <cuboid min="-21,4,71" max="-20,0,69"/>
+        <cuboid min="71,4,21" max="69,0,20"/>
+    </union>
+    <union name="spawns">
+        <rectangle min="85,23" max="98,11"/> <!-- Yellow -->
+        <rectangle min="-23,85" max="-11,98"/> <!-- Red --> 
+        <rectangle min="11,-98" max="23,-85"/> <!-- Green --> 
+        <rectangle min="-85,-23" max="-98,-11"/> <!-- Blue -->
+    </union>
+    <!-- Diagonal Wool Rooms -->
+    <union name="blue-wool-room">
+        <rectangle min="-118,-2" max="-104,1"/>
+        <rectangle min="-118,-2" max="-105,2"/>
+        <rectangle min="-118,-2" max="-106,3"/>
+        <rectangle min="-118,-2" max="-107,4"/>
+        <rectangle min="-118,-2" max="-108,5"/>
+        <rectangle min="-118,-2" max="-109,6"/>
+        <rectangle min="-118,-2" max="-110,7"/>
+        <rectangle min="-118,-2" max="-111,8"/>
+        <rectangle min="-118,-2" max="-112,9"/>
+    </union>
+    <union name="red-wool-room">
+        <rectangle min="-2,118" max="1,104"/>
+        <rectangle min="-2,118" max="2,105"/>
+        <rectangle min="-2,118" max="3,106"/>
+        <rectangle min="-2,118" max="4,107"/>
+        <rectangle min="-2,118" max="5,108"/>
+        <rectangle min="-2,118" max="6,109"/>
+        <rectangle min="-2,118" max="7,110"/>
+        <rectangle min="-2,118" max="8,111"/>
+        <rectangle min="-2,118" max="9,112"/>
+    </union>
+    <union name="yellow-wool-room">
+        <rectangle min="118,2" max="104,-1"/>
+        <rectangle min="118,2" max="105,-2"/>
+        <rectangle min="118,2" max="106,-3"/>
+        <rectangle min="118,2" max="107,-4"/>
+        <rectangle min="118,2" max="108,-5"/>
+        <rectangle min="118,2" max="109,-6"/>
+        <rectangle min="118,2" max="110,-7"/>
+        <rectangle min="118,2" max="111,-8"/>
+        <rectangle min="118,2" max="112,-9"/>
+    </union>
+    <union name="green-wool-room">
+        <rectangle min="2,-118" max="-1,-104"/>
+        <rectangle min="2,-118" max="-2,-105"/>
+        <rectangle min="2,-118" max="-3,-106"/>
+        <rectangle min="2,-118" max="-4,-107"/>
+        <rectangle min="2,-118" max="-5,-108"/>
+        <rectangle min="2,-118" max="-6,-109"/>
+        <rectangle min="2,-118" max="-7,-110"/>
+        <rectangle min="2,-118" max="-8,-111"/>
+        <rectangle min="2,-118" max="-9,-112"/>
+    </union>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="-19,6,94" max="-19,6,93"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cuboid min="-93,6,-19" max="-94,6,-19"/>
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="90">
+        <cuboid min="94,6,19" max="93,6,19"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="19,6,-94" max="19,6,-93"/>
+    </spawn>
+    <default yaw="-90">
+        <block>1.5,46,0.5</block>
+    </default>
+</spawns>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other 3 team's sides and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="12">0.5,22,3.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Rooms">
+        <message>
+            <line>`aThis is the `b`lWool Room.</line>
+            <line>`c`oYou must defend your own, whilst attacking the other team's to get their wool</line>
+        </message>
+        <teleport>
+            <point yaw="315" pitch="325">101.5,7,-13.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool">
+        <message>
+            <line>`aThis is the `b`lWool Chest.</line>
+            <line>`c`oYou may take the wool from here, as well as taking gear.</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="0">112.5,13,-1.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`aThis is the `b`lWool Monument.</line>
+            <line>`c`oThis is where you place the wool from the opposing team's sides to win the game.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">70.5,1,18.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<include src="tutorial.xml"/>
+</map>

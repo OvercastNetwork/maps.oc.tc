@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<include src="gs.xml"/>
+<include src="gs-ffa.xml"/>
+<name>School's Out!</name>
+<gamemode>gs</gamemode>
+<version>1.0.2</version>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!-- GoldenOre -->
+    <author uuid="14aad06f-6fc0-4b26-be7b-187c3be8eb89" /> <!-- 68pingy -->
+</authors>
+<spawns>
+    <spawn safe="true" spread="true">
+        <cuboid min="36,16,-2" max="-23,22,22" />
+    </spawn>
+    <default yaw="135">
+        <cylinder base="9,16,27" radius="1" height="0" />
+    </default>
+</spawns>
+<kits>
+    <kit name="skull" force="true">
+        <helmet locked="true">skull_item</helmet>
+    </kit>
+    <kit name="remove-skull" force="true">
+        <helmet>air</helmet>
+    </kit>
+</kits>
+<regions>
+    <apply kit="skull">
+        <cuboid min="-oo,-oo,-oo" max="oo,13,oo" />
+        <cuboid min="-37,16,-8" max="36,21,-14" />
+    </apply>
+    <apply kit="remove-skull">
+        <negative>
+            <cuboid min="-oo,-oo,-oo" max="oo,13,oo" />
+            <cuboid min="-37,16,-8" max="36,21,-14" />
+        </negative>
+    </apply>
+</regions>
+<broadcasts>
+    <tip after="5s" every="1m" count="3">`7A skull will be placed on your head if you enter the water or bridge!</tip>
+</broadcasts>
+</map>

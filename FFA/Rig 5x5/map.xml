@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Rig FFA</name>
+<slug>rig_5x5</slug>
+<version>1.0.6</version>
+<objective>Kill the most people in 5 minutes</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
+</authors>
+<contributors>
+    <contributor uuid="105f6a09-f533-412b-93cb-501601763c11" contribution="5x5 Conversion"/> <!-- JTr -->
+</contributors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false"/>
+<rage/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" name="Bow" lore="One Hit Kill" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" color="E5E533" locked="true">leather chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-179">-6.5,9,8.5</point>
+            <point yaw="-91">-6.5,9,8.5</point>
+            <point yaw="-89">-6.5,9,-7.5</point>
+            <point yaw="0">-6.5,9,-7.5</point>
+            <point yaw="2">24.5,9,2.5</point>
+            <point yaw="91">22.5,22,20.5</point>
+            <point yaw="-135">-18.5,15,20.5</point>
+            <point yaw="180">1.5,22,-7.5</point>
+            <point yaw="45">20.5,22,-15.5</point>
+            <point yaw="135">24.5,15,18.5</point>
+            <point yaw="-179">18.5,15,22.5</point>
+            <point yaw="-90">4.5,15,25.5</point>
+            <point yaw="162">14.5,22,25.5</point>
+            <point yaw="135">20.5,22,22.5</point>
+            <point yaw="-119">9.5,22,11.5</point>
+            <point yaw="-121">0.5,26,2.5</point>
+            <point yaw="1">-8.5,15,3.5</point>
+        </regions>
+    </spawn>
+    <default yaw="0">
+        <regions>
+            <cuboid min="0,43,-1" max="2,43,-1"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never"/>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<broadcasts>
+    <tip after="1s">Bows and swords are one hit kills</tip>
+</broadcasts>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<timelock>on</timelock>
+</map>

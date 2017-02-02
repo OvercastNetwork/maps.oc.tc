@@ -1,0 +1,65 @@
+<map proto="1.4.0">
+<version>1.2.6</version>
+<name>Coin Collector; Twisted Thicket</name>
+<objective>Collect as many coins as possible!</objective>
+<phase>development</phase>
+<authors>
+  <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
+</authors>
+<players min="1" max="8" max-overfill="8" show-name-tags="true"/>
+<kits>
+    <kit id="spawn-kit">
+        <helmet>leather helmet</helmet>
+        <chestplate>leather chestplate</chestplate>
+        <leggings>leather leggings</leggings>
+        <boots>leather boots</boots>
+    </kit>
+</kits>
+<keep-potion-bottles/>
+<blitz>
+    <lives>1</lives>  
+</blitz>
+<time>1m</time>  
+<spawns>
+    <default>
+        <regions yaw="-135">
+            <cylinder base="-153,45,-0.5" radius="4" height="0"/>
+        </regions>
+    </default>
+    <spawn spread="true">
+        <regions yaw="-90">
+            <cylinder base="-153,45,-0.5" radius="4" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="never"/>
+    <cuboid id="finish-line" min="-156,1,-30" max="183,75,72"/> 
+    <cuboid id="final-jump" min="153,5,0" max="155,6,3"/>
+    <apply velocity="1,2,0">
+        <region><region id="final-jump"/></region>
+    </apply>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>    
+</disabledamage>
+<time>1m</time>
+<score>
+    <limit>100</limit>
+</score>
+<score>
+    <box region="finish-line">
+        <redeemables region="finish-line">
+            <item points="1">175</item>
+        </redeemables>
+    </box>    
+</score>
+<world-borders center="175.5,4.5">
+    <!-- After 5 minutes, it starts shrinking, until it is 20 meters wide at 15 minutes. -->
+    <world-border size="700"/>
+    <world-border size="24" after="0m" duration="1m"/>
+</world-borders>
+</map>

@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>SSB TE</name>
+<version>2.2</version>
+<objective>Break the enemy's three coal monuments.</objective>
+<authors>
+    <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <union name="outside-map">
+        <negative>
+            <rectangle name="map" min="253,161" max="175,54"/>
+        </negative>
+        <union name="tunnels">
+            <cuboid name="blue-tunnel" min="253,41,72" max="305,45,83"/>
+            <mirror name="red-tunnel" region="blue-tunnel" normal="0,0,1" origin="235.5,0,107.5"/>
+        </union>
+    </union>
+    <union name="spawns">
+        <cylinder name="obs-spawn" base="277.5,82,107.5" radius="2.5" height="1"/>
+        <block name="red-spawn" location="300.5,41,137.5"/>
+        <block name="blue-spawn" location="300.5,41,77.5"/>
+    </union>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,70,-oo" max="oo,71,oo"/>
+        <cuboid name="above-height-limit" min="-oo,71,-oo" max="oo,oo,oo"/>
+    </union>
+    <union name="objectives">
+        <union name="blue-antennae">
+            <cylinder  name="blue-antenna-a" base="243.5,49,69.5"    radius="2" height="7"/>
+            <translate name="blue-antenna-b" region="blue-antenna-a" offset="-16,0,0"/>
+            <cylinder  name="blue-antenna-c" base="209.5,40,77.5"    radius="3.5" height="7"/>
+        </union>
+        <union name="red-antennae">
+            <mirror name="red-antenna-a" region="blue-antenna-a" normal="0,0,1" origin="235.5,0,107.5"/>
+            <mirror name="red-antenna-b" region="blue-antenna-b" normal="0,0,1" origin="235.5,0,107.5"/>
+            <mirror name="red-antenna-c" region="blue-antenna-c" normal="0,0,1" origin="235.5,0,107.5"/>
+        </union>
+    </union>
+    <apply block="deny-all" region="outside-map" message="You may not edit outside of the map"/>
+    <apply enter="deny-all" region="tunnels" message="You may not enter the spawn tunnel"/>
+</regions>
+<kits>
+    <kit name="all" force="true">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="all">
+        <regions yaw="90">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="all">
+        <regions yaw="90">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs+">
+        <regions yaw="90">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<destroyables materials="coal block;coal ore" repairable="false">
+    <destroyables owner="blue">
+        <destroyable id="blue-antenna-a" name="Antenna A" region="blue-antenna-a"/>
+        <destroyable id="blue-antenna-b" name="Antenna B" region="blue-antenna-b"/>
+        <destroyable id="blue-antenna-c" name="Antenna C" region="blue-antenna-c"/>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable id="red-antenna-a" name="Antenna A" region="red-antenna-a"/>
+        <destroyable id="red-antenna-b" name="Antenna B" region="red-antenna-b"/>
+        <destroyable id="red-antenna-c" name="Antenna C" region="red-antenna-c"/>
+    </destroyables>
+</destroyables>
+<timelock>on</timelock>
+<itemremove>
+    <item>obsidian</item>
+    <item>coal block</item>
+    <item>coal ore</item>
+</itemremove>
+<blockdrops>
+    <filter>
+        <any>
+            <block>cobblestone</block>
+            <block>stone</block>
+        </any>
+    </filter>
+    <drops>
+        <item>stone</item>
+    </drops>
+</blockdrops>
+</map>

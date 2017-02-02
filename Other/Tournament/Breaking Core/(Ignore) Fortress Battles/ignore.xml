@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<include src="tourney-global.xml"/>
+<name>Fortress Battles</name>
+<version>2.3-Tourney</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author>Torn_Ares</author>
+    <author>Thungon</author>
+    <author>GammaRay_89</author>
+</authors>
+<teams>
+    <team color="blue" max="16">Blue</team>
+    <team color="dark red" max="16">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="90"><point>1249,27,519</point></spawn>
+    <spawn team="blue" yaw="270"><point>1286,27,519</point></spawn>
+    <default yaw="180" kit="restrict-obs"><cylinder base="1267,27,518" radius="7" height="0"/></default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable region">
+    <negative name="playable-inverse">
+        <rectangle min="1336,549" max="1199,637"/>
+    </negative>
+    </apply>
+    <apply enter="deny-all" message="You may not enter spawns">
+        <rectangle min="1301,547" max="1234,517"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="5">
+    <core team="red"><cuboid min="1233,22,597" max="1227,30,589"/></core>
+    <core team="blue"><cuboid min="1302,22,589" max="1307,30,597"/></core>
+</cores>
+<maxbuildheight>72</maxbuildheight>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>

@@ -1,0 +1,227 @@
+<map proto="1.3.0">
+    <name>The Frontier</name>
+    <version>1.0</version>
+    <objective>Break the other team's two monuments and leak the core to win!</objective>
+    <authors>
+        <author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+    </authors>
+    <contributors>
+        <contributor uuid="91295196-9cd2-4963-b7ec-afd1a110edbe" contribution="XML work"/> <!-- PandaBattalion -->
+        <contributor uuid="41373965-b60a-40d5-8fad-72e61d951ea2" contribution="Map feedback and aesthetics"/> <!-- Rokosnocone -->
+    </contributors>
+    <rules/>
+    <teams>
+        <team color="blue" max="32">Blue</team>
+        <team color="red" max="32">Red</team>
+    </teams>
+    <timelock>on</timelock>
+    <spawns>
+        <spawns>
+            <spawn team="red" yaw="0">
+                <cuboid max="-335,40,577" min="-341,39,573"/>
+            </spawn>
+        </spawns>
+        <spawns>
+            <spawn team="blue" yaw="180">
+                <cuboid max="-335,40,142" min="-341,39,138"/>
+            </spawn>
+        </spawns>
+        <default yaw="90">
+            <cylinder base="-423,62,357" height="0" radius="5"/>
+        </default>
+    </spawns>
+    <filters>
+        <filter parents="deny-blocks">
+            <team>blue</team>
+            <team>red</team>
+        </filter>
+    </filters>
+    <portals>
+        <!-- Red Portals -->
+        <portal x="@-320" y="@14" yaw="@180" z="@512">
+            <cuboid max="-333,42,582" min="-335,39,581"/>
+        </portal>
+        <portal x="@-320" y="@14" yaw="@180" z="@512">
+            <cuboid max="-337,42,582" min="-339,39,581"/>
+        </portal>
+        <portal x="@-320" y="@14" yaw="@180" z="@512">
+            <cuboid max="-341,42,582" min="-343,39,581"/>
+        </portal>
+        <!-- Blue Portals -->
+        <portal x="@-351" y="@14" yaw="@0" z="@202">
+            <cuboid max="-341,42,134" min="-343,39,133"/>
+        </portal>
+        <portal x="@-351" y="@14" yaw="@0" z="@202">
+            <cuboid max="-337,42,134" min="-339,39,133"/>
+        </portal>
+        <portal x="@-351" y="@14" yaw="@0" z="@202">
+            <cuboid max="-333,42,134" min="-335,39,133"/>
+        </portal>
+    </portals>
+    <regions>
+        <!-- Red Kits -->
+        <apply kit="Red Cowboy">
+            <cuboid max="-333,42,582" min="-335,39,581" name="red-cowboy"/>
+        </apply>
+        <apply kit="Cactus">
+            <cuboid max="-337,42,582" min="-339,39,581" name="red-cactus"/>
+        </apply>
+        <apply kit="Red Indian">
+            <cuboid max="-341,42,582" min="-343,39,581" name="red-indian"/>
+        </apply>
+        <!-- Blue Kits -->
+        <apply kit="Blue Cowboy">
+            <cuboid max="-341,42,134" min="-343,39,133" name="blue-cowboy"/>
+        </apply>
+        <apply kit="Cactus">
+            <cuboid max="-337,42,134" min="-339,39,133" name="blue-cactus"/>
+        </apply>
+        <apply kit="Blue Indian">
+            <cuboid max="-333,42,134" min="-335,39,133" name="blue-indian"/>
+        </apply>
+        <!-- Blue Church -->
+        <apply block="deny-blocks" message="Do not break blocks in spawn areas!">
+            <cuboid max="-339,42,211" min="-363,9,194"/>
+        </apply>
+        <!-- Red Church -->
+        <apply block="deny-blocks" message="Do not break blocks in spawn areas!">
+            <cuboid max="-308,42,521" min="-332,9,504"/>
+        </apply>
+        <!-- Red Class Selection -->
+        <apply block="deny-blocks" message="Do not break items in the class selection room!">
+            <cuboid max="-331,47,582" min="-345,36,568"/>
+        </apply>
+        <!-- Blue Class Selection -->
+        <apply block="deny-blocks" message="Do not break items in the class selection room!">
+            <cuboid max="-331,47,147" min="-345,36,133"/>
+        </apply>
+        <!-- Playable Area -->
+        <apply block="deny-blocks" message="Do not build outside of the map!">
+            <negative name="playable-inverse">
+                <rectangle max="-270,556" min="-401,159"/>
+            </negative>
+        </apply>
+    </regions>
+    <!-- Red Monuments -->
+    <destroyables materials="obsidian" owner="red">
+        <destroyable name="Mill Monument">
+            <cuboid max="-387,19,453" min="-388,16,452"/>
+        </destroyable>
+        <destroyable name="Harbor Monument">
+            <cuboid max="-317,22,424" min="-318,19,423"/>
+        </destroyable>
+    </destroyables>
+    <!-- Blue Monuments -->
+    <destroyables materials="obsidian" owner="blue">
+        <destroyable name="Mill Monument">
+            <cuboid max="-284,19,263" min="-285,16,262"/>
+        </destroyable>
+        <destroyable name="Harbor Monument">
+            <cuboid max="-353,22,291" min="-354,19,290"/>
+        </destroyable>
+    </destroyables>
+    <cores leak="8" material="obsidian">
+        <core team="blue">
+            <cuboid max="-316,31,173" min="-322,23,167"/>
+        </core>
+        <core team="red">
+            <cuboid max="-349,31,548" min="-355,23,542"/>
+        </core>
+    </cores>
+    <maxbuildheight>38</maxbuildheight>
+    <kits>
+        <!-- Default Kit -->
+        <kit name="Cowboy">
+            <helmet color="674A2C" name="Cowboy Hat">leather helmet</helmet>
+            <chestplate color="A86200">leather chestplate</chestplate>
+            <boots name="C77400">leather boots</boots>
+            <item unbreakable="true" slot="0">stone sword</item>
+            <item enchantment="arrow infinite:1;arrow damage:1" name="Revolver" slot="1">bow</item>
+            <item slot="2">diamond pickaxe</item>
+            <item amount="32" damage="1" slot="3">log</item>
+            <item amount="32" slot="4">baked potato</item>
+            <item enchantment="durability:10;dig speed:3" slot="5">wood axe</item>
+            <item slot="28">arrow</item>
+        </kit>
+        <kit name="Cactus">
+            <helmet>cactus</helmet>
+            <chestplate color="7C9000" enchantment="thorns:10">leather chestplate</chestplate>
+            <leggings color="7C9000" enchantment="thorns:10">leather leggings</leggings>
+            <boots color="7C9000" enchantment="thorns:10">leather boots</boots>
+            <item enchantment="damage all:1" name="Thorn" slot="0">flint</item>
+            <item amount="16" slot="1">snow ball</item>
+            <item slot="2">diamond pickaxe</item>
+            <item amount="64" slot="3">sand</item>
+            <item amount="32" slot="4">melon</item>
+            <item enchantment="durability:10;dig speed:3" slot="5">wood axe</item>
+        </kit>
+        <kit name="Indian">
+            <leggings color="D17819">leather leggings</leggings>
+            <boots>gold boots</boots>
+            <item enchantment="damage all:1" name="Tomahawk" slot="0">iron axe</item>
+            <item slot="1">bow</item>
+            <item slot="2">diamond pickaxe</item>
+            <item amount="32" slot="3">log</item>
+            <item amount="32" slot="4">cooked fish</item>
+            <item enchantment="durability:10;dig speed:3" slot="5">wood axe</item>
+            <item amount="16" slot="28">arrow</item>
+        </kit>
+        <!-- Team Specific Kits -->
+        <kit name="Red Cowboy" parents="Cowboy">
+            <leggings color="993333">leather leggings</leggings>
+        </kit>
+        <kit name="Blue Cowboy" parents="Cowboy">
+            <leggings color="334CB2">leather leggings</leggings>
+        </kit>
+        <kit name="Red Indian" parents="Indian">
+            <helmet color="993333">leather helmet</helmet>
+        </kit>
+        <kit name="Blue Indian" parents="Indian">
+            <helmet color="334CB2">leather helmet</helmet>
+        </kit>
+    </kits>
+    <itemremove>
+        <item>dirt</item>
+        <item>sand</item>
+        <item>fence</item>
+        <item>wooden door</item>
+        <item>fence gate</item>
+        <item>seeds</item>
+        <item>log</item>
+        <item>spruce wood stairs</item>
+        <item>17:1</item>
+        <item>wood stairs</item>
+        <item>wood step</item>
+        <item>126:1</item>
+        <item>nether fence</item>
+        <item>cauldron</item>
+        <item>clay ball</item>
+        <item>trap door</item>
+        <item>159:11</item>
+        <item>159:8</item>
+        <item>159:14</item>
+        <item>159:1</item>
+        <item>wood</item>
+        <item>5:1</item>
+        <item>item frame</item>
+        <item>melon</item>
+        <item>cooked fish</item>
+        <item>baked potato</item>
+        <item>flint</item>
+        <item>cactus</item>
+        <item>29</item>
+        <item>33</item>
+        <item>obsidian</item>
+    </itemremove>
+    <toolrepair>
+        <tool>iron axe</tool>
+        <tool>bow</tool>
+        <tool>diamond pickaxe</tool>
+        <tool>leather chestplate</tool>
+        <tool>leather leggings</tool>
+        <tool>leather helmet</tool>
+        <tool>leather boots</tool>
+        <tool>gold boots</tool>
+        <tool>wood axe</tool>
+    </toolrepair>
+</map>

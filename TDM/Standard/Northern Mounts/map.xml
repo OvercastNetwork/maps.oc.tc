@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Northern Mounts</name>
+<version>1.1.1</version>
+<objective>Be the team with the least deaths after the time limit is reached</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="acc5d8bf-09db-44d2-903a-4a01f8d82356" contribution="XML"/> <!-- sillybillypiggy -->
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="XML Check"/> <!-- Tywnis -->
+    <contributor uuid="657b93a7-3f50-4e94-ae3b-189506124836" contribution="Support"/> <!-- Tjandralala -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Fix up the XML"/> <!-- IM_A_H0B0 -->
+</contributors>
+<teams>
+    <team id="lime" color="green" max="40">Lime Moon</team>
+    <team id="orange" color="gold" max="40">Orange Sun</team>
+</teams>
+<filters>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not modify the void area!">
+        <rectangle name="main-area" min="65,860" max="290,980"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="4" amount="32" damage="4">wood</item>
+        <item slot="6">384</item>
+        <item slot="5" amount="32">ladder</item>
+        <item slot="8" amount="64">arrow</item>
+        <item slot="3">stone axe</item>
+        <item slot="7" amount="16">cooked fish</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="lime" parents="spawn">
+        <chestplate color="00FF00">leather chestplate</chestplate>
+        <helmet color="00FF00">leather helmet</helmet>
+        <leggings color="00FF00">leather leggings</leggings>
+        <boots color="00FF00">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="FF7F00">leather chestplate</chestplate>
+        <helmet color="FF7F00">leather helmet</helmet>
+        <leggings color="FF7F00">leather leggings</leggings>
+        <boots color="FF7F00">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="180">
+        <cuboid min="158,109,1006" max="164,109,1006"/>
+    </default>
+    <spawn team="lime" kit="lime" yaw="90">
+        <cuboid name="spawn-lime" min="254,6,924" max="264,6,915"/>
+    </spawn>
+    <spawn team="orange" kit="orange" yaw="270">
+        <cuboid name="spawn-orange" min="89,6,924" max="98,6,915"/>
+    </spawn>
+</spawns>
+<score>
+    <time>10m</time>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked fish</item>
+</itemremove>
+</map>
+

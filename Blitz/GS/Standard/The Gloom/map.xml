@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>The Gloom</name>
+<version>1.0</version>
+<objective>Eliminate the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+</authors>
+<contributors>
+    <contributor uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="TREEEEEES"/> <!-- dcstarwars -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Conversion to GS"/> <!-- moo88888888 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML steak"/> <!-- dinner1111 -->
+    <contributor uuid="d1cb6983-5491-4aba-8730-c2b59eae2b2d" contribution="Not Dead"/> <!-- sirwheels -->
+</contributors>
+<teams>
+    <team color="dark green" max="5">Green</team>
+    <team color="dark gray" max="5">Gray</team>
+</teams>
+<spawns>
+    <spawn team="green" yaw="0">
+        <cuboid min="-35,41,-14" max="-38,41,-15"/>
+    </spawn>
+    <spawn team="gray" yaw="180">
+        <cuboid min="-2,41,56" max="0,41,57"/>
+    </spawn>
+    <default>
+        <cuboid min="-78,44,19" max="-80,44,21"/>
+    </default>
+</spawns>
+</map>

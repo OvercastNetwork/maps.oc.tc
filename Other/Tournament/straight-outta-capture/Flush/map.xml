@@ -1,0 +1,191 @@
+<map proto="1.4.0">
+<name>Flush</name>
+<version>1.0.2</version>
+<objective>Capture the enemy flag 3 times.</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/>
+</authors>
+<teams>
+    <team id="red" color="dark red" max="5">Red</team>
+    <team id="blue" color="blue" max="5">Blue</team>
+</teams>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+    <time id="flag-respawns">0</time>
+    <not id="spawn1">
+        <time>2m</time>
+    </not>
+    <all id="spawn2">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="spawn3">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="spawn4">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="spawn5">
+        <time>8m</time>
+        <not>
+            <time>10m</time>
+        </not>
+    </all>
+    <all id="spawn6">
+        <time>10m</time>
+    </all>
+</filters>
+<spawns>
+    <default kit="obsKit">
+        <regions yaw="90">
+            <cylinder base="-38,11,-73" radius="1" height="2"/>
+        </regions>
+    </default>
+    <spawn team="red" filter="spawn1" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,40,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn2" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,80,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn3" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,120,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn4" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,160,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn5" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,200,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn6" kit="redKit">
+        <regions yaw="90">
+            <block>-20.5,240,-105.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn1" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,40,-41.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn2" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,80,-41.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn3" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,120,-41.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn4" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,160,-41.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn5" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,200,-41.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn6" kit="blueKit">
+        <regions yaw="-90">
+            <block>-55.5,240,-41.5</block>
+        </regions>
+    </spawn>
+</spawns>
+<respawn delay="7s" auto="true" blackout="true"/>
+<kits>
+    <kit id="spawnKit">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="20">arrow</item>
+        <item slot="8" amount="16">bread</item>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="blueKit" parents="spawnKit">
+        <helmet enchantment="protection projectile:1" color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate enchantment="protection projectile:1" color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" unbreakable="true">iron leggings</leggings>
+        <boots enchantment="protection projectile:1" color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="redKit" parents="spawnKit">
+        <helmet enchantment="protection projectile:1" color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate enchantment="protection projectile:1" color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" unbreakable="true">iron leggings</leggings>
+        <boots enchantment="protection projectile:1" color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="blue-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="obsKit">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <potion duration="0" amplifier="10">slowness</potion>
+    </kit>
+</kits>
+<regions>
+    <cylinder id="blue-net" base="-35.5,10,-36.5" radius="2" height="2" />
+    <cylinder id="red-net" base="-40.5,10,-110.5" radius="2" height="2" />
+</regions>
+<flags flag-proximity-metric="closest player">
+    <flag id="red-flag" name="Red Flag" owner="red" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+        <post pickup-filter="blue-only" recover-time="15s" respawn-time="10s">-40.5,10,-110.5</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="blue-flag-kit" drop-kit="reset-kit">>
+        <post pickup-filter="red-only" recover-time="15s" respawn-time="10s">-35.5,10,-36.5</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<time>12m</time>
+<score>
+    <limit>3</limit>
+</score>
+<killreward>
+    <item amount="10">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>bread</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<timelock>on</timelock>
+</map>

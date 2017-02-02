@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="Survival Games">
+<include src="survival-games.xml"/>
+<name>Forgotten Zoo</name>
+<version>1.0.1</version>
+<world-borders center="7.5,9.5">
+    <world-border size="450"/>
+    <world-border size="70" after="2m" duration="10m"/>
+</world-borders>
+<spawns>
+    <spawns spread="true" exclusive="true">
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>7.5,7.0,33.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>14.5,7.0,32.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>19.5,7.0,30.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>24.5,7.0,26.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>28.5,7.0,21.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>30.5,7.0,16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>31.5,7.0,9.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>30.5,7.0,2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>28.5,7.0,-2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>24.5,7.0,-7.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>19.5,7.0,-11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>14.5,7.0,-13.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>7.5,7.0,-14.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>0.5,7.0,-13.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-4.5,7.0,-11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-9.5,7.0,-7.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-13.5,7.0,-2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-15.5,7.0,2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-16.5,7.0,9.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-15.5,7.0,16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-13.5,7.0,21.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-9.5,7.0,26.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>-4.5,7.0,30.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="7.5,10.0,9.5">
+                <point>0.5,7.0,32.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions angle="7.5,10.0,9.5">
+            <point>0.5,7.0,32.5</point>
+        </regions>
+    </default>
+</spawns>
+</map>

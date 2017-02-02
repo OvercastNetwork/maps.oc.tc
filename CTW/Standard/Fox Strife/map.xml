@@ -1,0 +1,292 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<include src="tutorial.xml"/>
+<name>Fox Strife</name>
+<version>4.1.2</version>
+<objective>Capture both of the enemy's wools, and place it in your victory monument.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="7" amount="64">bread</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="8" enchantment="knockback:1">stick</item>
+        <chestplate>chainmail chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333">leather helmet</helmet>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="334CB2">leather helmet</helmet>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <cuboid name="obs-spawn" min="1174,53,-1767" max="1177,53,-1768"/>
+    <complement name="red-base">
+        <rectangle min="1101,-1809" max="1047,-1852"/>
+        <block>1053,11,-1831</block>
+        <block>1057,11,-1831</block>
+    </complement>
+    <complement name="blue-base">
+        <rectangle min="1250,-1852" max="1304,-1809"/>
+        <block>1297,11,-1831</block>
+        <block>1293,11,-1831</block>
+    </complement>
+    <rectangle name="middle" min="1104,-1780" max="1247,-1881"/>
+    <cuboid name="above-30" min="-oo,31,-oo" max="oo,oo,oo"/>
+    <union name="red-wools"> <!-- Red must get into -->
+        <union name="yellow-room">
+            <rectangle min="1276,-1802" max="1299,-1781"/>
+            <rectangle min="1276,-1785" max="1275,-1797"/>
+            <rectangle min="1275,-1787" max="1274,-1795"/>
+        </union>
+        <union name="silver-room">
+            <rectangle min="1276,-1859" max="1299,-1880"/>
+            <rectangle min="1276,-1864" max="1275,-1876"/>
+            <rectangle min="1275,-1866" max="1274,-1874"/>
+        </union>
+    </union>
+    <union name="blue-wools"> <!-- Blue must get into -->
+        <union name="green-room">
+            <rectangle min="1075,-1802" max="1052,-1781"/>
+            <rectangle min="1075,-1785" max="1076,-1797"/>
+            <rectangle min="1076,-1787" max="1077,-1795"/>
+        </union>
+        <union name="lime-room">
+            <rectangle min="1075,-1859" max="1052,-1880"/>
+            <rectangle min="1075,-1864" max="1076,-1876"/>
+            <rectangle min="1076,-1866" max="1077,-1874"/>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block="only-red-room" use="only-red-usage deny-dispenser">
+        <region name="red-wools"/>
+    </apply>
+    <apply block="only-blue-room" use="only-blue-usage deny-dispenser">
+        <region name="blue-wools"/>
+    </apply>
+    <apply enter="only-red" message="`7Don't enter the `cRED TEAM `7only wool room!">
+        <region name="red-wools"/>
+    </apply>
+    <apply enter="only-blue" message="`7Don't enter the `9BLUE TEAM `7only wool room!">
+        <region name="blue-wools"/>
+    </apply>
+    <apply block="deny-void" message="`7You may not edit the void area!">
+        <negative>
+            <region name="middle"/>
+        </negative>
+    </apply>
+    <apply block-break="only-iron" block-place="deny-all" message="`7You may only break `6iron blocks `7in the base!">
+        <region name="red-base"/>
+        <region name="blue-base"/>
+    </apply>
+    <apply block-break="only-web" block-place="deny-all" message="`7You may only edit `fwebs `7in the wool room!">
+        <region name="blue-wools"/>
+        <region name="red-wools"/>
+    </apply>
+    <apply enter="only-red" message="`7Don't enter the `cRED TEAM `7base!">
+        <region name="red-base"/>
+    </apply>
+    <apply enter="only-blue" message="`7Don't enter the `9BLUE TEAM `7base!">
+        <region name="blue-base"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not edit the above of the map!">
+        <region name="above-30"/>
+    </apply>
+</regions>
+<renewables>
+    <renewable grow="true" rate="100">
+        <region>
+            <cylinder base="1088.5,10,-1830.5" radius="8" height="8"/>
+            <cylinder base="1262.5,10,-1830.5" radius="8" height="8"/>
+        </region>
+        <block>iron block</block>
+    </renewable>
+</renewables>
+<filters>
+    <filter name="only-web" parents="deny-all">
+        <allow>
+            <block>web</block>
+        </allow>
+    </filter>
+    <filter name="only-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>ladder</block>
+        </allow>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red-room" parents="only-red">
+        <deny>
+            <block>stone plate</block>
+            <block>dispenser</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="only-blue-room" parents="only-blue">
+        <deny>
+            <block>stone plate</block>
+            <block>dispenser</block>
+            <block>chest</block>
+            <block>trapped chest</block>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>trap door</block>
+                    <block>stone button</block>
+                    <block>wood button</block>
+                    <block>lever</block>
+                    <block>wood plate</block>
+                    <block>stone plate</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>trap door</block>
+                    <block>stone button</block>
+                    <block>wood button</block>
+                    <block>lever</block>
+                    <block>wood plate</block>
+                    <block>stone plate</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <cuboid min="1054,10,-1840" max="1052,10,-1838"/>
+        <cuboid min="1054,10,-1823" max="1052,10,-1821"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="1299,10,-1821" max="1297,10,-1823"/>
+        <cuboid min="1299,10,-1838" max="1297,10,-1840"/>
+    </spawn>
+    <default yaw="180">
+        <region name="obs-spawn"/>
+    </default>
+</spawns>
+<wools team="red">
+    <wool color="yellow">
+        <block>1053,11,-1831</block>
+    </wool>
+    <wool color="silver">
+        <block>1057,11,-1831</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="lime">
+        <block>1297,11,-1831</block>
+    </wool>
+    <wool color="green">
+        <block>1293,11,-1831</block>
+    </wool>
+</wools>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>stick</item>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>potion</item>
+    <item>bread</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather boots</item>
+    <item>string</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+</itemremove>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
+            <line>`rThe objective is to capture both of the enemy's wools and place it at your victory monument!</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="20">1165,30,-1890</point>
+        </teleport>
+    </stage>
+    <stage title="The Base">
+        <message>
+            <line>`rThis is the `9Blue Team`r's base.</line>
+            <line>`rIn the center are `6iron blocks `rfor you to make armor and various supplies.</line>
+            <line>`rThe iron regenerates, so you will never run out!</line>
+        </message>
+        <teleport>
+            <point yaw="50" pitch="15">1280,18,-1844</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Room">
+        <message>
+            <line>`rThis is the `eYellow `rwool room.</line>
+            <line>`rThe `9Blue Team `rmust defend this.</line>
+            <line>`rThe `cRed Team `rmust enter this.</line>
+            <line>`rThere are some goodies such as `cTNT `rin the wool room!</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="15">1260,30,-1770</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`rPlace the other team's wools here to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-180" pitch="0">1295,10,-1824</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

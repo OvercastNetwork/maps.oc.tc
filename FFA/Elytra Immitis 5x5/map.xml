@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Elytra Immitis</name>
+<slug>elytra_immitis_5x5</slug>
+<version>1.4.9</version>
+<objective>Kill as many players as you can!</objective>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
+</authors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false"/>
+<killreward>
+    <filter>
+        <kill-streak count="2" repeat="true"/>
+    </filter>
+    <kit id="kill-boost" />
+</killreward>
+<tnt>
+    <fuse>0.2s</fuse>
+</tnt>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-128">-42.5,22,-12.5</point>
+            <point yaw="-40">-43.5,22,-10.5</point>
+            <point yaw="167">-15.5,24,12.5</point>
+            <point yaw="-90">-13.5,24,10.5</point>
+            <point yaw="130">38.5,26,-5.5</point>
+            <point yaw="-129">36.5,26,-27.5</point>
+            <point yaw="44">7.5,24,-71.5</point>
+            <point yaw="31">-1.5,9,-56.5</point>
+            <point yaw="-42">-13.5,8,-33.5</point>
+            <point yaw="13">-32.5,6,-21.5</point>
+            <point yaw="-145">-17.5,24,-7.5</point>
+            <point yaw="165">7.5,22,-33.5</point>
+            <point yaw="49">64.5,22,-74.5</point>
+            <point yaw="90">71.5,12,-96.5</point>
+            <point yaw="-90">72.5,12,-97.5</point>
+            <point yaw="38">36.5,23,-45.5</point>
+            <point yaw="-45">13.5,16,-43.5</point>
+            <point yaw="-22">5.5,22,-40.5</point>
+            <point yaw="-111">9.5,8,21.5</point>
+            <point yaw="-179">9.5,12,14.5</point>
+            <point yaw="149">45.5,8,-12.5</point>
+            <point yaw="-148">8.5,35,-11.5</point>
+        </regions>
+    </spawn>
+    <default kit="default-kit" yaw="-180">
+        <regions>
+            <cuboid min="-41,27,20" max="-43,32,22"/>
+        </regions>
+    </default>
+</spawns>
+<rage/>
+<projectiles>
+    <projectile
+        id="lazer"
+        name="Bomber Stick"
+        projectile="TNTPrimed"
+        velocity="1"
+        damage="20"
+        throwable="false"
+        cooldown="2s"/>
+</projectiles>
+<kits>
+    <kit id="default-kit">
+        <item slot="slot.armor.chest"                    amount="1"   material="443" />
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" name="Bow" lore="One Hit Kill" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+        <item slot="slot.armor.chest"                    amount="1"   material="443" />
+    </kit>
+    <kit id="kill-boost">
+        <item slot="1" projectile="lazer" name="`eBomb Launcher" material="armor stand"/>
+        <potion duration="4" amplifier="2">speed</potion>
+        <potion duration="3">night vision</potion>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<respawn delay="0.1s" blackout="true"/>
+
+<regions>
+     <apply velocity="0.0,6,0.0">
+        <region>
+            <block>77,14,-93</block>
+            <block>46,20,-62</block>
+            <block>14,8,-33</block>
+            <block>30,4,14</block>
+            <block>-5,23,10</block>
+            <block>-41,22,-5</block>
+            <block>4,23,-67</block>
+            <block>-31,15,-48</block>
+        </region>
+    </apply>
+    <apply block="allowed-blocks" />
+</regions>
+
+<broadcasts>
+    <tip after="1s">Bows and swords are one hit kills</tip>
+</broadcasts>
+<killreward>
+    <item amount="1" material="arrow"/>
+</killreward>
+<filters>
+    <all id="allowed-blocks">
+        <any>
+            <material>leaves</material>
+            <material>torch</material>
+            <material>long grass</material>
+            <material>grass</material>
+            <material>wheat</material>
+            <material>crops</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+</filters>
+<falling-blocks>
+    <rule>
+        <filter>
+            <material>grass</material>
+        </filter>
+    </rule>
+</falling-blocks>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>443</item>
+    <item>stick</item>
+    <item>seeds</item>
+    <item>dirt</item>
+    <item>armor stand</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Zero Gravity</name>
+<version>1.0.1</version>
+<objective>Knock all of your enemies into the void before time runs out.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="1875ccd6-77ab-442c-92f9-0c7f3d2e524e" contribution="Map Pruning"/> <!-- Froobasaures -->
+    <contributor uuid="df3705ab-6296-49ce-8062-2d794f769a60" contribution="XML Help"/> <!-- bookofnathan -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+   <team color="dark aqua" max="10">Cyan Squad</team>
+   <team color="green" max="10">Lime Squad</team>
+</teams>
+<blitz>
+    <time>3m</time>        
+    <lives>1</lives>
+    <title>Blitz: Knockback</title>        
+</blitz>
+<spawns>
+    <spawn team="cyan" kit="cyan" yaw="-45">
+        <cylinder base="-24,24,-26" radius="2" height="2"/>
+    </spawn>
+    <spawn team="lime" kit="lime" yaw="135">
+        <cylinder base="24,24,26" radius="2" height="2"/>
+    </spawn>
+    <default yaw="-135" kit="all">
+        <cylinder base="0,61,-2" radius="2" height="2"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="all">
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <potion duration="oo" amplifier="5">jump</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="spawn" parents="all">
+        <item slot="0" enchantment="knockback:15" name="`8One-Hit Kill">iron sword</item>
+        <item slot="1" enchantment="arrow knockback:15" name="`8One-Shot Kill">bow</item>
+        <item slot="2">arrow</item>
+        <boots enchantment="protection fall:10">diamond boots</boots>
+    </kit>
+    <kit name="cyan" parents="spawn">
+        <helmet color="4C99B2">leather helmet</helmet>
+        <chestplate color="4C99B2">leather chestplate</chestplate>
+        <leggings color="4C99B2">leather leggings</leggings>
+    </kit>
+    <kit name="lime" parents="spawn">
+        <helmet color="7FCC19">leather helmet</helmet>
+        <chestplate color="7FCC19">leather chestplate</chestplate>
+        <leggings color="7FCC19">leather leggings</leggings>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+    <yield>50</yield>
+</tnt>
+<itemremove>
+    <item>diamond boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+    <regions>
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+        <apply block="deny-all">
+            <region name="playable"/>
+        </apply>
+    </regions>
+<portals>
+    <portal y="@-100">
+        <cuboid min="-oo,9,-oo" max="oo,10,oo"/>
+    </portal>
+</portals>
+<playable>
+    <region name="playable"/>
+</playable>
+<include src="blitz-global.xml"/>
+</map>

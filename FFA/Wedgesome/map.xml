@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<include src="wedgesome-spawns.xml"/>
+<name>Wedgesome</name>
+<version>1.0</version>
+<objective>FFA: Kill as many players as you can before the 15 minutes are up!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+
+<rules>
+    <rule>Alliances are allowed!</rule>
+</rules>
+
+<players min="2" max="80" max-overfill="100" show-name-tags="false"/>
+<score>
+    <kills>1</kills>
+</score>
+<time>15m</time>
+<kits>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="citizens">
+        <potion duration="6" amplifier="10">heal</potion>
+        <potion duration="6" amplifier="10">damage resistance</potion>
+        <!--
+        ### Depriciated ###
+        Awaiting @YukonAppleGeek to fix beds so they spawn kits are actually applied.
+        <item slot="17" name="`9Sleeping Bag" lore="`7Place this down to set your new spawn!|`7If another person breaks it,|`7you can no longer spawn there.">bed</item>
+        -->
+    </kit>
+</kits>
+<classes family="wedgesome" restrict="false">
+    <class name="Swordsman" description="Most powerful melee class with the best sword!" icon="iron sword" default="true">
+        <kit id="swordsman">
+            <item slot="0" unbreakable="true" name="`4Iron Sword">iron sword</item>
+            <item slot="1" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="2" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">iron chestplate</chestplate>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <boots unbreakable="true">iron boots</boots>
+        </kit>
+    </class>
+    <class name="Archer" description="Strong bow with special effects, but weak armor." icon="bow">
+        <kit id="archer">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:2" name="`4Weak Wood Sword">wood sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:2" attributes="generic.movementSpeed:base:-0.20" name="`4Longbow">bow</item>
+            <item slot="28" name="`7Longbow Arrow">arrow</item>
+            <item slot="2" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">leather chestplate</chestplate>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <boots unbreakable="true" attributes="generic.movementSpeed:base:0.20" enchantment="protection fall:10">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Tank" description="More rows of hearts with heavy armor, but very slow." icon="diamond chestplate">
+        <kit id="tanker">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:6" name="`4Stone Sword">stone sword</item>
+            <item slot="1" amount="64" name="`7Stale Rations">bread</item>
+            <item slot="2" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">iron helmet</helmet>
+            <chestplate unbreakable="true">diamond chestplate</chestplate>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <boots unbreakable="true" enchantment="protection fall:10">diamond boots</boots>
+            <potion duration="oo">regeneration</potion>
+            <potion duration="oo" amplifier="3">slow</potion>
+        </kit>
+    </class>
+    <class name="Demo" description="TNT specialist!" icon="tnt">
+        <kit id="demo">
+            <item slot="0" unbreakable="true" name="`4Wood Sword">wood sword</item>
+            <item slot="1" amount="12" name="`cTNT">tnt</item>
+            <item slot="2" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">iron chestplate</chestplate>
+            <boots unbreakable="true" enchantment="protection fall:10">leather boots</boots>
+        </kit>
+    </class>
+    <!--
+    ### Depriciated  ###
+    <class name="Mage" description="Fire aspect blaze rod with various de-buff potions!" icon="blaze rod">
+        <kit id="mage">
+            <item slot="0" enchantment="fire aspect:1" attributes="generic.attackDamage:add:4" name="`cFire Wand">blaze rod</item>
+            <item slot="1" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="28" damage="8201" potions="damage resistance:300:0:true" name="`cResistance `7lvl. 1">potion</item>
+            <item slot="19" damage="8201" potions="damage resistance:300:0:true" name="`cResistance `7lvl. 1">potion</item>
+            <item slot="2" damage="16388" potions="wither:120:3:true;blindness:150:0:true" name="`8Wither `7lvl. 4 `8+ Blindness">potion</item>
+            <item slot="29" damage="16388" potions="wither:120:3:true;blindness:150:0:true" name="`8Wither `7lvl. 4 `8+ Blindness">potion</item>
+            <item slot="20" damage="16388" potions="wither:120:3:true;blindness:150:0:true" name="`8Wither `7lvl. 4 `8+ Blindness">potion</item>
+            <item slot="11" damage="16388" potions="wither:120:3:true;blindness:150:0:true" name="`8Wither `7lvl. 4 `8+ Blindness">potion</item>
+            <item slot="3" damage="16424" name="`3Weakness `7lvl. 2">potion</item>
+            <item slot="30" damage="16424" name="`3Weakness `7lvl. 2">potion</item>
+            <item slot="4" damage="16424" name="`3Weakness `7lvl. 2">potion</item>
+            <item slot="31" damage="16424" name="`3Weakness `7lvl. 2">potion</item>
+            <item slot="5" damage="16460" name="`4Nausea `7lvl. 1">potion</item>
+            <item slot="32" damage="16460" name="`4Nausea `7lvl. 1">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="33" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="34" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="35" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">chainmail helmet</helmet>
+            <chestplate unbreakable="true">gold chestplate</chestplate>
+            <leggings unbreakable="true">leather leggings</leggings>
+            <boots unbreakable="true" enchantment="protection fall:10">gold boots</boots>
+        </kit>
+    </class>
+    <class name="Equestrian" description="Has a horse as your trustly steed." icon="saddle">
+        <kit id="equestrian">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:5.5" enchantment="knockback:1" name="`4Lance">stick</item>
+            <item slot="1" amount="64" name="`cApples">apple</item>
+            <item slot="28" amount="64" name="`cApples">apple</item>
+            <item slot="2" damage="100">monster egg</item>
+            <item slot="29" damage="100">monster egg</item>
+            <item slot="3" name="`4Saddle">saddle</item>
+            <item slot="30" name="`4Saddle">saddle</item>
+            <item slot="21" name="`4Saddle">saddle</item>
+            <item slot="4" name="`4Diamond Horse Armor">diamond barding</item>
+            <item slot="31" name="`4Gold Horse Armor">gold barding</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="32" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="33" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">diamond chestplate</chestplate>
+            <leggings unbreakable="true">leather leggings</leggings>
+            <boots unbreakable="true" enchantment="protection fall:10">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Scout" description="Very agile and quick, but not melee powerful." icon="feather">
+        <kit id="scout">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:3;generic.movementSpeed:base:-0.10" name="`4Weak Wood Sword">wood sword</item>
+            <item slot="1" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="2" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true" attributes="generic.movementSpeed:base:0.30">leather helmet</helmet>
+            <chestplate unbreakable="true">chainmail chestplate</chestplate>
+            <potion duration="oo" amplifier="2">jump</potion>
+        </kit>
+    </class>
+    <class name="Builder" description="Able to build structures to protect yourself!" icon="diamond pickaxe">
+        <kit id="builder">
+            <item slot="0" unbreakable="true" name="`4Stone Sword">stone sword</item>
+            <item slot="1" unbreakable="true" attributes="generic.attackDamage:add:1" enchantment="dig speed:1;durability:5" name="`4Super Pickaxe">diamond pickaxe</item>
+            <item slot="2" amount="64" damage="2" name="`4Blocks">monster eggs</item>
+            <item slot="29" amount="64" damage="2" name="`4Blocks">monster eggs</item>
+            <item slot="30" amount="16" name="`4Half Blocks">step</item>
+            <item slot="3" amount="32" name="`4Vines">vine</item>
+            <item slot="4" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true">leather helmet</helmet>
+            <chestplate unbreakable="true">chainmail chestplate</chestplate>
+            <leggings unbreakable="true">iron leggings</leggings>
+            <boots unbreakable="true">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Endermage" description="Able to teleport very quickly." icon="ender pearl">
+        <kit id="endermage">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:2.75" name="`4Weak Wood Sword">wood sword</item>
+            <item slot="1" amount="8" name="`4Ender Pearls" attributes="generic.movementSpeed:base:-0.25">ender pearl</item>
+            <item slot="2" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="3" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true" color="191919">leather helmet</helmet>
+            <chestplate unbreakable="true" color="191919">leather chestplate</chestplate>
+            <boots unbreakable="true" color="191919" enchantment="protection fall:5">leather boots</boots>
+            <potion duration="oo" amplifier="2">jump</potion>
+        </kit>
+    </class>
+    <class name="Tamer" description="Use your pack of wolves and attack the enemy!" icon="bone">
+        <kit id="tamer">
+            <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:2" name="`4Weak Wood Sword">wood sword</item>
+            <item slot="1" amount="64" name="`5Steak">cooked beef</item>
+            <item slot="28" amount="64" name="`5Steak">cooked beef</item>
+            <item slot="2" amount="64" name="`7Bones">bone</item>
+            <item slot="29" amount="64" name="`7Bones">bone</item>
+            <item slot="3" damage="95">monster egg</item>
+            <item slot="4" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="5" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true" color="999999">leather helmet</helmet>
+            <chestplate unbreakable="true" color="999999">leather chestplate</chestplate>
+            <leggings unbreakable="true">chainmail leggings</leggings>
+            <boots unbreakable="true" color="999999">leather boots</boots>
+        </kit>
+    </class>
+    <class name="Necromancer" description="Monster trainer and instructor." icon="monster egg">
+        <kit id="necromancer">
+            <item slot="0" unbreakable="true" name="`4Wood Sword">wood sword</item>
+            <item slot="1" amount="64" name="`6Golden Carrots">golden carrot</item>
+            <item slot="2" damage="54">monster egg</item>
+            <item slot="29" damage="54">monster egg</item>
+            <item slot="20" damage="54">monster egg</item>
+            <item slot="11" damage="54">monster egg</item>
+            <item slot="3" damage="51">monster egg</item>
+            <item slot="30" damage="51">monster egg</item>
+            <item slot="21" damage="51">monster egg</item>
+            <item slot="4" damage="52">monster egg</item>
+            <item slot="31" damage="52">monster egg</item>
+            <item slot="6" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="7" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <item slot="8" damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+            <helmet unbreakable="true" color="191919">leather helmet</helmet>
+            <chestplate unbreakable="true" color="191919">leather chestplate</chestplate>
+            <boots unbreakable="true" color="191919" enchantment="protection fall:5">leather boots</boots>
+        </kit>
+    </class>
+    -->
+</classes>
+<filters>
+    <any id="allow-break">
+        <material>leaves</material>
+        <material>crops</material>
+        <material>carrot</material>
+        <material>potato</material>
+        <material>sugar cane block</material>
+        <material>melon stem</material>
+        <material>melon block</material>
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>yellow flower</material>
+        <material>double plant</material>
+        <material>bed block</material>
+        <material>thin glass</material>
+        <material>vine</material>
+        <material>monster eggs</material>
+        <material>beacon</material>
+        <material>emerald block</material>
+        <material>step:0</material>
+    </any>
+
+    <any id="allow-place">
+        <material>bed block</material>
+        <material>tnt</material>
+        <material>vine</material>
+        <material>monster eggs</material>
+        <material>beacon</material>
+        <material>emerald block</material>
+        <material>step:0</material>
+    </any>
+
+    <deny id="not-some">
+        <any>
+            <material>workbench</material>
+            <material>furnace</material>
+            <material>burning furnace</material>
+            <material>fence</material>
+        </any>
+    </deny>
+</filters>
+<regions>
+    <apply block-break="allow-break" block-place="allow-place" use="not-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<itemremove>
+    <!-- Weapons -->
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>blaze rod</item>
+    <item>stick</item>
+    <item>tnt</item>
+    <item>diamond pickaxe</item>
+    <item>ender pearl</item>
+    <item>wood sword</item>
+    <!-- Armor -->
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond boots</item>
+    <item>chainmail helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>iron leggings</item>
+    <item>chainmail chestplate</item>
+    <!-- Other -->
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>golden carrot</item>
+    <item>bread</item>
+    <item>arrow</item>
+    <item>saddle</item>
+    <item>apple</item>
+    <item>diamond barding</item>
+    <item>gold barding</item>
+    <item>leather</item>
+    <item>raw beef</item>
+    <item>feather</item>
+    <item>beacon</item>
+    <item>emerald block</item>
+    <item>emerald</item>
+    <item>monster egg</item>
+    <!-- Breakable -->
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>double plant</item>
+    <item>bed</item>
+    <item>monster eggs</item>
+    <item>vine</item>
+    <item>step</item>
+    <item>carrot item</item>
+    <item>potato item</item>
+    <item>melon</item>
+    <item>melon seeds</item>
+    <item>poisonous potato</item>
+    <item>sugar cane</item>
+    <item>wheat</item>
+</itemremove>
+
+<killreward>
+    <item damage="16421" name="`cHealth Kit `7lvl. 2">potion</item>
+    <item damage="16421" name="`cHealth Kit `7lvl. 2 ">potion</item> <!-- Adds an extra space to avoid stacking -->
+</killreward>
+<killreward>
+    <filter>
+        <class>demo</class>
+    </filter>
+    <item amount="4" name="`cTNT">tnt</item>
+</killreward>
+
+<friendlyfire>on</friendlyfire>
+<timelock>off</timelock>
+<mobs>
+    <filter parents="deny-all">
+        <allow>
+            <spawn>spawner egg</spawn>
+        </allow>
+    </filter>
+</mobs>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>true</blockdamage>
+    <fuse>4s</fuse>
+    <power>5.25</power>
+</tnt>
+<disabledamage>
+    <damage self="true" ally="false">block explosion</damage>
+</disabledamage>
+<broadcasts>
+    <alert after="5s" every="1m">`7This is a free for all! Watch your back!</alert>
+</broadcasts>
+</map>

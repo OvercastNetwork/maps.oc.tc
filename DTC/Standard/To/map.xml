@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<include src="tutorial.xml"/>
+<name>To</name> 
+<version>1.3.3</version> 
+<objective>Attackers have 12 minutes to destroy the Obsidian core. The Red defenders must hold them back.</objective>
+<gamemode>ad</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<rules>
+    <rule>Attention:</rule>
+    <rule>TNT does not damage teammates!</rule>
+    <rule>TNT must be ignited by the player!</rule>
+</rules>
+<tnt>
+    <instantignite>off</instantignite>
+    <blockdamage>on</blockdamage>
+    <fuse>3s</fuse>
+    <yield>0</yield>
+</tnt>
+<killreward>
+    <item amount="1">TNT</item>
+</killreward>
+<disabledamage>
+    <!-- TNT damages enemies only -->
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<teams>
+    <team color="green" max="12" max-overfill="16" plural="true">Attackers</team>
+    <team color="dark red" max="10" max-overfill="14" plural="true">Defenders</team>
+</teams>
+<spawns>
+    <spawns team="Defenders" kit="red">
+        <spawn yaw="180">
+            <point>-5,42,30</point>
+            <point>6,42,30</point>
+        </spawn>
+        <spawn yaw="0">
+            <point>-5,42,-29</point>
+            <point>6,42,-29</point>
+        </spawn>
+    </spawns>
+    <spawns team="Attackers" kit="green">
+        <spawn>
+            <cylinder base="0.5,3,0.5" radius="3" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <cylinder base="2.5,61,0.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="3">iron axe</item>
+        <item slot="6" amount="1">tnt</item>
+        <item slot="7">flint and steel</item>
+        <item slot="8" name="Multi-use Tool">shears</item>
+        <item slot="28">arrow</item>
+        <potion duration="oo">saturation</potion>
+        <potion duration="3" amplifier="25">heal</potion>
+        <potion duration="3" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="4" damage="0" amount="16">log</item>
+        <item slot="5" damage="14" amount="32">wool</item>
+        <item slot="19" amount="64">arrow</item>
+        <helmet enchantment="protection explosions:3">iron helmet</helmet>
+        <chestplate color="BE2625">leather chestplate</chestplate>
+        <leggings color="BE2625">leather leggings</leggings>
+        <boots color="BE2625" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="4" damage="0" amount="64">wood</item>
+        <item slot="5" damage="5" amount="64">wool</item>
+        <helmet enchantment="protection explosions:2">iron helmet</helmet>
+        <chestplate color="7FFF00">leather chestplate</chestplate>
+        <leggings color="7FFF00">leather leggings</leggings>
+        <boots color="7FFF00" enchantment="protection fall:4">leather boots</boots>
+        <potion duration="oo" amplifier="3">jump</potion>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>flint and steel</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>wool</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>cobble wall</item>
+    <item>cobblestone</item>
+    <item>cobblestone stairs</item>
+    <item>hard clay</item>
+    <item>redstone block</item>
+    <item>smooth brick</item>
+    <item>smooth stairs</item>
+    <item>double step</item>
+    <item>step</item>
+    <item>trap door</item>
+    <item>hopper</item>
+    <item>redstone lamp off</item>
+    <item>wood step</item>
+    <item>netherrack</item>
+</itemremove>
+<filters>
+    <filter name="only-red">
+        <team>Defenders</team>
+    </filter>
+    <filter name="only-green">
+        <team>Attackers</team>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="placed-block">
+        <any>
+        	<block>wool</block>
+            <block>log</block>
+            <block>wood</block>
+            <block>workbench</block>
+            <block>chest</block>
+            <block>ladder</block>
+            <block>wood stairs</block>
+            <block>TNT</block>
+        </any>
+    </filter>
+    <filter name="protect-lower-tower">
+        <any>
+            <all>
+                <filter name="deny-world"/>
+                <filter name="allow-all"/>
+            </all>
+            <filter name="placed-block"/>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <cylinder name="attacker-spawn" base="0.5,0,0.5" radius="16" height="12"/>
+    <cuboid name="tower-base" min="oo,0,oo" max="-oo,12,-oo"/>
+    <cuboid name="tower 1" min="8,34,32" max="4,50,28"/>
+    <cuboid name="tower 2" min="-7,34,32" max="-3,50,28"/>
+    <cuboid name="tower 5" min="-7,34,-31" max="-3,oo,-27"/>
+    <cuboid name="tower 6" min="8,34,-31" max="4,oo,-27"/>
+    <apply block="deny-all">
+        <union name="red-spawn-towers">
+            <region name="tower 1"/>
+            <region name="tower 2"/>
+            <region name="tower 5"/>
+            <region name="tower 6"/>
+        </union>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy towers!">
+        <region name="red-spawn-towers"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="attacker-spawn"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter the enemy spawn!">
+        <region name="attacker-spawn"/>
+    </apply>
+    <apply block="no-void" message="You may not build so far from To, there is nothing over there. To is your last piece of land in this world. You are doomed. Yes. DOOMED.">
+        <negative>
+            <circle center="0.5,0.5" radius="35"/>
+        </negative>
+    </apply>
+</regions>
+<!-- Removing the proximity alarm for 1.3.0, put it back in 1.3.3 -->
+<proximity-alarms>
+    <proximity-alarm message="Attackers detected at High Core!" flare-radius="5">
+        <region>
+            <sphere origin="0.5,42,0.5" radius="7"/>
+        </region>
+        <detect>
+            <team>Attackers</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+ 
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="Defenders" name="High Core">
+        <sphere origin="0.5,42,0.5" radius="4"/>
+    </core>
+</cores>
+<modes>
+    <mode after="0m" material="bedrock" name="`8Unbreakable Mode - Bedrock"/>
+    <mode after="3m" material="obsidian" name="`9Main Mode - Obsidian"/>
+    <mode after="11m" material="121" name="`aEnd Mode - Endstone"/>
+</modes>
+<time result="defenders">12m</time>
+<timelock>on</timelock>
+<maxbuildheight>50</maxbuildheight>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<tutorial>
+    <stage title="Attack and Defend the Core">
+        <message>
+            <line>§rThis map is a §b§lAttack and Defend §r(AnD) map</line>
+            <line>The Green team must destroy the core of the Red team, the Red team must hold them back!</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="10">20,50,20</point>
+        </teleport>
+    </stage>
+    <stage title="Green / Attacker Spawn">
+       <message>
+            <line>The Green team spawns at the base of the tower</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="10">20,8,20</point>
+        </teleport>
+    </stage>
+    <stage title="Red / Defenders Spawns">
+       <message>
+            <line>The Red team spawns in 8 towers around the core.</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="10">35,60,35</point>
+        </teleport>
+    </stage>
+    <stage title="Go!">
+       <message>
+            <line>Good luck!</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="10">0,13,0</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

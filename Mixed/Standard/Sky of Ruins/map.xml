@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Sky of Ruins</name>
+<version>1.4.3</version>
+<objective>Leak the lava from the enemy's core and destroy their monument.</objective>
+<authors>
+    <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81" contribution="Main Map Building"/>
+    <!-- _DISTRACTION_ -->
+    <author uuid="07064489-75bb-44e0-830d-fba2287ada3b"/>
+    <!-- Banana_Cannon -->
+</authors>
+<contributors>
+    <contributor contribution="Tower Building">Smon</contributor>
+    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="XML Feedback"/> <!-- Equus -->
+    <contributor uuid="670223bb-7560-48c8-8f01-2f463549b917" contribution="XML Feedback"/> <!-- twiz_mwazin -->
+    <contributor uuid="8a0acae6-e642-4405-abf9-e39c87702461" contribution="Part of the Lower Level"/> <!-- Joyman533 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="31" max-overfill="42">Blue</team>
+    <team id="red" color="dark red" max="31" max-overfill="42">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit" yaw="90">
+        <region><cuboid min="-723.5,50.5,982.5" max="-723.5,51,982.5"/></region>
+    </spawn>
+    <spawn team="blue" kit="blue-kit" yaw="-90">
+        <region><cuboid min="-980.5,50.5,982.5" max="-980.5,51,982.5"/></region>
+    </spawn>
+    <default yaw="-90">
+        <region><cuboid min="-856,170,982" max="-858,170,983"/></region>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" amount="64">cooked fish</item>
+        <item slot="5" amount="64" damage="2">log</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="9" amount="32">cobblestone</item>
+        <item slot="27">arrow</item>
+        <leggings enchantment="protection explosions:1">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">regeneration</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="993333" enchantment="oxygen:1">leather helmet</helmet>
+        <chestplate color="993333" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots color="993333" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="334cb2" enchantment="oxygen:1">leather helmet</helmet>
+        <chestplate color="334cb2" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots color="334cb2" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit id="you-are-dead">
+        <effect duration="oo" amplifier="50">harm</effect>
+    </kit>
+</kits>
+    <itemremove>
+        <item>seeds</item>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>leather boots</item>
+        <item>chainmail leggings</item>
+        <item>arrow</item>
+        <item>cooked fish</item>
+        <item>arrow</item>
+        <item>diamond pickaxe</item>
+        <item>iron axe</item>
+        <item>iron sword</item>
+        <item>bow</item>
+        <item>log</item>
+        <item>glass</item>
+        <item>wood</item>
+        <item>stick</item>
+        <item>obsidian</item>
+        <item>quartz</item>
+        <item>cobblestone</item>
+        <item>golden apple</item>
+        <item>tnt</item>
+    </itemremove>
+<kill-reward>
+    <item>golden apple</item>
+</kill-reward>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<portals>
+    <portal yaw="180" destination="red-top">
+        <region><cuboid min="-733,50,984" max="-736,53,985"/></region>
+    </portal>
+    <portal  yaw="-90" destination="red-bottom">
+        <region><cuboid min="-733,50,981" max="-736,53,980"/></region>
+    </portal>
+    <portal yaw="180" destination="blue-top">
+        <region><cuboid min="-971,50,981" max="-968,53,980"/></region>
+    </portal>
+    <portal yaw="-90" destination="blue-bottom">
+        <region><cuboid min="-971,50,984" max="-968,53,985"/></region>
+    </portal>
+    <portal sound="false" y="-110">
+        <region>
+            <cuboid min="-oo,-oo,-oo" max="oo,28,oo"/>
+        </region>
+    </portal>
+</portals>
+<regions>
+    <cuboid id="red-top" min="-766.5,117,1028.5" max="-766.5,118,1028.5"/>
+    <cuboid id="red-bottom" min="-791.5,37,982.5" max="-791.5,38,982.5"/>
+    <cuboid id="blue-top" min="-937.5,117,936.5" max="-937.5,118,936.5"/>
+    <cuboid id="blue-bottom" min="-912.5,37,982.5" max="-912.5,38,982.5"/>
+    <apply block="never" message="You may not edit the spawn area and the tower!">
+        <region>
+            <union>
+                <cuboid id="red-area1" max="-890,126,987" min="-899,42,978"/>
+                <cuboid id="red-area2" max="-823,39,973" min="-831,33,969"/>
+                <cuboid id="red-area3" max="-903,36,985" min="-915,41,980"/>
+                <cuboid id="blue-area1" max="-814,126,978" min="-805,42,987"/>
+                <cuboid id="blue-area2" max="-881,39,991" min="-873,33,996"/>
+                <cuboid id="blue-area3" max="-801,36,985" min="-789,41,980"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <rectangle min="-954,960" max="-750,1005"/>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <cuboid min="-716,80,928" max="-988,165,1037"/>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not modify the void area!">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<cores material="obsidian" leak="4" mode-changes="true">
+    <cores team="red">
+        <core name="Upper Core">
+            <region><cuboid min="-727,124,980" max="-722,129,985"/></region>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="Upper Core">
+            <region><cuboid min="-977,124,980" max="-982,129,985"/></region>
+        </core>
+    </cores>
+</cores>
+<destroyables sparks="true" name="Lower Monument" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="blue">
+       <region><cuboid min="-939,53,982" max="-938,50,983"/></region>
+    </destroyable>
+    <destroyable owner="red">
+       <region><cuboid min="-765,53,982" max="-766,50,983"/></region>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="25m" material="beacon"/>
+    <mode after="50m" material="gold block"/>
+    <mode after="75m" material="glass"/>
+</modes>
+<maxbuildheight>130</maxbuildheight>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <doFireTick>false</doFireTick>
+</gamerules>
+</map>

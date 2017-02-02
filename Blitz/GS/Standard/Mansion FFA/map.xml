@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Mansion: FFA</name>
+<gamemode>gs</gamemode>
+<version>1.0.0</version>
+<include src="gs.xml"/>
+<include src="gs-ffa.xml"/>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Creator of the map and XML."/> <!-- Timothee38 -->
+</authors>
+<contributors>
+    <contributor uuid="4111f215-28db-4a0d-9380-ee18641d02cf" contribution="Feedback"/> <!-- salalu -->
+    <contributor uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141" contribution="Feedback"/> <!-- Avaleer -->
+</contributors>
+<spawns>
+    <spawn safe="true" angle="-19,5,-721">
+        <cuboid min="-3,2,-700" max="-35,8,-742"/>
+    </spawn>
+    <default yaw="90">
+        <point>-11,12,-722</point>
+    </default>
+</spawns>
+</map>

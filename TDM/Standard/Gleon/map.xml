@@ -1,0 +1,1678 @@
+<map proto="1.4.0" game="`f`lTeam Deathmatch">
+<name>Gleon</name>
+<version>1.0</version>
+<include src="tutorial.xml"/>
+<gamemode>tdm</gamemode>
+<objective>Be the team with the most kills at the end 18 minutes!</objective>
+<time>18m</time>
+<rules>
+    <rule>Players have resistance and reduced knockback in spawn!</rule>
+    <rule>All players have no fall damage!</rule>
+</rules>
+<authors>
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" />
+    <!-- Qixit -->
+</authors>
+<score>
+    <kills>1</kills>
+</score>
+<broadcasts>
+    <tip after="18s" every="3m">`e⚠  `7`nActivate the elytra`r `7while falling by pressing space bar once!  `e⚠</tip>
+    <tip after="0s" every="2m">`e⚠  `7Use `nJump Pads`r `7on the bottom layer of the map to launch yourself to the top of the map!  `e⚠</tip>
+    <tip after="7s">`e⚠  `fJump Pads will occasionally be illuminated by beacons!  `e⚠</tip>
+    <tip after="7m">`e⚠  `fJump Pads will occasionally be illuminated by beacons!  `e⚠</tip>
+    <tip after="11m">`e⚠  `fJump Pads will occasionally be illuminated by beacons!  `e⚠</tip>
+    <tip after="16m">`e⚠  `fJump Pads will occasionally be illuminated by beacons!  `e⚠</tip>
+</broadcasts>
+<teams>
+    <team id="red" color="dark red" max="25" max-overfill="30">Red</team>
+    <team id="blue" color="blue" max="25" max-overfill="30">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-45">
+            <cuboid min="362,61.5,-658" max="364,61.3,-656"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="135">
+            <cuboid min="459,61.5,-563" max="457,61.3,-561"/>
+        </regions>
+    </spawn>
+    <default kit="elytra-obs">
+        <regions yaw="45">
+            <block>411.5,125.5,-609.5</block>
+        </regions>
+    </default>
+</spawns>
+<gamerules>
+    <naturalRegeneration>true</naturalRegeneration>
+</gamerules>
+<kits>
+    <kit id="red-kit">
+        <leggings unbreakable="true" locked="true" color="C40000">leather leggings</leggings>
+        <boots unbreakable="true" locked="true" color="C40000" material="leather boots" lore="Fall damage is disabled!">
+            <enchantment level="3">frost walker</enchantment>
+        </boots>
+    </kit>
+    <kit id="blue-kit">
+        <leggings unbreakable="true" locked="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" locked="true" color="334CB2" material="leather boots" lore="Fall damage is disabled!">
+            <enchantment level="3">frost walker</enchantment>
+        </boots>
+    </kit>
+    <kit id="spawn-protection-r" filter="only-red">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="spawn-protection-b" filter="only-blue">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit id="elytra-obs">
+        <chestplate material="elytra">
+            <enchantment level="2">infinity</enchantment>
+        </chestplate>
+    </kit>
+    <kit id="jump-pad-levitation-kit">
+        <effect duration="1" amplifier="75">levitation</effect>
+    </kit>
+    <!-- Item Box kits -->
+    <kit id="shield-kit" force="true">
+        <shield health="2" delay="30s"/>
+    </kit>
+    <kit id="armorbuff-kit" force="true">
+        <leggings>iron leggings</leggings>
+    </kit>
+    <kit id="speed-kit" force="true">
+        <effect duration="3m" amplifier="1">speed</effect>
+    </kit>
+    <kit id="regen-kit"> 
+        <effect duration="10" amplifier="4">regeneration</effect>
+    </kit>
+    <kit id="health-kit" force="true">
+        <effect duration="2s" amplifier="0">regeneration</effect>
+        <effect duration="1s" amplifier="2">heal</effect>
+    </kit>
+    <kit id="sword-kit" force="true">
+        <item slot="0">iron sword</item>
+    </kit>
+    <kit id="apple-kit">
+        <item slot="8" amount="5">golden apple</item>
+    </kit>
+    <kit id="pearl-kit" force="true">
+        <item slot="4" force="true">ender pearl</item>
+    </kit>
+    <kit id="TNT-kit" force="true">
+        <item slot="5" projectile="lazer" name="`lTNT Launcher!" material="lever"/>
+    </kit>
+    <kit id="gun-kit" force="true">
+        <item slot="6" projectile="gun" name="`lWither Skull Launcher"  material="lever"/>
+    </kit>
+    <kit id="shield-item-kit" force="true">
+        <item slot="7">shield</item>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="lazer" name="`lTNT Launcher!" projectile="TNTPrimed" velocity="2" damage="15" throwable="false" cooldown="5s"/>
+    <projectile id="gun" name="`lWither Skull Launcher" projectile="WitherSkull" velocity="1" throwable="false" cooldown="4s">
+        <effect duration="10">wither</effect>
+    </projectile>
+</projectiles>
+<classes family="Classes" sticky="false">
+    <class name="Duel Wield" default="false" description="Bow will be placed in offhand, making you a duel wielder." icon="iron helmet">
+        <kit force="true">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="slot.weapon.offhand" unbreakable="true" material="bow">
+                <enchantment level="1">arrow infinite</enchantment>
+            </item>
+            <item slot="1" amount="25">stained glass</item>
+            <item slot="2" amount="32">water lily</item>
+            <item slot="8" amount="2">golden apple</item>
+            <item slot="28" amount="1">arrow</item>
+            <potion duration="5" amplifier="10">heal</potion>
+            <potion duration="4" amplifier="5">strength</potion>
+            <helmet unbreakable="true" locked="true">iron helmet</helmet>
+            <chestplate unbreakable="true" locked="true" material="elytra">
+                <enchantment level="2">protection environmental</enchantment>
+                <enchantment level="2">protection projectile</enchantment>
+            </chestplate>
+        </kit>
+    </class>
+    <class name="No Offhand" default="true" description="Bow will be placed in second slot, as opposed to offhand." icon="iron helmet">
+        <kit force="true">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" material="bow">
+                <enchantment level="1">arrow infinite</enchantment>
+            </item>
+            <item slot="2" amount="25">stained glass</item>
+            <item slot="3" amount="32">water lily</item>
+            <item slot="8" amount="2">golden apple</item>
+            <item slot="28" amount="1">arrow</item>
+            <potion duration="5" amplifier="10">heal</potion>
+            <potion duration="4" amplifier="5">strength</potion>
+            <helmet unbreakable="true" locked="true">iron helmet</helmet>
+            <chestplate unbreakable="true" locked="true" material="elytra">
+                <enchantment level="2">protection environmental</enchantment>
+                <enchantment level="2">protection projectile</enchantment>
+            </chestplate>
+        </kit>
+    </class>
+</classes>
+<respawn auto="false" delay="2s" spectate="true" blackout="false" />
+<killreward>
+    <filter>
+        <kill-streak count="3" repeat="true"/>
+    </filter>   
+    <item amount="10">stained glass</item>
+    <item amount="5">water lily</item>
+</killreward>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="5">vine</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<itemremove>
+    <item>shield</item>
+    <item>lever</item>
+    <item>ender pearl</item>
+    <item>iron leggings</item>
+    <item>iron sword</item>
+    <item>golden apple</item>
+    <item>seeds</item>
+    <item>wood</item>
+    <item>stick</item>
+    <item>sapling</item>
+    <item>apple</item>    
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>stone sword</item>    
+    <item>bow</item>
+    <item>iron helmet</item>
+    <item>sign</item>
+    <item>stone button</item>
+    <item>red rose</item>
+    <item>water lily</item>
+    <item>leather boots</item>
+    <item>stained glass</item>
+    <item>vine</item>
+    <item>elytra</item>
+    <item>arrow</item>
+    <item>brown mushroom</item>
+    <item>red mushroom</item>
+</itemremove>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <any id="breakable-blocks">
+        <material>long grass</material>
+        <material>red rose</material>
+        <material>double plant</material>   
+        <material>water lily</material>
+        <material>stained glass</material>
+        <material>wool:11</material>
+        <material>vine</material>
+        <material>wool:14</material>
+        <material>red mushroom</material>
+        <material>brown mushroom</material>
+        <material>ice</material>
+        <material>frosted ice</material>
+        <material>stationary water</material>
+    </any>
+    <deny id="deny-void">
+        <void />
+    </deny>
+</filters>
+<maxbuildheight>80</maxbuildheight>
+<regions>
+    <union id="jump-pad-protection">
+        <circle center="376.5,-643.5" radius="1"/>
+        <circle center="334.5,-599.5" radius="1"/>
+        <circle center="362.5,-590.5" radius="1"/>
+        <circle center="357.5,-556.5" radius="1"/>
+        <circle center="391.5,-561.5" radius="1"/>
+        <circle center="400.5,-533.5" radius="1"/>
+        <circle center="444.5,-575.5" radius="1"/>
+        <circle center="458.5,-628.5" radius="1"/>
+        <circle center="486.5,-619.5" radius="1"/>
+        <circle center="463.5,-662.5" radius="1"/>
+        <circle center="429.5,-657.5" radius="1"/>
+        <circle center="386.5,-600.5" radius="1"/>
+        <circle center="401.5,-585.5" radius="1"/>
+        <circle center="434.5,-618.5" radius="1"/>
+        <circle center="419.5,-633.5" radius="1"/>
+    </union>
+    <union id="jump-pads-spawn">
+        <cuboid min="462,12,-558" max="464,13,-556"/>
+        <cuboid min="359,12,-661" max="357,13,-663"/>
+    </union>
+    <union id="jump-pads-spawn-rectangle">
+        <rectangle min="462,-558" max="464,-556"/>
+        <rectangle min="359,-661" max="357,-663"/>
+    </union>
+    <cuboid id="red-spawn" min="360,61,-660" max="366,68,-654"/>
+    <cuboid id="blue-spawn" min="455,61,-565" max="461,68,-559"/>
+    <union id="secondary-spawns">
+        <cuboid id="red-kit-spawn" min="360,60,-660" max="366,61.5,-654"/>
+        <cuboid id="blue-kit-spawn" min="455,60,-565" max="461,61.5,-559"/>
+    </union>
+    <!-- Never -->
+    <apply block="never" message="`lYou may not interfere with this Jump Pad! `e⚠">
+        <region>
+            <region id="jump-pad-protection"/>
+        </region>
+    </apply>
+    <apply block="deny-void" message="`lYou may not place blocks in the void! `e⚠">
+        <everywhere />
+    </apply>
+    <apply block="never" region="red-spawn" message="`lYou may not obstruct `4`lRed Spawn! `e⚠"/>
+    <apply block="never" region="blue-spawn" message="`lYou may not obstruct `1`lBlue Spawn! `e⚠"/>
+    <apply block="never" message="`lYou may not obstruct this area! `e⚠" region="jump-pads-spawn-rectangle"/>
+    <!-- Applied -->
+    <apply block="breakable-blocks">
+        <everywhere />
+    </apply>
+    <apply block-physics="never">
+        <everywhere />
+    </apply>
+    <apply velocity="0,10,0">
+        <region>
+            <region id="jump-pads-spawn"/>
+        </region>
+    </apply>
+    <!-- Enter -->
+    <apply enter="only-red" message="`lYou may not enter the opposing team's spawn! `e⚠">
+        <region>
+            <region id="red-spawn"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="`lYou may not enter the opposing team's spawn! `e⚠">
+        <region>
+            <region id="blue-spawn"/>
+        </region>
+    </apply>
+    <!-- Kit -->
+    <apply lend-kit="spawn-protection-r" region="red-kit-spawn" filter="only-red"/>
+    <apply lend-kit="spawn-protection-b" region="blue-kit-spawn" filter="only-blue"/>
+    <apply kit="jump-pad-levitation-kit">
+        <region>
+            <cuboid min="376,7.5,-644" max="377,8,-643"/>
+            <cuboid min="335,5.5,-600" max="334,6,-599"/>
+            <cuboid min="362,7.5,-590" max="363,8,-591"/>
+            <cuboid min="357,5.5,-557" max="358,6,-556"/>
+            <cuboid min="392,7.5,-562" max="391,8,-561"/>
+            <cuboid min="400,5.5,-534" max="401,6,-533"/>
+            <cuboid min="444,7.5,-576" max="445,8,-575"/>
+            <cuboid min="459,7.5,-629" max="458,8,-628"/>
+            <cuboid min="487,5.5,-619" max="486,6,-620"/>
+            <cuboid min="464,5.5,-662" max="463,6,-663"/>
+            <cuboid min="429,7.5,-657" max="430,8,-658"/>
+            <cuboid min="421,5.5,-685" max="420,6,-686"/>
+            <cuboid min="387,5.5,-601" max="386,6,-600"/>
+            <cuboid min="402,5.5,-585" max="401,6,-586"/>
+            <cuboid min="434,5.5,-619" max="435,6,-618"/>
+            <cuboid min="420,5.5,-633" max="419,6,-634"/>
+        </region>
+    </apply>
+</regions>
+<pickups>
+    <pickup id="item-box-1" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>410.5,62,-609.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-2" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="armorbuff-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>410.5,40,-609.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-3" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="regen-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>406.5,41,-630.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-4" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="health-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>389.5,41,-613.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-5" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="sword-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>394.5,41,-593.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-6" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="apple-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>426.5,41,-625.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-7" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="pearl-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>431.5,41,-605.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-8" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="TNT-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>414.5,41,-588.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-9" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>446.5,42,-573.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-10" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-item-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>420.5,46,-569.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-11" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>395.5,47,-544.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-12" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>382.5,45,-545.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-13" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="armorbuff-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>346.5,45,-581.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-14" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="speed-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>345.5,47,-594.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-15" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="regen-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>370.5,46,-619.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-16" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="health-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>374.5,42,-645.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-17" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="sword-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>400.5,46,-649.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-18" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="apple-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>425.5,47,-674.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-19" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="pearl-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>438.5,45,-673.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-20" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="TNT-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>474.5,45,-637.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-21" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>475.5,47,-624.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-22" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-item-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>450.5,46,-599.5</point>
+        </region>
+    </pickup>
+    <!-- SECOND LAYER -->
+    <pickup id="item-box-23" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>446.5,14,-573.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-24" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>382.5,11,-545.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-25" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="armorbuff-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>474.5,11,-637.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-26" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="speed-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>456.5,16,-643.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-27" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="regen-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>444.5,16,-655.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-28" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="health-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>374.5,14,-645.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-29" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="sword-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>346.5,11,-581.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-30" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="apple-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>364.5,16,-575.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-31" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="pearl-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>376.5,16,-563.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-32" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="TNT-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>406.6,14,-629.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-33" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>426.5,18,-625.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-34" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="shield-item-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>430.5,14,-605.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-35" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>414.5,14,-589.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-36" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="gun-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>394.5,18,-593.5</point>
+        </region>
+    </pickup>
+    <pickup id="item-box-37" name="`k1`r`l-`r`d`lItem Box`r`l-`r`k1" spawn-filter="always" pickup-filter="always" respawn-time="1m" pickup-time="5s" kit="TNT-kit" effects="true" sounds="true" appearance="ender crystal">
+        <region>
+            <point>390.5,14,-613.5</point>
+        </region>
+    </pickup>
+</pickups>
+<structures>
+    <structure id="jump-pad-structure-1" clear="false">
+        <region>
+            <cuboid min="376,7,-644" max="377,7.5,-643"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-2" clear="false">
+        <region>
+            <cuboid min="335,5,-600" max="334,5.5,-599"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-3" clear="false">
+        <region>
+            <cuboid min="362,7,-590" max="363,7.5,-591"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-4" clear="false">
+        <region>
+            <cuboid min="357,5,-557" max="358,5.5,-556"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-5" clear="false">
+        <region>
+            <cuboid min="392,7,-562" max="391,7.5,-561"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-6" clear="false">
+        <region>
+            <cuboid min="400,5,-534" max="401,5.5,-533"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-7" clear="false">
+        <region>
+            <cuboid min="444,7,-576" max="445,7.5,-575"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-8" clear="false">
+        <region>
+            <cuboid min="459,7,-629" max="458,7.5,-628"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-9" clear="false">
+        <region>
+            <cuboid min="487,5,-619" max="486,5.5,-620"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-10" clear="false">
+        <region>
+            <cuboid min="464,5,-662" max="463,5.5,-663"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-11" clear="false">
+        <region>
+            <cuboid min="429,7,-657" max="430,7.5,-658"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-12" clear="false">
+        <region>
+            <cuboid min="421,5,-685" max="420,5.5,-686"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-13" clear="false">
+        <region>
+            <cuboid min="387,5,-300" max="386,5.5,-601"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-14" clear="false">
+        <region>
+            <cuboid min="402,5,-585" max="401,5.5,-586"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-15" clear="false">
+        <region>
+            <cuboid min="434,5,-619" max="435,5.5,-618"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-16" clear="false">
+        <region>
+            <cuboid min="420,5,-633" max="419,5.5,-634"/>
+        </region>
+    </structure>
+
+    <structure id="jump-pad-structure-1-air" air="true" clear="false">
+        <region>
+            <cuboid min="376,8,-644" max="377,9,-643"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-2-air" air="true" clear="false">
+        <region>
+            <cuboid min="335,6,-600" max="334,7,-599"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-3-air" air="true" clear="false">
+        <region>
+            <cuboid min="362,8,-590" max="363,9,-591"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-4-air" air="true" clear="false">
+        <region>
+            <cuboid min="357,6,-557" max="358,7,-556"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-5-air" air="true" clear="false">
+        <region>
+            <cuboid min="392,8,-562" max="391,9,-561"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-6-air" air="true" clear="false">
+        <region>
+            <cuboid min="400,6,-534" max="401,7,-533"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-7-air" air="true" clear="false">
+        <region>
+            <cuboid min="444,8,-576" max="445,9,-575"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-8-air" air="true" clear="false">
+        <region>
+            <cuboid min="459,8,-629" max="458,9,-628"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-9-air" air="true" clear="false">
+        <region>
+            <cuboid min="487,6,-619" max="486,7,-620"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-10-air" air="true" clear="false">
+        <region>
+            <cuboid min="464,6,-662" max="463,7,-663"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-11-air" air="true" clear="false">
+        <region>
+            <cuboid min="429,8,-657" max="430,9,-658"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-12-air" air="true" clear="false">
+        <region>
+            <cuboid min="421,6,-685" max="420,7,-686"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-13-air" air="true" clear="false">
+        <region>
+            <cuboid min="387,6,-300" max="386,7,-601"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-14-air" air="true" clear="false">
+        <region>
+            <cuboid min="402,6,-585" max="401,7,-586"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-15-air" air="true" clear="false">
+        <region>
+            <cuboid min="434,6,-619" max="435,7,-618"/>
+        </region>
+    </structure>
+    <structure id="jump-pad-structure-16-air" air="true" clear="false">
+        <region>
+            <cuboid min="420,6,-633" max="419,7,-634"/>
+        </region>
+    </structure>
+
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-1">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-2">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-3">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-4">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-5">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-6">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-7">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-8">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-9">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-10">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-11">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-12">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-13">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-14">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-15">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-16">
+            <filter>
+                <time>18s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-1-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-2-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-3-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-4-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-5-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-6-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-7-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-8-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-9-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-10-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-11-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-12-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-13-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-14-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-15-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-16-air">
+            <filter>
+                <time>5s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-1">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-2">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-3">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-4">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-5">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-6">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-7">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-8">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-9">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-10">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-11">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-12">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-13">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-14">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-15">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-16">
+            <filter>
+                <time>433s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-1-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-2-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-3-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-4-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-5-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-6-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-7-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-8-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-9-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-10-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-11-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-12-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-13-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-14-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-15-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-16-air">
+            <filter>
+                <time>420s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-1">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-2">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-3">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-4">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-5">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-6">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-7">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-8">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-9">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-10">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-11">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-12">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-13">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-14">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-15">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-16">
+            <filter>
+                <time>673s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-1-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-2-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-3-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-4-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-5-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-6-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-7-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-8-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-9-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-10-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-11-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-12-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-13-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-14-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-15-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-16-air">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-1">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-2">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-3">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-4">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-5">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-6">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-7">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-8">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-9">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-10">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-11">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-12">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-13">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-14">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-15">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,0,0">
+        <dynamic structure="jump-pad-structure-16">
+            <filter>
+                <time>973s</time>
+            </filter>
+        </dynamic>
+    </structures>
+
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-1-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-2-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-3-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-4-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-5-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-6-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-7-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-8-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-9-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-10-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-11-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-12-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-13-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-14-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-15-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-1,0">
+        <dynamic structure="jump-pad-structure-16-air">
+            <filter>
+                <time>960s</time>
+            </filter>
+        </dynamic>
+    </structures>
+</structures>
+<renewables>
+    <renewable interval="50" grow="true" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <everywhere />
+        </region>
+        <renew-filter>
+            <material>stationary water</material>
+        </renew-filter>
+        <replace-filter>
+            <material>frosted ice</material>
+        </replace-filter>
+    </renewable>
+    <renewable interval="1" grow="true" particles="true" sound="false" avoid-entities="true">
+        <region>
+            <everywhere />
+        </region>
+        <renew-filter>
+            <material>frosted ice</material>
+        </renew-filter>
+        <replace-filter>
+            <material>stationary water</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<tutorial>
+    <stage title="Welcome to Gleon!">
+        <message>
+            <line></line>
+            <line>This map is a `9`lTeam Death Match `r(TDM) map.</line>
+            <line></line>
+            <line>The objective on this map is to get more points than the other team. You can score a point for your team by defeating an enemy.</line>
+        </message>
+        <teleport>
+            <point yaw="-50">376.5,51,-590.5</point>
+        </teleport>
+    </stage>
+    <stage title="Teams!">
+        <message>
+            <line></line>
+            <line>Each match is comprised of 2 teams (`4Red`r vs `9Blue`r) battling for 18 minutes.</line>
+            <line></line>
+            <line>This here is `4Red Team`r's spawn, and `9Blue Team`r's spawn is located on the opposite side.</line>
+        </message>
+        <teleport>
+            <point yaw="-44">356.5,73,-663.5</point>
+        </teleport>
+    </stage>
+    <stage title="Terrain!">
+        <message>
+            <line></line>
+            <line>This map has 3 and 1/2 `9`llayers`r, with an interactive water layer down the bottom of the map.</line>
+            <line></line>
+            <line>All 3 areas are accesable by all players, have fun!</line>
+        </message>
+        <teleport>
+            <point yaw="-100">381.5,65,-657.5</point>
+        </teleport>
+    </stage>
+    <stage title="Jump Pads!">
+        <message>
+            <line></line>
+            <line>Located across the bottom layer of the map are `9`lJump Pads`r. Go inside these to be launched to the top of the map.</line>
+        </message>
+        <teleport>
+            <point yaw="110">436.5,9.5,-618.5</point>
+        </teleport>
+    </stage>
+    <stage title="Frost Walker!">
+        <message>
+            <line></line>
+            <line>Across the map there is water. Use `9`lFrost Walker`r to walk over it with ease, maybe even PvP with the opposing team, who knows!</line>
+        </message>
+        <teleport>
+            <point yaw="-123">396.5,3,-633.5</point>
+        </teleport>
+    </stage>
+    <stage title="Elytra!">
+        <message>
+            <line></line>
+            <line>All players spawn with the `9`lElytra wings`r.</line>
+            <line></line>
+            <line>Fly around the terrain with the `9`lElytra wings`r, and have fun!</line>
+        </message>
+        <teleport>
+            <point yaw="105">415.5,24,-605.5</point>
+        </teleport>
+    </stage>
+    <stage title="Item Boxes!">
+        <message>
+            <line></line>
+            <line>Flying through `9`lItem Boxes`r gives you special perks!</line>
+            <line></line>
+            <line>Perks range from health buffs to armor improvements.</line>
+        </message>
+        <teleport>
+            <point yaw="-65">434.5,44,-675.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

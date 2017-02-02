@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="gs.xml"/>
+<name>Whirlpool</name>
+<version>1.0.2</version>
+<objective>Kill the other team before the time runs out!</objective>
+<gamemode>gs</gamemode>
+<authors>
+    <author uuid="38cc987d-8e5e-4ffd-bd79-152183568829"/> <!-- IncircumOrthroid -->
+    <author uuid="68c53de2-3c9d-4ffc-b767-20bfc2bc0539"/> <!-- ExecutiveBanana -->
+</authors>
+<contributors>
+    <contributor uuid="3665bc37-2fff-45e5-b733-2704fa42c231"/> <!-- Blueloving -->
+</contributors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="blue" max="8">Blue</team>
+</teams>
+<kits>
+   <kit name="anti-kb">
+      <knockback-reduction>0.25</knockback-reduction>
+   </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="anti-kb" yaw="179">
+        <cylinder base="-1345,11,610" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="anti-kb" yaw="-0">
+        <cylinder base="-1345,11,526" radius="2" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-1345,48,568" radius="1" height="0"/>
+    </default>
+</spawns>
+</map>

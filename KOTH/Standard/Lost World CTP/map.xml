@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<map proto="1.3.4">
+<name>Lost World: CTP</name>
+<version>0.13</version>
+<objective>You must capture all five points to win! You have one hit kill weapons.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Original Game">Gameflot</contributor>
+    <contributor uuid="2a3b7317-ad79-4cfb-90f0-cfa3d52d51ae" contribution="Feedback and Building"/> <!-- IMPaused -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Feedback and Building"/> <!-- moo88888888 -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team color="dark red" max="10" max-overfill="12">Red</team>
+    <team color="blue" max="10" max-overfill="12">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue">
+        <point yaw="90">7.5,33,-32.5</point>
+        <point yaw="180">-38.5,33,13.5</point>
+        <point yaw="-140">-64.5,31,-7.5</point>
+        <point yaw="-65">-46.5,24,-69.5</point>
+        <point yaw="-80">-12.5,28,-75.5</point>
+        <point yaw="-90">-5.5,28,-69.5</point>
+        <point yaw="0">41.5,28,-55.5</point>
+        <point yaw="-15">-30.5,24,-43.5</point>
+    </spawn>
+    <spawn team="red" kit="red">
+        <point yaw="-90">-6.5,33,47.5</point>
+        <point yaw="0">39.5,33,1.5</point>
+        <point yaw="-5">66.5,28,24.5</point>
+        <point yaw="90">39.5,37,54.5</point>
+        <point yaw="-140">21.5,30,73.5</point>
+        <point yaw="180">-11.5,24,74.5</point>
+        <point yaw="100">-22.5,28,59.5</point>
+        <point yaw="90">-29.5,28,54.5</point>
+    </spawn>
+    <default kit="obs" yaw="45">
+        <point>0.5,102,7.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="0" name="`a`lDagger" unbreakable="true" enchantment="damage all:10">stone sword</item>
+        <item slot="1" name="`a`lInstagib" unbreakable="true" enchantment="arrow damage:10">bow</item>
+        <item slot="8" amount="8">arrow</item>
+        <chestplate unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true">iron chestplate</chestplate>
+        <leggings color="191919" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="191919" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="3" amplifier="5">damage resistance</potion>
+        <potion duration="3">absorption</potion>
+        <potion duration="oo">speed</potion>
+        <potion duration="oo">saturation</potion>
+        <double-jump power="4" recharge-time="4s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet damage="11" locked="true">stained clay</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet damage="14" locked="true">stained clay</helmet>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="not-some">
+        <not>
+            <block>anvil</block>
+            <block>dispenser</block>
+            <block>beacon</block>
+        </not>
+    </filter>
+    <filter name="only-some">
+        <any>
+            <block>stained glass:8</block>
+            <block>piston base:6</block>
+            <block>glass</block>
+            <block>thin glass</block>
+            <block>tnt</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-some" use="not-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<control-points capture-players="lead" incremental="true" show-progress="true" neutral-state="false" time-multiplier="0.35">
+    <control-point name="Center" capture-time="20s">
+        <capture-region>
+            <cylinder base="0.5,23,7.5" radius="7" height="5"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="0.5,22,7.5" radius="7" height="4"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="0.5,64,7.5" radius="7" height="5"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Alfa" capture-time="15s">
+        <capture-region>
+            <cylinder base="-50.5,24,-41.5" radius="7" height="5"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="-50.5,23,-41.5" radius="7" height="1"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="-50.5,64,-41.5" radius="7" height="5"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Bravo" capture-time="15s">
+        <capture-region>
+            <cylinder base="62.5,24,9.5" radius="7" height="5"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="62.5,23,9.5" radius="7" height="1"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="62.5,64,9.5" radius="7" height="5"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Delta" capture-time="5s">
+        <capture-region>
+            <cylinder base="-62.5,35,39.5" radius="2" height="3"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="-62.5,34,39.5" radius="2" height="1"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="-62.5,64,39.5" radius="3" height="5"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Echo" capture-time="5s">
+        <capture-region>
+            <cylinder base="46.5,33,-73.5" radius="2" height="3"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="46.5,32,-73.5" radius="2" height="1"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="46.5,64,-73.5" radius="3" height="5"/>
+        </owner-display-region>
+    </control-point>
+</control-points>
+<king/>
+<modifybowprojectile>
+    <velocityMod>2.5</velocityMod>
+</modifybowprojectile>
+<disabledamage>
+    <damage enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <fuse>1s</fuse>
+    <power>5</power>
+</tnt>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<itemremove>
+    <item>arrow</item>
+    <item>compass</item>
+    <item>stained glass</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>item frame</item>
+    <item>redstone block</item>
+    <item>piston base</item>
+    <item>thin glass</item>
+    <item>glass</item>
+    <item>stained clay</item>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>snow ball</item>
+</itemremove>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="4" name="`6`lGrenade" grenade="true" grenade-power="1.5">snow ball</item>
+    <item amount="8">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="5" repeat="true"/>
+    </filter>
+    <item name="`6`lMEGA Grenade" grenade="true" grenade-power="3">snow ball</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<time result="objectives">20m</time>
+<rage/>
+</map>

@@ -1,0 +1,2045 @@
+<map proto="1.4.2" game="Arenas Cleared">
+<name>Build: Parkour</name>
+<version>1.9.10</version>
+<objective>Build your own parkour then race everyone else!</objective>
+<authors>
+     <author uuid="7475c44e-3066-468f-a4c6-488fe9612097" contribution="Map concept and game design" /> <!-- Jc -->
+     <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="XML and gameplay logic" /> <!-- mitchiii_ -->
+</authors>
+<gamemode>arcade</gamemode>
+<rules>
+    <rule>You are allowed to skip a parkour after 2 minutes if it is too difficult</rule>
+    <rule>You cannot skip your own parkour</rule>
+    <rule>Parkours that can only be completed once are not allowed</rule>
+    <rule>Senior staff can expand team sizes infinitely if desired</rule>
+    <rule>Skipping can be disabled by holding gunpowder</rule>
+</rules>
+<teams>
+   <team id="player-1" color="red"          max="1" max-overfill="1">Red</team>
+   <team id="player-2" color="blue"         max="1" max-overfill="1">Blue</team>
+   <team id="player-3" color="dark green"   max="1" max-overfill="1">Green</team>
+   <team id="player-4" color="gold"         max="1" max-overfill="1">Orange</team>
+   <team id="player-5" color="dark purple"  max="1" max-overfill="1">Purple</team>
+   <team id="player-6" color="dark aqua"    max="1" max-overfill="1">Cyan</team>
+   <team id="player-7" color="light purple" max="1" max-overfill="1">Pink</team>
+   <team id="player-8" color="yellow"       max="1" max-overfill="1">Yellow</team>
+</teams>
+<blitz>
+    <lives>999</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<score>
+    <limit>8</limit>
+    <box region="arena-1-end" filter="allow-arena-1-score" points="1" />
+    <box region="arena-2-end" filter="allow-arena-2-score" points="1" />
+    <box region="arena-3-end" filter="allow-arena-3-score" points="1" />
+    <box region="arena-4-end" filter="allow-arena-4-score" points="1" />
+    <box region="arena-5-end" filter="allow-arena-5-score" points="1" />
+    <box region="arena-6-end" filter="allow-arena-6-score" points="1" />
+    <box region="arena-7-end" filter="allow-arena-7-score" points="1" />
+    <box region="arena-8-end" filter="race-phase"          points="1" />
+    <box region="race-finish"                              points="8" />
+</score>
+<time show="false">18m</time>
+<respawn auto="true" spectate="true" freeze="0s" />
+<broadcasts>
+    <alert after="0s"  >`aBuild a parkour course from `2start `ato `4end`a!</alert>
+    <tip   after="3s"  >`bDouble tap space to fly to assist you while building!</tip>
+    <tip   after="23s" >`bYou will have to beat your own parkour later, so don't make it too hard!</tip>
+    <tip   after="83s" >`bReturn to the `2START `bgate to restock on building materials!</tip>
+    <alert after="240s">`aComplete your parkour for it to included in the race!</alert>
+    <alert after="365s">`aThe parkour race has begun!</alert>
+    <tip   after="420s" filter="skip-enabled">`bHaving trouble with a parkour? After `a2 minutes `byou will receive a skip token!</tip>
+    <tip   after="480s" filter="skip-enabled">`bTo skip a parkour, hold your '`5Skip Current Parkour`b' star, then fall into the black net!</tip>
+    <alert after="360s" filter="arena-1-inactive">`c`lRed`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-2-inactive">`9`lBlue`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-3-inactive">`2`lGreen`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-4-inactive">`6`lOrange`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-5-inactive">`5`lPurple`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-6-inactive">`3`lCyan`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-7-inactive">`d`lPink`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" filter="arena-8-inactive">`e`lYellow`r`c's parkour has been removed from the race!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-1">`aYour team is now allowed to skip `cArena 1`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-2">`aYour team is now allowed to skip `9Arena 2`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-3">`aYour team is now allowed to skip `2Arena 3`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-4">`aYour team is now allowed to skip `6Arena 4`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-5">`aYour team is now allowed to skip `5Arena 5`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-6">`aYour team is now allowed to skip `3Arena 6`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-7">`aYour team is now allowed to skip `dArena 7`a!</alert>
+    <alert after="360s" every="1s"  filter="send-alert-allowed-to-skip-arena-8">`aYour team is now allowed to skip `eArena 8`a!</alert>
+    <alert after="360s" every="28s" filter="alert-player-allowed-skip"         >`aSkip this parkour arena by holding the Nether Star and jumping into the black net!</alert>
+    <!-- Alerts regarding skip disabling -->
+    <alert after="0s"   every="10s" filter="send-skip-action-confirm-alert">`6⚠ `cAre you sure you want to disbale parkour skipping for this match?</alert>
+    <alert after="0.1s" every="10s" filter="send-skip-action-confirm-alert">`6⚠ `cTo confirm your action, hold `e`lGLOWSTONE DUST`r`c!</alert>
+    <alert after="0.1s" every="5s"  filter="send-skip-action-success"      >`6⚠ `aYou have successfully disabled parkour skipping for this match.</alert>
+    <alert after="365.1s"           filter="send-skip-disabled-alert"      >`6⚠ `cParkour skipping has been disabled for this match!</alert>
+</broadcasts>
+<kits>
+    <kit id="observer-kit"><effect>night vision</effect></kit>
+    <!-- Main building kit -->
+    <give kit="build-kit" filter="build-spawn-kit"/>
+    <kit id="build-kit">
+        <game-mode>adventure</game-mode>
+        <item amount="64" slot="2"  material="ice"                lore="`r`5Renewable" />
+        <item amount="64" slot="3"  material="slime block"        lore="`r`5Renewable" />
+        <item amount="64" slot="4"  material="trap door"          lore="`r`5Renewable" />
+        <item amount="64" slot="5"  material="spruce fence"       lore="`r`5Renewable" />
+        <item amount="64" slot="6"  material="ladder"             lore="`r`5Renewable" />
+        <if halloween="false" april-fools="false">
+            <item amount="64" slot="7"  material="stained clay"   lore="`r`7Applies `9Speed `7to the player!" name="`rSpeed Block" damage="3" />
+        </if>
+        <if halloween="true">
+            <item amount="64" slot="7"  material="pumpkin"        lore="`r`7Applies `6mysterious effects `7to the player!" name="`rMysterious Pumpkin" />
+        </if>
+        <if april-fools="true">
+            <item amount="3" slot="7"   material="dispenser"      lore="`r`7Turns the player into an|`cexplosive turret `7launcher!" name="`rGrenade Turret" />
+        </if>
+        <item amount="64" slot="10" material="end rod"            lore="`r`5Renewable" />
+        <item amount="64" slot="11" material="hopper"                                  />
+        <item amount="8"  slot="12" material="web"                                     />
+        <item amount="64" slot="13" material="iron door"          lore="`r`5Renewable" />
+        <item amount="64" slot="14" material="cobble wall"        lore="`r`5Renewable" />
+        <item amount="64" slot="15" material="step"               lore="`r`5Renewable" />
+        <item amount="64" slot="16" material="sea lantern"        lore="`r`7Applies a small `bImpulse `7relative to|`r`7the player!" name="`rVelocity Block" />
+        <item amount="64" slot="17" material="vine"                                    />
+        <item amount="64" slot="19" material="snow"               lore="`r`5Renewable" />
+        <item amount="64" slot="20" material="anvil"                                   />
+        <item amount="64" slot="21" material="piston base"                             />
+        <item amount="64" slot="22" material="iron trapdoor"      lore="`r`5Renewable" />
+        <item amount="64" slot="23" material="nether fence"       lore="`r`5Renewable" />
+        <item amount="64" slot="24" material="sign"                                    />
+        <unless halloween="true" april-fools="true">
+            <item amount="64" slot="25" material="stained clay"   lore="`r`7Applies `8Slowness `7to the player!" name="`rSlowness Block" damage="8" />
+        </unless>
+        <unless halloween="false" april-fools="false">
+            <item amount="64" slot="25"  material="stained clay"  lore="`r`7Applies `9Speed `7to the player!" name="`rSpeed Block" damage="3" />
+        </unless>
+        <item amount="64" slot="26" material="water lily"                              />
+        <item amount="64" slot="29" material="soul sand"          lore="`r`5Renewable" />
+        <item amount="64" slot="30" material="redstone block"                          />
+        <item amount="64" slot="31" material="wood door"          lore="`r`5Renewable" />
+        <item amount="64" slot="32" material="spruce fence gate"  lore="`r`5Renewable" />
+        <item amount="64" slot="33" material="spruce wood stairs" lore="`r`5Renewable" />
+        <item amount="64" slot="34" material="stained clay"       lore="`r`7Applies `aJump Boost `7to the player!" name="`rJump Boost Block" damage="5" />
+        <item amount="64" slot="35" material="cake"                                    />
+        <effect duration="oo" amplifier="127">fast digging</effect>
+        <fly flying="true" />
+        <item slot="8" material="diamond pickaxe" locked="true" name="`r`bMagic Pickaxe" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
+    </kit>
+    <kit id="build-kit-renewable">
+        <item amount="64" material="ice"                lore="`r`5Renewable" />
+        <item amount="64" material="slime block"        lore="`r`5Renewable" />
+        <item amount="64" material="trap door"          lore="`r`5Renewable" />
+        <item amount="64" material="spruce fence"       lore="`r`5Renewable" />
+        <item amount="64" material="ladder"             lore="`r`5Renewable" />
+        <item amount="64" material="end rod"            lore="`r`5Renewable" />
+        <item amount="64" material="iron door"          lore="`r`5Renewable" />
+        <item amount="64" material="snow"               lore="`r`5Renewable" />
+        <item amount="64" material="iron trapdoor"      lore="`r`5Renewable" />
+        <item amount="64" material="cobble wall"        lore="`r`5Renewable" />
+        <item amount="64" material="nether fence"       lore="`r`5Renewable" />
+        <item amount="64" material="step"               lore="`r`5Renewable" />
+        <item amount="64" material="soul sand"          lore="`r`5Renewable" />
+        <item amount="64" material="wood door"          lore="`r`5Renewable" />
+        <item amount="64" material="spruce fence gate"  lore="`r`5Renewable" />
+        <item amount="64" material="spruce wood stairs" lore="`r`5Renewable" />
+        <game-mode>adventure</game-mode>
+        <fly flying="true" />
+    </kit>
+    <!-- Red building blocks -->
+    <kit id="build-kit-player-1">
+        <item amount="64" slot="0"  damage="14" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="14" material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="14" material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="9caf209b-f29f-4b43-bc37-6fbf9bb93934" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODZkMzVhOTYzZDU5ODc4OTRiNmJjMjE0ZTMyOGIzOWNkMjM4MjQyNmZmOWM4ZTA4MmIwYjZhNmUwNDRkM2EzIn19fQ==" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="14" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="14" material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="993333" locked="true" material="leather boots" />
+    </kit>
+    <!-- Blue building blocks -->
+    <kit id="build-kit-player-2">
+        <item amount="64" slot="0"  damage="11" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="11" material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="11" material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="8d9ca4f6-21c6-420a-8c63-a0beff448a72" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2YzZTQwNjI5MTE3NGQyNGNkZjBmOTUzZjhhMTc0YTgyYmIzNDg5ZGNlOGY2NzlhNDQzZWYxYWFlMDE2OTA2MSJ9fX0=" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="11" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="11" material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="334cb2" locked="true" material="leather boots" />
+    </kit>
+    <!-- Green building blocks -->
+    <kit id="build-kit-player-3">
+        <item amount="64" slot="0"  damage="13" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="13" material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="13" material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="703f9cf1-9aec-4f93-b7c3-c7d5975a6358" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDg0Njg0MzQ0YWUwOTg1MjlmYzk0MWFhODRlMTk1YmRjYTM3NDhkNjlhY2ZlZTJiYWMxMzMyMTM1ZWRkOThjIn19fQ==" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="13" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="13" material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="667f33" locked="true" material="leather boots" />
+    </kit>
+    <!-- Orange building blocks -->
+    <kit id="build-kit-player-4">
+        <item amount="64" slot="0"  damage="1"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="1"  material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="1"  material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="aa2d1287-7fb9-4a35-8448-1acbacc1bb8b" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2JmNzc5N2EyNGE2YWY4NzVmNWM4MjcxYzViOGM0MjVlMTlmMzcyYTQxNWUwNTUyZmMyNDc3NjNmMjg1OWQxIn19fQ==" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="1"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="1"  material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="d87f33" locked="true" material="leather boots" />
+    </kit>
+    <!-- Purple building blocks -->
+    <kit id="build-kit-player-5">
+        <item amount="64" slot="0"  damage="10" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="10" material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="10" material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="1b995bdd-4fdc-4430-bf5a-a4e61dd55b7f" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmE5NGNiMjVkZTYyOGNhMzU5YjJmNmVhNWE4ODY4Y2JlMjY1OTVlZWRiMmJmZmI3NTA5NjdhZDFlZTE4NTAifX19" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="10" material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="10" material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="7f3fb2" locked="true" material="leather boots" />
+    </kit>
+    <!-- Cyan building blocks -->
+    <kit id="build-kit-player-6">
+        <item amount="64" slot="0"  damage="9"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="9"  material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="9"  material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="f38918d1-3288-4099-9b8a-3b884c257da0" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODhlZmFkNzRiMjU0ZTU3Yzc5OTc2M2RjZWVlNDUxMWZhMmY4NWFlOWZhNTU2ZWFhOTdkNDViZjY3ZTBiNmIzIn19fQ==" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="9"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="9"  material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="4c7f99" locked="true" material="leather boots" />
+    </kit>
+    <!-- Pink building blocks -->
+    <kit id="build-kit-player-7">
+        <item amount="64" slot="0"  damage="6"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="6"  material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="6"  material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="e18ea167-b6e0-420a-a5b4-e881c318af70" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmJlY2ZiMzg3OTkzNmI4OTllNDIwYmZjZDNhNzRmOGExYmY5ZGQ1NGM1OGVjN2ZiOWY4MWQ5YTVkOTg4ZSJ9fX0=" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="6"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="6"  material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="f27fa5" locked="true" material="leather boots" />
+    </kit>
+    <!-- Yellow building blocks -->
+    <kit id="build-kit-player-8">
+        <item amount="64" slot="0"  damage="4"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="1"  damage="4"  material="stained glass"      lore="`r`5Renewable" />
+        <item amount="64" slot="9"  damage="4"  material="carpet"             lore="`r`5Renewable" />
+        <head amount="64" slot="18" name="`rSkull" uuid="164f9d3e-cdb6-414a-bfa0-a5c1729483b5" skin="eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjdiYmQwYjI5MTFjOTZiNWQ4N2IyZGY3NjY5MWE1MWI4YjEyYzZmZWZkNTIzMTQ2ZDhhYzVlZjFiOGVlIn19fQ==" lore="`r`5Renewable" show-can-destroy="false" show-can-place-on="false">
+            <can-destroy>
+                <all-blocks/>
+            </can-destroy>
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </head>
+        <item amount="64" slot="27" damage="4"  material="wool"               lore="`r`5Renewable" />
+        <item amount="64" slot="28" damage="4"  material="stained glass pane" lore="`r`5Renewable" />
+        <boots unbreakable="true" color="e5e533" locked="true" material="leather boots" />
+    </kit>
+    <!-- Multitool kits -->
+    <kit id="multitool-pickaxe" force="true">
+        <item slot="8" material="diamond pickaxe" locked="true" name="`r`bMagic Pickaxe" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.pickaxe" />
+    </kit>
+    <kit id="multitool-axe" force="true">
+        <item slot="8" material="diamond axe"     locked="true" name="`r`bMagic Axe" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.axe" />
+    </kit>
+    <kit id="multitool-spade" force="true">
+        <item slot="8" material="diamond spade"   locked="true" name="`r`bMagic Shovel" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.spade" />
+    </kit>
+    <kit id="multitool-shears" force="true">
+        <item slot="8" material="shears"          locked="true" name="`r`bMagic Shears" unbreakable="true" />
+        <chestplate    material="gold nugget"     locked="true" name="`rmagic_multitool.shears" />
+    </kit>
+    <!-- Remove skip token if arena completed and unused, re-apply invis and blindness -->
+    <give kit="arena-restart" filter="not-carrying-restart-potion"/>
+    <kit id="arena-restart">
+        <item slot="6" locked="true" material="potion" name="`r`cRestart Current Parkour">
+            <effect amplifier="50">harm</effect>
+        </item>
+    </kit>
+    <!-- Clear items during testing, apply game-mode kit -->
+    <kit id="clear-items" force="true" parents="race-game-mode">
+        <helmet material="air" />
+        <fly can-fly="false" flying="false" />
+        <clear-items />
+    </kit>
+    <give kit="test-phase-kit" filter="build-phase-end"/>
+    <kit id="test-phase-kit" force="true" parents="clear-items, arena-restart">
+        <chestplate material="air" />
+    </kit>
+    <!-- Set players to adventure mode for racing -->
+    <kit id="race-game-mode" force="true">
+        <game-mode>adventure</game-mode>
+    </kit>
+    <!-- Apply arena skip tokens when allowed to skip said arena -->
+    <give filter="allowed-to-skip-arena-1">
+        <kit id="arena-1-skip-token">
+            <item slot="4" name="`r`bSkip `cArena 1 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-2">
+        <kit id="arena-2-skip-token">
+            <item slot="4" name="`r`bSkip `9Arena 2 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-3">
+        <kit id="arena-3-skip-token">
+            <item slot="4" name="`r`bSkip `2Arena 3 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-4">
+        <kit id="arena-4-skip-token">
+            <item slot="4" name="`r`bSkip `6Arena 4 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-5">
+        <kit id="arena-5-skip-token">
+            <item slot="4" name="`r`bSkip `5Arena 5 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-6">
+        <kit id="arena-6-skip-token">
+            <item slot="4" name="`r`bSkip `3Arena 6 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-7">
+        <kit id="arena-7-skip-token">
+            <item slot="4" name="`r`bSkip `dArena 7 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <give filter="allowed-to-skip-arena-8">
+        <kit id="arena-8-skip-token">
+            <item slot="4" name="`r`bSkip `eArena 8 `bParkour" material="nether star" />
+        </kit>
+    </give>
+    <kit id="skip-token-blocker" force="true">
+        <item slot="4" locked="true" name="`r`cSkipping has been disabled for this arena!" material="barrier" />
+    </kit>
+    <!-- Enchanted boots for when players complete lobby parkour -->
+    <kit id="player-1-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="993333" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-2-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="334cb2" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-3-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="667f33" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-4-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="d87f33" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-5-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="7f3fb2" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-6-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="4c7f99" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-7-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="f27fa5" locked="true" material="leather boots" />
+    </kit>
+    <kit id="player-8-boot-enchant" force="true">
+        <boots enchantment="unbreaking" unbreakable="true" color="e5e533" locked="true" material="leather boots" />
+    </kit>
+    <!-- Druing race blindness and invis -->
+    <kit id="race-effects" force="true" parents="remove-block-effects, race-game-mode">
+        <effect duration="2">blindness</effect>
+        <effect>invisibility</effect>
+        <clear-items />
+    </kit>
+    <!-- Effect block's potion effects -->
+    <kit id="apply-speed" force="true">
+        <effect   duration="oo" amplifier="1">speed</effect>
+        <leggings locked="true" material="carrot item" />
+    </kit>
+    <kit id="remov-speed" force="true">
+        <effect   duration="0"  amplifier="9">speed</effect>
+        <leggings material="air" />
+    </kit>
+    <kit id="apply-slow" force="true">
+        <effect   duration="oo" amplifier="3">slow</effect>
+        <leggings locked="true" material="potato item" />
+    </kit>
+    <kit id="remov-slow" force="true">
+        <effect   duration="0"  amplifier="9">slow</effect>
+        <leggings material="air" />
+    </kit>
+    <kit id="apply-jump" force="true">
+        <effect   duration="oo" amplifier="2">jump</effect>
+        <leggings locked="true" material="baked potato" />
+    </kit>
+    <kit id="remov-jump" force="true">
+        <effect   duration="0"  amplifier="9">jump</effect>
+        <leggings material="air" />
+    </kit>
+    <kit id="apply-blind" force="true">
+        <effect   duration="oo" amplifier="2">blindness</effect>
+        <leggings locked="true" material="poisonous potato" />
+    </kit>
+    <kit id="remov-blind" force="true">
+        <effect   duration="0"  amplifier="9">blindness</effect>
+        <leggings material="air" />
+    </kit>
+    <kit id="remove-block-effects" force="true">
+        <effect   duration="0" amplifier="9">speed</effect>
+        <effect   duration="0" amplifier="9">slow</effect>
+        <effect   duration="0" amplifier="9">jump</effect>
+        <effect   duration="0" amplifier="9">blindness</effect>
+        <helmet   material="air" />
+        <leggings material="air" />
+    </kit>
+    <kit id="apply-impulse">
+        <impulse yaw="true" pitch="false">0,0.8,0.6</impulse>
+    </kit>
+    <kit id="apply-halloween-kit" force="true">
+        <effect   duration="oo" amplifier="3">slow</effect>
+        <leggings locked="true" material="poisonous potato" />
+        <helmet   locked="true" material="pumpkin" />
+    </kit>
+    <kit id="remove-halloween-kit" force="true">
+        <effect   duration="0"  amplifier="9">slow</effect>
+        <leggings material="air" />
+        <helmet   material="air" />
+    </kit>
+    <kit id="grenade-turret-kit" force="true">
+        <item slot="5" locked="true" material="snowball" name="`rGrenade" grenade="true" grenade-power="0.6" grenade-destroy="false" />
+        <leggings locked="true" material="pumpkin pie" />
+    </kit>
+    <!-- Arena Keys -->
+    <give kit="arena-1-key" filter="inside-arena-1-during-race" />
+    <kit id="arena-1-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="00684a88-5cc8-4713-9e91-7b1906e67580" name="`r`bCurrent Arena: `c1" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzFiYzJiY2ZiMmJkMzc1OWU2YjFlODZmYzdhNzk1ODVlMTEyN2RkMzU3ZmMyMDI4OTNmOWRlMjQxYmM5ZTUzMCJ9fX0=</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_1" locked="true" />
+    </kit>
+    <give kit="arena-2-key" filter="inside-arena-2-during-race" />
+    <kit id="arena-2-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="f7218833-aceb-4d3e-a1bc-a334be09c375" name="`r`bCurrent Arena: `92" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNkOWVlZWU4ODM0Njg4ODFkODM4NDhhNDZiZjMwMTI0ODVjMjNmNzU3NTNiOGZiZTg0ODczNDE0MTk4NDcifX19</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_2" locked="true" />
+    </kit>
+    <give kit="arena-3-key" filter="inside-arena-3-during-race" />
+    <kit id="arena-3-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="870c6ce6-78b5-4e09-8745-bd96d616e516" name="`r`bCurrent Arena: `23" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWQ0ZWFlMTM5MzM4NjBhNmRmNWU4ZTk1NTY5M2I5NWE4YzNiMTVjMzZiOGI1ODc1MzJhYzA5OTZiYzM3ZTUifX19</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_3" locked="true" />
+    </kit>
+    <give kit="arena-4-key" filter="inside-arena-4-during-race" />
+    <kit id="arena-4-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="d531b607-3d92-4760-b19f-b64d51da0fa5" name="`r`bCurrent Arena: `64" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDJlNzhmYjIyNDI0MjMyZGMyN2I4MWZiY2I0N2ZkMjRjMWFjZjc2MDk4NzUzZjJkOWMyODU5ODI4N2RiNSJ9fX0=</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_4" locked="true" />
+    </kit>
+    <give kit="arena-5-key" filter="inside-arena-5-during-race" />
+    <kit id="arena-5-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="4aaa0af9-ffde-4f5a-ad06-112dffbade0c" name="`r`bCurrent Arena: `55" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ1N2UzYmM4OGE2NTczMGUzMWExNGUzZjQxZTAzOGE1ZWNmMDg5MWE2YzI0MzY0M2I4ZTU0NzZhZTIifX19</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_5" locked="true" />
+    </kit>
+    <give kit="arena-6-key" filter="inside-arena-6-during-race" />
+    <kit id="arena-6-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="58a05887-3473-4c87-8506-2acf877d7ff1" name="`r`bCurrent Arena: `36" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzM0YjM2ZGU3ZDY3OWI4YmJjNzI1NDk5YWRhZWYyNGRjNTE4ZjVhZTIzZTcxNjk4MWUxZGNjNmIyNzIwYWIifX19</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_6" locked="true" />
+    </kit>
+    <give kit="arena-7-key" filter="inside-arena-7-during-race" />
+    <kit id="arena-7-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="23378bd2-28e5-4d7e-8d39-621b732e1f49" name="`r`bCurrent Arena: `d7" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmRiNmViMjVkMWZhYWJlMzBjZjQ0NGRjNjMzYjU4MzI0NzVlMzgwOTZiN2UyNDAyYTNlYzQ3NmRkN2I5In19fQ==</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_7" locked="true" />
+    </kit>
+    <give kit="arena-8-key" filter="inside-arena-8-during-race" />
+    <kit id="arena-8-key" force="true">
+        <item slot="2" material="skull item" damage="3" uuid="19c144be-a435-42a4-9503-83bcd8a7fa70" name="`r`bCurrent Arena: `e8" locked="true">
+            <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkxOTQ5NzNhM2YxN2JkYTk5NzhlZDYyNzMzODM5OTcyMjI3NzRiNDU0Mzg2YzgzMTljMDRmMWY0Zjc0YzJiNSJ9fX0=</skin>
+        </item>
+        <item slot="slot.armor.chest" material="name tag" name="return_arena_8" locked="true" />
+    </kit>
+</kits>
+<item-mods>
+    <rule>
+        <match>
+            <all-blocks/>
+            <material>iron door</material>
+            <material>wood door</material>
+            <material>sign</material>
+            <material>cake</material>
+        </match>
+        <modify show-can-destroy="false" show-can-place-on="false">
+            <can-destroy><all-blocks/></can-destroy>
+            <can-place-on><all-blocks/></can-place-on>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>diamond pickaxe</material>
+            <material>diamond axe</material>
+            <material>diamond spade</material>
+            <material>shears</material>
+        </match>
+        <modify show-can-destroy="false" show-attributes="false" show-unbreakable="false">
+            <can-destroy><all-blocks/></can-destroy>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>leather boots</material>
+        </match>
+        <modify>
+            <attribute operation="add" amount="362">generic.armor</attribute>
+            <attribute operation="add" amount="362">generic.armorToughness</attribute>
+        </modify>
+    </rule>
+</item-mods>
+<filters>
+    <!-- Deny players from consuming or opening inventories of blocks -->
+    <not id="you-are-not-allowed-to-eat-the-cake">
+        <any>
+            <material>cake block</material>
+            <material>anvil</material>
+            <material>hopper</material>
+            <material>dispenser</material>
+        </any>
+    </not>
+    <!-- Check if player is holding glowstone dust during build phase -->
+    <all id="disable-skip-function-action">
+        <filter id="build-phase" />
+        <carrying>
+            <item material="sulphur" />
+        </carrying>
+    </all>
+    <all id="send-skip-action-confirm-alert">
+        <filter id="disable-skip-function-engaged" />
+        <filter id="build-phase" />
+        <carrying>
+            <item material="sulphur" />
+        </carrying>
+    </all>
+    <all id="confirm-disable-skip-function-action">
+        <filter id="disable-skip-function-engaged" />
+        <filter id="build-phase" />
+        <holding>
+            <item material="glowstone dust" />
+        </holding>
+    </all>
+    <all id="send-skip-action-success">
+        <filter id="confirm-disable-skip-function-action" />
+        <filter id="disable-skip-function-active" />
+    </all>
+    <not id="skip-enabled">
+        <any id="skip-disabled">
+            <all>
+                <objective id="disable-skip-function-engaged" any="true">disable-skip-function</objective>
+                <objective id="disable-skip-function-active"  any="true">confirm-disable-skip-function</objective>
+            </all>
+            <!-- Check if arena skip disable block has been stepped on in current arena -->
+            <carrying>
+                <item material="barrier" name="`r`cSkipping has been disabled for this arena!" />
+            </carrying>
+        </any>
+    </not>
+    <all id="send-skip-disabled-alert">
+        <filter id="skip-disabled" />
+        <filter id="race-phase" />
+    </all>
+    <!-- Check if player is holding skip token -->
+    <any id="waiting-to-skip">
+        <holding><item name="`r`bSkip `cArena 1 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `9Arena 2 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `2Arena 3 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `6Arena 4 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `5Arena 5 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `3Arena 6 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `dArena 7 `bParkour" material="nether star" /></holding>
+        <holding><item name="`r`bSkip `eArena 8 `bParkour" material="nether star" /></holding>
+        <holding><item                                     material="nether star" /></holding>
+    </any>
+    <!-- Check if player is carrying skip token -->
+    <any id="alert-player-allowed-skip">
+        <carrying><item name="`r`bSkip `cArena 1 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `9Arena 2 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `2Arena 3 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `6Arena 4 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `5Arena 5 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `3Arena 6 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `dArena 7 `bParkour" material="nether star" /></carrying>
+        <carrying><item name="`r`bSkip `eArena 8 `bParkour" material="nether star" /></carrying>
+        <carrying><item                                     material="nether star" /></carrying>
+    </any>
+    <!-- Arena 1 waiting to skip timeouts -->
+    <any id="arena-1-skip-conditions">
+        <all id="player-2-waiting-to-skip-arena-1"><all id="player-2-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-1"><all id="player-3-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-1"><all id="player-4-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-1"><all id="player-5-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-1"><all id="player-6-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-1"><all id="player-7-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-1"><all id="player-8-allowed-to-skip-arena-1"><objective any="true">arena-1-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-1">
+        <match-running />
+        <region id="arena-1" />
+        <any>
+            <filter id="player-2-allowed-to-skip-arena-1" />
+            <filter id="player-3-allowed-to-skip-arena-1" />
+            <filter id="player-4-allowed-to-skip-arena-1" />
+            <filter id="player-5-allowed-to-skip-arena-1" />
+            <filter id="player-6-allowed-to-skip-arena-1" />
+            <filter id="player-7-allowed-to-skip-arena-1" />
+            <filter id="player-8-allowed-to-skip-arena-1" />
+        </any>
+    </all>
+    <!-- Arena 2 waiting to skip timeouts -->
+    <any id="arena-2-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-2"><all id="player-1-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-2"><all id="player-3-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-2"><all id="player-4-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-2"><all id="player-5-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-2"><all id="player-6-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-2"><all id="player-7-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-2"><all id="player-8-allowed-to-skip-arena-2"><objective any="true">arena-2-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-2">
+        <match-running />
+        <region id="arena-2" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-2" />
+            <filter id="player-3-allowed-to-skip-arena-2" />
+            <filter id="player-4-allowed-to-skip-arena-2" />
+            <filter id="player-5-allowed-to-skip-arena-2" />
+            <filter id="player-6-allowed-to-skip-arena-2" />
+            <filter id="player-7-allowed-to-skip-arena-2" />
+            <filter id="player-8-allowed-to-skip-arena-2" />
+        </any>
+    </all>
+    <!-- Arena 3 waiting to skip timeouts -->
+    <any id="arena-3-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-3"><all id="player-1-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-3"><all id="player-2-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-3"><all id="player-4-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-3"><all id="player-5-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-3"><all id="player-6-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-3"><all id="player-7-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-3"><all id="player-8-allowed-to-skip-arena-3"><objective any="true">arena-3-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-3">
+        <match-running />
+        <region id="arena-3" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-3" />
+            <filter id="player-2-allowed-to-skip-arena-3" />
+            <filter id="player-4-allowed-to-skip-arena-3" />
+            <filter id="player-5-allowed-to-skip-arena-3" />
+            <filter id="player-6-allowed-to-skip-arena-3" />
+            <filter id="player-7-allowed-to-skip-arena-3" />
+            <filter id="player-8-allowed-to-skip-arena-3" />
+        </any>
+    </all>
+    <!-- Arena 4 waiting to skip timeouts -->
+    <any id="arena-4-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-4"><all id="player-1-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-4"><all id="player-2-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-4"><all id="player-3-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-4"><all id="player-5-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-4"><all id="player-6-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-4"><all id="player-7-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-4"><all id="player-8-allowed-to-skip-arena-4"><objective any="true">arena-4-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-4">
+        <match-running />
+        <region id="arena-4" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-4" />
+            <filter id="player-2-allowed-to-skip-arena-4" />
+            <filter id="player-3-allowed-to-skip-arena-4" />
+            <filter id="player-5-allowed-to-skip-arena-4" />
+            <filter id="player-6-allowed-to-skip-arena-4" />
+            <filter id="player-7-allowed-to-skip-arena-4" />
+            <filter id="player-8-allowed-to-skip-arena-4" />
+        </any>
+    </all>
+    <!-- Arena 5 waiting to skip timeouts -->
+    <any id="arena-5-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-5"><all id="player-1-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-5"><all id="player-2-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-5"><all id="player-3-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-5"><all id="player-4-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-5"><all id="player-6-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-5"><all id="player-7-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-5"><all id="player-8-allowed-to-skip-arena-5"><objective any="true">arena-5-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-5">
+        <match-running />
+        <region id="arena-5" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-5" />
+            <filter id="player-2-allowed-to-skip-arena-5" />
+            <filter id="player-3-allowed-to-skip-arena-5" />
+            <filter id="player-4-allowed-to-skip-arena-5" />
+            <filter id="player-6-allowed-to-skip-arena-5" />
+            <filter id="player-7-allowed-to-skip-arena-5" />
+            <filter id="player-8-allowed-to-skip-arena-5" />
+        </any>
+    </all>
+    <!-- Arena 6 waiting to skip timeouts -->
+    <any id="arena-6-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-6"><all id="player-1-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-6"><all id="player-2-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-6"><all id="player-3-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-6"><all id="player-4-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-6"><all id="player-5-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-6"><all id="player-7-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-6"><all id="player-8-allowed-to-skip-arena-6"><objective any="true">arena-6-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-6">
+        <match-running />
+        <region id="arena-6" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-6" />
+            <filter id="player-2-allowed-to-skip-arena-6" />
+            <filter id="player-3-allowed-to-skip-arena-6" />
+            <filter id="player-4-allowed-to-skip-arena-6" />
+            <filter id="player-5-allowed-to-skip-arena-6" />
+            <filter id="player-7-allowed-to-skip-arena-6" />
+            <filter id="player-8-allowed-to-skip-arena-6" />
+        </any>
+    </all>
+    <!-- Arena 7 waiting to skip timeouts -->
+    <any id="arena-7-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-7"><all id="player-1-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-7"><all id="player-2-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-7"><all id="player-3-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-7"><all id="player-4-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-7"><all id="player-5-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-7"><all id="player-6-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-8-waiting-to-skip-arena-7"><all id="player-8-allowed-to-skip-arena-7"><objective any="true">arena-7-timeout-player-8</objective><filter id="only-player-8" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-7">
+        <match-running />
+        <region id="arena-7" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-7" />
+            <filter id="player-2-allowed-to-skip-arena-7" />
+            <filter id="player-3-allowed-to-skip-arena-7" />
+            <filter id="player-4-allowed-to-skip-arena-7" />
+            <filter id="player-5-allowed-to-skip-arena-7" />
+            <filter id="player-6-allowed-to-skip-arena-7" />
+            <filter id="player-8-allowed-to-skip-arena-7" />
+        </any>
+    </all>
+    <!-- Arena 8 waiting to skip timeouts -->
+    <any id="arena-8-skip-conditions">
+        <all id="player-1-waiting-to-skip-arena-8"><all id="player-1-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-1</objective><filter id="only-player-1" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-2-waiting-to-skip-arena-8"><all id="player-2-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-2</objective><filter id="only-player-2" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-3-waiting-to-skip-arena-8"><all id="player-3-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-3</objective><filter id="only-player-3" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-4-waiting-to-skip-arena-8"><all id="player-4-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-4</objective><filter id="only-player-4" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-5-waiting-to-skip-arena-8"><all id="player-5-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-5</objective><filter id="only-player-5" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-6-waiting-to-skip-arena-8"><all id="player-6-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-6</objective><filter id="only-player-6" /></all><filter id="waiting-to-skip" /></all>
+        <all id="player-7-waiting-to-skip-arena-8"><all id="player-7-allowed-to-skip-arena-8"><objective any="true">arena-8-timeout-player-7</objective><filter id="only-player-7" /></all><filter id="waiting-to-skip" /></all>
+    </any>
+    <all id="allowed-to-skip-arena-8">
+        <match-running />
+        <region id="arena-8" />
+        <any>
+            <filter id="player-1-allowed-to-skip-arena-8" />
+            <filter id="player-2-allowed-to-skip-arena-8" />
+            <filter id="player-3-allowed-to-skip-arena-8" />
+            <filter id="player-4-allowed-to-skip-arena-8" />
+            <filter id="player-5-allowed-to-skip-arena-8" />
+            <filter id="player-6-allowed-to-skip-arena-8" />
+            <filter id="player-7-allowed-to-skip-arena-8" />
+        </any>
+    </all>
+    <!-- Check if player is allowed to skip said arena, and send alert -->
+    <any id="send-alert-allowed-to-skip-arena-1">
+        <all id="alert-arena-1-player-2"><filter id="player-2-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-1-player-3"><filter id="player-3-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-1-player-4"><filter id="player-4-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-1-player-5"><filter id="player-5-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-1-player-6"><filter id="player-6-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-1-player-7"><filter id="player-7-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-1-player-8"><filter id="player-8-allowed-to-skip-arena-1" /><not><objective any="true">arena-1-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-2">
+        <all id="alert-arena-2-player-1"><filter id="player-1-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-2-player-3"><filter id="player-3-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-2-player-4"><filter id="player-4-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-2-player-5"><filter id="player-5-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-2-player-6"><filter id="player-6-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-2-player-7"><filter id="player-7-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-2-player-8"><filter id="player-8-allowed-to-skip-arena-2" /><not><objective any="true">arena-2-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-3">
+        <all id="alert-arena-3-player-1"><filter id="player-1-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-3-player-2"><filter id="player-2-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-3-player-4"><filter id="player-4-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-3-player-5"><filter id="player-5-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-3-player-6"><filter id="player-6-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-3-player-7"><filter id="player-7-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-3-player-8"><filter id="player-8-allowed-to-skip-arena-3" /><not><objective any="true">arena-3-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-4">
+        <all id="alert-arena-4-player-1"><filter id="player-1-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-4-player-2"><filter id="player-2-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-4-player-3"><filter id="player-3-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-4-player-5"><filter id="player-5-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-4-player-6"><filter id="player-6-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-4-player-7"><filter id="player-7-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-4-player-8"><filter id="player-8-allowed-to-skip-arena-4" /><not><objective any="true">arena-4-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-5">
+        <all id="alert-arena-5-player-1"><filter id="player-1-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-5-player-2"><filter id="player-2-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-5-player-3"><filter id="player-3-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-5-player-4"><filter id="player-4-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-5-player-6"><filter id="player-6-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-5-player-7"><filter id="player-7-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-5-player-8"><filter id="player-8-allowed-to-skip-arena-5" /><not><objective any="true">arena-5-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-6">
+        <all id="alert-arena-6-player-1"><filter id="player-1-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-6-player-2"><filter id="player-2-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-6-player-3"><filter id="player-3-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-6-player-4"><filter id="player-4-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-6-player-5"><filter id="player-5-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-6-player-7"><filter id="player-7-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-7</objective></not></all>
+        <all id="alert-arena-6-player-8"><filter id="player-8-allowed-to-skip-arena-6" /><not><objective any="true">arena-6-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-7">
+        <all id="alert-arena-7-player-1"><filter id="player-1-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-7-player-2"><filter id="player-2-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-7-player-3"><filter id="player-3-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-7-player-4"><filter id="player-4-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-7-player-5"><filter id="player-5-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-7-player-6"><filter id="player-6-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-7-player-8"><filter id="player-8-allowed-to-skip-arena-7" /><not><objective any="true">arena-7-timeout-alert-cancel-player-8</objective></not></all>
+    </any>
+    <any id="send-alert-allowed-to-skip-arena-8">
+        <all id="alert-arena-8-player-1"><filter id="player-1-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-1</objective></not></all>
+        <all id="alert-arena-8-player-2"><filter id="player-2-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-2</objective></not></all>
+        <all id="alert-arena-8-player-3"><filter id="player-3-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-3</objective></not></all>
+        <all id="alert-arena-8-player-4"><filter id="player-4-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-4</objective></not></all>
+        <all id="alert-arena-8-player-5"><filter id="player-5-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-5</objective></not></all>
+        <all id="alert-arena-8-player-6"><filter id="player-6-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-6</objective></not></all>
+        <all id="alert-arena-8-player-7"><filter id="player-7-allowed-to-skip-arena-8" /><not><objective any="true">arena-8-timeout-alert-cancel-player-7</objective></not></all>
+    </any>
+    <!-- Arena enter tokens after manual death -->
+    <carrying id="allow-arena-1-enter">
+        <item material="name tag" name="return_arena_1" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-2-enter">
+        <item material="name tag" name="return_arena_2" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-3-enter">
+        <item material="name tag" name="return_arena_3" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-4-enter">
+        <item material="name tag" name="return_arena_4" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-5-enter">
+        <item material="name tag" name="return_arena_5" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-6-enter">
+        <item material="name tag" name="return_arena_6" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-7-enter">
+        <item material="name tag" name="return_arena_7" locked="true" />
+    </carrying>
+    <carrying id="allow-arena-8-enter">
+        <item material="name tag" name="return_arena_8" locked="true" />
+    </carrying>
+    <!-- Player filters -->
+    <team id="only-player-1">player-1</team>
+    <team id="only-player-2">player-2</team>
+    <team id="only-player-3">player-3</team>
+    <team id="only-player-4">player-4</team>
+    <team id="only-player-5">player-5</team>
+    <team id="only-player-6">player-6</team>
+    <team id="only-player-7">player-7</team>
+    <team id="only-player-8">player-8</team>
+    <!-- Filter specific players during the build phase -->
+    <all id="during-build-phase-player-1"><filter id="only-player-1" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-2"><filter id="only-player-2" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-3"><filter id="only-player-3" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-4"><filter id="only-player-4" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-5"><filter id="only-player-5" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-6"><filter id="only-player-6" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-7"><filter id="only-player-7" /><filter id="build-phase" /></all>
+    <all id="during-build-phase-player-8"><filter id="only-player-8" /><filter id="build-phase" /></all>
+    <!-- Allow arenas to be marked as complete during testing phase -->
+    <all id="during-test-phase-player-1"><filter id="only-player-1" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-2"><filter id="only-player-2" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-3"><filter id="only-player-3" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-4"><filter id="only-player-4" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-5"><filter id="only-player-5" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-6"><filter id="only-player-6" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-7"><filter id="only-player-7" /><filter id="testing-phase" /></all>
+    <all id="during-test-phase-player-8"><filter id="only-player-8" /><filter id="testing-phase" /></all>
+    <!-- Filter specific players during the race phase -->
+    <all id="during-race-phase-player-1"><filter id="only-player-1" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-2"><filter id="only-player-2" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-3"><filter id="only-player-3" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-4"><filter id="only-player-4" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-5"><filter id="only-player-5" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-6"><filter id="only-player-6" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-7"><filter id="only-player-7" /><filter id="race-phase" /></all>
+    <all id="during-race-phase-player-8"><filter id="only-player-8" /><filter id="race-phase" /></all>
+    <!-- Enable portals that return the player to the start of the arena -->
+    <all id="enable-net-portals">
+        <filter id="after-test-phase-start" />
+        <not>
+            <any>
+                <filter id="arena-1-skip-conditions" />
+                <filter id="arena-2-skip-conditions" />
+                <filter id="arena-3-skip-conditions" />
+                <filter id="arena-4-skip-conditions" />
+                <filter id="arena-5-skip-conditions" />
+                <filter id="arena-6-skip-conditions" />
+                <filter id="arena-7-skip-conditions" />
+                <filter id="arena-8-skip-conditions" />
+            </any>
+        </not>
+    </all>
+    <!-- Check if player is carrying a damage potion or not -->
+    <all id="not-carrying-restart-potion">
+        <region id="all-arenas-whole" />
+        <filter id="after-test-phase-start" />
+    </all>
+    <!-- Check if players are allowed to score at arena end points -->
+    <any id="allow-arena-1-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-1-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-1-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-1-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-1-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-1-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-1-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-1-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-1-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-2-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-2-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-2-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-2-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-2-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-2-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-2-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-2-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-2-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-3-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-3-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-3-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-3-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-3-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-3-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-3-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-3-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-3-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-4-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-4-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-4-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-4-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-4-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-4-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-4-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-4-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-4-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-5-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-5-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-5-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-5-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-5-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-5-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-5-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-5-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-5-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-6-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-6-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-6-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-6-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-6-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-6-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-6-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-6-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-6-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <any id="allow-arena-7-score">
+        <all><filter id="only-player-1" /><not><objective any="true">arena-7-passed-player-1</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-2" /><not><objective any="true">arena-7-passed-player-2</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-3" /><not><objective any="true">arena-7-passed-player-3</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-4" /><not><objective any="true">arena-7-passed-player-4</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-5" /><not><objective any="true">arena-7-passed-player-5</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-6" /><not><objective any="true">arena-7-passed-player-6</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-7" /><not><objective any="true">arena-7-passed-player-7</objective></not><filter id="race-phase" /></all>
+        <all><filter id="only-player-8" /><not><objective any="true">arena-7-passed-player-8</objective></not><filter id="race-phase" /></all>
+    </any>
+    <!-- Deny natural block changes -->
+    <not id="deny-natural-block-changes">
+        <all>
+            <cause>world</cause>
+            <any>
+                <material>ice</material>
+                <material>vine</material>
+            </any>
+        </all>
+    </not>
+    <!-- Blocks which can be placed or broken by the player -->
+    <any id="placeable-blocks">
+        <material>cobble wall</material>
+        <material>nether fence</material>
+        <material>piston base</material>
+        <material>redstone block</material>
+        <material>slime block</material>
+        <material>wool</material>
+        <material>anvil</material>
+        <material>carpet</material>
+        <material>iron fence</material>
+        <material>ice</material>
+        <material>soul sand</material>
+        <material>sign</material>
+        <material>step</material>
+        <material>trap door</material>
+        <material>iron trapdoor</material>
+        <material>vine</material>
+        <material>ladder</material>
+        <material>skull</material>
+        <material>web</material>
+        <material>stained glass</material>
+        <material>stained glass pane</material>
+        <material>water lily</material>
+        <material>wooden door</material>
+        <material>iron door block</material>
+        <material>snow</material>
+        <material>cake</material>
+        <material>flint</material>
+        <material>spruce fence</material>
+        <material>spruce fence gate</material>
+        <material>smooth brick</material>
+        <material>spruce wood stairs</material>
+        <material>dark oak fence</material>
+        <material>end rod</material>
+        <material>sea lantern</material>
+        <material>obsidian</material>
+    </any>
+    <!-- Effect blocks that are allowed to remove specific effects -->
+    <any id="remove-speed-blocks">
+        <filter id="placeable-blocks" />
+        <material>stained clay:8</material>
+        <material>stained clay:5</material>
+        <material>stained clay:0</material>
+        <material>pumpkin</material>
+    </any>
+    <any id="remove-jump-blocks">
+        <filter id="placeable-blocks" />
+        <material>stained clay:8</material>
+        <material>stained clay:3</material>
+        <material>stained clay:0</material>
+        <material>pumpkin</material>
+    </any>
+    <any id="remove-slow-blocks">
+        <filter id="placeable-blocks" />
+        <material>stained clay:5</material>
+        <material>stained clay:3</material>
+        <material>stained clay:0</material>
+        <material>pumpkin</material>
+    </any>
+    <any id="remove-blind-blocks">
+        <filter id="placeable-blocks" />
+        <material>stained clay:5</material>
+        <material>stained clay:3</material>
+        <material>stained clay:8</material>
+    </any>
+    <!-- Check if the player already has any effects -->
+    <any id="allowed-to-remove-effects">
+        <wearing id="has-speed"><item locked="true" material="carrot item" /></wearing>
+        <wearing id="has-slow" ><item locked="true" material="potato item" /></wearing>
+        <wearing id="has-jump" ><item locked="true" material="baked potato" /></wearing>
+        <wearing id="has-blind"><item locked="true" material="poisonous potato" /></wearing>
+    </any>
+    <!-- Check if arena has been completed during testing, then enable or disable it during the race phase -->
+    <not id="arena-1-inactive"><objective id="arena-1-active" any="true">arena-1-completed</objective></not>
+    <not id="arena-2-inactive"><objective id="arena-2-active" any="true">arena-2-completed</objective></not>
+    <not id="arena-3-inactive"><objective id="arena-3-active" any="true">arena-3-completed</objective></not>
+    <not id="arena-4-inactive"><objective id="arena-4-active" any="true">arena-4-completed</objective></not>
+    <not id="arena-5-inactive"><objective id="arena-5-active" any="true">arena-5-completed</objective></not>
+    <not id="arena-6-inactive"><objective id="arena-6-active" any="true">arena-6-completed</objective></not>
+    <not id="arena-7-inactive"><objective id="arena-7-active" any="true">arena-7-completed</objective></not>
+    <not id="arena-8-inactive"><objective id="arena-8-active" any="true">arena-8-completed</objective></not>
+    <!-- Trigger filters, save teammates if testing has been completed by another teammate -->
+    <all id="save-teammates-1-if-testing-complete"><filter id="arena-1-active" /><filter id="only-player-1" /><filter id="testing-phase" /><region id="arena-1" /></all>
+    <all id="save-teammates-2-if-testing-complete"><filter id="arena-2-active" /><filter id="only-player-2" /><filter id="testing-phase" /><region id="arena-2" /></all>
+    <all id="save-teammates-3-if-testing-complete"><filter id="arena-3-active" /><filter id="only-player-3" /><filter id="testing-phase" /><region id="arena-3" /></all>
+    <all id="save-teammates-4-if-testing-complete"><filter id="arena-4-active" /><filter id="only-player-4" /><filter id="testing-phase" /><region id="arena-4" /></all>
+    <all id="save-teammates-5-if-testing-complete"><filter id="arena-5-active" /><filter id="only-player-5" /><filter id="testing-phase" /><region id="arena-5" /></all>
+    <all id="save-teammates-6-if-testing-complete"><filter id="arena-6-active" /><filter id="only-player-6" /><filter id="testing-phase" /><region id="arena-6" /></all>
+    <all id="save-teammates-7-if-testing-complete"><filter id="arena-7-active" /><filter id="only-player-7" /><filter id="testing-phase" /><region id="arena-7" /></all>
+    <all id="save-teammates-8-if-testing-complete"><filter id="arena-8-active" /><filter id="only-player-8" /><filter id="testing-phase" /><region id="arena-8" /></all>
+    <!-- Phase times -->
+    <all id="build-spawn-kit"  ><not><time>3s</time></not><region id="all-arenas-whole" /><participating /><match-running /></all>
+    <all id="build-phase"      ><time>0s</time><not><time>240s</time></not></all>
+    <all id="build-phase-end"  ><time>240s</time><not><time>241s</time></not><region id="all-arenas-whole" /></all>
+    <all id="testing-phase"    ><time id="after-test-phase-start">240s</time><not><time>360</time></not></all>
+    <all id="testing-phase-end"><time>360s</time><not><time>361s</time></not><region id="all-arenas-whole" /></all>
+    <all id="race-started"     ><time id="race-phase">365s</time><not><time>366s</time></not></all>
+    <!-- Trigger filters, build phase ended -->
+    <all id="arena-1-build-phase-end"><filter id="only-player-1" /><filter id="build-phase-end" /><region id="arena-1" /></all>
+    <all id="arena-2-build-phase-end"><filter id="only-player-2" /><filter id="build-phase-end" /><region id="arena-2" /></all>
+    <all id="arena-3-build-phase-end"><filter id="only-player-3" /><filter id="build-phase-end" /><region id="arena-3" /></all>
+    <all id="arena-4-build-phase-end"><filter id="only-player-4" /><filter id="build-phase-end" /><region id="arena-4" /></all>
+    <all id="arena-5-build-phase-end"><filter id="only-player-5" /><filter id="build-phase-end" /><region id="arena-5" /></all>
+    <all id="arena-6-build-phase-end"><filter id="only-player-6" /><filter id="build-phase-end" /><region id="arena-6" /></all>
+    <all id="arena-7-build-phase-end"><filter id="only-player-7" /><filter id="build-phase-end" /><region id="arena-7" /></all>
+    <all id="arena-8-build-phase-end"><filter id="only-player-8" /><filter id="build-phase-end" /><region id="arena-8" /></all>
+    <!-- Trigger filters, testing phase ended -->
+    <all id="arena-0-testing-phase-end"><filter id="testing-phase-end" /><region id="all-arenas-whole" /></all>
+    <!-- Trigger filters, race started -->
+    <all id="arena-0-race-started"><filter id="race-started" /><region id="arena-0" /></all>
+    <!-- Teleport players back to the arena start during build phase when they sneak while in build net -->
+    <all id="arena-1-build-net-active"><region id="arena-1-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-2-build-net-active"><region id="arena-2-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-3-build-net-active"><region id="arena-3-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-4-build-net-active"><region id="arena-4-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-5-build-net-active"><region id="arena-5-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-6-build-net-active"><region id="arena-6-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-7-build-net-active"><region id="arena-7-build-net" /><filter id="build-phase" /><crouching /></all>
+    <all id="arena-8-build-net-active"><region id="arena-8-build-net" /><filter id="build-phase" /><crouching /></all>
+    <!-- Check what arena player is inside during race phase -->
+    <all id="inside-arena-1-during-race"><region id="arena-1" /><filter id="race-phase" /></all>
+    <all id="inside-arena-2-during-race"><region id="arena-2" /><filter id="race-phase" /></all>
+    <all id="inside-arena-3-during-race"><region id="arena-3" /><filter id="race-phase" /></all>
+    <all id="inside-arena-4-during-race"><region id="arena-4" /><filter id="race-phase" /></all>
+    <all id="inside-arena-5-during-race"><region id="arena-5" /><filter id="race-phase" /></all>
+    <all id="inside-arena-6-during-race"><region id="arena-6" /><filter id="race-phase" /></all>
+    <all id="inside-arena-7-during-race"><region id="arena-7" /><filter id="race-phase" /></all>
+    <all id="inside-arena-8-during-race"><region id="arena-8" /><filter id="race-phase" /></all>
+</filters>
+<regions>
+    <!-- Apply invis and blindness each time player enters a new tube -->
+    <apply region="arena-1-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-2-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-3-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-4-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-5-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-6-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-7-tube-award" kit="race-effects" filter="race-phase" />
+    <apply region="arena-8-tube-award" kit="race-effects" filter="race-phase" />
+    <!-- Area buildable regions -->
+    <union id="rooms-union">
+        <cuboid    id="arena-1-build" min="117,42,18"  max="92,71,-7" />
+        <translate id="arena-2-build" offset="0,0,-34"><region id="arena-1-build" /></translate>
+        <translate id="arena-3-build" offset="0,0,-34"><region id="arena-2-build" /></translate>
+        <translate id="arena-4-build" offset="0,0,-34"><region id="arena-3-build" /></translate>
+        <translate id="arena-5-build" offset="0,0,-34"><region id="arena-4-build" /></translate>
+        <translate id="arena-6-build" offset="0,0,-34"><region id="arena-5-build" /></translate>
+        <translate id="arena-7-build" offset="0,0,-34"><region id="arena-6-build" /></translate>
+        <translate id="arena-8-build" offset="0,0,-34"><region id="arena-7-build" /></translate>
+    </union>
+    <!-- Start platforms -->
+    <union id="start-union">
+        <cuboid    id="arena-1-start-prot" min="116,57,2" max="119,71,9" />
+        <translate id="arena-2-start-prot" offset="0,0,-34"><region id="arena-1-start-prot" /></translate>
+        <translate id="arena-3-start-prot" offset="0,0,-34"><region id="arena-2-start-prot" /></translate>
+        <translate id="arena-4-start-prot" offset="0,0,-34"><region id="arena-3-start-prot" /></translate>
+        <translate id="arena-5-start-prot" offset="0,0,-34"><region id="arena-4-start-prot" /></translate>
+        <translate id="arena-6-start-prot" offset="0,0,-34"><region id="arena-5-start-prot" /></translate>
+        <translate id="arena-7-start-prot" offset="0,0,-34"><region id="arena-6-start-prot" /></translate>
+        <translate id="arena-8-start-prot" offset="0,0,-34"><region id="arena-7-start-prot" /></translate>
+    </union>
+    <!-- End platforms -->
+    <union id="end-union">
+        <cuboid    id="arena-1-end-prot" min="93,57,9" max="92,71,2" />
+        <translate id="arena-2-end-prot" offset="0,0,-34"><region id="arena-1-end-prot" /></translate>
+        <translate id="arena-3-end-prot" offset="0,0,-34"><region id="arena-2-end-prot" /></translate>
+        <translate id="arena-4-end-prot" offset="0,0,-34"><region id="arena-3-end-prot" /></translate>
+        <translate id="arena-5-end-prot" offset="0,0,-34"><region id="arena-4-end-prot" /></translate>
+        <translate id="arena-6-end-prot" offset="0,0,-34"><region id="arena-5-end-prot" /></translate>
+        <translate id="arena-7-end-prot" offset="0,0,-34"><region id="arena-6-end-prot" /></translate>
+        <translate id="arena-8-end-prot" offset="0,0,-34"><region id="arena-7-end-prot" /></translate>
+    </union>
+    <!-- Platforms combined union -->
+    <union id="platforms-union">
+        <region id="start-union" />
+        <region id="end-union" />
+    </union>
+    <!-- Playable region -->
+    <complement id="playable-region">
+        <region id="rooms-union" />
+        <region id="platforms-union" />
+    </complement>
+    <apply block="deny-natural-block-changes" region="playable-region" />
+    <apply block="never" message="You may not interact with that material here" />
+    <apply use="you-are-not-allowed-to-eat-the-cake" />
+    <!-- Lobby enterance point -->
+    <block    id="lobby-point">104.5,58,29.5</block>
+    <!-- Remove any items the player may have from testing phase -->
+    <cylinder id="lobby-kit-apply" base="104.5,56,29.5" radius="6" height="1" />
+    <apply kit="clear-items" region="lobby-kit-apply" />
+    <!-- Give players enchanted boots when they complete lobby parkour as a token -->
+    <block    id="lobby-parkour-finish">104.5,60,34.5</block>
+    <apply kit="player-1-boot-enchant" region="lobby-parkour-finish" filter="only-player-1" />
+    <apply kit="player-2-boot-enchant" region="lobby-parkour-finish" filter="only-player-2" />
+    <apply kit="player-3-boot-enchant" region="lobby-parkour-finish" filter="only-player-3" />
+    <apply kit="player-4-boot-enchant" region="lobby-parkour-finish" filter="only-player-4" />
+    <apply kit="player-5-boot-enchant" region="lobby-parkour-finish" filter="only-player-5" />
+    <apply kit="player-6-boot-enchant" region="lobby-parkour-finish" filter="only-player-6" />
+    <apply kit="player-7-boot-enchant" region="lobby-parkour-finish" filter="only-player-7" />
+    <apply kit="player-8-boot-enchant" region="lobby-parkour-finish" filter="only-player-8" />
+    <!-- Arena starting points -->
+    <block     id="race-finish"  >104.5,58,-256.5</block>
+    <point     id="arena-1-start">118.5,59,5.5</point><!-- 34 block difference between rooms -->
+    <translate id="arena-2-start" offset="0,0,-34"><region id="arena-1-start" /></translate>
+    <translate id="arena-3-start" offset="0,0,-34"><region id="arena-2-start" /></translate>
+    <translate id="arena-4-start" offset="0,0,-34"><region id="arena-3-start" /></translate>
+    <translate id="arena-5-start" offset="0,0,-34"><region id="arena-4-start" /></translate>
+    <translate id="arena-6-start" offset="0,0,-34"><region id="arena-5-start" /></translate>
+    <translate id="arena-7-start" offset="0,0,-34"><region id="arena-6-start" /></translate>
+    <translate id="arena-8-start" offset="0,0,-34"><region id="arena-7-start" /></translate>
+    <!-- Arena start portals -->
+    <union id="arena-start-boxes">
+        <cuboid    id="arena-1-start-box" min="119,57,4" max="120,62,7" />
+        <translate id="arena-2-start-box" offset="0,0,-34"><region id="arena-1-start-box" /></translate>
+        <translate id="arena-3-start-box" offset="0,0,-34"><region id="arena-2-start-box" /></translate>
+        <translate id="arena-4-start-box" offset="0,0,-34"><region id="arena-3-start-box" /></translate>
+        <translate id="arena-5-start-box" offset="0,0,-34"><region id="arena-4-start-box" /></translate>
+        <translate id="arena-6-start-box" offset="0,0,-34"><region id="arena-5-start-box" /></translate>
+        <translate id="arena-7-start-box" offset="0,0,-34"><region id="arena-6-start-box" /></translate>
+        <translate id="arena-8-start-box" offset="0,0,-34"><region id="arena-7-start-box" /></translate>
+    </union>
+    <!-- Restock player build kits when they enter thet start gate -->
+    <apply kit="build-kit-player-1"  region="arena-1-start-box" filter="during-build-phase-player-1" />
+    <apply kit="build-kit-player-2"  region="arena-2-start-box" filter="during-build-phase-player-2" />
+    <apply kit="build-kit-player-3"  region="arena-3-start-box" filter="during-build-phase-player-3" />
+    <apply kit="build-kit-player-4"  region="arena-4-start-box" filter="during-build-phase-player-4" />
+    <apply kit="build-kit-player-5"  region="arena-5-start-box" filter="during-build-phase-player-5" />
+    <apply kit="build-kit-player-6"  region="arena-6-start-box" filter="during-build-phase-player-6" />
+    <apply kit="build-kit-player-7"  region="arena-7-start-box" filter="during-build-phase-player-7" />
+    <apply kit="build-kit-player-8"  region="arena-8-start-box" filter="during-build-phase-player-8" />
+    <apply kit="build-kit-renewable" region="arena-start-boxes" filter="build-phase" />
+    <!-- Arena end portals -->
+    <union id="arena-end-boxes">
+        <cuboid    id="arena-1-end" min="90,57,7" max="88,62,3" />
+        <translate id="arena-2-end" offset="0,0,-34"><region id="arena-1-end" /></translate>
+        <translate id="arena-3-end" offset="0,0,-34"><region id="arena-2-end" /></translate>
+        <translate id="arena-4-end" offset="0,0,-34"><region id="arena-3-end" /></translate>
+        <translate id="arena-5-end" offset="0,0,-34"><region id="arena-4-end" /></translate>
+        <translate id="arena-6-end" offset="0,0,-34"><region id="arena-5-end" /></translate>
+        <translate id="arena-7-end" offset="0,0,-34"><region id="arena-6-end" /></translate>
+        <translate id="arena-8-end" offset="0,0,-34"><region id="arena-7-end" /></translate>
+    </union>
+    <!-- Arena safe arena nets -->
+    <union id="all-safe-nets">
+        <cuboid    id="arena-1-safe-net" min="117,35,18"  max="92,41,-7" />
+        <translate id="arena-2-safe-net" offset="0,0,-34"><region id="arena-1-safe-net" /></translate>
+        <translate id="arena-3-safe-net" offset="0,0,-34"><region id="arena-2-safe-net" /></translate>
+        <translate id="arena-4-safe-net" offset="0,0,-34"><region id="arena-3-safe-net" /></translate>
+        <translate id="arena-5-safe-net" offset="0,0,-34"><region id="arena-4-safe-net" /></translate>
+        <translate id="arena-6-safe-net" offset="0,0,-34"><region id="arena-5-safe-net" /></translate>
+        <translate id="arena-7-safe-net" offset="0,0,-34"><region id="arena-6-safe-net" /></translate>
+        <translate id="arena-8-safe-net" offset="0,0,-34"><region id="arena-7-safe-net" /></translate>
+    </union>
+    <apply kit="remove-block-effects" region="all-safe-nets" filter="allowed-to-remove-effects" />
+    <!-- Arena nets used for skipping -->
+    <translate id="arena-1-net" offset="0,-2,0" ><region id="arena-1-safe-net" /></translate>
+    <translate id="arena-2-net" offset="0,0,-34"><region id="arena-1-net" /></translate>
+    <translate id="arena-3-net" offset="0,0,-34"><region id="arena-2-net" /></translate>
+    <translate id="arena-4-net" offset="0,0,-34"><region id="arena-3-net" /></translate>
+    <translate id="arena-5-net" offset="0,0,-34"><region id="arena-4-net" /></translate>
+    <translate id="arena-6-net" offset="0,0,-34"><region id="arena-5-net" /></translate>
+    <translate id="arena-7-net" offset="0,0,-34"><region id="arena-6-net" /></translate>
+    <translate id="arena-8-net" offset="0,0,-34"><region id="arena-7-net" /></translate>
+    <!-- Arena nets used during build phase -->
+    <translate id="arena-1-build-net" offset="0,-4,0" ><region id="arena-1-safe-net" /></translate>
+    <translate id="arena-2-build-net" offset="0,0,-34"><region id="arena-1-build-net" /></translate>
+    <translate id="arena-3-build-net" offset="0,0,-34"><region id="arena-2-build-net" /></translate>
+    <translate id="arena-4-build-net" offset="0,0,-34"><region id="arena-3-build-net" /></translate>
+    <translate id="arena-5-build-net" offset="0,0,-34"><region id="arena-4-build-net" /></translate>
+    <translate id="arena-6-build-net" offset="0,0,-34"><region id="arena-5-build-net" /></translate>
+    <translate id="arena-7-build-net" offset="0,0,-34"><region id="arena-6-build-net" /></translate>
+    <translate id="arena-8-build-net" offset="0,0,-34"><region id="arena-7-build-net" /></translate>
+    <!-- Whole region coverage -->
+    <rectangle id="arena-0" min="113,45" max="94,24" />
+    <union id="all-arenas-whole">
+        <rectangle id="arena-1" min="120,20" max="89,-9" />
+        <translate id="arena-2" offset="0,0,-34"><region id="arena-1" /></translate>
+        <translate id="arena-3" offset="0,0,-34"><region id="arena-2" /></translate>
+        <translate id="arena-4" offset="0,0,-34"><region id="arena-3" /></translate>
+        <translate id="arena-5" offset="0,0,-34"><region id="arena-4" /></translate>
+        <translate id="arena-6" offset="0,0,-34"><region id="arena-5" /></translate>
+        <translate id="arena-7" offset="0,0,-34"><region id="arena-6" /></translate>
+        <translate id="arena-8" offset="0,0,-34"><region id="arena-7" /></translate>
+    </union>
+    <!-- Arena tube enterance points -->
+    <point     id="arena-1-tube-enter">89,38,20</point>
+    <translate id="arena-2-tube-enter" offset="0,0,-34"><region id="arena-1-tube-enter" /></translate>
+    <translate id="arena-3-tube-enter" offset="0,0,-34"><region id="arena-2-tube-enter" /></translate>
+    <translate id="arena-4-tube-enter" offset="0,0,-34"><region id="arena-3-tube-enter" /></translate>
+    <translate id="arena-5-tube-enter" offset="0,0,-34"><region id="arena-4-tube-enter" /></translate>
+    <translate id="arena-6-tube-enter" offset="0,0,-34"><region id="arena-5-tube-enter" /></translate>
+    <translate id="arena-7-tube-enter" offset="0,0,-34"><region id="arena-6-tube-enter" /></translate>
+    <translate id="arena-8-tube-enter" offset="0,0,-34"><region id="arena-7-tube-enter" /></translate>
+    <translate id="arena-0-tube-enter" offset="0,0,23" ><region id="arena-1-tube-enter" /></translate>
+    <!-- Arena tube regions -->
+    <union id="arena-end-points">
+        <cuboid    id="arena-1-tube" min="91,39,22" max="88,39.5,19" />
+        <translate id="arena-2-tube" offset="0,0,-34"><region id="arena-1-tube" /></translate>
+        <translate id="arena-3-tube" offset="0,0,-34"><region id="arena-2-tube" /></translate>
+        <translate id="arena-4-tube" offset="0,0,-34"><region id="arena-3-tube" /></translate>
+        <translate id="arena-5-tube" offset="0,0,-34"><region id="arena-4-tube" /></translate>
+        <translate id="arena-6-tube" offset="0,0,-34"><region id="arena-5-tube" /></translate>
+        <translate id="arena-7-tube" offset="0,0,-34"><region id="arena-6-tube" /></translate>
+        <translate id="arena-8-tube" offset="0,0,-34"><region id="arena-7-tube" /></translate>
+        <translate id="arena-0-tube" offset="0,0,23" ><region id="arena-1-tube" /></translate>
+    </union>
+    <!-- Area tube award regions -->
+    <translate id="arena-1-tube-award" offset="0,-1,0"><region id="arena-1-tube" /></translate>
+    <translate id="arena-2-tube-award" offset="0,-1,0"><region id="arena-2-tube" /></translate>
+    <translate id="arena-3-tube-award" offset="0,-1,0"><region id="arena-3-tube" /></translate>
+    <translate id="arena-4-tube-award" offset="0,-1,0"><region id="arena-4-tube" /></translate>
+    <translate id="arena-5-tube-award" offset="0,-1,0"><region id="arena-5-tube" /></translate>
+    <translate id="arena-6-tube-award" offset="0,-1,0"><region id="arena-6-tube" /></translate>
+    <translate id="arena-7-tube-award" offset="0,-1,0"><region id="arena-7-tube" /></translate>
+    <translate id="arena-8-tube-award" offset="0,-1,0"><region id="arena-8-tube" /></translate>
+    <!-- Arena tube portal regions -->
+    <translate id="arena-1-tube-portal" offset="0,-3,0"><region id="arena-1-tube" /></translate>
+    <translate id="arena-2-tube-portal" offset="0,-3,0"><region id="arena-2-tube" /></translate>
+    <translate id="arena-3-tube-portal" offset="0,-3,0"><region id="arena-3-tube" /></translate>
+    <translate id="arena-4-tube-portal" offset="0,-3,0"><region id="arena-4-tube" /></translate>
+    <translate id="arena-5-tube-portal" offset="0,-3,0"><region id="arena-5-tube" /></translate>
+    <translate id="arena-6-tube-portal" offset="0,-3,0"><region id="arena-6-tube" /></translate>
+    <translate id="arena-7-tube-portal" offset="0,-3,0"><region id="arena-7-tube" /></translate>
+    <translate id="arena-8-tube-portal" offset="0,-3,0"><region id="arena-8-tube" /></translate>
+    <translate id="arena-0-tube-portal" offset="0,-3,0"><region id="arena-0-tube" /></translate>
+    <!-- Arena tube fail-safe -->
+    <translate id="arena-1-tube-fail-safe" offset="0,-5,0"><region id="arena-1-tube" /></translate>
+    <translate id="arena-2-tube-fail-safe" offset="0,-5,0"><region id="arena-2-tube" /></translate>
+    <translate id="arena-3-tube-fail-safe" offset="0,-5,0"><region id="arena-3-tube" /></translate>
+    <translate id="arena-4-tube-fail-safe" offset="0,-5,0"><region id="arena-4-tube" /></translate>
+    <translate id="arena-5-tube-fail-safe" offset="0,-5,0"><region id="arena-5-tube" /></translate>
+    <translate id="arena-6-tube-fail-safe" offset="0,-5,0"><region id="arena-6-tube" /></translate>
+    <translate id="arena-7-tube-fail-safe" offset="0,-5,0"><region id="arena-7-tube" /></translate>
+    <translate id="arena-8-tube-fail-safe" offset="0,-5,0"><region id="arena-8-tube" /></translate>
+    <translate id="arena-0-tube-fail-safe" offset="0,-5,0"><region id="arena-0-tube" /></translate>
+</regions>
+<control-points required="false" points="0" permanent="true" show="false">
+    <control-point id="disable-skip-function"         name="disable-skip-function"         capture="everywhere" capture-time="0s" player-filter="disable-skip-function-action" />
+    <control-point id="confirm-disable-skip-function" name="confirm-disable-skip-function" capture="everywhere" capture-time="0s" player-filter="confirm-disable-skip-function-action" />
+</control-points>
+<control-points required="false" points="0" capture-time="0s" permanent="true" show="false">
+    <!-- Check if arena is actually possible -->
+    <control-point id="arena-1-completed" name="arena-1-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-1" />
+    <control-point id="arena-2-completed" name="arena-2-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-2" />
+    <control-point id="arena-3-completed" name="arena-3-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-3" />
+    <control-point id="arena-4-completed" name="arena-4-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-4" />
+    <control-point id="arena-5-completed" name="arena-5-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-5" />
+    <control-point id="arena-6-completed" name="arena-6-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-6" />
+    <control-point id="arena-7-completed" name="arena-7-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-7" />
+    <control-point id="arena-8-completed" name="arena-8-completed" capture="lobby-kit-apply" player-filter="during-test-phase-player-8" />
+    <!-- Check if team has already completed arena 
+         Arena 1 -->
+    <control-point id="arena-1-passed-player-1" name="arena-1-passed-player-1" capture="arena-2-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-1-passed-player-2" name="arena-1-passed-player-2" capture="arena-2-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-1-passed-player-3" name="arena-1-passed-player-3" capture="arena-2-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-1-passed-player-4" name="arena-1-passed-player-4" capture="arena-2-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-1-passed-player-5" name="arena-1-passed-player-5" capture="arena-2-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-1-passed-player-6" name="arena-1-passed-player-6" capture="arena-2-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-1-passed-player-7" name="arena-1-passed-player-7" capture="arena-2-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-1-passed-player-8" name="arena-1-passed-player-8" capture="arena-2-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 2 -->
+    <control-point id="arena-2-passed-player-1" name="arena-2-passed-player-1" capture="arena-3-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-2-passed-player-2" name="arena-2-passed-player-2" capture="arena-3-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-2-passed-player-3" name="arena-2-passed-player-3" capture="arena-3-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-2-passed-player-4" name="arena-2-passed-player-4" capture="arena-3-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-2-passed-player-5" name="arena-2-passed-player-5" capture="arena-3-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-2-passed-player-6" name="arena-2-passed-player-6" capture="arena-3-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-2-passed-player-7" name="arena-2-passed-player-7" capture="arena-3-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-2-passed-player-8" name="arena-2-passed-player-8" capture="arena-3-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 3 -->
+    <control-point id="arena-3-passed-player-1" name="arena-3-passed-player-1" capture="arena-4-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-3-passed-player-2" name="arena-3-passed-player-2" capture="arena-4-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-3-passed-player-3" name="arena-3-passed-player-3" capture="arena-4-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-3-passed-player-4" name="arena-3-passed-player-4" capture="arena-4-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-3-passed-player-5" name="arena-3-passed-player-5" capture="arena-4-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-3-passed-player-6" name="arena-3-passed-player-6" capture="arena-4-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-3-passed-player-7" name="arena-3-passed-player-7" capture="arena-4-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-3-passed-player-8" name="arena-3-passed-player-8" capture="arena-4-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 4 -->
+    <control-point id="arena-4-passed-player-1" name="arena-4-passed-player-1" capture="arena-5-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-4-passed-player-2" name="arena-4-passed-player-2" capture="arena-5-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-4-passed-player-3" name="arena-4-passed-player-3" capture="arena-5-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-4-passed-player-4" name="arena-4-passed-player-4" capture="arena-5-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-4-passed-player-5" name="arena-4-passed-player-5" capture="arena-5-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-4-passed-player-6" name="arena-4-passed-player-6" capture="arena-5-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-4-passed-player-7" name="arena-4-passed-player-7" capture="arena-5-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-4-passed-player-8" name="arena-4-passed-player-8" capture="arena-5-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 5 -->
+    <control-point id="arena-5-passed-player-1" name="arena-5-passed-player-1" capture="arena-6-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-5-passed-player-2" name="arena-5-passed-player-2" capture="arena-6-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-5-passed-player-3" name="arena-5-passed-player-3" capture="arena-6-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-5-passed-player-4" name="arena-5-passed-player-4" capture="arena-6-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-5-passed-player-5" name="arena-5-passed-player-5" capture="arena-6-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-5-passed-player-6" name="arena-5-passed-player-6" capture="arena-6-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-5-passed-player-7" name="arena-5-passed-player-7" capture="arena-6-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-5-passed-player-8" name="arena-5-passed-player-8" capture="arena-6-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 6 -->
+    <control-point id="arena-6-passed-player-1" name="arena-6-passed-player-1" capture="arena-7-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-6-passed-player-2" name="arena-6-passed-player-2" capture="arena-7-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-6-passed-player-3" name="arena-6-passed-player-3" capture="arena-7-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-6-passed-player-4" name="arena-6-passed-player-4" capture="arena-7-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-6-passed-player-5" name="arena-6-passed-player-5" capture="arena-7-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-6-passed-player-6" name="arena-6-passed-player-6" capture="arena-7-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-6-passed-player-7" name="arena-6-passed-player-7" capture="arena-7-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-6-passed-player-8" name="arena-6-passed-player-8" capture="arena-7-tube-award" player-filter="during-race-phase-player-8" />
+    <!-- Arena 7 -->
+    <control-point id="arena-7-passed-player-1" name="arena-7-passed-player-1" capture="arena-8-tube-award" player-filter="during-race-phase-player-1" />
+    <control-point id="arena-7-passed-player-2" name="arena-7-passed-player-2" capture="arena-8-tube-award" player-filter="during-race-phase-player-2" />
+    <control-point id="arena-7-passed-player-3" name="arena-7-passed-player-3" capture="arena-8-tube-award" player-filter="during-race-phase-player-3" />
+    <control-point id="arena-7-passed-player-4" name="arena-7-passed-player-4" capture="arena-8-tube-award" player-filter="during-race-phase-player-4" />
+    <control-point id="arena-7-passed-player-5" name="arena-7-passed-player-5" capture="arena-8-tube-award" player-filter="during-race-phase-player-5" />
+    <control-point id="arena-7-passed-player-6" name="arena-7-passed-player-6" capture="arena-8-tube-award" player-filter="during-race-phase-player-6" />
+    <control-point id="arena-7-passed-player-7" name="arena-7-passed-player-7" capture="arena-8-tube-award" player-filter="during-race-phase-player-7" />
+    <control-point id="arena-7-passed-player-8" name="arena-7-passed-player-8" capture="arena-8-tube-award" player-filter="during-race-phase-player-8" />
+</control-points>
+<!-- Arena time-outs -->
+<control-points required="false" points="0" capture-time="2m" permanent="true" show="false" capture-filter="skip-enabled">
+    <!-- Arena 1 -->
+    <control-point id="arena-1-timeout-player-2" name="arena-1-timeout-player-2" capture="arena-1" player-filter="only-player-2" />
+    <control-point id="arena-1-timeout-player-3" name="arena-1-timeout-player-3" capture="arena-1" player-filter="only-player-3" />
+    <control-point id="arena-1-timeout-player-4" name="arena-1-timeout-player-4" capture="arena-1" player-filter="only-player-4" />
+    <control-point id="arena-1-timeout-player-5" name="arena-1-timeout-player-5" capture="arena-1" player-filter="only-player-5" />
+    <control-point id="arena-1-timeout-player-6" name="arena-1-timeout-player-6" capture="arena-1" player-filter="only-player-6" />
+    <control-point id="arena-1-timeout-player-7" name="arena-1-timeout-player-7" capture="arena-1" player-filter="only-player-7" />
+    <control-point id="arena-1-timeout-player-8" name="arena-1-timeout-player-8" capture="arena-1" player-filter="only-player-8" />
+    <!-- Arena 2 -->
+    <control-point id="arena-2-timeout-player-1" name="arena-2-timeout-player-1" capture="arena-2" player-filter="only-player-1" />
+    <control-point id="arena-2-timeout-player-3" name="arena-2-timeout-player-3" capture="arena-2" player-filter="only-player-3" />
+    <control-point id="arena-2-timeout-player-4" name="arena-2-timeout-player-4" capture="arena-2" player-filter="only-player-4" />
+    <control-point id="arena-2-timeout-player-5" name="arena-2-timeout-player-5" capture="arena-2" player-filter="only-player-5" />
+    <control-point id="arena-2-timeout-player-6" name="arena-2-timeout-player-6" capture="arena-2" player-filter="only-player-6" />
+    <control-point id="arena-2-timeout-player-7" name="arena-2-timeout-player-7" capture="arena-2" player-filter="only-player-7" />
+    <control-point id="arena-2-timeout-player-8" name="arena-2-timeout-player-8" capture="arena-2" player-filter="only-player-8" />
+    <!-- Arena 3 -->
+    <control-point id="arena-3-timeout-player-1" name="arena-3-timeout-player-1" capture="arena-3" player-filter="only-player-1" />
+    <control-point id="arena-3-timeout-player-2" name="arena-3-timeout-player-2" capture="arena-3" player-filter="only-player-2" />
+    <control-point id="arena-3-timeout-player-4" name="arena-3-timeout-player-4" capture="arena-3" player-filter="only-player-4" />
+    <control-point id="arena-3-timeout-player-5" name="arena-3-timeout-player-5" capture="arena-3" player-filter="only-player-5" />
+    <control-point id="arena-3-timeout-player-6" name="arena-3-timeout-player-6" capture="arena-3" player-filter="only-player-6" />
+    <control-point id="arena-3-timeout-player-7" name="arena-3-timeout-player-7" capture="arena-3" player-filter="only-player-7" />
+    <control-point id="arena-3-timeout-player-8" name="arena-3-timeout-player-8" capture="arena-3" player-filter="only-player-8" />
+    <!-- Arena 4 -->
+    <control-point id="arena-4-timeout-player-1" name="arena-4-timeout-player-1" capture="arena-4" player-filter="only-player-1" />
+    <control-point id="arena-4-timeout-player-2" name="arena-4-timeout-player-2" capture="arena-4" player-filter="only-player-2" />
+    <control-point id="arena-4-timeout-player-3" name="arena-4-timeout-player-3" capture="arena-4" player-filter="only-player-3" />
+    <control-point id="arena-4-timeout-player-5" name="arena-4-timeout-player-5" capture="arena-4" player-filter="only-player-5" />
+    <control-point id="arena-4-timeout-player-6" name="arena-4-timeout-player-6" capture="arena-4" player-filter="only-player-6" />
+    <control-point id="arena-4-timeout-player-7" name="arena-4-timeout-player-7" capture="arena-4" player-filter="only-player-7" />
+    <control-point id="arena-4-timeout-player-8" name="arena-4-timeout-player-8" capture="arena-4" player-filter="only-player-8" />
+    <!-- Arena 5 -->
+    <control-point id="arena-5-timeout-player-1" name="arena-5-timeout-player-1" capture="arena-5" player-filter="only-player-1" />
+    <control-point id="arena-5-timeout-player-2" name="arena-5-timeout-player-2" capture="arena-5" player-filter="only-player-2" />
+    <control-point id="arena-5-timeout-player-3" name="arena-5-timeout-player-3" capture="arena-5" player-filter="only-player-3" />
+    <control-point id="arena-5-timeout-player-4" name="arena-5-timeout-player-4" capture="arena-5" player-filter="only-player-4" />
+    <control-point id="arena-5-timeout-player-6" name="arena-5-timeout-player-6" capture="arena-5" player-filter="only-player-6" />
+    <control-point id="arena-5-timeout-player-7" name="arena-5-timeout-player-7" capture="arena-5" player-filter="only-player-7" />
+    <control-point id="arena-5-timeout-player-8" name="arena-5-timeout-player-8" capture="arena-5" player-filter="only-player-8" />
+    <!-- Arena 6 -->
+    <control-point id="arena-6-timeout-player-1" name="arena-6-timeout-player-1" capture="arena-6" player-filter="only-player-1" />
+    <control-point id="arena-6-timeout-player-2" name="arena-6-timeout-player-2" capture="arena-6" player-filter="only-player-2" />
+    <control-point id="arena-6-timeout-player-3" name="arena-6-timeout-player-3" capture="arena-6" player-filter="only-player-3" />
+    <control-point id="arena-6-timeout-player-4" name="arena-6-timeout-player-4" capture="arena-6" player-filter="only-player-4" />
+    <control-point id="arena-6-timeout-player-5" name="arena-6-timeout-player-5" capture="arena-6" player-filter="only-player-5" />
+    <control-point id="arena-6-timeout-player-7" name="arena-6-timeout-player-7" capture="arena-6" player-filter="only-player-7" />
+    <control-point id="arena-6-timeout-player-8" name="arena-6-timeout-player-8" capture="arena-6" player-filter="only-player-8" />
+    <!-- Arena 7 -->
+    <control-point id="arena-7-timeout-player-1" name="arena-7-timeout-player-1" capture="arena-7" player-filter="only-player-1" />
+    <control-point id="arena-7-timeout-player-2" name="arena-7-timeout-player-2" capture="arena-7" player-filter="only-player-2" />
+    <control-point id="arena-7-timeout-player-3" name="arena-7-timeout-player-3" capture="arena-7" player-filter="only-player-3" />
+    <control-point id="arena-7-timeout-player-4" name="arena-7-timeout-player-4" capture="arena-7" player-filter="only-player-4" />
+    <control-point id="arena-7-timeout-player-5" name="arena-7-timeout-player-5" capture="arena-7" player-filter="only-player-5" />
+    <control-point id="arena-7-timeout-player-6" name="arena-7-timeout-player-6" capture="arena-7" player-filter="only-player-6" />
+    <control-point id="arena-7-timeout-player-8" name="arena-7-timeout-player-8" capture="arena-7" player-filter="only-player-8" />
+    <!-- Arena 8 -->
+    <control-point id="arena-8-timeout-player-1" name="arena-8-timeout-player-1" capture="arena-8" player-filter="only-player-1" />
+    <control-point id="arena-8-timeout-player-2" name="arena-8-timeout-player-2" capture="arena-8" player-filter="only-player-2" />
+    <control-point id="arena-8-timeout-player-3" name="arena-8-timeout-player-3" capture="arena-8" player-filter="only-player-3" />
+    <control-point id="arena-8-timeout-player-4" name="arena-8-timeout-player-4" capture="arena-8" player-filter="only-player-4" />
+    <control-point id="arena-8-timeout-player-5" name="arena-8-timeout-player-5" capture="arena-8" player-filter="only-player-5" />
+    <control-point id="arena-8-timeout-player-6" name="arena-8-timeout-player-6" capture="arena-8" player-filter="only-player-6" />
+    <control-point id="arena-8-timeout-player-7" name="arena-8-timeout-player-7" capture="arena-8" player-filter="only-player-7" />
+</control-points>
+<control-points required="false" points="0" capture-time="2m1s" permanent="true" show="false" capture-filter="skip-enabled">
+    <!-- Arena 1 -->
+    <control-point id="arena-1-timeout-alert-cancel-player-2" name="arena-1-timeout-alert-cancel-player-2" capture="arena-1" player-filter="only-player-2" />
+    <control-point id="arena-1-timeout-alert-cancel-player-3" name="arena-1-timeout-alert-cancel-player-3" capture="arena-1" player-filter="only-player-3" />
+    <control-point id="arena-1-timeout-alert-cancel-player-4" name="arena-1-timeout-alert-cancel-player-4" capture="arena-1" player-filter="only-player-4" />
+    <control-point id="arena-1-timeout-alert-cancel-player-5" name="arena-1-timeout-alert-cancel-player-5" capture="arena-1" player-filter="only-player-5" />
+    <control-point id="arena-1-timeout-alert-cancel-player-6" name="arena-1-timeout-alert-cancel-player-6" capture="arena-1" player-filter="only-player-6" />
+    <control-point id="arena-1-timeout-alert-cancel-player-7" name="arena-1-timeout-alert-cancel-player-7" capture="arena-1" player-filter="only-player-7" />
+    <control-point id="arena-1-timeout-alert-cancel-player-8" name="arena-1-timeout-alert-cancel-player-8" capture="arena-1" player-filter="only-player-8" />
+    <!-- Arena 2 -->
+    <control-point id="arena-2-timeout-alert-cancel-player-1" name="arena-2-timeout-alert-cancel-player-1" capture="arena-2" player-filter="only-player-1" />
+    <control-point id="arena-2-timeout-alert-cancel-player-3" name="arena-2-timeout-alert-cancel-player-3" capture="arena-2" player-filter="only-player-3" />
+    <control-point id="arena-2-timeout-alert-cancel-player-4" name="arena-2-timeout-alert-cancel-player-4" capture="arena-2" player-filter="only-player-4" />
+    <control-point id="arena-2-timeout-alert-cancel-player-5" name="arena-2-timeout-alert-cancel-player-5" capture="arena-2" player-filter="only-player-5" />
+    <control-point id="arena-2-timeout-alert-cancel-player-6" name="arena-2-timeout-alert-cancel-player-6" capture="arena-2" player-filter="only-player-6" />
+    <control-point id="arena-2-timeout-alert-cancel-player-7" name="arena-2-timeout-alert-cancel-player-7" capture="arena-2" player-filter="only-player-7" />
+    <control-point id="arena-2-timeout-alert-cancel-player-8" name="arena-2-timeout-alert-cancel-player-8" capture="arena-2" player-filter="only-player-8" />
+    <!-- Arena 3 -->
+    <control-point id="arena-3-timeout-alert-cancel-player-2" name="arena-3-timeout-alert-cancel-player-2" capture="arena-3" player-filter="only-player-2" />
+    <control-point id="arena-3-timeout-alert-cancel-player-1" name="arena-3-timeout-alert-cancel-player-1" capture="arena-3" player-filter="only-player-1" />
+    <control-point id="arena-3-timeout-alert-cancel-player-4" name="arena-3-timeout-alert-cancel-player-4" capture="arena-3" player-filter="only-player-4" />
+    <control-point id="arena-3-timeout-alert-cancel-player-5" name="arena-3-timeout-alert-cancel-player-5" capture="arena-3" player-filter="only-player-5" />
+    <control-point id="arena-3-timeout-alert-cancel-player-6" name="arena-3-timeout-alert-cancel-player-6" capture="arena-3" player-filter="only-player-6" />
+    <control-point id="arena-3-timeout-alert-cancel-player-7" name="arena-3-timeout-alert-cancel-player-7" capture="arena-3" player-filter="only-player-7" />
+    <control-point id="arena-3-timeout-alert-cancel-player-8" name="arena-3-timeout-alert-cancel-player-8" capture="arena-3" player-filter="only-player-8" />
+    <!-- Arena 4 -->
+    <control-point id="arena-4-timeout-alert-cancel-player-2" name="arena-4-timeout-alert-cancel-player-2" capture="arena-4" player-filter="only-player-2" />
+    <control-point id="arena-4-timeout-alert-cancel-player-3" name="arena-4-timeout-alert-cancel-player-3" capture="arena-4" player-filter="only-player-3" />
+    <control-point id="arena-4-timeout-alert-cancel-player-1" name="arena-4-timeout-alert-cancel-player-1" capture="arena-4" player-filter="only-player-1" />
+    <control-point id="arena-4-timeout-alert-cancel-player-5" name="arena-4-timeout-alert-cancel-player-5" capture="arena-4" player-filter="only-player-5" />
+    <control-point id="arena-4-timeout-alert-cancel-player-6" name="arena-4-timeout-alert-cancel-player-6" capture="arena-4" player-filter="only-player-6" />
+    <control-point id="arena-4-timeout-alert-cancel-player-7" name="arena-4-timeout-alert-cancel-player-7" capture="arena-4" player-filter="only-player-7" />
+    <control-point id="arena-4-timeout-alert-cancel-player-8" name="arena-4-timeout-alert-cancel-player-8" capture="arena-4" player-filter="only-player-8" />
+    <!-- Arena 5 -->
+    <control-point id="arena-5-timeout-alert-cancel-player-2" name="arena-5-timeout-alert-cancel-player-2" capture="arena-5" player-filter="only-player-2" />
+    <control-point id="arena-5-timeout-alert-cancel-player-3" name="arena-5-timeout-alert-cancel-player-3" capture="arena-5" player-filter="only-player-3" />
+    <control-point id="arena-5-timeout-alert-cancel-player-4" name="arena-5-timeout-alert-cancel-player-4" capture="arena-5" player-filter="only-player-4" />
+    <control-point id="arena-5-timeout-alert-cancel-player-1" name="arena-5-timeout-alert-cancel-player-1" capture="arena-5" player-filter="only-player-1" />
+    <control-point id="arena-5-timeout-alert-cancel-player-6" name="arena-5-timeout-alert-cancel-player-6" capture="arena-5" player-filter="only-player-6" />
+    <control-point id="arena-5-timeout-alert-cancel-player-7" name="arena-5-timeout-alert-cancel-player-7" capture="arena-5" player-filter="only-player-7" />
+    <control-point id="arena-5-timeout-alert-cancel-player-8" name="arena-5-timeout-alert-cancel-player-8" capture="arena-5" player-filter="only-player-8" />
+    <!-- Arena 6 -->
+    <control-point id="arena-6-timeout-alert-cancel-player-2" name="arena-6-timeout-alert-cancel-player-2" capture="arena-6" player-filter="only-player-2" />
+    <control-point id="arena-6-timeout-alert-cancel-player-3" name="arena-6-timeout-alert-cancel-player-3" capture="arena-6" player-filter="only-player-3" />
+    <control-point id="arena-6-timeout-alert-cancel-player-4" name="arena-6-timeout-alert-cancel-player-4" capture="arena-6" player-filter="only-player-4" />
+    <control-point id="arena-6-timeout-alert-cancel-player-5" name="arena-6-timeout-alert-cancel-player-5" capture="arena-6" player-filter="only-player-5" />
+    <control-point id="arena-6-timeout-alert-cancel-player-1" name="arena-6-timeout-alert-cancel-player-1" capture="arena-6" player-filter="only-player-1" />
+    <control-point id="arena-6-timeout-alert-cancel-player-7" name="arena-6-timeout-alert-cancel-player-7" capture="arena-6" player-filter="only-player-7" />
+    <control-point id="arena-6-timeout-alert-cancel-player-8" name="arena-6-timeout-alert-cancel-player-8" capture="arena-6" player-filter="only-player-8" />
+    <!-- Arena 7 -->
+    <control-point id="arena-7-timeout-alert-cancel-player-2" name="arena-7-timeout-alert-cancel-player-2" capture="arena-7" player-filter="only-player-2" />
+    <control-point id="arena-7-timeout-alert-cancel-player-3" name="arena-7-timeout-alert-cancel-player-3" capture="arena-7" player-filter="only-player-3" />
+    <control-point id="arena-7-timeout-alert-cancel-player-4" name="arena-7-timeout-alert-cancel-player-4" capture="arena-7" player-filter="only-player-4" />
+    <control-point id="arena-7-timeout-alert-cancel-player-5" name="arena-7-timeout-alert-cancel-player-5" capture="arena-7" player-filter="only-player-5" />
+    <control-point id="arena-7-timeout-alert-cancel-player-6" name="arena-7-timeout-alert-cancel-player-6" capture="arena-7" player-filter="only-player-6" />
+    <control-point id="arena-7-timeout-alert-cancel-player-1" name="arena-7-timeout-alert-cancel-player-1" capture="arena-7" player-filter="only-player-1" />
+    <control-point id="arena-7-timeout-alert-cancel-player-8" name="arena-7-timeout-alert-cancel-player-8" capture="arena-7" player-filter="only-player-8" />
+    <!-- Arena 8 -->
+    <control-point id="arena-8-timeout-alert-cancel-player-2" name="arena-8-timeout-alert-cancel-player-2" capture="arena-8" player-filter="only-player-2" />
+    <control-point id="arena-8-timeout-alert-cancel-player-3" name="arena-8-timeout-alert-cancel-player-3" capture="arena-8" player-filter="only-player-3" />
+    <control-point id="arena-8-timeout-alert-cancel-player-4" name="arena-8-timeout-alert-cancel-player-4" capture="arena-8" player-filter="only-player-4" />
+    <control-point id="arena-8-timeout-alert-cancel-player-5" name="arena-8-timeout-alert-cancel-player-5" capture="arena-8" player-filter="only-player-5" />
+    <control-point id="arena-8-timeout-alert-cancel-player-6" name="arena-8-timeout-alert-cancel-player-6" capture="arena-8" player-filter="only-player-6" />
+    <control-point id="arena-8-timeout-alert-cancel-player-7" name="arena-8-timeout-alert-cancel-player-7" capture="arena-8" player-filter="only-player-7" />
+    <control-point id="arena-8-timeout-alert-cancel-player-1" name="arena-8-timeout-alert-cancel-player-1" capture="arena-8" player-filter="only-player-1" />
+</control-points>
+<modes>
+    <mode show-before="4m1s" after="4m"   material="air" name="`lBuild phase `r`3ends" />
+    <mode show-before="2m1s" after="6m"   material="air" name="`lTesting phase `r`3ends" />
+    <mode show-before="6s"   after="6m5s" material="air" name="`lRace starting" />
+    <mode show-before="1m1s" after="18m"  material="air" name="`lRace ending" />
+</modes>
+<spawns>
+    <default yaw="0" kit="observer-kit">
+        <region>
+            <point>104.5,65,41.5</point>
+        </region>
+    </default>
+    <!-- Building phase spawns (initial spawns) -->
+    <spawn region="arena-1-start"      yaw="90" team="player-1" kit="build-kit-player-1" filter="build-phase" />
+    <spawn region="arena-2-start"      yaw="90" team="player-2" kit="build-kit-player-2" filter="build-phase" />
+    <spawn region="arena-3-start"      yaw="90" team="player-3" kit="build-kit-player-3" filter="build-phase" />
+    <spawn region="arena-4-start"      yaw="90" team="player-4" kit="build-kit-player-4" filter="build-phase" />
+    <spawn region="arena-5-start"      yaw="90" team="player-5" kit="build-kit-player-5" filter="build-phase" />
+    <spawn region="arena-6-start"      yaw="90" team="player-6" kit="build-kit-player-6" filter="build-phase" />
+    <spawn region="arena-7-start"      yaw="90" team="player-7" kit="build-kit-player-7" filter="build-phase" />
+    <spawn region="arena-8-start"      yaw="90" team="player-8" kit="build-kit-player-8" filter="build-phase" />
+    <!-- Respawns for manual death during testing phase -->
+    <spawn region="arena-1-start"      yaw="90" team="player-1" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-2-start"      yaw="90" team="player-2" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-3-start"      yaw="90" team="player-3" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-4-start"      yaw="90" team="player-4" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-5-start"      yaw="90" team="player-5" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-6-start"      yaw="90" team="player-6" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-7-start"      yaw="90" team="player-7" kit="test-phase-kit"     filter="testing-phase" />
+    <spawn region="arena-8-start"      yaw="90" team="player-8" kit="test-phase-kit"     filter="testing-phase" />
+    <!-- Respawns for manual death during racing phase -->
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-1" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-2" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-3" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-4" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-5" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-6" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-7" kit="race-effects"       filter="race-phase" />
+    <spawn region="arena-0-tube-enter" yaw="90" team="player-8" kit="race-effects"       filter="race-phase" />
+</spawns>
+<portals yaw="@90" pitch="@0">
+    <!-- Arena safe nets to starting points -->
+    <portal region="arena-1-safe-net" destination="arena-1-start" filter="enable-net-portals" />
+    <portal region="arena-2-safe-net" destination="arena-2-start" filter="enable-net-portals" />
+    <portal region="arena-3-safe-net" destination="arena-3-start" filter="enable-net-portals" />
+    <portal region="arena-4-safe-net" destination="arena-4-start" filter="enable-net-portals" />
+    <portal region="arena-5-safe-net" destination="arena-5-start" filter="enable-net-portals" />
+    <portal region="arena-6-safe-net" destination="arena-6-start" filter="enable-net-portals" />
+    <portal region="arena-7-safe-net" destination="arena-7-start" filter="enable-net-portals" />
+    <portal region="arena-8-safe-net" destination="arena-8-start" filter="enable-net-portals" />
+    <!-- Send players to the next arena if they are allowed to skip -->
+    <portal region="arena-1-net" destination="arena-2-tube-enter" filter="arena-1-skip-conditions" observers="never" />
+    <portal region="arena-2-net" destination="arena-3-tube-enter" filter="arena-2-skip-conditions" observers="never" />
+    <portal region="arena-3-net" destination="arena-4-tube-enter" filter="arena-3-skip-conditions" observers="never" />
+    <portal region="arena-4-net" destination="arena-5-tube-enter" filter="arena-4-skip-conditions" observers="never" />
+    <portal region="arena-5-net" destination="arena-6-tube-enter" filter="arena-5-skip-conditions" observers="never" />
+    <portal region="arena-6-net" destination="arena-7-tube-enter" filter="arena-6-skip-conditions" observers="never" />
+    <portal region="arena-7-net" destination="arena-8-tube-enter" filter="arena-7-skip-conditions" observers="never" />
+    <portal region="arena-8-net" destination="race-finish"        filter="arena-8-skip-conditions" observers="never" />
+    <!-- Send players to arena if active -->
+    <portal region="arena-1-tube-portal" destination="arena-1-start" filter="arena-1-active" sound="false" />
+    <portal region="arena-2-tube-portal" destination="arena-2-start" filter="arena-2-active" sound="false" />
+    <portal region="arena-3-tube-portal" destination="arena-3-start" filter="arena-3-active" sound="false" />
+    <portal region="arena-4-tube-portal" destination="arena-4-start" filter="arena-4-active" sound="false" />
+    <portal region="arena-5-tube-portal" destination="arena-5-start" filter="arena-5-active" sound="false" />
+    <portal region="arena-6-tube-portal" destination="arena-6-start" filter="arena-6-active" sound="false" />
+    <portal region="arena-7-tube-portal" destination="arena-7-start" filter="arena-7-active" sound="false" />
+    <portal region="arena-8-tube-portal" destination="arena-8-start" filter="arena-8-active" sound="false" />
+    <!-- Send players to next arena if inactive -->
+    <portal region="arena-1-tube-portal" destination="arena-2-tube-enter" filter="arena-1-inactive" sound="false" />
+    <portal region="arena-2-tube-portal" destination="arena-3-tube-enter" filter="arena-2-inactive" sound="false" />
+    <portal region="arena-3-tube-portal" destination="arena-4-tube-enter" filter="arena-3-inactive" sound="false" />
+    <portal region="arena-4-tube-portal" destination="arena-5-tube-enter" filter="arena-4-inactive" sound="false" />
+    <portal region="arena-5-tube-portal" destination="arena-6-tube-enter" filter="arena-5-inactive" sound="false" />
+    <portal region="arena-6-tube-portal" destination="arena-7-tube-enter" filter="arena-6-inactive" sound="false" />
+    <portal region="arena-7-tube-portal" destination="arena-8-tube-enter" filter="arena-7-inactive" sound="false" />
+    <portal region="arena-8-tube-portal" destination="race-finish"        filter="arena-8-inactive" sound="false" yaw="@180" />
+    <!-- Return players to the top of arena tubes if they get stuck -->
+    <portal region="arena-1-tube-fail-safe" destination="arena-1-tube-enter" sound="false" />
+    <portal region="arena-2-tube-fail-safe" destination="arena-2-tube-enter" sound="false" />
+    <portal region="arena-3-tube-fail-safe" destination="arena-3-tube-enter" sound="false" />
+    <portal region="arena-4-tube-fail-safe" destination="arena-4-tube-enter" sound="false" />
+    <portal region="arena-5-tube-fail-safe" destination="arena-5-tube-enter" sound="false" />
+    <portal region="arena-6-tube-fail-safe" destination="arena-6-tube-enter" sound="false" />
+    <portal region="arena-7-tube-fail-safe" destination="arena-7-tube-enter" sound="false" />
+    <portal region="arena-8-tube-fail-safe" destination="arena-8-tube-enter" sound="false" />
+    <!-- Arena testing phase end points to lobby -->
+    <portal region="arena-1-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-2-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-3-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-4-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-5-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-6-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-7-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <portal region="arena-8-end" destination="lobby-point" filter="testing-phase" observers="never" yaw="@0"  />
+    <!-- Send players to the next arena when completed -->
+    <portal region="arena-1-end" destination="arena-2-tube-enter" filter="race-phase" />
+    <portal region="arena-2-end" destination="arena-3-tube-enter" filter="race-phase" />
+    <portal region="arena-3-end" destination="arena-4-tube-enter" filter="race-phase" />
+    <portal region="arena-4-end" destination="arena-5-tube-enter" filter="race-phase" />
+    <portal region="arena-5-end" destination="arena-6-tube-enter" filter="race-phase" />
+    <portal region="arena-6-end" destination="arena-7-tube-enter" filter="race-phase" />
+    <portal region="arena-7-end" destination="arena-8-tube-enter" filter="race-phase" />
+    <portal region="arena-8-end" destination="race-finish"        filter="race-phase" yaw="@180" />
+    <!-- Return players to current arena after manual death -->
+    <portal region="arena-0-tube-portal" destination="arena-1-start" filter="allow-arena-1-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-2-start" filter="allow-arena-2-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-3-start" filter="allow-arena-3-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-4-start" filter="allow-arena-4-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-5-start" filter="allow-arena-5-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-6-start" filter="allow-arena-6-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-7-start" filter="allow-arena-7-enter" sound="false" />
+    <portal region="arena-0-tube-portal" destination="arena-8-start" filter="allow-arena-8-enter" sound="false" />
+    <!-- Save teammates during testing if test is already complete -->
+    <portal forward="save-teammates-1-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-2-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-3-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-4-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-5-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-6-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-7-if-testing-complete" destination="lobby-point" />
+    <portal forward="save-teammates-8-if-testing-complete" destination="lobby-point" />
+    <!-- Teleport players to arena start points after build phase ends -->
+    <portal forward="arena-1-build-phase-end" destination="arena-1-start" observers="never" />
+    <portal forward="arena-2-build-phase-end" destination="arena-2-start" observers="never" />
+    <portal forward="arena-3-build-phase-end" destination="arena-3-start" observers="never" />
+    <portal forward="arena-4-build-phase-end" destination="arena-4-start" observers="never" />
+    <portal forward="arena-5-build-phase-end" destination="arena-5-start" observers="never" />
+    <portal forward="arena-6-build-phase-end" destination="arena-6-start" observers="never" />
+    <portal forward="arena-7-build-phase-end" destination="arena-7-start" observers="never" />
+    <portal forward="arena-8-build-phase-end" destination="arena-8-start" observers="never" />
+    <!-- Teleport players to waiting area after test phase ends -->
+    <portal forward="arena-0-testing-phase-end" destination="lobby-point" observers="never" />
+    <!-- Teleport players to waiting area after test phase ends -->
+    <portal forward="arena-0-race-started" destination="arena-1-tube-enter" observers="never" />
+    <!-- Teleport players back to the arena start during build phase when they sneak while in build net -->
+    <portal forward="arena-1-build-net-active" destination="arena-1-start" filter="only-player-1" observers="never" />
+    <portal forward="arena-2-build-net-active" destination="arena-2-start" filter="only-player-2" observers="never" />
+    <portal forward="arena-3-build-net-active" destination="arena-3-start" filter="only-player-3" observers="never" />
+    <portal forward="arena-4-build-net-active" destination="arena-4-start" filter="only-player-4" observers="never" />
+    <portal forward="arena-5-build-net-active" destination="arena-5-start" filter="only-player-5" observers="never" />
+    <portal forward="arena-6-build-net-active" destination="arena-6-start" filter="only-player-6" observers="never" />
+    <portal forward="arena-7-build-net-active" destination="arena-7-start" filter="only-player-7" observers="never" />
+    <portal forward="arena-8-build-net-active" destination="arena-8-start" filter="only-player-8" observers="never" />
+</portals>
+<block-drops>
+    <!-- Disable skipping for arena when player steps on obsidian -->
+    <rule trample="true" kit="skip-token-blocker">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>obsidian</material>
+                <filter id="race-phase" />
+                <not>
+                    <carrying>
+                        <item material="barrier" name="`r`cSkipping has been disabled for this arena!" />
+                    </carrying>
+                </not>
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player speed when they trample on light blue clay -->
+    <rule trample="true" kit="apply-speed">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>stained clay:3</material>
+            </all>
+        </filter>
+    </rule>
+    <!-- Remove speed from player if they have it and aren't trampling on light blue clay -->
+    <rule trample="true" kit="remov-speed">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <filter id="remove-speed-blocks" />
+                <filter id="has-speed" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player slowness when they trample on light grey clay -->
+    <rule trample="true" kit="apply-slow">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>stained clay:8</material>
+            </all>
+        </filter>
+    </rule>
+    <!-- Remove slowness from player if they have it and aren't trampling on grey clay -->
+    <rule trample="true" kit="remov-slow">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <filter id="remove-slow-blocks" />
+                <filter id="has-slow" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player jump boost when they trample on lime clay -->
+    <rule trample="true" kit="apply-jump">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>stained clay:5</material>
+            </all>
+        </filter>
+    </rule>
+    <!-- Remove jump boost from player if they have it and aren't trampling on lime clay -->
+    <rule trample="true" kit="remov-jump">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <filter id="remove-jump-blocks" />
+                <filter id="has-jump" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player a small impulse when they trample on a sea lantern -->
+    <rule trample="true" kit="apply-impulse">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>sea lantern</material>
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player halloween block kit when they trample on a pumpkin -->
+    <rule trample="true" kit="apply-halloween-kit">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>pumpkin</material>
+            </all>
+        </filter>
+    </rule>
+    <!-- Remove halloween kit from player if they have it and aren't trampling on a pumpkin -->
+    <rule trample="true" kit="remove-halloween-kit">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <filter id="remove-blind-blocks" />
+                <filter id="has-blind" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player grenade kit when they trample on a dispenser -->
+    <rule trample="true" kit="grenade-turret-kit">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>dispenser</material>
+                <not>
+                    <wearing>
+                        <item material="pumpkin pie" />
+                    </wearing>
+                </not>
+                <filter id="race-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Remove grenade lock when player isn't trampling on a dispenser -->
+    <rule trample="true" kit="remove-block-effects">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <filter id="race-phase" />
+                <filter id="remove-blind-blocks" />
+                <wearing>
+                    <item material="pumpkin pie" />
+                </wearing>
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player a pickaxe when they punch pickaxe related blocks -->
+    <rule punch="true" kit="multitool-pickaxe">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>ice</material>
+                    <material>stained clay</material>
+                    <material>anvil</material>
+                    <material>hopper</material>
+                    <material>end rod</material>
+                    <material>piston base</material>
+                    <material>redstone block</material>
+                    <material>cobble wall</material>
+                    <material>nether fence</material>
+                    <material>step</material>
+                    <material>sea lantern</material>
+                    <material>iron door block</material>
+                    <material>iron trapdoor</material>
+                    <material>obsidian</material>
+                    <material>dispenser</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.pickaxe" />
+                    </wearing>
+                </not>
+                <filter id="build-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player an axe when they punch axe related blocks -->
+    <rule punch="true" kit="multitool-axe">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>spruce fence</material>
+                    <material>spruce fence gate</material>
+                    <material>spruce wood stairs</material>
+                    <material>sign</material>
+                    <material>wooden door</material>
+                    <material>trap door</material>
+                    <material>pumpkin</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.axe" />
+                    </wearing>
+                </not>
+                <filter id="build-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player a shovel when they punch shovel related blocks -->
+    <rule punch="true" kit="multitool-spade">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>snow</material>
+                    <material>soul sand</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.spade" />
+                    </wearing>
+                </not>
+                <filter id="build-phase" />
+            </all>
+        </filter>
+    </rule>
+    <!-- Give player a shears when they punch shear related blocks -->
+    <rule punch="true" kit="multitool-shears">
+        <filter>
+            <all>
+                <any>
+                    <cause>punch</cause>
+                    <cause>mine</cause>
+                </any>
+                <any>
+                    <material>wool</material>
+                    <material>carpet</material>
+                    <material>vine</material>
+                    <material>web</material>
+                </any>
+                <not>
+                    <wearing>
+                        <item material="gold nugget" name="`rmagic_multitool.shears" />
+                    </wearing>
+                </not>
+                <filter id="build-phase" />
+            </all>
+        </filter>
+    </rule>
+</block-drops>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>entity attack</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<itemremove>
+    <item>cobble wall</item>
+    <item>nether fence</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>slime block</item>
+    <item>wool</item>
+    <item>anvil</item>
+    <item>carpet</item>
+    <item>iron fence</item>
+    <item>ice</item>
+    <item>soul sand</item>
+    <item>sign</item>
+    <item>step</item>
+    <item>trap door</item>
+    <item>iron trapdoor</item>
+    <item>vine</item>
+    <item>ladder</item>
+    <item>skull item</item>
+    <item>web</item>
+    <item>stained glass</item>
+    <item>stained glass pane</item>
+    <item>water lily</item>
+    <item>wood door</item>
+    <item>iron door</item>
+    <item>snow</item>
+    <item>cake</item>
+    <item>nether star</item>
+    <item>potion</item>
+    <item>spruce fence</item>
+    <item>spruce fence gate</item>
+    <item>spruce wood stairs</item>
+    <item>stained clay</item>
+    <item>carrot item</item>
+    <item>potato item</item>
+    <item>baked potato</item>
+    <item>end rod</item>
+    <item>sea lantern</item>
+    <item>prismarine crystals</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond spade</item>
+    <item>shears</item>
+    <item>hopper</item>
+    <item>pumpkin</item>
+    <item>sulphur</item>
+    <item>glowstone dust</item>
+    <item>obsidian</item>
+    <item>dispenser</item>
+    <item>barrier</item>
+    <item>pumpkin pie</item>
+</itemremove>
+<itemkeep>
+    <item>name tag</item>
+    <item>leather boots</item>
+    <item>barrier</item>
+</itemkeep>
+<crafting>
+    <disable>wood button</disable>
+    <disable>redstone</disable>
+    <disable>workbench</disable>
+    <disable>wood plate</disable>
+    <disable>stick</disable>
+</crafting>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

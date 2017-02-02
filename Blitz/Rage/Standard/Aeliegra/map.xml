@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Aeliegra</name>
+<version>1.0.6</version>
+<include src="blitz-global.xml"/>
+<objective>Kill the opposing team before the time runs out!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477"/> <!-- Qixit -->
+</authors>
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:100" lore="Instant Kill">iron sword</item>
+        <item slot="1" enchantment="arrow damage:100" lore="Instant Shot Kill">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="6" amplifier="1">heal</potion>
+        <potion duration="6" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="blue-spawn" parents="spawn">
+        <helmet color="0000FF" locked="true">leather helmet</helmet>
+        <chestplate color="0000FF" locked="true">leather chestplate</chestplate>
+        <leggings color="0000FF" locked="true">leather leggings</leggings>
+        <boots color="0000FF" locked="true">leather boots</boots>
+    </kit>
+    <kit name="red-spawn" parents="spawn">
+        <helmet color="FF0000" locked="true">leather helmet</helmet>
+        <chestplate color="FF0000" locked="true">leather chestplate</chestplate>
+        <leggings color="FF0000" locked="true">leather leggings</leggings>
+        <boots color="FF0000" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red-spawn" yaw="179">
+        <cuboid min="551,23,574" max="554,23,571" />
+    </spawn>
+    <spawn team="blue" kit="blue-spawn" yaw="0">
+        <cuboid min="554,23,447" max="551,23,449" />
+    </spawn>
+    <default>
+        <cylinder base="552,31,511" radius="1" height="0" />
+    </default>
+</spawns>
+<timelock>on</timelock>
+<blitz>
+    <time>5m</time>
+    <lives>2</lives>
+</blitz>
+<killreward>
+    <item amount="2">arrow</item>
+</killreward>
+<itemremove>
+    <item>bread</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

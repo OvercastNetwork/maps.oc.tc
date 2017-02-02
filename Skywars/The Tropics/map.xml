@@ -1,0 +1,56 @@
+<map proto="1.4.2" game="Skywars">
+<name>The Tropics</name>
+<version>1.0</version>
+<authors>
+    <author uuid="b1521072-6993-4fe4-ae60-dbeeb7dc0cfa"/> <!--  Antnecb  -->
+</authors>
+<include src="skywars.xml"/>
+<maxbuildheight>75</maxbuildheight>
+<kits>
+    <kit id="all-effects">
+        <!--  Effects given to observers and players  -->
+        <!--  none  -->
+    </kit>
+</kits>
+<spawns>
+    <default kit="all-effects" region="observer-spawn" yaw="90"/>
+    <spawns spread="true" exclusive="true" kit="spawn-effects" angle="0.5,53.5,0.5">
+        <spawn region="player-1-spawn"/>
+        <spawn region="player-2-spawn"/>
+        <spawn region="player-3-spawn"/>
+        <spawn region="player-4-spawn"/>
+        <spawn region="player-5-spawn"/>
+        <spawn region="player-6-spawn"/>
+        <spawn region="player-7-spawn"/>
+        <spawn region="player-8-spawn"/>
+    </spawns>
+</spawns>
+<regions>
+    <point id="observer-spawn">4.5,59,0.5</point>
+    <point id="player-1-spawn">84.5,52.5,-44.5</point>
+    <point id="player-2-spawn">45.5,52.5,-83.5</point>
+    <point id="player-3-spawn">-44.5,52.5,-83.5</point>
+    <point id="player-4-spawn">-83.5,52.5,-44.5</point>
+    <point id="player-5-spawn">-83.5,52.5,45.5</point>
+    <point id="player-6-spawn">-44.5,52.5,84.5</point>
+    <point id="player-7-spawn">45.5,52.5,84.5</point>
+    <point id="player-8-spawn">84.5,52.5,45.5</point>
+    <sphere id="player-1-chests" radius="6" origin="45.5,52.5,-83.5"/>
+    <sphere id="player-2-chests" radius="6" origin="84.5,52.5,-44.5"/>
+    <sphere id="player-3-chests" radius="6" origin="-44.5,52.5,-83.5"/>
+    <sphere id="player-4-chests" radius="6" origin="-83.5,52.5,-44.5"/>
+    <sphere id="player-5-chests" radius="6" origin="-83.5,52.5,45.5"/>
+    <sphere id="player-6-chests" radius="6" origin="-44.5,52.5,84.5"/>
+    <sphere id="player-7-chests" radius="6" origin="45.5,52.5,84.5"/>
+    <sphere id="player-8-chests" radius="6" origin="84.5,52.5,45.5"/>
+    <negative id="tier-2-chests">
+        <union id="all-chests">
+            <region id="tier-1-chests"/>
+            <region id="tier-3-chests"/>
+        </union>
+    </negative>
+    <union id="tier-3-chests">
+        <sphere radius="20" origin="0.5,53.5,0.5"/>
+    </union>
+</regions>
+</map>

@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Aetheril</name>
+<version>1.3.10</version>
+<include src="blitz-global.xml"/>
+            <below y="5.4"/>
+<!--Note: using
+<include src="void-death.xml"/>
+could also work, but the include cannot be modified to have the teleportation occur below y=5, so this is why it's written out manually-->
+<objective>Eliminate the other teams!</objective>
+<!--tips and alerts-->
+<broadcasts>
+    <tip after="1s">Don't try to camp!</tip>
+</broadcasts>
+<!--
+WORLD BORDER
+-->
+<world-borders center="0, 0">
+    <world-border size="130"/>
+</world-borders>
+<!-- Map authors & contributors. -->
+<authors>
+    <author uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Main builder, XML, v1.3 update"/>
+    <!-- Jexel -->
+    <author uuid="e9a74abb-c807-47e9-993a-2f6c990ec8ea" contribution="Builder, support, ideas"/>
+    <!--iMasky-->
+    <author uuid="9463f0f0-0437-49a1-9237-ccd8826b61a6" contribution="Builder, ideas, block pallet"/>
+    <!--Roy-->
+    <author uuid="f5465612-c4e4-4e97-a9f1-f942aec82b53" contribution="Inspiration, Builder"/>
+    <!--bashcool-->
+    <author uuid="97307a17-8869-4138-b573-5ce4cc050974" contribution="Designer, Builder"/>
+    <!--Trump-->
+    <author uuid="9d903e52-8b1b-4bc5-8c18-905a71a25af0" contribution="Major Builder"/>
+    <!--Weaboo-->
+</authors>
+<contributors>
+    <contributor uuid="27186ed2-3040-4d50-ba2e-c08866cb23f0" contribution="Builder, Pruning"/>
+    <!--Zack-->
+    <contributor uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="1.3 Update Builder"/>
+    <!--_3Each-->
+    <contributor uuid="bd12f89a-2137-4068-8f8b-ab46e248d2a7" contribution="Builder"/>
+    <!--Kitten-->
+</contributors>
+<rules>
+    <rule>
+        Attempting to camp in the void with elytra is not allowed, you will be teleported into the void.
+    </rule>
+    <rule>
+        Do not intentionally fly outside of the map to prolong the game.
+    </rule>
+</rules>
+<!--Keeps daylight cycle off-->
+<timelock>on</timelock>
+<!--Prevents mob spawning-->
+<difficulty>peaceful</difficulty>
+<!--Gamemode-->
+<gamemode>rage</gamemode>
+<!--Blitz Game Settings-->
+<disabledamage>
+    <!-- Disable fall damage -->
+    <damage>fall</damage>
+    <!--Disables Elytra collision Damage-->
+    <damage>suffocation</damage>
+    <damage>fly into wall</damage>
+    <!--Disables damage from Enderpearl explosion to self-teammate-->
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<!--No Hunger Depletion-->
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<!--Reparing/removing drops-->
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>baked potato</item>
+    <item>glass</item>
+    <item>elytra</item>
+</itemremove>
+<respawn delay="1s" auto="true" blackout="true"/>
+<!--
+KILLREWARDS
+-->
+<kill-rewards>
+    <kill-reward>
+        <item name="`cDanger Pearl" lore="`3Enter the scene with a `o`lbang!" grenade="true" grenade-power="7" grenade-destroy="false" material="ender pearl"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="4" repeat="true"/>
+        </filter>
+        <item name="`4`lExtreme Danger Pearl" lore="`5Nuke the entire map with a `o`lSplaboom!" grenade="true" grenade-power="69" grenade-destroy="false" material="ender pearl"/>
+    </kill-reward>
+</kill-rewards>
+<blitz>
+    <lives>3</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<!-- Time till the match ends in minutes -->
+<time>5m</time>
+<!--Team settings (Kits, teams, spawns, etc.)-->
+<teams>
+   <team id="red-team" color="dark red" max="7" max-overfill="8">Red</team>
+   <team id="green-team" color="green" max="7" max-overfill="8">Green</team>
+   <team id="blue-team" color="blue" max="7" max-overfill="8">Blue</team>
+   <team id="yellow-team" color="yellow" max="7" max-overfill="8">Yellow</team>
+</teams>
+<!--Spawns-->
+<spawns>
+    <spawn kit="red" team="red-team">
+        <regions yaw="-90">
+            <region id="redspawn"/>
+        </regions>
+    </spawn>
+    <spawn kit="blue" team="blue-team">
+        <regions yaw="0">
+            <region id="bluespawn"/>
+        </regions>
+    </spawn>
+    <spawn kit="green" team="green-team" yaw="180">
+        <regions yaw="180">
+            <region id="greenspawn"/>
+        </regions>
+    </spawn>
+    <spawn kit="yellow" team="yellow-team" yaw="-90">
+        <regions yaw="90">
+            <region id="yellowspawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs-kit">
+        <regions yaw="-90">
+            <region id="defaultspawn"/>
+        </regions>
+    </default>
+</spawns>
+<!--Spawn kits, including death-->
+<kits>
+    <kit id="all">
+        <effect amplifier="1" duration="oo">jump_boost</effect>
+        <effect amplifier="1" duration="oo">night vision</effect>
+        <chestplate locked="true">elytra</chestplate>
+    </kit>
+    <kit id="spawn" parents="all">
+        <item enchantment="damage all:50" name="`7Infinity Blade" slot="0">iron sword</item>
+        <game-mode>adventure</game-mode>
+        <item enchantment="arrow damage:50" name="`8Crossbow" slot="1">bow</item>
+        <effect duration="3" amplifier="100">damage resistance</effect>
+        <effect duration="3" amplifier="100">heal</effect>
+        <effect duration="3.5" amplifier="1">blindness</effect>
+        <item name="`7Draconic Arrow">arrow</item>
+    </kit>
+    <kit id="red" parents="spawn">
+        <leggings color="cd0000" locked="true" name="Insulated Leggings">leather leggings</leggings>
+        <boots color="cd0000" locked="true" name="Reinforced Space Boots">leather boots</boots>
+        <helmet locked="true" damage="14" name="Advanced Space Helmet">stained glass</helmet>
+    </kit>
+    <kit id="blue" parents="spawn">
+        <leggings color="0066cc" locked="true" name="Insulated Leggings">leather leggings</leggings>
+        <boots color="0066cc" locked="true" name="Reinforced Space Boots">leather boots</boots>
+        <helmet locked="true" damage="11" name="Advanced Space Helmet">stained glass</helmet>
+    </kit>
+    <kit id="green" parents="spawn">
+        <leggings color="00cd00" locked="true" name="Insulated Leggings">leather leggings</leggings>
+        <boots color="00cd00" locked="true" name="Reinforced Space Boots">leather boots</boots>
+        <helmet locked="true" damage="13" name="Advanced Space Helmet">stained glass</helmet>
+    </kit>
+    <kit id="yellow" parents="spawn">
+        <leggings color="ffff00" locked="true" name="Insulated Leggings">leather leggings</leggings>
+        <boots color="ffff00" locked="true" name="Reinforced Space Boots">leather boots</boots>
+        <helmet locked="true" damage="4" name="Advanced Space Helmet">stained glass</helmet>
+    </kit>
+    <!--Levitation Kits-->
+    <kit id="levitation-kit" force="true">
+        <effect duration="1" amplifier="35">levitation</effect>
+    </kit>
+    <kit id="levitation-kit2" force="true">
+        <effect duration="1" amplifier="27">levitation</effect>
+    </kit>
+    <kit id="levitation-kit3" force="true">
+        <effect duration="1" amplifier="50">levitation</effect>
+    </kit>
+    <kit id="obs-kit" parents="all">
+        <helmet locked="true" name="Basic Space Helmet">glass</helmet>
+    </kit>
+    <lend kit="void-acc" filter="bounce"/>
+    <kit id="void-acc">
+        <force yaw="true" pitch="false">0,0.2,0</force>
+    </kit>
+</kits>
+<!--
+=====REGIONS=====
+-->
+<regions>
+    <!-- Spawns -->
+    <cuboid id="redspawn" min="-48.5,60,1.5" max="-46.5,60,0.5"/>
+    <cuboid id="bluespawn" min="-0.5,60,-48.5" max="1.5,60,-46.5"/>
+    <cuboid id="greenspawn" min="-0.5,60,49.5" max="1.5,60,47.5"/>
+    <cuboid id="yellowspawn" min="49.5,60,1.5" max="47.5,60,-0.5"/>
+    <!-- Obs spawn -->
+    <cylinder id="defaultspawn" base="0.5,50,0.5" height="0" radius="3"/>
+    <!--Levitation2 Regions-->
+    <cuboid id="red-levi" min="-20.5,7,-0.5" max="-18.0,9,2.0"/>
+    <cuboid id="blue-levi" min="1.5,7,-20.5" max="-0.5,9,-18.5"/>
+    <cuboid id="green-levi" min="-0.5,7,21.5" max="1.5,9,19.5"/>
+    <cuboid id="yellow-levi" min="22.0,7,2.0" max="19,9,-1"/>
+    <!--Levitation Middle Regions-->
+    <cuboid id="mid-levi" min="1.5,2,1.5" max="-0.5,8,-0.5"/>
+    <!--Jump pads-->
+    <cuboid id="red-velocity" min="-12.0,16,1.0" max="-11.0,17.0,0.0"/>
+    <cuboid id="blue-velocity" min="1.0,16.0,-12.0" max="0.0,17.0,-11.0"/>
+    <cuboid id="green-velocity" min="0.0,16,13.0" max="1.0,17.0,12.0"/>
+    <cuboid id="yellow-velocity" min="13.0,16,1.0" max="12.0,17,0.0"/>
+    <below id="bounce" y="2.4"/>
+    <!--Applying levitation for the levitation pads in front of spawn and next to it-->
+    <apply velocity="0.0,2.5,0.0" force="true">
+        <region>
+            <union>
+                <region id="blue-levi"/>
+                <region id="green-levi"/>
+                <region id="yellow-levi"/>
+                <region id="red-levi"/>
+            </union>
+        </region>
+    </apply>
+    <apply velocity="0.0,5,0.0" force="true">
+        <region>
+            <union>
+                <region id="blue-levi2"/>
+                <region id="green-levi2"/>
+                <region id="yellow-levi2"/>
+                <region id="red-levi2"/>
+            </union>
+        </region>
+    </apply><!--
+    <apply velocity="0.0,1.37,0.0" force="true" region="bounce"/>-->
+    <!--Side Levitations-->
+    <cuboid id="red-levi2" min="-38.5,7,-40.5" max="-41.0,9,-38.0"/>
+    <cuboid id="blue-levi2" min="42.0,7,-38.0" max="39,9,-41"/>
+    <cuboid id="green-levi2" min="-41,7,39" max="-38.5,9,41.5"/>
+    <cuboid id="yellow-levi2" min="39,7,39" max="42,9,42"/>
+    <!--Apply levitation to middle chest area-->
+    <apply kit="levitation-kit" force="true" region="mid-levi"/>
+    <!--Jump pads-->
+    <apply velocity="6.0,30.0,0.0" region="red-velocity"/>
+    <apply velocity="0.0,30.0,6.0" region="blue-velocity"/>
+    <apply velocity="0.0,30.0,-6.0" region="green-velocity"/>
+    <apply velocity="-6.0,30.0,0.0" region="yellow-velocity"/>
+</regions>
+</map>

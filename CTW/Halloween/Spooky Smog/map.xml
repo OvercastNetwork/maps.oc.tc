@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Spooky Smog</name>
+<version>1.0.1</version>
+<objective>Captured the enemy's two wools and place them on your victory monument</objective>
+<authors>
+    <author uuid="e931b4b3-479f-4761-8808-4c4b2ed69b0f"/> <!-- Theta_ -->
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
+    <author uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- lord_creeper01 -->
+</authors>
+<contributors>
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+</contributors>
+<rules>
+    <rule>Do not obstruct more than two blocks of the lane with lava</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue-kit" yaw="0">
+        <cylinder base="-22.5,114,22.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red-kit" yaw="180">
+        <cylinder base="-22.5,114,-81.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="37,157,-30" max="39,157,-28"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn-kit">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">pumpkin pie</item>
+        <item slot="5" amount="64">log 2</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="64">arrow</item>
+    </kit>
+    <kit name="red-kit" parent="spawn-kit">
+        <item slot="6" amount="64" damage="14">stained glass</item>
+    </kit>
+    <kit name="blue-kit" parent="spawn-kit">
+        <item slot="6" amount="64" damage="11">stained glass</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-iron">
+        <any>
+            <block>iron block</block>
+            <block>diamond block</block>
+        </any>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-blue-web">
+        <team>blue</team>
+        <block>web</block>
+    </filter>
+    <filter name="only-red-web">
+        <team>red</team>
+        <block>web</block>
+    </filter> 
+</filters>
+<regions>
+    <!--  Wool rooms blue need to enter  -->
+    <union name="blue-wool-rooms">
+        <rectangle min="-56,-105" max="-48,-97"/>
+        <rectangle min="3,-105" max="11,-97"/>
+    </union>
+    <!--  Wool rooms red need to enter  -->
+    <union name="red-wool-rooms">
+        <rectangle min="-56,38" max="-48,46"/>
+        <rectangle min="3,38" max="11,46"/>
+    </union>
+    <union name="spawns">
+        <rectangle name="no-blue-spawn" max="-13,16" min="-32,33"/>
+        <rectangle name="red-spawn" max="-13,-75" min="-32,-92"/>
+    </union>
+    <apply block="no-void" message="You may not build in the void">
+        <negative>
+            <rectangle min="-31,-75" max="-14,15"/>
+            <rectangle min="-66,-48" max="21,-11"/>
+        </negative>
+    </apply>
+    <apply block="only-iron" message="You may not modify spawn!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="only-red" block="only-red-web" use="only-red-usage" message="You may not enter or modify the wool rooms!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" block="only-blue-web" use="only-blue-usage" message="You may not enter or modify the wool rooms!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the other team´s spawn">
+        <rectangle max="-29,-90" min="-16,-88"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the other team´s spawn">
+        <rectangle max="-16,29" min="-29,32"/>
+    </apply>
+    <apply block="deny-all" message="You may not underbridge here!">
+        <cuboid min="-oo,0,-oo" max="oo,104,oo"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit this lava area!">
+        <region name="lava"/>
+    </apply>
+    <union name="lava">
+        <union name="red-lava">
+            <cuboid min="17,114,-47" max="20,151,-44"/>
+            <cuboid min="26,135,-85" max="29,151,-88"/>
+            <cuboid min="-6,135,-120" max="-9,151,-123"/>
+            <cuboid min="-39,135,-120" max="-36,151,-123"/>
+            <cuboid min="-71,135,-85" max="-74,151,-88"/>
+            <cuboid min="-65,114,-47" max="-62,151,-44"/>
+        </union>
+        <mirror name="blue-lava" region="red-lava" origin="-22.5,0,-29.5" normal="0,0,1"/>
+    </union>
+</regions>
+<renewables>
+    <renewable rate="2.5" grow="false" particles="true" sound="true">
+        <region>
+            <cuboid min="30,85,65" max="-78,177,-123"/>
+        </region>
+        <renew>iron block</renew>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<wools>
+    <wool team="blue" color="orange">
+        <block>17.5,134,52.5</block>
+    </wool>
+    <wool team="blue" color="cyan">
+        <block>-62.5,134,52.5</block>
+    </wool>
+    <wool team="red" color="lime">
+        <block>17.5,134,-111.5</block>
+    </wool>
+    <wool team="red" color="pink">
+        <block>-62.5,134,-111.5</block>
+    </wool>
+</wools>
+<itemremove>
+    <item>obsidian</item>
+    <item>step</item>
+    <item>pumpkin pie</item>
+    <item>log</item>
+    <item>stained glass</item>
+    <item>log 2</item>
+    <item>wood</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<include src="tutorial.xml"/>
+<maxbuildheight>145</maxbuildheight>
+<tutorial>
+    <stage title="CTW">
+        <message>
+            <line>This is a `aCapture the Wool`r `c(CTW)`r map.</line>
+            <line>Capture both wools from the enemy side and bring them back.</line>
+        </message>
+    </stage>
+    <stage title="Wool Rooms">
+        <message>
+            <line>This is a wool room.</line>
+            <line>You must come here in order to retrieve the wool.</line>
+            <line>Wool rooms also contain some nice loot!</line>
+        </message>
+        <teleport>
+            <point yaw="-45">-4,129,31</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>Place the wools you retrieved from the wool room here.</line>
+        </message>
+        <teleport>
+            <point yaw="-45">14,133,49</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

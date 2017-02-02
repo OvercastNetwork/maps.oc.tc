@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Aurimar Rift</name>
+<version>1.0.1</version>
+<objective>Get the most kills in 10 minutes!</objective>
+<authors>
+    <author uuid="2e8a3e25-bfa8-4fa7-9247-537b1ae8b714" contribution="Building, voxelsniper, and design"/> <!-- QcBlastar -->
+    <author uuid="eef86d91-5d8e-48ad-9575-23fbfc25094c" contribution="Building and details"/> <!-- Pengo21 -->
+</authors>
+<contributors>
+    <contributor uuid="c2b9c001-d6f4-44bb-abc7-91d8e24e536a" contribution="Tech support, moral support, feedback and making the banners."/> <!-- mggot4life -->
+    <contributor uuid="67bf7990-044e-4e9f-abed-391c3c3ddb67" contribution="Interior details and feedback"/> <!-- Storm_Smurf -->
+    <contributor uuid="accb024f-1b37-4f16-846e-7c214c3bdb88" contribution="Map details, feedback, and help for screenshots"/> <!-- The_Spetznaz -->
+    <contributor uuid="b700df0d-77af-45b2-9f1a-85eddad7cd0a" contribution="Help for screenshots"/> <!-- Addy178 -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" amount="32">cooked beef</item>
+        <item slot="3" amount="2" damage="8229">potion</item> <!-- Potion of Health 2 -->
+        <potion duration="7">heal</potion>
+        <potion duration="900">speed</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="-681,51,-11" max="-677,51,-8"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="-667,51,-340" max="-663,51,-337"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-782.5,119,-174.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item damage="8229">potion</item> <!-- Potion of Health 2 -->
+</killreward>    
+<score>
+    <time>10m</time>
+</score>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+</itemremove>
+</map>

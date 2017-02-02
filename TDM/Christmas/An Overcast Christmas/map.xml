@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>An Overcast Christmas</name>
+<version>1.0.3</version>
+<objective>Gain as many points as possible before the time runs out!</objective>
+<authors>
+    <author uuid="6d9239b4-6053-4ad8-879c-e0c1add3e057"/> <!-- EastofNowhere101 -->
+</authors>
+<contributors>
+	<contributor uuid="10c1b730-49b9-4f75-9212-91facc371477" contribution="XML"/> <!-- Qixit -->
+</contributors>
+<teams>
+    <team color="green" max="16">Green</team>
+	<team color="dark red" max="16">Red</team>
+</teams>
+<score>
+    <time>10m</time>
+</score>
+<spawns>
+    <default yaw="180">
+        <cuboid min="91,50,-1907" max="95,50,-1906"/>
+    </default>   
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="163.5,3,-1865.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="90">
+	    <cylinder base="27.5,2,-1860" radius="1" height="0"/>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" amount="3">golden apple</item>
+        <item slot="3" amount="32">cooked beef</item>
+        <item slot="9" amount="16" damage="4">ink sack</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="667F33" unbreakable="true">leather helmet</helmet>
+        <chestplate color="667F33" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="667F33" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+	<apply block="deny-all">
+		<rectangle min="-oo,-oo" max="oo,oo"/>
+	</apply>
+</regions>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="1">exp bottle</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>chainmail leggings</item>
+    <item>cooked beef</item>
+    <item>golden apple</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

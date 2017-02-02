@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>DATAbasin</name>
+<version>2.2.3</version>
+<objective>Destroy 75% of the enemy's clay block dam</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+    <contributor uuid="968a1d95-089a-47b7-8840-57eeedde6ea6"/> <!-- DoctorTardi -->
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</contributors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="yellow"   max="40">Yellow</team>
+</teams>
+<destroyables name="Dam" show-progress="true" completion="75%" repairable="true">
+    <destroyable region="red-dam"    materials="stained clay:9;stained clay:14" owner="red"/>
+    <destroyable region="yellow-dam" materials="stained clay:9;stained clay:4"  owner="yellow"/>
+</destroyables>
+<classes family="databasin" restrict="false" sticky="false">
+    <class name="Defender"                 description="Super armor and gear used to defend your dam."  icon="diamond chestplate"/>
+    <class name="Cannoneer"                description="Fully stocked will all the TNT you could need." icon="tnt" default="true"/>
+    <class name="Archer"                   description="Speedy and agile with a very powerful bow."     icon="bow"/>
+    <!-- Removed Classes -->
+    <!--<class name="Pyro"                     description="Flaming and furious with a flint and steel."    icon="flint and steel"/>
+    <class name="Naturalist" description="Able to regenerate terrain around them."        icon="iron fence" restrict="true"/>-->
+</classes>
+<spawns>
+    <spawn team="red">
+        <regions>
+            <region name="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow">
+        <regions>
+            <region name="spawn"/>
+        </regions>
+    </spawn>
+    <!-- PGM Bug -->
+    <!--<spawns team="red">
+        <spawn region="red-defender-spawn"     kit="red-defender"     filter="only-defenders-r"  yaw="-90"  pitch="0"/>
+        <spawn region="red-archer-spawn"       kit="red-archer"       filter="only-archers-r"    yaw="0"    pitch="0"/>
+        <spawn region="red-cannoneer-spawn"    kit="red-cannoneer"    filter="only-cannoneers-r" yaw="-25"  pitch="-15"/>
+        <spawn region="red-pyro-spawn"         kit="red-pyro"         filter="only-pyros-r"      yaw="35"   pitch="0"/>
+    </spawns>
+    <spawns team="yellow">
+        <spawn region="yellow-defender-spawn"  kit="yellow-defender"  filter="only-defenders-y"  yaw="90"   pitch="0"/>
+        <spawn region="yellow-archer-spawn"    kit="yellow-archer"    filter="only-archers-y"    yaw="180"  pitch="0"/>
+        <spawn region="yellow-cannoneer-spawn" kit="yellow-cannoneer" filter="only-cannoneers-y" yaw="155"  pitch="-15"/>
+        <spawn region="yellow-pyro-spawn"      kit="yellow-pyro"      filter="only-pyros-y"      yaw="-145" pitch="0"/>
+    </spawns>-->
+    <default kit="all">
+        <regions yaw="-90">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="classes" parents="all">
+        <potion duration="5" amplifier="3">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <potion duration="5" amplifier="5">absorption</potion>
+    </kit>
+    <kit name="defender" parents="classes">
+        <item slot="0"  unbreakable="true" attributes="generic.attackDamage:add:9">diamond sword</item>
+        <item slot="1"  unbreakable="true" enchantment="dig speed:5">diamond pickaxe</item>
+        <item slot="2"  unbreakable="true" enchantment="dig speed:5">diamond axe</item>
+        <item slot="3"  unbreakable="true" enchantment="dig speed:5">diamond spade</item>
+        <item slot="4"  amount="64">smooth brick</item>
+        <item slot="31" amount="64">smooth brick</item>
+        <item slot="22" amount="64">smooth brick</item>
+        <item slot="13" amount="64">smooth brick</item>
+        <item slot="5"  amount="64">gravel</item>
+        <item slot="32" amount="64">gravel</item>
+        <item slot="23" amount="64">gravel</item>
+        <item slot="6"  amount="64" damage="9" name="`aDam Repair Block" lore="`7Place this over your dam to repair it">stained clay</item>
+        <item slot="7"  unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <item slot="8">water bucket</item>
+        <helmet     locked="true" enchantment="protection fall:10">piston base</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:10;protection fall:10">diamond chestplate</chestplate>
+        <potion duration="oo" amplifier="3">jump</potion>
+        <potion duration="oo" amplifier="5">health boost</potion>
+        <potion duration="oo" amplifier="2">regeneration</potion>
+        <knockback-reduction>0.8</knockback-reduction>
+        <walk-speed>2</walk-speed>
+        <double-jump power="5" recharge-time="4s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="red-defender" parents="defender">
+        <leggings locked="true" unbreakable="true" enchantment="protection fall:10" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" enchantment="protection fall:10" color="993333">leather boots</boots> 
+    </kit>
+    <kit name="yellow-defender" parents="defender">
+        <leggings locked="true" unbreakable="true" enchantment="protection fall:10" color="E5E533">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" enchantment="protection fall:10" color="E5E533">leather boots</boots> 
+    </kit>
+    <kit name="cannoneer" parents="classes">
+        <item slot="0" amount="1">stone sword</item>
+        <item slot="27" amount="1" unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <item slot="1"  amount="1" unbreakable="true" attributes="generic.attackDamage:add:5">iron axe</item>
+        <item slot="28" amount="64">vine</item>
+        <item slot="19"  amount="48">snow ball</item>
+        <item slot="2"  amount="1">water bucket</item>
+        <item slot="29" amount="1">water bucket</item>
+        <item slot="20" amount="1">water bucket</item>
+        <item slot="11" amount="1">water bucket</item>
+        <item slot="3"  amount="32">fence</item>
+        <item slot="30" amount="32">ladder</item>
+        <item slot="12" amount="32">trap door</item>
+        <item slot="5"  amount="64">stone button</item>
+        <item slot="6"  amount="64">redstone</item>
+        <item slot="33" amount="32">stone plate</item>
+        <item slot="24" amount="32">lever</item>
+        <item slot="15" amount="16">diode</item>
+        <item slot="7"  amount="16">redstone block</item>
+        <item slot="34" amount="64">tnt</item>
+        <item slot="25" amount="64">tnt</item>
+        <item slot="16" amount="64">tnt</item>
+        <item slot="8"  amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+        <helmet     locked="true">tnt</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:4;protection projectile">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="red-cannoneer" parents="cannoneer">
+        <item slot="21" amount="32" damage="0">126</item>
+        <item slot="4"  amount="64" damage="0">wood</item>
+        <item slot="31" amount="64" damage="0">wood</item>
+        <item slot="22" amount="64" damage="0">wood</item>
+        <item slot="13" amount="64" damage="0">wood</item>
+        <item slot="32" amount="64" damage="0">wood</item>
+        <item slot="23" amount="64" damage="0">wood</item>
+        <item slot="14" amount="64" damage="0">wood</item>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="yellow-cannoneer" parents="cannoneer">
+        <item slot="21" amount="32" damage="2">126</item>
+        <item slot="4"  amount="64" damage="2">wood</item>
+        <item slot="31" amount="64" damage="2">wood</item>
+        <item slot="22" amount="64" damage="2">wood</item>
+        <item slot="13" amount="64" damage="2">wood</item>
+        <item slot="32" amount="64" damage="2">wood</item>
+        <item slot="23" amount="64" damage="2">wood</item>
+        <item slot="14" amount="64" damage="2">wood</item>
+        <leggings locked="true" unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="archer" parents="classes">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite;arrow damage:2">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" unbreakable="true">stone axe</item>
+        <item slot="4" unbreakable="true">stone spade</item>
+        <item slot="8" unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <helmet     locked="true">leaves</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:4;protection projectile:5;protection fall:5">gold chestplate</chestplate>
+        <potion duration="oo">speed</potion>
+    </kit>
+    <kit name="red-archer" parents="archer">
+        <item slot="5" amount="64" damage="0">wood</item>
+        <item slot="6" amount="64" damage="0">wood</item>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="yellow-archer" parents="archer">
+        <item slot="5" amount="64" damage="2">wood</item>
+        <item slot="6" amount="64" damage="2">wood</item>
+        <leggings locked="true" unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="pyro" parents="classes">
+        <item slot="0" unbreakable="true">iron axe</item>
+        <item slot="1" unbreakable="true">iron pickaxe</item>
+        <item slot="2" unbreakable="true">bow</item>
+        <item slot="3" enchantment="fire aspect">flint and steel</item>
+        <item slot="6" amount="64">gravel</item>
+        <item slot="7" amount="24">arrow</item>
+        <item slot="8" unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <helmet locked="true">quartz ore</helmet>
+        <potion duration="oo">fire resistance</potion>
+    </kit>
+    <kit name="red-pyro" parents="pyro">
+        <item slot="4" amount="64" damage="0">wood</item>
+        <item slot="5" amount="64" damage="4">wood</item>
+        <chestplate locked="true" unbreakable="true" color="993333" enchantment="protection fall:2;protection projectile">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="yellow-pyro" parents="pyro">
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="5" amount="64" damage="2">wood</item>
+        <chestplate locked="true" unbreakable="true" color="E5E533" enchantment="protection fall:2;protection projectile">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- Class Filters -->
+    <filter name="no-defenders">
+        <not>
+            <class>Defender</class>
+        </not>
+    </filter>
+    <filter name="only-defenders-r">
+        <all>
+            <class>Defender</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="only-archers-r">
+        <all>
+            <class>Archer</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="only-cannoneers-r">
+        <all>
+            <class>Cannoneer</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <!--<filter name="only-pyros-r">
+        <all>
+            <class>Pyro</class>
+            <team>red</team>
+        </all>
+    </filter>-->
+    <filter name="only-defenders-y">
+        <all>
+            <class>Defender</class>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <filter name="only-archers-y">
+        <all>
+            <class>Archer</class>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <filter name="only-cannoneers-y">
+        <all>
+            <class>Cannoneer</class>
+            <team>yellow</team>
+        </all>
+    </filter>
+    <!--<filter name="only-pyros-y">
+        <all>
+            <class>Pyro</class>
+            <team>yellow</team>
+        </all>
+    </filter>-->
+    <!-- Block Filters -->
+    <filter name="deny-storage">
+        <deny>
+            <block>chest</block>
+            <block>furnace</block>
+            <block>burning furnace</block>
+            <block>trapped chest</block>
+            <block>ender chest</block>
+            <block>dropper</block>
+            <block>hopper</block>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="deny-water">
+        <deny>
+            <block>water</block>
+            <block>stationary water</block>
+        </deny>
+    </filter>
+    <filter name="deny-dispensers-r">
+        <not>
+            <all>
+                <team>red</team>
+                <block>dispenser</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-dispensers-y">
+        <not>
+            <all>
+                <team>yellow</team>
+                <block>dispenser</block>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all"    min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="center" min="-oo,22"  max="oo,29"/>
+    <negative name="outside-map">
+        <rectangle name="map" min="-60,-64" max="51,115"/>
+    </negative>
+    <cuboid name="spawn"  min="-60,999,-64" max="52,999,115"/>
+    <cuboid name="portal" min="-oo,980,-oo" max="oo,996,oo"/>
+    <union name="no-dispensers">
+        <rectangle name="red-no-dispensers"       min="51,35"  max="-60,115"/>
+        <rectangle name="yellow-no-dispensers"    min="-60,16" max="51,-64"/>
+    </union>
+    <union name="no-water">
+        <cuboid name="red-no-water"    min="-28,17,-22" max="17,46,-33"/>
+        <cuboid name="yellow-no-water" min="19,17,73"   max="-26,46,84"/>
+    </union>
+    <union name="dams">
+        <cuboid name="red-dam"    min="-28,17,-33" max="15,48,-22"/>
+        <cuboid name="yellow-dam" min="19,17,84"   max="-24,48,73"/>
+    </union>
+    <union name="spawns">
+        <cylinder name="obs-spawn" base="-106.5,74,25.5" radius="2" height="1"/>
+        <union name="defender-spawns">
+            <cylinder name="red-defender-spawn"     base="-42.5,53,-28.5" radius="2" height="2"/>
+            <cylinder name="yellow-defender-spawn"  base="33.5,53,79.5"   radius="2" height="2"/>
+        </union>
+        <union name="archer-spawns">
+            <cylinder name="red-archer-spawn"       base="35.5,35,-14.5"  radius="2" height="2"/>
+            <cylinder name="yellow-archer-spawn"    base="-44.5,35,65.5"  radius="2" height="2"/>
+        </union>
+        <union name="cannoneer-spawns">
+            <cylinder name="red-cannoneer-spawn"    base="-38.5,14,-25.5" radius="2" height="2"/>
+            <cylinder name="yellow-cannoneer-spawn" base="29.5,14,76.5"   radius="2" height="2"/>
+        </union>
+        <union name="pyro-spawns">
+            <cylinder name="red-pyro-spawn"         base="20.5,16,-21.5"  radius="2" height="2"/>
+            <cylinder name="yellow-pyro-spawn"      base="-30.5,16,72.5"  radius="2" height="2"/>
+        </union>
+    </union>
+    <!-- Apply Block Logic -->
+    <apply block="deny-all"                region="outside-map"          message="You may not bridge outside of the main area"/>
+    <apply block="deny-all"                region="spawns"               message="You may not edit the spawn area"/>
+    <apply block-place="deny-water"        region="no-water"             message="You are not allowed to place water here"/>
+    <apply block-place="deny-storage"      region="all"                  message="You may not use storage blocks on this map"/>
+    <apply block-place="deny-dispensers-r" region="red-no-dispensers"    message="You may not place dispensers on the enemy side"/>
+    <apply block-place="deny-dispensers-y" region="yellow-no-dispensers" message="You may not place dispensers on the enemy side"/>
+    <apply enter="no-defenders"            region="center"               message="defenders may not enter the enemy side"/>
+    <!-- Apply Kits -->
+    <apply region="portal" kit="red-defender"     filter="only-defenders-r"/>
+    <apply region="portal" kit="red-archer"       filter="only-archers-r"/>
+    <apply region="portal" kit="red-cannoneer"    filter="only-cannoneers-r"/>
+    <!--<apply region="portal" kit="red-pyro"         filter="only-pyros-r"/>-->
+    <apply region="portal" kit="yellow-defender"  filter="only-defenders-y"/>
+    <apply region="portal" kit="yellow-archer"    filter="only-archers-y"/>
+    <apply region="portal" kit="yellow-cannoneer" filter="only-cannoneers-y"/>
+    <!--<apply region="portal" kit="yellow-pyro"      filter="only-pyros-y"/>-->
+</regions>
+<portals sound="false">
+    <portal region="portal" x="@-42.5" y="@54" z="@-28.5" yaw="@-90"  pitch="@0"   filter="only-defenders-r"/>
+    <portal region="portal" x="@35.5"  y="@35" z="@-13.5" yaw="@0"    pitch="@0"   filter="only-archers-r"/>
+    <portal region="portal" x="@-37.5" y="@14" z="@-24.5" yaw="@-20"  pitch="@-15" filter="only-cannoneers-r"/>
+    <!--<portal region="portal" x="@21.5"  y="@16" z="@-21.5" yaw="@50"   pitch="@0"   filter="only-pyros-r"/>-->
+    <portal region="portal" x="@33.5"  y="@54" z="@79.5"  yaw="@90"   pitch="@0"   filter="only-defenders-y"/>
+    <portal region="portal" x="@-44.5" y="@35" z="@65.5"  yaw="@180"  pitch="@0"   filter="only-archers-y"/>
+    <portal region="portal" x="@28.5"  y="@14" z="@75.5"  yaw="@160"  pitch="@-15" filter="only-cannoneers-y"/>
+    <!--<portal region="portal" x="@-30.5" y="@16" z="@72.5"  yaw="@-130" pitch="@0"   filter="only-pyros-y"/>-->
+</portals>
+<!-- PGM Bug -->
+<!--<portals sound="false">
+    <portal region="portal" filter="only-defenders-r"  destination="red-defender-spawn"/>
+    <portal region="portal" filter="only-archers-r"    destination="red-archer-spawn"/>
+    <portal region="portal" filter="only-cannoneers-r" destination="red-cannoneer-spawn"/>
+    <portal region="portal" filter="only-pyros-r"      destination="red-pyro-spawn"/>
+    <portal region="portal" filter="only-defenders-y"  destination="yellow-defender-spawn"/>
+    <portal region="portal" filter="only-archers-y"    destination="yellow-archer-spawn"/>
+    <portal region="portal" filter="only-cannoneers-y" destination="yellow-cannoneer-spawn"/>
+    <portal region="portal" filter="only-pyros-y"      destination="yellow-pyro-spawn"/>
+</portals>-->
+<killreward>
+    <filter>
+        <class>Cannoneer</class>
+    </filter>
+    <item amount="32">tnt</item>
+    <item amount="16">snow ball</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Cannoneer</class>
+            <kill-streak count="2" repeat="true"/>
+        </all>
+    </filter>
+    <item>dispenser</item>
+</killreward>
+<killreward>
+    <filter>
+        <class>Defender</class>
+    </filter>
+    <item amount="64" damage="9" name="`aDam Repair Block" lore="`7Place this over your dam to repair it">stained clay</item>
+</killreward>
+<killreward>
+    <filter>
+        <any>
+            <class>Archer</class>
+            <!--<class>Pyro</class>-->
+        </any>
+    </filter>
+    <item>golden apple</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Archer</class>
+            <kill-streak count="5" repeat="true"/>
+        </all>
+    </filter>
+    <item name="`cFlamin' Bow" enchantment="arrow fire;arrow damage;arrow infinite" damage="382">bow</item>
+</killreward>
+<!--<killreward>
+    <filter>
+        <all>
+            <class>Pyro</class>
+            <kill-streak count="3" repeat="true"/>
+        </all>
+    </filter>
+    <item amount="5">tnt</item>
+</killreward>
+<killreward>
+    <filter>
+        <class>Pyro</class>
+    </filter>
+    <item amount="16">arrow</item>
+</killreward>-->
+<blockdrops>
+    <rule>
+        <filter>
+            <block>stained clay</block>
+        </filter>
+        <drops/>
+        <fall-chance>1</fall-chance>
+        <fall-speed>1</fall-speed>
+        <land-chance>0</land-chance>
+    </rule>
+</blockdrops>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<itemremove>
+    <!-- Defender -->
+    <item>diamond sword</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond spade</item>
+    <item>smooth brick</item>
+    <item>gravel</item>
+    <item>stained clay</item>
+    <item>shears</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>piston base</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <!-- Cannoneer -->
+    <item>iron axe</item>
+    <item>shears</item>
+    <item>stone sword</item>
+    <item>dispenser</item>
+    <item>snow ball</item>
+    <item>vine</item>
+    <item>water bucket</item>
+    <item>fence</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone button</item>
+    <item>redstone</item>
+    <item>stone plate</item>
+    <item>lever</item>
+    <item>diode</item>
+    <item>redstone block</item>
+    <item>wood</item>
+    <item>126</item>
+    <item>tnt</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <!-- Archer -->
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>stone pickaxe</item>
+    <item>stone axe</item>
+    <item>stone spade</item>
+    <item>shears</item>
+    <item>wood</item>
+    <item>leaves</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <!-- Pyro -->
+    <item>iron axe</item>
+    <item>iron pickaxe</item>
+    <item>bow</item>
+    <item>flint and steel</item>
+    <item>gravel</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>shears</item>
+    <item>quartz ore</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<autorespawn/>
+<maxbuildheight>60</maxbuildheight>
+<broadcasts>
+    <tip after="5s" every="2m">`6Change your class using `a/cl (name)</tip>
+</broadcasts>
+</map>

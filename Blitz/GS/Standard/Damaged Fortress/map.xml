@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Damaged Fortress</name>
+<version>1.0.0</version>
+<objective>Kill the enemy squadron before the time runs out!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml" />
+<authors>
+    <author uuid="d232281c-f517-40e8-96e9-f2a0e1da12f5"/> <!-- Cigam5 -->
+</authors>
+<contributors>
+    <contributor uuid="10c1b730-49b9-4f75-9212-91facc371477" contribution="XML"/> <!-- Qixit -->
+</contributors>
+<teams>
+    <team color="blue" max="8">Blue</team>
+    <team color="dark red" max="8">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="90">
+        <point>-1490,19,312</point>
+    </spawn>
+    <spawn team="red" yaw="-90">
+        <point>-1531,19,312</point>
+    </spawn>
+    <default yaw="-90">
+        <point>-1510,48,312</point>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+    <!-- used to stop people getting onto the rocks -->
+    <apply enter="deny-players" message="The outer part of the map is disabled.">
+        <negative>
+            <circle center="-1509,312" radius="40" />
+        </negative>
+    </apply>
+</regions>
+</map>

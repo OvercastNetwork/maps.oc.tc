@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+<name>Mountain Meyhem</name>
+<version>1.1.4</version>
+<objective>Secure the three wools and place them in your team's victory monument.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="2d4f4e28-5b76-4c82-96a0-de7192c37b3f"/> <!-- Gramps223 -->
+</authors>
+<rules>
+    <rule>You may not enter the opponent's lane.</rule>
+    <rule>You may not enter the void lane and return turn your lane.</rule>
+    <rule>You may not place or remove blocks after the indicated line in the parkour area.</rule>
+    <rule>You must abide by the RMCT RFW rule set.</rule>
+</rules>
+<teams>
+    <team color="blue" max="4">Blue</team>
+    <team color="dark red" max="4">Red</team>
+</teams>
+<friendlyfire>on</friendlyfire>
+<timelock>off</timelock>
+<mobs>
+    <filter>
+        <deny><mob>slime</mob></deny>
+    </filter>
+</mobs>
+<spawns bedspawn="on">
+    <spawn team="blue" yaw="180"><point>46.5,82,125.5</point></spawn>
+    <spawn team="red" yaw="0"><point>46.5,82,136.5</point></spawn>
+    <default yaw="270"><cuboid min="25,89,129" max="29,89,133"/></default>
+</spawns>
+<filters>
+    <filter name="only-liquids" parents="deny-players">
+        <allow>
+            <block>water</block><block>stationary water</block>
+            <block>lava</block><block>stationary lava</block>
+        </allow>
+    </filter>
+    <filter name="protect-monuments">
+        <deny>
+            <block>obsidian</block>
+            <block>wall sign</block>
+            <block>step:5</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- protect monuments -->
+    <apply block="protect-monuments">
+        <cuboid name="blue-monument" min="86,86,109" max="91,89,111"/>
+        <cuboid name="red-monument" min="86,86,151" max="91,89,153"/>
+    </apply>
+
+    <!-- prevent blocks from being placed / destroyed in the lane -->
+    <apply block="only-liquids" message="You may not place or break blocks outside of your lane">
+        <negative>
+            <rectangle name="blue-lane" min="42,107" max="292,123"/>
+            <rectangle name="red-lane" min="42,139" max="292,155"/>
+        </negative>
+    </apply>
+
+    <apply block="deny-all" message="You may not break or place blocks in the parkour area">
+        <cuboid min="178,0,107" max="243,26,155"/>
+        <cuboid min="185,26,107" max="242,30,155"/>
+    </apply>
+
+    <cuboid name="troughes" min="45,80,114" max="48,84,148"/>
+</regions>
+<lanes>
+    <lane team="blue">
+        <region name="troughes"/>
+        <region name="blue-lane"/>
+    </lane>
+    <lane team="red">
+        <region name="troughes"/>
+        <region name="red-lane"/>
+    </lane>
+</lanes>
+<wools team="blue">
+    <wool color="red"       ><block>86,87,109</block></wool>
+    <wool color="yellow"    ><block>88,87,109</block></wool>
+    <wool color="light blue"><block>90,87,109</block></wool>
+</wools>
+<wools team="red">
+    <wool color="red"       ><block>86,87,152</block></wool>
+    <wool color="yellow"    ><block>88,87,152</block></wool>
+    <wool color="light blue"><block>90,87,152</block></wool>
+</wools>
+</map>

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Galactic War</name>
+<version>1.3.4</version>
+<objective>Destroy the enemy team's core.</objective>
+<authors>
+    <author uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230"/> <!-- thegoodguy -->
+    <author uuid="a77ca382-3fc8-4130-943f-453f62443591"/> <!-- B_korner -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML"/> <!-- dinner1111 -->
+    <contributor uuid="60b8bb6e-a9cb-425f-912e-e30e4c84f067" contribution="XML"/> <!-- pigdevil2010 -->
+</contributors>
+<teams>
+    <team color="dark red" max="50" max-overfill="55">Red</team>
+    <team color="blue" max="50" max-overfill="55">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2">iron axe</item>
+        <item slot="4" amount="64">glass</item>
+        <item slot="5" damage="2" amount="64">log</item>
+        <item slot="6" amount="3">golden apple</item>
+        <item slot="7" amount="64" name="Space Food">baked potato</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="28">arrow</item>
+        <boots enchantment="protection fall:2">gold boots</boots>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="bf0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0000bf">leather chestplate</chestplate>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="no-red">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="no-blue">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="no-lava">
+        <deny>
+            <block>lava</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <sphere name="red-base" origin="-621,36,-314" radius="11"/>
+    <sphere name="blue-base" origin="-328,36,-313" radius="11"/>
+    <cuboid name="blue-spawn-area" min="-322,47,-318" max="-311,37,-307"/>
+    <cuboid name="red-spawn-area" min="-626,47,-308" max="-638,37,-319"/>
+    <rectangle name="playable" min="-677,-227" max="-271,-399"/>
+    <apply block="deny-all" message="`cYou may not modify the spawn area!">
+        <union>
+            <region name="red-base"/>
+            <region name="blue-base"/>
+            <region name="blue-spawn-area"/>
+            <region name="red-spawn-area"/>
+        </union>
+    </apply>
+    <apply enter="no-blue" message="`cYou may not enter the enemy spawn!">
+        <region name="red-base"/>
+    </apply>
+    <apply enter="no-red" message="`cYou may not enter the enemy spawn!">
+        <region name="blue-base"/>
+    </apply>
+    <apply block="no-lava" use="no-lava" message="You may not interact with lava!">
+        <region name="playable"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside the map!">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+</regions>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="red" yaw="-90">
+            <block>-634,44.5,-314</block>
+        </spawn>
+        <spawn team="blue" yaw="90">
+            <block>-314,44.5,-313</block>
+        </spawn>
+    </spawns>
+    <default angle="-476.5,70.5,-209.5" kit="obs">
+        <cylinder base="-476.5,69,-216.5" radius="4" height="0"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="red">
+        <cuboid min="-592,39,-317" max="-587,34,-312"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-358,39,-311" max="-363,34,-316"/>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="emerald block" name="`aEMERALD CORE MODE"/>
+</modes>
+<itemremove>
+    <item>arrow</item>
+    <item>obsidian</item>
+    <item>emerald block</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>gold boots</tool>
+</toolrepair>
+<maxbuildheight>105</maxbuildheight>
+</map>

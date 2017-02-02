@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Justice</name>
+<version>0.7.1</version>
+<objective>Capture the enemy's flag and return it to your side to score.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="green-team" max="12" color="dark green">Green</team>
+    <team id="purple-team" max="12" color="dark purple">Purple</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="2">golden apple</item>
+        <item slot="3" amount="16">cooked beef</item>
+        <item slot="8" amount="16">arrow</item>
+        <potion duration="4" amplifier="5">heal</potion>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet unbreakable="true">iron helmet</helmet>
+        <chestplate color="00cd00" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="00cd00" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet unbreakable="true">iron helmet</helmet>
+        <chestplate color="551A8B" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="551A8B" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+    </kit>
+    <kit name="heal">
+        <potion duration="3" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="146.5,23,180.5" radius="1" height="1"/>
+        </regions>
+    </default>
+    <spawn team="green" kit="green">
+        <regions yaw="0">
+            <cylinder base="200.5,7,123.5" radius="0" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="purple" kit="purple">
+        <regions yaw="180">
+            <cylinder base="200.5,7,237.5" radius="0" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <cylinder name="green-net" base="200.5,12,123.5" radius="3" height="3"/>
+    <cylinder name="purple-net" base="200.5,12,237.5" radius="3" height="3"/>
+    <apply enter="purple-only" message="`eYou may not enter the enemy spawn area!">
+        <cylinder base="200.5,7,237.5" radius="5" height="3"/>
+    </apply>
+    <apply enter="green-only" message="`eYou may not enter the enemy spawn area!">
+        <cylinder base="200.5,7,123.5" radius="5" height="3"/>
+    </apply>
+    <apply block-break="allow-break" block-place="allow-place">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="deny-all" message="`eThis area is off limits!">
+        <above y="22"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="green-only">
+        <team>green</team>
+    </filter>
+    <filter name="purple-only">
+        <team>purple</team>
+    </filter>
+    <filter name="allow-break" parents="deny-all">
+        <allow>
+            <block>web</block>
+        </allow>
+    </filter>
+    <filter name="allow-place" parents="deny-all">
+        <allow>
+            <block>web</block>
+        </allow>
+    </filter>
+</filters>
+<score>
+    <limit>3</limit>
+</score>
+<flags drop-on-water="false">
+    <flag id="purple-flag" name="Purple Flag" owner="purple-team" color="purple">
+         <post yaw="180" pickup-filter="green-only">200.5,13,237.5</post>
+         <net points="1" region="green-net"/>
+     </flag>
+     <flag id="green-flag" name="Green Flag" owner="green-team" color="green">
+         <post yaw="0" pickup-filter="purple-only">200.5,13,123.5</post>
+         <net points="1" region="purple-net"/>
+     </flag>
+</flags>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+</itemremove>
+<killreward>
+    <kill-streak count="1"/>
+    <item amount="1">golden apple</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <item amount="1">web</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="2"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="4"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="6"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="8"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+</map> 

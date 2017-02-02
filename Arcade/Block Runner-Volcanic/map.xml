@@ -1,0 +1,33 @@
+<map proto="1.4.0" game="`eProgress">
+<name>BR: Volcanic</name>
+<version>1.0.0</version>
+<slug>block_runner_volcanic</slug>
+<include src="void-death.xml"/>
+<include src="block-runner.xml"/> <!-- Required by all Block Runner maps -->
+<authors>
+    <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi -->
+</authors>
+<contributors>
+    <contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Concept and XML"/> <!-- AtlasGames -->
+</contributors>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="0">
+            <region id="spawn-location"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>0.5,21,1.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <cuboid id="spawn-location" min="-1,15,14" max="2,15,15"/>
+    <cuboid id="mon" min="0,6,14" max="1,7,15"/>
+    <above id="checkpoint1" z="90"/>
+    <above id="checkpoint2" z="149"/>
+    <above id="checkpoint3" z="191"/>
+    <cuboid id="box-win" min="1,11,259" max="-1,13,261"/>
+</regions>
+</map>

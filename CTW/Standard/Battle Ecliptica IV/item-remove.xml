@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>glass</item>
+    <item>string</item>
+    <item>cooked chicken</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>beacon</item>
+    <item>redstone</item>
+    <item>glowstone dust</item>
+    <item>clay ball</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+    <item>trap door</item>
+    <item>leaves</item>
+    <item>beacon</item>
+    <item>quartz block</item>
+    <item>sapling</item>
+    <item>gravel</item>
+    <item>prismarine crystals</item>
+    <item>flint</item>
+    <item>apple</item>
+    <item>step</item>
+</itemremove>
+
+</map>

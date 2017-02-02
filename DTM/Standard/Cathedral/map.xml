@@ -1,0 +1,451 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<map proto="1.3.2" internal="true">
+<name>Cathedral</name>
+<version>0.3.2</version>
+<objective>Destroy the emerald monument in the center of the enemy's cavern</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+
+<kits>
+    <kit name="spawn">
+        <potion amplifier="1" duration="oo">speed</potion>
+        <potion amplifier="2" duration="oo">jump</potion>
+        <item slot="0">diamond pickaxe</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" amount="64">ladder</item>
+        <item slot="8" damage="8227" potions="fire resistance:900:0:false">potion</item>
+        <item slot="7" amount="64">cooked beef</item>
+        <item slot="27" amount="16" damage="2">wood</item>
+        <item slot="28">arrow</item>
+    </kit>
+    <kit name="spawn-blue" parents="spawn">
+        <item slot="3" amount="64" damage="11">stained clay</item>
+        <item slot="4" amount="64" damage="11">stained clay</item>
+        <helmet color="5e55dd">leather helmet</helmet>
+        <chestplate color="5e55dd">leather chestplate</chestplate>
+        <leggings color="5e55dd">leather leggings</leggings>
+        <boots color="5e55dd" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+    <kit name="spawn-red" parents="spawn">
+        <item slot="3" amount="64" damage="14">stained clay</item>
+        <item slot="4" amount="64" damage="14">stained clay</item>
+        <helmet color="dd5566">leather helmet</helmet>
+        <chestplate color="dd5566">leather chestplate</chestplate>
+        <leggings color="dd5566">leather leggings</leggings>
+        <boots color="dd5566" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+    <kit name="give-haste" force="true">
+        <potion amplifier="20" duration="oo">fast digging</potion>
+    </kit>
+    <kit name="take-haste" force="true">
+        <potion amplifier="0" duration="0">fast digging</potion>
+    </kit>
+</kits>
+
+<filters>
+    <filter name="blue-only" parents="deny-players">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="red-only" parents="deny-players">
+        <allow><team>red</team></allow>
+    </filter>
+    <filter name="deny-structures">
+        <deny>
+            <block>quartz block</block>
+            <block>quartz stairs</block>
+            <block>step:7</block>
+            <block>step:15</block>
+            <block>stained clay:3</block>
+            <block>stained clay:6</block>
+            <block>glass</block>
+            <block>thin glass</block>
+            <block>iron fence</block>
+            <block>beacon</block>
+            <block>enchantment table</block>
+        </deny>
+    </filter>
+    <filter name="deny-usable">
+        <deny>
+            <block>beacon</block>
+            <block>anvil</block>
+            <block>enchantment table</block>
+        </deny>
+    </filter>
+</filters>
+
+<regions>
+    <circle name="blue-spawn" center="60.5,-59.5" radius="8.9"/>
+    <circle name="red-spawn" center="-87.5,88.5" radius="8.9"/>
+    <cylinder name="obs-spawn" base="-13.5,127,14.5" radius="8.9" height="1"/>
+    <union name="spawns">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+        <region name="obs-spawn"/>
+    </union>
+    <cuboid name="blue-monument" min="27,125,-27" max="28,130,-26"/>
+    <cuboid name="red-monument" min="-55,125,55" max="-54,130,56"/>
+
+    <rectangle name="blue-haste" min="17,-16" max="38,-37"/>
+    <rectangle name="red-haste" min="-44,66" max="-65,45"/>
+
+    <apply block="deny-all" message="You may not modify the spawn area">
+        <region name="spawns"/>
+        <region name="obs-spawn"/>
+    </apply>
+    <apply block-break="deny-structures" message="This strange material is indestructible">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply use="deny-usable">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+
+    <apply enter="blue-only" message="You may not enter the enemy's spawn area">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="red-only" message="You may not enter the enemy's spawn area">
+        <region name="red-spawn"/>
+    </apply>
+
+    <apply kit="give-haste" filter="blue-only" message="Entering HASTE Zone">
+        <region name="blue-haste"/>
+    </apply>
+    <apply kit="give-haste" filter="red-only" message="Entering HASTE Zone">
+        <region name="red-haste"/>
+    </apply>
+    <apply kit="take-haste" filter="blue-only" message="Leaving HASTE Zone">
+        <negative><region name="blue-haste"/></negative>
+    </apply>
+    <apply kit="take-haste" filter="red-only" message="Leaving HASTE Zone">
+        <negative><region name="red-haste"/></negative>
+    </apply>
+
+    <apply block="deny-all" message="You may not exit the map!">
+        <negative>
+            <cuboid min="127,1,159" max="-159,255,-127"/>
+        </negative>
+    </apply>
+</regions>
+
+<portals bidirectional="true" protect="true">
+    <portals filter="blue-only">
+
+        <!-- monument platform to upper caves -->
+        <!-- left -->
+        <portal y="4" z="23">
+            <block location="27,127,-15"/>
+        </portal>
+        <!-- right -->
+        <portal y="4" x="-23">
+            <block location="15,127,-27"/>
+        </portal>
+
+        <!-- monument platform to spawn caves -->
+        <!-- left -->
+        <portal x="23">
+            <block location="39,127,-27"/>
+        </portal>
+        <!-- right -->
+        <portal z="-23">
+            <block location="27,127,-39"/>
+        </portal>
+
+        <!-- spawn caves to spawn -->
+        <!-- left -->
+        <portal y="-19">
+            <block location="70,127,-27"/>
+        </portal>
+        <!-- right -->
+        <portal y="-19">
+            <block location="27,127,-70"/>
+        </portal>
+
+        <!-- monument platform to floating islands -->
+        <!-- left -->
+        <portal y="-16">
+            <block location="39,127,-15"/>
+        </portal>
+        <!-- right -->
+        <portal y="-16">
+            <block location="15,127,-39"/>
+        </portal>
+        <!-- back -->
+        <portal y="15">
+            <block location="39,127,-39"/>
+        </portal>
+        <!-- front -->
+        <portal y="15">
+            <block location="15,127,-15"/>
+        </portal>
+
+        <!-- bridges -->
+        <portal x="-20">
+            <block location="37,113,3"/>
+        </portal>
+        <portal z="20">
+            <block location="-3,113,-37"/>
+        </portal>
+    </portals>
+
+    <portals filter="red-only">
+        <!-- monument platform to upper caves -->
+        <!-- left -->
+        <portal y="4" z="-23">
+            <block location="-55,127,43"/>
+        </portal>
+        <!-- right -->
+        <portal y="4" x="23">
+            <block location="-43,127,55"/>
+        </portal>
+
+        <!-- monument platform to spawn caves -->
+        <!-- left -->
+        <portal x="-23">
+            <block location="-67,127,55"/>
+        </portal>
+        <!-- right -->
+        <portal z="23">
+            <block location="-55,127,67"/>
+        </portal>
+
+        <!-- spawn caves to spawn -->
+        <!-- left -->
+        <portal y="-19">
+            <block location="-98,127,55"/>
+        </portal>
+        <!-- right -->
+        <portal y="-19">
+            <block location="-55,127,98"/>
+        </portal>
+
+        <!-- monument platform to floating islands -->
+        <!-- left -->
+        <portal y="-16">
+            <block location="-67,127,43"/>
+        </portal>
+        <!-- right -->
+        <portal y="-16">
+            <block location="-43,127,67"/>
+        </portal>
+        <!-- back -->
+        <portal y="15">
+            <block location="-67,127,67"/>
+        </portal>
+        <!-- front -->
+        <portal y="15">
+            <block location="-43,127,43"/>
+        </portal>
+
+        <!-- bridges -->
+        <portal x="20">
+            <block location="-65,113,25"/>
+        </portal>
+        <portal z="-20">
+            <block location="-25,113,65"/>
+        </portal>
+    </portals>
+</portals>
+
+<spawns>
+    <spawn team="blue" yaw="45" pitch="0" kit="spawn-blue" safe="true">
+        <cylinder base="60.5,113,-59.5" radius="7" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="-135" pitch="0" kit="spawn-red" safe="true">
+        <cylinder base="-87.5,113,88.5" radius="7" height="0"/>
+    </spawn>
+    <default safe="true">
+        <cylinder base="-13.5,128,14.5" radius="8" height="0"/>
+    </default>
+</spawns>
+
+<blockdrops>
+    <rule>
+        <filter>
+            <block>iron ore</block>
+        </filter>
+        <drops>
+            <item>iron ingot</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <all>
+                <block>double step:9</block>
+                <team>red</team>
+            </all>
+        </filter>
+        <drops>
+            <item name="Minerite">sandstone</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>step:1</block>
+        </filter>
+        <drops>
+            <item damage="1" name="Thinerite">step</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>obsidian</block>
+        </filter>
+        <drops>
+            <item>tnt</item>
+            <item>stone button</item>
+            <item>nether fence</item>
+            <item>stone plate</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>emerald block</block>
+        </filter>
+        <replacement>gold block</replacement>
+        <drops></drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>gold block</block>
+        </filter>
+        <replacement>redstone block</replacement>
+        <drops></drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>redstone block</block>
+        </filter>
+        <replacement>coal block</replacement>
+        <drops></drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>coal block</block>
+        </filter>
+        <drops></drops>
+    </rule>
+</blockdrops>
+
+<destroyables materials="emerald block;gold block;redstone block;coal block"
+              completion="100%" repair="false" show-progress="true">
+    <destroyable name="Monument" owner="blue">
+        <region name="blue-monument"/>
+    </destroyable>
+    <destroyable name="Monument" owner="red">
+        <region name="red-monument"/>
+    </destroyable>
+</destroyables>
+
+<proximity-alarms>
+    <proximity-alarm message="Enemy detected at Blue monument!" flare-radius="4">
+        <region>
+            <cylinder base="27.5,116,-26.5" radius="7.5" height="21"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+
+    <proximity-alarm message="Enemy detected at Red monument!" flare-radius="4">
+        <region>
+            <cylinder base="-54.5,116,55.5" radius="7.5" height="21"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+
+<renewables>
+    <renewable grow="true" rate="1">
+        <region>
+            <cylinder base="-13.5,95,14.5" radius="8" height="31"/>
+        </region>
+
+        <renew>obsidian</renew>
+        <renew>iron ore</renew>
+        <renew>glowstone</renew>
+        <renew>stone</renew>
+        
+        <replace>air</replace>
+        <replace>lava</replace>
+        <replace>stationary lava</replace>
+        
+        <shuffle>stone</shuffle>
+        <shuffle>iron ore</shuffle>
+    </renewable>
+</renewables>
+
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>stained clay</item>
+    <item>ladder</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+
+<itemkeep>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>ladder</item>
+    <item>stained clay</item>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>arrow</item>
+</itemkeep>
+
+<disabledamage>
+    <damage>fire tick</damage>
+</disabledamage>
+
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>`rBreak the `bemerald blocks`r in the enemy's monument to win,</line>
+            <line>and `bdefend`r your own monument from the enemy.</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="20">22.5,128,-21.5</point>
+        </teleport>
+    </stage>
+    <stage title="Teleporters">
+        <message>
+            <line>`rThis is a `bteleporter`r. Use teleporters to move around</line>
+            <line>your base more easily. The enemy can't use your teleporters,</line>
+            <line>and you can't use theirs. `bTry walking into this one now!`r</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">-2.5,113,-39.5</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Island">
+        <message>
+            <line>`rIn the center of the map is this floating island containing</line>
+            <line>`biron ore`r. The ore blocks drop iron ingots when mined, so</line>
+            <line>no smelting is needed. They also `bgrow back`r over time.</line>
+            <line>When you die, you get to `bkeep your iron armor`r.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="-20">-1.5,106,2.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+
+</map>

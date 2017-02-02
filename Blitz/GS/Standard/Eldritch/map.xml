@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Eldritch</name>
+<version>2.1</version>
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="1ac2b1d3-d623-4dab-99e5-08f3cfe1c1a0"/> <!-- Vechs1 -->
+</authors>
+<teams>
+    <team color="blue" max="8">Blue</team>
+    <team color="dark red" max="8">Red</team>
+</teams>
+<regions>
+    <apply enter="deny-all" message="You may not leave the playing field">
+        <negative>
+            <union>
+                <cuboid name="red-base" min="530,23,-265" max="522,29,-257"/>
+                <cuboid name="blue-base" min="583,23,-295" max="592,29,-304"/>
+                <rectangle min="530,-308" max="583,-250"/>     
+            </union>
+        </negative>
+        <rectangle min="524,-307" max="533,-296"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" yaw="90">
+        <cuboid min="584,24,-303" max="591,24,-296"/>
+    </spawn>
+    <spawn team="red" yaw="-90">
+        <cuboid min="522,24,-264" max="529,24,-257"/>
+    </spawn>
+    <default>
+        <point yaw="145">580.5,32,-248.5</point>
+    </default>
+</spawns>
+</map>

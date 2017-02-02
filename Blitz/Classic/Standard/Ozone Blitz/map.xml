@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Ozone Blitz</name>
+<version>1.0.1</version>
+<objective>Eliminate the other team before 10 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Overall Map Design and XML code"/> <!-- Plastix -->
+    <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="Map Design"/> <!-- MonsieurApple -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="*crunch* *crunch* *crunch*"/> <!-- IM_A_H0B0 -->
+    <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba" contribution="Map Design and Aestethics"/> <!-- SajinZero -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Feedback and Aesthetics"/> <!-- Khazhyk -->
+    <contributor uuid="3ce426cd-2ded-4f83-a9bb-46a57d68d9a5" contribution="Various Aesthethics"/> <!-- McYukon -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team color="dark aqua" max="75">Cyan</team>
+    <team color="dark purple" max="75">Purple</team>
+</teams>
+<regions>
+    <apply block="deny-all">
+        <circle name="main-area" center="0.5,0.5" radius="175.5"/>
+    </apply>
+</regions>
+<playable>
+    <region name="main-area"/>
+</playable>
+<modifybowprojectile>
+    <projectile>EnderPearl</projectile>
+    <velocityMod>2.5</velocityMod>
+</modifybowprojectile>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="3" amount="3">golden apple</item>
+        <item slot="2" amount="32">cooked fish</item>
+        <helmet enchantment="durability:1">diamond helmet</helmet>
+        <chestplate enchantment="protection fall:4;protection projectile:6">iron chestplate</chestplate>
+        <potion duration="20" amplifier="4">damage resistance</potion>
+        <potion duration="oo">jump</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo">jump</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="spawn">
+        <spawns team="purple">
+            <spawn yaw="225">
+                <cylinder base="-102.5,69,103.5" radius="4" height="0"/>
+            </spawn>
+            <spawn yaw="45">
+                <cylinder base="103.5,69,-102.5" radius="4" height="0"/>
+            </spawn>
+        </spawns>
+        <spawns team="cyan">
+            <spawn yaw="135">
+                <cylinder base="103.5,69,103.5" radius="4" height="0"/>
+            </spawn>
+            <spawn yaw="315">
+                <cylinder base="-102.5,69,-102.5" radius="4" height="0"/>
+            </spawn>
+        </spawns>
+    </spawns>
+    <default yaw="90" kit="observers">
+        <cylinder base="0,30,0" radius="3" height="0"/>
+    </default>
+</spawns>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+</blitz>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>diamond helmet</item>
+    <item>iron chestplate</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

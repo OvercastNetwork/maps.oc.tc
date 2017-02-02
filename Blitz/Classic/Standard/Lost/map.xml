@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.3">
+<name>Lost</name>
+<version>1.0.2</version>
+<objective>Eliminate the other team before the 10 minutes run out.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="a59dce2e-79e2-4229-ab83-98c885fceb23" />
+</authors>
+<contributors>
+    <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="XML" />
+    <!-- Zaner -->
+    <contributor uuid="60ba7cf0-6f28-430a-ab0a-511028fd0729" contribution="Feedback and Support" />
+    <!-- JsKingBoo -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Feedback" />
+    <!-- Olly -->
+</contributors>
+<timelock>on</timelock>
+<teams>
+    <team color="green" max="10">Green</team>
+    <team color="gold" max="10">Orange</team>
+</teams>
+<blitz>
+    <time>12m</time>
+    <title>Blitz</title>
+</blitz>
+<kits>
+    <kit name="main">
+        <item slot="0" amount="1">stone sword</item>
+        <item slot="1" amount="1">bow</item>
+        <item slot="2" amount="24">arrow</item>
+        <item slot="7">tnt</item>
+        <item slot="8" amount="6">leaves 2</item>
+        <boots enchantment="protection fall:2" unbreakable="true" locked="true">gold boots</boots>
+        <chestplate enchantment="protection explosions:1;protection projectile:1" unbreakable="true" locked="true">iron chestplate</chestplate>
+        <potion duration="3" amplifier="5" ambient="true">damage resistance</potion>
+    </kit>
+    <kit name="green" parents="main">
+        <leggings unbreakable="true" locked="true" color="7bc11c">leather leggings</leggings>
+        <helmet locked="true" damage="13">stained glass</helmet>
+    </kit>
+    <kit name="orange" parents="main">
+        <leggings unbreakable="true" locked="true" color="d29133">leather leggings</leggings>
+        <helmet locked="true" damage="1">stained glass</helmet>
+    </kit>
+</kits>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>gold boots</item>
+    <item>iron chestplate</item>
+    <item>stained glass</item>
+    <item>leather leggings</item>
+    <item>arrow</item>
+    <item>empty map</item>
+    <item>map</item>
+    <item>leaves 2</item>
+</itemremove>
+<tnt>
+    <instantignite>true</instantignite>
+    <blockdamage>false</blockdamage>
+    <fuse>2s</fuse>
+    <licensing>false</licensing>
+    <power>2</power>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<timelock>on</timelock>
+<autorespawn />
+<killreward>
+    <item amount="6">arrow</item>
+    <item amount="2">leaves 2</item>
+    <item amount="1">golden apple</item>
+    <item amount="1">tnt</item>
+</killreward>
+<filters>
+    <filter name="allow-tnt" parents="deny-blocks">
+        <allow>
+            <block>tnt</block>
+            <block>leaves 2</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main" min="oo,oo" max="-oo,-oo" />
+    <cuboid name="jump-pad-a" min="32,3,-70" max="36,6,-66" />
+    <cuboid name="jump-pad-b" min="4,5,-58" max="0,8,-54" />
+    <apply enter="deny-players" message="You may not leave the map">
+        <negative>
+            <cuboid min="-16,0,-84" max="44,22,-29" />
+        </negative>
+    </apply>
+    <apply velocity="@0,1.6,0">
+        <region name="jump-pad-a" />
+    </apply>
+    <apply velocity="@0,1.5,0">
+        <region name="jump-pad-b" />
+    </apply>
+    <apply block="allow-tnt" block-physics="deny-all">
+        <region name="main" />
+    </apply>
+</regions>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="-45">
+        <cuboid min="-3,16,-65" max="-6,16,-68" />
+    </spawn>
+    <spawn team="green" kit="green" yaw="120">
+        <cuboid min="33,16,-39" max="36,16,-36" />
+    </spawn>
+    <default anglel="4,23,-77">
+        <cuboid min="3,22,-79" max="5,22,-77" />
+    </default>
+</spawns>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<maxbuildheight>17</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

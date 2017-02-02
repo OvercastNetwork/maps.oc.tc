@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Ladderp</name>
+<version>1.1.0</version>
+<objective>Score points by killing the other team and entering your team's goal at the top of the ladder.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team id="blue-team" color="blue" max="8">Blue</team>
+    <team id="red-team" color="dark red" max="8">Red</team>
+    <team id="green-team" color="green" max="8">Green</team>
+    <team id="yellow-team" color="yellow" max="8">Yellow</team>
+</teams>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+    <team id="only-green">green-team</team>
+    <team id="only-yellow">yellow-team</team>
+</filters>
+<portals>
+    <!-- portals from score zones to bases -->
+    <portal x="@20.5" y="@3" z="@.5" yaw="90" filter="only-blue">
+        <region>
+            <cuboid id="blue-portal" min="3,70,0" max="4,73,1"/>
+        </region>
+    </portal>
+    <portal x="@-19.5" y="@3" z="@.5" yaw="-90" filter="only-red">
+        <region>
+            <cuboid id="red-portal" min="-3,70,0" max="-2,73,1"/>
+        </region>
+    </portal>
+    <portal x="@.5" y="@3" z="@20.5" yaw="180" filter="only-green">
+        <region>
+            <cuboid id="green-portal" min="0,70,3" max="1,73,4"/>
+        </region>
+    </portal>
+    <portal x="@.5" y="@3" z="@-19.5" yaw="0" filter="only-yellow">
+        <region>
+            <cuboid id="yellow-portal" min="0,70,-3" max="1,73,-2"/>
+        </region>
+    </portal>
+</portals>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <effect duration="4" amplifier="100">heal</effect>
+        <effect duration="4" amplifier="100">damage resistance</effect>
+        <effect duration="oo" amplifier="-2">health boost</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="spawn">
+        <regions yaw="90">
+            <cylinder base="20.5,3,.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn">
+        <regions yaw="-90">
+            <cylinder base="-19.5,3,.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="spawn">
+        <regions yaw="180">
+            <cylinder base=".5,3,20.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow-team" kit="spawn">
+        <regions yaw="0">
+            <cylinder base=".5,3,-19.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base=".5,73.5,.5" radius=".3" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<score>
+    <box value="4" filter="only-blue">
+        <region>
+            <cuboid id="blue-score" min="3,70,0" max="4,73,1"/>
+        </region>
+    </box>
+    <box value="4" filter="only-red">
+        <region>
+            <cuboid id="red-score" min="-3,70,0" max="-2,73,1"/>
+        </region>
+    </box>
+    <box value="4" filter="only-green">
+        <region>
+            <cuboid id="green-score" min="0,70,3" max="1,73,4"/>
+        </region>
+    </box>
+    <box value="4" filter="only-yellow">
+        <region>
+            <cuboid name="yellow-score" min="0,70,-3" max="1,73,-2"/>
+        </region>
+    </box>
+</score>
+<time>10m</time>
+<mobs filter="always"/>
+</map>

@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<map proto="1.3.4">
+<name>Abaddon CP</name>
+<version>1.3</version>
+<objective>Capture all 3 points to win.</objective>
+<rules>
+    <rule>This map uses Live Gears.</rule>
+    <rule>Beware of the lava!</rule>
+</rules>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="11" max-overfill="13">Red</team>
+    <team id="blue" color="blue" max="11" max-overfill="13">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue">
+        <point yaw="-90">2213,2,-1467</point>
+    </spawn>
+    <spawn team="red" kit="red">
+        <point yaw="90">2429,2,-1467</point>
+    </spawn>
+    <default kit="observers" yaw="0">
+        <cylinder base="2321,55,-1435" radius="1" height="0"/>
+    </default>
+</spawns>
+<respawn delay="4s"/>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="20" damage="2">wood</item>
+        <item slot="5" amount="16">glass</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="8" amount="8">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="6699D8" unbreakable="true">leather helmet</helmet>
+        <chestplate color="6699D8" unbreakable="true" enchantment="protection fire:1">leather chestplate</chestplate>
+        <leggings color="6699D8" unbreakable="true">leather leggings</leggings>
+        <boots color="6699D8" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" enchantment="protection fire:1">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 0" force="true" locked="true">
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 1" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5">stone sword</item>
+        <helmet unbreakable="true">iron helmet</helmet>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 2" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.25">stone sword</item>
+        <leggings unbreakable="true">gold leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 3" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.5">stone sword</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 4" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.75">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 5" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <boots unbreakable="true">iron boots</boots>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 6" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.25">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <chestplate unbreakable="true" enchantment="protection fire:1">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 7" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.5">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <chestplate unbreakable="true" enchantment="protection fire:1">iron chestplate</chestplate>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 8" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.75">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <chestplate unbreakable="true" enchantment="protection fire:1">iron chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+</kits>
+<!-- Normal rewards, every kill -->
+<killreward>
+    <item amount="2">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<!-- Tier 0 -->
+<killreward>
+    <filter>
+        <kill-streak count="1"/>
+    </filter>
+    <kit name="tier 0"/>
+</killreward>
+<!-- Tier 1 -->
+<killreward>
+    <filter>
+        <kill-streak count="2"/>
+    </filter>
+    <kit name="tier 1"/>
+</killreward>
+<!-- Tier 2 -->
+<killreward>
+    <filter>
+        <kill-streak count="4"/>
+    </filter>
+    <kit name="tier 3"/>
+</killreward>
+<!-- Tier 3 -->
+<killreward>
+    <filter>
+        <kill-streak count="5"/>
+    </filter>
+    <kit name="tier 3"/>
+</killreward>
+<!-- Tier 4 -->
+<killreward>
+    <filter>
+        <kill-streak count="6"/>
+    </filter>
+    <kit name="tier 4"/>
+</killreward>
+<!-- Tier 5 -->
+<killreward>
+    <filter>
+        <kill-streak count="8"/>
+    </filter>
+    <kit name="tier 5"/>
+</killreward>
+<!-- Tier 6 -->
+<killreward>
+    <filter>
+        <kill-streak count="9"/>
+    </filter>
+    <kit name="tier 6"/>
+</killreward>
+<!-- Tier 7 -->
+<killreward>
+    <filter>
+        <kill-streak count="11"/>
+    </filter>
+    <kit name="tier 7"/>
+</killreward>
+<!-- Tier 8 -->
+<killreward>
+    <filter>
+        <kill-streak count="13"/>
+    </filter>
+    <kit name="tier 8"/>
+</killreward>
+
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>wood</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>golden apple</item>
+</itemremove>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+
+<regions>
+    <!-- REGIONS TO USE -->
+    <!-- regions of the map -->
+    <cylinder name="red side-bridge" base="2343,0,-1451" radius="32" height="21"/>
+    <cylinder name="blue side-bridge" base="2299,0,-1482" radius="32" height="21"/>
+    <cuboid name="main lane" min="2247,0,-1482" max="2395,21,-1451"/>
+    <!-- extended protections for spawns-->
+    <cylinder name="red spawn protection" base="2429,2,-1467" radius="12" height="21"/>
+    <cylinder name="blue spawn protection" base="2213,2,-1467" radius="12" height="21"/>
+    <!-- APPLICATIONS -->
+    <!-- Prevent building in the spawns -->
+    <apply block="deny-all" message="You may not build inside the spawns">
+        <region name="red spawn protection"/>
+        <region name="blue spawn protection"/>
+    </apply>
+    <!-- Prevent building outside of the map -->
+    <apply block="deny-all">
+        <negative>
+            <region name="red side-bridge"/>
+            <region name="blue side-bridge"/>
+            <region name="main lane"/>
+        </negative>
+    </apply>
+    <!-- Prevent base entering -->
+    <apply enter="only-red" message="You may not enter the enemy base">
+        <region name="red spawn protection"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base">
+        <region name="blue spawn protection"/>
+    </apply>
+    <!-- Prevent base break -->
+    <apply block-break="only-iron" block-place="deny-all" message="You may not destroy the bases">
+        <region name="red spawn protection"/>
+        <region name="blue spawn protection"/>
+    </apply>
+</regions>
+<control-points capture-players="lead" incremental="true" show-progress="true" neutral-state="false" time-multiplier="0.40">
+    <control-point name="Blue Side" initial-owner="blue" capture-time="16s">
+        <capture-region>
+            <cylinder base="2277.5,0,-1466.5" radius="14" height="34"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="2277.5,0,-1466.5" radius="14" height="34"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="2277.5,0,-1466.5" radius="14" height="34"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Middle" capture-time="25s">
+        <capture-region>
+            <cylinder base="2321.5,0,-1466.5" radius="14" height="34"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="2321.5,0,-1466.5" radius="14" height="34"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="2321.5,0,-1466.5" radius="14" height="34"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Red Side" initial-owner="red" capture-time="16s">
+        <capture-region>
+            <cylinder base="2365.5,0,-1466.5" radius="14" height="34"/>
+        </capture-region>
+        <progress-display-region>
+            <cylinder base="2365.5,0,-1466.5" radius="14" height="34"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cylinder base="2365.5,0,-1466.5" radius="14" height="34"/>
+        </owner-display-region>
+    </control-point>
+</control-points>
+<king/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+
+</map>

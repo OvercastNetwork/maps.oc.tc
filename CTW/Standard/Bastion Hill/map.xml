@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Bastion Hill</name>
+<version>1.0.2</version>
+<objective>Capture the other team's wool!</objective>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="XML and map feedback"/> <!-- Plastix -->
+    <contributor uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c" contribution="Feedback"/> <!-- ItzAMeLuigi_ -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Feedback"/> <!-- _IQ -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Feedback"/> <!-- Timothee38 -->
+</contributors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<spawns>
+    <default>
+        <regions yaw="90">
+            <cuboid min="91, 43, 69" max="95, 43, 65"/>
+        </regions>
+    </default>
+    <spawn team="red">
+        <regions yaw="180">
+            <cylinder name="red-spawn" base="11.5, 55, 225.5" radius="2" height="1"/>
+        </regions>
+    </spawn>
+    <spawn team="blue">
+        <regions yaw="0" >
+            <cylinder name="blue-spawn" base="11.5, 55, -93.5" radius="2" height="1"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="wool-room-gear" force="true">
+        <clear/> <!-- Clear the players old gear -->
+        <item slot="0" unbreakable="true" enchantment="knockback:1">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow knockback:1">bow</item>
+        <item slot="2" amount="32">cooked beef</item>
+        <item slot="3" name="`b`lMarathon Mix" damage="16390" potions="saturation:1200:0:false;jump:1200:0:false">potion</item>
+        <item slot="28" amount="32">arrow</item>
+        <chestplate enchantment="protection projectile:4" unbreakable="true">gold chestplate</chestplate>
+        <leggings unbreakable="true">gold leggings</leggings>
+        <boots unbreakable="true">gold boots</boots>
+        <!-- Reset jump boost for wool runner classes (hacky fix) -->
+        <potion duration="0" amplifier="0">jump</potion>
+        <potion duration="2">heal</potion>
+        <potion duration="2">saturation</potion>
+    </kit>
+    <kit name="yellow-wool" parents="wool-room-gear" force="true">
+        <helmet damage="4" locked="true">wool</helmet>
+        <item damage="4" slot="4">wool</item>
+        <item damage="4" slot="27">wool</item>
+    </kit>
+    <kit name="lime-wool" parents="wool-room-gear" force="true">
+        <helmet damage="5" locked="true">wool</helmet>
+        <item damage="5" slot="4">wool</item>
+        <item damage="5" slot="27">wool</item>
+    </kit>
+    <kit name="spawn-protection">
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+</kits>
+<classes family="bastion_hill" sticky="false">
+    <class name="Defender" description="Heavily armored but slow class with a good sword!" icon="iron sword">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true">iron sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" amount="2" name="`6`lStun Grenade" damage="16394" potions="slow:600:1:false;blindness:21:0:false">potion</item>
+            <item slot="28" amount="32">arrow</item>
+            <helmet locked="true" unbreakable="true">iron helmet</helmet>
+            <chestplate locked="true" unbreakable="true">iron chestplate</chestplate>
+            <leggings unbreakable="true">iron leggings</leggings>
+            <boots damage="-300">iron boots</boots>
+        </kit>
+    </class>
+    <class name="Archer" default="true" description="An average class with a powerful bow" icon="bow">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:1;arrow infinite:1">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" amount="2" name="`d`lElixir of Life" damage="16417" potions="regeneration:160:1:false">potion</item>
+            <item slot="28">arrow</item>
+            <helmet locked="true">chainmail helmet</helmet>
+            <chestplate locked="true" enchantment="protection projectile:4">chainmail chestplate</chestplate>
+            <leggings>chainmail leggings</leggings>
+            <boots>chainmail boots</boots>
+        </kit>
+    </class>
+    <class name="Wool Runner" description="A fast but frail class with a knockback sword" icon="feather">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true" enchantment="knockback:1">wood sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" name="`b`lLiquidifed SuperDash mk. 2" damage="8206" potions="invisibility:200:0:false;saturation:2400:0:false">potion</item>
+            <item slot="28" amount="32">arrow</item>
+            <chestplate locked="true" unbreakable="true" attributes="generic.movementSpeed:base:.2">leather chestplate</chestplate>
+            <boots unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+            <potion duration="oo" amplifier="2">jump</potion>
+        </kit>
+    </class>
+</classes>
+<itemremove>
+    <item>38</item> <!-- Remove all flowers -->
+    <item>seeds</item>
+    <item>wheat</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron chestplate</item>
+    <item>iron helmet</item>
+    <item>iron boots</item>
+    <item>iron leggings</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail helmet</item>
+    <item>chainmail boots</item>
+    <item>chainmail leggings</item>
+    <item>gold chestplate</item>
+    <item>gold boots</item>
+    <item>gold leggings</item>
+    <item>arrow</item>
+    <item>cooked beef</item>
+    <item>wood sword</item>
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>wool</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+</itemremove>
+<!-- Custom Killrewards for each class -->
+<!-- Each class gets a new potion from their default kit -->
+<!-- DENY if a player is holding wool. This is so players who get wool room gear don't get their class kill reward -->
+<killreward>
+    <filter>
+        <all>
+            <class>Defender</class>
+            <not>
+                <any>
+                    <carrying><item damage="5">wool</item></carrying>
+                    <carrying><item damage="4">wool</item></carrying>
+                </any>
+            </not>
+        </all>
+    </filter>
+    <item name="`6`lStun Grenade" damage="16394" potions="slow:600:1:false;blindness:21:0:false">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Archer</class>
+            <not>
+                <any>
+                    <carrying><item damage="5">wool</item></carrying>
+                    <carrying><item damage="4">wool</item></carrying>
+                </any>
+            </not>
+        </all>
+    </filter>
+    <item name="`d`lElixir of Life" damage="16417" potions="regeneration:160:1:false">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Wool Runner</class>
+            <not>
+                <any>
+                    <carrying><item damage="5">wool</item></carrying>
+                    <carrying><item damage="4">wool</item></carrying>
+                </any>
+            </not>
+        </all>
+    </filter>
+    <item name="`b`lLiquidifed SuperDash mk. 2" damage="8206" potions="invisibility:200:0:false;saturation:2400:0:false">potion</item>
+</killreward>
+<!-- People with wool room gear get a regen potion kill reward -->
+<killreward>
+    <filter>
+        <any>
+            <carrying><item damage="5">wool</item></carrying>
+            <carrying><item damage="4">wool</item></carrying>
+        </any>
+    </filter>
+    <item name="`d`lElixir of Life" damage="16417" potions="regeneration:100:1:false">potion</item>
+</killreward>
+<filters>
+    <filter name="carrying-yellow">
+        <all>
+            <team>blue</team>
+            <wearing><item damage="4">wool</item></wearing>
+        </all>
+    </filter>
+    <filter name="carrying-lime">
+        <all>
+            <team>red</team>
+            <carrying><item damage="5">wool</item></carrying>
+        </all>
+    </filter>
+    <filter name="whitelisted-blocks" parents="deny-all">
+        <allow>
+            <block>38</block> <!-- All flowers -->
+            <block>thin glass</block> <!-- glass panes -->
+            <block>long grass</block> <!-- Tall grass -->
+            <block>59</block> <!-- Wheat block-->
+        </allow>
+    </filter>
+    <filter name="deny-panes">
+        <deny>
+            <block>thin glass</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <union name="yellow-wool-room">
+        <cuboid min="7, 64, 162" max="16, 68, 155"/>
+        <cuboid min="15, 64, 155" max="8, 68, 146"/>
+        <cuboid min="14, 64, 146" max="9, 68, 139"/>
+        <cuboid min="13, 64, 139" max="10, 68, 138"/>
+    </union>
+    <union name="lime-wool-room">
+        <cuboid min="16, 64, -30" max="7, 68, -25"/>
+        <cuboid min="8, 64, -23" max="15, 68, -14"/>
+        <cuboid min="9, 64, -14" max="14, 68, -7"/>
+        <cuboid min="10, 64, -7" max="13, 68, -6"/>
+    </union>
+    <union name="wool-rooms">
+        <region name="yellow-wool-room"/>
+        <region name="lime-wool-room"/>
+    </union>
+    <cuboid name="alarm-zone" min="-oo, 52, -oo" max="oo,-oo, oo"/>
+    <!-- Give the wool room wool and git when entering the wool room pads -->
+    <apply name="lime-wool-region" kit="lime-wool">
+        <cuboid min="13, 65, -17" max="10, 67, -20"/>
+    </apply>
+    <apply name="yellow-wool-region" kit="yellow-wool">
+        <cuboid min="10, 65, 149" max="13, 67, 152"/>
+    </apply>
+    <!-- Don't let players break anything in wool rooms -->
+    <!-- This overrides the whitelist below it -->
+    <apply block="deny-all">
+        <region name="wool-rooms"/>
+    </apply>
+    <!-- Don't let players break panes in the wool roomb building -->
+    <apply block="deny-panes">
+        <cuboid min="6, 64, 163" max="17, 93, 138"/>
+        <cuboid min="17, 63, -31" max="6, 93, -6"/>
+    </apply>
+    <apply block="whitelisted-blocks">
+        <rectangle min="-oo, -oo" max="oo, oo"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="lime-wool-room"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="yellow-wool-room"/>
+    </apply>
+</regions>
+<proximity-alarms>
+    <!-- Alert Blue Team of Red players leaving with Lime wool -->
+    <proximity-alarm message="`b`l[`6`lAlert`b`l] `cAn enemy player is leaving with your `a`lLime Wool`c! Catch him!">
+        <region>
+            <region name="alarm-zone"/>
+        </region>
+        <detect>
+            <filter name="carrying-lime"/>
+        </detect>
+        <notify>
+            <filter>
+                <team>blue</team>
+            </filter>
+        </notify>
+    </proximity-alarm>
+    <!-- Alert Red Team of Blue players leaving with Yellow wool -->
+    <proximity-alarm message="`b`l[`6`lAlert`b`l] `cAn enemy player is leaving with your `e`lYellow Wool`c! Catch him!">
+        <region>
+            <region name="alarm-zone"/>
+        </region>
+        <detect>
+            <filter name="carrying-yellow"/>
+        </detect>
+        <notify>
+            <filter>
+                <team>red</team>
+            </filter>
+        </notify>
+    </proximity-alarm>
+</proximity-alarms>
+<wools>
+    <wool team="red" color="lime" location="11.5, 65, -18.5">
+        <monument><block>11, 55, 186</block></monument>
+    </wool>
+    <wool team="blue" color="yellow" location="11.5, 65, 150.5">
+        <monument><block>11, 55, -55</block></monument>
+    </wool>
+</wools>
+</map>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Suburban Complex</name>
+<version>1.4</version>
+<objective>Leak lava from the enemy core into the void</objective>
+<authors>
+    <author uuid="b5f4323f-aec6-4066-9d9c-9970626b39ba"/> <!-- R3creat3 -->
+    <author uuid="a00e73f7-c4e4-4af0-8589-4ca2fb793d71"/> <!-- zachoz -->
+    <author uuid="6a9e554e-59f9-494b-b202-f12e7d5755b0"/> <!-- danielschroeder -->
+    <author uuid="ed20cc3a-04ab-469e-b2fa-75126fce92f6"/> <!-- biadondzombie -->
+</authors>
+<contributors>
+    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="XML help"/> <!-- MonsieurApple -->
+    <contributor uuid="539d57c8-0a91-4800-9a09-b1fe789a8a87" contribution="Being nice and early testing"/> <!-- MinimalCow -->
+    <contributor uuid="18862c51-a867-4c1d-98fb-7fe7b26fb501" contribution="Finishing-toucher"/> <!-- squad7 -->
+    <contributor uuid="0243369f-76b2-4ec7-a916-fb02de5015cc" contribution="Necessary herp"/> <!-- Plaatinum10 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="knockback:1">diamond sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" amount="1" enchantment="dig speed:2;durability:5">iron pickaxe</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="3" amount="3">golden apple</item>
+        <item slot="4" amount="32">cooked fish</item>
+        <item slot="5" amount="64" damage="2">log</item>
+        <item slot="6" amount="64">glass</item>
+        <chestplate enchantment="protection fall:4;protection projectile:6">iron chestplate</chestplate>
+        <potion duration="30" amplifier="4">regeneration</potion>
+        <potion duration="60" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="270"><cylinder base="87,48,-482" radius="1" height="0"/></spawn>
+    <spawn team="red" kit="spawn" yaw="90"><cylinder base="349,48,-482" radius="1" height="0"/></spawn>
+    <default yaw="180"><cylinder base="217,40,-397" radius="8" height="0"/></default>
+</spawns>
+<filters>
+    <filter name="only-blue" parents="deny-players deny-world">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-players deny-world">
+        <allow><team>red</team></allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not take the enchanting table">
+        <block>124,48,-483</block>
+        <block>312,48,-483</block>
+    </apply>
+</regions>
+<playable>
+    <rectangle min="26,-430" max="417,-537"/>
+</playable>
+<cores material="obsidian" leak="4">
+    <core team="blue" name="Core"><cuboid min="39,62,-485" max="34,67,-479"/></core>
+    <core team="red" name="Core"><cuboid min="398,62,-485" max="403,67,-479"/></core>
+</cores>
+<maxbuildheight>200</maxbuildheight>
+</map>
+

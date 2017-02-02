@@ -1,0 +1,1656 @@
+<map proto="1.4.2" game="Fleet">
+<name>Fleet</name>
+<version>0.0.61</version>
+<objective>Capture the ships to make a chain between your team's islands</objective>
+<teams>
+    <team id="yellow-team" color="yellow" max="24" max-overfill="28">Yellow</team>
+    <team id="red-team" color="dark red" max="24" max-overfill="28">Red</team>
+    <team id="green-team" color="dark green" max="24" max-overfill="28">Green</team>
+</teams>
+<kits>
+    <give kit="map-kit" filter="always"/>
+    <kit id="map-kit">
+        <!-- <map slot="slot.weapon.offhand" x-center="782" z-center="248" scale="close"/> -->
+    </kit>
+    <kit id="default-kit" parent="map-kit">
+        <clear/>
+        <item slot="0" unbreakable="true" material="wood sword"/>
+        <item slot="1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="wood pickaxe"/>
+        <item slot="3" unbreakable="true" material="wood axe"/>
+        <item slot="4" amount="12" material="wood" damage="5"/>
+        <item slot="5" amount="24" material="torch"/>
+        <item slot="7" amount="8" material="arrow"/>
+        <item slot="8" amount="12" material="cooked beef"/>
+    </kit>
+    <kit id="yellow-kit" parents="default-kit">
+        <chestplate unbreakable="true" color="0066cc" material="leather chestplate"/>
+        <boots unbreakable="true" color="0066cc" material="leather boots">
+            <enchantment level="1">depth strider</enchantment>
+        </boots>
+    </kit>
+    <kit id="red-kit" parents="default-kit">
+        <chestplate unbreakable="true" color="cd0000" material="leather chestplate"/>
+        <boots unbreakable="true" color="cd0000" material="leather boots">
+            <enchantment level="1">depth strider</enchantment>
+        </boots>
+    </kit>
+    <kit id="green-kit" parents="default-kit">
+        <chestplate unbreakable="true" color="667f33" material="leather chestplate"/>
+        <boots unbreakable="true" color="667f33" material="leather boots">
+            <enchantment level="1">depth strider</enchantment>
+        </boots>
+    </kit>
+</kits>
+<kill-reward>
+    <item amount="1" material="golden apple"/>
+</kill-reward>
+<projectiles>
+    <projectile id="fireball-cannon" name="fireball" projectile="LargeFireball" velocity="2.6" damage="18" throwable="true" cooldown="0s"/>
+    <projectile id="fireball-cannon-v2" name="fireball" projectile="DragonFireball" velocity="2.6" damage="80" throwable="true" cooldown="0s"/>
+</projectiles>
+<spawns>
+    <spawn team="yellow-team" region="yellow-spawn-a" kit="yellow-kit" yaw="35"/>
+    <spawn team="yellow-team" region="yellow-spawn-b" kit="yellow-kit" yaw="-145"/>
+    <spawn team="red-team" region="red-spawn-a" kit="red-kit" yaw="145"/>
+    <spawn team="red-team" region="red-spawn-b" kit="red-kit" yaw="-35"/>
+    <spawn team="green-team" region="green-spawn-a" kit="green-kit" yaw="-35"/>
+    <spawn team="green-team" region="green-spawn-b" kit="green-kit" yaw="145"/>
+    <default region="default-spawn" kit="map-kit" yaw="45"/>
+</spawns>
+<broadcasts>
+    <alert after="4m">broadcast.allChestsRefilled</alert>
+    <alert after="8m">broadcast.allChestsRefilled</alert>
+    <alert after="12m">broadcast.allChestsRefilled</alert>
+    <alert after="18m">broadcast.allChestsRefilled</alert>
+    <alert after="24m">broadcast.allChestsRefilled</alert>
+</broadcasts>
+<maxbuildheight>56</maxbuildheight>
+<filters>
+    <team id="only-yellow">yellow-team</team>
+    <team id="only-red">red-team</team>
+    <team id="only-green">green-team</team>
+    <!-- Allow teams to capture fleet control -->
+    <any id="allow-fleet-control">
+        <all>
+            <filter id="only-yellow"/>
+            <objective any="true">yellow-fleet-complete</objective>
+        </all>
+        <all>
+            <filter id="only-red"/>
+            <objective any="true">red-fleet-complete</objective>
+        </all>
+        <all>
+            <filter id="only-green"/>
+            <objective any="true">green-fleet-complete</objective>
+        </all>
+    </any>
+    <!-- Visual hill materials -->
+    <any id="visual-materials">
+        <material>stained clay:0</material>
+        <material>stained clay:11</material>
+        <material>stained clay:13</material>
+        <material>stained clay:14</material>
+        <material>stained glass:0</material>
+        <material>stained glass:11</material>
+        <material>stained glass:13</material>
+        <material>stained glass:14</material>
+        <material>wool:0</material>
+        <material>wool:11</material>
+        <material>wool:13</material>
+        <material>wool:14</material>
+    </any>
+    <any id="breakable-blocks">
+        <material>wood:5</material>
+        <material>gravel</material>
+        <material>tnt</material>
+        <material>redstone block</material>
+        <material>workbench</material>
+        <material>stone</material>
+        <material>iron ore</material>
+        <material>diamond ore</material>
+        <material>cobblestone</material>
+        <material>gold ore</material>
+        <material>leaves</material>
+        <material>frosted ice</material>
+        <material>torch</material>
+        <material>water</material>
+        <material>stationary water</material>
+    </any>
+    <!-- Chest refill filters -->
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>3m30s</time>
+            <not>
+                <time>4m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>7m30s</time>
+            <not>
+                <time>8m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>11m30s</time>
+            <not>
+                <time>12m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>17m30s</time>
+            <not>
+                <time>18m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <countdown duration="30s" message="countdown.chestsRefill">
+        <all>
+            <time>23m30s</time>
+            <not>
+                <time>24m</time>
+            </not>
+            <match-running/>
+        </all>
+    </countdown>
+    <any id="chest-refill">
+        <all>
+            <time>4m</time>
+            <not>
+                <time>4m1s</time>
+            </not>
+        </all>
+        <all>
+            <time>8m</time>
+            <not>
+                <time>8m1s</time>
+            </not>
+        </all>
+        <all>
+            <time>12m</time>
+            <not>
+                <time>12m1s</time>
+            </not>
+        </all>
+        <all>
+            <time>18m</time>
+            <not>
+                <time>18m1s</time>
+            </not>
+        </all>
+        <all>
+            <time>24m</time>
+            <not>
+                <time>24m1s</time>
+            </not>
+        </all>
+    </any>
+    <!-- Yellow team objective filters -->
+    <objective id="yellow-owns-hill-01" team="yellow-team">hill-01</objective>
+    <objective id="yellow-owns-hill-02" team="yellow-team">hill-02</objective>
+    <objective id="yellow-owns-hill-03" team="yellow-team">hill-03</objective>
+    <objective id="yellow-owns-hill-04" team="yellow-team">hill-04</objective>
+    <objective id="yellow-owns-hill-05" team="yellow-team">hill-05</objective>
+    <objective id="yellow-owns-hill-06" team="yellow-team">hill-06</objective>
+    <objective id="yellow-owns-hill-07" team="yellow-team">hill-07</objective>
+    <objective id="yellow-owns-hill-08" team="yellow-team">hill-08</objective>
+    <objective id="yellow-owns-hill-09" team="yellow-team">hill-09</objective>
+    <objective id="yellow-owns-hill-10" team="yellow-team">hill-10</objective>
+    <objective id="yellow-owns-hill-11" team="yellow-team">hill-11</objective>
+    <objective id="yellow-owns-hill-12" team="yellow-team">hill-12</objective>
+    <objective id="yellow-owns-hill-13" team="yellow-team">hill-13</objective>
+    <objective id="yellow-owns-hill-14" team="yellow-team">hill-14</objective>
+    <objective id="yellow-owns-hill-15" team="yellow-team">hill-15</objective>
+    <objective id="yellow-owns-hill-16" team="yellow-team">hill-16</objective>
+    <objective id="yellow-owns-hill-17" team="yellow-team">hill-17</objective>
+    <objective id="yellow-owns-hill-18" team="yellow-team">hill-18</objective>
+    <objective id="yellow-owns-hill-19" team="yellow-team">hill-19</objective>
+    <objective id="yellow-owns-hill-20" team="yellow-team">hill-20</objective>
+    <objective id="yellow-owns-hill-21" team="yellow-team">hill-21</objective>
+    <objective id="yellow-owns-hill-22" team="yellow-team">hill-22</objective>
+    <objective id="yellow-owns-hill-23" team="yellow-team">hill-23</objective>
+    <objective id="yellow-owns-hill-24" team="yellow-team">hill-24</objective>
+    <objective id="yellow-owns-hill-25" team="yellow-team">hill-25</objective>
+    <objective id="yellow-owns-hill-26" team="yellow-team">hill-26</objective>
+    <objective id="yellow-owns-hill-27" team="yellow-team">hill-27</objective>
+    <objective id="yellow-owns-hill-28" team="yellow-team">hill-28</objective>
+    <objective id="yellow-owns-hill-29" team="yellow-team">hill-29</objective>
+    <objective id="yellow-owns-hill-30" team="yellow-team">hill-30</objective>
+    <objective id="yellow-owns-hill-31" team="yellow-team">hill-31</objective>
+    <!-- Red team objective filters -->
+    <objective id="red-owns-hill-01" team="red-team">hill-01</objective>
+    <objective id="red-owns-hill-02" team="red-team">hill-02</objective>
+    <objective id="red-owns-hill-03" team="red-team">hill-03</objective>
+    <objective id="red-owns-hill-04" team="red-team">hill-04</objective>
+    <objective id="red-owns-hill-05" team="red-team">hill-05</objective>
+    <objective id="red-owns-hill-06" team="red-team">hill-06</objective>
+    <objective id="red-owns-hill-07" team="red-team">hill-07</objective>
+    <objective id="red-owns-hill-08" team="red-team">hill-08</objective>
+    <objective id="red-owns-hill-09" team="red-team">hill-09</objective>
+    <objective id="red-owns-hill-10" team="red-team">hill-10</objective>
+    <objective id="red-owns-hill-11" team="red-team">hill-11</objective>
+    <objective id="red-owns-hill-12" team="red-team">hill-12</objective>
+    <objective id="red-owns-hill-13" team="red-team">hill-13</objective>
+    <objective id="red-owns-hill-14" team="red-team">hill-14</objective>
+    <objective id="red-owns-hill-15" team="red-team">hill-15</objective>
+    <objective id="red-owns-hill-16" team="red-team">hill-16</objective>
+    <objective id="red-owns-hill-17" team="red-team">hill-17</objective>
+    <objective id="red-owns-hill-18" team="red-team">hill-18</objective>
+    <objective id="red-owns-hill-19" team="red-team">hill-19</objective>
+    <objective id="red-owns-hill-20" team="red-team">hill-20</objective>
+    <objective id="red-owns-hill-21" team="red-team">hill-21</objective>
+    <objective id="red-owns-hill-22" team="red-team">hill-22</objective>
+    <objective id="red-owns-hill-23" team="red-team">hill-23</objective>
+    <objective id="red-owns-hill-24" team="red-team">hill-24</objective>
+    <objective id="red-owns-hill-25" team="red-team">hill-25</objective>
+    <objective id="red-owns-hill-26" team="red-team">hill-26</objective>
+    <objective id="red-owns-hill-27" team="red-team">hill-27</objective>
+    <objective id="red-owns-hill-28" team="red-team">hill-28</objective>
+    <objective id="red-owns-hill-29" team="red-team">hill-29</objective>
+    <objective id="red-owns-hill-30" team="red-team">hill-30</objective>
+    <objective id="red-owns-hill-31" team="red-team">hill-31</objective>
+    <!-- Green team objective filters -->
+    <objective id="green-owns-hill-01" team="green-team">hill-01</objective>
+    <objective id="green-owns-hill-02" team="green-team">hill-02</objective>
+    <objective id="green-owns-hill-03" team="green-team">hill-03</objective>
+    <objective id="green-owns-hill-04" team="green-team">hill-04</objective>
+    <objective id="green-owns-hill-05" team="green-team">hill-05</objective>
+    <objective id="green-owns-hill-06" team="green-team">hill-06</objective>
+    <objective id="green-owns-hill-07" team="green-team">hill-07</objective>
+    <objective id="green-owns-hill-08" team="green-team">hill-08</objective>
+    <objective id="green-owns-hill-09" team="green-team">hill-09</objective>
+    <objective id="green-owns-hill-10" team="green-team">hill-10</objective>
+    <objective id="green-owns-hill-11" team="green-team">hill-11</objective>
+    <objective id="green-owns-hill-12" team="green-team">hill-12</objective>
+    <objective id="green-owns-hill-13" team="green-team">hill-13</objective>
+    <objective id="green-owns-hill-14" team="green-team">hill-14</objective>
+    <objective id="green-owns-hill-15" team="green-team">hill-15</objective>
+    <objective id="green-owns-hill-16" team="green-team">hill-16</objective>
+    <objective id="green-owns-hill-17" team="green-team">hill-17</objective>
+    <objective id="green-owns-hill-18" team="green-team">hill-18</objective>
+    <objective id="green-owns-hill-19" team="green-team">hill-19</objective>
+    <objective id="green-owns-hill-20" team="green-team">hill-20</objective>
+    <objective id="green-owns-hill-21" team="green-team">hill-21</objective>
+    <objective id="green-owns-hill-22" team="green-team">hill-22</objective>
+    <objective id="green-owns-hill-23" team="green-team">hill-23</objective>
+    <objective id="green-owns-hill-24" team="green-team">hill-24</objective>
+    <objective id="green-owns-hill-25" team="green-team">hill-25</objective>
+    <objective id="green-owns-hill-26" team="green-team">hill-26</objective>
+    <objective id="green-owns-hill-27" team="green-team">hill-27</objective>
+    <objective id="green-owns-hill-28" team="green-team">hill-28</objective>
+    <objective id="green-owns-hill-29" team="green-team">hill-29</objective>
+    <objective id="green-owns-hill-30" team="green-team">hill-30</objective>
+    <objective id="green-owns-hill-31" team="green-team">hill-31</objective>
+</filters>
+<regions>
+    <apply block="never" region="spawn-protection" message="You may not modify that block here"/>
+    <apply block="breakable-blocks" message="You may not modify that block here"/>
+    <block id="yellow-spawn-a">903.5,36,308.5</block>
+    <block id="yellow-spawn-b">661.5,36,188.5</block>
+    <block id="red-spawn-a">903.5,36,188.5</block>
+    <block id="red-spawn-b">661.5,36,308.5</block>
+    <block id="green-spawn-a">769.5,36,362.5</block>
+    <block id="green-spawn-b">795.5,36,134.5</block>
+    <block id="yellow-complete">917,21,109</block>
+    <block id="red-complete">907,25,109</block>
+    <block id="green-complete">912,29,111</block>
+    <union id="spawn-protection">
+        <cylinder id="yellow-spawn-a-protection" base="903.5,30,308.5" height="24" radius="8"/>
+        <cylinder id="yellow-spawn-b-protection" base="661.5,30,188.5" height="24" radius="8"/>
+        <cylinder id="red-spawn-a-protection" base="903.5,30,188.5" height="24" radius="8"/>
+        <cylinder id="red-spawn-b-protection" base="661.5,30,308.5" height="24" radius="8"/>
+        <cylinder id="green-spawn-a-protection" base="769.5,30,362.5" height="24" radius="8"/>
+        <cylinder id="green-spawn-b-protection" base="795.5,30,134.5" height="24" radius="8"/>
+    </union>
+    <cylinder id="default-spawn" base="795.5,36,134.5" height="1" radius="3"/>
+    <cylinder id="map" base="782.5,0,248.5" height="56" radius="900"/>
+    <!-- Ship capture regions -->
+    <!-- NORTH FACING 9,10,-21, SOUTH FACING -9,10,21, EAST FACING 21,10,9, WEST FACING -21,10,-9 -->
+    <cuboid id="hill-01-capture" min="777,32,261" size="11,12,-26"/>
+    <cuboid id="hill-02-capture" min="771,27,208" size="21,10,9"/>
+    <cuboid id="hill-03-capture" min="829,27,234" size="-21,10,-9"/>
+    <cuboid id="hill-04-capture" min="814,27,277" size="9,10,-21"/>
+    <cuboid id="hill-05-capture" min="793,27,292" size="-21,10,-9"/>
+    <cuboid id="hill-06-capture" min="735,27,262" size="21,10,9"/>
+    <cuboid id="hill-07-capture" min="742,27,241" size="9,10,-21"/>
+    <cuboid id="hill-08-capture" min="778,27,187" size="9,10,-21"/>
+    <cuboid id="hill-09-capture" min="822,27,183" size="-9,10,21"/>
+    <cuboid id="hill-10-capture" min="850,27,223" size="9,10,-21"/>
+    <cuboid id="hill-11-capture" min="843,27,244" size="21,10,9"/>
+    <cuboid id="hill-12-capture" min="862,27,269" size="-9,10,21"/>
+    <cuboid id="hill-13-capture" min="807,27,298" size="21,10,9"/>
+    <cuboid id="hill-14-capture" min="778,27,331" size="9,10,-21"/>
+    <cuboid id="hill-15-capture" min="754,27,287" size="-9,10,21"/>
+    <cuboid id="hill-16-capture" min="706,27,295" size="9,10,-21"/>
+    <cuboid id="hill-17-capture" min="721,27,256" size="-21,10,-9"/>
+    <cuboid id="hill-18-capture" min="718,27,201" size="-9,10,21"/>
+    <cuboid id="hill-19-capture" min="757,27,202" size="-21,10,-9"/>
+    <cuboid id="hill-20-capture" min="807,27,154" size="21,10,9"/>
+    <cuboid id="hill-21-capture" min="865,27,184" size="-21,10,-9"/>
+    <cuboid id="hill-22-capture" min="898,27,219" size="-9,10,21"/>
+    <cuboid id="hill-23-capture" min="901,27,273" size="-21,10,-9"/>
+    <cuboid id="hill-24-capture" min="865,27,327" size="-21,10,-9"/>
+    <cuboid id="hill-25-capture" min="826,27,327" size="-9,10,21"/>
+    <cuboid id="hill-26-capture" min="767,27,346" size="-21,10,-9"/>
+    <cuboid id="hill-27-capture" min="698,27,316" size="21,10,9"/>
+    <cuboid id="hill-28-capture" min="682,27,255" size="-9,10,21"/>
+    <cuboid id="hill-29-capture" min="663,27,226" size="21,10,9"/>
+    <cuboid id="hill-30-capture" min="699,27,172" size="21,10,9"/>
+    <cuboid id="hill-31-capture" min="754,27,147" size="-9,10,21"/>
+    <!-- Ship progress regions -->
+    <!-- NORTH FACING 11,226,-28, SOUTH FACING -11,226,28, EAST FACING 28,226,11, WEST FACING -28,226,-11 -->
+    <union id="central-ships">
+        <cuboid id="hill-01-progress" min="771,26,261" size="23,227,-35"/>
+        <cuboid id="hill-02-progress" min="769,27,207" size="28,226,11"/>
+        <cuboid id="hill-03-progress" min="832,27,236" size="-28,226,-11"/>
+        <cuboid id="hill-04-progress" min="813,27,280" size="11,226,-28"/>
+        <cuboid id="hill-05-progress" min="796,27,290" size="-28,226,-11"/>
+        <cuboid id="hill-06-progress" min="733,27,261" size="28,226,11"/>
+        <cuboid id="hill-07-progress" min="741,27,244" size="11,226,-28"/>
+    </union>
+    <union id="middle-ships">
+        <cuboid id="hill-08-progress" min="777,27,190" size="11,226,-28"/>
+        <cuboid id="hill-09-progress" min="824,27,181" size="-11,226,28"/>
+        <cuboid id="hill-10-progress" min="849,27,226" size="11,226,-28"/>
+        <cuboid id="hill-11-progress" min="841,27,243" size="28,226,11"/>
+        <cuboid id="hill-12-progress" min="860,27,271" size="-11,226,28"/>
+        <cuboid id="hill-13-progress" min="805,27,297" size="28,226,11"/>
+        <cuboid id="hill-14-progress" min="777,27,334" size="11,226,-28"/>
+        <cuboid id="hill-15-progress" min="752,27,289" size="-11,226,28"/>
+        <cuboid id="hill-16-progress" min="705,27,298" size="11,226,-28"/>
+        <cuboid id="hill-17-progress" min="724,27,254" size="-28,226,-11"/>
+        <cuboid id="hill-18-progress" min="716,27,199" size="-11,226,28"/>
+        <cuboid id="hill-19-progress" min="760,27,200" size="-28,226,-11"/>
+    </union>
+    <union id="outer-ships">
+        <cuboid id="hill-20-progress" min="805,27,153" size="28,226,11"/>
+        <cuboid id="hill-21-progress" min="868,27,182" size="-28,226,-11"/>
+        <cuboid id="hill-22-progress" min="896,27,217" size="-11,226,28"/>
+        <cuboid id="hill-23-progress" min="904,27,271" size="-28,226,-11"/>
+        <cuboid id="hill-24-progress" min="868,27,325" size="-28,226,-11"/>
+        <cuboid id="hill-25-progress" min="824,27,325" size="-11,226,28"/>
+        <cuboid id="hill-26-progress" min="760,27,344" size="-28,226,-11"/>
+        <cuboid id="hill-27-progress" min="696,27,315" size="28,226,11"/>
+        <cuboid id="hill-28-progress" min="680,27,253" size="-11,226,28"/>
+        <cuboid id="hill-29-progress" min="661,27,225" size="28,226,11"/>
+        <cuboid id="hill-30-progress" min="697,27,171" size="28,226,11"/>
+        <cuboid id="hill-31-progress" min="752,27,145" size="-11,226,28"/>
+    </union>
+    <!-- Ship captured regions -->
+    <cuboid id="hill-01-captured" min="780,253,252" size="6,1,-6"/>
+    <cuboid id="hill-02-captured" min="780,253,216" size="6,1,-6"/>
+    <cuboid id="hill-03-captured" min="816,253,234" size="6,1,-6"/>
+    <cuboid id="hill-04-captured" min="816,253,270" size="6,1,-6"/>
+    <cuboid id="hill-05-captured" min="780,253,288" size="6,1,-6"/>
+    <cuboid id="hill-06-captured" min="744,253,270" size="6,1,-6"/>
+    <cuboid id="hill-07-captured" min="744,253,234" size="6,1,-6"/>
+    <cuboid id="hill-08-captured" min="780,253,180" size="6,1,-6"/>
+    <cuboid id="hill-09-captured" min="816,253,198" size="6,1,-6"/>
+    <cuboid id="hill-10-captured" min="852,253,216" size="6,1,-6"/>
+    <cuboid id="hill-11-captured" min="852,253,252" size="6,1,-6"/>
+    <cuboid id="hill-12-captured" min="852,253,288" size="6,1,-6"/>
+    <cuboid id="hill-13-captured" min="816,253,306" size="6,1,-6"/>
+    <cuboid id="hill-14-captured" min="780,253,324" size="6,1,-6"/>
+    <cuboid id="hill-15-captured" min="744,253,306" size="6,1,-6"/>
+    <cuboid id="hill-16-captured" min="708,253,288" size="6,1,-6"/>
+    <cuboid id="hill-17-captured" min="708,253,252" size="6,1,-6"/>
+    <cuboid id="hill-18-captured" min="708,253,216" size="6,1,-6"/>
+    <cuboid id="hill-19-captured" min="744,253,198" size="6,1,-6"/>
+    <cuboid id="hill-20-captured" min="816,253,162" size="6,1,-6"/>
+    <cuboid id="hill-21-captured" min="852,253,180" size="6,1,-6"/>
+    <cuboid id="hill-22-captured" min="888,253,234" size="6,1,-6"/>
+    <cuboid id="hill-23-captured" min="888,253,270" size="6,1,-6"/>
+    <cuboid id="hill-24-captured" min="852,253,324" size="6,1,-6"/>
+    <cuboid id="hill-25-captured" min="816,253,342" size="6,1,-6"/>
+    <cuboid id="hill-26-captured" min="744,253,342" size="6,1,-6"/>
+    <cuboid id="hill-27-captured" min="708,253,324" size="6,1,-6"/>
+    <cuboid id="hill-28-captured" min="672,253,270" size="6,1,-6"/>
+    <cuboid id="hill-29-captured" min="672,253,234" size="6,1,-6"/>
+    <cuboid id="hill-30-captured" min="708,253,180" size="6,1,-6"/>
+    <cuboid id="hill-31-captured" min="744,253,162" size="6,1,-6"/>
+    <!-- Island chest regions -->
+    <union id="island-chests">
+        <block>727,28,212</block>
+        <block>837,28,212</block>
+        <block>837,28,284</block>
+        <block>727,28,284</block>
+    </union>
+    <!-- yellow team redstone regions -->
+    <cuboid id="yellow-redstone-hill-01-region" min="912,20,104" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-02-region" min="912,20,102" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-03-region" min="913,20,103" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-04-region" min="913,20,105" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-05-region" min="912,20,106" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-06-region" min="911,20,105" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-07-region" min="911,20,103" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-08-region" min="912,20,100" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-09-region" min="913,20,101" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-10-region" min="914,20,102" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-11-region" min="914,20,104" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-12-region" min="914,20,106" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-13-region" min="913,20,107" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-14-region" min="912,20,108" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-15-region" min="911,20,107" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-16-region" min="910,20,106" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-17-region" min="910,20,104" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-18-region" min="910,20,102" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-19-region" min="911,20,101" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-20-region" min="913,20,99" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-21-region" min="914,20,100" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-22-region" min="915,20,103" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-23-region" min="915,20,105" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-24-region" min="914,20,108" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-25-region" min="913,20,109" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-26-region" min="911,20,109" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-27-region" min="910,20,108" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-28-region" min="909,20,105" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-29-region" min="909,20,103" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-30-region" min="910,20,100" size="1,2,1"/>
+    <cuboid id="yellow-redstone-hill-31-region" min="911,20,99" size="1,2,1"/>
+    <!-- Red team redstone regions -->
+    <cuboid id="red-redstone-hill-01-region" min="912,24,104" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-02-region" min="912,24,102" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-03-region" min="913,24,103" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-04-region" min="913,24,105" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-05-region" min="912,24,106" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-06-region" min="911,24,105" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-07-region" min="911,24,103" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-08-region" min="912,24,100" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-09-region" min="913,24,101" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-10-region" min="914,24,102" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-11-region" min="914,24,104" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-12-region" min="914,24,106" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-13-region" min="913,24,107" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-14-region" min="912,24,108" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-15-region" min="911,24,107" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-16-region" min="910,24,106" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-17-region" min="910,24,104" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-18-region" min="910,24,102" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-19-region" min="911,24,101" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-20-region" min="913,24,99" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-21-region" min="914,24,100" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-22-region" min="915,24,103" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-23-region" min="915,24,105" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-24-region" min="914,24,108" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-25-region" min="913,24,109" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-26-region" min="911,24,109" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-27-region" min="910,24,108" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-28-region" min="909,24,105" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-29-region" min="909,24,103" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-30-region" min="910,24,100" size="1,2,1"/>
+    <cuboid id="red-redstone-hill-31-region" min="911,24,99" size="1,2,1"/>
+    <!-- Green team redstone regions -->
+    <cuboid id="green-redstone-hill-01-region" min="912,28,104" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-02-region" min="912,28,102" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-03-region" min="913,28,103" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-04-region" min="913,28,105" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-05-region" min="912,28,106" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-06-region" min="911,28,105" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-07-region" min="911,28,103" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-08-region" min="912,28,100" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-09-region" min="913,28,101" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-10-region" min="914,28,102" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-11-region" min="914,28,104" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-12-region" min="914,28,106" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-13-region" min="913,28,107" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-14-region" min="912,28,108" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-15-region" min="911,28,107" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-16-region" min="910,28,106" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-17-region" min="910,28,104" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-18-region" min="910,28,102" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-19-region" min="911,28,101" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-20-region" min="913,28,99" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-21-region" min="914,28,100" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-22-region" min="915,28,103" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-23-region" min="915,28,105" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-24-region" min="914,28,108" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-25-region" min="913,28,109" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-26-region" min="911,28,109" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-27-region" min="910,28,108" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-28-region" min="909,28,105" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-29-region" min="909,28,103" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-30-region" min="910,28,100" size="1,2,1"/>
+    <cuboid id="green-redstone-hill-31-region" min="911,28,99" size="1,2,1"/>
+</regions>
+<score/>
+<control-points points="0" capture-time="0s" required="true">
+    <control-point id="fleet-control" name="Fleet Control" capture="map" player-filter="allow-fleet-control"/>
+</control-points>
+<control-points points="0" owner-points="1" decay="0.5" time-multiplier="0.3" capture-rule="lead" show="false" show-messages="true" show-effects="true" required="false" visual-materials="visual-materials">
+    <control-point id="hill-01" name="Ship 01" capture="hill-01-capture" progress="hill-01-progress" captured="hill-01-captured" capture-time="52s"/>
+    <control-point id="hill-02" name="Ship 02" capture="hill-02-capture" progress="hill-02-progress" captured="hill-02-captured" capture-time="38s"/>
+    <control-point id="hill-03" name="Ship 03" capture="hill-03-capture" progress="hill-03-progress" captured="hill-03-captured" capture-time="38s"/>
+    <control-point id="hill-04" name="Ship 04" capture="hill-04-capture" progress="hill-04-progress" captured="hill-04-captured" capture-time="38s"/>
+    <control-point id="hill-05" name="Ship 05" capture="hill-05-capture" progress="hill-05-progress" captured="hill-05-captured" capture-time="38s"/>
+    <control-point id="hill-06" name="Ship 06" capture="hill-06-capture" progress="hill-06-progress" captured="hill-06-captured" capture-time="38s"/>
+    <control-point id="hill-07" name="Ship 07" capture="hill-07-capture" progress="hill-07-progress" captured="hill-07-captured" capture-time="38s"/>
+    <control-point id="hill-08" name="Ship 08" capture="hill-08-capture" progress="hill-08-progress" captured="hill-08-captured" capture-time="26s"/>
+    <control-point id="hill-09" name="Ship 09" capture="hill-09-capture" progress="hill-09-progress" captured="hill-09-captured" capture-time="26s"/>
+    <control-point id="hill-10" name="Ship 10" capture="hill-10-capture" progress="hill-10-progress" captured="hill-10-captured" capture-time="26s"/>
+    <control-point id="hill-11" name="Ship 11" capture="hill-11-capture" progress="hill-11-progress" captured="hill-11-captured" capture-time="26s"/>
+    <control-point id="hill-12" name="Ship 12" capture="hill-12-capture" progress="hill-12-progress" captured="hill-12-captured" capture-time="26s"/>
+    <control-point id="hill-13" name="Ship 13" capture="hill-13-capture" progress="hill-13-progress" captured="hill-13-captured" capture-time="26s"/>
+    <control-point id="hill-14" name="Ship 14" capture="hill-14-capture" progress="hill-14-progress" captured="hill-14-captured" capture-time="26s"/>
+    <control-point id="hill-15" name="Ship 15" capture="hill-15-capture" progress="hill-15-progress" captured="hill-15-captured" capture-time="26s"/>
+    <control-point id="hill-16" name="Ship 16" capture="hill-16-capture" progress="hill-16-progress" captured="hill-16-captured" capture-time="26s"/>
+    <control-point id="hill-17" name="Ship 17" capture="hill-17-capture" progress="hill-17-progress" captured="hill-17-captured" capture-time="26s"/>
+    <control-point id="hill-18" name="Ship 18" capture="hill-18-capture" progress="hill-18-progress" captured="hill-18-captured" capture-time="26s"/>
+    <control-point id="hill-19" name="Ship 19" capture="hill-19-capture" progress="hill-19-progress" captured="hill-19-captured" capture-time="26s"/>
+    <control-point id="hill-20" name="Ship 20" capture="hill-20-capture" progress="hill-20-progress" captured="hill-20-captured" capture-time="26s"/>
+    <control-point id="hill-21" name="Ship 21" capture="hill-21-capture" progress="hill-21-progress" captured="hill-21-captured" capture-time="26s"/>
+    <control-point id="hill-22" name="Ship 22" capture="hill-22-capture" progress="hill-22-progress" captured="hill-22-captured" capture-time="26s"/>
+    <control-point id="hill-23" name="Ship 23" capture="hill-23-capture" progress="hill-23-progress" captured="hill-23-captured" capture-time="26s"/>
+    <control-point id="hill-24" name="Ship 24" capture="hill-24-capture" progress="hill-24-progress" captured="hill-24-captured" capture-time="26s"/>
+    <control-point id="hill-25" name="Ship 25" capture="hill-25-capture" progress="hill-25-progress" captured="hill-25-captured" capture-time="26s"/>
+    <control-point id="hill-26" name="Ship 26" capture="hill-26-capture" progress="hill-26-progress" captured="hill-26-captured" capture-time="26s"/>
+    <control-point id="hill-27" name="Ship 27" capture="hill-27-capture" progress="hill-27-progress" captured="hill-27-captured" capture-time="26s"/>
+    <control-point id="hill-28" name="Ship 28" capture="hill-28-capture" progress="hill-28-progress" captured="hill-28-captured" capture-time="26s"/>
+    <control-point id="hill-29" name="Ship 29" capture="hill-29-capture" progress="hill-29-progress" captured="hill-29-captured" capture-time="26s"/>
+    <control-point id="hill-30" name="Ship 30" capture="hill-30-capture" progress="hill-30-progress" captured="hill-30-captured" capture-time="26s"/>
+    <control-point id="hill-31" name="Ship 31" capture="hill-31-capture" progress="hill-31-progress" captured="hill-31-captured" capture-time="26s"/>
+</control-points>
+<destroyables materials="gravel" show="false">
+    <destroyable id="yellow-fleet-complete" name="yellow-fleet-complete" region="yellow-complete" owner="red-team"/>
+    <destroyable id="red-fleet-complete" name="red-fleet-complete" region="red-complete" owner="green-team"/>
+    <destroyable id="green-fleet-complete" name="green-fleet-complete" region="green-complete" owner="yellow-team"/>
+</destroyables>
+<structures>
+    <!-- Yellow team redstone structures -->
+    <structure id="yellow-redstone-hill-01" region="yellow-redstone-hill-01-region"/>
+    <structure id="yellow-redstone-hill-02" region="yellow-redstone-hill-02-region"/>
+    <structure id="yellow-redstone-hill-03" region="yellow-redstone-hill-03-region"/>
+    <structure id="yellow-redstone-hill-04" region="yellow-redstone-hill-04-region"/>
+    <structure id="yellow-redstone-hill-05" region="yellow-redstone-hill-05-region"/>
+    <structure id="yellow-redstone-hill-06" region="yellow-redstone-hill-06-region"/>
+    <structure id="yellow-redstone-hill-07" region="yellow-redstone-hill-07-region"/>
+    <structure id="yellow-redstone-hill-08" region="yellow-redstone-hill-08-region"/>
+    <structure id="yellow-redstone-hill-09" region="yellow-redstone-hill-09-region"/>
+    <structure id="yellow-redstone-hill-10" region="yellow-redstone-hill-10-region"/>
+    <structure id="yellow-redstone-hill-11" region="yellow-redstone-hill-11-region"/>
+    <structure id="yellow-redstone-hill-12" region="yellow-redstone-hill-12-region"/>
+    <structure id="yellow-redstone-hill-13" region="yellow-redstone-hill-13-region"/>
+    <structure id="yellow-redstone-hill-14" region="yellow-redstone-hill-14-region"/>
+    <structure id="yellow-redstone-hill-15" region="yellow-redstone-hill-15-region"/>
+    <structure id="yellow-redstone-hill-16" region="yellow-redstone-hill-16-region"/>
+    <structure id="yellow-redstone-hill-17" region="yellow-redstone-hill-17-region"/>
+    <structure id="yellow-redstone-hill-18" region="yellow-redstone-hill-18-region"/>
+    <structure id="yellow-redstone-hill-19" region="yellow-redstone-hill-19-region"/>
+    <structure id="yellow-redstone-hill-20" region="yellow-redstone-hill-20-region"/>
+    <structure id="yellow-redstone-hill-21" region="yellow-redstone-hill-21-region"/>
+    <structure id="yellow-redstone-hill-22" region="yellow-redstone-hill-22-region"/>
+    <structure id="yellow-redstone-hill-23" region="yellow-redstone-hill-23-region"/>
+    <structure id="yellow-redstone-hill-24" region="yellow-redstone-hill-24-region"/>
+    <structure id="yellow-redstone-hill-25" region="yellow-redstone-hill-25-region"/>
+    <structure id="yellow-redstone-hill-26" region="yellow-redstone-hill-26-region"/>
+    <structure id="yellow-redstone-hill-27" region="yellow-redstone-hill-27-region"/>
+    <structure id="yellow-redstone-hill-28" region="yellow-redstone-hill-28-region"/>
+    <structure id="yellow-redstone-hill-29" region="yellow-redstone-hill-29-region"/>
+    <structure id="yellow-redstone-hill-30" region="yellow-redstone-hill-30-region"/>
+    <structure id="yellow-redstone-hill-31" region="yellow-redstone-hill-31-region"/>
+    <!-- Yellow team redstone dymaics -->
+    <dynamic structure="yellow-redstone-hill-01" trigger="yellow-owns-hill-01"/>
+    <dynamic structure="yellow-redstone-hill-02" trigger="yellow-owns-hill-02"/>
+    <dynamic structure="yellow-redstone-hill-03" trigger="yellow-owns-hill-03"/>
+    <dynamic structure="yellow-redstone-hill-04" trigger="yellow-owns-hill-04"/>
+    <dynamic structure="yellow-redstone-hill-05" trigger="yellow-owns-hill-05"/>
+    <dynamic structure="yellow-redstone-hill-06" trigger="yellow-owns-hill-06"/>
+    <dynamic structure="yellow-redstone-hill-07" trigger="yellow-owns-hill-07"/>
+    <dynamic structure="yellow-redstone-hill-08" trigger="yellow-owns-hill-08"/>
+    <dynamic structure="yellow-redstone-hill-09" trigger="yellow-owns-hill-09"/>
+    <dynamic structure="yellow-redstone-hill-10" trigger="yellow-owns-hill-10"/>
+    <dynamic structure="yellow-redstone-hill-11" trigger="yellow-owns-hill-11"/>
+    <dynamic structure="yellow-redstone-hill-12" trigger="yellow-owns-hill-12"/>
+    <dynamic structure="yellow-redstone-hill-13" trigger="yellow-owns-hill-13"/>
+    <dynamic structure="yellow-redstone-hill-14" trigger="yellow-owns-hill-14"/>
+    <dynamic structure="yellow-redstone-hill-15" trigger="yellow-owns-hill-15"/>
+    <dynamic structure="yellow-redstone-hill-16" trigger="yellow-owns-hill-16"/>
+    <dynamic structure="yellow-redstone-hill-17" trigger="yellow-owns-hill-17"/>
+    <dynamic structure="yellow-redstone-hill-18" trigger="yellow-owns-hill-18"/>
+    <dynamic structure="yellow-redstone-hill-19" trigger="yellow-owns-hill-19"/>
+    <dynamic structure="yellow-redstone-hill-20" trigger="yellow-owns-hill-20"/>
+    <dynamic structure="yellow-redstone-hill-21" trigger="yellow-owns-hill-21"/>
+    <dynamic structure="yellow-redstone-hill-22" trigger="yellow-owns-hill-22"/>
+    <dynamic structure="yellow-redstone-hill-23" trigger="yellow-owns-hill-23"/>
+    <dynamic structure="yellow-redstone-hill-24" trigger="yellow-owns-hill-24"/>
+    <dynamic structure="yellow-redstone-hill-25" trigger="yellow-owns-hill-25"/>
+    <dynamic structure="yellow-redstone-hill-26" trigger="yellow-owns-hill-26"/>
+    <dynamic structure="yellow-redstone-hill-27" trigger="yellow-owns-hill-27"/>
+    <dynamic structure="yellow-redstone-hill-28" trigger="yellow-owns-hill-28"/>
+    <dynamic structure="yellow-redstone-hill-29" trigger="yellow-owns-hill-29"/>
+    <dynamic structure="yellow-redstone-hill-30" trigger="yellow-owns-hill-30"/>
+    <dynamic structure="yellow-redstone-hill-31" trigger="yellow-owns-hill-31"/>
+    <!-- Red team redstone structures -->
+    <structure id="red-redstone-hill-01" region="red-redstone-hill-01-region"/>
+    <structure id="red-redstone-hill-02" region="red-redstone-hill-02-region"/>
+    <structure id="red-redstone-hill-03" region="red-redstone-hill-03-region"/>
+    <structure id="red-redstone-hill-04" region="red-redstone-hill-04-region"/>
+    <structure id="red-redstone-hill-05" region="red-redstone-hill-05-region"/>
+    <structure id="red-redstone-hill-06" region="red-redstone-hill-06-region"/>
+    <structure id="red-redstone-hill-07" region="red-redstone-hill-07-region"/>
+    <structure id="red-redstone-hill-08" region="red-redstone-hill-08-region"/>
+    <structure id="red-redstone-hill-09" region="red-redstone-hill-09-region"/>
+    <structure id="red-redstone-hill-10" region="red-redstone-hill-10-region"/>
+    <structure id="red-redstone-hill-11" region="red-redstone-hill-11-region"/>
+    <structure id="red-redstone-hill-12" region="red-redstone-hill-12-region"/>
+    <structure id="red-redstone-hill-13" region="red-redstone-hill-13-region"/>
+    <structure id="red-redstone-hill-14" region="red-redstone-hill-14-region"/>
+    <structure id="red-redstone-hill-15" region="red-redstone-hill-15-region"/>
+    <structure id="red-redstone-hill-16" region="red-redstone-hill-16-region"/>
+    <structure id="red-redstone-hill-17" region="red-redstone-hill-17-region"/>
+    <structure id="red-redstone-hill-18" region="red-redstone-hill-18-region"/>
+    <structure id="red-redstone-hill-19" region="red-redstone-hill-19-region"/>
+    <structure id="red-redstone-hill-20" region="red-redstone-hill-20-region"/>
+    <structure id="red-redstone-hill-21" region="red-redstone-hill-21-region"/>
+    <structure id="red-redstone-hill-22" region="red-redstone-hill-22-region"/>
+    <structure id="red-redstone-hill-23" region="red-redstone-hill-23-region"/>
+    <structure id="red-redstone-hill-24" region="red-redstone-hill-24-region"/>
+    <structure id="red-redstone-hill-25" region="red-redstone-hill-25-region"/>
+    <structure id="red-redstone-hill-26" region="red-redstone-hill-26-region"/>
+    <structure id="red-redstone-hill-27" region="red-redstone-hill-27-region"/>
+    <structure id="red-redstone-hill-28" region="red-redstone-hill-28-region"/>
+    <structure id="red-redstone-hill-29" region="red-redstone-hill-29-region"/>
+    <structure id="red-redstone-hill-30" region="red-redstone-hill-30-region"/>
+    <structure id="red-redstone-hill-31" region="red-redstone-hill-31-region"/>
+    <!-- Red team redstone dymaics -->
+    <dynamic structure="red-redstone-hill-01" trigger="red-owns-hill-01"/>
+    <dynamic structure="red-redstone-hill-02" trigger="red-owns-hill-02"/>
+    <dynamic structure="red-redstone-hill-03" trigger="red-owns-hill-03"/>
+    <dynamic structure="red-redstone-hill-04" trigger="red-owns-hill-04"/>
+    <dynamic structure="red-redstone-hill-05" trigger="red-owns-hill-05"/>
+    <dynamic structure="red-redstone-hill-06" trigger="red-owns-hill-06"/>
+    <dynamic structure="red-redstone-hill-07" trigger="red-owns-hill-07"/>
+    <dynamic structure="red-redstone-hill-08" trigger="red-owns-hill-08"/>
+    <dynamic structure="red-redstone-hill-09" trigger="red-owns-hill-09"/>
+    <dynamic structure="red-redstone-hill-10" trigger="red-owns-hill-10"/>
+    <dynamic structure="red-redstone-hill-11" trigger="red-owns-hill-11"/>
+    <dynamic structure="red-redstone-hill-12" trigger="red-owns-hill-12"/>
+    <dynamic structure="red-redstone-hill-13" trigger="red-owns-hill-13"/>
+    <dynamic structure="red-redstone-hill-14" trigger="red-owns-hill-14"/>
+    <dynamic structure="red-redstone-hill-15" trigger="red-owns-hill-15"/>
+    <dynamic structure="red-redstone-hill-16" trigger="red-owns-hill-16"/>
+    <dynamic structure="red-redstone-hill-17" trigger="red-owns-hill-17"/>
+    <dynamic structure="red-redstone-hill-18" trigger="red-owns-hill-18"/>
+    <dynamic structure="red-redstone-hill-19" trigger="red-owns-hill-19"/>
+    <dynamic structure="red-redstone-hill-20" trigger="red-owns-hill-20"/>
+    <dynamic structure="red-redstone-hill-21" trigger="red-owns-hill-21"/>
+    <dynamic structure="red-redstone-hill-22" trigger="red-owns-hill-22"/>
+    <dynamic structure="red-redstone-hill-23" trigger="red-owns-hill-23"/>
+    <dynamic structure="red-redstone-hill-24" trigger="red-owns-hill-24"/>
+    <dynamic structure="red-redstone-hill-25" trigger="red-owns-hill-25"/>
+    <dynamic structure="red-redstone-hill-26" trigger="red-owns-hill-26"/>
+    <dynamic structure="red-redstone-hill-27" trigger="red-owns-hill-27"/>
+    <dynamic structure="red-redstone-hill-28" trigger="red-owns-hill-28"/>
+    <dynamic structure="red-redstone-hill-29" trigger="red-owns-hill-29"/>
+    <dynamic structure="red-redstone-hill-30" trigger="red-owns-hill-30"/>
+    <dynamic structure="red-redstone-hill-31" trigger="red-owns-hill-31"/>
+    <!-- Green team redstone structures -->
+    <structure id="green-redstone-hill-01" region="green-redstone-hill-01-region"/>
+    <structure id="green-redstone-hill-02" region="green-redstone-hill-02-region"/>
+    <structure id="green-redstone-hill-03" region="green-redstone-hill-03-region"/>
+    <structure id="green-redstone-hill-04" region="green-redstone-hill-04-region"/>
+    <structure id="green-redstone-hill-05" region="green-redstone-hill-05-region"/>
+    <structure id="green-redstone-hill-06" region="green-redstone-hill-06-region"/>
+    <structure id="green-redstone-hill-07" region="green-redstone-hill-07-region"/>
+    <structure id="green-redstone-hill-08" region="green-redstone-hill-08-region"/>
+    <structure id="green-redstone-hill-09" region="green-redstone-hill-09-region"/>
+    <structure id="green-redstone-hill-10" region="green-redstone-hill-10-region"/>
+    <structure id="green-redstone-hill-11" region="green-redstone-hill-11-region"/>
+    <structure id="green-redstone-hill-12" region="green-redstone-hill-12-region"/>
+    <structure id="green-redstone-hill-13" region="green-redstone-hill-13-region"/>
+    <structure id="green-redstone-hill-14" region="green-redstone-hill-14-region"/>
+    <structure id="green-redstone-hill-15" region="green-redstone-hill-15-region"/>
+    <structure id="green-redstone-hill-16" region="green-redstone-hill-16-region"/>
+    <structure id="green-redstone-hill-17" region="green-redstone-hill-17-region"/>
+    <structure id="green-redstone-hill-18" region="green-redstone-hill-18-region"/>
+    <structure id="green-redstone-hill-19" region="green-redstone-hill-19-region"/>
+    <structure id="green-redstone-hill-20" region="green-redstone-hill-20-region"/>
+    <structure id="green-redstone-hill-21" region="green-redstone-hill-21-region"/>
+    <structure id="green-redstone-hill-22" region="green-redstone-hill-22-region"/>
+    <structure id="green-redstone-hill-23" region="green-redstone-hill-23-region"/>
+    <structure id="green-redstone-hill-24" region="green-redstone-hill-24-region"/>
+    <structure id="green-redstone-hill-25" region="green-redstone-hill-25-region"/>
+    <structure id="green-redstone-hill-26" region="green-redstone-hill-26-region"/>
+    <structure id="green-redstone-hill-27" region="green-redstone-hill-27-region"/>
+    <structure id="green-redstone-hill-28" region="green-redstone-hill-28-region"/>
+    <structure id="green-redstone-hill-29" region="green-redstone-hill-29-region"/>
+    <structure id="green-redstone-hill-30" region="green-redstone-hill-30-region"/>
+    <structure id="green-redstone-hill-31" region="green-redstone-hill-31-region"/>
+    <!-- Green team redstone dymaics -->
+    <dynamic structure="green-redstone-hill-01" trigger="green-owns-hill-01"/>
+    <dynamic structure="green-redstone-hill-02" trigger="green-owns-hill-02"/>
+    <dynamic structure="green-redstone-hill-03" trigger="green-owns-hill-03"/>
+    <dynamic structure="green-redstone-hill-04" trigger="green-owns-hill-04"/>
+    <dynamic structure="green-redstone-hill-05" trigger="green-owns-hill-05"/>
+    <dynamic structure="green-redstone-hill-06" trigger="green-owns-hill-06"/>
+    <dynamic structure="green-redstone-hill-07" trigger="green-owns-hill-07"/>
+    <dynamic structure="green-redstone-hill-08" trigger="green-owns-hill-08"/>
+    <dynamic structure="green-redstone-hill-09" trigger="green-owns-hill-09"/>
+    <dynamic structure="green-redstone-hill-10" trigger="green-owns-hill-10"/>
+    <dynamic structure="green-redstone-hill-11" trigger="green-owns-hill-11"/>
+    <dynamic structure="green-redstone-hill-12" trigger="green-owns-hill-12"/>
+    <dynamic structure="green-redstone-hill-13" trigger="green-owns-hill-13"/>
+    <dynamic structure="green-redstone-hill-14" trigger="green-owns-hill-14"/>
+    <dynamic structure="green-redstone-hill-15" trigger="green-owns-hill-15"/>
+    <dynamic structure="green-redstone-hill-16" trigger="green-owns-hill-16"/>
+    <dynamic structure="green-redstone-hill-17" trigger="green-owns-hill-17"/>
+    <dynamic structure="green-redstone-hill-18" trigger="green-owns-hill-18"/>
+    <dynamic structure="green-redstone-hill-19" trigger="green-owns-hill-19"/>
+    <dynamic structure="green-redstone-hill-20" trigger="green-owns-hill-20"/>
+    <dynamic structure="green-redstone-hill-21" trigger="green-owns-hill-21"/>
+    <dynamic structure="green-redstone-hill-22" trigger="green-owns-hill-22"/>
+    <dynamic structure="green-redstone-hill-23" trigger="green-owns-hill-23"/>
+    <dynamic structure="green-redstone-hill-24" trigger="green-owns-hill-24"/>
+    <dynamic structure="green-redstone-hill-25" trigger="green-owns-hill-25"/>
+    <dynamic structure="green-redstone-hill-26" trigger="green-owns-hill-26"/>
+    <dynamic structure="green-redstone-hill-27" trigger="green-owns-hill-27"/>
+    <dynamic structure="green-redstone-hill-28" trigger="green-owns-hill-28"/>
+    <dynamic structure="green-redstone-hill-29" trigger="green-owns-hill-29"/>
+    <dynamic structure="green-redstone-hill-30" trigger="green-owns-hill-30"/>
+    <dynamic structure="green-redstone-hill-31" trigger="green-owns-hill-31"/>
+</structures>
+<lootables>
+    <!-- Base island chests -->
+    <fill loot="starting-loot" filter="spawn-protection" refill-trigger="chest-refill" refill-clear="true"/>
+    <loot id="starting-loot">
+        <any count="4..6" unique="false">
+            <item material="wood" damage="5" amount="6"/>
+            <item material="wood" damage="5" amount="7"/>
+            <item material="wood" damage="5" amount="8"/>
+            <item material="cooked beef" amount="2"/>
+            <item material="cooked beef" amount="3"/>
+            <item material="wood axe">
+                <enchantment level="1">efficiency</enchantment>
+            </item>
+            <item material="wood pickaxe">
+                <enchantment level="1">efficiency</enchantment>
+            </item>
+            <item material="wood sword">
+                <enchantment level="1">damage all</enchantment>
+            </item>
+        </any>
+    </loot>
+    <!-- Tier 1 loot, found in outer and middle ships -->
+    <fill loot="tier-1" filter="outer-ships" refill-trigger="chest-refill" refill-clear="true"/>
+    <fill loot="tier-1" filter="middle-ships" refill-trigger="chest-refill" refill-clear="true"/>
+    <loot id="tier-1">
+        <any count="3..5">
+            <option weight="24">
+                <any count="1" unique="false">
+                    <item material="wood" damage="5" amount="4"/>
+                    <item material="wood" damage="5" amount="6"/>
+                    <any count="1..2" unique="false">
+                        <item material="wood" damage="5" amount="4"/>
+                        <item material="wood" damage="5" amount="6"/>
+                        <item material="wood" damage="5" amount="8"/>
+                    </any>
+                </any>
+            </option>
+            <option weight="24">
+                <any count="1" unique="false">
+                    <option weight="24">
+                        <any count="1..2" unique="false">
+                            <item material="cooked beef" amount="2"/>
+                            <item material="cooked beef" amount="3"/>
+                            <item material="cooked beef" amount="4"/>
+                            <item material="cooked beef" amount="5"/>
+                        </any>
+                    </option>
+                    <option weight="1">
+                        <any count="1" unique="false">
+                            <item material="golden apple"/>
+                            <item material="golden apple" amount="2"/>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="16">
+                <any count="1" unique="false">
+                    <item material="wood" damage="5" amount="4"/>
+                    <item material="wood" damage="5" amount="6"/>
+                </any>
+            </option>
+            <option weight="16">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <item material="wood sword">
+                            <enchantment level="1">damage all</enchantment>
+                        </item>
+                    </option>
+                    <option weight="12">
+                        <item material="stone sword"/>
+                    </option>
+                    <option weight="4">
+                        <item material="iron sword"/>
+                    </option>
+                    <option weight="3">
+                        <item material="stone sword">
+                            <enchantment level="1">damage all</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="16">
+                <any count="1" unique="false">
+                    <option weight="24">
+                        <any count="1" unique="false">
+                            <item material="gold boots">
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="chainmail boots">
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="gold boots">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="gold boots">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="chainmail boots">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="chainmail boots">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="4">
+                        <any count="1" unique="false">
+                            <item material="gold boots">
+                                <enchantment level="2">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="gold boots">
+                                <enchantment level="2">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="gold boots">
+                                <enchantment level="1">frost walker</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots"/>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="14">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="gold leggings"/>
+                            <item material="chainmail leggings"/>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <any count="1" unique="false">
+                            <item material="gold leggings">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="gold leggings">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="2">
+                        <item material="iron leggings"/>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="gold helmet"/>
+                            <item material="chainmail helmet"/>
+                        </any>
+                    </option>
+                    <option weight="8">
+                        <any count="1" unique="false">
+                            <item material="gold helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="gold helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <item material="iron helmet"/>
+                    </option>
+                    <option weight="3">
+                        <any count="1" unique="false">
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <item material="wood axe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="12">
+                        <item material="stone axe"/>
+                    </option>
+                    <option weight="4">
+                        <item material="iron axe"/>
+                    </option>
+                    <option weight="3">
+                        <item material="stone axe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <item material="wood pickaxe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="12">
+                        <item material="stone pickaxe"/>
+                    </option>
+                    <option weight="4">
+                        <item material="iron pickaxe"/>
+                    </option>
+                    <option weight="3">
+                        <item material="stone pickaxe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <any count="1..2" unique="false">
+                            <item material="gold ingot" amount="3"/>
+                            <item material="gold ingot" amount="4"/>
+                            <item material="gold ingot" amount="5"/>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <any count="1..2" unique="false">
+                            <item material="iron ingot" amount="1"/>
+                            <item material="iron ingot" amount="2"/>
+                            <item material="iron ingot" amount="3"/>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1..2">
+                    <option weight="16">
+                        <any count="1..2">
+                            <item material="arrow" amount="3"/>
+                            <item material="arrow" amount="6"/>
+                            <item material="arrow" amount="8"/>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <any count="1" unique="false">
+                            <item material="arrow" amount="3"/>
+                            <item material="arrow" amount="6"/>
+                        </any>
+                        <item material="bow">
+                            <enchantment level="1">arrow damage</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="8">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <item material="gold chestplate"/>
+                        <item material="chainmail chestplate"/>
+                    </option>
+                    <option weight="6">
+                        <any count="1" unique="false">
+                            <item material="gold chestplate">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="gold chestplate">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail chestplate">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail chestplate">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="2">
+                        <item material="iron chestplate"/>
+                    </option>
+                </any>
+            </option>
+            <option weight="8">
+                <item material="boat dark oak"/>
+            </option>
+            <option weight="8">
+                <any count="1" unique="false">
+                    <item material="golden apple"/>
+                    <item material="potion" name="`rRegeneration `7(0:30, 6`4❤`7)">
+                        <effect duration="30s">regeneration</effect>
+                    </item>
+                    <item material="splash potion" name="`rInstant Health `7(2`4❤`7)">
+                        <effect duration="0s">instant_health</effect>
+                    </item>
+                </any>
+            </option>
+            <option weight="6">
+                <any count="1" unique="false">
+                    <item material="snowball" amount="3" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                    <item material="snowball" amount="6" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                    <item material="snowball" amount="8" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                </any>
+            </option>
+        </any>
+    </loot>
+    <!-- Tier 2 loot, found in central ships -->
+    <fill loot="tier-2" filter="central-ships" refill-trigger="chest-refill" refill-clear="true"/>
+    <fill loot="tier-2" filter="island-chests" refill-trigger="chest-refill" refill-clear="true"/>
+    <loot id="tier-2">
+        <any count="3..5">
+            <option weight="16">
+                <any count="1" unique="false">
+                    <option weight="24">
+                        <item material="stone sword">
+                            <enchantment level="1">damage all</enchantment>
+                        </item>
+                    </option>
+                    <option weight="18">
+                        <item material="stone sword">
+                            <enchantment level="2">damage all</enchantment>
+                        </item>
+                    </option>
+                    <option weight="16">
+                        <item material="iron sword"/>
+                    </option>
+                    <option weight="12">
+                        <item material="iron sword">
+                            <enchantment level="1">damage all</enchantment>
+                        </item>
+                    </option>
+                    <option weight="8">
+                        <item material="gold sword">
+                            <enchantment level="1">fire aspect</enchantment>
+                        </item>
+                    </option>
+                    <option weight="2">
+                        <item material="gold sword">
+                            <enchantment level="1">fire aspect</enchantment>
+                            <enchantment level="1">knockback</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="24">
+                        <any count="1" unique="false">
+                            <item material="chainmail boots">
+                                <enchantment level="2">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="chainmail boots">
+                                <enchantment level="2">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots"/>
+                        </any>
+                    </option>
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="iron boots">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="gold boots">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">frost walker</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="gold boots">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">frost walker</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="4">
+                        <any count="1" unique="false">
+                            <item material="iron boots">
+                                <enchantment level="2">protection environmental</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="2">protection projectile</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="2">protection environmental</enchantment>
+                                <enchantment level="2">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="2">protection projectile</enchantment>
+                                <enchantment level="2">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">frost walker</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                            <item material="iron boots">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">frost walker</enchantment>
+                                <enchantment level="1">depth strider</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="iron leggings"/>
+                            <item material="gold leggings">
+                                <enchantment level="2">protection environmental</enchantment>
+                            </item>
+                            <item material="gold leggings">
+                                <enchantment level="2">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <any count="1" unique="false">
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="2">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail leggings">
+                                <enchantment level="2">protection projectile</enchantment>
+                            </item>
+                            <item material="iron leggings"/>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <any count="1" unique="false">
+                            <item material="iron leggings">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="iron leggings">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="iron helmet"/>
+                            <item material="gold helmet">
+                                <enchantment level="2">protection environmental</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                            <item material="gold helmet">
+                                <enchantment level="2">protection projectile</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="8">
+                        <any count="1" unique="false">
+                            <item material="chainmail helmet">
+                                <enchantment level="2">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="2">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                            <item material="chainmail helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <item material="iron helmet"/>
+                    </option>
+                    <option weight="3">
+                        <any count="1" unique="false">
+                            <item material="iron helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="iron helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="iron helmet">
+                                <enchantment level="1">protection environmental</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                            <item material="iron helmet">
+                                <enchantment level="1">protection projectile</enchantment>
+                                <enchantment level="1">oxygen</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <item material="diamond helmet"/>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <item material="stone axe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="12">
+                        <item material="stone axe"/>
+                    </option>
+                    <option weight="6">
+                        <item material="stone axe">
+                            <enchantment level="2">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="4">
+                        <item material="iron axe"/>
+                    </option>
+                    <option weight="3">
+                        <item material="iron axe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <item material="stone pickaxe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="12">
+                        <item material="stone pickaxe"/>
+                    </option>
+                    <option weight="6">
+                        <item material="stone pickaxe">
+                            <enchantment level="2">efficiency</enchantment>
+                        </item>
+                    </option>
+                    <option weight="4">
+                        <item material="iron pickaxe"/>
+                    </option>
+                    <option weight="3">
+                        <item material="iron pickaxe">
+                            <enchantment level="1">efficiency</enchantment>
+                        </item>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <item material="wood" damage="5" amount="4"/>
+                    <item material="wood" damage="5" amount="6"/>
+                    <any count="1..2" unique="false">
+                        <item material="wood" damage="5" amount="4"/>
+                        <item material="wood" damage="5" amount="6"/>
+                        <item material="wood" damage="5" amount="8"/>
+                    </any>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1..2">
+                    <option weight="8">
+                        <any count="1" unique="false">
+                            <option weight="6">
+                                <any count="1" unique="false">
+                                    <item material="arrow" amount="3"/>
+                                    <item material="arrow" amount="6"/>
+                                    <item material="arrow" amount="8"/>
+                                </any>
+                            </option>
+                            <option weight="2">
+                                <any count="1" unique="false">
+                                    <item name="`rSlowness Arrow `7(0:03)" material="tipped arrow" amount="3">
+                                        <effect duration="3s">slowness</effect>
+                                    </item>
+                                    <item name="`rPoison Arrow `7(0:03, 1`2❤`7)" material="tipped arrow" amount="3">
+                                        <effect duration="3s">poison</effect>
+                                    </item>
+                                    <item name="`rWeakness Arrow `7(0:03)" material="tipped arrow" amount="3">
+                                        <effect duration="3s">weakness</effect>
+                                    </item>
+                                </any>
+                            </option>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <any count="1" unique="false">
+                            <item material="arrow" amount="3"/>
+                            <item material="arrow" amount="6"/>
+                        </any>
+                        <any count="1" unique="false">
+                            <option weight="12">
+                                <item material="bow">
+                                    <enchantment level="1">arrow damage</enchantment>
+                                </item>
+                            </option>
+                            <option weight="4">
+                                <item material="bow">
+                                    <enchantment level="2">arrow damage</enchantment>
+                                </item>
+                            </option>
+                            <option weight="1">
+                                <item material="bow">
+                                    <enchantment level="1">flame</enchantment>
+                                </item>
+                            </option>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <item material="snowball" amount="3" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                    <item material="snowball" amount="6" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                    <item material="snowball" amount="8" name="`r`cGrenade `8| `aRight-click" grenade="true" grenade-power="1.8"/>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="2">
+                        <any count="1" unique="false">
+                            <item material="fireball" amount="2" name="`r`4Fireball Cannon `8| `aRight-click" projectile="fireball-cannon"/>
+                            <item material="fireball" amount="3" name="`r`4Fireball Cannon `8| `aRight-click" projectile="fireball-cannon"/>
+                            <item material="fireball" amount="4" name="`r`4Fireball Cannon `8| `aRight-click" projectile="fireball-cannon"/>
+                        </any>
+                    </option>
+                    <option weight="1">
+                        <any count="1" unique="false">
+                            <item material="fireball" amount="2" name="`r`5Charged Fireball Cannon `8| `aRight-click" projectile="fireball-cannon-v2">
+                                <enchantment level="1">arrow fire</enchantment>
+                            </item>
+                            <item material="fireball" amount="3" name="`r`5Charged Fireball Cannon `8| `aRight-click" projectile="fireball-cannon-v2">
+                                <enchantment level="1">arrow fire</enchantment>
+                            </item>
+                            <item material="fireball" amount="4" name="`r`5Charged Fireball Cannon `8| `aRight-click" projectile="fireball-cannon-v2">
+                                <enchantment level="1">arrow fire</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="12">
+                <any count="1" unique="false">
+                    <option weight="10">
+                        <any count="1" unique="false">
+                            <item material="iron chestplate"/>
+                            <item material="gold chestplate">
+                                <enchantment level="2">protection environmental</enchantment>
+                            </item>
+                            <item material="gold chestplate">
+                                <enchantment level="2">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="6">
+                        <any count="1" unique="false">
+                            <item material="chainmail chestplate">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail chestplate">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                            <item material="chainmail chestplate">
+                                <enchantment level="2">protection environmental</enchantment>
+                            </item>
+                            <item material="chainmail chestplate">
+                                <enchantment level="2">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                    <option weight="2">
+                        <any count="1" unique="false">
+                            <item material="iron chestplate">
+                                <enchantment level="1">protection environmental</enchantment>
+                            </item>
+                            <item material="iron chestplate">
+                                <enchantment level="1">protection projectile</enchantment>
+                            </item>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="10">
+                <any count="1..2" unique="false">
+                    <option weight="8">
+                        <any count="1" unique="false">
+                            <item material="cooked beef" amount="2"/>
+                            <item material="cooked beef" amount="3"/>
+                            <item material="cooked beef" amount="4"/>
+                            <item material="cooked beef" amount="5"/>
+                        </any>
+                    </option>
+                    <option weight="4">
+                        <any count="1" unique="false">
+                            <item material="golden apple"/>
+                            <item material="golden apple" amount="2"/>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="10">
+                <any count="1" unique="false">
+                    <option weight="12">
+                        <any count="1..2" unique="false">
+                            <item material="iron ingot" amount="3"/>
+                            <item material="iron ingot" amount="4"/>
+                            <item material="iron ingot" amount="5"/>
+                        </any>
+                    </option>
+                    <option weight="3">
+                        <any count="1..2" unique="false">
+                            <item material="diamond" amount="1"/>
+                            <item material="diamond" amount="2"/>
+                        </any>
+                    </option>
+                </any>
+            </option>
+            <option weight="8">
+                <any count="1..2" unique="false">
+                    <item material="boat dark oak"/>
+                </any>
+            </option>
+            <option weight="8">
+                <any count="1" unique="false">
+                    <item material="wood" damage="5" amount="4"/>
+                    <item material="wood" damage="5" amount="6"/>
+                </any>
+            </option>
+            <option weight="8">
+                <any count="1" unique="false">
+                    <item material="golden apple"/>
+                    <item material="potion" name="`rRegeneration `7(0:30, 6`4❤`7)">
+                        <effect duration="30s">regeneration</effect>
+                    </item>
+                    <item material="splash potion" name="`rInstant Health `7(2`4❤`7)">
+                        <effect duration="0s">instant_health</effect>
+                    </item>
+                    <item material="potion" name="`rSpeed `7(0:30)">
+                        <effect duration="30s">speed</effect>
+                    </item>
+                    <item material="potion" name="`rWater Breathing `7(1:00)">
+                        <effect duration="1m">water breathing</effect>
+                    </item>
+                </any>
+            </option>
+        </any>
+    </loot>
+</lootables>
+<item-mods>
+    <rule>
+        <match>
+            <material>bow</material>
+            <material>wood sword</material>
+            <material>wood axe</material>
+            <material>wood pickaxe</material>
+            <material>stone sword</material>
+            <material>stone axe</material>
+            <material>stone pickaxe</material>
+            <material>iron sword</material>
+            <material>iron axe</material>
+            <material>iron pickaxe</material>
+            <material>leather helmet</material>
+            <material>leather chestplate</material>
+            <material>leather leggings</material>
+            <material>leather boots</material>
+            <material>gold helmet</material>
+            <material>gold chestplate</material>
+            <material>gold leggings</material>
+            <material>gold boots</material>
+            <material>chainmail helmet</material>
+            <material>chainmail chestplate</material>
+            <material>chainmail leggings</material>
+            <material>chainmail boots</material>
+            <material>iron helmet</material>
+            <material>iron chestplate</material>
+            <material>iron leggings</material>
+            <material>iron boots</material>
+            <material>diamond helmet</material>
+            <material>diamond chestplate</material>
+            <material>diamond leggings</material>
+            <material>diamond boots</material>
+        </match>
+        <modify unbreakable="true"/>
+    </rule>
+</item-mods>
+<block-drops>
+    <rule>
+        <filter>
+            <material>stone</material>
+        </filter>
+        <drops>
+            <item chance="1.0" material="cobblestone"/>
+            <item chance="0.6" material="cobblestone" amount="1"/>
+            <item chance="0.2" material="cobblestone" amount="1"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>gold ore</material>
+        </filter>
+        <drops>
+            <item chance="1.0" material="gold ingot"/>
+            <item chance="0.6" material="gold ingot" amount="1"/>
+            <item chance="0.3" material="gold ingot" amount="1"/>
+            <item chance="0.1" material="gold ingot" amount="1"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>iron ore</material>
+        </filter>
+        <drops>
+            <item chance="1.0" material="iron ingot"/>
+            <item chance="0.3" material="iron ingot" amount="1"/>
+            <item chance="0.1" material="iron ingot" amount="1"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <material>diamond ore</material>
+        </filter>
+        <drops>
+            <item chance="1.0" material="diamond"/>
+            <item chance="0.2" material="diamond" amount="1"/>
+            <item chance="0.04" material="diamond" amount="1"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemremove>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>wool</item>
+    <item>map</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>ladder</item>
+</itemremove>
+<toolrepair>
+    <tool>wood sword</tool>
+    <tool>wood axe</tool>
+    <tool>wood pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<tnt>
+    <fuse>0s</fuse>
+    <blockdamage>true</blockdamage>
+</tnt>
+</map>

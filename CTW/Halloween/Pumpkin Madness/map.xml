@@ -1,0 +1,167 @@
+<map proto="1.4.0">
+<name>Pumpkin Madness</name>
+<version>1.0.6</version>
+<objective>Capture the enemy wools.</objective>
+<authors>
+    <author uuid="a052ca19-5c8c-4616-94a4-45e737b48005"/> <!-- Ranzu -->
+</authors>
+<contributors>
+    <contributor uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f" contribution="XML"/> <!-- Pugzy -->
+</contributors>
+<teams>
+    <team id="red-team" color="Dark_Red" max="16" max-overfill="18">Red</team>
+    <team id="blue-team" color="Blue" max="16" max-overfill="18">Blue</team>
+</teams>
+<spawns>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="-64.5,36,0.5" radius="2" height="2"/>
+        </regions>
+    </default>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="0">
+            <cylinder base="0.5,8,-64.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="180">
+            <cylinder base="0.5,8,64.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+</spawns>
+<respawn delay="5s"/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" material="iron_sword" unbreakable="true" prevent-sharing="true"/>
+        <item slot="1" material="bow" unbreakable="true" enchantment="arrow_infinite:1"/>
+        <item slot="2" material="iron_pickaxe" unbreakable="true" enchantment="dig_speed:1"/>
+        <item slot="3" material="iron_axe" unbreakable="true" enchantment="dig_speed:1"/>
+        <item slot="4" material="iron_spade" unbreakable="true" enchantment="dig_speed:1"/>
+        <item slot="5" material="pumpkin_pie" amount="32"/>
+        <item slot="6" material="log_2" amount="8"/>
+        <item slot="8" material="golden apple"/>
+        <item slot="28" material="arrow"/>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <!-- red armour here if any and team coloured blocks -->
+        <item slot="7" amount="32" damage="14" material="stained_clay"/>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <!-- blue armour here if any and team coloured blocks -->
+        <item slot="7" amount="32" damage="11" material="stained_clay"/>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+    <kit id="spawn-resistance">
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+</kits>
+<wools>
+    <wool team="blue-team" color="cyan" craftable="false" location="-18.5,7,-117.5">
+        <monument><block>-6,8,59</block></monument>
+    </wool>
+    <wool team="blue-team" color="orange" craftable="false" location="-19.5,7,-117.5">
+        <monument><block>6,8,59</block></monument>
+    </wool>
+    <wool team="red-team" color="magenta" craftable="false" location="19.5,7,117.5">
+        <monument><block>6,8,-60</block></monument>
+    </wool>
+    <wool team="red-team" color="light_blue" craftable="false" location="18.5,7,117.5">
+        <monument><block>-6,8,-60</block></monument>
+    </wool>
+</wools>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <not id="no-chest"><material>chest</material></not>
+    <material id="only-iron">iron_block</material>
+    <not id="no-void"><void/></not>
+    <not id="no-trap"><material>trap door</material></not>
+</filters>
+<regions>
+    <union id="wool-rooms">
+        <cuboid id="blueside-wool-rooms" min="-26,0,112" max="28,40,128"/>
+        <cuboid id="redside-wool-rooms" min="27,0,-112" max="-26,40,-128"/>
+    </union>
+    <union id="wool-rooms-top">
+        <cuboid id="blueside-wool-rooms-top" min="-26,7,112" max="28,40,128"/>
+        <cuboid id="redside-wool-rooms-top" min="27,7,-112" max="-26,40,-128"/>
+    </union>
+    <union id="wool-room-between">
+        <cuboid id="blueside-wool-void" min="-10,7,-110" max="11,40,-129"/>
+        <cuboid id="redside-wool-void" min="11,7,110" max="-10,40,129"/>
+    </union>
+    <union id="spawn-rooms">
+        <cuboid id="blue-spawn" min="9,0,84" max="-8,40,44"/>
+        <cuboid id="red-spawn" min="-8,0,-84" max="9,40,-44"/>
+    </union>
+    <union id="spawn-zones">
+        <cylinder base="0.5,7,-64.5" radius="4" height="5"/>
+        <cylinder base="0.5,7,64.5" radius="4" height="5"/>
+    </union>
+    <union id="playable-void">
+        <rectangle id="middle-island" min="34,-9" max="-33,9"/>
+        <rectangle id="connector-island" min="-25,84" max="26,-84"/>
+    </union>
+    <!-- Spawns -->
+    <apply block-break="only-iron" block-place="never" use="no-trap" region="spawn-rooms" message="You may only modify iron in this area."/>
+    <apply enter="only-red" use="only-red" region="red-spawn" message="You may not enter this area."/>
+    <apply enter="only-blue" use="only-blue" region="blue-spawn" message="You may not enter this area."/>
+    <!-- Wool Rooms -->
+    <apply block="never" region="wool-room-between" message="You may not modify the void area!"/>
+    <apply block="never" region="wool-rooms" message="You may not modify this area."/>
+    <apply use="only-blue" region="redside-wool-rooms"/>
+    <apply use="only-red" region="blueside-wool-rooms"/>
+    <apply enter="only-blue" region="redside-wool-rooms" message="You may not enter this area."/>
+    <apply enter="only-red" region="blueside-wool-rooms" message="You may not enter this area."/>
+    <!-- Void -->
+    <apply block="no-void" message="You may not modify the void area!"/>
+</regions>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>web</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="web"/>
+        </drops>
+    </rule>
+</block-drops>
+<kill-reward>
+    <item material="golden_apple"/>
+</kill-reward>
+<maxbuildheight>20</maxbuildheight>
+<itemremove>
+    <item>iron_sword</item>
+    <item>bow</item>
+    <item>iron_pickaxe</item>
+    <item>iron_spade</item>
+    <item>iron_axe</item>
+    <item>pumpkin_pie</item>
+    <item>log_2</item>
+    <item>arrow</item>
+    <item>stained_clay</item>
+    <item>redstone</item>
+    <item>wood_button</item>
+    <item>wood_step</item>
+    <item>workbench</item>
+    <item>fence</item>
+    <item>piston_base</item>
+    <item>piston_sticky_base</item>
+    <item>wood_plate</item>
+    <item>seeds</item>
+    <item>flower_pot</item>
+    <item>flower_pot_item</item>
+    <item>dead_bush</item>
+    <item>wood</item>
+    <item>flint</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+</itemremove>
+</map>

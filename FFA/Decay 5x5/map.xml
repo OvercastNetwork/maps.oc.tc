@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Decay</name>
+<slug>decay</slug>
+<version>1.5.2</version>
+<objective>Kill as many people before the time is up!</objective>
+<authors>
+      <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
+</authors>
+<rules>
+    <rule>You are not allowed to camp!</rule>
+</rules>
+<rage/>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5"/>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <!--Yaw indicates were the player will face when they spawn. I recommend spawning them in corners angleded so they see everything, to prevent spawnkill.-->
+            <point yaw="135">20.5,6,19.5</point>
+            <!--Add .5 on the end of X and Z so the player spawns in middle of the block-->
+            <point yaw="180">14.5,6,22.5</point>
+            <point yaw="-180">-19.5,6,5.5</point>
+            <point yaw="-45">-20.5,11,-17.5</point>
+            <point yaw="75">22.5,7,-20.5</point>
+            <point yaw="180">10.5,12,-3.5</point>
+            <point yaw="0">10.5,12,-10.5</point>
+            <point yaw="-106">-21.5,6,16.5</point>
+            <point yaw="-90">-15.5,6,5.5</point>
+            <point yaw="45">24.5,6,-7.5</point>
+        </regions>
+    </spawn>
+    <default yaw="180">
+        <regions>
+            <cuboid min="3,18,3" max="1,20,1"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="Sword" lore="Normal Sword">iron sword</item>
+        <item slot="1" name="Bow" lore="One Hit Kill" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" color="E5E533" locked="true">leather chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="0.1s" blackout="true"/>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+    <apply velocity="0.0,1.0,0.0">
+        <region>
+            <cuboid min="4.5,14,-0.5" max="3.5,14,0.5"/>
+        </region>
+    </apply>
+</regions>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<timelock>on</timelock>
+<!--This XML has been roughly based of Chle_ and McFanta_'s xml. It works well as a template for 5x5 maps.-->
+</map>

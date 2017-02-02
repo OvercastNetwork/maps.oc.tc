@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Winterhold</name>
+<version>1.2.3</version>
+<objective>Leak lava from the enemies core.</objective>
+<authors>
+    <author uuid="90d4c2a3-137b-4965-b9e5-963ab5a23fa1" contribution="Map design and xml apprentice"/> <!-- Aceman1998 -->
+    <author uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Map design and xml coding"/> <!-- Brottweiler -->
+</authors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue" parents="deny-players deny-all">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-players deny-all">
+        <allow><team>red</team></allow>
+    </filter>
+</filters>
+<kits>
+    <kit name="potion">
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="10" amplifier="4">damage resistance</potion>
+        <potion duration="10" amplifier="1">heal</potion>
+        <potion duration="20" amplifier="1">increase damage</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable area!">
+        <negative name="playable-inverse">
+            <rectangle min="-35,131" max="36,-130"/>
+        </negative>
+    </apply>
+    <apply enter="only-red" message="You can not enter Red Team's spawn area!">
+        <cylinder name="red-spawn-room" base="-3,10,128" radius="15" height="17"/>
+    </apply>
+    <apply enter="only-blue" message="You can not enter Blue Team's spawn area!">
+        <cylinder name="blue-spawn-room" base="4,10,-126" radius="15" height="17"/>
+    </apply>
+    <apply block="deny-all" message="You are not allowed to modify the spawn area!">
+        <region name="red-spawn-room"/>
+        <region name="blue-spawn-room"/>
+    </apply>
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <cuboid name="blue-storage" min="10,14,-100" max="-6,26,-78"/>
+        <cuboid name="red-storage" min="-9,14,102" max="9,26,80"/>
+    </apply>
+</regions>
+<spawns>
+    <spawns kit="potion">
+        <spawn team="red" yaw="180">
+            <cylinder base="-3,23,128" radius="2" height="0"/>
+        </spawn>
+        <spawn team="blue" yaw="0">
+            <cylinder base="4,23,-126" radius="2" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <cylinder base="50,38,0" radius="2.5" height="0"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="5">
+    <core team="red">
+        <cuboid min="-3,63,104" max="-9,68,109"/>
+    </core>
+    <core team="blue">
+        <cuboid min="1,63,-117" max="10,68,-108"/>
+    </core>
+</cores>
+<maxbuildheight>82</maxbuildheight>
+</map>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Blitz">
+<name>Ahuiateteo</name>
+<version>1.0.0</version> 
+<objective>Eliminate the other team before time runs out!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Building and XML."/><!--Tim -->
+</authors>
+<kits>
+    <kit id="spawn">
+        <item slot="0" damage="-3000">iron sword</item>
+        <item slot="1" damage="-3000">bow</item>
+        <item slot="3" amount="24">arrow</item>
+        <item slot="4" amount="32" name="`l`2Vines" lore="`3Use these to climb up on trees.">Vine</item>
+        <item slot="5" name="`l`6Machette" lore="`3Use this to cut plants.">shears</item>
+        <chestplate>iron chestplate</chestplate>
+        <leggings>iron leggings</leggings>
+        <boots>chainmail boots</boots>
+    </kit>
+    <kit id="red-kit" parent="spawn">
+        <helmet color="993333" damage="-3000">leather helmet</helmet>
+    </kit>
+    <kit id="yellow-kit" parent="spawn">
+        <helmet color="E5E533" damage="-3000">leather helmet</helmet>
+    </kit>
+</kits>
+<teams>
+   <team id="red" color="dark red" max="32" max-overfill="40">Red</team>
+   <team id="yellow" color="yellow" max="32" max-overfill="40">Yellow</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit" yaw="-90">
+        <regions><block>-82,13,527</block></regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow-kit" yaw="90">
+        <regions><block>38,13,527</block></regions>
+    </spawn>
+    <default yaw="-90">
+        <regions><block>-21,21,527</block></regions>
+    </default>
+</spawns>
+<filters>
+    <any id="only-plants">
+        <material>leaves</material>
+        <material>red rose</material>
+        <material>yellow flower</material>
+        <material>vine</material>
+        <material>long grass</material>
+        <material>double plant</material>
+    </any>
+</filters>
+<regions>
+    <apply block="only-plants">
+        <everywhere />
+    </apply>
+</regions>
+<itemremove>
+    <item>leaves</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>long grass</item>
+    <item>double plant</item>
+    <item>seeds</item>
+    <item>grass</item>
+    <item>vine</item>
+    <item>golden carrot</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>chainmail boots</item>
+    <item>leather helmet</item>
+    <item>sapling</item>
+    <item>apple</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>shears</tool>
+</toolrepair>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<time>10m</time>
+<include src="blitz-global.xml"/>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

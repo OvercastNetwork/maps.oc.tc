@@ -1,0 +1,197 @@
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>PixelMissing</name>
+<version>1.1.1</version>
+<objective>
+    Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.
+</objective>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, Map design and XML"/> <!--   DoomRobotBoy   -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML Fixing"/> <!--   ItsMiiOlly   -->
+</contributors>
+<broadcasts>
+    <tip after="2s">You can find extra supplies in front of the little mushroom house behind spawn, with even more in its basement!</tip>
+    <tip after="5s">You can't place lava with buckets!</tip>
+</broadcasts>
+<teams>
+    <team color="blue" max="28">Blue</team>
+    <team color="red" max="28">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="4" amount="32">golden carrot</item>
+        <item slot="5" amount="32" damage="10">stained clay</item>
+        <item slot="6" amount="12" damage="2">log</item>
+        <item slot="7">water bucket</item>
+        <item slot="8" attributes="generic.movementSpeed:base:0.20" name="`bSpeed Star `6| `9+20 Speed" lore="`3Hold this for a speed boost!">nether star</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="ff0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="ff0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000ff" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0000ff" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="0000ff" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<filters>
+    <filter name="deny-wool-paths" parents="allow-blocks">
+        <deny>
+            <block>huge mushroom 1</block>
+            <block>huge mushroom 2</block>
+            <block>wood step</block>
+            <block>wood step:2</block>
+        </deny>
+    </filter>
+    <filter name="deny-red" parents="allow-players">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="deny-blue" parents="allow-players">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="no-void" parents="allow-all">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-glass" parents="deny-blocks">
+        <allow>
+            <block>thin glass</block>
+        </allow>
+    </filter>
+    <filter name="deny-lava">
+        <deny>
+            <any>
+                <block>stationary lava</block>
+                <block>lava</block>
+            </any>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <union name="wool-rooms">
+        <cuboid name="red-flower-room" min="-1069,0,-267" max="-1047,30,-283"/>
+        <cuboid name="red-mushroom-room" min="-1069,0,-431" max="-1047,30,-447"/>
+        <cuboid name="blue-flower-room" min="-922,0,-447" max="-944,30,-431"/>
+        <cuboid name="blue-mushroom-room" min="-922,0,-283" max="-944,30,-267"/>
+    </union>
+    <union name="wool-room-lanes">
+        <cuboid name="blue-flower-lane" min="-928,0,-419" max="-936,30,-430"/>
+        <cuboid name="blue-mushroom-lane" min="-928,0,-294" max="-936,30,-283"/>
+        <cuboid name="red-flower-lane" min="-1061,0,-294" max="-1053,30,-283"/>
+        <cuboid name="red-mushroom-lane" min="-1053,0,-419" max="-1061,30,-430"/>
+    </union>
+    <union name="brown-mushrooms">
+        <rectangle name="r-brown-mushrooms-1" min="-1061,-386" max="-1054,-365"/>
+        <rectangle name="r-brown-mushrooms-2" min="-1061,-327" max="-1054,-348"/>
+        <rectangle name="b-brown-mushrooms-1" min="-929,-327" max="-936,-348"/>
+        <rectangle name="b-brown-mushrooms-2" min="-929,-386" max="-936,-365"/>
+    </union>
+    <union name="spawn-areas">
+        <rectangle name="blue-spawn" min="-907,-347" max="-942,-365"/>
+        <rectangle name="red-spawn" min="-1048,-366" max="-1083,-347"/>
+    </union>
+<!-- Applied -->
+    <apply block="only-glass" message="You may not modify the wool rooms!">
+        <region name="wool-rooms"/>
+    </apply>
+    <apply block="deny-wool-paths" message="You may not destroy the lanes!">
+        <region name="wool-room-lanes"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not modify the spawn areas!">
+        <region name="spawn-areas"/>
+    </apply>
+    <apply enter="deny-red" message="You may not enter your own wool room!">
+        <region name="red-flower-room"/>
+        <region name="red-mushroom-room"/>
+    </apply>
+    <apply enter="deny-blue" message="You may not enter your own wool room!">
+        <region name="blue-flower-room"/>
+        <region name="blue-mushroom-room"/>
+    </apply>
+    <apply block-place="deny-lava" message="You may not place lava!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-world" message="You may not build under y=2!">
+        <cuboid min="-oo,0,-oo" max="oo,0,oo"/>
+    </apply>
+    <apply block="no-void" message="You may not build in the void!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+<!--
+        <complement>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+            <rectangle min="-980,-403" max="-1011,-309"/>
+            <region name="wool-room-lanes"/>
+            <region name="brown-mushrooms"/>
+            <rectangle name="red-void-red-mushrooms" min="-1049,-353" max="-1028,-360"/>
+            <rectangle name="blue-void-red-mushrooms" min="-941,-360" max="-962,-353"/>
+            <rectangle name="center-void" min="-965,402" max="-1025,-311"/>
+            <rectangle name="red-question-void" min="-1029,-353" max="-1009,-327"/>
+            <rectangle name="blue-question-void" min="-962,-360" max="-980,-386"/>
+        </complement> 
+-->
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="-89">
+        <cylinder base="-1057.5,64,-356.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="89">
+        <cylinder base="-932.5,64,-356.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="179">
+        <cuboid min="-996,46,-432" max="-993,46,-429"/>
+    </default>
+</spawns>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>log</item>
+    <item>glowstone dust</item>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>nether star</item>
+    <item>bucket</item>
+    <item>lava bucket</item>
+    <item>arrow</item>
+    <item>obsidian</item>
+</itemremove>
+<maxbuildheight>26</maxbuildheight>
+<wools>
+    <wool team="red" color="pink" location="0,0,0">
+        <block>-1078,10,-358</block>
+    </wool>
+    <wool team="red" color="purple" location="0,0,0">
+        <block>-1078,10,-356</block>
+    </wool>
+    <wool team="blue" color="light blue" location="0,0,0">
+        <block>-913,10,-356</block>
+    </wool>
+    <wool team="blue" color="cyan" location="0,0,0">
+        <block>-913,10,-358</block>
+    </wool>
+</wools>
+</map>

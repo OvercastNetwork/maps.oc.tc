@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>ArBOOro Blitz</name>
+<version>1.0</version>
+<objective>
+    Eliminate the other team within 5 minutes!
+</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="7a150842-5db4-487e-b4d1-559b8240a07f"/> <!-- carterpaul -->
+    <author uuid="4a68c267-51d1-4320-8ed0-dd85f48cb8a9"/> <!-- PenguinsCubed -->
+</authors>
+<contributors>
+        <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="Original XML"/> <!-- orky48 -->
+</contributors>
+<teams>
+    <team color="dark gray" max="16">Black</team>
+    <team color="gold" max="16">Orange</team>
+</teams>
+    <blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <time>5m</time>
+</blitz>
+<timelock>on</timelock>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron axe</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2" amount="64">golden carrot</item>
+        <chestplate enchantment="protection environmental" locked="true">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="black-spawn" parents="spawn">
+        <helmet color="474747" unbreakable="true" locked="true">leather helmet</helmet>
+        <boots color="474747" enchantment="protection fall:1" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+        <kit name="orange-spawn" parents="spawn">
+        <helmet color="E5951A" unbreakable="true" locked="true">leather helmet</helmet>
+    <boots color="E5951A" enchantment="protection fall:1" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="black" yaw="-90" kit="black-spawn">
+        <block>3.5,42,0.5</block>
+    </spawn>
+    <spawn team="orange" yaw="90" kit="orange-spawn">
+        <block>109.5,42,0.5</block>
+    </spawn>
+    <default yaw="180">
+        <block>55.5,73,56.5</block>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>golden carrot</item>
+</itemremove>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

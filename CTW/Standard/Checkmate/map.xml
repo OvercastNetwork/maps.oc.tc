@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Checkmate</name>
+<version>0.4</version>
+<objective>Capture the wool from the enemy corner and return it to the monument in your corner</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<teams>
+    <team color="dark red" max="24" max-overfill="30">Red</team>
+    <team color="blue" max="24" max-overfill="30">Blue</team>
+</teams>
+
+<disabledamage>
+    <damage self="false" ally="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+
+<kits>
+    <!-- kit given to everyone, including observers -->
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+
+    <kit name="inside-fleecy-box" force="true" potion-particles="true">
+        <health>20</health>
+        <potion duration="oo" amplifier="4">hunger</potion>
+        <potion duration="0">saturation</potion>
+    </kit>
+
+    <kit name="outside-fleecy-box" force="true">
+        <potion duration="oo">saturation</potion>
+        <potion duration="0" amplifier="2">hunger</potion>
+    </kit>
+
+    <!-- kit given to both teams -->
+    <kit name="team" parents="all">
+        <item slot="9">workbench</item>
+        <item slot="18" amount="3">dispenser</item>
+        <!-- slot="27" -->
+        <item slot="0">diamond pickaxe</item>
+        
+        <item slot="10">shears</item>
+        <!-- slot="19" -->
+        <item slot="28" amount="20">arrow</item>
+        <item slot="1">bow</item>
+        
+        <item slot="11" amount="64">quartz stairs</item>
+        <item slot="20" amount="64">quartz stairs</item>
+        <item slot="29" amount="64">vine</item>
+        <item slot="2" amount="64">vine</item>
+        
+        <!-- slot="12" -->
+        <!-- slot="21" -->
+        <!-- slot="30" -->
+        <!-- slot="3" -->
+        
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="16">step</item>
+        <item slot="4" amount="16">nether fence</item>
+        
+        <item slot="14" amount="16">piston base</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+        
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+        
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="7" amount="16">redstone block</item>
+
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+
+        <helmet locked="true" enchantment="water worker:3" unbreakable="true">iron helmet</helmet>
+    </kit>
+
+    <kit name="red-gear" parents="team">
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        
+        <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="dd5566" durability="-3000">leather boots</boots>
+    </kit>
+
+    <kit name="blue-gear" parents="team">
+        <item slot="12" damage="11" amount="64">stained glass</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        
+        <chestplate locked="true" color="5e55dd" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="5e55dd" durability="-3000">leather boots</boots>
+    </kit>
+</kits>
+
+<killreward>
+    <item amount="16">tnt</item>
+    <item amount="10">arrow</item>
+</killreward>
+
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>snow ball</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>quartz stairs</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+</itemremove>
+
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+
+    <filter name="non-building-blocks">
+        <not>
+            <any>
+                <block>stained clay</block>
+                <block>stained glass</block>
+                <block>step</block>
+                <block>nether fence</block>
+                <block>quartz stairs</block>
+                <block>piston base</block>
+            </any>
+        </not>
+    </filter>
+
+    <filter name="vines">
+        <block>vine</block>
+    </filter>
+</filters>
+
+<regions>
+
+    <!--                    -->
+    <!-- Region Definitions -->
+    <!--                    -->
+
+    <!-- generic pyramid shape at 0,0,0 (including fleecy box) -->
+    <union name="pyramid">
+        <cuboid min="0,0,0" max="9,63,9"/>
+        
+        <cuboid min="9,0,0" max="18,54,9"/>
+        <cuboid min="0,0,9" max="9,54,18"/>
+        
+        <cuboid min="18,0,0" max="27,45,9"/>
+        <cuboid min="9,0,9" max="18,45,18"/>
+        <cuboid min="0,0,18" max="9,45,27"/>
+
+        <cuboid min="27,0,0" max="36,36,9"/>
+        <cuboid min="18,0,9" max="27,36,18"/>
+        <cuboid min="9,0,18" max="18,36,27"/>
+        <cuboid min="0,0,27" max="9,36,36"/>
+
+        <cuboid min="36,0,0" max="45,27,9"/>
+        <cuboid min="27,0,9" max="36,27,18"/>
+        <cuboid min="18,0,18" max="27,27,27"/>
+        <cuboid min="9,0,27" max="18,27,36"/>
+        <cuboid min="0,0,36" max="9,27,45"/>
+
+        <cuboid min="45,0,0" max="54,18,9"/>
+        <cuboid min="36,0,9" max="45,18,18"/>
+        <cuboid min="27,0,18" max="36,18,27"/>
+        <cuboid min="18,0,27" max="27,18,36"/>
+        <cuboid min="9,0,36" max="18,18,45"/>
+        <cuboid min="0,0,45" max="9,18,54"/>
+
+        <cuboid min="54,0,0" max="63,9,9"/>
+        <cuboid min="45,0,9" max="54,9,18"/>
+        <cuboid min="36,0,18" max="45,9,27"/>
+        <cuboid min="27,0,27" max="36,9,36"/>
+        <cuboid min="18,0,36" max="27,9,45"/>
+        <cuboid min="9,0,45" max="18,9,54"/>
+        <cuboid min="0,0,54" max="9,9,63"/>
+    </union>
+
+    <translate name="blue-pyramid" offset="163,0,100">
+        <mirror normal="1,0,0">
+            <region name="pyramid"/>
+        </mirror>
+    </translate>
+
+    <translate name="red-pyramid" offset="100,0,226">
+        <mirror normal="0,0,1">
+            <region name="pyramid"/>
+        </mirror>
+    </translate>
+
+    <!-- the wool monuments -->
+    <block name="blue-monument">158,64,104</block>
+    <block name="red-monument">104,64,221</block>
+
+    <!-- fleecy boxes -->
+    <cuboid name="red-fleecy-box-inner" min="155,54,101" max="162,63,108"/>
+    <cuboid name="blue-fleecy-box-inner" min="101,54,218" max="108,63,225"/>
+    <cuboid name="red-fleecy-box-outer" min="154,54,100" max="163,63,109"/>
+    <cuboid name="blue-fleecy-box-outer" min="100,54,217" max="109,63,226"/>
+
+    <union name="fleecy-boxes-inner">
+        <region name="red-fleecy-box-inner"/>
+        <region name="blue-fleecy-box-inner"/>
+    </union>
+
+    <union name="fleecy-boxes-outer">
+        <region name="red-fleecy-box-outer"/>
+        <region name="blue-fleecy-box-outer"/>
+    </union>
+
+    <!-- fleecy box doorways -->
+    <union name="red-fleecy-box-doors">
+        <cuboid name="red-fleecy-box-west-door" min="154,54,103" max="155,57,106"/>
+        <cuboid name="red-fleecy-box-south-door" min="157,54,108" max="160,57,109"/>
+    </union>
+
+    <union name="blue-fleecy-box-doors">
+        <cuboid name="blue-fleecy-box-east-door" min="108,54,220" max="109,57,223"/>
+        <cuboid name="blue-fleecy-box-north-door" min="103,54,217" max="106,57,218"/>
+    </union>
+
+    <!-- fleecy box exit protection -->
+    <union name="fleecy-box-exit-protection">
+        <translate offset="-1,0,0"><region name="red-fleecy-box-west-door"/></translate>
+        <translate offset="0,0,1"><region name="red-fleecy-box-south-door"/></translate>
+        <translate offset="1,0,0"><region name="blue-fleecy-box-east-door"/></translate>
+        <translate offset="0,0,-1"><region name="blue-fleecy-box-north-door"/></translate>
+    </union>
+
+    <!-- an area around the fleecy box where hunger persists after leaving -->
+    <union name="fleecy-boxes-veranda">
+        <cylinder base="104.5,54,221.5" radius="13.5" height="9"/>
+        <cylinder base="158.5,54,104.5" radius="13.5" height="9"/>
+    </union>
+
+    <!-- spawns -->
+    <cylinder name="default-spawn" base="131.5,81,163" radius="4" height="0"/>
+    <cylinder name="blue-spawn" base="104.5,73,158.5" radius="3" height="0"/>
+    <cylinder name="red-spawn" base="158.5,73,167.5" radius="3" height="0"/>
+
+    <!-- spawn teleporters -->
+    <block name="blue-left-spawn-portal">104,73,149</block>
+    <block name="blue-right-spawn-portal">113,73,158</block>
+    <block name="red-left-spawn-portal">158,73,176</block>
+    <block name="red-right-spawn-portal">149,73,167</block>
+
+    <!-- the cubical volume above the spawn teleporter exits -->
+    <!-- these are one block shorter so that fencepost cannons can be built over the edge above -->
+    <cuboid name="blue-left-spawn-exit" min="100,9,100" max="109,17,109"/>
+    <cuboid name="blue-right-spawn-exit" min="154,9,154" max="163,17,163"/>
+    <cuboid name="red-left-spawn-exit" min="154,9,217" max="164,17,226"/>
+    <cuboid name="red-right-spawn-exit" min="100,9,163" max="109,17,172"/>
+
+    <!-- the general buildable area -->
+    <cuboid name="buildable" min="100,0,100" max="163,63,226"/>
+
+    <!-- the top building layer (excluding the surface of the fleecy boxes) -->
+    <complement name="top-layer">
+        <cuboid min="100,63,100" max="163,64,226"/>
+        <union>
+            <rectangle min="154,100" max="163,109"/>
+            <rectangle min="100,217" max="109,226"/>
+        </union>
+    </complement>
+
+    <!--             -->
+    <!-- Block Rules -->
+    <!--             -->
+
+    <!-- allow non-building-blocks in the top layer -->
+    <apply block="non-building-blocks" message="Only non-building blocks can be placed at this height">
+        <region name="top-layer"/>
+    </apply>
+
+    <apply block="vines" message="Only vines may be placed on this square">
+        <union>
+            <region name="blue-left-spawn-exit"/>
+            <region name="blue-right-spawn-exit"/>
+            <region name="red-left-spawn-exit"/>
+            <region name="red-right-spawn-exit"/>
+        </union>
+    </apply>
+    
+    <apply block="deny-all" message="The wool exits cannot be obstructed">
+        <region name="fleecy-box-exit-protection"/>
+    </apply>
+
+    <!-- protect the pyramids -->
+    <apply block="deny-all" message="The chess board cannot be modified">
+        <union>
+            <region name="blue-pyramid"/>
+            <region name="red-pyramid"/>
+        </union>
+    </apply>
+
+    <!-- deny building outside the playing area -->
+    <apply block="deny-all" message="You may not place or break blocks outside the playing area">
+        <negative>
+            <union>
+                <region name="buildable"/>
+                <region name="blue-monument"/>
+                <region name="red-monument"/>
+            </union>
+        </negative>
+    </apply>
+
+
+    <!--         -->
+    <!-- Effects -->
+    <!--         -->
+
+    <apply kit="inside-fleecy-box">
+        <region name="fleecy-boxes-inner"/>
+    </apply>
+
+    <apply kit="outside-fleecy-box">
+        <negative>
+            <union>
+                <region name="fleecy-boxes-outer"/>
+                <region name="fleecy-boxes-veranda"/>
+            </union>
+        </negative>
+    </apply>
+
+</regions>
+
+<portals>
+    <!--               -->
+    <!-- Spawn Portals -->
+    <!--               -->
+
+    <portal z="-45" y="-64">
+        <region name="blue-left-spawn-portal"/>
+    </portal>
+
+    <portal x="45" y="-64">
+        <region name="blue-right-spawn-portal"/>
+    </portal>
+
+    <portal z="45" y="-64">
+        <region name="red-left-spawn-portal"/>
+    </portal>
+
+    <portal x="-45" y="-64">
+        <region name="red-right-spawn-portal"/>
+    </portal>
+
+
+    <!--                    -->
+    <!-- Fleecy Box Portals -->
+    <!--                    -->
+
+    <!-- 
+        Each of these portals encompasses not just the doorway,
+        but the entire area that it teleports you into. So, once
+        you enter the portal, you stay inside it until another
+        portal moves you out of it. This is how both the entrance
+        and exit portals can occupy the same doorway. You can't
+        use the entrance portal from inside the fleecy box because
+        you are already inside of it.
+    -->
+
+    <!-- red west entrance -->
+    <portal x="0.6" filter="red-only">
+        <union>
+            <region name="red-fleecy-box-west-door"/>
+            <region name="red-fleecy-box-inner"/>
+        </union>
+    </portal>
+
+    <!-- red west exit -->
+    <portal x="-0.6" filter="red-only">
+        <union>
+            <region name="red-fleecy-box-west-door"/>
+            <negative><region name="red-fleecy-box-outer"/></negative>
+        </union>
+    </portal>
+
+    <!-- red south entrance -->
+    <portal z="-0.6" filter="red-only">
+        <union>
+            <region name="red-fleecy-box-south-door"/>
+            <region name="red-fleecy-box-inner"/>
+        </union>
+    </portal>
+
+    <!-- red south exit -->
+    <portal z="0.6" filter="red-only">
+        <union>
+            <region name="red-fleecy-box-south-door"/>
+            <negative><region name="red-fleecy-box-outer"/></negative>
+        </union>
+    </portal>
+
+    <!-- blue east entrance -->
+    <portal x="-0.6" filter="blue-only">
+        <union>
+            <region name="blue-fleecy-box-east-door"/>
+            <region name="blue-fleecy-box-inner"/>
+        </union>
+    </portal>
+
+    <!-- blue east exit -->
+    <portal x="0.6" filter="blue-only">
+        <union>
+            <region name="blue-fleecy-box-east-door"/>
+            <negative><region name="blue-fleecy-box-outer"/></negative>
+        </union>
+    </portal>
+
+    <!-- blue north entrance -->
+    <portal z="0.6" filter="blue-only">
+        <union>
+            <region name="blue-fleecy-box-north-door"/>
+            <region name="blue-fleecy-box-inner"/>
+        </union>
+    </portal>
+
+    <!-- blue north exit -->
+    <portal z="-0.6" filter="blue-only">
+        <union>
+            <region name="blue-fleecy-box-north-door"/>
+            <negative><region name="blue-fleecy-box-outer"/></negative>
+        </union>
+    </portal>
+</portals>
+
+<wools>
+    <wool team="blue" color="blue">
+        <region name="blue-monument"/>
+    </wool>
+    <wool team="red" color="red">
+        <region name="red-monument"/>
+    </wool>
+</wools>
+
+<spawns pitch="0">
+    <default kit="all">
+        <region name="default-spawn"/>
+    </default>
+    <spawn team="red" yaw="45" kit="red-gear">
+        <region name="red-spawn"/>
+    </spawn>
+    <spawn team="blue" yaw="-135" kit="blue-gear">
+        <region name="blue-spawn"/>
+    </spawn>
+</spawns>
+
+</map>

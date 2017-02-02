@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Dangerous Cargo</name>
+<version>1.0.0</version>
+<objective>Leak lava from the enemy's obsidian core, and destroy their two monuments!</objective>
+<authors>
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+</authors>
+<timelock>on</timelock>
+<rules>
+    <rule>Dispensers are disabled</rule>
+</rules>
+<teams>
+    <team color="dark red" max="24">Red</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">diamond sword</item>
+        <item slot="17" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+    <kit name="give-resistance" force="true">
+        <potion duration="7" amplifier="3">damage resistance</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn">
+        <regions yaw="-90"><cuboid min="-104,67,-20" max="-102,67,-18"/></regions>
+    </spawn>
+    <spawn team="red" kit="spawn">
+        <regions yaw="-90"><cuboid min="-104,67,56" max="-102,67,58"/></regions>
+    </spawn>
+    <default>
+        <regions yaw="-90"><cuboid min="-102,70,17" max="-104,70,21"/></regions>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not modify the spawn tunnels!">
+        <union>
+            <cuboid name="blue-tunnel" min="-55,66,-22" max="-106,71,-16"/>
+            <cuboid name="red-tunnel" min="-55,66,54" max="-106,71,60"/>
+        </union>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn pools!">
+        <union>
+            <cuboid name="blue-pool-a" min="-50,51,-12" max="-46,63,-15"/>
+            <cuboid name="blue-pool-b" min="-50,51,-23" max="-46,63,-26"/>
+            <cuboid name="red-pool-a" min="-50,51,64" max="-46,63,61"/>
+            <cuboid name="red-pool-b" min="-50,51,53" max="-46,63,50"/>
+        </union>
+    </apply>
+    <!-- Playable region -->
+    <rectangle name="play" min="-62,-36" max="20,74"/>
+    <apply block="deny-all" message="You may not interact with blocks outside the playing field.">
+        <negative>
+            <region name="play"/>
+        </negative>
+    </apply>
+    <apply block-place="deny-dispenser" message="You cannot place dispensers on this map!">
+        <region name="play"/>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter the spawn area!">
+        <union name="spawn-areas">
+            <cuboid name="blue-entrance" min="-58,66,-21" max="-105,71,-17"/>
+            <cuboid name="red-entrance" min="-58,66,55" max="-105,71,59"/>
+        </union>
+    </apply>
+    <apply kit="give-resistance">
+        <union name="spawn-exits">
+            <cuboid name="blue-exit" min="-60,66,-21" max="-61,71,-17"/>
+            <cuboid name="red-exit" min="-60,66,55" max="-61,71,59"/>
+        </union>
+    </apply>
+</regions>
+<maxbuildheight>85</maxbuildheight>
+<modes>
+    <mode material="gold block" after="15m" name="GOLD CORE MODE"/>
+    <mode material="glass" after="20m" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="1" mode-changes="true">
+    <core team="blue">
+        <region><cuboid min="-21,54,-22" max="-15,60,-16"/></region>
+    </core>
+    <core team="red">
+        <region><cuboid min="-21,54,54" max="-15,60,60"/></region>
+    </core>
+</cores>
+<destroyables materials="ender stone" completion="100%">
+    <destroyables owner="blue">
+        <destroyable name="Antenna A">
+            <region><cuboid min="-53,73,-17" max="-56,80,-20"/></region>
+        </destroyable>
+        <destroyable name="Antenna B">
+            <region><cuboid min="10,66,-17" max="7,73,-20"/></region>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable name="Antenna A">
+            <region><cuboid min="-53,73,57" max="-56,80,55"/></region>
+        </destroyable>
+        <destroyable name="Antenna B">
+            <region><cuboid min="10,66,57" max="7,73,55"/></region>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>diamond sword</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>shears</item>
+    <item>coal</item>
+    <item>ender stone</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Banana Split</name>
+<genre>Objectives</genre>
+<time>30m</time>
+<version>3.0</version>
+<objective>Capture the other team's wools!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Metadata"/> <!-- dinner1111 -->
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="Metadata/Packaging"/> <!-- nixter1029 -->
+</contributors>
+<teams>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+</teams>
+<wools>
+    <wools team="red">
+        <wool color="lime" location="-98.5,2,23.5">
+            <monument><block>71,4,-4</block></monument>
+        </wool>
+        <wool color="cyan" location="-98.5,2,-29.5">
+            <monument><block>71,4,-3</block></monument>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="orange" location="98.5,2,-29.5">
+            <monument><block>-72,4,-3</block></monument>
+        </wool>
+        <wool color="purple" location="98.5,2,23.5">
+            <monument><block>-72,4,-4</block></monument>
+        </wool>
+    </wools>
+</wools>
+<spawns>
+    <spawns team="red" kit="red-kit">
+        <spawn>
+            <regions yaw="180">
+                <cuboid min="42,2,43" max="44,2,45"/>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions yaw="0">
+                <cuboid min="44,2,-49" max="42,2,-51"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <spawns team="blue" kit="blue-kit">
+        <spawn>
+            <regions yaw="0">
+                <cuboid min="-42,2,-51" max="-44,2,-49"/>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions yaw="180">
+                <cuboid min="-44,2,43" max="-42,2,45"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions>
+            <cuboid min="2,27,48" max="-2,27,52"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron axe</item>
+        <item slot="3" damage="2" amount="32">log</item>
+        <item slot="5">shears</item>
+        <item slot="6" amount="32">vine</item>
+        <item slot="7" amount="64" id="`rBanana Bread">bread</item>
+        <item slot="8">iron ingot</item>
+        <item slot="9" enchantment="knockback:1">stick</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <item slot="4" damage="14" amount="64">wool</item>
+        <helmet     color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings   color="993333" unbreakable="true">leather leggings</leggings>
+        <boots      color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <item slot="4" damage="11" amount="64">wool</item>
+        <helmet     color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings   color="334CB2" unbreakable="true">leather leggings</leggings>
+        <boots      color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <deny id="anti-grief">
+        <any>
+            <material>mob spawner</material>
+            <material>chest</material>
+            <material>tnt</material>
+        </any>
+    </deny>
+    <all id="only-red">
+        <team>red</team>
+        <filter id="anti-grief"/>
+    </all>
+    <all id="only-blue">
+        <team>blue</team>
+        <filter id="anti-grief"/>
+    </all>
+</filters>
+<regions>
+    <union id="woolrooms">
+        <union id="red-woolrooms">
+            <!--  Red must defend  -->
+            <cuboid id="purple-woolroom" min="92,0,30" max="105,oo,17"/>
+            <cuboid id="orange-woolroom" min="92,0,-36" max="105,oo,-23"/>
+        </union>
+        <union id="blue-woolrooms">
+            <!--  Blue must defend  -->
+            <cuboid id="lime-woolroom" min="-105,0,17" max="-92,oo,30"/>
+            <cuboid id="cyan-woolroom" min="-105,0,-23" max="-92,oo,-36"/>
+        </union>
+    </union>
+    <union id="spawns">
+        <union id="red-spawns">
+            <rectangle id="red-spawn-a" min="39,36" max="48,50"/>
+            <rectangle id="red-spawn-b" min="39,-43" max="47,-55"/>
+        </union>
+        <union id="blue-spawns">
+            <rectangle id="blue-spawn-1" min="-39,-43" max="-48,-55"/>
+            <rectangle id="blue-spawn-2" min="-39,38" max="-48,50"/>
+        </union>
+    </union>
+    <negative id="outside-map">
+        <rectangle id="map" min="-106,-55" max="105,48"/>
+    </negative>
+    <union id="victory-monuments">
+        <cuboid id="red-monument" min="68,-oo,-5" max="72,7,-1"/>
+        <cuboid id="blue-monument" min="-68,-oo,-5" max="-72,7,-1"/>
+    </union>
+    <!--  Applied  -->
+    <apply block="only-blue" region="red-woolrooms"/>
+    <apply block="only-red"  region="blue-woolrooms"/>
+    <apply enter="only-blue" region="red-woolrooms"  message="You may not enter the enemy's wool room!"/>
+    <apply enter="only-red"  region="blue-woolrooms" message="You may not enter the enemy's wool room!"/>
+    <apply block="never"     region="outside-map"    message="Don't build outside the map!"/>
+    <apply enter="only-red"  region="red-spawns"     message="You may not enter the enemy team's base!"/>
+    <apply enter="only-blue" region="blue-spawns"    message="You may not enter the enemy team's base!"/>
+    <apply block="never"     region="spawns"         message="You may not edit the base!"/>
+    <apply block="never" message="You not edit the victory monument!">
+        <region>
+            <complement>
+                <region id="victory-monuments"/>
+                <block>71,5,-4</block>
+                <block>71,5,-3</block>
+                <block>-72,5,-3</block>
+                <block>-72,5,-4</block>
+            </complement>
+        </region>
+    </apply>
+    <apply enter="never" message="You may not enter observer spawn!">
+        <region>
+            <cylinder base="0,25,50" radius="5" height="30"/>
+        </region>
+    </apply>
+</regions>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>vine</item>
+    <item>stick</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>arrow</item>
+    <item>bread</item>
+    <item>log</item>
+</itemremove>
+<killreward>
+    <item amount="1">iron ingot</item>
+    <item amount="5">arrow</item>
+</killreward>
+<maxbuildheight>38</maxbuildheight>
+</map>

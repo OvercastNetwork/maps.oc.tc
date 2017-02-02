@@ -1,0 +1,120 @@
+<map proto="1.4.0" game="Elytra" name="Elytra Test">
+<authors>
+    <author>yoyo</author>
+</authors>
+<phase>development</phase>
+<objective>Win the race</objective>
+<players min="1" max="1"/>
+<regions>
+    <union id="scoreboxes">
+        <cuboid id="scorebox-1" min="-24,28,-34" max="-42,38,-36"/>
+        <cuboid id="scorebox-2" min="-24,31,-55" max="-14,24,-53"/>
+        <cuboid id="scorebox-3" min="-13,37,-90" max="-32,45,-92"/>
+        <cuboid id="scorebox-4" min="-32,31,-123" max="-39,37,-125"/>
+        <cuboid id="scorebox-5" min="-10,25,-153" max="-17,32,-155"/>
+        <cuboid id="scorebox-6" min="-15,27,-179" max="-29,37,-181"/>
+    </union>
+    <apply velocity="0,1.8,-0.3" region="scorebox-1" filter="scorebox-1-filter"/>
+    <apply velocity="0,1.8,-0.3" region="scorebox-2" filter="scorebox-2-filter"/>
+    <apply velocity="0,1.8,-0.3" region="scorebox-3" filter="scorebox-3-filter"/>
+    <apply velocity="0,1.8,-0.3" region="scorebox-4" filter="scorebox-4-filter"/>
+    <apply velocity="0,1.8,-0.3" region="scorebox-5" filter="scorebox-5-filter"/>
+    <apply velocity="0,1.8,-0.3" region="scorebox-6" filter="scorebox-6-filter"/>
+    <apply block="never" region="everywhere"/>
+</regions>
+<version>0.0.0</version>
+<filters>
+    <all id="scorebox-2-filter">
+        <objective>scorebox-1-hill</objective>
+        <not>
+            <objective>scorebox-2-hill</objective>
+        </not>
+    </all>
+    <all id="scorebox-3-filter">
+        <objective>scorebox-2-hill</objective>
+        <not>
+            <objective>scorebox-3-hill</objective>
+        </not>
+    </all>
+    <all id="scorebox-4-filter">
+        <objective>scorebox-3-hill</objective>
+        <not>
+            <objective>scorebox-4-hill</objective>
+        </not>
+    </all>
+    <all id="scorebox-5-filter">
+        <objective>scorebox-4-hill</objective>
+        <not>
+            <objective>scorebox-5-hill</objective>
+        </not>
+    </all>
+    <all id="scorebox-6-filter">
+        <objective>scorebox-5-hill</objective>
+        <not>
+            <objective>scorebox-6-hill</objective>
+        </not>
+    </all>
+    <not id="scorebox-1-filter">
+        <objective>scorebox-1-hill</objective>
+    </not>
+    <flying id="test"/>
+</filters>
+<broadcasts>
+    <tip every="3s" after="1s" filter="test">hellp</tip>
+</broadcasts>
+<score>
+    <limit>6</limit>
+    <box points="1" filter="scorebox-1-filter" region="scorebox-1"/>
+    <box points="1" filter="scorebox-2-filter" region="scorebox-2"/>
+    <box points="1" filter="scorebox-3-filter" region="scorebox-3"/>
+    <box points="1" filter="scorebox-4-filter" region="scorebox-4"/>
+    <box points="1" filter="scorebox-5-filter" region="scorebox-5"/>
+    <box points="1" filter="scorebox-6-filter" region="scorebox-6"/>
+</score>
+<king>
+    <hills>
+        <hill id="scorebox-1-hill" capture-time="0s" show="false" points="0">
+            <capture><region id="scorebox-1"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="scorebox-2-hill" capture-time="0s" show="false" points="0" player-filter="scorebox-2-filter">
+            <capture><region id="scorebox-2"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="scorebox-3-hill" capture-time="0s" show="false" points="0" player-filter="scorebox-3-filter">
+            <capture><region id="scorebox-3"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="scorebox-4-hill" capture-time="0s" show="false" points="0" player-filter="scorebox-4-filter">
+            <capture><region id="scorebox-4"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="scorebox-5-hill" capture-time="0s" show="false" points="0" player-filter="scorebox-5-filter">
+            <capture><region id="scorebox-5"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="scorebox-6-hill" capture-time="0s" show="false" points="0" player-filter="scorebox-6-filter">
+            <capture><region id="scorebox-6"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+    </hills>
+</king>
+<spawns>
+    <spawn>
+        <regions>
+            <point>-26,37,2</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>-26,37,2</point>
+        </regions>
+    </default>
+</spawns>
+</map>

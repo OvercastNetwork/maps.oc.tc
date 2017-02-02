@@ -1,0 +1,169 @@
+<map proto="1.4.0">
+<name>Townside</name>
+<version>1.4.2</version>
+<objective>Capture the enemy teams wool!</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/>
+    <!-- Chicky -->
+</contributors>
+<maxbuildheight>25</maxbuildheight>
+<timelock>on</timelock>
+<teams>
+    <team id="red" color="dark red" max="30" max-overfill="32">Red</team>
+    <team id="blue" color="blue" max="30" max-overfill="32">Blue</team>        
+</teams>
+<spawns>
+    <spawn team="red" kit="red-spawn-kit">
+        <regions yaw="0">
+            <block>-49.5,12,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-spawn-kit">
+        <regions yaw="179">
+            <block>88.5,12,-38.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <block>19.5,4,-18.5</block>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true">
+        <potion duration="5" amplifier="1">heal</potion>
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="4" enchantment="dig speed:1" unbreakable="true">stone spade</item>
+        <item slot="6" amount="48">bread</item>
+        <item slot="7" amount="48">wood</item>
+        <item slot="8" amount="48" damage="3">smooth brick</item>
+    </kit>
+    <kit id="red-spawn-kit" parents="spawn">
+        <helmet unbreakable="true" color="ff0000">leather helmet</helmet>
+		<chestplate unbreakable="true" color="ff0000">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="ff0000">leather leggings</leggings>
+        <boots unbreakable="true" color="ff0000">leather boots</boots>            
+    </kit>
+    <kit id="blue-spawn-kit" parents="spawn">
+        <helmet unbreakable="true" color="0000ff">leather helmet</helmet>
+		<chestplate unbreakable="true" color="0000ff">leather chestplate</chestplate>		
+        <leggings unbreakable="true" color="0000ff">leather leggings</leggings>
+        <boots unbreakable="true" color="0000ff">leather boots</boots>                 
+    </kit>
+</kits>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <not id="deny-red">
+        <team>red</team>
+    </not>
+    <not id="deny-blue">
+        <team>blue</team>
+    </not>
+    <any id="only-some">
+        <material>web</material>
+        <material>leaves</material>
+    </any>
+	<allow id="leaves">
+	    <material>leaves</material>
+	</allow>
+    <allow id="logs">
+        <material>log</material>
+    </allow>		
+</filters>
+<regions>
+    <negative id="non-bridge">
+        <union id="bridge">
+            <rectangle min="-12,-5" max="5,-43"/>
+            <rectangle min="51,-32" max="34,6"/>
+        </union>
+    </negative>
+    <union id="spawns">
+        <region id="blue-spawn" />
+        <region id="red-spawn" />
+    </union>
+    <union id="wool-rooms">
+        <region id="blue-wool" />
+        <region id="red-wool" />
+    </union>
+    <union id="red-zones">
+        <region id="red-spawn"/>
+        <region id="blue-wool"/>
+    </union>
+    <union id="blue-zones">
+        <region id="blue-spawn"/>
+        <region id="red-wool"/>
+    </union>
+    <circle id="observer-spawn" center="19.5,-18.5" radius="6"/>
+    <rectangle id="red-spawn" min="-58,31" max="-41,-6"/>
+    <rectangle id="red-wool" min="75,105" max="56,132"/>
+    <rectangle id="blue-spawn" min="97,-69" max="80,-31"/>
+    <rectangle id="blue-wool" min="-36,-142" max="19,-169"/>
+    <!-- Applyness -->
+    <apply block-break="leaves" region="non-bridge"/>
+    <apply block-break="logs" region="non-bridge"/>    	
+    <apply enter="never" block="never" region="observer-spawn" message="You may not enter this area."/>  
+    <apply block-break="only-some" block-place="never" region="wool-rooms"/>
+    <apply block="never" region="spawns" message="You may not modify this area."/>
+    <apply enter="deny-blue" message="Only red team may enter this region" region="red-zones"/>
+    <apply enter="deny-red" message="Only blue team may enter this region!" region="blue-zones"/>
+    <apply block="never" message="You may not modify the spawn!" region="spawns"/>
+    <apply block="no-void" message="You may not modify the void area!" region="non-bridge"/>
+</regions>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>iron axe</tool>
+    <tool>stone spade</tool>
+    <tool>arrow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>leaves</item>
+    <item>seeds</item>
+    <item>dirt</item>
+    <item>sapling</item>
+    <item>bread</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>apple</item>
+    <item>chest</item>
+    <item>string</item>
+    <item>smooth brick</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<wools team="red">
+    <wool color="blue" location="-27.5,18,-162.5">
+        <monument>
+            <block>-50,10,6</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="red" location="66.5,18,125.5">
+        <monument>
+            <block>88,10,-44</block>
+        </monument>
+    </wool>
+</wools>
+<respawn delay="4s" spectate="false"/>
+<broadcasts>
+    <tip after="1s" every="5m">`r`7Welcome to `9`lTownside`r`7! `8Wool Room `7is diagonally opposite of spawn!</tip>
+    <tip after="1s" every="5m">`r`7Welcome to `9`lTownside`r`7! `8Iron Blocks `7are opposite of spawn!</tip>	
+</broadcasts>
+<killreward>
+     <item amount="4" damage="3">smooth brick</item>
+</killreward> 
+</map>

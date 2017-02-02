@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Banana Split</name>
+<version>2.2</version>
+<objective>Capture the other team's wools!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Metadata"/> <!-- dinner1111 -->
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="Metadata/Packaging"/> <!-- nixter1029 -->
+</contributors>
+<wools>
+    <wools team="red">
+        <wool color="lime">
+            <block>71,4,-4</block>
+        </wool>
+        <wool color="cyan">
+            <block>71,4,-3</block>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="orange">
+            <block>-72,4,-3</block>
+        </wool>
+        <wool color="purple">
+            <block>-72,4,-4</block>
+        </wool>
+    </wools>
+</wools>
+<teams>
+    <team color="dark red" max="16" max-overfill="20">Red</team>
+    <team color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+    <item slot="0">stone sword</item>
+    <item slot="1">bow</item>
+    <item slot="2">iron axe</item>
+    <item slot="3" damage="2" amount="32">log</item>
+    <item slot="5">shears</item>
+    <item slot="6" amount="32">vine</item>
+    <item slot="7" amount="64" name="`rBanana Bread">bread</item>
+    <item slot="8">iron ingot</item>
+    <item slot="9" enchantment="knockback:1">stick</item>
+    <item slot="28" amount="64">arrow</item>
+    <item slot="19" amount="64">arrow</item>
+    <potion duration="5" amplifier="2">heal</potion>
+</kit>
+<kit name="red" parents="spawn">
+    <item slot="4" damage="14" amount="64">wool</item>
+    <helmet color="993333" unbreakable="true">leather helmet</helmet>
+    <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+    <leggings color="993333" unbreakable="true">leather leggings</leggings>
+    <boots color="993333" unbreakable="true">leather boots</boots>
+</kit>
+<kit name="blue" parents="spawn">
+    <item slot="4" damage="11" amount="64">wool</item>
+    <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+    <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+    <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+    <boots color="334CB2" unbreakable="true">leather boots</boots>
+</kit>
+</kits>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>vine</item>
+    <item>stick</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>arrow</item>
+    <item>bread</item>
+    <item damage="2">log</item>
+</itemremove>
+<killreward>
+    <item amount="1">iron ingot</item>
+    <item amount="5">arrow</item>
+</killreward>
+<maxbuildheight>38</maxbuildheight>
+<filters>
+<filter name="only-red" parents="deny-all">
+    <allow>
+        <team>red</team>
+    </allow>
+    <deny>
+        <block>mob spawner</block>
+        <block>chest</block>
+        <block>TNT</block>
+    </deny>
+</filter>
+<filter name="only-blue" parents="deny-all">
+    <allow>
+        <team>blue</team>
+    </allow>
+    <deny>
+        <block>mob spawner</block>
+        <block>chest</block>
+        <block>TNT</block>
+    </deny>
+</filter>
+<filter name="only-red-usage">
+    <not>
+        <all>
+            <any>
+                <block>chest</block>
+                <block>workbench</block>
+            </any>
+            <team>blue</team>
+        </all>
+    </not>
+</filter>
+<filter name="only-blue-usage">
+    <not>
+        <all>
+            <any>
+                <block>chest</block>
+                <block>workbench</block>
+            </any>
+            <team>red</team>
+        </all>
+    </not>
+</filter>
+</filters>
+<regions>
+    <union name="woolrooms">
+        <union name="red-woolrooms">
+            <!--  Red must defend  -->
+            <cuboid name="purple-woolroom" min="92,0,30" max="105,oo,17"/>
+            <cuboid name="orange-woolroom" min="92,0,-36" max="105,oo,-23"/>
+        </union>
+        <union name="blue-woolrooms">
+            <!--  Blue must defend  -->
+            <cuboid name="lime-woolroom" min="-105,0,17" max="-92,oo,30"/>
+            <cuboid name="cyan-woolroom" min="-105,0,-23" max="-92,oo,-36"/>
+        </union>
+    </union>
+    <union name="spawns">
+        <union name="red-spawns">
+            <rectangle name="red-spawn-a" min="39,36" max="48,50"/>
+            <rectangle name="red-spawn-b" min="39,-43" max="47,-55"/>
+        </union>
+        <union name="blue-spawns">
+            <rectangle name="blue-spawn-1" min="-39,-43" max="-48,-55"/>
+            <rectangle name="blue-spawn-2" min="-39,38" max="-48,50"/>
+        </union>
+    </union>
+    <negative name="outside-map">
+        <rectangle name="map" min="-106,-55" max="105,48"/>
+    </negative>
+    <union name="victory-monuments">
+        <cuboid name="red-monument" min="68,-oo,-5" max="72,7,-1"/>
+        <cuboid name="blue-monument" min="-68,-oo,-5" max="-72,7,-1"/>
+    </union>
+    <!--  Applied  -->
+    <apply block="only-blue" use="only-blue-usage">
+        <region name="red-woolrooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy's wool room!">
+        <region name="red-woolrooms"/>
+    </apply>
+    <apply block="only-red" use="only-red-usage">
+        <region name="blue-woolrooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy's wool room!">
+        <region name="blue-woolrooms"/>
+    </apply>
+    <apply block="deny-all" message="Don't build outside the map!">
+        <region name="outside-map"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region name="red-spawns"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <region name="blue-spawns"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the base!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="You not edit the victory monument!">
+        <complement>
+            <region name="victory-monuments"/>
+            <block>71,5,-4</block>
+            <block>71,5,-3</block>
+            <block>-72,5,-3</block>
+            <block>-72,5,-4</block>
+        </complement>
+    </apply>
+    <apply enter="deny-all" message="You may not enter observer spawn!">
+        <cylinder base="0,25,50" radius="5" height="30"/>
+    </apply>
+    </regions>
+<spawns>
+    <spawns team="red" kit="red">
+        <spawn yaw="180">
+            <cuboid min="42,2,43" max="44,2,45"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="44,2,-49" max="42,2,-51"/>
+        </spawn>
+    </spawns>
+    <spawns team="blue" kit="blue">
+        <spawn yaw="0">
+            <cuboid min="-42,2,-51" max="-44,2,-49"/>
+        </spawn>
+        <spawn yaw="180">
+            <cuboid min="-44,2,43" max="-42,2,45"/>
+        </spawn>
+    </spawns>
+    <default>
+        <cuboid min="2,27,48" max="-2,27,52"/>
+    </default>
+</spawns>
+</map>

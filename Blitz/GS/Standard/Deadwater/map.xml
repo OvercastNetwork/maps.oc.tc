@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="gs.xml" />
+<name>Deadwater</name>
+<version>1.2.0</version>
+<objective>Seek out and eliminate the other squadron!</objective>
+<gamemode>gs</gamemode>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="135">
+        <point>-13,54,54</point>
+    </spawn>
+    <spawn team="blue" yaw="-45">
+        <point>-50,54,11</point>
+    </spawn>
+    <default yaw="45">
+        <point>0,67,0</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="apply-skull" force="true">
+        <helmet locked="true">skull_item</helmet>
+    </kit>
+    <kit name="remove-skull" force="true">
+        <helmet>air</helmet>
+    </kit>
+</kits>
+<regions>
+    <cuboid name="below-52" min="-oo,-oo,-oo" max="oo,53,oo" />
+    <cuboid name="playable" min="-61,-oo,3" max="-2,70,62" />
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+    <apply kit="apply-skull">
+        <region name="below-52" />
+    </apply>
+    <apply kit="remove-skull">
+        <negative>
+            <region name="below-52" />
+        </negative>
+    </apply>
+</regions>
+<broadcasts>
+    <tip after="5s" every="1m" count="3">`7A skull will be placed on your head if you enter the water!</tip>
+</broadcasts>
+</map>

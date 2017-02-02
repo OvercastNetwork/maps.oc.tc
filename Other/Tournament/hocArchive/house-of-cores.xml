@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+
+<!-- Observer Kits -->
+<kits>
+    <kit name="obs">
+        <clear/>
+        <item slot="0" name=" " lore="`7How is the name gone? `oMagic.">compass</item>
+        <potion duration="oo">invisibility</potion>
+        <walk-speed>1.5</walk-speed>
+        <knockback-reduction>1</knockback-reduction>
+        <fly/>
+    </kit>
+    <kit name="obs+" parents="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+
+<!-- Auto Respawn -->
+<autorespawn/>
+
+<!-- Disable repeaters to avoid OP icarusing -->
+<filters>
+    <filter name="no-repeaters">
+        <deny>
+            <block>diode block off</block>
+            <block>diode block on</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block-place="no-repeaters" name="Repeaters are denied on this map">
+        <negative>
+            <empty/>
+        </negative>
+    </apply>
+</regions>
+
+<!-- Allow TNT above the height limit -->
+<filters>
+    <filter name="tnt-at-height-limit">
+        <block>tnt</block>
+    </filter>
+</filters>
+<regions>
+    <apply block-place="tnt-at-height-limit" region="tnt-height-limit" message="Only TNT is allowed at this level"/>
+    <apply block="deny-all" region="above-height-limit" message="You may not edit blocks at this level"/>
+</regions>
+
+</map>

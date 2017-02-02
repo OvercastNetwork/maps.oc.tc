@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Arctic Dusk</name>
+<version>1.0.2</version>
+<objective>Destroy the enemy's diamond core.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="4cdc642e-36a9-4208-8ca2-81a9461b497d"/> <!-- Raid3r -->
+    <author uuid="e82504ac-8c95-4895-9dca-222f924d697c"/> <!-- TiggyLi -->
+</authors>
+<contributors>
+    <contributor uuid="d556bcdf-57ad-4220-92f6-150a9b12380b" contribution="Terraforming"/> <!-- three_two -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:2;dig speed:1">iron axe</item>
+        <item slot="1" enchantment="arrow damage:1;arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="durability:1">diamond pickaxe</item>
+        <item slot="3" amount="64">smooth brick</item>
+        <item slot="4" amount="64" damage="1">wood</item>
+        <item slot="5" amount="16">ladder</item>
+        <item slot="6" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8" amount="64">baked potato</item>
+        <potion duration="10" amplifier="2">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="270">
+        <cuboid min="-100.5,75,-42.5" max="-100.5,75,-42.5"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="93.5,75,-122.5" max="93.5,75,-122.5"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-3.5,94,-185" radius="2" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <!--  protect spawn buildings  -->
+    <apply block="deny-all" message="You may not modify the spawn buildings.">
+        <union name="blue-spawn">
+            <cylinder name="blue-spawn-building" base="-100.5,72,-42.5" radius="9" height="14"/>
+            <rectangle min="-98,-51" max="-103,-53"/>
+            <rectangle min="-92,-40" max="-90,-45"/>
+            <rectangle min="-103,-34" max="-98,-32"/>
+        </union>
+        <union name="red-spawn">
+            <cylinder name="red-spawn-building" base="93.5,72,-122.5" radius="9" height="14"/>
+            <rectangle min="91,-114" max="96,-112"/>
+            <rectangle min="85,-125" max="83,-120"/>
+            <rectangle min="96,-131" max="91,-133"/>
+        </union>
+    </apply>
+    <apply enter="only-red" message="You may not enter red team's base">
+        <cylinder name="red-spawn-building-short" base="93.5,72,-122.5" radius="7" height="6"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue team's base">
+        <cylinder name="blue-spawn-building-short" base="-100.5,72,-42.5" radius="7" height="6"/>
+    </apply>
+    <apply block="deny-ice-melt">
+        <negative><rectangle min="0,0" max="0,0" /></negative>
+    </apply>
+    <apply block="deny-all" message="You may not build outside the playable region!">
+        <negative name="playable-inverse">
+            <rectangle min="-128,-18" max="120,-148"/>
+        </negative>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-ice-melt">
+        <all>
+            <filter name="deny-world"/>
+            <deny>
+                <block>ice</block>
+            </deny>
+        </all>
+    </filter>
+</filters>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>baked potato</item>
+    <item>shears</item>
+    <item>golden apple</item>
+    <item>baked potato</item>
+</itemremove>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<portals>
+    <portal name="red-portal-base" x="@119.5" y="@103" z="@-75.5" yaw="@90">
+        <cuboid min="100,74,-124" max="101,77,-121"/>
+    </portal>
+    <portal name="blue-portal-base" x="@-126.5" y="@103" z="@-89.5" yaw="@-90">
+        <cuboid min="-108,74,-42" max="-107,77,-43"/>
+    </portal>
+</portals>
+<cores material="obsidian" leak="5">
+    <core team="blue">
+        <cuboid min="-103,107,-87" max="-111,110,-79"/>
+    </core>
+    <core team="red">
+        <cuboid min="95,107,-79" max="103,110,-87"/>
+    </core>
+</cores>
+<maxbuildheight>130</maxbuildheight>
+</map>

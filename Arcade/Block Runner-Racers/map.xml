@@ -1,0 +1,33 @@
+<map proto="1.4.0" game="`eProgress">
+<name>BR: Racers</name>
+<version>1.0.0</version>
+<slug>block_runner_racers</slug>
+<include src="void-death.xml"/>
+<include src="block-runner.xml"/> <!-- Required by all Block Runner maps -->
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Concept and XML"/> <!-- AtlasGames -->
+</contributors>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="90">
+            <region id="spawn-location"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <block>62.5,6,-59.5</block>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <block id="spawn-location">57.5,3,-60.5</block>
+    <cuboid id="mon" min="56,0,-62" max="58,1,-59"/>
+    <below id="checkpoint1" x="-10"/>
+    <below id="checkpoint2" x="-53"/>
+    <below id="checkpoint3" x="-111"/>
+    <cuboid id="box-win" min="-172,4,-59" max="-175,5,-62"/>
+</regions>
+</map>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Timberwood</name>
+<version>1.0.0</version>
+<objective>Eliminate your opponents within 6 minutes!</objective>
+<authors>
+    <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samtheman43 -->
+</authors>
+<rules>
+    <rule>1 Life</rule>
+    <rule>6 Minutes</rule>
+</rules>
+<contributors>
+    <contributor contribution="Feedback and WorldEdit help" uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
+    <contributor contribution="WorldEdit help" uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
+</contributors>
+<rules>
+    <rule>Do not hide on the outside/border of the map</rule>
+</rules>
+<blitz>
+    <time>6m</time>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Blitz</title>
+</blitz>
+<include src="blitz-global.xml"/>
+<teams>
+    <team id="purple-team" color="dark purple" max="8">Purple</team>
+    <team id="blue-team" color="blue" max="8">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="8" damage="1">350</item>
+        <item slot="7" damage="8193" potions="regeneration:100:1:false">potion</item>
+        <item slot="8" amount="16">arrow</item>
+        <potion duration="5" amplifier="5">heal</potion>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet locked="true" color="7F3FB2">leather helmet</helmet>
+        <chestplate locked="true" color="7F3FB2">leather chestplate</chestplate>
+        <leggings locked="true">iron leggings</leggings>
+        <boots locked="true" color="7F3FB2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+    <helmet locked="true" color="334CB2">leather helmet</helmet>
+        <chestplate locked="true" color="334CB2">leather chestplate</chestplate>
+        <leggings locked="true">iron leggings</leggings>
+        <boots locked="true" color="334CB2">leather boots</boots>    
+    </kit>
+</kits>
+<spawns>
+    <spawn team="purple" kit="purple">
+	    <regions yaw="0">
+            <region name="purpleSpawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+	    <regions yaw="180">
+            <region name="blueSpawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-135">
+	        <region name="observerSpawn"/>
+        </regions>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>leather helmet</tool>
+    <tool>leather chestplate</tool>
+    <tool>iron leggings</tool>
+    <tool>leather boots</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item damage="1">350</item>
+    <item damage="8193" potions="regeneration:100:0:false">potion</item>
+</itemremove>
+<killreward>
+    <item damage="8193" potions="regeneration:100:1:false">potion</item>
+</killreward>
+<timelock>on</timelock>
+<regions>
+    <rectangle name="region1" min="-27,-32" max="93,86"/>
+    <cuboid name="purpleSpawn" min="-7,76,-7" max="0,76,-4"/>
+    <cuboid name="blueSpawn" min="66,76,58" max="73,76,61"/>
+    <block name="observerSpawn">-4.5,117,68.5</block>
+    <apply block="onlySome">
+	    <region name="region1"/>
+	    <region name="region1"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="onlySome" parents="deny-all">
+        <allow>
+            <block>web</block>
+        </allow>
+    </filter>
+</filters>
+</map>

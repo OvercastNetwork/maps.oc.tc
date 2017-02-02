@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Hamlet</name>
+<version>1.1</version>
+<objective>Earn points by keeping the flag on your side</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="orange-team" max="8" color="gold">Orange</team>
+    <team id="blue-team" max="8" color="blue">Blue</team>
+</teams>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="orange" parents="all">
+        <item slot="0" damage="-3000">stone sword</item>
+        <item slot="1" damage="-3000" enchantment="arrow damage:1">bow</item>
+        <item slot="2" damage="-3000">shears</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="4" amount="8">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+        <leggings color="ffa500" unbreakable="true">leather leggings</leggings>
+        <chestplate color="ffa500">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="all">
+        <item slot="0" damage="-3000">stone sword</item>
+        <item slot="1" damage="-3000" enchantment="arrow damage:1">bow</item>
+        <item slot="2" damage="-3000">shears</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="4" amount="8">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+        <leggings color="4ba9c8">leather leggings</leggings>
+        <chestplate color="4ba9c8">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns yaw="135" pitch="0" kit="all">
+    <default yaw="180" kit="all">
+        <regions>
+            <cylinder base="-106.5,52,144.5" radius="0" height="0"/>
+        </regions>
+    </default>
+    <spawn team="orange" kit="orange" yaw="90">
+        <regions>
+            <cylinder base="-70.5,17,77.5" radius="1" height="0"/>
+            <cylinder base="-65.5,17,85.5" radius="1" height="0"/>
+            <cylinder base="-70.5,17,123.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <regions>
+            <cylinder base="-143.5,17,122.5" radius="1" height="0"/>
+            <cylinder base="-147.5,17,115.5" radius="1" height="0"/>
+            <cylinder base="-142.5,17,77.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <any name="allow-place">
+        <material>ice</material>
+        <material>leaves</material>  
+        <material>wool</material>
+        <material>carpet</material>
+    </any>
+    <any name="breakable-blocks">
+        <material>leaves</material>
+        <material>wool</material>
+        <material>carpet</material>
+        <material>ice</material>
+    </any>
+    <any name="never">
+        <material>bedrock</material>
+    </any>
+</filters>
+<regions>
+    <apply block-break="breakable-blocks" block-place="allow-place">
+        <cylinder base="-114.5,0,100.5" radius="39" height="30"/>
+        <cylinder base="-98.5,0,100.5" radius="39" height="30"/>
+        <cuboid min="-96.5,0,138.5" max="-116.5,30,62.5"/>
+    </apply>
+    <apply block="never" message="You may not build outside the map.">
+        <negative>
+            <cylinder base="-114.5,0,100.5" radius="38" height="30"/>
+            <cylinder base="-98.5,0,100.5" radius="38" height="30"/>
+            <cuboid min="-96.5,0,138.5" max="-116.5,30,62.5"/>
+        </negative>
+    </apply>
+</regions>
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+   <limit>200</limit>
+</score>
+<flags>
+    <post id="post" return-time="5s">
+        <block>-106.5,17,100.5</block>
+        <block>-111.5,18,134.5</block>
+        <block>-101.5,18,66.5</block>
+    </post>
+    <flag name="Flag" id="Hamflag" shared="true" post="post" points-rate="1"/>
+</flags>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<itemremove>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>golden apple</item>
+</itemremove>
+</map>

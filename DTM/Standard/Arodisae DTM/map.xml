@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Arodisae</name>
+<slug>arodisae_dtm</slug>
+<version>1.0.4</version>
+<objective>Destroy the enemy's balloon to win!</objective>
+<authors>
+    <author uuid="715769c5-8c4c-4489-bdf8-f9cee2b2ae8a"/> <!-- amactus -->
+</authors>
+<contributors>
+    <contributor uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Balloon Detailing"/> <!-- GoldenOre -->
+</contributors>
+<!-- Teams, Kits and Spawns -->
+<teams>
+   <team id="red" color="red" max="16" max-overfill="20">Red</team>
+   <team id="blue" color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material="iron sword"/>
+        <item slot="1" material="bow">
+            <enchantment level="1">infinity</enchantment>
+        </item>
+        <item slot="2" material="diamond pickaxe"/>
+        <item slot="4" material="pumpkin pie" amount="64"/>
+        <item slot="28" material="arrow"/>
+        <leggings material="iron leggings"/>
+    </kit>
+    <kit id="redk" parents="spawn">
+        <chestplate color="4C7F99" material="leather chestplate"/>
+        <item slot="30" material="stained clay" damage="9" amount="64"/>
+        <item slot="3" material="stained clay" damage="9" amount="64"/>
+        <boots color="4C7F99" material="leather boots"/>
+    </kit>
+    <kit id="bluek" parents="spawn">
+        <chestplate color="7F3FB2" material="leather chestplate"/>
+        <item slot="3" damage="10" material="stained clay" amount="64"/>
+        <item slot="30" damage="10" material="stained clay" amount="64"/>
+        <boots color="7F3FB2" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="redk">
+        <regions yaw="0">
+            <cuboid min="19,21,29" max="21,21,33"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="bluek">
+        <regions yaw="180">
+            <cuboid min="19,21,-29" max="21,21,-33"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cuboid min="-1,57,1" max="1,57,-1"/>
+        </regions>
+    </default>
+</spawns>
+<!-- Monuments  -->
+<destroyables materials="wool" completion="50%" show-progress="true">
+    <destroyable name="Red's Balloon" owner="red">
+       <region>
+           <cuboid id="redmon" min="25,24,22" max="-39,45,40"/>
+       </region>
+    </destroyable>
+    <destroyable name="Blue's Balloon" owner="blue">
+       <region>
+           <cuboid id="bluemon" min="25,24,-22" max="-39,45,-40"/>
+       </region>
+    </destroyable>
+</destroyables>
+<filters>
+    <material id="iron-only">iron block</material>
+</filters> 
+<regions> 
+    <cuboid id="red-iron" min="25,0,21" max="-36,11,40"/>
+    <apply block-break="iron-only" region="red-iron" block-place="never" message="You may only break iron blocks here!"/>
+</regions>
+<regions> 
+    <cuboid id="blue-iron" min="25,0,-21" max="-36,11,-40"/>
+    <apply block-break="iron-only" region="blue-iron" block-place="never" message="You may only break iron blocks here!"/>
+</regions>
+<regions> 
+    <cuboid id="blue-spawn" min="15,20,-23" max="24,16,-39"/>
+    <apply block-break="never" region="red-iron" block-place="never" message="You may not edit the spawns!"/>
+</regions>
+<regions> 
+    <cuboid id="red-spawn" min="15,20,23" max="24,16,39"/>
+    <apply block-break="never" region="red-iron" block-place="never" message="You may not edit the spawns!"/>
+</regions>
+<!-- Settings -->
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>pumpkin pie</item>
+    <item>iron leggings</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<itemkeep>
+    <item>golden apple</item>
+</itemkeep>
+<timelock>on</timelock>
+<maxbuildheight>44</maxbuildheight>
+<respawn delay="3s" blackout="true" auto="true"/>
+<proximity-alarms>
+    <proximity-alarm message="Enemy inside balloon!" flare-radius="3" region="bluemon">
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="Enemy inside balloon!" flare-radius="3" region="redmon">
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" material="golden_apple"/>
+    </kill-reward>
+</kill-rewards>
+</map>

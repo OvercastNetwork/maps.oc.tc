@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Ieats Hall</name>
+<version>1.0.1</version>
+<objective>Kill the other team before 5 minutes are up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075" contribution="Nearly everything"/> <!-- ieatboulders2 -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Skylights"/> <!-- Stealth5061 -->
+    <contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Other stuff"/> <!-- xannallax33 -->
+</contributors>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="61,26,0" max="62,26,1"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-89">
+        <cuboid min="-16,26,-121" max="-15,26,-120"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="-17,57,-62" max="-15,57,-60"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:100" lore="`71-Hit Kill!">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:100" lore="`71-Shot Kill!">bow</item>
+        <item slot="3" amount="1">arrow</item>
+        <item slot="4" amount="4">cooked beef</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+</itemremove>
+</map>

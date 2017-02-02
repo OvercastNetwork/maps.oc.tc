@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.3.3">
+<name>Grad</name>
+<version>1.1.0</version>
+<objective>Be the team with the least amount of deaths after 10 minutes</objective>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/> <!-- matic0basle -->
+    <author>TheMadnes64</author>
+</authors>
+<contributors>
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+    <contributor uuid="23518e31-4110-41ce-9732-333888ae822d" contribution="Tree Slave"/> <!-- crikimaruc -->
+</contributors>
+<teams>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" unbreakable="true">stone axe</item>
+        <item slot="4" unbreakable="true">stone spade</item>
+        <item slot="5" amount="16">wood</item>
+        <item slot="6" amount="8">cobblestone</item>
+        <item slot="7" amount="64">cooked beef</item>
+        <item slot="8">golden apple</item>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+        <potion duration="5" amplifier="2">increase damage</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <point>-39,9,-158</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <point>-28,9,57</point>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="11,31,-51" max="13,31,-49" />
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative>
+            <rectangle min="-69,-202" max="2,101" />
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not build in the spawns!">
+        <rectangle min="-42,-168" max="-35,-159" />
+        <rectangle min="-32,57" max="-27,66" />
+    </apply>
+</regions>
+<score>
+    <time>10m</time>
+</score>
+<renewables>
+    <renewable rate="2.5" grow="true" particles="true" sound="true" avoid-entities="true">
+        <region>
+            <cuboid min="-49,9,37" max="-25,14,53" />
+            <cuboid min="-42,9,-155" max="16,14,-138" />
+        </region>
+        <renew>iron block</renew>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>stone pickaxe</item>
+    <item>stone axe</item>
+    <item>stone spade</item>
+    <item>wood</item>
+    <item>cobblestone</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>flint</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<maxbuildheight>40</maxbuildheight>
+</map>

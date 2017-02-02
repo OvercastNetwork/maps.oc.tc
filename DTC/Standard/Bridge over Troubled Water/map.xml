@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Bridge Over Troubled Water</name>
+<version>1.1.2</version>
+<objective>Make the opposing team's core leak.</objective>
+<authors>
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29" contribution="map design"/> <!-- Eclipsen -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="mountain and coding"/> <!-- khazhyk -->
+</contributors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="anti-grief-red">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-grief-blue">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<timelock>on</timelock>
+<regions>
+    <cuboid name="playable" min="-76,-oo,-206" max="117, 210, 289"/>
+    <apply enter="deny-all" block="deny-all" message="You may not leave the playing field">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <!-- Red Spawn Protections -->
+    <cuboid name="red-spawn-tunnel" min="18,61,247" max="23,66,263"/>
+    <cuboid name="red-spawn-room" min="7,61,264" max="34,68,286"/>
+    <apply enter="only-red" message="You cannot enter Red Team's spawn area.">
+        <region name="red-spawn-room"/>
+        <region name="red-spawn-tunnel"/>
+    </apply>
+    <apply block="only-red" message="You cannot modify Red Team's spawn tunnel.">
+        <region name="red-spawn-tunnel"/>
+    </apply>
+    <!-- Blue Spawn Protections -->
+    <cuboid name="blue-spawn-tunnel" min="18,61,-181" max="23,66,-164"/>
+    <cuboid name="blue-spawn-room" min="7,61,-203" max="34,68,-179"/>
+    <apply enter="only-blue" message="You cannot enter Blue Team's spawn area.">
+        <region name="blue-spawn-room"/>
+        <region name="blue-spawn-tunnel"/>
+    </apply>
+    <apply block="only-blue" message="You cannot modify Blue Team's spawn tunnel.">
+        <region name="blue-spawn-tunnel"/>
+    </apply>
+    <apply block="deny-all" message="No block placing/breaking is allowed in the spawn room.">
+        <region name="red-spawn-room"/>
+        <region name="blue-spawn-room"/>
+    </apply>
+    <apply block-place="anti-grief-red" message="`7##`r `c`lGRIEFING YOUR TEAM WILL RESULT IN A BAN!`r `7##">
+        <cuboid name="red-tnt-room" min="21,152,244" max="10,166,259"/>
+        <cuboid name="red-spawn-area" min="5,54,197" max="36,74,263"/>
+    </apply>
+    <apply block-place="anti-grief-blue" message="`7##`r `c`lGRIEFING YOUR TEAM WILL RESULT IN A BAN!`r `7##">
+        <cuboid name="blue-tnt-room" min="20,152,-160" max="31,166,-175"/>
+        <cuboid name="blue-spawn-area" min="36,54,-113" max="5,74,-179"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="shears">
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="shears" yaw="180">
+        <cuboid min="9,62,266" max="31,62,283"/>
+    </spawn>
+    <spawn team="blue" kit="shears" yaw="0">
+        <cuboid min="9,62,-201" max="31,62,-184"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="-119.5,97,45.5" radius="0" height="0"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="3">
+    <core team="red">
+        <cuboid min="16,89,159" max="25,97,166"/>
+    </core>
+    <core team="blue">
+        <cuboid min="16,89,-83" max="25,97,-74"/>
+    </core>
+</cores>
+</map>

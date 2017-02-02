@@ -1,0 +1,160 @@
+// See Electroid's branch for version, has a multi-mode monument bug
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Pine Cove</name>
+<version>1.0.0</version>
+<objective>Obtain a diamond pickaxe at the villager, then break the enemy monuments.</objective>
+<authors>
+    <author>Tywnis</author>
+</authors>
+<contributors>
+    <contributor contribution="XML/Packaging">nixter1029</contributor>
+</contributors>
+<destroyables owner="blue" materials="obsidian">
+    <destroyable name="Left Monument">
+        <region name="blue-left"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <region name="blue-right"/>
+    </destroyable>
+    <destroyable name="Front Left Monument">
+        <region name="blue-left-ft"/>
+    </destroyable>
+</destroyables>
+<destroyables owner="red" materials="obsidian">
+    <destroyable name="Left Monument">
+        <region name="red-left"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <region name="red-right"/>
+    </destroyable>
+    <destroyable name="Front Left Monument">
+        <region name="red-left-ft"/>
+    </destroyable>
+</destroyables>
+<teams>
+    <team color="dark red" max="24">Red</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3" amount="48">arrow</item>
+        <item slot="4" amount="32">cooked fish</item>
+        <item slot="8" name="`f`lPinecone" lore="`7Use this as currency." damage="1">coal</item>
+        <potion duration="8" amplifier="2">damage resistance</potion>
+        <potion duration="4" amplifier="1">heal</potion>
+        <helmet>chainmail helmet</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <chestplate color="ff0000">leather chestplate</chestplate>
+        <leggings color="ff0000">leather leggings</leggings>
+        <boots color="ff0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <chestplate color="0000ff">leather chestplate</chestplate>
+        <leggings color="0000ff">leather leggings</leggings>
+        <boots color="0000ff">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked fish</item>
+    <item>iron sword</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>chainmail helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>ice</item>
+    <item>obsidian</item>
+    <item>bedrock</item>
+</itemremove>
+<itemkeep>
+    <item name="`f`lPinecone" lore="`7Use this as currency." damage="1">coal</item>
+    <item>diamond pickaxe</item>
+    <item>iron sword</item>
+    <item>iron boots</item>
+    <item>iron leggings</item>
+    <item>iron chestplate</item>
+    <item>iron helmet</item>
+    <item>potion</item>
+</itemkeep>
+<killreward>
+    <item name="`f`lPinecone" lore="`7Use this as currency." damage="1" amount="2">coal</item>
+</killreward>
+<multitrade/>
+<filters>
+    <filter name="allow-some" parents="deny-all">
+        <allow>
+            <block>obsidian</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <union name="monuments">
+        <cuboid name="blue-left" min="1042,21,-1110" max="1042,19,-1110"/>
+        <cuboid name="blue-right" min="1033,24,-1178" max="1033,22,-1178"/>
+        <cuboid name="blue-left-ft" min="1001,10,-1098" max="1001,8,-1098"/>
+        <cuboid name="red-left" min="933,21,-1165" max="933,19,-1165"/>
+        <cuboid name="red-right" min="942,24,-1097" max="942,22,-1097"/>
+        <cuboid name="red-left-ft" min="974,10,-1177" max="974,8,-1177"/>
+    </union>
+    <apply block-break="allow-some" block-place="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <cylinder base="950.5,12,-1154.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cylinder base="1025.5,12,-1119.5" radius="3" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="988,89,-1187" radius="1" height="0"/>
+    </default>
+</spawns>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>`rThe objective is to obtain a `adiamond pickaxe `rfrom the villager.</line>
+            <line>`rThen to break the `c3 `renemy obsidian monuments.</line>
+            <line>`rEverytime you get a kill, you revieve 2 coal (currency).</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="90">985,95,-1138</point>
+        </teleport>
+    </stage>
+    <stage title="Villager">
+        <message>
+            <line>`rThe villager is located in the open building across from spawn.</line>
+            <line>`rYou must use the coal (currency) to trade with it.</line>
+            <line>`rIt offers better swords, `7iron armor`r, potions, and a `adiamond pickaxe`r.</line>
+        </message>
+        <teleport>
+            <point yaw="155" pitch="10">965,12,-1123</point>
+        </teleport>
+    </stage>
+    <stage title="Monuments">
+        <message>
+            <line>`rEach team must defend 3 obsidian monuments.</line>
+            <line>`rThey consist of `a1 `robsidian block.</line>
+            <line>`rRemember that block placing/breaking is `cdisabled `ron this map!</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="45">931,30,-1170</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

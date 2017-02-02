@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Viridun KotH</name>
+<version>1.0.0</version>
+<objective>When the beacon is lit capture the point for your team.</objective>
+<include src="tutorial.xml"/>
+<authors>
+    <author uuid="27cf0cdd-c294-4163-a536-18e11360cc7b" contribution="Map design and layout"/> <!-- OurLoneHero -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Map design, aesthetic changes, and XML"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="97abb45c-e545-473d-9b93-e1b9b94a43ee" contribution="Design concepts and map design"/> <!-- ander301 -->
+    <contributor uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f" contribution="XML Magic"/> <!-- Pugzy -->
+</contributors>
+<broadcasts>
+    <alert after="1s">The first hill is active!</alert>
+    <alert after="1m">The next hill is active!</alert>
+    <alert after="2m">The next hill is active!</alert>
+    <alert after="3m">The next hill is active!</alert>
+    <alert after="4m">The next hill is active!</alert>
+    <alert after="5m">The next hill is active!</alert>
+    <alert after="6m">The next hill is active!</alert>
+    <alert after="7m">The next hill is active!</alert>
+    <alert after="8m">The next hill is active!</alert>
+    <alert after="9m">The next hill is active!</alert>
+    <alert after="10m">The next hill is active!</alert>
+    <alert after="11m">The next hill is active!</alert>
+    <alert after="11m59s">`7The server may lag as the beacons are lit up.</alert>
+    <tip after="11m59s">`7Take this time to write a lovely GG message.</tip>
+</broadcasts>   
+<teams>
+    <team id="blue-team" color="blue" max="40">Blue</team>
+    <team id="red-team" color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="16">cooked chicken</item>
+        <item slot="3" damage="8229">potion</item> <!-- potion of instant health 2 -->
+        <item slot="9" damage="4">ink sack</item>
+        <potion duration="10" amplifier="1">heal</potion>
+        <potion duration="20">damage resistance</potion>
+        <chestplate locked="true" enchantment="protection fall:3" unbreakable="true">elytra</chestplate>
+        <double-jump power="10" recharge-time="30s" recharge-before-landing="true"/>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="observer-kit">
+        <potion duration="oo" amplifier="3">jump</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+        <chestplate>elytra</chestplate>
+    </kit>
+</kits>
+<keep-potion-bottles/>
+<spawns>
+    <spawns kit="blue-kit">
+        <!-- Blue Spawns -->
+        <spawn team="blue-team" yaw="0">
+            <region><cuboid min="23,33,-60" max="29,33,-55"/></region>
+            <region><cuboid min="24,33,-41" max="29,33,-46"/></region>
+            <region><cuboid min="-32,33,-3" max="-28,33,2"/></region>
+            <region><cuboid min="-23,79,-4" max="-18,79,2"/></region>
+            <region><cuboid min="-18,87,-5" max="-12,87,-3"/></region>
+        </spawn>
+        <spawn team="blue-team" yaw="90">
+           <region><cuboid min="40,37,-55" max="45,37,-58"/></region>
+           <region><cuboid min="41,64,-71" max="35,64,-77"/></region>
+           <region><cuboid min="47,72,-39" max="42,72,-44"/></region>
+           <region><cuboid min="40,52,-15" max="32,52,-27"/></region>
+           <region><cuboid min="13,60.5,13" max="14,60.5,16"/></region>
+           <region><cuboid min="-17,33,13" max="-13,33,15"/></region>
+        </spawn>
+        <spawn team="blue-team" yaw="180">
+            <region><cuboid min="-20,62,-6" max="-10,62,-2"/></region>
+            <region><cuboid min="-1,33,-4" max="3,33,3"/></region>
+            <region><cuboid min="-1,71,6" max="2,71,9"/></region>
+            <region><cuboid min="-17,87,2" max="-12,87,4"/></region>
+        </spawn>
+    </spawns>
+    <spawns kit="red-kit">
+        <!-- Red Spawns -->
+        <spawn team="red-team" yaw="0">
+            <region><cuboid min="-107,90,-21" max="-110,90,-25"/></region>
+            <region><cylinder base="-99,63,-73" radius="3" height="0"/></region>
+            <region><cuboid min="-92,37,25" max="-88,37,30"/></region>
+        </spawn>
+        <spawn team="red-team" yaw="90">
+            <region><cylinder base="-91,76,-72" radius="1" height="0"/></region>
+            <region><cuboid min="-72,65,-27" max="-72,65,-23"/></region>
+        </spawn>
+        <spawn team="red-team" yaw="180">
+            <region><cylinder base="-98.5,84,-72.5" radius="2" height="0"/></region>
+            <region><cuboid min="-109,79,-15" max="-102,79,-29"/></region>
+            <region><cuboid min="-86,80,-11" max="-91,80,-18"/></region>
+            <region><cuboid min="-97,76,-61" max="-101,76,-48"/></region>
+            <region><cuboid min="-88,37,48" max="-84,37,52"/></region>
+        </spawn>
+        <spawn team="red-team" yaw="270">
+            <region><cuboid min="-142,83,-39" max="-121,83,-35"/></region>
+            <region><cuboid min="-110,65,-15" max="-103,65,-29"/></region>
+            <region><cuboid min="-98,65,-43" max="-114,65,-36"/></region>
+        </spawn>
+    </spawns>
+    <default yaw="90" kit="observer-kit"><region><cylinder base="-14,62,-39" radius="5" height="0"/></region></default>
+</spawns>
+<time>12m10s</time>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>ladder</item>
+    <item>cooked chicken</item>
+    <item>glass bottle</item>
+    <item>ink sack</item>
+    <item>potion:0</item><!-- Remove water bottles -->
+    <item>elytra</item>
+</itemremove>
+<regions>
+    <cylinder id="middle-bridge-area" base="-14.5,61,-39.5" radius="5" height="5"/>
+    <cylinder id="lower-market-area" base="-2.5,28,-54.5" radius="5" height="5"/>
+    <cylinder id="upper-market-area" base="-38.5,32,28.5" radius="5" height="5"/>
+    <cylinder id="melon-farm-area" base="-80.5,41,-109.5" radius="5" height="5"/>
+    <cylinder id="dam-bridge-area" base="-46.5,32,-65.5" radius="5" height="5"/>
+    <cylinder id="upper-square-area" base="-14.5,61,-83.5" radius="5" height="5"/>
+    <cylinder id="archery-range-area" base="46.5,63,-66.5" radius="5" height="5"/>
+    <cylinder id="lower-bridge-area" base="13.5,32,-28.5" radius="5" height="5"/>
+    <cylinder id="mines-area" base="-83.5,36,38.5" radius="5" height="5"/>
+    <cylinder id="lake-side-area" base="-59.5,17,-8.5" radius="5" height="5"/>
+    <cylinder id="red-mansion-area" base="-86.5,64,-39.5" radius="5" height="5"/>
+    <cylinder id="blue-bridge-area" base="36.5,51,-11.5" radius="5" height="5"/>
+    <apply block="never" region="everywhere"/>
+</regions>
+<structures>
+    <structure id="bedrock-block" origin="0.5,2,0.5" clear="false">
+        <region>
+            <cuboid min="0,0,0" max="1,1,1"></cuboid>
+        </region>
+    </structure>
+    <structure id="iron-block" origin="0.5,3,0.5" clear="false">
+        <region>
+            <cuboid min="0,1,0" max="1,2,1"></cuboid>
+        </region>
+    </structure>
+    <dynamic structure="iron-block" location="-14.5,61,-39.5" trigger="min-1-filter"/>
+    <dynamic structure="bedrock-block" location="-14.5,61,-39.5" trigger="min-2-filter"/>
+    <dynamic structure="iron-block" location="-2.5,28,-54.5" trigger="min-2-filter"/>
+    <dynamic structure="bedrock-block" location="-2.5,28,-54.5" trigger="min-3-filter"/>
+    <dynamic structure="iron-block" location="-38.5,32,28.5" trigger="min-3-filter"/>
+    <dynamic structure="bedrock-block" location="-38.5,32,28.5" trigger="min-4-filter"/>
+    <dynamic structure="iron-block" location="-80.5,41,-109.5" trigger="min-4-filter"/>
+    <dynamic structure="bedrock-block" location="-80.5,41,-109.5" trigger="min-5-filter"/>
+    <dynamic structure="iron-block" location="-46.5,32,-65.5" trigger="min-5-filter"/>
+    <dynamic structure="bedrock-block" location="-46.5,32,-65.5" trigger="min-6-filter"/>
+    <dynamic structure="iron-block" location="-14.5,61,-83.5" trigger="min-6-filter"/>
+    <dynamic structure="bedrock-block" location="-14.5,61,-83.5" trigger="min-7-filter"/>
+    <dynamic structure="iron-block" location="46.5,63,-66.5" trigger="min-7-filter"/>
+    <dynamic structure="bedrock-block" location="46.5,63,-66.5" trigger="min-8-filter"/>
+    <dynamic structure="iron-block" location="13.5,32,-28.5" trigger="min-8-filter"/>
+    <dynamic structure="bedrock-block" location="13.5,32,-28.5" trigger="min-9-filter"/>
+    <dynamic structure="iron-block" location="-83.5,36,38.5" trigger="min-9-filter"/>
+    <dynamic structure="bedrock-block" location="-83.5,36,38.5" trigger="min-10-filter"/>
+    <dynamic structure="iron-block" location="-59.5,17,-8.5" trigger="min-10-filter"/>
+    <dynamic structure="bedrock-block" location="-59.5,17,-8.5" trigger="min-11-filter"/>
+    <dynamic structure="iron-block" location="-86.5,64,-39.5" trigger="min-11-filter"/>
+    <dynamic structure="bedrock-block" location="-86.5,64,-39.5" trigger="min-12-filter"/>
+    <dynamic structure="iron-block" location="36.5,51,-11.5" trigger="min-12-filter"/>
+    <!-- Match End -->
+    <dynamic structure="iron-block" location="-14.5,61,-39.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-2.5,28,-54.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-38.5,32,28.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-80.5,41,-109.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-46.5,32,-65.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-14.5,61,-83.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="46.5,63,-66.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="133.5,32,-28.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-83.5,36,38.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-59.5,18,-8.5" trigger="match-finished"/>
+    <dynamic structure="iron-block" location="-86.5,64,-39.5" trigger="match-finished"/>
+</structures>
+<filters>
+    <completed id="middle-bridge-filter">middle-bridge-hill</completed>
+    <time id="min-0-filter">1</time>
+    <all id="min-1-filter">
+        <time>0</time>
+        <not>
+            <time>60</time>
+        </not>
+    </all>
+    <all id="min-2-filter">
+        <time>60</time>
+        <not>
+            <time>120</time>
+        </not>
+    </all>
+    <all id="min-3-filter">
+        <time>120</time>
+        <not>
+            <time>180</time>
+        </not>
+    </all>
+    <all id="min-4-filter">
+        <time>180</time>
+        <not>
+            <time>240</time>
+        </not>
+    </all>
+    <all id="min-5-filter">
+        <time>240</time>
+        <not>
+            <time>300</time>
+        </not>
+    </all>
+    <all id="min-6-filter">
+        <time>300</time>
+        <not>
+            <time>360</time>
+        </not>
+    </all>
+    <all id="min-7-filter">
+        <time>360</time>
+        <not>
+            <time>420</time>
+        </not>
+    </all>
+    <all id="min-8-filter">
+        <time>420</time>
+        <not>
+            <time>480</time>
+        </not>
+    </all>
+    <all id="min-9-filter">
+        <time>480</time>
+        <not>
+            <time>540</time>
+        </not>
+    </all>
+    <all id="min-10-filter">
+        <time>540</time>
+        <not>
+            <time>600</time>
+        </not>
+    </all>
+    <all id="min-11-filter">
+        <time>600</time>
+        <not>
+            <time>660</time>
+        </not>
+    </all>
+    <all id="min-12-filter">
+        <time>660</time>
+        <not>
+            <time>720</time>
+        </not>
+    </all>
+    <all id="match-finished"><match-finished/></all>
+</filters>
+<control-points capture-players="lead" decay="1" capture-time="5s" show-progress="true" points="0">
+    <control-point name="Middle Bridge" id="middle-bridge-hill" player-filter="min-1-filter">
+        <capture><region id="middle-bridge-area"/></capture>
+        <progress><region id="middle-bridge-area"/></progress>
+    </control-point>
+    <control-point name="Lower Market" player-filter="min-2-filter">
+        <capture><region id="lower-market-area"/></capture>
+        <progress><region id="lower-market-area"/></progress>
+    </control-point>
+    <control-point name="Upper Market" player-filter="min-3-filter">
+        <capture><region id="upper-market-area"/></capture>
+        <progress><region id="upper-market-area"/></progress>
+    </control-point>
+    <control-point name="Melon Farm" player-filter="min-4-filter">
+        <capture><region id="melon-farm-area"/></capture>
+        <progress><region id="melon-farm-area"/></progress>
+    </control-point>
+    <control-point name="Dam Bridge" player-filter="min-5-filter">
+        <capture><region id="dam-bridge-area"/></capture>
+        <progress><region id="dam-bridge-area"/></progress>
+    </control-point>
+    <control-point name="Upper Square" player-filter="min-6-filter">
+        <capture><region id="upper-square-area"/></capture>
+        <progress><region id="upper-square-area"/></progress>
+    </control-point>
+    <control-point name="Archery Range" player-filter="min-7-filter">
+        <capture><region id="archery-range-area"/></capture>
+        <progress><region id="archery-range-area"/></progress>
+    </control-point>
+    <control-point name="Lower Bridge" player-filter="min-8-filter">
+        <capture><region id="lower-bridge-area"/></capture>
+        <progress><region id="lower-bridge-area"/></progress>
+    </control-point>
+    <control-point name="Mines" player-filter="min-9-filter">
+        <capture><region id="mines-area"/></capture>
+        <progress><region id="mines-area"/></progress>
+    </control-point>
+    <control-point name="Lake Side" player-filter="min-10-filter">
+        <capture><region id="lake-side-area"/></capture>
+        <progress><region id="lake-side-area"/></progress>
+    </control-point>
+    <control-point name="Red Mansion" player-filter="min-11-filter">
+        <capture><region id="red-mansion-area"/></capture>
+        <progress><region id="red-mansion-area"/></progress>
+    </control-point>
+    <control-point name="Blue Bridge" player-filter="min-12-filter">
+        <capture><region id="blue-bridge-area"/></capture>
+        <progress><region id="blue-bridge-area"/></progress>
+    </control-point>
+</control-points>
+<killreward>
+    <item slot="3" damage="8229">potion</item> <!-- potion of instant health 2 -->
+</killreward>
+<tutorial>
+    <stage title="Capture Point">
+        <message>
+            <line>There's `b12 hills`f scattered around the map. Every `bminute`f the active hill will change. A `bbeacon`f is used to show its location.</line>
+        </message>
+        <teleport>
+            <point yaw="61" pitch="17">-3,68,-86</point>
+        </teleport>
+    </stage>
+    <stage title="Point System">
+        <message>
+            <line>When the hill switches the `bcurrent owner`f will win it. The team with the `bmost hills`f at the end of the game will `bwin`f.</line>
+        </message>
+        <teleport>
+            <point yaw="-70" pitch="28">-30,70,-44</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

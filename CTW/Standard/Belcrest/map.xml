@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<include src="tutorial.xml"/>
+<name>Belcrest</name>
+<version>1.3.3</version>
+<objective>Capture the enemy's wools and place it at your victory monument.</objective>
+<authors>
+    <author uuid="d3635173-3f67-447b-b079-d4f772f560a6"/> <!-- PixelRanch -->
+    <author uuid="b57fa482-72d2-4cab-ad7b-7be0a02dfc14"/> <!-- TJacks98 -->
+</authors>
+<teams>
+    <team max="32" color="dark red">Red</team>
+    <team max="32" color="blue">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="teams" yaw="-90">
+        <region>
+            <cuboid min="-85,9,-1" max="-82,9,2"/>
+        </region>
+    </spawn>
+    <spawn team="blue" kit="teams" yaw="90">
+        <region>
+            <cuboid min="83,9,-1" max="86,9,2"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cuboid min="-1,50,-1" max="2,50,2"/>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:1" unbreakable="true">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6" amount="2">web</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8" amount="64">golden carrot</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue" parents="deny-all">
+        <allow><team>blue</team></allow>
+        <deny><block>chest</block></deny>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow><team>red</team></allow>
+        <deny><block>chest</block></deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="allow-slab">
+        <allow>
+            <block>step</block>
+        </allow>
+    </filter>
+    <filter name="not-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="above-30" min="-oo,31,-oo" max="oo,oo,oo"/>
+    <union name="red-wool-rooms">
+        <rectangle name="yellow-wool-room" min="104,49" max="116,64"/>
+        <rectangle name="orange-wool-room" min="104,-63" max="116,-48"/>
+    </union>
+    <union name="blue-wool-rooms">
+        <rectangle name="lime-wool-room" min="-103,49" max="-115,64"/>
+        <rectangle name="purple-wool-room" min="-103,-63" max="-115,-48"/>
+    </union>
+    <union name="red-spawn">
+        <circle center="-72.5,0.5" radius="16"/>
+        <rectangle min="-76,-25" max="-69,26"/>
+    </union>
+    <union name="blue-spawn">
+        <circle center="73.5,0.5" radius="16"/>
+        <rectangle min="70,-25" max="77,26"/>
+    </union>
+    <union name="spawns">
+        <region name="red-spawn"/>
+        <region name="blue-spawn"/>
+    </union>
+    <union name="void-areas">
+        <rectangle name="main-void" min="-14,-15" max="15,16"/>
+        <rectangle name="inside-void" min="41,-3" max="-40,4"/>
+        <rectangle name="red-back-void" min="-128,-9" max="-114,10"/>
+        <rectangle name="blue-back-void" min="115,-9" max="129,10"/>
+    </union>
+    <union name="back-slabs-zone">
+        <rectangle name="red-back-slabs-zone" min="-129,-9" max="-114,10"/>
+        <rectangle name="blue-back-slabs-zone" min="130,10" max="115,-9"/>
+    </union>
+    <apply enter="only-red" block="only-red" message="`eYou may not interact with the enemy wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" block="only-blue" message="`eYou may not interact with the enemy wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block-break="only-iron" block-place="deny-all" message="`eYou can only break iron blocks in spawn!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="only-blue" message="`eYou may not enter the enemy spawn!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-red" message="`eYou may not enter the enemy spawn!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not build above the height limit! (`c30 Blocks`e)">
+        <region name="above-30"/>
+    </apply>
+    <apply block-break="allow-slab">
+        <negative>
+            <region name="back-slabs-zone"/>
+        </negative>
+    </apply>
+    <apply block="not-void" message="`eYou may not edit the void area!">
+        <negative>
+            <region name="void-areas"/>
+        </negative>
+    </apply>
+</regions>
+<wools>
+    <wools team="red">
+        <wool color="orange" location="110,8,-56">
+            <monument>
+                <block>-58.5,9,-0.5</block>
+            </monument>
+        </wool>
+        <wool color="yellow" location="110,8,-57">
+            <monument>
+                <block>-58.5,9,1.5</block>
+            </monument>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="lime" location="-109,8,57">
+            <monument>
+                <block>59.5,9,1.5</block>
+            </monument>
+        </wool>
+        <wool color="purple" location="-109,8,-56">
+            <monument>
+                <block>59.5,9,-0.5</block>
+            </monument>
+        </wool>
+    </wools>
+</wools>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>string</item>
+    <item>glowstone dust</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>ladder</item>
+    <item>golden carrot</item>
+    <item>sapling</item>
+</itemremove>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>This map is a `aCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="60" pitch="10">1,25,-35</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Team Base">
+        <message>
+            <line>This is the `9Blue Team `rbase. You spawn with gear ready to go into battle!</line>
+            <line>You can use the water portals on either side to quickly exit the base.</line>
+            <line>The chests contain extra supplies to help you build defenses or bridge to the enemy side.</line>
+        </message>
+        <teleport>
+            <point yaw="-115" pitch="15">54,17,12</point>
+        </teleport>
+    </stage>
+    <stage title="Red Wool Rooms">
+        <message>
+            <line>Red Team should defend these rooms against Blue Team invaders who are trying to steal the wool and make it back alive.</line>
+            <line>There are special goodies inside that will help you fight your way out.</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="15">98,11,-42</point>
+        </teleport>
+    </stage>
+    <stage title="Victory Monument">
+        <message>
+            <line>This is one of three of `9Blue Team`r's victory monuments.</line>
+            <line>The two colored wools from the `cRed Team`r's wool rooms must be placed in the victory monuments for the match to end.</line>
+            <line>Note that Red Team has three identical victory monuments for their respective wools.</line>
+        </message>
+        <teleport>
+            <point yaw="90">63.5,8,0.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

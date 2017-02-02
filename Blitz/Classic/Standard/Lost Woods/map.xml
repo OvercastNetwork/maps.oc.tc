@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Lost Woods</name>
+<version>1.1.1</version>
+<objective>Eliminate everyone on the other team within 5 minutes!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
+</authors>
+<contributors>
+    <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
+</contributors>
+<timelock>on</timelock>
+<friendlyfirerefund>on</friendlyfirerefund>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="yellow" max="20">Yellow</team>
+</teams>
+<regions>
+    <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    <!-- Applied -->
+    <apply block="deny-all">
+        <region name="map"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="16">arrow</item>
+        <item slot="2" amount="4">cooked fish</item>
+        <item slot="3" amount="1">golden apple</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="FFD801" unbreakable="true">leather helmet</helmet>
+        <chestplate color="FFD801" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="FFD801" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="yellow" yaw="45">
+        <block>-23.5,5,24.5</block>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-135">
+        <block>24.5,5,-23.5</block>
+    </spawn>
+    <default yaw="-135">
+        <block>-27.5,19,6.5</block>
+    </default>
+</spawns>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<itemremove>
+    <item>cooked fish</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

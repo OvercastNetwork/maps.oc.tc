@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<include src="tutorial.xml"/>
+<name>Yggdrasil</name> 
+<version>1.0</version> 
+<objective>Get the most kills for your team within the allowed time.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<rules>
+    <rule>Fall damage is off!</rule>
+</rules>
+<teams>
+    <team color="blue" max="30">Blue</team>
+    <team color="dark red" max="30">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">iron axe</item>
+        <item slot="4" amount="32">bread</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="7" amount="8">torch</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="9">damage resistance</potion>
+        <double-jump power="2" recharge-time="3s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+        <item slot="5" amount="12" damage="0">wood</item>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+        <item slot="5" amount="12" damage="1">wood</item>
+    </kit>
+</kits>
+<timelock>off</timelock>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <cylinder name="red-spawn" base="2276.5,98,-1041.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <cylinder name="blue-spawn" base="2262.5,101,-1178.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default> 
+        <regions yaw="-90">
+            <cylinder name="obs-spawn" base="2274.5,158,-1101.5" radius="3" height="0" />
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <!-- World -->
+    <cylinder name="world" base="2262.5,-400,-1105.5" radius="90" height="560"/>
+    <!-- Enter events -->
+    <apply enter="red-only" message="`eYou may not enter in the enemy's spawn!">
+        <cylinder base="2276.5,98,-1041.5" radius="6" height="4"/>
+    </apply>
+    <apply enter="blue-only" message="`eYou may not enter in the enemy's spawn!">
+        <cylinder base="2262.5,101,-1178.5" radius="6" height="4"/>
+    </apply>
+    <!-- place and break events at spawn -->
+    <apply block-place="deny-all" block-break="deny-all" message="`eYou may not place or break blocks near the spawn!">
+        <cylinder base="2276.5,95,-1041.5" radius="10" height="8"/>
+    </apply>
+    <apply block-place="deny-all" block-break="deny-all" message="`eYou may not place or break blocks near the spawn!">
+        <cylinder base="2262.5,98,-1178.5" radius="10" height="8"/>
+    </apply>
+    <!-- XYZ limits of the map -->
+    <apply enter="deny-all" message="`fYou may not go beyond this point.">
+        <negative>
+            <region name="world"/>
+        </negative>
+    </apply>
+</regions>
+<portals>
+    <portal y="-89">
+        <region><block>2252.5,113,-1101.5</block></region>
+    </portal>
+    <portal y="89">
+        <region><block>2252.5,24,-1101.5</block></region>
+    </portal>
+    <portal y="-61">
+        <region><block>2278.5,65,-1111.5</block></region>
+    </portal>
+    <portal y="61">
+        <region><block>2278.5,4,-1111.5</block></region>
+    </portal>
+</portals>
+<score>
+    <time>15m</time>
+    <kills>1</kills>
+</score>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<itemremove>
+    <item>arrow</item>
+    <item>bread</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>iron axe</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+</map>

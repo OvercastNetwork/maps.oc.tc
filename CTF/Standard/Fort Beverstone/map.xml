@@ -1,0 +1,196 @@
+<map proto="1.3.6">
+<name>Fort Beverstone</name>
+<version>2.0</version>
+<objective>Attackers need to capture all 3 flags located at the Defender's towers. Defenders must hold them off for 20 minutes!</objective>
+<gamemode>ad</gamemode>
+<phase>development</phase>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+    <!--  thestrangeboy1  -->
+</authors>
+<teams>
+    <team id="attackers" color="dark red" max="36" plural="true">Attackers</team>
+    <team id="defenders" color="blue" max="36" plural="true">Defenders</team>
+</teams>
+<kits>
+    <kit name="teams-reg" potion-particles="false">
+        <item slot="0" damage="-3000">iron sword</item>
+        <item slot="1" damage="-3000" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" amount="64">cooked fish</item>
+        <item slot="3" amount="32">leaves</item>
+        <item slot="4" amount="16">vine</item>
+        <item slot="5" amount="1">golden apple</item>
+        <item slot="6" damage="233">shears</item>
+        <chestplate damage="-3000" enchantment="protection projectile:1">chainmail chestplate</chestplate>
+        <boots damage="-3000" enchantment="protection fall:2">iron boots</boots>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="attackers" parents="teams-reg">
+        <helmet color="FF0000" damage="-3000">leather helmet</helmet>
+        <leggings color="FF0000" damage="-3000">leather leggings</leggings>
+    </kit>
+    <kit name="defenders" parents="teams-reg">
+        <helmet color="0000FF" damage="-3000">leather helmet</helmet>
+        <leggings color="0000FF" damage="-3000">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="attackers" kit="attackers">
+        <regions yaw="-65">
+            <block>-50,36,100</block>
+        </regions>
+        <regions yaw="-120">
+            <block>-56,54,-28</block>
+        </regions>
+    </spawn>
+    <spawn team="defenders" kit="defenders">
+        <regions yaw="53">
+            <cuboid min="123,58,42" max="120,58,39"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="36,105,32" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<flags>
+    <flag id="purple-flag" name="Purple Flag" color="purple" owner="defenders" pickup-filter="only-attackers" return-time="45s">
+        <post yaw="135" permanent="true">72.5,74,16.5</post>
+        <net points="1" region="nets"/>
+    </flag>
+    <flag id="lime-flag" name="Lime Flag" color="lime" owner="defenders" pickup-filter="only-attackers" return-time="45s">
+        <post yaw="-90" permanent="true">105.5,73,49.5</post>
+        <net points="1" region="nets"/>
+    </flag>
+    <flag id="orange-flag" name="Orange Flag" color="orange" owner="defenders" pickup-filter="only-attackers" return-time="45s">
+        <post yaw="135" permanent="true">127.5,77,81.5</post>
+        <net points="1" region="nets"/>
+    </flag>
+</flags>
+<filters>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="deny-leaves">
+        <deny>
+            <block>leaves</block>
+        </deny>
+    </filter>
+    <filter name="deny-unbreakable-blocks">
+        <deny>
+            <any>
+                <block>stone</block>
+                <block>dirt</block>
+                <block>clay</block>
+                <block>sand</block>
+                <block>smooth brick</block>
+                <block>43:8</block>
+                <block>gravel</block>
+                <block>grass</block>
+                <block>cobblestone</block>
+                <block>obsidian</block>
+                <block>stained clay</block>
+                <block>stained glass</block>
+                <block>step</block>
+                <block>sea lantern</block>
+                <block>chest</block>
+                <block>wool</block>
+                <block>jack o lantern</block>
+                <block>pumpkin</block>
+                <block>melon block</block>
+                <block>packed ice</block>
+                <block>fence</block>
+                <block>cobble wall</block>
+                <block>glowstone</block>
+                <block>soul sand</block>
+                <block>hay block</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="only-attackers">
+        <team>attackers</team>
+    </filter>
+</filters>
+<regions>
+    <union name="teams-spawn">
+        <rectangle min="-63,oo" max="-37,-oo"/>
+        <cuboid min="108,0,50" max="125,61,37"/>
+    </union>
+    <union name="nets">
+        <circle center="-55.5,-28.5" radius="3" height="0"/>
+        <circle center="-51.5,91.5" radius="3" height="0"/>
+    </union>
+    <apply block-place="deny-leaves" message="You may not place leaves in spawn!">
+        <region name="teams-spawn"/>
+    </apply>
+    <apply block="deny-unbreakable-blocks" message="This type of block is unbreakable">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="no-void" message="You may not build in the void!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<score>
+    <limit>3</limit>
+    <deaths>0</deaths>
+    <kills>0</kills>
+</score>
+<time result="defenders">20m</time>
+<portals>
+    <portal x="@127.5" y="@38" z="@-13" pitch="@0" yaw="@135">
+        <region>
+            <cuboid min="93,52,38" max="92,56,39"/>
+        </region>
+    </portal>
+    <portal x="@-56" y="@54.5" z="@-28" pitch="@0" yaw="@-135">
+        <region>
+            <cuboid min="-41,36,100" max="-42,39,101"/>
+        </region>
+    </portal>
+    <portal x="@-48" y="@35.5" z="@94" pitch="@0" yaw="@-10">
+        <region>
+            <cuboid min="-55,54,-38" max="-54,57,-39"/>
+        </region>
+    </portal>
+</portals>
+<broadcasts>
+    <alert after="2s">
+        `9Defenders `rmust hold off the `4Attackers `rfrom capturing `athe 3 flags `rlocated at the towers of the fortress!
+    </alert>
+    <alert after="10s">
+        `4Attackers `rmust bring back each flag to their net at one of their spawns, `ayou can't capture the same flag twice! `rYou have `a20 minutes!
+    </alert>
+</broadcasts>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+</toolrepair>
+<timelock>on</timelock>
+<maxbuildheight>70</maxbuildheight>
+<killreward>
+    <item amount="12">leaves</item>
+    <item amount="6">vine</item>
+</killreward>
+<itemremove>
+    <item>log</item>
+    <item>sapling</item>
+    <item>38</item>
+    <item>37</item>
+    <item>seeds</item>
+    <item>cooked fish</item>
+    <item>leather leggings</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail boots</item>
+    <item>diamond helmet</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+    <item>leaves</item>
+    <item>vine</item>
+</itemremove>
+</map>

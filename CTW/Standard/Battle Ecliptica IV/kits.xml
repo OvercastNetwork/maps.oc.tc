@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<kits>
+    <kit id="obs">
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit id="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:1">iron spade</item>
+        <item slot="4" amount="32">cooked chicken</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="8">heal</potion>
+        <potion duration="8" amplifier="5">damage resistance</potion>
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit id="red" parents="teams">
+        <item slot="5" amount="16" damage="14">stained clay</item>
+        <item slot="6" amount="4" damage="14">stained glass</item>
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots unbreakable="true" color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blue" parents="teams">
+        <item slot="5" amount="16" damage="11">stained clay</item>
+        <item slot="6" amount="4" damage="11">stained glass</item>
+        <helmet unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate unbreakable="true" color="0066cc" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots unbreakable="true" color="0066cc">leather boots</boots>
+    </kit>
+    <kit id="green" parents="teams">
+        <item slot="5" amount="16" damage="5">stained clay</item>
+        <item slot="6" amount="4" damage="5">stained glass</item>
+        <helmet unbreakable="true" color="667F33">leather helmet</helmet>
+        <chestplate unbreakable="true" color="667F33" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots unbreakable="true" color="667F33">leather boots</boots>
+    </kit>
+    <kit id="yellow" parents="teams">
+        <item slot="5" amount="16" damage="4">stained clay</item>
+        <item slot="6" amount="4" damage="4">stained glass</item>
+        <helmet unbreakable="true" color="E5E533">leather helmet</helmet>
+        <chestplate unbreakable="true" color="E5E533" enchantment="protection projectile:1">leather chestplate</chestplate>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+
+</map>

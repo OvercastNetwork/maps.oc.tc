@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Airship Aces</name>
+<version>1.0.2</version>
+<objective>Leak lava into the void below to win!</objective>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<contributors>
+    <contributor uuid="c97373ef-4582-4350-8993-8a78f2775c29" contribution="Aesthetics"/> <!-- Eclipsen -->
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+</contributors>
+<teams>
+    <team color="blue" max="15">Blue</team>
+    <team color="dark red" max="15">Red</team>
+</teams>
+<kits>
+    <kit name="shears">
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="shears" yaw="0">
+        <point>-21.5,60,-52.5</point>
+    </spawn>
+    <spawn team="red" kit="shears" yaw="180">
+        <point>-21.5,60,-84.5</point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-21.5,59,-68.5" radius="5" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <rectangle name="map-b" min="-126,-128" max="-46,-9"/>
+    <rectangle name="map-l" min="-128,-130" max="-44,-7"/>
+    <cuboid name="above-90" min="-oo,91,-oo" max="oo,oo,oo"/>
+    <apply block="deny-all" message="You may not edit outside the main area!">
+        <negative>
+            <region name="map-b"/>
+        </negative>
+    </apply>
+    <apply leave="deny-all" message="You may not exit outside the main area!">
+        <region name="map-l"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit above the main area! (`a90 Blocks`c)">
+        <region name="above-90"/>
+    </apply>
+    <apply block-place="deny-fire" message="Fire is disabled on the map!">
+        <region name="map-b"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-fire">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+</filters>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="20m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="7" mode-changes="true">
+    <core team="red">
+        <cuboid min="-101,56,-102" max="-107,63,-97"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-101,56,-40" max="-107,63,-35"/>
+    </core>
+</cores>
+<timelock>on</timelock>
+<itemremove>
+    <item>shears</item>
+    <item>obsidian</item>
+</itemremove>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<mobs>
+    <filter>
+        <mob>silverfish</mob>
+    </filter>
+</mobs>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>This map is a `aDestroy the Core `r(DTC) map.</line>
+            <line>The objective is to leak the other team's obsidian core.</line>
+        </message>
+        <teleport>
+            <point yaw="140" pitch="20">-41,75,-61</point>
+        </teleport>
+    </stage>
+    <stage title="Core">
+        <message>
+            <line>Each team has one obsidian core that they must defend.</line>
+            <line>The core is thinner toward the spawn and thicker the further away, so beware!</line>
+            <line>The core will become `6gold blocks `rat 15 minutes and `7glass `rat 20 minutes!</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="5">-122,62,-38</point>
+        </teleport>
+    </stage>
+    <stage title="Supplies">
+        <message>
+            <line>You don't spawn with any supplies, get them from the chests scattered around the ship!</line>
+            <line>Make sure to protect them with water, because the enemy will want to quickly destroy them.</line>
+        </message>
+        <teleport>
+            <point yaw="55" pitch="20">-48.5,56.5,-42.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

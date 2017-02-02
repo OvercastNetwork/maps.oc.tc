@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Verveine</name>
+<version>1.2</version>
+<objective>Catpure the enemy's Wool!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="15" max-overfill="16">Red</team>
+    <team id="blue" color="blue" max="15" max-overfill="16">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="redkit" yaw="180">
+        <regions>
+            <point>36,5,213</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="bluekit" yaw="180">
+        <regions>
+            <point>-6,5,213</point>
+        </regions>
+    </spawn>
+    <default yaw="90">
+        <regions>
+            <point>55.5,30,110.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">baked potato</item>
+        <item slot="6" amount="24">glass</item>
+        <item slot="7" damage="1" amount="24">wood</item>
+        <item slot="8" amount="24">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5">damage resistance</potion>
+    </kit>
+    <kit id="bluekit" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="5F9F7F">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="5F9F7F">leather boots</boots>
+    </kit>
+    <kit id="redkit" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="5F9F7F">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="5F9F7F">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <potion duration="3" amplifier="1">night vision</potion>
+    <item>golden apple</item>
+</killreward>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <deny id="deny-chest">
+        <material>chest</material>
+    </deny>
+    <deny id="deny-mobspawner">
+        <material>mob spawner</material>
+    </deny>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <deny id="only-iron">
+        <not>
+            <material>iron block</material>
+        </not>
+    </deny>
+</filters>
+<regions>
+    <union id="bases">
+        <rectangle id="red-spawn" min="29,192" max="43,219"/>
+        <rectangle id="blue-spawn" min="-13,192" max="1,219"/>
+    </union>
+    <union id="wool-rooms">
+        <rectangle id="red-wr" min="2,18" max="-14,0"/>
+        <rectangle id="blue-wr" min="28,0" max="44,18"/>
+    </union>
+    <union id="bridges">
+        <cuboid min="27,0,188" max="3,40,148"/>
+        <cuboid min="-13,0,145" max="1,40,83"/>
+        <cuboid min="43,0,145" max="29,40,83"/>
+        <cuboid min="29,0,68" max="0,40,82"/>
+    </union>
+    <apply block="deny-void" message="You may not build in the void.">
+        <region>
+            <negative>
+                <region id="bridges"/>
+            </negative>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base.">
+        <region>
+            <region id="blue-spawn"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy base.">
+        <region>
+            <region id="red-spawn"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room.">
+        <region>
+            <region id="red-wr"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room.">
+        <region>
+            <region id="blue-wr"/>
+        </region>
+    </apply>
+    <apply block="only-iron">
+        <region>
+            <region id="bases"/>
+        </region>
+    </apply>
+    <apply block="deny-chest">
+        <region>
+            <region id="wool-rooms"/>
+        </region>
+    </apply>
+    <apply block="deny-mobspawner" message="You may not break the spawners.">
+        <everywhere/>
+    </apply>
+</regions>
+<wools team="blue">
+    <wool color="red" location="32.5,14,0.5">
+        <monument><block>-6,6,205</block></monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="blue" location="32.5,14,0.5">
+        <monument><block>35,6,205</block></monument>
+    </wool>
+</wools>
+<maxbuildheight>18</maxbuildheight>
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>baked potato</item>
+</itemremove>
+</map>

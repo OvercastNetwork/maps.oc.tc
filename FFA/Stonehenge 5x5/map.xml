@@ -1,0 +1,197 @@
+<map proto="1.4.1">
+<name>Stonehenge</name>
+<version>1.2.1</version>
+<slug>stonehenge_5x5</slug>
+<authors>
+    <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/>
+    <!-- samthecat43 -->
+    <author uuid="a43135a4-d7b9-49ab-ac8d-a16bb2513c8d"/>
+    <!-- Ny_ -->
+</authors>
+<contributors>
+    <contributor uuid="670223bb-7560-48c8-8f01-2f463549b917" contribution="he's amazin"/>
+    <!-- twiz_mwazin -->
+</contributors>
+<objective>Be the player with the most kills after 5 minutes!</objective>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+    <deaths>0</deaths>
+</score>
+<rage/>
+<broadcasts>
+    <tip after="2s">
+    `3The player with the most kills after `55 minutes `3wins!
+    </tip>
+    <tip after="10s" every="1m">
+    `3Bows are a `a1-shot kill`3, so watch your back!
+    </tip>
+    <tip after="25s" every="1m">
+    `3Kill other players to get `apotion `aeffects!
+    </tip>
+</broadcasts>
+<players min="3" max="5" show-name-tags="false"/>
+<spawns>
+    <spawn kit="player" spread="true" safe="true">
+      <regions angle="1,13,-1">
+        <cylinder base="1,13,-1" radius="70" height="20"/>
+      </regions>
+    </spawn>
+    <default kit="obs">
+        <regions angle="1,13,-1">
+            <point yaw="0">-9.5,18,-45.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="player">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne-shot kill!">bow</item>
+        <item slot="8" amount="1">arrow</item>
+        <helmet color="F7E228" unbreakable="true">leather helmet</helmet>
+        <chestplate color="F7E228" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="F7E228" unbreakable="true" enchantment="depth strider:10">leather boots</boots>
+        <potion duration="1" amplifier="10">damage resistance</potion>
+        <potion duration="oo">night vision</potion>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="kill-1">
+        <effect duration="oo" amplifier="1">speed</effect>    
+    </kit>
+    <kit id="kill-2">
+        <effect duration="oo" amplifier="1">increase_damage</effect>
+    </kit>
+    <kit id="kill-3">
+        <effect duration="oo" amplifier="1">regeneration</effect>
+    </kit>
+    <kit id="kill-4">
+        <effect duration="oo" amplifier="2">speed</effect>
+    </kit>
+    <kit id="kill-5">
+        <effect duration="oo" amplifier="2">regeneration</effect>
+    </kit>
+    <kit id="kill-6">
+        <effect duration="oo" amplifier="2">jump</effect>
+    </kit>
+    <kit id="kill-7">
+        <effect duration="oo" amplifier="2">increase_damage</effect>
+    </kit>
+    <kit id="kill-8">
+        <effect duration="oo" amplifier="2">health_boost</effect>
+    </kit>
+    <kit id="kill-9">
+        <effect duration="oo" amplifier="3">speed</effect>
+    </kit>
+    <kit id="kill-10">
+        <effect duration="oo" amplifier="3">regeneration</effect>
+    </kit>
+    <kit id="kill-11">
+        <effect duration="oo" amplifier="3">increase_damage</effect>
+    </kit>
+    <kit id="kill-12">
+        <effect duration="oo" amplifier="2">health_boost</effect>
+    </kit>
+</kits>
+<respawn delay="1s" auto="true"/>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1">arrow</item>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="1"/>
+        </filter>
+        <kit id="kill-1"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2"/>
+        </filter>
+        <kit id="kill-2"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="3"/>
+        </filter>
+        <kit id="kill-3"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="4"/>
+        </filter>
+        <kit id="kill-4"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <kit id="kill-5"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="6"/>
+        </filter>
+        <kit id="kill-6"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="7"/>
+        </filter>
+        <kit id="kill-7"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="8"/>
+        </filter>
+        <kit id="kill-8"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="9"/>
+        </filter>
+        <kit id="kill-9"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="10"/>
+        </filter>
+        <kit id="kill-10"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="11"/>
+        </filter>
+        <kit id="kill-11"/>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="12"/>
+        </filter>
+        <kit id="kill-12"/>
+    </kill-reward>
+</kill-rewards>
+<itemremove>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>sapling</item>
+    <item>seeds</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>

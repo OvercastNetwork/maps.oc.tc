@@ -1,0 +1,73 @@
+<map proto="1.3.6">
+<name>Java</name> 
+<version>1.0.1</version> 
+<objective>Eliminate the enemy team!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="2e05eb91-e64b-46f8-8a49-368d205d26fd"/>
+    <!--   Arkylic  -->
+    <author uuid="6bc5c322-91b5-4bab-acf2-d36ca53f1efc"/>
+    <!--   FluffinAllNight  -->
+</authors>
+<teams>
+   <team color="red" max="20" max-overfill="25">Red</team>
+   <team color="yellow" max="20" max-overfill="25">Yellow</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2">arrow</item>
+        <item slot="3" amount="16">bread</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <boots unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <chestplate color="FFFF00" unbreakable="true">leather chestplate</chestplate>
+        <boots color="FFFF00" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="45">
+            <cuboid min="88,37,19" max="90,37,17"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow">
+        <regions yaw="-90">
+            <cuboid min="25,37,87" max="23,37,89"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="-18,94,52" max="-15,94,55"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    <apply block="deny-all">
+        <region name="playable"/>
+    </apply>
+</regions>
+<rage/>
+<blitz>
+    <time>4m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<itemremove>
+    <item>bread</item>
+    <item>iron sword</item>
+    <item>arrow</item>
+    <item>bow</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<timelock>on</timelock>
+</map>

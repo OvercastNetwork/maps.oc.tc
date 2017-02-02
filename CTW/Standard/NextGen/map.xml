@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>NextGen</name>
+<version>0.4</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="old map design"/> <!-- Plastix -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="old map design"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="old map design and gameplay management"/> <!-- MonsieurApple -->
+    <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="old map design and item management"/> <!-- Anxuiz -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="30">Blue</team>
+    <team id="red" color="dark red" max="30">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="180">
+        <point>-158.5,4,69.5</point>
+    </spawn>
+    <spawn team="blue" yaw="0">
+        <point>-158.5,4,-42.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="-158.5,51,13.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- Block Filters -->
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <!-- Usage Filters -->
+    <filter name="not-chest">
+        <not>
+            <block>chest</block>
+        </not>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <union name="islands">
+        <cuboid name="east-island" min="-131,0,-13" max="-122,33,63"/>
+        <cuboid name="west-island" min="-195,0,40" max="-186,33,-36"/>
+    </union>
+    <union name="void-exemptions">
+        <rectangle name="island-to-island" min="-195,40" max="-122,-13"/>
+        <rectangle name="side-to-side" min="-175,-28" max="-142,55"/>
+        <region name="islands"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-144,0,56" max="-173,9,80"/>
+        <mirror name="blue-spawn" region="red-spawn" origin="-158.5,0,13.5" normal="0,0,-1"/>
+    </union>
+    <union name="wool-rooms">
+        <union name="blue-rooms">
+            <rectangle name="yellow-room" min="-133,84" max="-118,96"/>
+            <translate name="purple-room" region="yellow-room" offset="-66,0,0"/>
+        </union>
+        <mirror name="red-rooms" region="blue-rooms" origin="-158.5,0,13.5" normal="0,0,1"/>
+    </union>
+    <union name="wool-placements">
+        <block location="-159.5,5.5,78.5" name="orange-wool"/>
+        <block location="-157.5,5.5,78.5" name="lime-wool"/>
+        <block location="-159.5,5.5,-51.5" name="purple-wool"/>
+        <block location="-157.5,5.5,-51.5" name="yellow-wool"/>
+    </union>
+    <union name="drop-zones">
+        <rectangle name="blue-zone" min="-130,66" max="-123,73"/>
+        <rectangle name="red-zone" min="-187,-39" max="-194,-46"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all" message="You may not edit the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply block-place="deny-void" message="You many not build outside the map!">
+        <negative>
+            <region name="void-exemptions"/>
+        </negative>
+    </apply>
+    <apply block="only-red" message="You may not edit the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply block="only-blue" message="You may not edit the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-red" message="You may not enter the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Usage Rules -->
+    <apply use="only-blue-usage" message="You may not interact with the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <apply use="only-red-usage" message="You may not interact with the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+</regions>
+<renewables rate="1" grow="true">
+    <renewable>
+        <region>
+            <region name="east-island"/>
+        </region>
+        <renew-filter>
+            <filter name="only-iron"/>
+        </renew-filter>
+    </renewable>
+    <renewable>
+        <region>
+            <region name="west-island"/>
+        </region>
+        <renew-filter>
+            <filter name="only-iron"/>
+        </renew-filter>
+    </renewable>
+</renewables>
+<wools craftable="false">
+    <wool team="blue" color="purple" location="-193.5,14.5,90.5">
+        <region name="purple-wool"/>
+    </wool>
+    <wool team="blue" color="yellow" location="-123.5,14.5,90.5">
+        <region name="yellow-wool"/>
+    </wool>
+    <wool team="red" color="lime" location="-123.5,14.5,-63.5">
+        <region name="lime-wool"/>
+    </wool>
+    <wool team="red" color="orange" location="-193.5,14.5,-63.5">
+        <region name="orange-wool"/>
+    </wool>
+</wools>
+<broadcasts>
+    <tip after="1s">Every 10 minutes a diamond supply drop is spawn at the small side islands!</tip>
+    <tip after="3s">Breaking a diamond block drops.. super speed, jump, and haste potion; efficiency one golden axe; and one piece of instant ignite tnt. All are kept on death.</tip>
+    <alert after="10m" every="10m">`aA `bdiamond `asupply drop has been spotted!</alert>
+</broadcasts>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>diamond block</block>
+        </filter>
+        <drops>
+            <item enchantment="dig speed:1">gold axe</item>
+            <item>tnt</item>
+            <item damage="8226" potions="speed:1600:0:false;jump:1600:1:false;fast digging:1600:2:false">potion</item>
+        </drops>
+    </rule>
+</blockdrops>
+<itemremove>
+    <item>string</item>
+    <item>glowstone dust</item>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>sugar cane</item>
+    <item>clay ball</item>
+    <item>stone plate</item>
+    <item>sand</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron spade</item>
+    <item>log 2</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>glass bottle</item>
+    <item>cooked fish</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <fuse>1s</fuse>
+    <power>5</power>
+</tnt>
+<disabledamage>
+    <damage self="true" ally="true">block explosion</damage>
+</disabledamage>
+<maxbuildheight>28</maxbuildheight>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+</map>

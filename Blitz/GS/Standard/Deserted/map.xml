@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Deserted</name>
+<version>1.0.1</version>
+<objective>Kill all of the other team!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+</authors>
+<contributors>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Mapdev and WorldEdit Help"/> <!-- pepsidawg00 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML God"/> <!-- dinner1111 -->
+</contributors>
+<teams>
+    <team color="dark red" max="5">Red</team>
+    <team color="blue" max="5">Blue</team>
+</teams>
+<regions>
+    <apply leave="deny-all">
+        <cylinder name="main-area" base="17,23,4" radius="32" height="10"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" yaw="90">
+        <cuboid min="21,25,25" max="29,25,27"/>
+    </spawn>
+    <spawn team="red" yaw="180">
+        <cuboid min="39,25,7" max="42,25,14"/>
+    </spawn>
+    <spawn team="blue" yaw="-90">
+        <cuboid min="8,25,-17" max="16,25,-18"/>
+    </spawn>
+    <spawn team="blue" yaw="0">
+        <cuboid min="-3,25,1" max="-3,25,-5"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="16,45,6" max="20,45,2"/>
+    </default>
+</spawns>
+</map>

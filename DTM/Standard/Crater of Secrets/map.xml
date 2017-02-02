@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Crater of Secrets</name>
+<version>1.0.1</version>
+<objective>Break both of the enemy team's obsidian monuments.</objective>
+<authors>
+    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb"/> <!-- Zelocksurian -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Moral support"/> <!-- Stealth5061 -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="night-vision">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="night-vision">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="30" unbreakable="true">stone spade</item>
+        <item slot="4" amount="64">quartz block</item>
+        <item slot="31" amount="64">quartz block</item>
+        <item slot="22" amount="64">quartz block</item>
+        <item slot="5" damage="2" amount="32">wood</item>
+        <item slot="6" amount="1">milk bucket</item>
+        <item slot="7" amount="64">grilled pork</item>
+        <item slot="23" damage="1" amount="64">leaves</item>
+        <item slot="32" damage="1" amount="64">leaves</item>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="teams">
+        <spawn team="blue" yaw="90">
+            <cuboid min="139,44,1" max="135,44,11"/>
+        </spawn>
+        <spawn team="red" yaw="-90">
+            <cuboid min="-52,44,3" max="-48,44,-7"/>
+        </spawn>
+    </spawns>
+    <default yaw="90" kit="night-vision">
+        <cylinder base="44,126,1" radius="4" height="0"/>
+    </default>
+</spawns>
+<destroyables completion="100%" materials="obsidian" mode-changes="true">
+    <destroyable name="Front Monument" owner="blue">
+        <cuboid min="79,54,-15" max="80,56,-16"/>
+    </destroyable>
+    <destroyable name="Rear Monument" owner="blue">
+        <cuboid min="109,63,27" max="110,65,26"/>
+    </destroyable>
+    <destroyable name="Front Monument" owner="red">
+        <cuboid min="8,54,20" max="7,56,21"/>
+    </destroyable>
+    <destroyable name="Rear Monument" owner="red">
+        <cuboid min="-22,63,-22" max="-23,65,-21"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="30m" material="redstone block" name="REDSTONE BLOCK MONUMENT MODE"/>
+</modes>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="deny-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="center" min="71,-59" max="16,64"/>
+    <union name="bases">
+        <rectangle name="blue-base" min="128,-3" max="144,19"/>
+        <rectangle name="red-base" min="-41,7" max="-57,-13"/>
+    </union>
+    <apply block="deny-void" message="You may not edit the void area!">
+        <complement>
+            <negative>
+                <region name="center"/>
+            </negative>
+            <region name="bases"/>
+        </complement>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <region name="blue-base"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy base!">
+        <region name="red-base"/>
+    </apply>
+    <apply block="deny-all" message="Don't modify the base!">
+        <region name="bases"/>
+    </apply>
+    <apply use="deny-beacon">
+        <region name="all"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<maxbuildheight>70</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>clay</item>
+    <item>stone</item>
+    <item>obsidian</item>
+    <item>milk bucket</item>
+    <item>bucket</item>
+    <item>grilled pork</item>
+    <item>arrow</item>
+    <item>obsidian</item>
+    <item>redstone block</item>
+    <item>clay ball</item>
+    <item>leaves</item>
+    <item>quartz block</item>
+    <item>coal block</item>
+    <item>beacon</item>
+    <item>lapis block</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>This is a `aDestroy the Monument `r(DTM) map.</line>
+            <line>The objection is to destroy the enemy's two obsidian monuments.</line>
+        </message>
+        <teleport>
+            <point yaw="140" pitch="20">64,60,80</point>
+        </teleport>
+    </stage>
+    <stage title="Monuments">
+        <message>
+            <line>Each team has 2 obsidian monuments; however, they change modes.</line>
+            <line>`8Obsidian `r-> `cRedstone Block `r-> `7Coal Block `r-> Glass</line>
+            <line>You must destroy 100% of each monument which consists of 2 pieces.</line>
+        </message>
+        <teleport>
+            <point yaw="-10" pitch="25">-20,64,-28</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn Area">
+        <message>
+            <line>This is where the `cred team `rspawns.</line>
+            <line>To the right of spawn you will find several special items in chests.</line>
+            <line>There are also `6special items `rall over the map!</line>
+        </message>
+        <teleport>
+            <point yaw="65" pitch="30">-24,52,-3</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

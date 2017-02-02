@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Artemis</name>
+<version>1.0.0</version>
+<objective>Be the first team to reach 500 points.</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<teams>
+   <team id="red-team" color="dark red" max="20" max-overfill="24">Red</team>
+   <team id="blue-team" color="blue" max="20" max-overfill="24">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">   
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" amount="16">carrot item</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="8" damage="8229">potion</item>
+        <chestplate>chainmail chestplate</chestplate>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="ff0000" damage="-3000">leather helmet</helmet>
+        <boots color="ff0000" damage="-3000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000ff" damage="-3000">leather helmet</helmet>
+        <boots color="0000ff" damage="-3000">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cylinder base="302,6,-382" radius="1" height="0" />
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="179">
+        <cylinder base="302,6,-288" radius="1" height="0" />
+    </spawn>
+    <default yaw="0">
+        <block>302.5,27,-335.5</block>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <rectangle name="red-spawn" min="274.5,-376.5" max="330.5,-386.5" />
+        <rectangle name="blue-spawn" min="274.5,-286.5" max="330.5,-296.5" />
+    </union>
+    <rectangle name="inf" min="-oo,-oo" max="oo,oo"/>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region name="red-spawn" />
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <region name="blue-spawn" />
+    </apply>
+    <apply block="deny-blocks">
+        <region name="inf" />
+    </apply>  
+</regions>
+<king>
+    <hills>
+        <hill name="Central Hill" capture-time="15" points="1">
+            <capture>
+                <cuboid min="306,4,-332" max="299,8,-339"/>
+            </capture>
+            <progress>
+                <cuboid min="306,4,-332" max="299,8,-339"/>
+            </progress>
+            <captured>
+                <cuboid min="306,4,-332" max="299,8,-339"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>500</limit>
+</score>
+<king/>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>carrot item</item>
+    <item>golden apple</item>
+    <item>chainmail chestplate</item>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+</itemremove>
+<killreward>
+    <item damage="8229">potion</item>
+</killreward>
+</map>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map>
+<!-- Re-usable stuff for the Blasternauts gamemode -->
+<rules>
+    <rule>Fall damage is disabled</rule>
+    <rule>Double jump is enabled</rule>
+</rules>
+<score>
+    <time>5m</time>
+</score>
+<classes family="blasternauts">
+    <class name="Blasternaut"
+           default="true"
+           description="The default kit!"
+           icon="tnt"
+           restrict="false"
+           sticky="false">
+        <kit name="spawn">
+            <item slot="0" enchantment="knockback:1" name="`6Melee Stick">blaze rod</item>
+            <item slot="1" name="`3TNT Launcher `6| `9Draw back to use.">bow</item>
+            <item slot="2" amount="4" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 2">tnt</item>
+            <item slot="3" amount="32" name="`cGrenade" grenade="true" grenade-power="1.2">snow ball</item>
+            <item slot="8" damage="8229">potion</item>
+            <item slot="28" amount="8">arrow</item>
+
+            <boots enchantment="protection explosions:1">iron boots</boots>
+
+            <potion duration="8" amplifier="25">heal</potion>
+            <potion duration="8" amplifier="25">damage resistance</potion>
+            <potion duration="oo" amplifier="2">speed</potion>
+            <potion duration="oo" amplifier="1">jump</potion>
+            <potion duration="oo" amplifier="1">increase damage</potion>
+
+            <double-jump/>
+        </kit>
+    </class>
+</classes>
+<modifybowprojectile>
+    <projectile>TNTPrimed</projectile>
+    <velocityMod>1.0</velocityMod>
+</modifybowprojectile>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+    <fuse>2s</fuse>
+    <power>2</power>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <!--  TNT damages enemies and self, but not teammates  -->
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron boots</item>
+    <item>iron helmet</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>leather chestplate</item>
+    <item>blaze rod</item>
+</itemremove>
+<killreward>
+    <item amount="2">arrow</item>
+    <item amount="2" name="`4Landmine `6| `bFuse: 2s `6| `bPower: 2">tnt</item>
+    <item amount="6" name="`cGrenade" grenade="true" grenade-power="1.2">snow ball</item>
+    <item damage="8229">potion</item>
+</killreward>
+<friendlyfire>off</friendlyfire>
+<autorespawn/>
+</map>

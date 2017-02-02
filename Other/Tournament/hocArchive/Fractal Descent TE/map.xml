@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>Fractal Descent TE</name>
+<version>1.2.2</version>
+<objective>Leak lava from the enemy's obsidian cores and destroy their two endstone monuments.</objective>
+<authors>
+    <author uuid="dbe909c6-2b15-4528-b12a-c77ed4031496" contribution="Design and building"/> <!-- teheggy -->
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Design, building, and XML"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<regions>
+    <rectangle name="play" min="-42,-92" max="42,92"/>
+    <union name="bases">
+        <circle name="red-base" center="0,84" radius="10"/>
+        <circle name="blue-base" center="0,-84" radius="10"/>
+    </union>
+    <union name="spawns">
+        <cylinder name="red-spawn" base="0,18,132" radius="1" height="1"/>
+        <cylinder name="blue-spawn" base="0,18,-132" radius="1" height="1"/>
+    </union>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,60,-oo" max="oo,61,oo"/>
+        <cuboid name="above-height-limit" min="-oo,61,-oo" max="oo,oo,oo"/>
+    </union>
+    <apply block="deny-all" message="You may not interact with blocks outside the map">
+        <negative>
+            <region name="play"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not destroy the spawn area">
+        <region name="bases"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<kits>
+    <kit name="spawn">
+        <item slot="0">diamond sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="64">smooth brick</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64" damage="1">wood</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8" amount="32">golden carrot</item>
+        <potion duration="7" amplifier="1">heal</potion>
+        <potion duration="7">damage resistance</potion>
+    </kit>
+</kits>
+<spawns>
+    <default kit="obs" yaw="-90">
+        <cuboid min="-58,29,-2" max="-54,29,2"/>
+    </default>
+    <!-- yaw -->
+    <spawn team="red" kit="spawn" yaw="-180">
+        <region name="red-spawn"/>
+    </spawn>
+    <spawn team="blue" kit="spawn" yaw="0">
+        <region name="blue-spawn"/>
+    </spawn>
+</spawns>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="packed ice" name="PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core team="blue">
+        <cuboid min="-3,17,-45" max="3,23,-39"/>
+    </core>
+    <core team="red">
+        <cuboid min="-3,17,39" max="3,23,45"/>
+    </core>
+</cores>
+<destroyables owner="blue" materials="ender stone">
+    <destroyable name="Left Monument">
+        <cuboid min="-26,11,-31" max="-22,15,-27"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <cuboid min="22,11,-31" max="26,15,-27"/>
+    </destroyable>
+</destroyables>
+<destroyables owner="red" materials="ender stone">
+    <destroyable name="Left Monument">
+        <cuboid min="22,11,27" max="26,15,31"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <cuboid min="-26,11,27" max="-22,15,31"/>
+    </destroyable>
+</destroyables>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>ladder</item>
+    <item>ender stone</item>
+    <item>arrow</item>
+    <item>golden carrot</item>
+    <item>wood</item>
+</itemremove>
+</map>

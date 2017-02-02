@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>Airship Aces</name>
+<version>1.1</version>
+<objective>Leak lava into the void below to win!</objective>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<contributors>
+    <contributor uuid="c97373ef-4582-4350-8993-8a78f2775c29" contribution="Aesthetics"/> <!-- Eclipsen -->
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+</contributors>
+<teams>
+    <team color="blue" max="10">Blue</team>
+    <team color="dark red" max="10">Red</team>
+</teams>
+<spawns>
+    <default kit="obs" yaw="90">
+        <cylinder base="-21.5,59,-68.5" radius="5" height="0"/>
+    </default>
+    <spawn team="blue" yaw="0">
+        <point>-21.5,60,-52.5</point>
+    </spawn>
+    <spawn team="red" yaw="180">
+        <point>-21.5,60,-84.5</point>
+    </spawn>
+</spawns>
+<regions>
+    <union name="map">
+        <rectangle name="map-b" min="-126,-128" max="-46,-9"/>
+        <rectangle name="map-l" min="-128,-130" max="-44,-7"/>
+    </union>
+    <union name="spawns">
+        <block name="red-spawn">-44.5,60,-99.5</block>
+        <block name="blue-spawn">-44.5,60,-37.5</block>
+    </union>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,90,-oo" max="oo,91,oo"/>
+        <cuboid name="above-height-limit" min="-oo,91,-oo" max="oo,oo,oo"/>
+    </union>
+    <apply block="deny-all" message="You may not edit outside the main area">
+        <negative>
+            <region name="map-b"/>
+        </negative>
+    </apply>
+    <apply leave="deny-all" message="You may not exit outside the main area">
+        <region name="map-l"/>
+    </apply>
+    <apply block-place="deny-fire" message="Fire is disabled on this map">
+        <region name="map-b"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-fire">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="packed ice" name="PACKED ICE CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="red">
+        <cuboid min="-101,57,-102" max="-107,63,-97"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-101,57,-40" max="-107,63,-35"/>
+    </core>
+</cores>
+<timelock>on</timelock>
+<itemremove>
+    <item>gold block</item>
+    <item>obsidian</item>
+</itemremove>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+<mobs>
+    <filter>
+        <mob>silverfish</mob>
+    </filter>
+</mobs>
+</map>

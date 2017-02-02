@@ -1,0 +1,197 @@
+<map proto="1.4.1">
+<name>Chimeric III Solo</name>
+<version>1.1.2</version>
+<objective>Leak the other team's core.</objective>
+<authors>
+    <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/>
+    <!--  _DISTRACTION_  -->
+    <author uuid="5951eb64-d04b-4917-967e-57551860ed34"/>
+    <!--  xXBatManXx  -->
+</authors>
+<broadcasts>
+    <tip after="5s" every="2m">The center area gives you Speed, Haste, and Regeneration!</tip>
+    <alert after="10m">The core islands are now connected to the mainlands with bedrock bridges!</alert>
+</broadcasts>
+<teams>
+    <team id="yellow" color="yellow" max="25">Yellow</team>
+    <team id="pink" color="red" max="25">Pink</team>
+</teams>
+<maxbuildheight>27</maxbuildheight>
+<spawns>
+    <spawn id="yspawn" team="yellow" kit="yellow-kit" yaw="0">
+        <region>
+            <cylinder base="0,50,191" radius="1" height="2"/>
+        </region>
+    </spawn>
+    <spawn id="pspawn" team="pink" kit="pink-kit" yaw="180">
+        <region>
+            <cylinder base="0,50,-191" radius="1" height="2"/>
+        </region>
+    </spawn>
+    <default yaw="90">
+        <region>
+            <point>2,60,0</point>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2">stone axe</item>
+        <item slot="4" amount="32">cooked fish</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" amount="64">wood</item>
+        <item slot="7" amount="32">glass</item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="5">regeneration</potion>
+        <potion duration="oo" amplifier="10">resistance</potion>
+    </kit>
+    <kit id="yellow-kit" parents="spawn">
+        <helmet unbreakable="true" color="ffff00" >leather helmet</helmet>
+        <chestplate unbreakable="true" color="ffff00" >leather chestplate</chestplate>
+        <leggings unbreakable="true" color="ffff00" >leather leggings</leggings>
+        <boots unbreakable="true" color="ffff00" >leather boots</boots>
+    </kit>
+    <kit id="pink-kit" parents="spawn">
+        <helmet unbreakable="true" color="ff69b4" >leather helmet</helmet>
+        <chestplate unbreakable="true" color="ff69b4" >leather chestplate</chestplate>
+        <leggings unbreakable="true" color="ff69b4" >leather leggings</leggings>
+        <boots unbreakable="true" color="ff69b4" >leather boots</boots>
+    </kit>
+    <kit id="home-kit">
+        <potion duration="oo" amplifier="10">resistance</potion>
+    </kit>
+</kits>
+<kill-reward>
+    <item>golden apple</item>
+</kill-reward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+<!-- All mined blocks should be on itemremove -->
+    <item>golden apple</item>
+    <item>quartz block</item>
+    <item>redstone</item>
+    <item>iron chestplate</item>
+    <item>iron sword</item>
+    <item>string</item>
+    <item>beacon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>obsidian</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>diamond block</item>
+    <item>double step</item>
+    <item>step</item>
+    <item>smooth stairs</item>
+    <item>quartz stairs</item>
+    <item>stained clay</item>
+    <item>stone</item>
+    <item>smooth brick</item>
+    <item>nether fence</item>
+    <item>iron fence</item>
+    <item>glass</item>
+    <item>stained glass</item>
+    <item>wool</item>
+    <item>stained glass pane</item>
+    <item>coal block</item>
+    <item>web</item>
+    <item>glowstone</item>
+    <item>wood</item>
+    <item>cobblestone</item>
+    <item>fence</item>
+    <item>wood button</item>
+    <item>wood plate</item>
+    <item>wooden door</item>
+    <item>obsidian</item>
+    <item>cooked fish</item>
+</itemremove>
+<timelock>on</timelock>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core id="yellow-core" team="yellow">
+        <region>
+            <sphere origin="0,14,122" radius="3"/>
+        </region>
+    </core>
+    <core id="pink-core" team="pink">
+        <region>
+            <sphere origin="0,14,-122" radius="3"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="gold block"/>
+    <mode after="30m" material="glass"/>
+</modes>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-yellow">yellow</team>
+    <team id="only-pink">pink</team>
+</filters>
+<structures>
+    <structure id="yellow-time" region="yellow-bridge" air="false" origin="0,8,183">
+    </structure>
+    <structure id="pink-time" region="pink-bridge" air="false" origin="-1,8,-184">
+    </structure>
+    <dynamic structure="yellow-time" location="0,0,103">
+        <filter>
+            <time>10m</time>
+        </filter>
+    </dynamic>
+    <dynamic structure="pink-time" location="-1,0,-104">
+        <filter>
+            <time>10m</time>
+        </filter>
+    </dynamic>
+</structures>
+<regions>
+    <cuboid id="yellow-bridge" min="-7,8,183" max="7,9,202"/>
+    <cuboid id="pink-bridge" min="-7,8,-183" max="7,9,-202"/>
+    <apply enter="only-yellow" block="never" lend-kit="home-kit" message="You may not modify Yellow Team's spawn area!">
+        <region>
+            <rectangle min="-oo,162" max="oo,oo"/>
+        </region>
+    </apply>
+    <apply enter="only-pink" block="never" lend-kit="home-kit" message="You may not modify Pink Team's spawn area!">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,-162"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not destroy the spawners!">
+        <region>
+            <cuboid min="-1,12,-1" max="1,13,1"/>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <union>
+                <rectangle min="7,59" max="15,35"/>
+                <rectangle min="-7,59" max="-15,35"/>
+                <rectangle min="7,-59" max="15,-35"/>
+                <rectangle min="-7,-59" max="-15,-35"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <union>
+                <rectangle min="-7,-103" max="7,-121"/>
+                <rectangle min="-7,103" max="7,121"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not build outside the map!" region="everywhere"/>
+</regions>
+</map>

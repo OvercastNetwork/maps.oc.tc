@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Cardinal</name>
+<version>0.5.1</version>
+<objective>You must capture all 3 of the points and destroy 50% of the enemy front point to win before 25 minutes runs out!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team color="yellow" max="10">Yellow</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" angle="-9.5,9.5,-7.5">
+        <cuboid min="-15,8,-3" max="-4,9,-6"/>
+    </spawn>
+    <spawn team="yellow" kit="yellow" angle="-9.5,9.5,-215.5">
+        <cuboid min="-4,8,-220" max="-15,9,-217"/>
+    </spawn>
+    <default yaw="135">
+        <point>30.5,57,-56.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="32">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" amount="12">tnt</item>
+        <item slot="4">water bucket</item>
+        <item slot="5" amount="8">step</item>
+        <item slot="33" amount="8">stone plate</item>
+        <item slot="24" amount="8">wood button</item>
+        <item slot="6" amount="8">ladder</item>
+        <item slot="34" amount="16">redstone</item>
+        <item slot="25" amount="8">nether fence</item>
+        <item slot="7" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!">shears</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;protection projectile;water worker">iron chestplate</chestplate>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <item slot="3" amount="64" damage="4">stained clay</item>
+        <helmet unbreakable="true" color="E5E533">leather helmet</helmet>
+        <leggings unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="3" amount="64" damage="11">stained clay</item>
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-15" min="-oo,15,-oo" max="oo,oo,oo"/>
+    <union name="allow-bridging">
+        <rectangle name="main-corridor" min="1,-203" max="-20,-20"/>
+        <rectangle name="center-corridor" min="-49,-122" max="30,-101"/>
+        <rectangle name="middle" min="30,-168" max="-49,-55"/>
+    </union>
+    <union name="spawns">
+        <rectangle name="blue-spawn" min="1,-20" max="-20,1"/>
+        <rectangle name="yellow-spawn" min="-20,-203" max="1,-224"/>
+    </union>
+    <union name="points">
+        <cuboid name="north-east-corridor" min="21,0,-168" max="30,5,-101"/>
+        <cuboid name="center-point" min="1,0,-101" max="-20,6,-122"/>
+        <cuboid name="south-west-corridor" min="-49,0,-122" max="-40,5,-55"/>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not edit the spawn island!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the capture point!">
+        <region name="points"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit above the height limit! (`715 Blocks`c)">
+        <region name="above-15"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside the map!">
+        <negative>
+            <region name="allow-bridging"/>
+        </negative>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn island!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter the enemy spawn island!">
+        <region name="yellow-spawn"/>
+    </apply>
+</regions>
+<control-points neutral-state="true" show-progress="true">
+<!-- Regions for all hills are just shifted on the y-axis -->      
+    <control-point name="N-E Corridor" capture-time="1m" scaled-time="true">
+        <capture-region>
+            <cuboid min="21,2,-168" max="30,16,-101"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="21,0,-168" max="30,5,-101"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cuboid min="21,22,-168" max="30,29,-101"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="Center" capture-time="3m" incremental="true">
+        <capture-region>
+            <cuboid min="1,3,-101" max="-20,16,-122"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="1,0,-101" max="-20,6,-122"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cuboid min="1,23,-101" max="-20,35,-122"/>
+        </owner-display-region>
+    </control-point>
+    <control-point name="S-W Corridor" capture-time="1m" scaled-time="true">
+        <capture-region>
+            <cuboid min="-49,2,-122" max="-40,16,-55"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-49,0,-122" max="-40,5,-55"/>
+        </progress-display-region>
+        <owner-display-region>
+            <cuboid min="-49,22,-122" max="-40,29,-55"/>
+        </owner-display-region>
+    </control-point>
+</control-points>
+<modes boss-bar="false">
+    <mode after="1s" material="stained clay:0" name="`aYou must capture all 3 points"/>
+    <mode after="2s" material="stained clay:0" name="`aand destroy 50% of their front point!"/>
+</modes>
+<destroyables materials="stained clay:9;stained clay:0" completion="50%" mode-changes="true">
+    <destroyable name="North Point" owner="yellow">
+       <cuboid min="1,0,-147" max="-20,6,-168"/>
+    </destroyable>
+    <destroyable name="South Point" owner="blue">
+       <cuboid min="1,0,-55" max="-20,6,-76"/>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>iron sword</item>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>stained clay</item>
+    <item>step</item>
+    <item>stone plate</item>
+    <item>wood button</item>
+    <item>redstone</item>
+    <item>nether fence</item>
+    <item>ladder</item>
+    <item>shears</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<time result="objectives">25m</time>
+<killreward>
+    <item amount="8">arrow</item>
+    <item amount="8">tnt</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<autorespawn/>
+</map>

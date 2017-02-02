@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<!--
+    HOW TO PLAY:
+
+    Gang Wars is a gamemode based around team work. The objective of the game
+    is to capture all of the points.
+
+    Teams start off in their bases near their first capture points. They must
+    capture this point before they can access the next capture point. 
+
+    Since the 'base' capture points don't need unlocking, teams can capture
+    their enemy's capture points. This allows them to access the enemy's
+    second capture point and then the final capture point to win the game.
+
+    This gamemode is in BETA!
+-->
+<map proto="1.3.5">
+<name>Gang Wars: Strike</name>
+<version>0.4.0</version>
+<objective>Capture all of tha ghettos n' force tha enemy back ta they spawn!</objective>
+<authors>
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
+</authors>
+<contributors>
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Buildin n' design"/> <!-- matic0basle -->
+    <contributor uuid="8e8340b2-d315-4d26-9178-d2145b59850c" contribution="Buildin"/> <!-- oX_W1LL_G_Xo -->
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Buildin n' design"/> <!-- lonelyhornet -->
+    <contributor uuid="a47bffe6-43fe-4713-a8b0-ebc501de65b7" contribution="Tower"/> <!-- lymibom -->
+    <contributor uuid="13958ecd-1c15-4b0c-a2d6-d576a1928f7c" contribution="Sponging"/> <!-- skipperguy12 -->
+</contributors>
+<teams>
+    <team color="dark red" max="18" max-overfill="22">East Coast Souljas</team>
+    <team color="blue" max="18" max-overfill="22">London Boyz</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" name="`bShank Knife">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" name="`cGun">bow</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2">shears</item>
+        <item slot="4" amount="32" damage="13" name="`2Building Tool `6| `3Use this to build a base!">wool</item>
+        <item slot="5" amount="16">ladder</item>
+        <item slot="7" name="`c`lHealth Kit" damage="8229">potion</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+        <chestplate enchantment="protection explosions:2">iron chestplate</chestplate>
+        <leggings color="727272">leather leggings</leggings>
+        <boots color="727272">leather boots</boots>
+
+        <book slot="8">
+        <title>`6Help Book</title>
+        <author>`4HelpMii</author>
+        <pages>
+            <page>
+                Page I
+
+                To win, you must
+                capture all capture
+                zones.
+
+                Go to the next page to 
+                find out about the 
+                capture zones.
+            </page>
+            <page>
+                Page II
+
+                To capture Da 
+                Courtyard (C), you 
+                must capture London 
+                Street.
+
+                To capture Da Ghetto
+                (D), you must capture 
+                East Coast Street.
+            </page>
+            <page>
+                Page III
+
+                To capture Shaniqua's
+                Garage, you must capture Courtyard 
+                AND Ghetto.
+            </page>
+        </pages>
+    </book>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cc0000">leather helmet</helmet>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000cc">leather helmet</helmet>
+    </kit>
+</kits>
+<spawns>
+    <!-- red team -->
+    <spawn team="east coast souljas" kit="red" yaw="90">
+        <cylinder base="122,1,-161" radius="3" height="0" />
+    </spawn>
+    <!-- blue team -->
+    <spawn team="london boyz" kit="blue" yaw="179">
+        <cylinder base="19,1,-32" radius="2" height="0" />
+    </spawn>
+    <!-- obs -->
+    <default yaw="90">
+        <cylinder base="87,47,-102" radius="3" height="0" />
+    </default>
+</spawns>
+<filters>
+    <!--
+        block-modifying filters
+    -->
+    <filter name="only-some">
+        <any>
+            <block>wool:13</block>
+            <block>ladder</block>
+            <block>tnt</block>
+            <block>thin glass</block>
+        </any>
+    </filter>
+    <filter name="allow-wool-world">
+        <all>
+            <any>
+                <block>wool:13</block>
+                <block>ladder</block>
+                <block>thin glass</block>
+            </any>
+            <any>
+                <filter name="allow-world"/>
+                <filter name="deny-all"/>
+            </any>
+        </all>
+    </filter>
+    <!--
+        objective filters
+    -->
+    <filter name="london-captured">
+        <objective>london-street</objective>
+    </filter>
+    <filter name="eastcoast-captured">
+        <objective>east-coast-street</objective>
+    </filter>
+    <filter name="courtyard-captured">
+        <objective>courtyard</objective>
+    </filter>
+    <filter name="ghetto-captured">
+        <objective>ghetto</objective>
+    </filter>
+    <filter name="has-both-courtyard-and-ghetto">
+        <all>
+            <objective>courtyard</objective>
+            <objective>ghetto</objective>
+        </all>
+    </filter>
+    <!--
+        misc / TODO
+    -->
+    <filter name="random-reward">
+        <random>0.5</random>
+    </filter>
+</filters>
+<regions>
+    <union name="london-street">
+        <cuboid min="25,1,-110" max="49,40,-63" />
+        <cuboid min="18,1,-48" max="49,40,-63" />
+    </union>
+    <union name="east-coast-street">
+        <cuboid min="108,1,-153" max="155,40,-133" />
+        <cuboid min="130,1,-133" max="155,40,-103" />
+    </union>
+    <rectangle name="map" min="-2,-22" max="155,-171" />
+
+    <!-- apply regions -->
+    <apply block="only-some" message="You may only use wool and ladders.">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+    <apply block="allow-wool-world">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<!-- 
+    London Street and East Coast Street are the 'base' capture points
+    and do not need to be unlocked. However, Ghetto and Courtyard
+    need to be unlocked before teams can access the Garage.
+-->
+<control-points capture-players="lead" incremental="true" show-progress="true">
+    <control-point id="london-street" name="London Street (A)" capture-time="20s">
+        <capture-region>
+            <region name="london-street" />
+        </capture-region>
+        <progress-display-region>
+            <region name="london-street" />
+        </progress-display-region>
+    </control-point>
+    <control-point id="east-coast-street" name="East Coast Street (B)" capture-time="20s">
+        <capture-region>
+            <region name="east-coast-street" />
+        </capture-region>
+        <progress-display-region>
+            <region name="east-coast-street" />
+        </progress-display-region>
+    </control-point>
+    <!-- unlocked when London Street captured -->
+    <control-point id="courtyard" name="Da Courtyard (C)" capture-time="10s">
+        <capture-region>
+            <cuboid min="81,1,-86" max="104,40,-47" />
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="81,1,-86" max="104,40,-47" />
+        </progress-display-region>
+        <!-- 
+            if london is captured, open up courtyard 
+            else, disable courtyard
+        -->
+        <player-filter>
+            <filter name="london-captured"/> 
+        </player-filter>
+    </control-point>
+    <!-- unlocked when East Coast Street captured -->
+    <control-point id="ghetto" name="Da Ghetto (D)" capture-time="10s">
+        <capture-region>
+            <cuboid min="61,1,-122" max="92,40,-161" />
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="61,1,-122" max="92,40,-161" />
+        </progress-display-region>
+        <!-- 
+            if east coast is captured, open up ghetto
+            else, disable ghetto
+        -->
+        <player-filter>
+            <filter name="eastcoast-captured"/> 
+        </player-filter>
+    </control-point>
+    <!-- unlocked when both capture points are captured -->
+    <control-point id="garage" name="Shaniqua's Garage (G)" capture-time="30s">
+        <capture-region>
+            <cuboid min="75,1,-113" max="118,40,-94" />
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="75,1,-113" max="118,40,-94" />
+        </progress-display-region>
+        <!-- 
+            if courtyard AND ghetto is captured, open up garage
+            else, disable garage
+        -->
+        <player-filter>
+            <filter name="has-both-courtyard-and-ghetto"/> 
+        </player-filter>
+    </control-point>
+</control-points>
+<time result="objectives">15m</time>
+<broadcasts>
+    <alert after="1s">`a`lWelcome to Gang Wars! Gang Wars is an unlockable KOTH. The objective is to capture the whole town!</alert>
+    <alert after="9s">`a`lLook on the houses or the floor to see the regions of the areas. You can also find labels!</alert>
+    <alert after="17s">`a`lStart by capturing the area nearest to you. Then, capture the area that is next unlocked.</alert>
+    <alert after="30s">`bBe strategic! If you and an enemy are at the same capture zone, progress will be `b`lstopped</alert>
+    <alert after="40s">`bYou can use the wool in your inventory to build a base around your town!</alert>
+    <alert after="1m" every="5m">`c`lThis gamemode is in BETA! Not everything is finalised!</alert>
+    <tip after="50s" every="90s">`7Look in the sky to find region labels! This can help you navigate to areas.</tip>
+</broadcasts>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <fuse>2s</fuse>
+    <power>5</power>
+    <blockdamage>true</blockdamage>
+</tnt>
+<killreward filter="random-reward">
+    <item amount="1" name="`9Landmine `6| `bUse this to blow up enemy terrain! BOOM BOOM!">tnt</item>
+</killreward>
+<killreward>
+    <item amount="8" damage="13" name="`2Building Tool `6| `3Use this to build a base!">wool</item>
+    <item name="`c`lHealth Kit" damage="8229">potion</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+    <damage ally="true" self="true" enemy="true" other="true">block explosion</damage>
+</disabledamage>
+<itemremove>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>tnt</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>wool:13</item>
+    <item>ladder</item>
+    <item>shears</item>
+    <item>carpet:13</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>written book</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<autorespawn/>
+<maxbuildheight>10</maxbuildheight>
+</map>

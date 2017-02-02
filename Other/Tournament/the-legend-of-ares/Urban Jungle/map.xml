@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Urban Jungle</name>
+<version>0.0.9</version>
+<objective>Control the hill for 350 seconds!</objective>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+</authors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="blue" max="8">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">stone pickaxe</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="3" amount="16">glass</item>
+        <item slot="4" amount="64">cooked beef</item>
+        <helmet unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <leggings unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+        <potion duration="5" amplifier="4">heal</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="playable" min="-61,-61" max="62,62"/>
+    <cuboid name="red-spawn" min="-47,58.1,-17" max="-43,58.1,-13"/>
+    <cuboid name="blue-spawn" min="44,58.1,14" max="48,58.1,18"/>
+    <cylinder name="hill" base="0.5,72,0.5" radius="5.5" height="5"/>
+    <apply block="deny-all">
+        <region name="hill"/>
+    </apply>
+    <apply block="deny-all" message="`cYou may not leave the playing field.">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="`cYou may not modify the spawns.">
+        <rectangle name="red-spawn-protection" min="-38,-8" max="-52,-22"/>
+        <rectangle name="blue-spawn-protection" min="39,23" max="53,9"/>
+    </apply>
+    <apply enter="only-red">
+        <region name="red-spawn-protection"/>
+    </apply>
+    <apply enter="only-blue">
+        <region name="blue-spawn-protection"/>
+    </apply>
+    <union name="BIGFUCKINGRECTANGLES">
+        <rectangle min="38,-2" max="47,-29"/>
+        <rectangle min="30,-29" max="55,-54"/>
+        <rectangle min="-14,-28" max="15,29"/>
+        <rectangle min="55,55" max="22,38"/>
+        <rectangle min="-29,30" max="-54,55"/>
+        <rectangle min="-46,30" max="-37,3"/>
+        <rectangle min="-54,-54" max="-21,-37"/>
+    </union>
+    <apply block="deny-all" message="You may only build higher inside the buildings.">
+        <negative>
+            <cuboid name="outside-build" min="61.5,48,-60.5" max="-60.5,59,61.5"/>
+            <region name="BIGFUCKINGRECTANGLES"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not build on top of the capture point.">
+        <cylinder name="capture-point" base="0.5,66,0.5" radius="5.5" height="5"/>
+    </apply>
+</regions>
+<spawns>
+    <spawns yaw="-90">
+        <spawn team="red" kit="spawn">
+            <regions>
+                <region name="red-spawn"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <spawns yaw="90">
+        <spawn team="blue" kit="spawn">
+            <regions>
+                <region name="blue-spawn"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <default yaw="180">
+        <regions>
+            <cuboid min="-8,70,99" max="8,70,112"/>
+        </regions>
+    </default>
+</spawns>
+<score>
+    <limit>350</limit>
+    <king/>
+</score>
+<king>
+    <hills>
+        <hill name="Hill" capture-time="5s" ratio="1">
+            <capture>
+                <cylinder base="0.5,66,0.5" radius="5.5" height="5"/>
+            </capture>
+            <progress>
+                <cylinder base="0.5,66,0.5" radius="5.5" height="5"/>
+            </progress>
+            <captured>
+                <cylinder base="0.5,66,0.5" radius="5.5" height="5"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>glass</item>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>374</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+</itemremove>
+<killreward>
+    <item amount="12">arrow</item>
+    <item amount="4">glass</item>
+</killreward>
+<respawn delay="8s"/>
+<autorespawn/>
+</map>

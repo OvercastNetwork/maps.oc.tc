@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Tropico</name>
+<version>1.0.0</version>
+<objective>The team with the most kills after 10 minutes wins!</objective>
+<authors>
+    <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samtheman43 -->
+</authors>
+<contributors>
+	<contributor contribution="Feedback and Flag Refining" uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+    <deaths>-1</deaths>
+</score>
+<time>5m</time>
+<rage/>
+<teams>
+    <team id="orange-team" color="gold" max="12" max-overfill="14">Orange</team>
+    <team id="cyan-team" color="dark_aqua" max="12" max-overfill="14">Cyan</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" material ="iron sword" name="`cDagger" enchantment="damage all:20"/>
+        <item slot="1" material="bow" name="`ePistol" enchantment="arrow damage:20"/>
+        <item slot="8" amount="1" material="arrow"/>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+        <leggings locked="true" material="chainmail leggings"/>
+    </kit>
+    <kit id="orange" parents="spawn">
+        <chestplate locked="true" color="D87F33" material="leather chestplate"/>
+        <boots locked="true" color="D87F33" material="leather boots"/>
+    </kit>
+    <kit id="cyan" parents="spawn">
+        <chestplate locked="true" color="4C7F99" material="leather chestplate"/>
+        <boots locked="true" color="4C7F99" material="leather boots"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="orange-team" kit="orange">
+        <regions yaw="-125">
+            <cylinder base="-71,12,-45" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="cyan-team" kit="cyan">
+        <regions yaw="45">
+            <cylinder base="97,12,-87" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="12,51,-66" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>anvil</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<kill-reward>
+    <item amount="1" material="arrow"/>
+</kill-reward>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

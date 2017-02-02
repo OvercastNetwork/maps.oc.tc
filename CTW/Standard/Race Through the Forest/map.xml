@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Race Through the Forest</name>
+<version>1.0.4</version>
+<objective>Capture both wool from the enemy and place it on your monument!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="8bc4f6c5-0515-4bcb-b788-98b9c443d7e8"/> <!-- legomarsm -->
+</authors>
+<contributors>
+    <contributor uuid="750178ac-cc90-49d4-95b5-933a2e0287fc" contribution="Feedback and Criticism"/> <!-- Athena1425 -->
+</contributors>
+<teams>
+    <team color="gold" max="30">Orange</team>
+    <team color="dark purple" max="30">Purple</team>
+</teams>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="only-orange-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>purple</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-purple-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>orange</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Main protections -->
+    <rectangle name="main-playable" min="-151,-64" max="-100,123"/>
+    <rectangle name="purple-side-wools" min="-190,-47" max="-61,-29"/>
+    <rectangle name="orange-side-wools" min="-190,88" max="-61,106"/>
+    <!-- Wool rooms -->
+    <rectangle name="blue-wool" min="-79,88" max="-61,106"/> <!-- Left to purple -->
+    <rectangle name="yellow-wool" min="-190,88" max="-172,106"/>
+    <rectangle name="lime-wool" min="-190,-47" max="-172,-29"/> <!-- Left to orange -->
+    <rectangle name="magenta-wool" min="-79,-47" max="-61,-29"/>
+    <!-- Wool protections -->
+    <apply block="only-orange" enter="only-orange" use="only-orange-usage" message="You may not enter or modify orange's wool rooms!">
+        <region name="lime-wool"/>
+        <region name="magenta-wool"/>
+    </apply>
+    <apply block="only-purple" enter="only-purple" use="only-purple-usage" message="You may not enter or modify purple's wool rooms!">
+        <region name="blue-wool"/>
+        <region name="yellow-wool"/>
+    </apply>
+    <!-- Spawn rooms -->
+    <cuboid name="purple-spawn-stairs" min="-143,7,-60" max="-108,15,-50"/>
+    <cuboid name="purple-spawn-inner" min="-133,7,-64" max="-118,13,-50"/>
+    <cuboid name="orange-spawn-stairs" min="-143,7,109" max="-108,15,119"/>
+    <cuboid name="orange-spawn-inner" min="-133,7,109" max="-118,13,123"/>
+    <!-- Spawn protections -->
+    <apply block="deny-all" message="You may not break or place blocks in the bases!">
+        <region name="purple-spawn-stairs"/>
+        <region name="purple-spawn-inner"/>
+        <region name="orange-spawn-stairs"/>
+        <region name="orange-spawn-inner"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter purple team's base!">
+        <region name="purple-spawn-inner"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter orange team's base!">
+        <region name="orange-spawn-inner"/>
+    </apply>
+    <!-- Playable protections -->
+    <apply block-place="deny-all" message="You may not build outside of the world!">
+        <negative>
+            <region name="main-playable"/>
+            <region name="purple-side-wools"/>
+            <region name="orange-side-wools"/>
+        </negative>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="32">bread</item>
+        <item slot="4" amount="64" damage="2">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="2">golden apple</item>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="purple" yaw="0">
+            <cylinder name="purplespawn" base="-125.5,8,-57.5" radius="1" height="0"/>
+        </spawn>
+        <spawn team="orange" yaw="180">
+            <cylinder name="orangespawn" base="-125.5,8,116.5" radius="1" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="-90">
+        <cylinder name="observerspawn" base="-191.5,40,29.5" radius="7" height="0"/>
+    </default>
+</spawns>
+<maxbuildheight>55</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<wools>
+    <wool team="orange" color="lime">
+        <block location="-127,9,120"/>
+    </wool>
+    <wool team="orange" color="magenta">
+        <block location="-125,9,120"/>
+    </wool>
+    <wool team="purple" color="light blue">
+        <block location="-125,9,-62"/>
+    </wool>
+    <wool team="purple" color="yellow">
+        <block location="-127,9,-62"/>
+    </wool>
+</wools>
+</map>

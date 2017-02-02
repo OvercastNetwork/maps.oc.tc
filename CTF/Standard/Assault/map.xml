@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Assault</name>
+<version>2.6</version>
+<objective>Capture the other team's flag and return it to your base.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="-135">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="blue" pickup-filter="only-red">
+        <post yaw="-180" return-time="35s" respawn-speed="8">140.5,18,225.5</post>
+        <net points="1" region="red-platform"/>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="red" color="red" pickup-filter="only-blue">
+        <post yaw="0" return-time="35s" respawn-speed="8">-6.5,18,193.5</post>
+        <net points="1" region="blue-platform"/>
+    </flag>
+</flags>
+<score>
+    <kills>0</kills>
+    <deaths>0</deaths>
+    <time>15m</time>
+</score>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="kill-boost">
+        <potion duration="4" amplifier="3">regeneration</potion>
+        <potion duration="4" amplifier="2">speed</potion>
+        <potion duration="3">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="0" unbreakable="true" attriutes="generic.attackDamage:add:6" enchantment="dig speed:3">iron axe</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">iron spade</item>
+        <item slot="3" unbreakable="true">iron pickaxe</item>
+        <item slot="8" amount="24">arrow</item>
+        <helmet   color="191919" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="191919" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots    color="191919" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="teams">
+        <chestplate color="334CB2" unbreakable="true" locked="true" enchantment="protection fall">leather chestplate</chestplate>
+        <item slot="4" amount="24" damage="0">wood</item>
+    </kit>
+    <kit name="red" parents="teams">
+        <chestplate color="993333" unbreakable="true" locked="true" enchantment="protection fall">leather chestplate</chestplate>
+        <item slot="4" amount="24" damage="2">wood</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="deny-usage">
+        <deny>
+            <block>beacon</block>
+            <block>hopper</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <union name="bases">
+        <rectangle name="red-base"  min="10,234"  max="-17,185"/>
+        <rectangle name="blue-base" min="124,185" max="151,234"/>
+    </union>
+    <negative name="map-old">
+        <union name="platforms">
+            <cuboid name="red-platform" min="-10,15,192" max="-5,21,195"/>
+            <cuboid name="blue-platform" min="144,15,224" max="139,21,227"/>
+        </union>
+    </negative>
+    <rectangle name="map" min="-15,185" max="149,234"/>
+    <union name="spawns">
+        <block name="blue-spawn" location="146.5,17,192.5"/>
+        <block name="red-spawn"  location="-12.5,17,226.5"/>
+        <block name="obs-spawn"  location="8.5,29,226.5"/>
+    </union>
+    <union name="around-spawns">
+        <cuboid name="around-red-spawn" min="-10,16,224" max="-15,23,229"/>
+        <cuboid name="around-blue-spawn" min="149,16,190" max="144,23,195"/>
+    </union>
+    <apply region="bases" use="deny-usage" message="You may not open this"/>
+    <apply region="around-spawns" block="deny-all" message="You may not edit the spawns"/>
+    <apply region="platforms" block="deny-all" message="You may not modify the flag platform"/>
+    <apply block="deny-all" message="You may not build in the void">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+</regions>
+<itemremove>
+    <item>bow</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>iron pickaxe</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <kit>
+        <kit name="kill-boost"/>
+    </kit>
+    <item amount="8">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <kill-streak count="1" repeat="true"/>
+            <team>blue</team>
+        </all>
+    </filter>
+    <item amount="8" damage="0">wood</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <kill-streak count="1" repeat="true"/>
+            <team>red</team>
+        </all>
+    </filter>
+    <item amount="8" damage="2">wood</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="3" repeat="true"/>
+    </filter>
+    <item name="`cExplosive">tnt</item>
+</killreward>
+<tnt>
+    <fuse>2s</fuse>
+    <power>4.5</power>
+    <instantignite>true</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<disabledamage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<maxbuildheight>35</maxbuildheight>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+</map> 

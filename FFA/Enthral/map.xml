@@ -1,0 +1,170 @@
+<map proto="1.4.0" game="Survival Games">
+<name>Enthral</name>
+<version>1.1.2</version>
+<objective>Be the sole survivor of the games</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
+    <!--  Yoyo_  -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
+    <!--  Rockymine  -->
+</authors>
+<contributors>
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" />
+    <!--  name  -->
+</contributors>
+<players min="18" max="24" />
+<filters>
+    <all id="block-some">
+        <any>
+            <material>cobblestone</material>
+            <material>log</material>
+            <material>leaves</material>
+            <material>leaves_2</material>
+            <material>iron_ore</material>
+            <material>long_grass</material>
+            <material>wood</material>
+            <material>iron block</material>
+            <material>workbench</material>
+            <material>wheat</material>
+            <material>web</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+    <time id="after-1s">1s</time>
+</filters>
+<spawns>
+    <spawn kit="playerKit" spread="true" angle="95.5,67,-129.5">
+        <regions>
+            <point>95.5,67,-153.5</point>
+            <point>101.5,67,-152.5</point>
+            <point>107.5,66,-150.5</point>
+            <point>112.5,66,-146.5</point>
+            <point>116.5,66,-141.5</point>
+            <point>118.5,66,-135.5</point>
+            <point>119.5,66,-129.5</point>
+            <point>118.5,67,-123.5</point>
+            <point>116.5,67,-117.5</point>
+            <point>112.5,67,-112.5</point>
+            <point>107.5,67,-108.5</point>
+            <point>101.5,66,-106.5</point>
+            <point>95.5,66,-105.5</point>
+            <point>89.5,66,-106.5</point>
+            <point>83.5,65,-105.5</point>
+            <point>78.5,65,-112.5</point>
+            <point>74.5,65,-117.5</point>
+            <point>72.5,65,-123.5</point>
+            <point>71.5,66,-129.5</point>
+            <point>72.5,67,-135.5</point>
+            <point>74.5,67,-141.5</point>
+            <point>78.5,68,-146.5</point>
+            <point>83.5,69,-150.5</point>
+            <point>89.5,68,-152.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="-15">89.5,68,-152.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="playerKit">
+        <item material="cooked beef" amount="6" slot="1" />
+        <potion duration="48" amplifier="40">weakness</potion>
+        <potion duration="17" amplifier="30">slowness</potion>
+        <potion duration="7" amplifer="30">blindness</potion>
+        <potion duration="17" amplifier="-30">jump</potion>
+        <potion duration="48" amplifier="1">speed</potion>
+    </kit>
+</kits>
+<structures>
+    <structure id="drop1" air="false">
+        <region>
+            <region id="drop1-region" />
+        </region>
+    </structure>
+    <structure id="drop2" air="false">
+        <region>
+            <region id="drop2-region" />
+        </region>
+    </structure>
+    <structure id="portal-structure" air="true">
+        <region>
+            <region id="portal-region" />
+        </region>
+    </structure>
+    <structures offset="0,-20,0">
+        <dynamic structure="drop1">
+            <filter>
+                <time>2m</time>
+            </filter>
+        </dynamic>
+        <dynamic structure="drop2">
+            <filter>
+                <time>4m</time>
+            </filter>
+        </dynamic>
+    </structures>
+    <structures offset="0,-49,0">
+        <dynamic structure="portal-structure">
+            <filter>
+                <time>3h</time>
+            </filter>
+        </dynamic>
+    </structures>
+</structures>
+<broadcasts>
+    <alert after="8s">`c`lThe match will start in 10 seconds!</alert>
+    <alert after="13s">`4`l5</alert>
+    <alert after="14s">`c`l4</alert>
+    <alert after="15s">`d`l3</alert>
+    <alert after="16s">`9`l2</alert>
+    <alert after="17s">`a`l1</alert>
+    <alert after="18s">`f`lYou have 30 seconds to prepare yourselves, you may not attack other players!</alert>
+    <tip after="2m">`7A carepackage has spawned at: `8(-86, 80, 138)</tip>
+    <tip after="4m">`7A carepackage has spawned at: `8(249, 80, -207)</tip>
+    <tip after="5m">`7The world border will start shrinking in `8One minute.</tip>
+    <tip after="6m">`7The world border is now shrinking!</tip>
+    <tip after="35s">`7You can break some blocks including: Iron ore, Logs, leaves and Cobblestone.</tip>
+</broadcasts>
+<regions>
+    <cuboid id="drop1-region" min="-79,94,144" max="-95,118,127" />
+    <cuboid id="drop2-region" min="240,120,-199" max="257,96,-215" />
+    <cuboid id="portal-region" min="99,109,-126" max="92,118,-133" />
+    <apply block="block-some" />
+</regions>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<world-borders center="95.5, -129.5">
+    <world-border size="850" />
+    <world-border size="300" after="6m" duration="3m" />
+    <world-border size="100" after="570s" duration="3m" />
+</world-borders>
+<block-drops>
+    <rule wrong-tool="false">
+        <region>
+            <everywhere />
+        </region>
+        <filter>
+            <any>
+                <material>iron ore</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="iron ingot" amount="2" />
+            <item material="cobblestone" />
+            <item material="iron chestplate" chance="0.05" />
+            <item material="iron sword" chance="0.05" />
+            <item material="iron boots" chance="0.05" />
+            <item material="iron leggings" chance="0.05" />
+            <item material="iron helmet" chance="0.05" />
+        </drops>
+        <replacement>stone</replacement>
+    </rule>
+</block-drops>
+<maxbuildheight>100</maxbuildheight>
+</map>

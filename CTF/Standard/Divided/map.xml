@@ -1,0 +1,112 @@
+<map proto="1.3.6">
+<name>Divided</name>
+<version>1.0.3</version>
+<objective>Capture the enemy's flag and return it to your spawn 5 times to win.</objective>
+<authors>
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" />
+    <!--   Diamyx   -->
+</authors>
+<contributors>
+    <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
+    <!--   Yoyo_   -->
+</contributors>
+<broadcasts>
+    <alert after="3s" every="120s">Once you have the flag bring it back to your team's `e`lspawn`r (At the beacon)!</alert>
+</broadcasts>
+<teams>
+    <team id="red" color="dark red" max="10" max-overfill="13">Red</team>
+    <team id="blue" color="blue" max="10" max-overfill="13">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="6" amount="24">arrow</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8" amount="32">bread</item>
+        <potion duration="4" amplifier="5">heal</potion>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="CD0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="CD0000" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <regions yaw="0">
+            <cuboid min="-1256,8.5,-520" max="-1252,9,-521" />
+        </regions>
+    </default>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <cuboid min="-1252,19,-461" max="-1246,19,-467" />
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <cuboid min="-1256,19,-580" max="-1262,19,-574" />
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="red-net" min="-1253,23,-460" max="-1246,18,-467" />
+    <cuboid name="blue-net" min="-1256,23,-580" max="-1262,18,-574" />
+    <apply enter="red-only" message="You may not enter the enemy spawn">
+        <region name="red-net" />
+    </apply>
+    <apply enter="blue-only" message="You may not enter the enemy spawn">
+        <region name="blue-net" />
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<score>
+    <limit>5</limit>
+    <deaths>0</deaths>
+    <kills>0</kills>
+</score>
+<flags>
+    <flag id="red-flag" name="Red Flag" color="red">
+        <post pickup-filter="blue-only" recover-time="15s" respawn-time="10s">-1252.5,8,-490.5</post>
+        <net points="1" region="blue-net" />
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" color="blue">
+        <post pickup-filter="red-only" recover-time="15s" respawn-time="10s">-1256.5,8,-551.5</post>
+        <net points="1" region="red-net" />
+    </flag>
+</flags>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="8">arrow</item>
+</killreward>
+<itemremove>
+    <item>stone sword</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>bow</item>
+    <item>golden apple</item>
+    <item>bread</item>
+    <item>arrow</item>
+</itemremove>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+</map> 

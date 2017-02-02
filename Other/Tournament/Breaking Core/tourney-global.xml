@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<map>
+<!-- This will affect all maps in the branch, except: Boom -->
+<rules>
+    <rule>Dispensers are denied on all tournament maps!</rule>
+</rules>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-dispenser" use="deny-dispenser" message="`7[`c`lERROR`r`7] `aDispensers are disabled on all tournament maps!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="restrict-obs">
+        <potion duration="oo">night vision</potion>
+        <item slot="1">air</item>
+        <item slot="2">air</item>
+        <item slot="3">air</item>
+        <item slot="4">air</item>
+    </kit>
+</kits>
+<time result="objectives">1h</time>
+<autorespawn/>
+</map>

@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Sky Traffic 2</name>
+<version>1.1.5</version>
+<objective>Leak lava from the enemy's obsidian core in their yellow submarine.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<maxbuildheight>215</maxbuildheight>
+<kits>
+    <kit name="shears">
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="15s" amplifier="2">regeneration</potion>
+        <potion duration="5" amplifier="10">heal</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="anti-chest-red">
+        <not>
+            <all>
+                <team>red</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-chest-blue">
+        <not>
+            <all>
+                <team>blue</team>
+                <block>chest</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-tnt-red">
+        <not>
+            <all>
+                <team>red</team>
+                <block>tnt</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-tnt-blue">
+        <not>
+            <all>
+                <team>blue</team>
+                <block>tnt</block>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="298,19" max="597,143"/>
+    <rectangle name="blue-spawn-tunnel" min="278,74" max="281,67"/>
+    <cuboid name="blue-spawn-ship" min="301,114,62" max="360,128,79"/>
+    <rectangle name="red-spawn-tunnel" min="597,67" max="614,74"/>
+    <cuboid name="red-spawn-ship" min="593,114,79" max="535,128,62"/>
+    <apply block="deny-all" message="You may not place blocks outside the map!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block-break="anti-chest-red" message="You are not allowed to break your own chests!">
+        <region name="red-spawn-ship"/>
+    </apply>
+    <apply block-break="anti-chest-blue" message="You are not allowed to break your own chests!">
+        <region name="blue-spawn-ship"/>
+    </apply>
+    <apply block-place="deny-chest">
+        <region name="blue-spawn-ship"/>
+        <region name="red-spawn-ship"/>
+    </apply>
+    <apply leave="deny-all" message="You may not leave the map area!">
+        <rectangle min="298,19" max="597,143"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the opposing team's spawn!">
+        <region name="red-spawn-tunnel"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the opposing team's spawn!">
+        <region name="blue-spawn-tunnel"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>shears</item>
+    <item>obsidian</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="shears" yaw="90">
+        <point>611.5,124,70.5</point>
+    </spawn>
+    <spawn team="blue" kit="shears" yaw="-90">
+        <point>283.5,124,70.5</point>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="443,124,-20" max="452,124,-11"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="3">
+    <core team="red">
+        <cuboid min="549,133,114" max="556,139,119"/>
+    </core>
+    <core team="blue">
+        <cuboid min="339,133,114" max="346,139,119"/>
+    </core>
+</cores>
+</map>

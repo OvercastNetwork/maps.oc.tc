@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Streamline</name>
+<version>2.0.6</version>
+<objective>Destroy and leak the enemy team's obsidian core.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+    <contributor uuid="fb820bf4-5157-4d7b-8cca-e8ec759b87cd"/> <!-- Vetches -->
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Feedback for v2.0"/> <!-- last_username -->
+</contributors>
+<teams>
+    <team color="blue" max="18">Blue</team>
+    <team color="dark red" max="18">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red" yaw="0" pitch="-10">
+        <point>-16.5,10,73.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180" pitch="-10">
+        <point>-16.5,10,-26.5</point>
+    </spawn>
+    <default yaw="90">
+        <point>41.5,29,23.5</point>
+    </default>
+</spawns>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="red">
+        <cuboid min="-14,12,49" max="-19,17,54"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-19,12,-2" max="-14,17,-7"/>
+    </core>
+</cores>
+<modes>
+    <mode after="20m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="35m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:2;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="32" amount="64">wood</item>
+        <item slot="23" amount="64">wood</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="31" amount="64">smooth brick</item>
+        <item slot="6" amount="16">glass</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <potion duration="3" amplifier="2">heal</potion>
+        <potion duration="4" amplifier="2">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="no-spawner-red">
+        <not>
+            <all>
+                <block>mob spawner</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="no-spawner-blue">
+        <not>
+            <all>
+                <block>mob spawner</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="no-tnt-red">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>red</team>
+            </all>
+            <void/>
+        </not>
+    </filter>
+    <filter name="no-tnt-blue">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>blue</team>
+            </all>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-30" min="-oo,31,-oo" max="oo,oo,oo"/>
+    <negative name="outside-center">
+        <rectangle name="main" min="2,107" max="-35,-60"/>
+        <rectangle name="center" min="16,-5" max="-49,52"/>
+        <rectangle name="inside-lane" min="-21,-48" max="-12,95"/>
+    </negative>
+    <union name="bunkers">
+        <cuboid name="red-bunker" min="2,-oo,95" max="-35,16,107"/>
+        <cuboid name="blue-bunker" min="-35,-oo,-48" max="2,16,-60"/>
+    </union>
+    <union name="water-drops">
+        <cuboid name="red-water-drop" min="-14,2,102" max="-19,16,99"/>
+        <cuboid name="blue-water-drop" min="-19,2,-55" max="-14,16,-52"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-13,8,-39" max="-20,16,-22"/>
+        <cuboid name="blue-spawn" min="-20,8,86" max="-13,16,69"/>
+    </union>
+    <union name="diamond-spawners">
+        <block>-43.5,8,23.5</block>
+        <block>10.5,8,23.5</block>
+    </union>
+    <union name="arrow-spawners">
+        <union name="blue-arrow-spawners">
+            <block>-3.5,3,-4.5</block>
+            <block>-29.5,3,-4.5</block>
+        </union>
+        <union name="red-arrow-spawners">
+            <block>-3.5,3,51.5</block>
+            <block>-29.5,3,51.5</block>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="`eYou may not edit outside the main area!">
+        <complement>
+            <region name="outside-center"/>
+            <region name="spawns"/>
+            <region name="bunkers"/>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit the spawn!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit above the max height! (`c30 Blocks`e)">
+        <region name="above-30"/>
+    </apply>
+    <apply block-place="no-tnt-red" message="`eYou may not place TNT around your own bunker!">
+        <region name="red-bunker"/>
+    </apply>
+    <apply block-place="no-tnt-blue" message="`eYou may not place TNT around your own bunker!">
+        <region name="blue-bunker"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not break the diamond pickaxe spawner!">
+        <region name="diamond-spawners"/>
+    </apply>
+    <apply block="no-spawner-blue" message="`eYou may not destroy your team's arrow spawner!">
+        <region name="blue-arrow-spawners"/>
+    </apply>
+    <apply block="no-spawner-red" message="`eYou may not destroy your team's arrow spawner!">
+        <region name="red-arrow-spawners"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit the water drop!">
+        <region name="water-drops"/>
+    </apply>
+</regions>
+<renewables>
+    <renewable rate="2" grow="true" particles="true" avoid-entities="true">
+        <region>
+            <union name="iron-islands"> <!-- Relative distance to observers spawn -->
+                <cuboid name="island-near" min="16,8,13" max="3,11,34"/>
+                <cuboid name="island-far" min="-49,8,34" max="-36,11,13"/>
+            </union>
+        </region>
+        <renew>iron block</renew>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>clay ball</item>
+    <item>redstone lamp off</item>
+    <item>redstone lamp on</item>
+    <item>item frame</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>iron door</item>
+    <item>iron door block</item>
+    <item>redstone block</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="12">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<tutorial>
+    <stage title="`a`lDestroy the Core">
+        <message>
+            <line>`7This map is a `aDestroy the Core `7(DTC) map.</line>
+            <line>`7The objective is to leak the enemy's obsidian core behind their base.</line>
+        </message>
+        <teleport>
+            <point yaw="50" pitch="10">30,22,17</point>
+        </teleport>
+    </stage>
+    <stage title="`a`lCenter Supplies">
+        <message>
+            <line>`7Fight for the `6iron blocks `7in the center of the map.</line>
+            <line>`7There are also 2 diagonal cannons to launch at their side.</line>
+            <line>`7Use the spawner to get a `bdiamond pickaxe `7to break their core!</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="40">-55,25,23</point>
+        </teleport>
+    </stage>
+    <stage title="`c`lTNT and Redstone Supplies">
+        <message>
+            <line>`7Each lane has a bunker full of various supplies.</line>
+            <line>`7From `cTNT `7to `4redstone`7, you will find a lot of useful items.</line>
+            <line>`7But don't grief your own side, it's illegal!</line>
+        </message>
+        <teleport>
+            <point yaw="70" pitch="5">7,5,-58</point>
+        </teleport>
+    </stage>
+    <stage title="`a`lThe Core">
+        <message>
+            <line>`7This is the core you must leak to win the game!</line>
+            <line>`7It has to leak 5 blocks down!</line>
+        </message>
+        <teleport>
+            <point yaw="155" pitch="10">-10,17,10</point>
+        </teleport>
+    </stage>
+    <stage title="`a`lSpawn Building">
+        <message>
+            <line>`7Your spawn is indestructable, and no one can break it.</line>
+            <line>`7If you are reading this, break the 2 iron blocks on top of the spawn!</line>
+            <line>`7You may build below and above your spawn building!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">-17,11,62</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

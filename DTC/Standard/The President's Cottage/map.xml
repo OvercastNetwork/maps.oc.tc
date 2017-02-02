@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>The President's Cottage</name>
+<version>1.1.1</version>
+<objective>Leak the enemy team's obsidian core.</objective>
+<authors>
+    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="Main author, updating the xml and the map"/> <!-- chle_ -->
+</authors>
+<contributors>
+    <contributor uuid="9ccbf0e7-f32c-4966-a963-b6eef474b930" contribution="Building the diamond house"/> <!-- Danno428 -->
+    <contributor uuid="a4266139-34f3-46c5-a730-f8828376a15a" contribution="Decorations and building the balcony in front of spawn"/> <!-- LArrowHead -->
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Help with the President's Cottage"/> <!-- rockymine -->
+    <contributor uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="Suggestions and feedback"/> <!-- dcstarwars -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Help with the bridges"/> <!-- Timothee38 -->
+    <contributor uuid="ba6d0091-b63a-4b22-8751-1432865b95a1" contribution="Waterfalls"/> <!-- pulbos -->
+    <contributor uuid="bdb417b7-8d57-460f-951e-69dfaf764430" contribution="Minor decorations"/> <!-- CeFour -->
+    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML"/> <!-- Kroest -->
+</contributors>
+<broadcasts>
+    <tip after="4s">There are diamond blocks in the house in front of your spawn that renew every few minutes!</tip>
+</broadcasts>
+<teams>
+    <team id="blue" color="blue" max="24" max-overfill="27">Blue</team>
+    <team id="red" color="dark red" max="24" max-overfill="27">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+		    <block>28.5,23,132</block>
+		</regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="90">
+		    <block>-27.5,23,132</block>
+		</regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+		    <block>-27.5,23,-131</block>
+		</regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="-90">
+		    <block>28.5,23,-131</block>
+		</regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+		    <block>-75.5,47,0.5</block>
+		</regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="5">
+    <core team="red">
+        <region>
+		    <cuboid min="4,21,53" max="-3,14,45"/>
+		</region>
+    </core>
+    <core team="blue">
+        <region>
+		    <cuboid min="4,21,-44" max="-3,14,-52"/>
+		</region>
+    </core>
+</cores>       
+<modes>
+    <mode after="30m" material="coal block" name="`0COAL CORE MODE"/>
+</modes>
+<kits>
+    <kit id="speed-house" force="true">
+        <potion duration="oo" amplifier="2">speed</potion>
+        <walk-speed>1.6</walk-speed>
+    </kit>
+    <kit id="remove-speed-house" force="true">
+        <potion duration="0" amplifier="0">speed</potion>
+        <walk-speed>1</walk-speed>
+    </kit>
+	<kit id="jumppad-prot" force="true">
+        <potion amplifier="100" duration="3">heal</potion>
+        <potion amplifier="100" duration="3">damage resistance</potion>
+        <potion amplifier="100" duration="3">regeneration</potion>
+    </kit>
+    <kit id="teams">
+        <item slot="0" unbreakable="true" material="IRON_SWORD"/>
+        <item slot="1" enchantment="ARROW_INFINITE" material="BOW"/>
+        <item slot="2" unbreakable="true" material="DIAMOND_PICKAXE"/>
+        <item slot="3" unbreakable="true" material="IRON_AXE"/>
+        <item slot="28" material="ARROW"/>
+        <item slot="4" amount="32" material="LOG"/>
+        <item slot="5" amount="48" material="LEAVES"/>
+        <item slot="6" amount="64" damage="1" material="COOKED_FISH"/>
+        <item slot="7" amount="1" material="GOLDEN_APPLE"/>
+        <chestplate unbreakable="true" material="CHAINMAIL_CHESTPLATE"/>
+        <potion duration="3" amplifier="2">heal</potion>
+        <potion duration="4" amplifier="2">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <helmet unbreakable="true" color="993333" material="LEATHER_HELMET"/>
+        <leggings unbreakable="true" color="993333" material="LEATHER_LEGGINGS"/>
+        <boots unbreakable="true" color="993333" material="LEATHER_BOOTS"/>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <helmet unbreakable="true" color="334CB2" material="LEATHER_HELMET"/>
+        <leggings unbreakable="true" color="334CB2" material="LEATHER_LEGGINGS"/>
+        <boots unbreakable="true" color="334CB2" material="LEATHER_BOOTS"/>
+    </kit>
+</kits>
+<regions>
+    <above y="41" id="above-41"/>
+    <rectangle id="map" min="-38,-138" max="39,139"/>
+    <union id="spawns">
+        <cuboid id="red-spawn" min="-35,oo,120" max="36,0,136"/>
+        <cuboid id="blue-spawn" min="-35,oo,-119" max="36,0,-135"/>
+    </union>
+	<complement id="kit-houses">
+	    <cylinder base="28.5,23,132" radius="1" height="1"/>
+		<cylinder base="-27.5,23,132" radius="1" height="1"/>
+		<cylinder base="28.5,23,-131" radius="1" height="1"/>
+		<cylinder base="-27.5,23,-131" radius="1" height="1"/>
+		<region id="spawns"/>
+	</complement>
+	<union id="jumppads">
+        <cuboid id="redpad" min="-1.5,20,114.5" max="2.5,17,112.5"/>
+        <cuboid id="bluepad" min="-1.5,17,-111.5" max="2.5,20,-112.5"/>
+    </union>
+	<union id="jumppads-d">
+        <rectangle min="-1.5,114.5" max="2.5,112.5"/>
+        <rectangle min="-1.5,-111.5" max="2.5,-113.5"/>
+    </union>
+    <apply block="never" message="`7You may not edit outside the main area!">
+	    <region>
+            <negative>                     
+                <region id="spawns"/>
+                <region id="map"/>
+            </negative>
+		</region>
+    </apply>
+    <apply block="never" message="`7You may not edit the spawn!" region="spawns"/>
+	<apply block="never" message="`7You may not edit the jumppads!" region="jumppads-d"/>
+    <apply block="never" message="`7You may not edit above the max height! (`c41 Blocks`7)" region="above-41"/>
+	<apply kit="jumppad-prot" region="jumppads"/>
+	<apply velocity="0.0,0.6,-2.7">
+	    <region>
+            <region id="redpad"/>
+		</region>
+    </apply>
+    <apply velocity="0.0,0.6,2.7">
+	    <region>
+            <region id="bluepad"/>
+		</region>
+    </apply>
+	<apply kit="speed-house" region="kit-houses"/>
+    <apply kit="remove-speed-house">
+	    <region>
+            <negative>
+                <region id="kit-houses"/>
+            </negative>
+		</region>
+    </apply>
+</regions>
+<renewables>
+    <renewable rate="0.04" grow="true" particles="true" avoid-entities="true">
+        <region>
+            <union id="diamond-houses">
+                <cuboid id="red-house" min="-7,28,64" max="8,40,75"/>
+                <cuboid id="blue-house" min="-7,27,-74" max="8,40,-63"/>
+            </union>
+        </region>
+        <renew>diamond block</renew>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>log</item>
+    <item>item frame</item>
+    <item>obsidian</item>
+    <item>diamond block</item>
+    <item>arrow</item>
+    <item>leaves</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<kill-rewards>
+    <kill-reward>
+        <item material="GOLDEN_APPLE"/>
+	</kill-reward>
+</kill-rewards>
+<blockdrops>
+    <rule>
+        <region>
+            <region id="map"/>
+        </region>
+    <filter>
+        <material>diamond block</material>
+    </filter>
+    <drops>
+        <item>diamond</item>
+    </drops>
+    <wrongtool>false</wrongtool>
+    </rule>
+</blockdrops>
+<timelock>on</timelock>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+</map>

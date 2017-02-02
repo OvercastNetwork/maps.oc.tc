@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="Survival Games">
+<include src="survival-games.xml"/>
+<name>Fiskerby</name>
+<version>1.0.1</version>
+<world-borders center="1.5,20.5">
+    <world-border size="700"/>
+    <world-border size="40" after="2m" duration="10m"/>
+</world-borders>
+<spawns>
+    <spawns exclusive="true" spread="true">
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-15.5,55.0,20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-14.5,55.0,25.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-13.5,55.0,29.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-10.5,55.0,32.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-7.5,55.0,35.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-3.5,55.0,36.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>1.5,55.0,37.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>6.5,55.0,36.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>10.5,55.0,35.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>13.5,55.0,32.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>16.5,55.0,29.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>17.5,55.0,25.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>18.5,55.0,20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>17.5,55.0,15.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>16.5,55.0,11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>13.5,55.0,8.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>10.5,55.0,5.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>6.5,55.0,4.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>1.5,55.0,3.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-3.5,55.0,4.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-7.5,55.0,5.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-10.5,55.0,8.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-13.5,55.0,11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="1.5,55.0,20.5">
+                <point>-14.5,55.0,15.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions angle="1.5,55.0,20.5">
+            <point>-15.5,55.0,20.5</point>
+        </regions>
+    </default>
+</spawns>
+</map>

@@ -1,0 +1,165 @@
+<map proto="1.4.0">
+    <name>Stopped Short</name>
+    <version>1.1.1</version>
+    <objective>Destroy the obsidian monument at the base of the enemy's tower!</objective>
+    <authors>
+        <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/>
+         
+    </authors>
+    <teams>
+        <team color="gray" id="grey-team" max="26">Chocolate</team>
+        <team color="white" id="white-team" max="26">Vanilla</team>
+    </teams>
+    <spawns>
+        <spawn team="grey-team" kit="grey">
+            <regions yaw="180">
+                <cuboid id="grey-spawn" min="-12,19,104" max="13,21,111"/>
+            </regions>
+        </spawn>
+        <spawn team="white-team" kit="white">
+            <regions yaw="0">
+                <cuboid id="white-spawn" min="-12,19,-111" max="13,21,-103"/>
+            </regions>
+        </spawn>
+        <default>
+            <regions yaw="-90">
+                <cylinder base="-28,19,0" radius="3" height="0"/>
+            </regions>
+        </default>
+    </spawns>
+    <kits>
+        <kit id="spawn">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+            <item slot="28">arrow</item>
+            <item slot="2" unbreakable="true">diamond pickaxe</item>
+            <item slot="3" unbreakable="true" material="iron axe">
+                <enchantment level="2">DIG_SPEED</enchantment>
+            </item>
+            <item slot="4" amount="64">cooked beef</item>
+            <potion duration="6" amplifier="10">DAMAGE_RESISTANCE</potion>
+         </kit>
+        <kit id="grey" parents="spawn">
+            <helmet color="664C33" unbreakable="true" locked="true">leather helmet</helmet>
+            <chestplate color="664C33" unbreakable="true" locked="true">leather chestplate</chestplate>
+            <leggings color="664C33" locked="true">leather leggings</leggings>
+            <boots color="664C33" enchantment="protection fall:4" locked="true">leather boots</boots>
+            <item slot="7" amount="64" damage="1">wood</item>
+            <item slot="8" amount="64" damage="1">wood</item>
+        </kit>
+        <kit id="white" parents="spawn">
+            <helmet color="FFFFFF" unbreakable="true" locked="true">leather helmet</helmet>
+            <chestplate color="FFFFFF" unbreakable="true" locked="true">leather chestplate</chestplate>
+            <leggings color="FFFFFF" locked="true">leather leggings</leggings>
+            <boots color="FFFFFF" enchantment="protection fall:3" locked="true">leather boots</boots>
+            <item slot="7" amount="64" damage="2">wood</item>
+            <item slot="8" amount="64" damage="2">wood</item>
+        </kit>
+        <kit id="void-jumper-buff" force="true">
+            <item slot="0" unbreakable="true">diamond sword</item>
+            <chestplate locked="true">iron chestplate</chestplate>
+            <potion amplifier="3">speed</potion>
+            <potion amplifier="1">regeneration</potion>
+        </kit>
+    </kits>
+    <filters>
+            <team id="only-grey">grey-team</team>
+            <team id="only-white">white-team</team>
+            <not id="no-item"><material>armor stand</material></not>
+    </filters>
+    <regions>
+       <union id="spawn-protection">
+            <cuboid id="grey-spawn-protection-zone" min="-15,0,18" max="16,25,114"/>
+            <cuboid id="white-spawn-protection-zone" min="-15,0,-113" max="16,25,-17"/>
+        </union>
+       <apply block="never" message="You may not modify the spawn area!">
+           <region>
+                <region id="spawn-protection"/>
+           </region>
+       </apply>
+       <apply enter="only-grey" message="You may not enter the enemy team's spawn!">
+           <region><region id="grey-spawn-protection-zone"/></region>
+       </apply>
+       <apply enter="only-white" message="You may not enter the enemy team's spawn!">
+           <region><region id="white-spawn-protection-zone"/></region>
+       </apply>
+        <apply block="never" message="You may not break the tower walls!">
+           <region>
+                <complement id="tower-protection-zone">
+                    <cuboid id="entire-two-towers" min="-13,0,-17" max="14,83,18"/>
+                    <cuboid id="playing-field" min="-11,0,-14" max="12,82,15"/>
+                </complement>
+           </region>
+       </apply>
+       <apply block="never" message="You may not build in center void!">
+           <region>
+                <cuboid id="void-protection-zone" min="-13,0,-2" max="14,83,3"/>
+           </region>
+       </apply>
+       <apply kit="void-jumper-buff">
+           <region>
+               <cuboid id="void-buff-zone" min="-13,0,0" max="14,83,1"/>
+           </region>
+       </apply>
+      <apply block="only-grey" message="Only the Chocolate team can modify anything in this log grid!">
+           <region>
+                <union id="grey-log-grids">
+                    <cuboid id="grey-front-grid" min="-10,4,3" max="11,69,4"/>
+                    <cuboid id="grey-second-floor-grid" min="-10,9,4" max="11,10,14"/>
+                    <cuboid id="grey-third-floor-grid" min="-10,15,4" max="11,16,14"/>
+                    <cuboid id="grey-fourth-floor-grid" min="-10,21,4" max="11,22,14"/>
+                    <cuboid id="grey-fifth-floor-grid" min="-10,27,4" max="11,28,14"/>
+                    <cuboid id="grey-sixth-floor-grid" min="-10,33,4" max="11,34,14"/>
+                    <cuboid id="grey-seventh-floor-grid" min="-10,39,4" max="11,40,14"/>
+                    <cuboid id="grey-eighth-floor-grid" min="-10,45,4" max="11,46,14"/>
+                    <cuboid id="grey-nineth-floor-grid" min="-10,51,4" max="11,52,14"/>
+                    <cuboid id="grey-tenth-floor-grid" min="-10,57,4" max="11,58,14"/>
+                    <cuboid id="grey-eleventh-floor-grid" min="-10,63,4" max="11,64,14"/>
+                </union>
+           </region>
+       </apply>
+        <apply block="only-white" message="Only the Vanilla team can modify anything in this log grid!">
+           <region>
+                <union id="white-log-grids">
+                    <cuboid id="white-front-grid" min="-10,4,-3" max="11,69,-2"/>
+                    <cuboid id="white-second-floor-grid" min="-10,9,-12" max="11,10,-2"/>
+                    <cuboid id="white-third-floor-grid" min="-10,15,-12" max="11,16,-2"/>
+                    <cuboid id="white-fourth-floor-grid" min="-10,21,-12" max="11,22,-2"/>
+                    <cuboid id="white-fifth-floor-grid" min="-10,27,-12" max="11,28,-2"/>
+                    <cuboid id="white-sixth-floor-grid" min="-10,33,-12" max="11,34,-2"/>
+                    <cuboid id="white-seventh-floor-grid" min="-10,39,-12" max="11,40,-2"/>
+                    <cuboid id="white-eighth-floor-grid" min="-10,45,-12" max="11,46,-2"/>
+                    <cuboid id="white-nineth-floor-grid" min="-10,51,-12" max="11,52,-2"/>
+                    <cuboid id="white-tenth-floor-grid" min="-10,57,-12" max="11,58,-2"/>
+                    <cuboid id="white-eleventh-floor-grid" min="-10,63,-12" max="11,64,-2"/>
+                </union>
+           </region>
+    </apply>
+    </regions>
+    <destroyables name="Monument" materials="obsidian" completion="100%">
+        <destroyable owner="grey-team">
+           <region><cuboid min="0,4,8" max="1,9,9"/></region>
+        </destroyable>
+        <destroyable owner="white-team">
+           <region><cuboid min="0,3,-8" max="1,10,-7"/></region>
+        </destroyable>
+    </destroyables>
+    <itemremove>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+        <item>stone sword</item>
+        <item>diamond sword</item>
+        <item>bow</item>
+        <item>arrow</item>
+        <item>diamond pickaxe</item>
+        <item>iron axe</item>
+        <item>wood</item>
+        <item>log</item>
+        <item>obsidian</item>
+        <item>cooked beef</item>
+        <item>stained glass</item>
+        <item>iron chestplate</item>
+    </itemremove>
+</map>

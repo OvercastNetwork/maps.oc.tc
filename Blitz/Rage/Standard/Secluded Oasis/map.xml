@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Secluded Oasis</name>
+<version>1.2.3</version>
+<objective>Eliminate the enemy teams before 10 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527" />
+</authors>
+<blitz>
+    <title>Blitz: RAGE</title>
+    <time>10m</time>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<include src="blitz-global.xml" />
+<rage />
+<teams>
+    <team id="red-team" color="dark red" max="8" max-overfill="12">Red</team>
+    <team id="blue-team" color="blue" max="8" max-overfill="12">Blue</team>
+    <team id="yellow-team" color="yellow" max="8" max-overfill="12">Yellow</team>
+    <team id="green-team" color="green" max="8" max-overfill="12">Green</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" enchantment="damage all:2">iron sword</item>
+        <item slot="1" enchantment="arrow damage:2">bow</item>
+        <item slot="2">arrow</item>
+        <potion duration="3" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit name="green-kit" parents="spawn">
+        <helmet color="667F33" locked="true">leather helmet</helmet>
+        <chestplate color="667F33" locked="true">leather chestplate</chestplate>
+        <leggings color="667F33" locked="true">leather leggings</leggings>
+        <boots color="667F33" locked="true">leather boots</boots>
+    </kit>
+    <kit name="red-kit" parents="spawn">
+        <helmet color="cd0000" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue-kit" parents="spawn">
+        <helmet color="0066cc" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+    <kit name="yellow-kit" parents="spawn">
+        <helmet color="E5E533" locked="true">leather helmet</helmet>
+        <chestplate color="E5E533" locked="true">leather chestplate</chestplate>
+        <leggings color="E5E533" locked="true">leather leggings</leggings>
+        <boots color="E5E533" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="oo,oo" max="-oo,-oo" />
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<spawns>
+    <spawn team="green" kit="green-kit">
+        <regions angle="-23,6,7">
+            <cuboid min="-56,8,-31" max="-54,8,-29" />
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow-kit">
+        <regions angle="-23,6,7">
+            <cuboid min="-56,8,46" max="-54,8,44" />
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions angle="-23,6,7">
+            <cuboid min="9,8,-31" max="7,8,-29" />
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions angle="-23,6,7">
+            <cuboid min="9,8,46" max="7,8,44" />
+        </regions>
+    </spawn>
+    <default>
+        <regions angle="-23,6,7">
+            <cuboid min="9,8,46" max="7,8,44" />
+        </regions>
+    </default>
+</spawns>
+</map>

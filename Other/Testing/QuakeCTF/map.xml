@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>QuakeCTF</name>
+<version>0.7</version>
+<objective>Capture the enemy team's flag!</objective>
+<authors>
+    <author uuid="a59dce2e-79e2-4229-ab83-98c885fceb23"/> <!-- XxNarwhalexX -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML, Spawners and Feedback"/> <!-- ItsMiiOlly -->
+    <contributor uuid="60ba7cf0-6f28-430a-ab0a-511028fd0729" contribution="Feedback and Support"/> <!-- JsKingBoo -->
+    <contributor uuid="14aad06f-6fc0-4b26-be7b-187c3be8eb89" contribution="Feedback"/> <!-- 68pingy -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="18" max-overfill="20">Red</team>
+    <team id="blue" color="blue" max="18" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" name="`f`lGauntlet" attributes="generic.attackDamage:add:5">wood spade</item>
+        <item slot="1" name="`f`lRailgun">bow</item>
+        <item slot="6" name="`c`lHealth Kit" damage="8229">potion</item>
+        <item slot="7" amount="12">arrow</item>
+        <potion duration="oo">speed</potion>
+        <potion duration="oo">night vision</potion>
+        <potion duration="3" amplifier="2">slow</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="ff0000">leather helmet</helmet>
+        <chestplate>chainmail chestplate</chestplate>
+        <leggings color="ff0000">leather leggings</leggings>
+        <boots>gold boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000ff">leather helmet</helmet>
+        <chestplate>chainmail chestplate</chestplate>
+        <leggings color="0000ff">leather leggings</leggings>
+        <boots>gold boots</boots>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red-flag-get" force="true">
+        <item slot="0" name="`f`lIron Gauntlet" attributes="generic.attackDamage:add:5.5">iron spade</item>
+        <item slot="8" name="`4`l`oRed Flag" damage="14">wool</item>
+        <helmet locked="true" damage="14">wool</helmet>
+        <potion duration="30" amplifier="2">slow</potion>
+        <potion duration="10">regeneration</potion>
+    </kit>
+    <kit name="blue-flag-get" force="true">
+        <item slot="0" name="`f`lIron Gauntlet" attributes="generic.attackDamage:add:5.5">iron spade</item>
+        <item slot="8" name="`9`l`oBlue Flag" damage="11">wool</item>
+        <helmet locked="true" damage="11">wool</helmet>
+        <potion duration="30" amplifier="2">slow</potion>
+        <potion duration="10">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <!-- red team -->
+    <spawn team="red" kit="red" yaw="135">
+        <block>-75,50,19</block>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-135">
+        <block>-115,50,19</block>
+    </spawn>
+    <!-- blue team -->
+    <spawn team="blue" kit="blue" yaw="-45">
+        <block>-115,50,-129</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="45">
+        <block>-75,50,-129</block>
+    </spawn>
+    <!-- obs -->
+    <default yaw="179" kit="obs">
+        <cylinder base="-94,24,-54" radius="1" height="0" />
+    </default>
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-some">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply kit="red-flag-get" filter="only-blue" message="`6`lFLAG CAPTURED">
+        <cylinder base="-94,9,10" radius="3" height="3" />
+    </apply>
+    <apply kit="blue-flag-get" filter="only-red" message="`6`lFLAG CAPTURED">
+        <cylinder base="-94,9,-119" radius="3" height="3" />
+    </apply>
+    <apply block="deny-blocks" use="deny-some">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+
+    <!-- red side -->
+    <apply velocity="@0.0,1.1,0.0">
+        <cylinder base="-94,9,1" radius="1" height="1" />
+    </apply>
+    <apply velocity="@0.0,1.1,0.0">
+        <cylinder base="-114,9,0" radius="1" height="1" />
+    </apply>
+    <apply velocity="@0.0,1.6,0.0">
+        <cylinder base="-76,5,-14" radius="1" height="1" />
+    </apply>
+    <!-- middle left -->
+    <apply velocity="@1.1,1.8,0.0">
+        <cylinder base="-111,8,-54" radius="1" height="1" />
+    </apply>
+    <!-- middle right -->
+    <apply velocity="@-1.1,1.8,0.0">
+        <cylinder base="-77,8,-54" radius="1" height="1" />
+    </apply>
+    <!-- blue side -->
+    <apply velocity="@0.0,1.1,0.0">
+        <cylinder base="-94,9,-110" radius="1" height="1" />
+    </apply>
+    <apply velocity="@0.0,1.1,0.0">
+        <cylinder base="-74,9,-109" radius="1" height="1" />
+    </apply>
+    <apply velocity="@0.0,1.6,0.0">
+        <cylinder base="-112,5,-94" radius="1" height="1" />
+    </apply>
+</regions>
+<proximity-alarms>
+    <proximity-alarm message="`c`lEnemy detected at Red Flag! Get to your spawn quickly!" flare-radius="3">
+        <region>
+            <cylinder base="-94,9,10" radius="3" height="3" />
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm message="`9`lEnemy detected at Blue Flag! Get to your spawn quickly!" flare-radius="3">
+        <region>
+            <cylinder base="-94,9,-119" radius="3" height="3" />
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+<wools>
+   <wool team="red" color="blue">
+       <block>-95,6,15</block>
+   </wool>
+   <wool team="blue" color="red">
+       <block>-95,6,-125</block>
+   </wool>
+</wools>
+<itemremove>
+    <item>wood spade</item>
+    <item>bow</item>
+    <item>iron spade</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item damage="11">wool</item>
+    <item damage="14">wool</item>
+    <item damage="8229">potion</item>
+    <item>glass bottle</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<broadcasts>
+    <alert after="1s">`a`lThe objective is to capture the other team's flag located at their beacons!</alert>
+    <alert after="3s">`a`lIf you see someone with wool on their head, it means they've got the flag!</alert>
+    <alert after="30s">`a`lThe objective is to capture the other team's flag located at their beacons!</alert>
+    <alert after="33s">`a`lIf you see someone with wool on their head, it means they've got the flag!</alert>
+    <tip after="1m">`7You can find your wool monument by the beacons!</tip>
+    <tip after="2m">`7You can find 3 health spawners on your side!</tip>
+    <tip after="3m">`7You can find upgraded armor spawners near the middle!</tip>
+    <tip after="4m">`7You can find grenade, haste, speed and strength spawners in the middle!</tip>
+    <tip after="5m">`7The daylight sensors show where the jump pads are!</tip>
+    <tip after="6m">`7You get a cool upgrade when in the enemy team's flag room!</tip>
+    <tip after="7m">`7You can find your wool monument by the beacons!</tip>
+    <tip after="8m">`7This map is just like a CTW game! Just capture the enemy wool and bring it back to your side.</tip>
+    <tip after="10m">`7You can find your wool monument by the beacons!</tip>
+    <tip after="12m">`7You can find 3 health spawners on your side!</tip>
+    <tip after="14m">`7You can find upgraded armor spawners near the middle!</tip>
+    <tip after="16m">`7You can find grenade, haste, speed and strength spawners in the middle!</tip>
+    <tip after="18m">`7The daylight sensors show where the jump pads are!</tip>
+    <tip after="20m">`7You get a cool upgrade when in the enemy team's flag room!</tip>
+    <tip after="30m">`7You can find your wool monument by the beacons!</tip>
+    <tip after="45m">`7This map is just like a CTW game! Just capture the enemy wool and bring it back to your side.</tip>
+</broadcasts>
+</map>

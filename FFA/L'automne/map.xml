@@ -1,0 +1,95 @@
+<map proto="1.4.0">
+<name>L'Automne</name>
+<version>1.1</version>
+<objective>Have the most kills after 15 minutes!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="5906313b-dd1b-4847-8164-7f9800fcb782"/>    
+    <author uuid="ff692817-83e7-4afe-b5ae-c5f62aa642b3"/>    
+</authors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<players min="2" max="32"/>
+<score>
+    <kills>1</kills>    
+</score>
+<time>10m</time>
+<spawns>
+    <spawn kit="spawnkit" spread="true" safe="true">
+        <regions angle="22,18,-23">
+            <point>53.5,47,44.5</point>
+            <point>-33.5,23,20.5</point>
+            <point>-37.5,34,-22.5</point>
+            <point>-68.5,27,-22.5</point>
+            <point>-39.5,20,-55.5</point>
+            <point>-39.5,20,-102.5</point>
+            <point>-64.5,17,-79.5</point>
+            <point>-5.5,21,-85.5</point>
+            <point>41.5,19,-94.5</point>
+            <point>40.5,15,-44.5</point>
+            <point>83.5,32,-69.5</point>
+            <point>77.5,47,-15.5</point>
+            <point>59.5,16,-7.5</point>
+            <point>22.5,18,-23.5</point>
+            <point>-18.5,15,0.5</point>
+            <point>29.5,18,53.5</point>
+            <point>51.5,13,46.5</point>
+            <point>64.5,13,21.5</point>
+            <point>-77.5,20,-77.5</point>
+            <point>-62.5,20,-92.5</point>
+            <point>72.5,47,14.5</point>
+            <point>8.5,18,-19.5</point>
+            <point>35.5,18,-19.5</point>
+            <point>34.5,16,-31.5</point>
+            <point>-8.5,18,-41.5</point>
+            <point>-28.5,32,-35.5</point>
+            <point>49.5,43,31.4</point>
+            <point>66.5,47,-62.5</point>
+            <point>95.5,31,-104.5</point>
+            <point>18.5,25,-100.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>22.5,18,-23.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawnkit">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="32">cooked beef</item>
+        <item slot="7" amount="16">arrow</item>
+        <item slot="8">golden apple</item>
+        <helmet>leather helmet</helmet>
+        <chestplate>iron chestplate</chestplate>
+        <leggings>leather leggings</leggings>
+        <boots>leather boots</boots>
+        <potion duration="1">resistance</potion>
+    </kit>    
+</kits>
+<itemremove>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>    
+    <tool>bow</tool>    
+</toolrepair>
+<regions>
+    <apply block="never"/>    
+</regions>
+<disabledamage>
+    <damage>fall</damage>    
+</disabledamage>
+<kill-rewards>
+    <item amount="4">arrow</item>    
+    <item>golden apple</item>    
+</kill-rewards>
+</map>

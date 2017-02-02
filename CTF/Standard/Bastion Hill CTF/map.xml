@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Bastion Hill CTF</name>
+<version>1.0.0</version>
+<objective>Capture the other team's flag!</objective>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="XML and map feedback"/> <!-- Plastix -->
+    <contributor uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c" contribution="Feedback"/> <!-- ItzAMeLuigi_ -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Feedback"/> <!-- _IQ -->
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Feedback"/> <!-- Timothee38 -->
+    <contributor uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f" contribution="Additional CTF XML"/> <!-- Pugzy -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="50">Red</team>
+    <team id="blue-team" color="blue" max="50">Blue</team>
+</teams>
+<spawns>
+    <default>
+        <regions yaw="90">
+            <cuboid min="91, 43, 69" max="95, 43, 65"/>
+        </regions>
+    </default>
+    <spawn team="red">
+        <regions yaw="0">
+            <cylinder name="red-spawn" base="11.5,65,150.5" radius="0.5" height="1"/>
+        </regions>
+    </spawn>
+    <spawn team="blue">
+        <regions yaw="180" >
+            <cylinder name="blue-spawn" base="11.5,65,-18.5" radius="0.5" height="1"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="flag-gear" force="true">
+        <clear/> <!-- Clear the players old gear -->
+        <item slot="0" unbreakable="true" enchantment="knockback:1">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow knockback:1">bow</item>
+        <item slot="2" amount="32">cooked beef</item>
+        <item slot="28" amount="32">arrow</item>
+        <chestplate enchantment="protection projectile:4" unbreakable="true">gold chestplate</chestplate>
+        <leggings unbreakable="true">gold leggings</leggings>
+        <boots unbreakable="true">gold boots</boots>
+        <!-- Reset jump boost for Flag Runner classes (hacky fix) -->
+        <potion duration="0" amplifier="0">jump</potion>
+        <potion duration="2">heal</potion>
+        <potion duration="2">saturation</potion>
+    </kit>
+    <kit name="spawn-protection">
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+</kits>
+<classes family="bastion_hill" sticky="false">
+    <class name="Defender" description="Heavily armored but slow class with a good sword!" icon="iron sword">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true">iron sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" amount="2" name="`6`lStun Grenade" damage="16394" potions="slow:600:0:false;blindness:42:0:false;night_vision:42:0:false">potion</item>
+            <item slot="28" amount="32">arrow</item>
+            <helmet locked="true" unbreakable="true">iron helmet</helmet>
+            <chestplate locked="true" unbreakable="true">iron chestplate</chestplate>
+            <leggings unbreakable="true">iron leggings</leggings>
+            <boots damage="-300">iron boots</boots>
+        </kit>
+    </class>
+    <class name="Archer" default="true" description="An average class with a powerful bow" icon="bow">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true">stone sword</item>
+            <item slot="1" unbreakable="true" enchantment="arrow damage:1;arrow infinite:1">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" amount="2" name="`d`lElixir of Life" damage="16417" potions="regeneration:160:1:false">potion</item>
+            <item slot="28">arrow</item>
+            <helmet locked="true">chainmail helmet</helmet>
+            <chestplate locked="true" enchantment="protection projectile:4">chainmail chestplate</chestplate>
+            <leggings>chainmail leggings</leggings>
+            <boots>chainmail boots</boots>
+        </kit>
+    </class>
+    <class name="Flag Runner" description="A fast but frail class with a knockback sword" icon="feather">
+        <kit force="true" parents="spawn-protection">
+            <item slot="0" unbreakable="true" enchantment="knockback:1">wood sword</item>
+            <item slot="1" unbreakable="true">bow</item>
+            <item slot="2" amount="32">cooked beef</item>
+            <item slot="3" name="`b`lLiquidifed SuperDash mk. 2" damage="8206" potions="invisibility:200:0:false;saturation:2400:0:false">potion</item>
+            <item slot="28" amount="32">arrow</item>
+            <chestplate locked="true" unbreakable="true" attributes="generic.movementSpeed:base:.2">leather chestplate</chestplate>
+            <boots unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+            <potion duration="oo" amplifier="2">jump</potion>
+        </kit>
+    </class>
+</classes>
+<itemremove>
+    <item>38</item> <!-- Remove all flowers -->
+    <item>seeds</item>
+    <item>wheat</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron chestplate</item>
+    <item>iron helmet</item>
+    <item>iron boots</item>
+    <item>iron leggings</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail helmet</item>
+    <item>chainmail boots</item>
+    <item>chainmail leggings</item>
+    <item>gold chestplate</item>
+    <item>gold boots</item>
+    <item>gold leggings</item>
+    <item>arrow</item>
+    <item>cooked beef</item>
+    <item>wood sword</item>
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>wool</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>stone button</item>
+</itemremove>
+<!-- Custom Killrewards for each class -->
+<!-- Each class gets a new potion from their default kit -->
+<!-- DENY if a player is holding wool. This is so players who get wool room gear don't get their class kill reward -->
+<killreward>
+    <filter>
+        <all>
+            <class>Defender</class>
+        </all>
+    </filter>
+    <item name="`6`lStun Grenade" damage="16394" potions="slow:600:0:false;blindness:42:0:false;night_vision:42:0:false">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Archer</class>
+        </all>
+    </filter>
+    <item name="`d`lElixir of Life" damage="16417" potions="regeneration:160:1:false">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <class>Flag Runner</class>
+        </all>
+    </filter>
+    <item name="`b`lLiquidifed SuperDash mk. 2" damage="8206" potions="invisibility:200:0:false;saturation:2400:0:false">potion</item>
+</killreward>
+<filters>
+    <filter name="whitelisted-blocks" parents="deny-all">
+        <allow>
+            <block>38</block> <!-- All flowers -->
+            <block>thin glass</block> <!-- glass panes -->
+            <block>long grass</block> <!-- Tall grass -->
+            <block>59</block> <!-- Wheat block-->
+        </allow>
+    </filter>
+    <filter name="deny-panes">
+        <deny>
+            <block>thin glass</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <union name="spawn-rooms">
+        <union name="red-spawn-room">
+            <cuboid min="7, 64, 162" max="16, 68, 155"/>
+            <cuboid min="15, 64, 155" max="8, 68, 146"/>
+            <cuboid min="14, 64, 146" max="9, 68, 139"/>
+            <cuboid min="13, 64, 139" max="10, 68, 138"/>
+        </union>
+        <union name="blue-spawn-room">
+            <cuboid min="16, 64, -30" max="7, 68, -25"/>
+            <cuboid min="8, 64, -23" max="15, 68, -14"/>
+            <cuboid min="9, 64, -14" max="14, 68, -7"/>
+            <cuboid min="10, 64, -7" max="13, 68, -6"/>
+        </union>
+    </union>
+    <!-- Give the wool room wool and git when entering the wool room pads -->
+    <!--<apply name="lime-wool-region" kit="lime-wool">
+        <cuboid min="13, 65, -17" max="10, 67, -20"/>
+    </apply>
+    <apply name="yellow-wool-region" kit="yellow-wool">
+        <cuboid min="10, 65, 149" max="13, 67, 152"/>
+    </apply> -->
+    <!-- Don't let players break anything in wool rooms -->
+    <!-- This overrides the whitelist below it -->
+    <apply block="deny-all">
+        <region name="spawn-rooms"/>
+    </apply>
+    <!-- Don't let players break panes in the wool room building -->
+    <apply block="deny-panes">
+        <cuboid min="6, 64, 163" max="17, 93, 138"/>
+        <cuboid min="17, 63, -31" max="6, 93, -6"/>
+    </apply>
+    <apply block="whitelisted-blocks">
+        <rectangle min="-oo, -oo" max="oo, oo"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <region name="red-spawn-room"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <region name="blue-spawn-room"/>
+    </apply>
+    <apply block="deny-all" region="flag-nets"/>
+    <union name="flag-nets">
+        <rectangle name="red-net" min="9,190" max="14,185"/>
+        <rectangle name="blue-net" min="14,-58" max="9,-53"/>
+    </union>
+</regions>
+<score>
+    <limit>3</limit>
+</score>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue-team" pickup-kit="flag-gear">
+        <post pickup-filter="only-red" recover-time="20s" respawn-time="20s">11,55,-56</post>
+    </flag>
+    <flag id="red-flag" name="Red Flag" owner="red-team" pickup-kit="flag-gear">
+        <post pickup-filter="only-blue" recover-time="20s" respawn-time="20s">11,55,187</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag"/>
+        <net region="blue-net" flag="red-flag"/>
+    </flags>
+</flags>
+</map>

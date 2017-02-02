@@ -1,0 +1,140 @@
+<map proto="1.4.0">
+<name>Verdant Corridors</name>
+<version>1.4.1</version>
+<objective>Capture the enemy flag.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+</authors>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+    <time id="flag-respawns">0</time>
+    <not id="spawn1">
+        <time>2m</time>
+    </not>
+    <all id="spawn2">
+        <time>2m</time>
+        <not><time>4m</time></not>
+    </all>
+    <all id="spawn3">
+        <time>4m</time>
+        <not><time>6m</time></not>
+    </all>
+    <all id="spawn4">
+        <time>6m</time>
+        <not><time>8m</time></not>
+    </all>
+    <all id="spawn5">
+        <time>8m</time>
+        <not><time>10m</time></not>
+    </all>
+    <all id="spawn6">
+        <time>10m</time>
+    </all>
+</filters>
+<spawns>
+    <default kit="obsKit">
+        <regions yaw="0">
+            <cylinder base="0,4,0" radius="1" height="2"/>
+        </regions>
+    </default>
+    <spawn team="red" filter="spawn1" kit="red-kit"><regions yaw="-90"><cylinder base="-73,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="red" filter="spawn2" kit="red-kit"><regions yaw="-90"><cylinder base="-93,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="red" filter="spawn3" kit="red-kit"><regions yaw="-90"><cylinder base="-113,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="red" filter="spawn4" kit="red-kit"><regions yaw="-90"><cylinder base="-133,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="red" filter="spawn5" kit="red-kit"><regions yaw="-90"><cylinder base="-153,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="red" filter="spawn6" kit="red-kit"><regions yaw="-90"><cylinder base="-173,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn1" kit="blue-kit"><regions yaw="90"><cylinder base="73,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn2" kit="blue-kit"><regions yaw="90"><cylinder base="93,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn3" kit="blue-kit"><regions yaw="90"><cylinder base="113,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn4" kit="blue-kit"><regions yaw="90"><cylinder base="133,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn5" kit="blue-kit"><regions yaw="90"><cylinder base="153,6.5,0" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" filter="spawn6" kit="blue-kit"><regions yaw="90"><cylinder base="173,6.5,0" radius="1" height="1"/></regions></spawn>
+</spawns>
+<respawn delay="5s" auto="true" blackout="true"/>
+<kits>
+    <kit id="spawnKit">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="20">arrow</item>
+        <item slot="8" amount="16">bread</item>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="blue-kit" parents="spawnKit">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawnKit">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="blue-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="obsKit">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <potion duration="0" amplifier="10">slowness</potion>
+    </kit>
+</kits>
+<regions>
+    <apply block="never">
+        <region><everywhere/></region>
+    </apply>
+    <cylinder id="blue-net" base="52.5,11,7.5" radius="2" height="2" />
+    <cylinder id="red-net" base="-52.5,11,-7.5" radius="2" height="2" />
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemkeep>
+    <item>iron ingot</item>
+</itemkeep>
+<flags flag-proximity-metric="closest player">
+    <flag id="red-flag" name="Red Flag" owner="red" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+        <post pickup-filter="blue-only" recover-time="40s" respawn-time="10s">-53,11,-8</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="blue-flag-kit" drop-kit="reset-kit">>
+        <post pickup-filter="red-only" recover-time="40s" respawn-time="10s">52,11,7</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<time>12m</time>
+<score>
+    <limit>3</limit>
+</score>
+<killreward>
+    <item amount="10">arrow</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>bread</item>
+    <item>arrow</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

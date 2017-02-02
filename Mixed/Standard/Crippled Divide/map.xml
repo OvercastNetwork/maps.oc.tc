@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Crippled Divide</name>
+<version>1.0.0</version>
+<objective>Destroy the enemy's obsidian monuments and leak their core!</objective>
+<authors>
+    <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- Rasta_Jol -->
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LarrowHead -->
+</authors>
+<contributors>
+    <contributor contribution="Building Help">fe3608b7-d105-4029-8800-34b3147065b6</contributor> <!-- rockymine -->
+</contributors>
+<teams>
+   <team id="blue-team" color="blue" max="32" max-overfill="36">Blue</team>
+   <team id="red-team" color="dark red" max="32" max-overfill="36">Red</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron spade</item>
+        <item slot="4" enchantment="dig speed:1">iron axe</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="7" amount="32">log</item>
+        <item slot="8" amount="64">baked potato</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5" amplifier="3">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="16">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>baked potato</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>arrow</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="-90">
+            <cuboid min="72.5,75,107.5" max="74.5,75,109.5"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="90">
+            <cuboid min="434.5,75,107.5" max="436.5,75,109.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cuboid min="253.5,117,108.5" max="254.5,117,109.5"/>
+        </regions>
+    </default>
+</spawns>
+<maxbuildheight>72</maxbuildheight>
+<modes>
+    <mode after="25m" material="gold block" name="`6GOLD CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="red">
+        <region><cuboid min="174,45,106" max="169,39,111"/></region>
+    </core>
+    <core team="blue">
+        <region><cuboid min="342,45,106" max="337,39,111"/></region>
+    </core>
+</cores>
+<destroyables name="Right Monument" materials="obsidian" completion="100%">
+    <destroyable owner="red">
+       <region><cuboid min="151,43,178" max="150,40,179"/></region>
+    </destroyable>
+    <destroyable owner="blue">
+       <region><cuboid min="361,43,38" max="360,40,39"/></region>
+    </destroyable>
+</destroyables>
+<destroyables name="Left Monument" materials="obsidian" completion="100%">
+    <destroyable owner="red">
+       <region><cuboid min="151,43,38" max="150,40,39"/></region>
+    </destroyable>
+    <destroyable owner="blue">
+       <region><cuboid min="361,43,178" max="360,40,179"/></region>
+    </destroyable>
+</destroyables>
+<filters>
+    <filter name="deny-some">
+        <deny>
+            <block>beacon</block>
+            <block>emerald block</block>
+            <block>stained glass</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build in the void!">
+        <negative>
+            <rectangle min="70,184" max="441,33"/>
+        </negative>
+    </apply>
+    <apply use="deny-some" block="deny-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

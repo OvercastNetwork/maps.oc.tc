@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Oxide</name>
+<version>0.9</version>
+<objective>Kill the enemy team before time runs out!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Ideas">Zigma</contributor>
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="6" max-overfill="8">Red</team>
+    <team id="blue" color="blue" max="6" max-overfill="8">Blue</team>
+    <team id="yellow" color="yellow" max="6" max-overfill="8">Yellow</team>
+</teams>
+<spawns safe="true">
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red">
+        <regions yaw="-145">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow">
+        <regions yaw="50">
+            <region name="yellow-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions yaw="60">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<score>
+    <kills>1</kills>
+    <deaths>1</deaths>
+    <time>8m</time>
+</score>
+<rage/>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="all">
+        <item slot="0" unbreakable="true" enchantment="damage all">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage">bow</item>
+        <item slot="8" amount="6">arrow</item>
+        <chestplate color="191919" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="191919" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="191919" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="oo" amplifier="2">jump</potion>
+        <potion duration="oo">invisibility</potion>
+        <potion duration="oo" amplifier="-4">health boost</potion>
+        <potion duration="3">absorption</potion>
+        <potion duration="3" amplifier="5">damage resistance</potion>
+        <potion duration="3" amplifier="5">heal</potion>
+        <walk-speed>1.75</walk-speed>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="334CB2" unbreakable="true" locked="true">leather helmet</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333" unbreakable="true" locked="true">leather helmet</helmet>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+    </kit>
+    <kit name="jump-level-low" force="true">
+        <potion duration="oo" amplifier="12">jump</potion>
+    </kit>
+    <kit name="jump-level-high" force="true">
+        <potion duration="oo" amplifier="17">jump</potion>
+    </kit>
+    <kit name="remove-jump" force="true">
+        <potion duration="oo" amplifier="2">jump</potion>
+    </kit>
+</kits>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="map" min="-90,2,-25" max="24,35,64"/>
+    <union name="jump-pads">
+        <union name="tall-jump-pads">
+            <cuboid name="north-pad" min="-57,1,-16" max="-54,3,-19"/>
+            <translate name="south-pad" region="north-pad" offset="-3,0,76"/>
+            <translate name="east-pad" region="north-pad" offset="73,0,44"/>
+        </union>
+        <cuboid name="short-jump-pad" min="-2,8,-4" max="-5,10,-7"/>
+    </union>
+    <union name="spawns">
+        <block name="red-spawn" location="-35.5,9,78.5"/>
+        <block name="blue-spawn" location="-75.5,23,-19.5"/>
+        <block name="yellow-spawn" location="16.5,9,-7.5"/>
+        <block name="obs-spawn" location="-9.5,28,10.5"/>
+    </union>
+    <apply block="deny-all">
+        <region name="all"/>
+    </apply>
+    <apply kit="jump-level-high">
+        <region name="tall-jump-pads"/>
+    </apply>
+    <apply kit="jump-level-low">
+        <region name="short-jump-pad"/>
+    </apply>
+    <apply kit="remove-jump">
+        <negative>
+            <region name="jump-pads"/>
+        </negative>
+    </apply>
+</regions>
+<itemremove>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>arrow</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="6">arrow</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>drowning</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+</map>

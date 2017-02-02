@@ -1,0 +1,207 @@
+<?xml version ="1.0"?>
+<map proto="1.3.5">
+<name>Harmony</name>
+<version>1.0.5</version>
+<objective>Take the enemy's wool and place it in your wool monument.</objective>
+<authors>
+    <author uuid="73086fa5-ffeb-4bae-b568-32ab49a7d454"/> <!-- DropZone3777 -->
+    <author uuid="04328555-8e42-40f8-bf7c-06e418920aa3"/> <!-- Guagadu -->
+</authors>
+<contributors>
+    <contributor uuid="2739969d-65e4-4b3d-943d-81ccec8bd3c0" contribution="Center Island Shaping"/> <!-- P_BOMB123 -->
+    <contributor uuid="620c65f6-f506-493a-b3b4-280aaa4431fd" contribution="Wool Room Design"/> <!-- C6H2_NO2_3CH3 -->
+    <contributor uuid="9bfbc560-244a-4e28-ab70-185f39740ec1" contribution="XML Correction"/> <!-- TheZaner -->
+</contributors>
+<teams>
+    <team id="tundra-walkers" color="dark aqua" max="12">Tundra Walkers</team>
+    <team id="desert-raiders" color="gold" max="12">Desert Raiders</team>
+</teams>
+<wools>
+    <wool id="blue-wool" team="desert-raiders" color="blue" location="18.5,2,-62.5">
+        <block location="1.5,11,52.5"/>
+    </wool>
+    <wool id="cyan-wool" team="desert-raiders" color="cyan" location="-17.5,2,-62.5">
+        <block location="-0.5,11,52.5"/>
+    </wool>
+    <wool id="red-wool" team="tundra-walkers" color="red" location="-17.5,2,62.5">
+        <block location="1.5,11,-51.5"/>
+    </wool>
+    <wool id="orange-wool" team="tundra-walkers" color="orange" location="18.5,2,63.5">
+        <block location="-0.5,11,-51.5"/>
+    </wool>
+</wools>
+<spawns>
+    <spawn team="desert-raiders" kit="desert-raiders" yaw="90">
+        <point>3.5,16,51.5</point>              
+    </spawn>
+    <spawn team="tundra-walkers" kit="tundra-walkers" yaw="-15">
+        <point>-1,16,-53</point>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="1,51,1" max="0,51,0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <potion duration="4" amplfier="3">heal</potion>
+        <potion duration="4.5" amplifier="5">absorption</potion>
+    </kit>
+    <kit name="desert-raiders" parents="teams">
+        <item slot="0" unbreakable="true" name="`6Scimitar">stone sword</item>
+        <item slot="1" name="`6Desert Slingshot">bow</item>
+        <item slot="2" name="`6Sandstone Breaker" enchantment="durability:10;dig speed:3;silk touch:1">iron pickaxe</item>
+        <item slot="3" name="`6Sand Excavator" enchantment="durability:10;silk touch:1">stone spade</item>
+        <item slot="4" name="`6Hardened Dune Sand" amount="12">hard clay</item>
+        <item slot="5" name="`6Sun Baked Wheat" amount="64">bread</item>
+        <item slot="6" name="`6Edible Glory">golden apple</item>
+        <item slot="8" amount="16">arrow</item>
+        <helmet color="b85933" unbreakable="true" locked="true" name="`6Sand Raider Goggles">leather helmet</helmet>
+        <chestplate color="b85933" unbreakable="true" locked="true" name="`6Desert Robes">leather chestplate</chestplate>
+        <leggings unbreakable="true" locked="true" name="`6Desert Robes">chainmail leggings</leggings>
+        <boots color="b85933" unbreakable="true" locked="false" name="`6Boots o' the Heat">leather boots</boots>
+    </kit>
+    <kit name="tundra-walkers" parents="teams">
+        <item slot="0" unbreakable="true" name="`bLongsword">stone sword</item>
+        <item slot="1" name="`bWinterized Bow">bow</item>
+        <item slot="2" name="`bIce Remover" enchantment="durability:10;dig speed:3;silk touch:1">iron pickaxe</item>
+        <item slot="3" name="`bSnow Shovel" enchantment="durability:10;silk touch:1">stone spade</item>
+        <item slot="4" name="`bPacked Tundra Dirt" amount="12">snow block</item>
+        <item slot="5" name="`bFrozen Fish" amount="64">cooked fish</item>
+        <item slot="6" name="`bEdible Glory">golden apple</item>
+        <item slot="8" amount="16">arrow</item>
+        <helmet color="728c99" unbreakable="true" locked="true" name="`bTundra Walker Cowl">leather helmet</helmet>
+        <chestplate color="728c99" unbreakable="true" locked="true" name="`bTundra Overcoat">leather chestplate</chestplate>
+        <leggings unbreakable="true" locked="true" name="`bTundra Overcoat">chainmail leggings</leggings>
+        <boots color="728c99" unbreakable="true" locked="false" name="`bFrozen Snow Shoes">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-water">
+        <not>
+            <any>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </not>
+    </filter>
+    <filter name="desert-only">
+        <team>tundra walkers</team>
+    </filter>
+    <filter name="tundra-only">
+        <team>desert raiders</team>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definition -->
+    <rectangle name="map" min="34,73" max="-34,-73"/>
+    <union name="spawns">
+        <cuboid name="snow-spawn" min="-4,15,-56" max="5,28,-44"/>
+        <cuboid name="desert-spawn" min="7,15,55" max="-4,25,45"/>
+    </union>
+    <union name="wool-rooms">
+        <union name="snow-wool-rooms">
+            <complement name="blue-room">
+                <union>
+                    <rectangle min="30,-52" max="7,-54"/>
+                    <rectangle min="20,-43" max="16,-70"/>
+                    <rectangle min="14,-69" max="22,-44"/>
+                    <rectangle min="24,-45" max="12,-68"/>
+                    <rectangle min="11,-46" max="25,-67"/>
+                    <rectangle min="10,-47" max="26,-66"/>
+                    <rectangle min="9,-48"  max="27,-64"/>
+                    <rectangle min="8,-56"  max="9,-49"/>
+                    <rectangle min="27,-58" max="28,-48"/>
+                    <rectangle min="29,-49" max="28,-56"/>
+                    <rectangle min="26,-46" max="25,-47"/>
+                    <rectangle min="27,-47" max="26,-48"/>
+                    <rectangle min="21,-70" max="20,-69"/>
+                    <rectangle min="23,-69" max="22,-68"/>
+                </union>
+                <union>
+                    <rectangle min="12,-68" max="13,-67"/>
+                    <rectangle min="11,-67" max="12,-66"/>
+                    <rectangle min="10,-66" max="11,-64"/>
+                    <rectangle min="9,-64"  max="10,-58"/>
+                    <rectangle min="12,-45" max="13,-46"/>
+                    <rectangle min="14,-44" max="15,-45"/>
+                    <rectangle min="16,-43" max="17,-44"/>
+                </union>
+            </complement>
+            <translate name="cyan-room" region="blue-room" offset="-36,0,0"/>
+        </union>
+        <mirror name="desert-wool-rooms" region="snow-wool-rooms" origin="0.5,0,0.5" normal="0,0,1"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all" message="You may not edit blocks in the spawn">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the wool rooms">
+        <region name="wool-rooms"/>
+    </apply>
+    <apply block-break="deny-water" message="You may not remove the water">
+        <region name="map"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit build outside the map">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="tundra-only" message="You may not enter the enemy's spawn">
+        <region name="desert-spawn"/>
+    </apply>
+    <apply enter="desert-only" message="You may not enter the enemy's spawn">
+        <region name="snow-spawn"/>
+    </apply>
+    <apply enter="tundra-only" message="You may not enter your own wool room">
+        <region name="snow-wool-rooms"/>
+    </apply>
+    <apply enter="desert-only" message="You may not enter your own wool room">
+        <region name="desert-wool-rooms"/>
+    </apply>
+</regions>
+<maxbuildheight>25</maxbuildheight>
+<killreward>
+    <filter>
+        <filter name="desert-only"/>
+    </filter>
+    <item name="`bEdible Glory">golden apple</item>
+    <item name="`bPacked Tundra Dirt" amount="6">snow block</item>
+    <item amount="8">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <filter name="tundra-only"/>
+    </filter>
+    <item name="`6Edible Glory">golden apple</item>
+    <item name="`6Hardened Dune Sand" amount="6">hard clay</item>
+    <item amount="8">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>snow ball</item>
+    <item>hard clay</item>
+    <item>golden apple</item>
+    <item>cooked fish</item>
+    <item>bread</item>
+    <item>bow</item>
+    <item>soul sand</item>
+    <item>string</item>
+    <item>packed ice</item>
+    <item>arrow</item>
+    <item>snow block</item>
+</itemremove>
+<gamerules>
+    <doTileDrops>false</doTileDrops>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+</map>

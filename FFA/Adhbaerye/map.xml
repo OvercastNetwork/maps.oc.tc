@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Adhbaerye</name>
+<version>1.0.3</version>
+<authors>
+    <author uuid="62f3cd20-c78d-4810-8a00-c5ecb0636783"/> <!-- Tapetepato -->
+</authors>
+<objective>Be the player with the most kills after 8 minutes!</objective>
+<score>
+    <kills>1</kills>
+</score>
+<time>8m</time>
+<players min="2" max="14" max-overfill="16"/>
+<spawns>
+    <spawn kit="spawn" spread="true">
+        <regions>
+            <point yaw="0">8.5,17,-61.5</point>
+            <point yaw="0">-16.5,14,-57.5</point>
+            <point yaw="-90">-17.5,13,-40.5</point>
+            <point yaw="90">24.5,14,-42.5</point>
+            <point yaw="0">8.5,17,-61.5</point>
+            <point yaw="180">11.5,14,-33.5</point>
+            <point yaw="90">26.5,14,-24.5</point>
+            <point yaw="90">-2.5,15,-28.5</point>
+            <point yaw="-90">-30.5,14,-20.5</point>
+            <point yaw="-135">-34.5,16,11.5</point>
+            <point yaw="-135">-24.5,14,-3.5</point>
+            <point yaw="180">-13.5,14,9.5</point>
+            <point yaw="180">6.5,15,-2.5</point>
+            <point yaw="-150">11.5,14,6.5</point>
+            <point yaw="135">26.5,14,13.5</point>
+            <point yaw="60">-34.5,14,-51.5</point>
+            <point yaw="135">-7.5,14,10.5</point>
+            <point yaw="55">18.5,17,-68.5</point>
+            <point yaw="-135">-41.5,20,16.5</point>
+            <point yaw="35">-9.5,17,-65.5</point>
+            <point yaw="-112">0.5,14,-8.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="180">-5.5,59,-27.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawn delay="3.5s" auto="true" blackout="false"/>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="20">arrow</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8" amount="48">bread</item>
+        <helmet color="667F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" color="667F33" locked="true">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="667F33" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" color="667F33" locked="true">leather boots</boots>
+    </kit>
+    <kit id="kill-reward">
+        <potion duration="3" amplifier="4">regeneration</potion>
+        <item amount="1">golden apple</item>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward kit="kill-reward"/>
+</kill-rewards>
+<itemremove>
+    <item>leather leggings</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>bread</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>stone sword</item>
+    <item>bow</item>
+</itemremove>
+<regions>
+    <apply block="never"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<timelock>on</timelock>
+</map>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Hot Dam</name>
+<version>1.2</version>
+<objective>Leak lava from the enemy's obsidian core onto the dam.</objective>
+<authors>
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="spawn"/> <!-- Plastix -->
+    <contributor>Overcast Network Map Team</contributor>
+</contributors>
+<timelock>on</timelock>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <union name="playable">
+        <intersect> <!-- quarter circle near spawn -->
+            <circle center="-114.5,-136.5" radius="96.6"/>
+            <rectangle min="-115,-137" max="-18,-40"/>
+        </intersect>
+        <rectangle min="-181,-137" max="-114,-40"/> <!-- blue side -->
+        <rectangle min="-115,-203" max="-18,-136"/> <!-- red side -->
+        <circle center="-115.5,-137.5" radius="65.5"/> <!-- forest area -->
+    </union>
+    <apply block="deny-all">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <apply enter="only-blue" message="You are not allowed in blue's storage room.">
+        <cuboid name="blue-storage-room" min="-167,71,-51" max="-143,79,-42"/>
+    </apply>
+    <apply enter="only-red" message="You are not allowed in red's storage room.">
+        <cuboid name="red-storage-room" min="-29,71,-189" max="-20,79,-165"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks in the supply rooms.">
+        <region name="blue-storage-room"/>
+        <region name="red-storage-room"/>
+    </apply>
+    <apply block="deny-all" message="You may not interfere with the spawn platform.">
+        <cuboid name="blue-spawn-protect" min="-96,73,-59" max="-118,80,-45"/>
+        <cuboid name="blue-spawn-protect2" min="-118,75,-46" max="-128,74,-49"/>
+        <cuboid name="red-spawn-protect" min="-37,73,-118" max="-23,80,-140"/>
+        <cuboid name="red-spawn-protect2" min="-24,75,-140" max="-27,74,-150"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="potion">
+        <potion duration="10" amplifier="4">damage resistance</potion>
+        <potion duration="15" amplifier="2">increase damage</potion>
+    </kit>
+    <kit name="red" parents="potion">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="potion">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawns>
+        <spawn team="blue" kit="blue" yaw="90">
+            <cylinder base="-101,75,-55" radius="2" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" yaw="180">
+            <cylinder base="-33,75,-123" radius="2" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="315">
+        <cylinder base="-33.5,36,-54.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="2">
+    <core team="blue">
+        <cuboid min="-153,76,-93" max="-149,82,-88"/>
+    </core>
+    <core team="red">
+        <cuboid min="-71,76,-175" max="-66,82,-171"/>
+    </core>
+</cores>
+<itemremove>
+    <item>obsidian</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+</map>

@@ -1,0 +1,205 @@
+<map proto="1.3.2">
+<name>Candy Cane Valley</name>
+<version>1.0.0</version>
+<objective>
+    Capture the opposing team's wool and place it at your victory monument.
+</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<contributors>
+    <contributor uuid="d697ff2d-7741-4382-a3df-96b3827b255c"/> <!-- Thieved -->
+</contributors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1;durability:3">iron axe</item>
+        <item slot="4" amount="32">vine</item>
+        <item slot="5" amount="32" damage="1">log 2</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="7" amount="64">cooked fish</item>
+        <item slot="8" amount="1">golden apple</item>
+        <item slot="28">arrow</item>
+        <item slot="31" enchantment="durability:3">iron spade</item>
+        <potion duration="6" amplifier="1">heal</potion>
+        <potion duration="6">damage resistance</potion>
+        <boots enchantment="protection fall:2">iron boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000" enchantment="protection projectile:2;protection fall:2">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc" enchantment="protection projectile:2;protection fall:2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-135">
+        <cuboid min="-185,60,47" max="-183,60,45"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-45">
+        <cuboid min="-185,60,20" max="-183,60,22"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="135">
+        <cuboid min="166,60,47" max="164,60,45"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="45">
+        <cuboid min="166,60,20" max="164,60,22"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="-9.5,71,33.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-dispenser">
+        <not>
+            <block>dispenser</block>
+        </not>
+    </filter>
+    <filter name="deny-snowblock">
+        <not>
+            <block>snow block</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-void" message="You may not build in the void!">
+        <negative>
+            <rectangle min="3,8" max="-22,59"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not build underneath the map!">
+        <cuboid min="85,24,113" max="153,0,-46"/>
+        <cuboid min="-104,24,-46" max="-172,0,113"/>
+    </apply>
+    <apply block="only-blue deny-snowblock" use="only-blue-usage" message="You may not modify your own wool room!">
+        <cylinder base="-123,0,99" radius="9" height="oo"/>
+        <cylinder base="-123,0,-33" radius="9" height="oo"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <cylinder base="-123,0,99" radius="9" height="oo"/>
+        <cylinder base="-123,0,-33" radius="9" height="oo"/>
+    </apply>
+    <apply block="only-red deny-snowblock" use="only-red-usage" message="You may not modify your own wool room!">
+        <cylinder base="104,0,-33" radius="9" height="oo"/>
+        <cylinder base="104,0,99" radius="9" height="oo"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <cylinder base="104,0,-33" radius="9" height="oo"/>
+        <cylinder base="104,0,99" radius="9" height="oo"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn hill!">
+        <rectangle min="-190,52" max="-169,15"/>
+        <rectangle min="171,15" max="149,52"/>
+    </apply>
+    <apply use="deny-dispenser">
+        <rectangle min="-190,52" max="-169,15"/>
+        <rectangle min="171,15" max="149,52"/>
+    </apply>
+</regions>
+<wools team="red">
+    <wool color="orange">
+        <block>-144,42,33</block>
+    </wool>
+    <wool color="purple">
+        <block>-140,42,33</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="yellow">
+        <block>124,42,33</block>
+    </wool>
+    <wool color="lime">
+        <block>120,42,33</block>
+    </wool>
+</wools>
+<maxbuildheight>51</maxbuildheight>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="16" damage="1">log 2</item>
+</killreward>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>vine</item>
+    <item>glass</item>
+    <item>cooked fish</item>
+    <item>diamond spade</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>wood</item>
+    <item>torch</item>
+    <item>string</item>
+    <item>dark oak stairs</item>
+    <item>smooth stairs</item>
+    <item>wood door</item>
+</itemremove>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>snow block</block>
+        </filter>
+        <drops>
+            <item>snow block</item>
+        </drops>
+    </rule>
+</blockdrops>
+</map> 

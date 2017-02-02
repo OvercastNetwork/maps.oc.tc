@@ -1,0 +1,244 @@
+<map proto="1.3.6">
+<name>Woodlands</name>
+<version>1.1.4</version>
+<objective>Leak the enemy core!</objective>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--   DoomRobotBoy   -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!--   rockymine   -->
+</authors>
+<contributors>
+    <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="Build Help"/> <!--   Yoyo_   -->
+</contributors>
+<rules>
+    <rule>Combining classes is illegal!</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="40" max-overfill="50">Red</team>
+    <team id="blue" color="blue" max="40" max-overfill="50">Blue</team>
+</teams>
+<classes family="woodlands" sticky="false">
+    <class name="Guard" default="true" description="Strong, slow, and great for defending!" icon="iron chestplate"/>
+    <class name="Specialist" default="false" description="Fast and weak, but powerful at ranged combat!" icon="bow"/>
+</classes>
+<kits>
+    <kit name="spawn">
+        <item slot="0">air</item>
+    </kit>
+    <kit name="guard" parents="spawn">
+        <item slot="0" unbreakable="true" enchantment="damage all:1">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="3" amount="64">bread</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="7" amount="64">vine</item>
+        <item slot="8" amount="2">web</item>
+        <chestplate unbreakable="true" enchantment="protection environmental:1" locked="true" lore="`r`cThis piece of armor is `4LOCKED`c.">iron chestplate</chestplate>
+        <leggings unbreakable="true" enchantment="protection projectile:2" locked="true" lore="`r`cThis piece of armor is `4LOCKED`c.">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="1">damage resistance</potion>
+        <clear/>
+    </kit>
+    <kit name="red-guard" parents="guard">
+        <helmet unbreakable="true" color="993333" enchantment="protection environmental:1">leather helmet</helmet>
+        <boots unbreakable="true" color="993333" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit name="blue-guard" parents="guard">
+        <helmet unbreakable="true" color="334CB2" enchantment="protection environmental:1">leather helmet</helmet>
+        <boots unbreakable="true" color="334CB2" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit name="specialist" parents="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">bread</item>
+        <item slot="5" amount="32">wood</item>
+        <item slot="6" amount="64">vine</item>
+        <leggings unbreakable="true" locked="true" lore="`r`cThis piece of armor is `4LOCKED`c.">chainmail leggings</leggings>
+        <boots unbreakable="true" enchantment="protection fall:2" locked="true" lore="`r`cThis piece of armor is `4LOCKED`c.">gold boots</boots>
+        <potion duration="oo">speed</potion>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="1">damage resistance</potion>
+        <clear/>
+    </kit>
+    <kit name="red-specialist" parents="specialist">
+        <helmet unbreakable="true" color="993333" enchantment="protection projectile:1">leather helmet</helmet>
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue-specialist" parents="specialist">
+        <helmet unbreakable="true" color="334CB2" enchantment="protection projectile:1">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+    </kit>
+    <kit name="spawn-drop">
+        <potion duration="7" amplifier="127">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red-guard">
+        <all>
+            <team>red</team>
+            <class>Guard</class>
+        </all>
+    </filter>
+    <filter name="only-blue-guard">
+        <all>
+            <team>blue</team>
+            <class>Guard</class>
+        </all>
+    </filter>
+    <filter name="only-red-specialist">
+        <all>
+            <team>red</team>
+            <class>Specialist</class>
+        </all>
+    </filter>
+    <filter name="only-blue-specialist">
+        <all>
+            <team>blue</team>
+            <class>Specialist</class>
+        </all>
+    </filter>
+    <filter name="only-vines">
+        <block>vine</block>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="241,203" max="380,615"/>
+    <cuboid name="map-above-60" min="241,61,203" max="380,94,615"/>
+    <rectangle name="vines-gap" min="380,426" max="241,392"/>
+    <union name="cores">
+        <cuboid name="red-core-back" min="338,39,283" max="329,48,274"/>
+        <cuboid name="blue-core-back" min="283,39,535" max="292,48,544"/>
+    </union>
+    <!-- Unused for the moment
+    <union name="front-cores">
+        <cuboid name="red-core-front" min="272,41,345" max="263,50,336"/>
+        <cuboid name="blue-core-front" min="349,41,473" max="358,50,482"/>
+    </union> -->
+    <cylinder name="red-barrier" base="255.5,68,215.5" radius="3" height="6"/>
+    <cylinder name="blue-barrier" base="365.5,68,602.5" radius="3" height="6"/>
+<!--  Applied  -->
+    <apply kit="spawn-drop">
+        <block>255.5,69,215.5</block>
+        <block>365.5,69,602.5</block>
+    </apply>
+    <apply block="only-vines">
+        <region name="vines-gap"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="map-above-60"/>
+    </apply>
+    <apply block="deny-all" message="You may not place blocks in the void area!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply kit="red-guard" filter="only-red-guard">
+        <negative>
+            <region name="red-barrier"/>
+        </negative>
+    </apply>
+    <apply kit="red-specialist" filter="only-red-specialist">
+        <negative>
+            <region name="red-barrier"/>
+        </negative>
+    </apply>
+    <apply kit="blue-guard" filter="only-blue-guard">
+        <negative>
+            <region name="blue-barrier"/>
+        </negative>
+    </apply>
+    <apply kit="blue-specialist" filter="only-blue-specialist">
+        <negative>
+            <region name="blue-barrier"/>
+        </negative>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter this spawn!">
+        <region name="red-barrier"/>
+        <region name="blue-barrier"/>
+    </apply>
+</regions>
+<spawns safe="true">
+    <spawn team="red" kit="spawn">
+        <regions yaw="-45">
+            <cylinder base="255.5,69,215.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="spawn">
+        <regions yaw="135">
+            <cylinder base="365.5,69,602.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="397,37,410" max="401,37,407"/>
+        </regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core name="Core" team="red" region="red-core-back"/>
+    <core name="Core" team="blue" region="blue-core-back"/>
+</cores>
+<modes>
+    <mode after="5m" material="ender stone" show-before="1m"/>
+</modes>
+<!-- Core with renewables incorporated does not count towards the stats; might re-use this after that is fixed
+<blockdrops>
+    <rule>
+        <region>
+            <region name="cores"/>
+        </region>
+        <filter>
+            <block>ender stone</block>
+        </filter>
+        <replacement>wood:2</replacement>
+    </rule>
+</blockdrops> -->
+<itemremove>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>gold boots</item>
+    <item>wood</item>
+    <item>apple</item>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>iron axe</item>
+    <item>diamond pickaxe</item>
+    <item>arrow</item>
+    <item>flint</item>
+    <item>bread</item>
+    <item>glass</item>
+    <item>web</item>
+    <item>iron pickaxe</item>
+    <item>leather boots</item>
+    <item>vine</item>
+    <item>obsidian</item>
+    <item>ender stone</item>
+</itemremove>
+<broadcasts>
+    <alert after="5s">`cFor the first 5 minutes the cores are obsidian, to give the defenders some time to prepare.</alert>
+    <alert after="10s">`c`lCombining classes is illegal!</alert>
+    <tip after="15s">There are iron mines behind the core and the wheat fields!</tip>
+    <tip after="20s" every="3m" count="oo">You can only place a break vines in the center ravine.</tip>
+    <tip after="3m" every="3m" count="oo">There are iron mines behind the core and the wheat fields, they can be found within the surface.</tip>
+</broadcasts>
+<maxbuildheight>55</maxbuildheight>
+<gamerule>
+    <doFireTick>false</doFireTick>
+</gamerule>
+</map>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Milky Way</name>
+<version>1.0.1</version>
+<objective>Kill the other team's players!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="eff8ed8e-4eae-4fe3-9bed-0485bc45d64e"/>
+</authors>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>2</lives>
+</blitz>
+<rage/>
+<teams>
+   <team id="green-team" color="green" max="5" max-overfill="6">Green</team>
+   <team id="blue-team" color="blue" max="5" max-overfill="6">Blue</team>
+   <team id="orange-team" color="gold" max="5" max-overfill="6">Orange</team>
+   <team id="pink-team" color="light purple" max="5" max-overfill="6">Pink</team>
+</teams>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<spawns>
+    <spawn team="green" kit="green">
+        <regions yaw="-45">
+            <block>808,19,-646</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="135">
+            <block>886,19,-568</block>
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="orange">
+        <regions yaw="-135">
+            <block>808,19,-568</block>
+        </regions>
+    </spawn>
+    <spawn team="pink" kit="pink">
+        <regions yaw="45">
+            <block>886,19,-646</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <block>847,57,-607</block>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" enchantment="damage all:10">iron sword</item> 
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <leggings>gold leggings</leggings>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+        <potion duration="oo" amplifier="2" ambient="true">speed</potion>
+        <potion duration="oo" amplifier="2" ambient="true">jump</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+        <potion duration="3" amplifier="100">heal</potion>
+    </kit>
+     <kit name="green" parents="spawn">
+        <chestplate color="667F33">leather chestplate</chestplate>
+        <boots color="667F33">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="D87F33">leather chestplate</chestplate>
+        <boots color="D87F33">leather boots</boots>
+    </kit>
+    <kit name="pink" parents="spawn">
+        <chestplate color="F27FA5">leather chestplate</chestplate>
+        <boots color="F27FA5">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+	<filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="1">arrow</item>
+</killreward>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>gold leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<regions>
+      <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+      </apply>
+   </regions>
+<include src="blitz-global.xml"/>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

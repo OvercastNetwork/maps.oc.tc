@@ -1,0 +1,162 @@
+<map proto="1.4.0">
+<name>Horseshoe Ranch</name>
+<version>2.0.1</version>
+<objective>Capture the other team's wool.</objective>
+<authors>
+	<author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc" contribution="Layout, Aethetics, and XML"/>
+	<author uuid="a4266139-34f3-46c5-a730-f8828376a15a" contribution="Aethetical Improvements"/>
+</authors>
+<edition>ranked</edition>
+<wools>
+	<wool team="red" color="light blue" location="-97.5,13,-12.5">
+		<monument><block>41.5,11,-30.5</block></monument>
+	</wool>
+	<wool team="blue" color="pink" location="88.5,13,7.5">
+		<monument><block>-50.5,11,25.5</block></monument>
+	</wool>
+</wools>
+<respawn delay="7s"/>
+<time result="objectives">20m</time>
+<teams>
+	<team id="red" color="dark red" min="7" max="7" max-overfill="7">Red Team</team>
+	<team id="blue" color="blue" min="7" max="7" max-overfill="7">Blue Team</team>
+</teams>
+<kits>
+	<kit id="spawn" force="true">
+		<item slot="0" material="stone sword" unbreakble="true"/>
+		<item slot="1" material="bow"  unbreakble="true"/>
+		<item slot="2" material="iron pickaxe" unbreakble="true"/>
+		<item slot="3" material="iron axe" unbreakble="true"/>
+		<item slot="4" material="log" amount="8"/>
+		<item slot="5" material="glass" amount="16"/>
+		<item slot="8" material="cooked beef" amount="64"/>
+		<item slot="28" amount="32" material="arrow"/>
+	</kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>string</item>
+</itemremove>
+<kill-rewards>
+	<kill-reward>
+		<item material="arrow" amount="16"/>
+        <item material="log" amount="4"/>
+	</kill-reward>
+</kill-rewards>
+<gamerules>
+	<doTileDrops>true</doTileDrops>
+	<doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<maxbuildheight>28</maxbuildheight>
+<filters>
+    <not id="only-red">
+        <team>blue</team>
+    </not>
+    <not id="only-blue">
+        <team>red</team>
+    </not>
+    <not id="no-void">
+        <void/>
+    </not>
+    <material id="only-iron">iron block</material>
+</filters>
+<regions>
+    <union id="void-gaps">
+        <!-- Blue Side -->
+        <rectangle min="-39,-32" max="-74,-19"/>
+        <rectangle min="-54,7" max="-34,-6"/>
+        <rectangle min="-99,27" max="-92,7"/>
+        <rectangle min="-99,27" max="-72,20"/>
+
+        <rectangle min="-34,27" max="25,-32"/>
+        
+        <!-- Red Side -->
+        <rectangle min="30,27" max="65,14"/>
+        <rectangle min="45,-12" max="25,1"/>
+        <rectangle min="90,-32" max="83,-12"/>
+        <rectangle min="90,-32" max="63,-25"/>
+    </union>
+    <cuboid id="ceiling" min="-oo,16,-oo" max="oo,oo,oo"/>     
+    <union id="placehere">
+        <cuboid id="red-side-lane1" min="63,0,-32" max="90,21,-25"/>
+        <cuboid id="red-side-lane2" min="90,0,-12" max="83,21,-25"/>
+        <cuboid id="blue-side-lane1" min="-72,0,27" max="-99,21,20"/>
+        <cuboid id="blue-side-lane2" min="-99,0,7" max="-92,21,20"/>
+        <cuboid id="red-back-lane" min="77,0,27" max="93,21,-12"/>
+        <cuboid id="blue-back-lane" min="-86,0,-32" max="-102,21,7"/>
+        <union id="spawns">
+            <cuboid id="red-spawn" min="63,0,-21" max="38,28,-32"/>
+            <cuboid id="blue-spawn" min="-72,0,16" max="-47,28,27"/>
+        </union>
+    </union>
+    <union id="back-of-wools" message="You may not place blocks in the void area!">
+        <rectangle id="right-pink" min="90,27" max="93,14"/>
+        <rectangle id="left-pink" min="93,1" max="90,-12"/>
+        <rectangle id="right-blue" min="-99,-32" max="-102,-20"/>
+        <rectangle id="left-blue" min="-102,-6" max="-99,7"/>
+    </union>
+    <rectangle id="lightblueroom" min="-89,-6" max="-102,-19"/>
+    <rectangle id="pinkroom" min="93,14" max="80,1"/>
+    <apply block="never" region="back-of-wools"/>
+    <apply block="only-red" enter="only-red" region="lightblueroom" message="You may not interact with your own wool room!"/>
+    <apply block="only-blue" enter="only-blue" region="pinkroom" message="You may not enter interact with your own wool room!"/>
+    <apply block="only-iron" region="spawns"/>
+    <apply block="always" region="placehere"/>
+    <apply block="never" region="ceiling"/>
+    <apply block="always" region="void-gaps"/>
+    <apply block="no-void" />
+</regions>
+<spawns>
+	<spawn team="red" kit="spawn">
+		<regions yaw="-135">
+			<block>41.5,10,-24.5</block>
+		</regions>
+	</spawn>
+	<spawn team="blue" kit="spawn">
+		<regions yaw="45">
+			<block>-50.5,10,19.5</block>
+		</regions>
+	</spawn>
+	<default>
+        <regions yaw="180">
+            <block>-4,18,45</block>
+        </regions>
+    </default>
+</spawns>
+<block-drops>
+<rule>
+    <region>
+        <everywhere/>
+    </region>
+    <filter>
+        <any>
+            <material>gold block</material>
+        </any>
+    </filter>
+    <drops>
+        <item material="diamond chestplate"/>
+        <item amount="8" material="golden apple"/>
+    </drops>
+</rule>
+<rule>
+    <region>
+        <everywhere/>
+    </region>
+    <filter>
+        <any>
+            <material>gravel</material>
+        </any>
+    </filter>
+    <drops>
+        <item material="flint"/>
+    </drops>
+</rule>
+</block-drops>
+</map>

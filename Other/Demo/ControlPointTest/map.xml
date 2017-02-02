@@ -1,0 +1,108 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<map proto="1.4.1" internal="true">
+<name>Control Point Test</name>
+<version>0.1</version>
+<objective>Test the control points</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<teams>
+    <team id="blue" color="blue" max="24">Blue</team>
+    <team id="red" color="dark red" max="24">Red</team>
+    <team id="green" color="green" max="24">Green</team>
+</teams>
+
+<spawns yaw="180" pitch="0">
+    <spawn team="blue">
+        <regions>
+            <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="red">
+        <regions>
+            <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+        </regions>
+    </default>
+</spawns>
+
+<regions>
+    <cuboid id="capture" min="1,65,1" max="6,66,6"/>
+    <cuboid id="progress" min="1,64,1" max="6,65,6"/>
+    <cuboid id="owner" min="1,65,1" max="6,66,6"/>
+</regions>
+
+<control-points capture-time="5s" show-progress="true">
+<!--     <control-point
+        name="Boink"
+        initial-owner=""
+        beacon=""
+        capture-time=""
+        scaled-time=""
+        incremental=""
+        neutral-state=""
+        permanent=""
+        capture-players="">
+ -->        
+    <control-point name="Default">
+        <capture-region>           <translate offset="0,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="0,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="0,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Neutral State" neutral-state="true">
+        <capture-region>           <translate offset="10,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="10,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="10,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Incremental" decay="0.1" recovery="0.2">
+        <capture-region>           <translate offset="20,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="20,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="20,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Permanent" permanent="true">
+        <capture-region>           <translate offset="30,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="30,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="30,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Initial Onwer" initial-owner="red">
+        <capture-region>           <translate offset="40,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="40,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="40,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Scaled Time" scaled-time="true">
+        <capture-region>           <translate offset="50,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="50,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="50,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+    
+    <control-point name="Capture: Exclusive" capture-players="exclusive">
+        <capture-region>           <translate offset="60,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="60,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="60,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Capture: Majority" capture-players="majority">
+        <capture-region>           <translate offset="70,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="70,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="70,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Capture: Lead" capture-players="lead">
+        <capture-region>           <translate offset="80,0,0"><region id="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="80,0,0"><region id="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="80,0,0"><region id="owner"/></translate></owner-display-region>
+    </control-point>
+    
+</control-points>
+
+</map>

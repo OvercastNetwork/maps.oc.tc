@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="blitz-global.xml"/>
+<include src="tutorial.xml"/>
+<name>100 Rooms</name>
+<version>1.0.5</version>
+<objective>Typical Blitz game w/ one life.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Map Design"/> <!-- xXFracXx -->
+</authors>
+<contributors>
+    <contributor uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230" contribution="XML Advice"/> <!-- thegoodguy -->
+    <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="XML Advice"/> <!-- ParaSpider -->
+    <contributor uuid="5bcba185-92a3-4e61-854a-4485ac7d240f" contribution="Team Spawn Pad Design"/> <!-- MonstroGato -->
+</contributors>
+
+<teams>
+    <team color="blue" max="15">Blue</team>
+    <team color="dark red" max="15">Red</team>
+</teams>
+<rage/>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="-348,39,-331" max="-351,40,-328"/>
+        <cuboid min="-355,39,-331" max="-358,40,-328"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="-358,39,-265" max="-355,40,-268"/>
+        <cuboid min="-351,39,-265" max="-348,40,-268"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="-293,63,-298" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" name="Knife" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" name="Bow" lore="One Hit Kill" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <item slot="8" amount="16">cookie</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" name="Helmet" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" name="Kevlar" locked="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" name="Helmet" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" name="Kevlar" locked="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<tutorial>
+    <stage title="Rage">
+        <message>
+            <line>`rThis map is a `a`lRage `rmap.</line>
+            <line>The objective is to be the team with the most players alive when the match ends.</line>
+            <line>The swords/bows are a `6`l1-hit `c`lkill`r.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="20">-321.5,73,-332</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Spawn">
+        <message>
+            <line>`rThis is where the `9Blue Team `rspawns.</line>
+            <line>You spawn with gear ready for battle!</line>
+        </message>
+        <teleport>
+            <point pitch="90">-357,50,-330</point>
+        </teleport>
+    </stage>
+    <stage title="Red Spawn">
+        <message>
+            <line>`rThis is where the `cRed Team `rspawns.</line>
+            <line>You spawn with gear ready for battle!</line>
+        </message>
+        <teleport>
+            <point pitch="90">-357,50,-267</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

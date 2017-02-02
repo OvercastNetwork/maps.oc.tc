@@ -1,0 +1,45 @@
+<map proto="1.4.2" game="Infection">
+<name>Infection: Lyndanisse</name>
+<version>1.1.1</version>
+<slug>infection_lyndanisse</slug>
+<authors>
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
+</authors>
+<include src="infection.xml"/>
+<spawns>
+    <spawn filter="before-10s" team="zombie-team" kit="zombie-kit-start">
+        <regions yaw="-90">
+            <point>88.5,8,299.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="before-10s" team="human-team" kit="human-kit">
+        <regions yaw="-90">
+            <point>88.5,8,299.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="zombie-team" kit="zombie-kit">
+        <regions yaw="-90">
+            <point>88.5,8,299.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="human-team" kit="zombie-switch-kit">
+        <region yaw="-90">
+            <point>88.5,8,299.5</point>
+        </region>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>88.5,8,299.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <above id="height-limit" y="30"/>
+    <apply block="deny-void" message="You may not build outside of the playable region!"/>
+</regions>
+</map>

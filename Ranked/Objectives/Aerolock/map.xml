@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Aerolock</name>
+<genre>Objectives</genre>
+<time>30m</time>
+<respawn delay="5s"/>
+<version>2.0</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Did stuff"/> <!-- Zelocksurian -->
+</contributors>
+<teams>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+</teams>
+<wools>
+    <wool team="blue" color="orange" location="41.5,35,25.5">
+        <monument>
+            <block>-62,26,17</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="pink" location="41.5,35,-24.5">
+        <monument>
+            <block>-62,26,-17</block>
+        </monument>
+    </wool>
+    <wool team="red" color="cyan" location="-40.5,35,-24.5">
+        <monument>
+            <block>62,26,-17</block>
+        </monument>
+    </wool>
+    <wool team="red" color="light blue" location="-40.5,35,25.5">
+        <monument>
+            <block>62,26,17</block>
+        </monument>
+    </wool>
+</wools>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <cuboid min="-67,26,3" max="-62,26,-2"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <cuboid min="68,26,-2" max="63,26,3"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <cylinder base="0,41,-65" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" amount="16">glass</item>
+        <item slot="4" amount="64" name="Water-Melon" enchantment="water worker:1">melon</item>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet     prevent-sharing="true" color="cd0000">leather helmet</helmet>
+        <chestplate prevent-sharing="true" color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet     prevent-sharing="true" color="0066cc">leather helmet</helmet>
+        <chestplate prevent-sharing="true" color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <material id="break-iron">iron block</material>
+</filters>
+<regions>
+    <apply block-place="never" block-break="break-iron" message="You may not build outside the map!">
+        <region>
+            <complement>
+                <negative id="playable-inverse">
+                    <circle center="0,0" radius="60"/>
+                </negative>
+                <union>
+                    <block>-62,26,17</block>
+                    <block>-62,26,-17</block>
+                    <block>62,26,-17</block>
+                    <block>62,26,17</block>
+                </union>
+            </complement>
+        </region>
+    </apply>
+    <apply enter="only-blue" block="only-blue">
+        <region>
+            <!-- Orange Room -->
+            <circle center="41,25" radius="7"/>
+            <!-- Pink Room -->
+            <circle center="41,-25" radius="7"/>
+        </region>
+    </apply>
+    <apply enter="only-red" block="only-red">
+        <region>
+            <!-- Cyan Room -->
+            <circle center="-41,-25" radius="7"/>
+            <!-- Blue Room -->
+            <circle center="-41,25" radius="7"/>
+        </region>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>cobblestone</item>
+    <item>golden apple</item>
+    <item>melon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>fence</item>
+    <item>sign</item>
+    <item>ladder</item>
+    <item>rails</item>
+</itemremove>
+<maxbuildheight>30</maxbuildheight>
+<timelock>off</timelock>
+</map>

@@ -1,0 +1,340 @@
+<map proto="1.4.0">
+<name>DK Crossovers DTE</name>
+<version>1.4.0</version>
+<objective>Destroy 70% of the enemies side!</objective>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomRobotBoy  -->
+</authors>
+<contributors>
+    <contributor contribution="XML" uuid="083ec416-c87e-438f-8732-170798b4fe93"/> <!--  orky48  -->
+</contributors>
+<teams>
+    <team id="yellow" color="yellow" max="30">Yellow</team>
+    <team id="green" color="green" max="30">Green</team>
+</teams>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<kits>
+    <kit id="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1">bow</item> <!-- attributes="generic.movementSpeed:base:-0.10" -->
+        <item slot="28" amount="48">arrow</item>
+        <item slot="2" enchantment="dig speed:2">iron pickaxe</item>
+        <item slot="29" amount="1">dispenser</item>
+        <item slot="3" amount="64">vine</item>
+        <item slot="30" amount="16">ladder</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="32" amount="16">wood plate</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="14" amount="64">wood step</item>
+        <item slot="6" amount="64">redstone</item>
+        <item slot="33" amount="16">redstone block</item>
+        <item slot="24" amount="16">redstone torch on</item>
+        <item slot="15" amount="16">diode</item>
+        <item slot="7" amount="32">trap door</item>
+        <item slot="34" amount="64">stone plate</item>
+        <item slot="25" amount="16">fence gate</item>
+        <item slot="16" amount="32">fence</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="slot.weapon.offhand" damage="335" name="Icarus Shield" lore="Face the icarus with your shield for maximum blast protection!">shield</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit id="yellow-kit" parents="spawn">
+        <item slot="4" amount="64" damage="6">stained clay</item>
+        <item slot="31" amount="64" damage="6">stained clay</item>
+        <item slot="22" amount="64" damage="6">stained clay</item>
+        <helmet color="E5E533" unbreakable="true">leather helmet</helmet>
+        <chestplate enchantment="protection explosions:3" unbreakable="true">chainmail chestplate</chestplate>
+        <leggings damage="-3000">iron leggings</leggings>
+        <boots color="E5E533" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="green-kit" parents="spawn">
+        <item slot="4" amount="64" damage="13">stained clay</item>
+        <item slot="31" amount="64" damage="13">stained clay</item>
+        <item slot="22" amount="64" damage="13">stained clay</item>
+        <helmet color="667F33" unbreakable="true">leather helmet</helmet>
+        <chestplate enchantment="protection explosions:3">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots color="667F33" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="obs">
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <not id="deny-banana">
+        <all>
+            <any>
+                <material>gold block</material>
+                <material>wool</material>
+                <material>wood</material>
+                <material>stained clay</material>
+            </any>
+            <not>
+                <time>3m</time>
+            </not>
+        </all>
+    </not>
+    <not id="deny-some">
+        <any>
+            <material>stained glass:0</material>
+            <material>stained glass:15</material>
+            <material>stained clay:4</material>
+            <material>stained clay:5</material>
+            <material>quartz block</material>
+        </any>
+    </not>
+    <!--<not id="deny-glass">
+        <any>
+            <material>stained glass:0</material>
+            <material>stained glass:15</material>
+            <filter id="deny-banana"/>
+        </any>
+    </not>
+    <not id="deny-water">
+        <any>
+            <material>water</material>
+            <material>stationary water</material>
+        </any>
+    </not>
+    <not id="deny-some-clay">
+        <any>
+            <material>stained clay:4</material>
+            <material>stained clay:5</material>
+        </any>
+    </not>-->
+    <not id="all-but-tnt">
+        <all>
+            <cause>explosion</cause>
+            <material>tnt</material>
+        </all>
+    </not>
+    <not id="deny-yellow-explosions">
+        <all>
+            <cause>explosion</cause>
+            <team>yellow</team>
+            <filter id="all-but-tnt"/>
+        </all>
+    </not>
+    <not id="deny-green-explosions">
+        <all>
+            <cause>explosion</cause>
+            <team>green</team>
+            <filter id="all-but-tnt"/>
+        </all>
+    </not>
+    <!--<all id="not-before-3-min">
+        <not>
+            <time>3m</time>
+        </not>
+        <filter id="never"/>
+    </all>-->
+</filters>
+<regions>
+    <rectangle id="map" min="oo,oo" max="-oo,-oo"/>
+    <union id="jump-pads">
+        <cuboid min="934,56,372" max="936,57,370"/>
+        <cuboid min="934,32,436" max="938,33,434"/>
+        <cuboid min="936,8,372" max="938,9,370"/>
+        <cuboid min="1007,56,426" max="1005,57,428"/>
+        <cuboid min="1005,32,362" max="1003,33,364"/>
+        <cuboid min="1005,8,426" max="1003,9,428"/>
+    </union>
+    <union id="no-water">
+        <cuboid min="oo,79,oo" max="-oo,80,-oo"/>
+        <cuboid min="oo,52,oo" max="-oo,53,-oo"/>
+        <cuboid min="oo,30,oo" max="-oo,31,-oo"/>
+    </union>
+    <cuboid id="yellow-side" min="999,0,359" max="1013,119,439"/>
+    <cuboid id="green-side" min="928,0,359" max="942,119,439"/>
+    <cuboid id="the-wall" min="968,0,439" max="973,120,359"/>
+<!--  Applied  -->
+    <apply block="never" message="You may not modify blocks outside of the playing field!">
+        <region>
+            <negative>
+                <cuboid min="928,0,439" max="1013,119,359"/>
+            </negative>
+        </region>
+    </apply>
+    <!--<apply block="not-before-3-min" region="the-wall" message="You may not modify the wall before 3 minutes have passed."/>-->
+    <apply block="never" message="Bridging is disabled in this area!">
+        <region>
+            <cuboid min="938,73,439" max="1003,119,359"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not modify the portal exits!">
+        <region>
+            <cuboid min="935,80,418" max="928,86,412"/>
+            <cuboid min="935,53,418" max="928,59,412"/>
+            <cuboid min="935,31,418" max="928,37,412"/>
+            <cuboid min="1006,80,380" max="1013,86,386"/>
+            <cuboid min="1006,53,380" max="1013,59,386"/>
+            <cuboid min="1006,31,380" max="1013,37,386"/>
+        </region>
+    </apply>
+    <apply block="deny-yellow-explosions" region="yellow-side" message="You may not blow up your own side!"/>
+    <apply block="deny-green-explosions" region="green-side" message="You may not blow up your own side!"/>
+    <apply block="deny-some" region="everywhere" message="You may not modify this type of block."/>
+    <apply enter="never">
+        <region>
+            <cuboid min="973,120,444" max="968,0,458"/>
+            <cuboid min="973,120,354" max="968,0,340"/>
+        </region>
+    </apply>
+<!--   jump pads - top to bottom   -->
+    <apply velocity="@0.0,2.4,0.0" block="never">
+        <region>
+            <region id="jump-pads"/>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="yellow" kit="yellow-kit">
+        <regions yaw="180">
+            <point>970.5,110,450.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green" kit="green-kit">
+        <regions yaw="180">
+            <point>970.5,103,450.5</point>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="0">
+            <cuboid id="default-spawn" min="971.5,117,441.5" max="969.5,118,443.5"/>
+        </regions>
+    </default>
+</spawns>
+<renewables>
+    <renewable rate="1" grow="true" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cuboid min="999,0,359" max="1013,96,439"/>
+            <cuboid min="928,0,359" max="942,96,439"/>
+        </region>
+        <renew>stained clay:14</renew>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<destroyables>
+    <destroyable name="Yellow Side" owner="yellow" region="yellow-side" completion="70%" show-progress="true" materials="stained clay:1;stained clay:3;stained clay:12;stained clay:14;stained clay:15;gold block;lapis block;redstone block;wood;wood:3;stained glass:4;wool;wool:7;wool:8;wool:14"/>
+    <destroyable name="Green Side" owner="green" region="green-side" completion="70%" show-progress="true" materials="stained clay:1;stained clay:3;stained clay:12;stained clay:14;stained clay:15;gold block;lapis block;redstone block;wood;wood:3;stained glass:4;wool;wool:7;wool:8;wool:14"/>
+    <destroyable name="wall" owner="green" region="the-wall" materials="stained glass:0;wool:4;stained clay:12;wood:1;gold block" completion="0" show="false" mode-changes="true"/>
+</destroyables>
+<modes>
+    <mode after="2m" show-before="0" material="air"/>
+</modes>
+<broadcasts>
+    <alert after="1s">Wall comes down in 2 minutes..</alert>
+    <alert after="1m">Wall comes down in 1 minute..</alert>
+    <alert after="90s">Wall comes down in 30 seconds..</alert>
+    <alert after="105s">Wall comes down in 15 seconds..</alert>
+    <alert after="115s">Wall comes down in 5 seconds..</alert>
+    <alert after="116s">Wall comes down in 4 seconds..</alert>
+    <alert after="117s">Wall comes down in 3 seconds..</alert>
+    <alert after="118s">Wall comes down in 2 seconds..</alert>
+    <alert after="119s">Wall comes down in 1 second..</alert>
+    <alert after="2m">The wall has been removed!</alert>
+    <tip after="5s" every="2m" count="oo">
+        `7Your cannons work without water here!
+    </tip>
+    <tip after="10s">
+        `7The cobweb areas mark where you are not allowed to make bridges!
+    </tip>
+    <tip after="15s">
+        `7There is a jump pad at the bottom of each ladder!
+    </tip>
+    <tip after="2m" every="2m" count="oo">
+        `7The cobweb areas mark where you are not allowed to make bridges!
+    </tip>
+    <tip after="3m" every="2m" count="oo">
+        `7There is a jump pad at the bottom of each ladder!
+    </tip>
+</broadcasts>
+<portals>
+    <!--   Yellow's portals   -->
+    <portal x="@1009" y="@80" z="@383" yaw="@90">
+        <region>
+            <block>967.5,110,442.5</block>
+        </region>
+    </portal>
+    <portal x="@1009" y="@53" z="@383" yaw="@90">
+        <region>
+            <block>970.5,110,442.5</block>
+        </region>
+    </portal>
+    <portal x="@1009" y="@31" z="@383" yaw="@90">
+        <region>
+            <block>973.5,110,442.5</block>
+        </region>
+    </portal>
+    <portal x="@970.5" y="@110" z="@450.5" yaw="@180">
+        <region>
+            <cuboid min="1013,31,381" max="1014,86,385"/>
+        </region>
+    </portal>
+<!--  Green's portals   -->
+    <portal x="@932" y="@80" z="@415" yaw="@-90">
+        <region>
+            <block>967.5,103,442.5</block>
+        </region>
+    </portal>
+    <portal x="@932" y="@53" z="@415" yaw="@-90">
+        <region>
+            <block>970.5,103,442.5</block>
+        </region>
+    </portal>
+    <portal x="@932" y="@31" z="@415" yaw="@-90">
+        <region>
+            <block>973.5,103,442.5</block>
+        </region>
+    </portal>
+    <portal x="@970.5" y="@103" z="@450.5" yaw="@180">
+        <region>
+            <cuboid min="928,31,417" max="927,86,413"/>
+        </region>
+    </portal>
+</portals>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>redstone</item>
+    <item>TNT</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>stained clay</item>
+    <item>redstone torch on</item>
+    <item>stone button</item>
+    <item>arrow</item>
+    <item>wood plate</item>
+    <item>ladder</item>
+    <item>step</item>
+    <item>fence</item>
+    <item>shears</item>
+    <item>dispenser</item>
+    <item>wood step</item>
+    <item>redstone block</item>
+    <item>vine</item>
+    <item>lever</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<killreward>
+    <item amount="12">tnt</item>
+    <item>dispenser</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

@@ -1,0 +1,70 @@
+<map proto="1.4.0">
+<name>Weirwood</name>
+<objective>Kill and survive. There are no teams, so watch your back!</objective>
+<version>1.1.2</version>
+<authors>
+    <author uuid="bdb417b7-8d57-460f-951e-69dfaf764430" />
+    <!--  CeFour  -->
+    <author uuid="b06fb221-e8a6-4c84-96c8-9ac4a0fd1b51" />
+    <!--  _CubeRoot  -->
+</authors>
+<time>8m</time>
+<score>
+    <kills>1</kills>
+</score>    
+<players min="2" max="24" max-overfill="28"/>
+<respawn auto="true" delay="2.5s" spectate="false" blackout="true" />
+<spawns>
+    <spawn kit="spawn" spread="true" safe="true">
+        <regions>
+            <cylinder base="0.5,20,-146.5" radius="50" height="12" />
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions>
+            <point yaw="90">-33.5,14.5,-203.5</point>
+            <point yaw="90">45.5,20.5,-94.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never" />
+</regions>
+<kits>
+    <kit id="all">
+        <effect>night vision</effect>
+    </kit>
+    <kit id="spawn" parents="all">
+        <game-mode>adventure</game-mode> 
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="2">golden apple</item>
+        <item slot="8" amount="24">arrow</item>
+        <helmet color="667F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">gold chestplate</chestplate>
+        <leggings color="667F33" locked="true" unbreakable="true">leather leggings</leggings>
+        <boots color="667F33" locked="true" unbreakable="true">leather boots</boots>
+        <effect duration="3" amplifier="20">damage resistance</effect>
+    </kit>
+    <kit id="kill-effects">
+        <effect duration="3" amplifier="3">regeneration</effect>
+        <effect duration="4" amplifier="2">speed</effect>
+        <effect duration="3">night vision</effect>
+    </kit>
+</kits>
+<killreward>
+    <item amount="8">arrow</item>
+    <kit id="kill-effects" />
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+</map>

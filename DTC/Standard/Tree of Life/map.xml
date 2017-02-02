@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Tree of Life</name>
+<version>3.0.2</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="XML"/> <!-- Anxuiz -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="0">
+        <cylinder base="-192.5,70,-1106.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="0">
+        <cylinder base="-363.5,70,-1106.5" radius="3" height="0"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-278,83,-1076" radius="5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="no-fire">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <cylinder base="-363.5,69,-1008.5" radius="22" height="6"/>
+        <!--  red storage  -->
+        <cylinder base="-192.5,69,-1008.5" radius="22" height="6"/>
+        <!--  blue storage  -->
+        <cuboid min="-361,68,-1098" max="-366,74,-1021"/>
+        <!--  red spawn tunnel  -->
+        <cuboid min="-195,68,-1098" max="-190,74,-1021"/>
+        <!--  blue spawn tunnel  -->
+    </apply>
+    <apply block="deny-all" message="You may not edit portals!">
+        <cuboid min="-171,83,-1014" max="-175,88,-1010"/>
+        <!--  blue bottom portal  -->
+        <cuboid min="-191,169,-1000" max="-195,174,-1004"/>
+        <!--  blue top portal  -->
+        <cuboid min="-385,83,-1014" max="-381,88,-1010"/>
+        <!--  red bottom portal  -->
+        <cuboid min="-361,169,-1000" max="-365,174,-1004"/>
+        <!--  red top portal  -->
+    </apply>
+    <apply block="no-fire">
+        <rectangle min="-141,-1060" max="-415,-958"/>
+    </apply>
+</regions>
+<portals>
+    <!--  portal from bottom of blue tree  -->
+    <portal x="-20" y="86" z="9">
+        <cuboid min="-172,83,-1013" max="-174,87,-1012"/>
+    </portal>
+    <!--  portal from top of blue tree  -->
+    <portal x="20" y="-86" z="-9">
+        <cuboid min="-192,169,-1002" max="-194,173,-1001"/>
+    </portal>
+    <!--  portal from bottom of red tree  -->
+    <portal x="20" y="86" z="9">
+        <cuboid min="-382,83,-1013" max="-384,87,-1012"/>
+    </portal>
+    <!--  portal from top of red tree  -->
+    <portal x="-20" y="-86" z="-9">
+        <cuboid min="-362,173,-1001" max="-364,169,-1002"/>
+    </portal>
+</portals>
+<playable>
+    <rectangle min="-141,-1060" max="-415,-958"/>
+    <!--  Main area  -->
+</playable>
+<cores material="obsidian" leak="8">
+    <core team="blue" leak="-2">
+        <cuboid min="-194,90,-1011" max="-191,80,-1006"/>
+    </core>
+    <core team="red" leak="-2">
+        <cuboid min="-362,90,-1006" max="-365,80,-1011"/>
+    </core>
+</cores>
+</map>

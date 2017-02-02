@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Wool Story Bro">
+<name>Humble Jungle</name>
+<version>1.0.2</version>
+<objective>Get the most points before time runs out!</objective>
+<gamemode>arcade</gamemode>
+<include src="void-death.xml"/>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/>
+        <!--  Timotheeee  -->
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/>
+        <!--  Anthonny  -->
+</authors>
+<contributors>
+    <contributor contribution="Original map concept." uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+</contributors>
+<players colors="true" max="8" min="4"/>
+<spawns unique="true">
+    <spawn kit="kit">
+        <regions>
+            <point yaw="-70">130,4,-166</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="0">153,5,-168</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="20">176,4,-166</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="90">178,5,-143</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="100">176,4,-120</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="180">153,5,-118</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="-165">130,4,-120</point>
+        </regions>
+    </spawn>
+    <spawn kit="kit">
+        <regions>
+            <point yaw="-90">128,5,-143</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="-180">153,17,-145</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="kit" force="true">
+        <item slot="0" enchantment="knockback:2">stick</item>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <health>6</health>
+        <boots damage="64" material="leather boots">
+            <attribute amount="2">generic.knockbackResistance</attribute>
+        </boots>
+        <helmet unbreakable="true" attributes="generic.maxHealth:add:-14" locked="true">leather helmet</helmet>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <apply block="never">
+        <everywhere/>
+    </apply>
+</regions>
+<king>
+    <hills capture-time="0s" points="1" points-growth="100" permanent="false" show="false" neutral-state="false">
+        <!--Yellow Side-->
+        <hill id="yellow-1">
+            <capture><cuboid min="135,3,-120" max="138,6,-124"/></capture>
+            <captured><cuboid min="135,2,-120" max="138,4,-124"/></captured>
+        </hill>
+        <hill id="yellow-2">
+            <capture><cuboid min="130,3,-124" max="134,6,-128"/></capture>
+            <captured><cuboid min="130,2,-124" max="134,4,-128"/></captured>
+        </hill>
+        <hill id="yellow-3">
+            <capture><cuboid min="131,4,-129" max="135,6,-133"/></capture>
+            <captured><cuboid min="131,3,-129" max="135,5,-133"/></captured>
+        </hill>
+        <hill id="yellow-4">
+            <capture><cuboid min="136,4,-126" max="140,6,-130"/></capture>
+            <captured><cuboid min="136,3,-126" max="140,5,-130"/></captured>
+        </hill>
+        <hill id="yellow-5">
+            <capture><cuboid min="139,4,-121" max="143,6,-125"/></capture>
+            <captured><cuboid min="139,3,-121" max="143,5,-125"/></captured>
+        </hill>
+        <hill id="yellow-6">
+            <capture><cuboid min="140,2,-130" max="144,6,-134"/></capture>
+            <captured><cuboid min="140,2,-130" max="144,6,-134"/></captured>
+        </hill>
+        <hill id="yellow-7">
+            <capture><cuboid min="131,3,-135" max="135,6,-139"/></capture>
+            <captured><cuboid min="131,3,-135" max="135,6,-139"/></captured>
+        </hill>
+        <hill id="yellow-8">
+            <capture><cuboid min="145,3,-121" max="149,6,-125"/></capture>
+            <captured><cuboid min="145,3,-121" max="149,6,-125"/></captured>
+        </hill>
+        <hill id="yellow-9">
+            <capture><cuboid min="145,3,-131" max="149,6,-135"/></capture>
+            <captured><cuboid min="145,3,-131" max="149,6,-135"/></captured>
+        </hill>
+        <hill id="yellow-10">
+            <capture><cuboid min="141,3,-135" max="145,6,-139"/></capture>
+            <captured><cuboid min="141,3,-135" max="145,6,-139"/></captured>
+        </hill>
+        <hill id="yellow-11">
+            <capture><cuboid min="131,3,-141" max="135,6,-145"/></capture>
+            <captured><cuboid min="131,3,-141" max="135,6,-145"/></captured>
+        </hill>
+        <hill id="yellow-12">
+            <capture><cuboid min="136,2,-141" max="140,6,-145"/></capture>
+            <captured><cuboid min="136,2,-141" max="140,6,-145"/></captured>
+        </hill>
+        <hill id="yellow-13">
+            <capture><cuboid min="141,3,-141" max="145,6,-145"/></capture>
+            <captured><cuboid min="141,3,-141" max="145,6,-145"/></captured>
+        </hill>
+        <hill id="yellow-14">
+            <capture><cuboid min="146,2,-141" max="150,6,-145"/></capture>
+            <captured><cuboid min="146,2,-141" max="150,6,-145"/></captured>
+        </hill>
+        <hill id="yellow-15">
+            <capture><cuboid min="151,3,-141" max="155,6,-145"/></capture>
+            <captured><cuboid min="151,3,-141" max="155,6,-145"/></captured>
+        </hill>
+        <hill id="yellow-16">
+            <capture><cuboid min="151,2,-136" max="155,6,-140"/></capture>
+            <captured><cuboid min="151,2,-136" max="155,6,-140"/></captured>
+        </hill>
+        <hill id="yellow-17">
+            <capture><cuboid min="151,3,-131" max="155,6,-135"/></capture>
+            <captured><cuboid min="151,3,-131" max="155,6,-135"/></captured>
+        </hill>
+        <hill id="yellow-18">
+            <capture><cuboid min="151,2,-126" max="155,6,-130"/></capture>
+            <captured><cuboid min="151,2,-126" max="155,6,-130"/></captured>
+        </hill>
+        <hill id="yellow-19">
+            <capture><cuboid min="151,3,-121" max="155,6,-125"/></capture>
+            <captured><cuboid min="151,3,-121" max="155,6,-125"/></captured>
+        </hill>
+        <!--Orange Side-->
+        <hill id="orange-1">
+            <capture><cuboid min="168,2,-120" max="172,6,-124"/></capture>
+            <captured><cuboid min="168,2,-120" max="172,6,-124"/></captured>
+        </hill>
+        <hill id="orange-2">
+            <capture><cuboid min="172,2,-124" max="176,6,-128"/></capture>
+            <captured><cuboid min="172,2,-124" max="176,6,-128"/></captured>
+        </hill>
+        <hill id="orange-3">
+            <capture><cuboid min="163,3,-121" max="167,6,-125"/></capture>
+            <captured><cuboid min="163,3,-121" max="167,6,-125"/></captured>
+        </hill>
+        <hill id="orange-4">
+            <capture><cuboid min="166,3,-126" max="170,6,-130"/></capture>
+            <captured><cuboid min="166,3,-126" max="170,6,-130"/></captured>
+        </hill>
+        <hill id="orange-5">
+            <capture><cuboid min="171,3,-129" max="175,6,-133"/></capture>
+            <captured><cuboid min="171,3,-129" max="175,6,-133"/></captured>
+        </hill>
+        <hill id="orange-6">
+            <capture><cuboid min="157,3,-121" max="161,6,-125"/></capture>
+            <captured><cuboid min="157,3,-121" max="161,6,-125"/></captured>
+        </hill>
+        <hill id="orange-7">
+            <capture><cuboid min="162,2,-130" max="166,6,-134"/></capture>
+            <captured><cuboid min="162,2,-130" max="166,6,-134"/></captured>
+        </hill>
+        <hill id="orange-8">
+            <capture><cuboid min="171,3,-135" max="175,6,-139"/></capture>
+            <captured><cuboid min="171,3,-135" max="175,6,-139"/></captured>
+        </hill>
+        <hill id="orange-9">
+            <capture><cuboid min="157,3,-131" max="161,6,-135"/></capture>
+            <captured><cuboid min="157,3,-131" max="161,6,-135"/></captured>
+        </hill>
+        <hill id="orange-10">
+            <capture><cuboid min="161,3,-135" max="165,6,-139"/></capture>
+            <captured><cuboid min="161,3,-135" max="165,6,-139"/></captured>
+        </hill>
+        <hill id="orange-11">
+            <capture><cuboid min="156,2,-141" max="160,6,-145"/></capture>
+            <captured><cuboid min="156,2,-141" max="160,6,-145"/></captured>
+        </hill>
+        <hill id="orange-12">
+            <capture><cuboid min="161,3,-141" max="165,6,-145"/></capture>
+            <captured><cuboid min="161,3,-141" max="165,6,-145"/></captured>
+        </hill>
+        <hill id="orange-13">
+            <capture><cuboid min="166,2,-141" max="170,6,-145"/></capture>
+            <captured><cuboid min="166,2,-141" max="170,6,-145"/></captured>
+        </hill>
+        <hill id="orange-14">
+            <capture><cuboid min="171,3,-141" max="175,6,-145"/></capture>
+            <captured><cuboid min="171,3,-141" max="175,6,-145"/></captured>
+        </hill>
+        <!--Pink Side-->
+        <hill id="pink-1">
+            <capture><cuboid min="131,3,-147" max="135,6,-151"/></capture>
+            <captured><cuboid min="131,3,-147" max="135,6,-151"/></captured>
+        </hill>
+        <hill id="pink-2">
+            <capture><cuboid min="141,3,-147" max="145,6,-151"/></capture>
+            <captured><cuboid min="141,3,-147" max="145,6,-151"/></captured>
+        </hill>
+        <hill id="pink-3">
+            <capture><cuboid min="151,2,-146" max="155,6,-150"/></capture>
+            <captured><cuboid min="151,2,-146" max="155,6,-150"/></captured>
+        </hill>
+        <hill id="pink-4">
+            <capture><cuboid min="151,3,-151" max="155,6,-155"/></capture>
+            <captured><cuboid min="151,3,-151" max="155,6,-155"/></captured>
+        </hill>
+        <hill id="pink-5">
+            <capture><cuboid min="151,2,-156" max="155,6,-160"/></capture>
+            <captured><cuboid min="151,2,-156" max="155,6,-160"/></captured>
+        </hill>
+        <hill id="pink-6">
+            <capture><cuboid min="151,3,-161" max="155,6,-164"/></capture>
+            <captured><cuboid min="151,3,-161" max="155,6,-164"/></captured>
+        </hill>
+        <hill id="pink-7">
+            <capture><cuboid min="145,3,-151" max="149,6,-155"/></capture>
+            <captured><cuboid min="145,3,-151" max="149,6,-155"/></captured>
+        </hill>
+        <hill id="pink-8">
+            <capture><cuboid min="140,2,-152" max="144,6,-156"/></capture>
+            <captured><cuboid min="140,2,-152" max="144,6,-156"/></captured>
+        </hill>
+        <hill id="pink-9">
+            <capture><cuboid min="131,3,-153" max="135,6,-157"/></capture>
+            <captured><cuboid min="131,3,-153" max="135,6,-157"/></captured>
+        </hill>
+        <hill id="pink-10">
+            <capture><cuboid min="136,3,-156" max="140,6,-160"/></capture>
+            <captured><cuboid min="136,3,-156" max="140,6,-160"/></captured>
+        </hill>
+        <hill id="pink-11">
+            <capture><cuboid min="130,2,-158" max="134,6,-162"/></capture>
+            <captured><cuboid min="130,2,-158" max="134,6,-162"/></captured>
+        </hill>
+        <hill id="pink-12">
+            <capture><cuboid min="134,2,-162" max="138,6,-166"/></capture>
+            <captured><cuboid min="134,2,-162" max="138,6,-166"/></captured>
+        </hill>
+        <hill id="pink-13">
+            <capture><cuboid min="139,3,-161" max="143,6,-165"/></capture>
+            <captured><cuboid min="139,3,-161" max="143,6,-165"/></captured>
+        </hill>
+        <hill id="pink-14">
+            <capture><cuboid min="145,3,-161" max="149,6,-165"/></capture>
+            <captured><cuboid min="145,3,-161" max="149,6,-165"/></captured>
+        </hill>
+        <!--Red Side-->
+        <hill id="red-1">
+            <capture><cuboid min="168,2,-162" max="172,6,-166"/></capture>
+            <captured><cuboid min="168,2,-162" max="172,6,-166"/></captured>
+        </hill>
+        <hill id="red-2">
+            <capture><cuboid min="172,2,-158" max="176,6,-162"/></capture>
+            <captured><cuboid min="172,2,-158" max="176,6,-162"/></captured>
+        </hill>
+        <hill id="red-3">
+            <capture><cuboid min="171,3,-153" max="175,6,-157"/></capture>
+            <captured><cuboid min="171,3,-153" max="175,6,-157"/></captured>
+        </hill>
+        <hill id="red-4">
+            <capture><cuboid min="166,3,-156" max="170,6,-160"/></capture>
+            <captured><cuboid min="166,3,-156" max="170,6,-160"/></captured>
+        </hill>
+        <hill id="red-5">
+            <capture><cuboid min="163,3,-161" max="167,6,-165"/></capture>
+            <captured><cuboid min="163,3,-161" max="167,6,-165"/></captured>
+        </hill>
+        <hill id="red-6">
+            <capture><cuboid min="171,3,-147" max="175,6,-151"/></capture>
+            <captured><cuboid min="171,3,-147" max="175,6,-151"/></captured>
+        </hill>
+        <hill id="red-7">
+            <capture><cuboid min="162,2,-152" max="166,6,-156"/></capture>
+            <captured><cuboid min="162,2,-152" max="166,6,-156"/></captured>
+        </hill>
+        <hill id="red-8">
+            <capture><cuboid min="157,3,-161" max="161,6,-165"/></capture>
+            <captured><cuboid min="157,3,-161" max="161,6,-165"/></captured>
+        </hill>
+        <hill id="red-9">
+            <capture><cuboid min="157,3,-151" max="161,6,-155"/></capture>
+            <captured><cuboid min="157,3,-151" max="161,6,-155"/></captured>
+        </hill>
+        <hill id="red-10">
+            <capture><cuboid min="161,3,-147" max="165,6,-151"/></capture>
+            <captured><cuboid min="161,3,-147" max="165,6,-151"/></captured>
+        </hill>
+    </hills>
+</king>
+<time>2m</time>
+<score/>
+<itemremove>
+    <item>stick</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>on</timelock>
+<respawn delay="3s"/>
+</map>

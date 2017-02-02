@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="gs.xml"/>
+<include src="gs-ffa.xml"/>
+<name>St. Carrotfields: FFA</name>
+<version>1.0</version>
+<objective>Be the last ghost alive!</objective>
+<gamemode>gs</gamemode>
+<authors>
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ItsMiiOlly -->
+    <author uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f"/> <!-- iPGz -->
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+</authors>
+<spawns safe="true"> 
+    <spawn angle="0.5,12,0.5">
+        <cylinder base="0.5,11,0.5" radius="40" height="4"/>
+    </spawn>
+    <default yaw="-90">
+        <block>2,46,0</block>
+    </default>
+</spawns>
+</map>

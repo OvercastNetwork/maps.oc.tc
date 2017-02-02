@@ -1,0 +1,121 @@
+<map proto="1.4.0">
+<name>Cairn</name>
+<version>2.0</version>
+<objective>Leak the enemy's core!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="10" max-overfill="13">Red</team>
+    <team id="blue" color="blue" max="10" max-overfill="13">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="2">golden apple</item>
+        <item slot="5" damage="2" amount="64">wood</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="8" amount="32">bread</item>
+        <item slot="28">arrow</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="3" amplifier="5">heal</potion>
+        <potion duration="3" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit id="redkit" parents="spawn">
+        <helmet color="CD0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="CD0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="CD0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="bluekit" parents="spawn">
+        <helmet color="0080ff" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0080ff" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0080ff" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="redkit">
+        <regions yaw="180">
+            <block>1233.5,12,-712.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="bluekit">
+        <regions yaw="0">
+            <block>1233.5,12,-944.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="1260.5,46,-827.5" max="1259.5,46,-829.5"/>
+        </regions>
+    </default>
+</spawns>
+<maxbuildheight>25</maxbuildheight>
+<filters>
+    <all id="only-blue">
+        <team>blue</team>
+    </all>
+    <all id="only-red">
+        <team>red</team>
+    </all>
+</filters>
+<regions>
+    <cuboid id="rc2" name="red-core2" min="1181.5,5,-733.5" max="1174.5,12,-726.5"/>
+    <cuboid id="bc2" name="blue-core2" min="1293.5,5,-924.5" max="1286.5,12,-931.5"/>
+    <cuboid id="map" name="map" min="1310.5,0,-948.5" max="1156.5,50,-708.5"/>
+    <cylinder id="red spawn" base="1233.5,0,-712.5" radius="6" height="50"/>
+    <cylinder id="blue spawn" base="1233.5,0,-944.5" radius="6" height="50"/>
+    
+    <apply block="never" message="You may not build outside the map.">
+        <region>
+            <negative>
+                <region id="map"/>
+            </negative>
+        </region>
+    </apply>
+
+    <apply enter="only-red" block="never" message="You may not interact with the spawn.">
+        <region>
+            <cylinder base="1233.5,0,-712.5" radius="6" height="50"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" block="never" message="You may not interact with the spawn.">
+        <region>
+            <cylinder base="1233.5,0,-944.5" radius="6" height="50"/>
+        </region>
+    </apply>
+</regions>
+
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core name="Red Core" team="red" region="rc2"/>
+    <core name="Blue Core" team="blue" region="bc2"/>
+</cores>
+<modes>
+    <mode after="13m" material="gold block"/>
+</modes>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>diamond block</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>bread</item>
+    <item>golden apple</item>
+</itemremove>
+</map>

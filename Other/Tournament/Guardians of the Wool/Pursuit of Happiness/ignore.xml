@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Pursuit of Happiness</name>
+<version>1.1</version>
+<objective>Capture the other team's two wools and place it at your victory monument!</objective>
+<authors>
+    <author>MrM00se</author>
+    <author>MinimalCow</author>
+    <author>MK325</author>
+    <author>RastaLulz</author>
+    <author>Oversoul96</author>
+    <author>Eum3</author>
+    <author>GabeIsAwesome199</author>
+</authors>
+<contributors>
+    <contributor>bleangamer</contributor>
+</contributors>
+<rules>
+    <rule>Don't obstruct the wool rooms, spawns, or majority of the lanes with lava or obsidian.</rule>
+</rules>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<kits>
+    <kit name="observers">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="96">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">wood axe</item>
+        <item slot="4" amount="64">log</item>
+        <item slot="6">water bucket</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8" amount="64">golden carrot</item>
+    </kit>
+    <kit name="red" parents="teams">
+        <item slot="5" damage="14" amount="64">stained glass</item>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="5" damage="11" amount="64">stained glass</item>
+    </kit>
+</kits>
+<spawns>
+    <default kit="observers" yaw="180">
+        <cylinder base="41.5,50,-425.5" radius="1" height="0"/>
+    </default>
+    <spawn team="red" kit="red" yaw="90">
+        <point>134.5,247,-366.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <point>-51.5,247,-366.5</point>
+    </spawn>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-spawners">
+        <deny>
+            <block>mob spawner</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <union name="red-wool-rooms"> <!-- Red Defends -->
+        <rectangle name="lime-wool-room" min="-56,-334" max="-68,-322"/>
+        <rectangle name="orange-wool-room" min="-68,-399" max="-56,-411"/>
+    </union>
+    <union name="blue-wool-rooms"> <!-- Blue Defends -->
+        <rectangle name="purple-wool-room" min="139,-399" max="151,-411"/>
+        <rectangle name="yellow-wool-room" min="151,-334" max="139,-322"/>
+    </union>
+    <complement name="lanes-pre">
+        <rectangle name="main" min="21,-398" max="62,-335"/>
+        <rectangle name="inside-lane" min="20,-362" max="63,-371"/>
+    </complement>
+    <union name="lanes-post">
+        <region name="lanes-pre"/>
+        <rectangle name="center" min="39,-362" max="44,-371"/>
+    </union>
+    <negative name="lanes-outside">
+        <region name="lanes-post"/>
+    </negative>
+    <cuboid name="islands" min="44,10,-364" max="39,oo,-369"/>
+    <union name="spawn-pools">
+        <rectangle name="red-spawn-pool" min="119,-370" max="112,-363"/>
+        <rectangle name="blue-spawn-pool" min="-36,-363" max="-29,-370"/>
+    </union>
+    <cuboid name="above-30" min="-oo,30,-oo" max="oo,oo,oo"/>
+    <!-- Applies -->
+    <apply enter="only-red" message="You cannot enter your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply block="only-red" use="only-red" message="You cannot modify your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block="only-blue" use="only-blue" message="You cannot modify your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="spawn-pools"/>
+        <region name="islands"/>
+        <region name="above-30"/>
+    </apply>
+    <apply block="deny-spawners" message="This block is disabled on this map!">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-void" message="Don't edit the void area!">
+        <region name="lanes-outside"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="red" color="orange" location="-62,15,-405">
+        <block>113,12,-367</block>
+    </wool>
+    <wool team="red" color="lime" location="-62,15,-328">
+        <block>117,12,-367</block>
+    </wool>
+    <wool team="blue" color="yellow" location="145,15,-328">
+        <block>-31,12,-367</block>
+    </wool>
+    <wool team="blue" color="purple" location="145,15,-405">
+        <block>-35,12,-367</block>
+    </wool>
+</wools>
+<renewables>
+    <renewable rate="0.10" grow="true" particles="true" avoid-entities="false">
+        <region>
+            <union name="iron-depots">
+                <cuboid name="red-iron" min="127,14,-372" max="104,19,-361"/>
+                <cuboid name="blue-iron" min="-44,14,-361" max="-21,19,-372"/>
+            </union>
+        </region>
+        <renew>iron block</renew>
+    </renewable>
+</renewables>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>gold block</block>
+        </filter>
+        <drops>
+            <item enchantment="dig speed:3">diamond pickaxe</item>
+            <item enchantment="dig speed:3">diamond axe</item>
+            <item enchantment="dig speed:3;loot bonus blocks:10">diamond spade</item>
+            <item amount="128" damage="1">log 2</item>
+            <item amount="128">glass</item>
+            <item amount="64">stone button</item>
+            <item amount="16">piston base</item>
+            <item amount="2">lava bucket</item>
+            <item amount="16">redstone block</item>
+            <item amount="8">dispenser</item>
+            <item amount="128">arrow</item>
+            <item potions="night vision:640000:0:false" damage="8230">potion</item>
+        </drops>
+    </rule>
+</blockdrops>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>wood axe</item>
+    <item>log</item>
+    <item>stained glass</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>golden carrot</item>
+    <item>glass bottle</item>
+</itemremove>
+</map>

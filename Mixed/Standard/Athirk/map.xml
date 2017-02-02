@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<include src="tutorial.xml"/>
+<name>Athirk</name>
+<version>1.1</version>
+<authors>
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<objective>Break the other team's cores and monuments to win!</objective>
+<teams>
+    <team color="dark red" max="32" max-overfill="35">Red</team>
+    <team color="blue" max="32" max-overfill="35">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="-90">
+            <cylinder base="505,24.5,-77.5" radius="2" height="1"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="90">
+            <cylinder base="263.5,24.5,-77.5" radius="2" height="1"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="384.5,103,-77.5" height="1" radius="2"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="durability:3">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="32">log</item>
+        <item slot="8" amount="64">cooked chicken</item>
+        <item slot="7">bucket</item>
+        <potion duration="4" amplifier="3" ambient="false">damage resistance</potion>
+        <helmet unbreakable="true" enchantment="protection explosions:3">iron helmet</helmet>
+    </kit>
+    <kit name="red" parents="spawn">
+        <boots unbreakable="true" color="a71a1a" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+         <boots unbreakable="true" color="6897bb" enchantment="protection fall:1">leather boots</boots>
+     </kit>
+</kits>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>Red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>Blue</team>
+    </filter>
+    <filter name="some-blocks">
+        <all>
+            <any>
+                <block>gold block</block>
+            </any>
+        </all>
+    </filter>
+</filters>
+<maxbuildheight>31</maxbuildheight>
+<regions>
+    <apply block="deny-all" message="You may not edit above the height limit!">
+        <cuboid min="-oo,31,-oo" max="oo,100,oo"/>
+    </apply>
+    <apply block="some-blocks" message="You may only edit gold blocks in this area!">
+        <union name="spawns">
+            <rectangle min="254,-90" max="274,-64"/>
+            <rectangle min="288,-66" max="274,-88"/>
+            <rectangle min="515,-64" max="495,-91"/>
+            <rectangle min="481,-88" max="495,-66"/>
+        </union>
+    </apply>
+    <apply block="no-void" message="You may not edit this area!">
+        <negative>
+            <union>
+                <rectangle min="412,-129" max="357,-26"/>
+                <rectangle min="412,-46" max="441,-108"/>
+                <rectangle min="357,-108" max="327,-46"/>
+            </union>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <cores team="red">
+        <core name="North Core">
+            <region>
+                <cuboid min="477,22,-115" max="483,30,-121"/>
+            </region>
+        </core>
+        <core name="South Core">
+            <region>
+                <cuboid min="477,22,-33" max="483,30,-39"/>
+            </region>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="North Core">
+            <region>
+                <cuboid min="285,22,-115" max="291,30,-121"/>
+            </region>
+        </core>
+        <core name="South Core">
+            <region>
+                <cuboid min="291,22,-39" max="285,30,-33"/>
+            </region>
+        </core>
+    </cores>
+</cores>
+<modes>
+    <mode after="10m" material="coal_block" name="`eCOAL CORE MODE"/>
+    <mode after="20m" material="glass" name="`eGLASS CORE MODE"/>
+</modes>
+<destroyables owner="red" materials="emerald block">
+    <destroyable name="South Monument">
+        <region>
+            <cuboid min="443,24,-35" max="440,15,-38"/>
+        </region>
+    </destroyable>
+    <destroyable name="North Monument">
+        <region>
+            <cuboid min="443,24,-117" max="440,15,-120"/>
+        </region>
+    </destroyable>
+</destroyables>
+<destroyables owner="blue" materials="emerald block">
+    <destroyable name="South Monument">
+        <region>
+            <cuboid min="326,24,-38" max="329,15,-35"/>
+        </region>
+    </destroyable>
+    <destroyable name="North Monument">
+        <region>
+            <cuboid min="326,24,-117" max="329,15,-120"/>
+        </region>
+    </destroyable>
+</destroyables>
+<renewables>
+    <renewable rate="1" grow="true" particles="true" sound="true" avoid-entities="true">
+        <region>
+            <cuboid min="515,0,-64" max="495,50,-91"/>
+            <cuboid min="254,0,-90" max="273,50,-64"/>
+        </region>
+        <renew>gold block</renew>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>cooked chicken</item>
+    <item>iron helmet</item>
+    <item>leather boots</item>
+    <item>emerald block</item>
+    <item>coal block</item>
+    <item>obsidian</item>
+    <item>sapling</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<tutorial>
+    <stage title="Destroy the Core and Monument">
+        <message>
+            <line>
+                `rThis map is a destroy the core and monument map. To win, break both of the other team's cores and monuments!
+            </line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="30">384,99,-49</point>
+        </teleport>
+    </stage>
+    <stage title="Cores and Monuments">
+        <message>
+            <line>
+                `rThere are two cores and two monuments. The cores are made out of Obdidian and the monuments are made out of Emerald Blocks.
+            </line>
+        </message>
+        <teleport>
+            <point yaw="140">331,19,-19</point>
+        </teleport>
+    </stage>
+    <stage title="TNT">
+        <message>
+            <line>
+                `r Players are able to obtain TNT on this map to aid victory! As you leave spawn, there is a little room where there are chests that contain TNT and cannon materials.
+            </line>
+        </message>
+        <teleport>
+            <point yaw="-40" pitch="40">485,19.6,-80</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

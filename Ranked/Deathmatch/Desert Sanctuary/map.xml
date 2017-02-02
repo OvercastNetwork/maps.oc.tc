@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Desert Sanctuary</name>
+<genre>Deathmatch</genre>
+<score>
+    <limit>200</limit>
+</score>
+<respawn spectate="true" delay="5s">
+    <message>{translate:"death.respawn.confirmed.waiting.flagDropped"}</message>
+</respawn>
+<version>1.3</version>
+<objective>Control the flag for 200 seconds to win!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!--  thestrangeboy1  -->
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!--  Avaleer  -->
+</authors>
+<contributors>
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!--  Timothee38  -->
+</contributors>
+<edition>ranked</edition>
+<if ranked="true">
+    <teams>
+        <team id="blue" color="blue" min="7" max="10">Blue</team>
+        <team id="red"  color="red"  min="7" max="10">Red</team>
+    </teams>
+</if>
+<if ranked="false">
+    <teams>
+        <team id="blue" color="blue" min="8" max="10">Blue</team>
+        <team id="red"  color="red"  min="8" max="10">Red</team>
+    </teams>
+</if>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="32">arrow</item>
+        <item slot="2" amount="64">golden carrot</item>
+        <item slot="3">golden apple</item>
+        <chestplate locked="true" unbreakable="true">chainmail chestplate</chestplate>
+        <boots      locked="true" unbreakable="true" enchantment="protection fall:2">gold boots</boots>
+        <health>20</health>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet   color="AF002A" locked="true" unbreakable="true">leather helmet</helmet>
+        <leggings color="AF002A" locked="true" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet   color="6E6EF9" locked="true" unbreakable="true">leather helmet</helmet>
+        <leggings color="6E6EF9" locked="true" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <potion duration="oo" amplifier="-3">health boost</potion>
+        <potion duration="3"  amplifier="2">absorption</potion>
+    </kit>
+    <kit id="reset-health" force="true">
+        <potion duration="1" amplifier="0">health boost</potion>
+        <potion duration="1" amplifier="10">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit" filter="no-flag">
+        <regions yaw="180">
+            <point>11.5,16,96.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit" filter="no-flag">
+        <regions yaw="0">
+            <point>11.5,16,-47.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="11.5,51,24.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="no-flag">
+        <same-team>
+            <carrying-flag>flag</carrying-flag>
+        </same-team>
+    </not>
+</filters>
+<regions>
+    <apply block="never" region="everywhere"/>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>chainmail chestplate</item>
+    <item>arrow</item>
+    <item>golden carrot</item>
+    <item>golden apple</item>
+</itemremove>
+<killreward>
+    <item amount="8">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<flags>
+    <post id="post" return-time="0s" respawn-time="20s">
+        <block>11.5,9,24.5</block>
+        <block>36.5,14,24.5</block>
+        <block>-13.5,14,24.5</block>
+    </post>
+    <flag id="flag"
+          name="Flag"
+          color="white"
+          shared="true"
+          post="post"
+          points-rate="1"
+          pickup-kit="flag-kit"
+          drop-kit="reset-health"/>
+</flags>
+</map>

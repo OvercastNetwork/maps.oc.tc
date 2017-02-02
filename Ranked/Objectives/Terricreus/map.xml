@@ -1,0 +1,278 @@
+<map proto="1.4.0">
+    <name>Terricreus</name>
+    <version>1.1.1</version>
+    <objective>Bring the opposing team's wool back to your team's spawn.</objective>
+    <authors>
+        <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+    </authors>
+    <contributors>
+        <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="XML Fixes"/> <!--  chle_  -->
+        <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="XML Fixes"/> <!-- DoomyBoy -->
+    </contributors>
+    <edition>ranked</edition>
+    <time result="objectives">20m</time>
+    <teams>
+        <team id="red-team" color="red" min="7" max="7">Red</team>
+        <team id="blue-team" color="blue" min="7" max="7">Blue</team>
+    </teams>
+    <respawn delay="5s" auto="true" blackout="true"/>
+    <kits>
+        <kit id="spawn" force="true">
+            <potion duration="5" amplifier="1">heal</potion>
+            <item slot="0" unbreakable="true" material="stone sword"/>
+            <item slot="1" unbreakable="true" material="bow"/>
+            <item slot="2" unbreakable="true" enchantment="durability:3" material="iron pickaxe"/>
+            <item slot="3" unbreakable="true" enchantment="durability:1;dig speed:1" material="stone axe"/>
+            <item slot="4" amount="16" material="cooked fish"/>
+            <item slot="5" amount="20" material="smooth brick"/>
+            <item slot="6" amount="4" damage="2" material="wood"/>
+            <item slot="8" amount="36" material="arrow"/>
+            <chestplate unbreakable="true" material="chainmail chestplate"/>
+            <leggings unbreakable="true" material="chainmail leggings"/>
+        </kit>
+        <kit id="red" parents="spawn">
+            <helmet color="cd0000" unbreakable="true" material="leather helmet"/>
+            <boots color="cd0000" unbreakable="true" material="leather boots"/>
+        </kit>
+        <kit id="blue" parents="spawn">
+            <helmet color="0066cc" unbreakable="true" material="leather helmet"/>
+            <boots color="0066cc" unbreakable="true" material="leather boots"/>
+        </kit>
+    </kits>
+    <itemremove>
+        <item>stained clay</item>
+        <item>sandstone</item>
+        <item>nether brick</item>
+        <item>ender stone</item>
+        <item>nether brick stairs</item>
+        <item>nether fence</item>
+        <item>step:6</item>
+        <item>dark oak stairs</item>
+        <item>wood step:5</item>
+        <item>log 2:1</item>
+        <item>wood:2</item>
+        <item>birch wood stairs</item>
+        <item>wood step:2</item>
+        <item>dark oak fence</item>
+        <item>sand</item>
+        <item>stone sword</item>
+        <item>bow</item>
+        <item>iron pickaxe</item>
+        <item>stone axe</item>
+        <item>leather helmet</item>
+        <item>leather boots</item>
+        <item>chainmail chestplate</item>
+        <item>chainmail leggings</item>
+    </itemremove>
+    <maxbuildheight>28</maxbuildheight>
+    <spawns>
+        <default>
+            <regions yaw="0">
+                <cuboid min="166.5,5,92.5" max="166.5,5,92.5"/>
+            </regions>
+        </default>
+        <spawn team="red-team" kit="red">
+            <regions yaw="-180">
+                <block>163.5,5,37.5</block>
+            </regions>
+        </spawn>
+        <spawn team="blue-team" kit="blue">
+            <regions yaw="0">
+                <block>163.5,5,147.5</block>
+            </regions>
+        </spawn>
+    </spawns>
+    <filters>
+        <team id="only-red">red-team</team>
+        <team id="only-blue">blue-team</team>
+        <all id="only-red-some">
+            <team>red-team</team>
+            <any>
+                <material>nether fence</material>
+                <material>dark oak stairs</material>
+                <material>wood step:5</material>
+                <material>log 2:1</material>
+                <material>wood</material>
+                <material>smooth brick</material>
+                <material>wool</material>
+            </any>
+        </all>
+        <all id="only-blue-some">
+            <team>blue-team</team>
+            <any>
+                <material>nether fence</material>
+                <material>dark oak stairs</material>
+                <material>wood step:5</material>
+                <material>log 2:1</material>
+                <material>wood</material>
+                <material>smooth brick</material>
+                <material>wool</material>
+            </any>
+        </all>
+        <any id="allow-some">
+            <material>nether fence</material>
+            <material>dark oak stairs</material>
+            <material>wood step:5</material>
+            <material>log 2:1</material>
+            <material>wood</material>
+            <material>smooth brick</material>
+            <material>wool</material>
+        </any>
+        <not id="deny-some">
+            <any>
+                <material>nether brick</material>
+                <material>step:1</material>
+                <material>sandstone stairs</material>
+            </any>
+        </not>
+    </filters>
+    <regions>
+        <!--This encompasses the entire pillar of the spawn and wool room-->
+        <cuboid id="cyanWoolRedSpawn" min="168,0,42" max="159,21,33"/>
+        <cuboid id="greenWoolBlueSpawn" min="168,0,143" max="159,21,152"/>
+        <!--Spawns-->
+        <cuboid id="blueSpawn" min="167,0,151" max="159,11,143"/>
+        <cuboid id="redSpawn" min="167,0,33" max="159,11,41"/>
+        <!--Wools-->
+        <union id="wools">
+            <cuboid id="cyanWool" min="161,21,41" max="168,28,34"/> <!--Blue needs this-->
+            <cuboid id="greenWool" min="161,21,144" max="168,28,151"/> <!--Red needs this-->
+        </union>
+        <!-- Spawners that players cannot break-->
+        <union id="spawners">
+            <cuboid id="arrowSpawner" min="181,12,91" max="184,15,94"/>
+            <cuboid id="goldenAppleSpawner" min="168,2,91" max="165,5,94"/>
+        </union>
+        <negative id="yes-void">
+            <intersect>
+                <union id="void-areas">
+                    <cuboid min="146,8,33" max="159,18,40"/>
+                    <cuboid min="155,8,42" max="159,18,40"/>
+                    <cuboid min="146,8,152" max="159,18,145"/>
+                    <cuboid min="155,8,143" max="159,18,145"/>
+                    
+                    <rectangle min="146,169" max="187,16"/> <!--Covers entire map-->
+                    <rectangle min="155,145" max="146,40"/>
+                    <rectangle min="187,47" max="178,42"/>
+                    <rectangle min="170,33" max="187,42"/>
+                    <rectangle min="187,138" max="178,143"/>
+                    <rectangle min="170,143" max="187,152"/>
+                    <rectangle min="187,33" max="178,16"/>
+                    <rectangle min="160,22" max="177,16"/>
+                    <rectangle min="160,23" max="166,29"/>
+                    <rectangle min="187,151" max="178,169"/>
+                    <rectangle min="177,169" max="160,162"/>
+                    <rectangle min="160,161" max="166,156"/>
+                </union>
+                <below y="18"/>
+            </intersect>
+        </negative>
+        <union id="more-void-areas">
+            <rectangle min="167,23" max="178,33"/> <!--Red void areas-->
+            <rectangle min="178,47" max="155,42"/>
+            <rectangle min="160,33" max="146,16"/>
+            
+            <rectangle min="178,142" max="155,138"/> <!--Blue void areas-->
+            <rectangle min="178,162" max="167,152"/>
+            <rectangle min="160,169" max="146,152"/>
+            
+            <cuboid min="146,0,33" max="159,7,40"/>
+            <cuboid min="155,0,42" max="159,7,40"/>
+            <cuboid min="146,0,152" max="159,7,145"/>
+            <cuboid min="155,0,143" max="159,7,145"/>
+            
+            <cuboid min="186,0,151" max="167,12,143"/>
+            <cuboid min="186,0,41" max="167,12,33"/>
+            
+            <rectangle min="167,152" max="160,168"/>
+            <rectangle min="160,32" max="167,16"/>
+            
+            <cuboid min="159,0,33" max="159,6,41"/>
+            <cuboid min="159,0,151" max="159,6,143"/>
+            
+            <!--Disable Bridging between Lanes-->
+            <rectangle min="180,60" max="173,124"/>
+            
+            <rectangle min="151,56" max="160,129"/>
+            
+            <rectangle min="163,125" max="160,129"/>
+            <rectangle min="160,60" max="163,55"/>
+            
+            <rectangle min="180,60" max="170,56"/>
+            <rectangle min="180,129" max="170,124"/>
+        </union>
+        <complement id="yes-void-minus-some">
+            <region id="yes-void"/>
+            <region id="cyanWool"/>
+            <region id="greenWool"/>
+            <rectangle min="186,151" max="167,143"/> <!--Players are able to staircase up to the wool-->
+            <rectangle min="186,41" max="167,33"/>
+        </complement>
+        <!--Spawn Enter Protection-->
+        <apply enter="only-red" message="You cannot enter the opponent's spawn!" region="redSpawn"/>
+        <apply enter="only-blue" message="You cannot enter the opponent's spawn!" region="blueSpawn"/>
+        <!--Wool Enter Protection-->
+        <apply enter="only-red" message="You cannot enter your own wool room!" region="greenWool"/>
+        <apply enter="only-blue" message="You cannot enter your own wool room!" region="cyanWool"/>
+        <!--Spawner Protection-->
+        <apply block="never" message="You cannot edit golden apple or arrow spawners!" region="spawners"/>
+        <!--Pillar Containing Wool Room and Spawn needs Edit Protection-->
+        <apply block="never" message="You cannot edit the wool rooms or spawns!">
+            <region>
+                <region id="cyanWoolRedSpawn"/>
+                <region id="greenWoolBlueSpawn"/>
+            </region>
+        </apply>
+        <!--Void protection-->
+        <apply block="never" message="You may not modify blocks outside the playing area!" region="yes-void-minus-some"/>
+        <apply block="never" message="You may not modify blocks outside the playing area!" region="more-void-areas"/>
+        <apply block="only-red-some" region="greenWool" message="Only Red may destroy wood and nether brick fences here."/>
+        <apply block="only-blue-some" region="cyanWool" message="Only Blue may destroy wood and nether brick fences here."/>
+    </regions>
+    <wools>
+        <wool team="red-team" color="green" location="164,20,147">
+            <monument>
+                <block>163.5,6.5,39.5</block>
+            </monument>
+        </wool>
+        <wool team="blue-team" color="cyan" location="164,20,37">
+            <monument>
+                <block>163.5,6.5,145.5</block>
+            </monument>
+        </wool>
+    </wools>
+    <kill-rewards>
+        <kill-reward>
+            <item amount="6" damage="2" material="wood"/>
+            <item amont="12" material="arrow"/>
+            <potion duration="7s" amplifier="2">regeneration</potion>
+        </kill-reward>
+    </kill-rewards>
+    <renewables>
+        <renewable interval="2m" particles="true" sound="true">
+            <region>
+                <cuboid min="185,4,90" max="182,7,95"/>
+            </region>
+            <renew>iron block</renew>
+        </renewable>
+    </renewables>
+    <block-drops>
+        <rule>
+            <filter>
+                <material>gold block</material>
+            </filter>
+            <drops>
+                <item material="diamond chestplate"/>
+            </drops>
+        </rule>
+        <rule>
+            <filter>
+                <material>iron block</material>
+            </filter>
+            <drops>
+                <item material="iron chestplate"/>
+                <item material="iron helmet"/>
+            </drops>
+        </rule>
+    </block-drops>
+</map>

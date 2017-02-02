@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<include src="blitz-global.xml" />
+<name>Forsaken Monument</name>
+<version>1.0.1</version>
+<objective>Eliminate the other team within 8 minutes!</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c" />
+    <!--   mitchiii_   -->
+</authors>
+<blitz>
+    <time>8m</time>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Blitz</title>
+</blitz>
+<teams>
+    <team color="dark red" max="18" max-overfill="24">Red</team>
+    <team color="blue" max="18" max-overfill="24">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <block>103.5,3,-63.5</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <block>199.5,3,-63.5</block>
+    </spawn>
+    <default yaw="-180">
+        <block>151.5,20,-58.5</block>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="24">arrow</item>
+        <chestplate>gold chestplate</chestplate>
+        <boots>iron boots</boots>
+        <potion duration="1m30s" ambient="true">absorption</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="FF0000">leather helmet</helmet>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000FF">leather helmet</helmet>
+    </kit>
+</kits>
+<killreward>
+    <item>golden apple</item>
+    <item amount="8">arrow</item>
+</killreward>
+<filters>
+    <filter name="allowed">
+        <any>
+            <block>leaves</block>
+            <block>water lily</block>
+            <block>vine</block>
+            <block>long grass</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="allowed">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>water lily</item>
+    <item>vine</item>
+    <item>long grass</item>
+    <item>seeds</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

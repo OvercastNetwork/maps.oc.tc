@@ -1,0 +1,94 @@
+<map proto="1.4.0">
+<name>Nirow</name>
+<version>1.0.0</version>
+<objective>Capture the enemies' flag 3 times!</objective>
+<authors>
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/>
+<!--LArrowHead   -->
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/>
+<!--NixaniaXi   -->
+</authors>
+<flags>
+    <flag id="redFlag" name="Red Flag" color="red" owner="red" post="redFlagPost" carry-kit="slowness"/>
+    <post id="redFlagPost" pickup-filter="onlyBlue" owner="red" recover-time="10s" respawn-speed="10" yaw="-90">78.5,8,4.5</post>
+    <net deny-message=" " post="redFlagPost" points="1" region="blueNet" owner="blue" capture-filter="onlyBlue"/>
+    
+    <flag id="blueFlag" name="Blue Flag" color="blue" owner="blue" post="blueFlagPost" carry-kit="slowness"/>
+    <post id="blueFlagPost" pickup-filter="onlyRed" owner="blue" recover-time="10s" respawn-speed="10" yaw="-90">20.5,8,-0.5</post>
+    <net deny-message=" " post="blueFlagPost" points="1" region="redNet" owner="red" capture-filter="onlyRed"/>
+</flags>
+<score>
+    <limit>3</limit>
+</score>
+<teams>
+    <team id="red" color="Dark Red" max="10" max-overfill="12">Red</team>
+    <team id="blue" color="Blue" max="10" max-overfill="12">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="redKit">
+        <regions yaw="90">
+            <block>105.5,6,3.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blueKit">
+        <regions yaw="-90">
+            <block>-6.5,6,0.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cuboid min="51.5,28,-33.5" max="47.5,29,-37.5"/>
+        </regions>
+    </default>
+</spawns>
+<respawn auto="false" delay="4s"/>
+<kits>
+    <kit id="slowness" force="true">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="spawn" force="true">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="32">baked potato</item>
+        <item slot="7" amount="28">arrow</item>
+        <item slot="8" amount="2">golden apple</item>
+        <helmet unbreakable="true" >chainmail helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection projectile:2">chainmail chestplate</chestplate>
+        <boots unbreakable="true">chainmail boots</boots>
+        <potion duration="2s" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <leggings color="993333" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<itemremove>
+    <item>baked potato</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>chainmail boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="8">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<regions>
+    <cuboid id="blueNet" min="19,8,1" max="22,12,-2"/>
+    <cuboid id="redNet" min="80,8,3" max="77,12,6"/>
+</regions>
+<filters>
+    <team id="onlyBlue">blue</team>
+    <team id="onlyRed">red</team>
+</filters>
+</map>

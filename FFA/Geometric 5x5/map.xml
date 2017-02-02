@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Geometric</name>
+<slug>geometric_5x5</slug>
+<version>1.9.1</version>
+<objective>Kill as many players as you can with your gun!</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
+</authors>
+<contributors>
+    <contributor uuid="105f6a09-f533-412b-93cb-501601763c11" contribution="Feedback and Scaling"/> <!-- JTr -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Scaling"/> <!-- Strangey -->
+</contributors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false"/>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="42">-3.5,1,-40.5</point>
+            <point yaw="135">-14.5,1,-32.5</point>
+            <point yaw="120">-14.5,1,-43.5</point>
+            <point yaw="-135">-55.5,1,-21.5</point>
+            <point yaw="-145">-66.5,1,-32.5</point>
+            <point yaw="-154">-66.5,5,-43.5</point>
+            <point yaw="-45">-55.5,12,-40.5</point>
+            <point yaw="135">-14.5,21,-32.5</point>
+            <point yaw="-45">-33.5,12,-40.5</point>
+            <point yaw="-135">-22.5,12,-32.5</point>
+            <point yaw="135">-36.5,12,-32.5</point>
+            <point yaw="27">-36.5,1,-51.5</point>
+            <point yaw="-135">-33.5,1,-21.5</point>
+            <point yaw="-27">-55.5,1,-40.5</point>
+            <point yaw="119">-25.5,1,-21.5</point>
+            <point yaw="123">-13.5,12,-29.5</point>
+            <point yaw="123">-22.5,16,-42.5</point>
+            <point yaw="-117">-62.5,16,-42.5</point>
+        </regions>
+    </spawn>
+    <default yaw="0">
+        <regions>
+            <cuboid min="-39,14,-74" max="-37,16,-72"/>
+        </regions>
+    </default>
+</spawns>
+<rage/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" name="Bow" lore="One Hit Kill" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" color="E5E533" locked="true">leather chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="0.1s" blackout="true"/>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+    <apply velocity="0.0,1.0,0.0">
+        <region>
+            <cuboid min="4.5,14,-0.5" max="3.5,14,0.5"/>
+        </region>
+    </apply>
+</regions>
+<broadcasts>
+    <tip after="1s">Bows and swords are one hit kills</tip>
+</broadcasts>
+<killreward>
+    <item amount="1" material="arrow"/>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Icy Peaks Blitz</name> 
+<version>1.0.2</version> 
+<objective>Eliminate the enemy team within 8 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- jollee999 --> 
+    <author uuid="7cc1e52e-4385-4154-bc1f-57d95afa2cff"/> <!-- DanikasTheMan --> 
+</authors>
+<contributors>
+     <contributor uuid="c63aa30b-256a-47c2-9d1d-b3f78163b612" contribution="Building help"/> <!-- _DDD -->
+     <contributor uuid="44888141-cfae-42cf-8a26-1c7bfb1c4d64" contribution="Building help"/> <!-- p1e2m3a4 -->
+</contributors>
+<timelock>off</timelock> 
+<blitz>
+    <time>8m</time> 
+    <lives>1</lives>
+</blitz>
+<teams>
+    <team color="dark red" max="20">Red</team> 
+    <team color="blue" max="20">Blue</team> 
+</teams>
+<regions>
+    <apply block-break="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item> 
+        <item slot="1">bow</item> 
+        <item slot="2" amount="12">arrow</item> 
+        <item slot="8" amount="32">bread</item> 
+        <potion duration="5" amplifier="3">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <item slot="9" amount="32" damage="4">ink sack</item>
+    </kit>
+        <kit name="red" parents="spawn">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet> 
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate> 
+        <boots color="993333" unbreakable="true">leather boots</boots> 
+    </kit>
+        <kit name="blue" parents="spawn">
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet> 
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate> 
+        <boots color="334CB2" unbreakable="true">leather boots</boots> 
+    </kit>
+</kits>
+<itemremove>
+    <item>bread</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>ink sack</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="3">arrow</item>
+    <item amount="2">exp bottle</item>
+    <item damage="4">ink sack</item>
+</killreward>
+<spawns>
+    <spawn team="red" kit="red" yaw="-135">
+        <block>-51.5,10,-6.5</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="135">
+        <block>158.5,10,-6.5</block>
+    </spawn>
+    <default yaw="-90">
+        <block>52,43.2,32</block>
+    </default>
+</spawns>
+</map>

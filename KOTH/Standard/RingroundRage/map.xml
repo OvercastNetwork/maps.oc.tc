@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>RingroundRAGE</name>
+<version>2.0</version>
+<objective>Be the first team to reach the point limit!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="15" max-overfill="19">Red</team>
+    <team color="dark green" max="15" max-overfill="19">Green</team>
+</teams>
+<rules>
+    <rule>Attention:</rule>
+    <rule>Chestplates have knockback resistance!</rule>
+    <rule>TNT does not damage teammates!</rule>
+</rules>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1" unbreakable="true">bow</item>
+        <item slot="2" amount="2">arrow</item>
+        <item slot="3" amount="2">tnt</item>
+        <helmet color="000000" enchantment="protection explosions:3">leather helmet</helmet>
+        <leggings color="000000">leather leggings</leggings>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="oo" amplifier="-2">health boost</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="993333" attributes="generic.knockbackResistance:base:0.50">leather chestplate</chestplate>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <chestplate color="667f33" attributes="generic.knockbackResistance:base:0.50">leather chestplate</chestplate>
+        <boots color="667f33">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>TNT</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+    <fuse>3s</fuse>
+</tnt>
+<disabledamage>
+    <!-- TNT damages enemies only -->
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<filters>
+    <filter name="only-tnt" parents="deny-blocks">
+        <allow><block>tnt</block></allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-tnt">
+        <rectangle name="main-area" min="-39,40" max="40,-39"/>
+    </apply>
+</regions>
+<king>
+    <hills>
+        <hill name="Center Tower" capture-time="4s" ratio="1">
+            <capture>
+                <cuboid min="-2.5,3,-2.5" max="3.5,20,3.5"/>
+            </capture>
+            <progress>
+                <cuboid min="-4.5,0,-4.5" max="5.5,20,5.5"/>
+            </progress>
+            <captured>
+                <cuboid min="-4.5,0,-4.5" max="5.5,20,5.5"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>300</limit>
+</score>
+<king/>
+<playable>
+    <region name="main-area"/>
+</playable>
+<spawns>
+    <spawns team="red" kit="red">
+        <spawn yaw="45">
+            <cuboid min="26,7,26" max="25,7,27"/>
+        </spawn>
+        <spawn yaw="-135">
+            <cuboid min="26,7,26" max="27,7,25"/>
+        </spawn>
+    </spawns>
+    <spawns team="green" kit="green">
+        <spawn yaw="45">
+            <cuboid min="-26,7,-26" max="-25,7,-27"/>
+        </spawn>
+        <spawn yaw="-135">
+            <cuboid min="-26,7,-26" max="-27,7,-25"/>
+        </spawn>
+    </spawns>
+    <default yaw="-135">
+        <cuboid min="-36,46,36" max="-38,46,38"/>
+    </default>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<autorespawn/>
+<tutorial>
+    <stage title="RAGE and Capture the Hill">
+        <message>
+            <line>§rThis map is a §b§lKing of the Hill §r(KOTH) and RAGE map</line>
+            <line>Be the first team to get to 300 points!</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="10">-27,20,27</point>
+        </teleport>
+    </stage>
+    <stage title="Green Team Spawn">
+        <message>
+            <line>This is the §2Green Team §rbase. You spawn with gear ready to go into battle!</line>
+            <line>You can either go left or right from spawn.</line>
+        </message>
+        <teleport>
+            <point yaw="-45">-25.5,7,-25</point>
+        </teleport>
+    </stage>
+    <stage title="Arrow Spawners">
+        <message>
+            <line>These are arrow spawners. They will spawn arrows as long as you are standing directly over them.</line>
+            <line>These are necessary if you want more than the 8 arrows you spawn with.</line>
+            <line>There are 1 of these in non team spawning corners. In the middle of the map is the Hill to capture.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="10">-25.5,12,26.5</point>
+        </teleport>
+    </stage>
+    <stage title="Regen Spawners">
+        <message>
+            <line>These are regeneration spawners. They will splash you with regen as long as you are standing directly over them.</line>
+            <line>You can use these spawners if you are low on health and need to regen quickly.</line>
+            <line>There are 1 of these directly in front of each teams spawn.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="10">16.5,5,19.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

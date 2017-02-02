@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Pavage</name>
+<version>1.0.3</version>
+<objective>Destroy the other team's 2 obsidian monuments!</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="Idea, Leader and Building"/> <!-- matic0basle -->
+    <author uuid="ec80a24a-4e83-4049-8e1d-77abad67e8f3" contribution="Building, Detailing"/> <!-- Bamby_ -->
+    <author uuid="b06fb221-e8a6-4c84-96c8-9ac4a0fd1b51" contribution="Building"/> <!-- _CubeRoot -->
+    <author uuid="62b6d081-8df8-4c09-aa15-71141ca7df76" contribution="Building"/> <!-- Arzanex -->
+</authors>
+<contributors>
+    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="Building help"/> <!-- lord_creeper01 -->
+    <contributor uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Building help, server host"/> <!-- iLifting -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML Coding"/> <!-- ItsMiiOlly -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Building help, feedback"/> <!-- _IQ -->
+    <contributor uuid="44df6b20-168f-4389-b7ac-434518207c2f" contribution="Building help, support"/> <!-- ParaPenguin -->
+</contributors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4">stone spade</item>
+        <item slot="5" damage="2" amount="32">log</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="8" amount="64">bread</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <potion duration="3" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0000ff" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<destroyables name="Town Monument" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="red">
+        <cuboid min="105,19,158" max="107,23,160"/>
+    </destroyable>
+    <destroyable owner="blue">
+        <cuboid min="95,19,76" max="93,23,74"/>
+    </destroyable>
+</destroyables>
+<destroyables name="Mill Monument" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="red">
+        <cuboid min="59,22,200" max="61,18,198"/>
+    </destroyable>
+    <destroyable owner="blue">
+        <cuboid min="139,18,36" max="141,22,34"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="30m" material="emerald block" name="`aEMERALD MONUMENT MODE"/>
+    <mode after="45m" material="stained clay:4" name="`6CLAY MONUMENT MODE"/>
+</modes>
+<regions>
+    <union name="iron-room-markers">
+        <cuboid min="45,32,28" max="37,60,37"/>
+        <cuboid min="153,34,206" max="164,60,196"/>
+    </union>
+    <union name="spawn-areas">
+        <cuboid min="223,69,108" max="215,63,126"/>
+        <cuboid min="22,14,213" max="11,33,214"/>
+        <cuboid min="177,17,182" max="187,20,171"/>
+        <cuboid min="178,14,32" max="188,33,21"/>
+        <cuboid min="23,17,53" max="13,20,63"/>
+    </union>
+    <rectangle name="void" min="-0,235" max="201,-0"/>
+    <apply block-break="deny-all">
+        <region name="iron-room-markers"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn areas!">
+        <region name="spawn-areas"/>
+    </apply>
+    <apply block="deny-all" message="You may not place in the void!">
+        <negative>
+            <region name="void"/>
+        </negative>
+    </apply>
+</regions>
+<portals>
+    <!--blue portal - town-->
+    <portal x="@16" y="@17" z="@60" yaw="@-179">
+        <cuboid min="219,67,115" max="222,65,116"/>
+    </portal>
+    <!--blue portal - farm-->
+    <portal x="@183" y="@14" z="@26" yaw="@0">
+        <cuboid min="216,65,115" max="219,67,116"/>
+    </portal>
+    <!--red portal - town-->
+    <portal x="@184" y="@17" z="@174" yaw="@0">
+        <cuboid min="216,65,118" max="219,68,119"/>
+    </portal>
+    <!--red portal - farm-->
+    <portal x="@17" y="@14" z="@208" yaw="@-179">
+        <cuboid min="219,67,118" max="222,65,119"/>
+    </portal>
+</portals>
+<spawns>
+    <spawn team="red" kit="red" yaw="-179">
+        <cylinder base="219,65,122" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="219,65,112" radius="1" height="0"/>
+    </spawn>
+    <default yaw="-89">
+        <cylinder base="-0,66,117" radius="2" height="0"/>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>stone axe</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>glass</item>
+    <item>bread</item>
+    <item>stained clay:4</item>
+    <item>emerald block</item>
+    <item>obsidian</item>
+    <item>wheat</item>
+    <item>seeds</item>
+</itemremove>
+<maxbuildheight>64</maxbuildheight>
+</map>

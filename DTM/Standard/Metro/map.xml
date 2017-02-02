@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Metro</name>
+<version>1.8.4</version>
+<objective>Destroy the enemy monuments</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- yoyo_power -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="50">Red</team>
+    <team id="blue" color="blue" max="50">Blue</team>
+</teams>
+<broadcasts>
+    <tip after="2s" every="5m">The air on the surface is toxic, make sure you have a gas mask if you're going there</tip>
+    <tip after="2s" every="5m">You get a gasmask after you kill one enemy</tip>
+</broadcasts>
+<spawns safe="true">
+    <spawn team="red" kit="red">
+        <regions angle="676.5,31,1580.5">
+            <region name="red-spawn-a"/>
+            <region name="red-spawn-b"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions angle="676.5,31,1580.5">
+            <region name="blue-spawn-a"/>
+            <region name="blue-spawn-b"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <region name="default-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="4" amount="64">arrow</item>
+        <item slot="5" amount="64">cooked fish</item>
+        <item slot="6" amount="64">wood</item>
+        <item slot="3">stone axe</item>
+        <item slot="7" damage="8198" potions="night vision:60000:0:true">potion</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="2">increase_damage</potion>
+    </kit>
+    <kit name="gas-mask" force="true">
+        <helmet name="`6Gas Mask" enchantment="protection environmental:3" lore="`7Anti-Gas I" damage="15" locked="true">stained glass</helmet>
+    </kit>
+    <kit name="give-toxins" force="true">
+        <potion duration="oo" amplifier="3">wither</potion>
+        <potion duration="oo" amplifier="1">confusion</potion>
+        <potion duration="oo" amplifier="2">slow digging</potion>
+        <potion duration="oo" amplifier="2">weakness</potion>
+    </kit>
+    <kit name="remove-toxins" force="true">
+        <potion duration="0" amplifier="0">wither</potion>
+        <potion duration="0" amplifier="0">confusion</potion>
+        <potion duration="0" amplifier="0">slow digging</potion>
+        <potion duration="0" amplifier="0">weakness</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="false"/>
+    </filter>
+    <kit name="gas-mask"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="16">arrow</item>
+</killreward>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>stained glass:15</item>
+    <item>wool</item>
+    <item>stone axe</item>
+    <item>log</item>
+    <item>obsidian</item>
+    <item>glass bottle</item>s
+    <item>potion</item>
+    <item>item frame</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<gamerules>
+    <doFireTick>false</doFireTick>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<maxbuildheight>98</maxbuildheight>
+
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<miltitrade/>
+<regions>
+    <cuboid name="toxic-region" min="-oo,53,-oo" max="oo,oo,oo"/>
+    <cylinder name="lava-lake" base="676.5,3,1580.5" radius="30" height="10"/>
+    <union name="cores">
+        <cuboid name="red-core" min="813,89,1577" max="808,81,1584"/>
+        <cuboid name="blue-core" min="540,89,1584" max="546,81,1577"/>
+    </union>
+    <union name="spawns-protection">
+        <union name="red-spawns-protection">
+            <cuboid name="red-spawn-a-protection" min="823,47,1625" max="797,19,1533"/>
+        </union>
+        <union name="blue-spawns-protection">
+            <cuboid name="blue-spawn-a-protection" min="556,47,1533" max="530,19,1632"/>
+        </union>
+    </union>
+    <union name="spawns">
+        <union name="red-spawns">
+            <cuboid name="red-spawn-b" min="821,30,1605" max="819,30,1602"/>
+            <cuboid name="red-spawn-a" min="821,30,1555" max="819,30,1558"/>
+        </union>
+        <union name="blue-spawns">
+            <cuboid name="blue-spawn-a" min="531,30,1605" max="533,30,1602"/>
+            <cuboid name="blue-spawn-b" min="531,30,1558" max="533,30,1555"/>
+        </union>
+        <cuboid name="default-spawn" min="674,39,1519" max="678,39,1519"/>
+    </union>
+    <union name="red-monuments">
+        <cuboid name="red-underground" min="713,22,1578" max="709,30,1582"/>
+        <cuboid name="red-surface" min="810,82,1578" max="814,90,1582"/>
+    </union>
+    <union name="blue-monuments">
+        <cuboid name="blue-underground" min="639,22,1578" max="643,30,1582"/>
+        <cuboid name="blue-surface" min="538,82,1578" max="542,90,1582"/>
+    </union>
+    <union name="sides">
+        <rectangle name="blue-side" min="530,1644" max="675,1515"/>
+        <rectangle name="red-side" min="677,1516" max="822,1644"/>
+    </union>
+    <apply enter="deny-reds" message="You may not enter the enemy spawn">
+        <region name="blue-spawn-a-protection"/>
+    </apply>
+    <apply enter="deny-blues" message="You may not enter the enemy spawn">
+        <region name="red-spawn-a-protection"/>
+    </apply>
+    <apply kit="give-toxins">
+        <region name="toxic-region"/>
+    </apply>
+    <apply kit="remove-toxins" filter="has-mask">
+        <region name="toxic-region"/>
+    </apply>
+    <apply kit="remove-toxins">
+        <negative>
+            <region name="toxic-region"/>
+        </negative>
+    </apply>
+    <apply block="blues-spawns" message="You may not modify the spawns">
+        <region name="blue-spawns-protection"/>
+    </apply>
+    <apply block="reds-spawns" message="You may not modify the spawns">
+        <region name="red-spawns-protection"/>
+    </apply>
+    <apply block="deny-void" message="You may not place blocks outside the map">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-lava">
+        <region name="lava-lake"/>
+    </apply>
+    <union name="observer-stuff">
+        <cuboid name="observer-spawn-protection" min="683,37,1526" max="669,45,1516"/>
+        <cuboid name="portal-surface" min="680,39,1522" max="677,43,1521"/>
+        <cuboid name="portal-underground" min="675,43,1521" max="672,39,1522"/>
+    </union>
+    <apply block="deny-all">
+        <region name="observer-spawn-protection"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="blues-spawns">
+        <all>
+            <team>blue</team>
+            <block>iron block</block>
+        </all>
+    </filter>
+    <filter name="reds-spawns">
+        <all>
+            <team>red</team>
+            <block>iron block</block>
+        </all>
+    </filter>
+    <filter name="has-mask">
+        <wearing>
+            <item name="`6Gas Mask" enchantment="protection environmental:3" lore="`7Anti-Gas I" damage="15">stained glass</item>
+        </wearing>
+    </filter>
+    <filter name="deny-lava">
+        <not>
+            <block>lava</block>
+        </not>
+    </filter>
+    <filter name="deny-wool">
+        <not>
+            <block>wool</block>
+        </not>
+    </filter>
+    <filter name="deny-blues">
+        <not>
+            <team>blue</team>
+        </not>
+    </filter>
+    <filter name="deny-reds">
+        <not>
+            <team>red</team>
+        </not>
+    </filter>
+</filters>
+<proximity-alarms message="Enemy is near your surface monument, defend it!" flare-radius="7">
+    <proximity-alarm>
+        <region>
+            <region name="red-surface"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+    <proximity-alarm>
+        <region>
+            <region name="blue-surface"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+<destroyables>
+    <destroyables name="Underground Monument" materials="obsidian" completion="100%">
+        <destroyable owner="blue" region="blue-underground"/>
+        <destroyable owner="red" region="red-underground"/>
+    </destroyables>
+    <destroyables name="Surface Monument" materials="obsidian" completion="100%">
+        <destroyable owner="blue" region="blue-surface"/>
+        <destroyable owner="red" region="red-surface"/>
+    </destroyables>
+</destroyables>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="The surface is toxic!">
+        <message>
+            <line>You need a gasmask to go to the surface, else the toxic air will kill you.</line>
+            <line>In order to get a gasmask you need to kill one enemy, then you will have one.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">545,31,1580</point>
+        </teleport>
+    </stage>
+    <stage title="Surface Monument">
+        <message>
+            <line>You need to break both the enemy monuments, this is the surface monument.</line>
+        </message>
+        <teleport>
+            <point yaw="90">545,84,1580</point>
+        </teleport>
+    </stage>
+    <stage title="Underground Monument">
+        <message>
+            <line>This is the underground monument, you have to break both of the enemy monuments to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="90">713,18,1580</point>
+        </teleport>
+    </stage>
+</tutorial>
+<portals>
+    <portal x="@542" y="@84" z="@1580" region="portal-surface"/>
+    <portal x="@714" y="@15" z="@1580" region="portal-underground"/>
+</portals>
+</map>

@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="Survival Games">
+<include src="survival-games.xml"/>
+<name>Parthenon Annex</name>
+<version>1.0.1</version>
+<world-borders center="-105.5,66.5">
+    <world-border size="750"/>
+    <world-border size="70" after="2m" duration="10m"/>
+</world-borders>
+<spawns>
+    <spawns exclusive="true" spread="true">
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-81.5,45.0,66.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-82.5,45.0,58.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-85.5,45.0,53.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-88.5,45.0,49.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-92.5,44.0,46.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-97.5,43.0,43.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-105.5,43.0,42.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-113.5,42.0,43.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-118.5,42.0,46.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-122.5,42.0,49.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-125.5,43.0,53.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-128.5,43.0,58.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-129.5,42.0,66.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-128.5,42.0,74.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-125.5,42.0,79.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-122.5,44.0,83.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-118.5,45.0,86.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-113.5,44.0,89.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-105.5,44.0,90.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-97.5,43.0,89.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-92.5,43.0,86.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-88.5,45.0,83.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-85.5,45.0,79.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="-105.5,42.0,66.5">
+                <point>-82.5,45.0,74.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions angle="-105.5,42.0,66.5">
+            <point>-81.5,45.0,66.5</point>
+        </regions>
+    </default>
+</spawns>
+</map>

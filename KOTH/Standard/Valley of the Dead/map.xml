@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Valley of the Dead</name>
+<version>1.0.4</version>
+<objective>Capture and hold the 3 Hills!</objective>
+<authors>
+    <author uuid="d556bcdf-57ad-4220-92f6-150a9b12380b"/> <!-- three_two -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="XML assistance"/> <!-- last_username -->
+</contributors>
+<king>
+    <hills>
+        <hill name="Falls" capture-time="60s" points="1">
+            <capture>
+                <cuboid min="-5,11,-103" max="5,12,-93"/>
+            </capture>
+            <progress>
+                <cuboid min="-5,10,-103" max="5,11,-93"/>
+            </progress>
+            <captured>
+                <cuboid min="-5,15,-103" max="5,20,-93"/>
+            </captured>
+        </hill>
+        <hill name="Basin" capture-time="60s" points="1">
+            <capture>
+                <cuboid min="-5,7,-29" max="5,8,-19"/>
+            </capture>
+            <progress>
+                <cuboid min="-5,6,-29" max="5,7,-19"/>
+            </progress>
+            <captured>
+                <cuboid min="-5,11,-29" max="5,16,-19"/>
+            </captured>
+        </hill>
+        <hill name="Hoodoo" capture-time="60s" points="1">
+            <capture>
+                <cuboid min="-5,10,41" max="5,11,51"/>
+            </capture>
+            <progress>
+                <cuboid min="-5,9,41" max="5,10,51"/>
+            </progress>
+            <captured>
+                <cuboid min="-5,14,41" max="5,19,51"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>2000</limit>
+    <king/>
+</score>
+<teams>
+    <team color="dark purple" max="24" max-overfill="32">Purple</team>
+    <team color="dark green" max="24" max-overfill="32">Green</team>
+</teams>
+<kits>
+    <kit name="heal">
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="2">saturation</potion>
+    </kit>
+    <kit name="spawn" parents="heal">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="loot bonus blocks:3" name="`6`lCoal Mining Pick" lore="`eUse this tool to mine coal ore.|`eCoal can be traded for gold at|`eyour team's spawn shop.">gold pickaxe</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="24">arrow</item>
+        <item slot="7">gold nugget</item>
+        <item slot="8" amount="64">golden carrot</item>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet color="aa00aa" unbreakable="true">leather helmet</helmet>
+        <chestplate color="aa00aa" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="aa00aa" unbreakable="true">leather leggings</leggings>
+        <boots color="aa00aa" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="008000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="008000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="008000" unbreakable="true">leather leggings</leggings>
+        <boots color="008000" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>golden carrot</item>
+    <item>gold pickaxe</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+    <item>ladder</item>
+    <item>rails</item>
+</itemremove>
+<itemkeep>
+    <item>bow</item>
+    <item>iron sword</item>
+    <item>gold sword</item>
+    <item>diamond sword</item>
+    <item>chainmail chestplate</item>
+    <item>diamond boots</item>
+    <item>diamond helmet</item>
+    <item>gold boots</item>
+    <item>iron chestplate</item>
+    <item>gold helmet</item>
+    <item>diamond chestplate</item>
+</itemkeep>
+<killreward>
+    <item>gold nugget</item>
+</killreward>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<multitrade/>
+<filters>
+    <filter name="only-coalTNT">
+        <deny>
+            <not>
+                <any>
+                    <block>coal ore</block>
+                    <block>TNT</block>
+                </any>
+            </not>
+        </deny>
+    </filter>
+	<filter name="only-green">
+        <deny>
+            <not>
+                <team>green</team>
+            </not>
+        </deny>
+    </filter>
+    <filter name="only-purple">
+        <deny>
+            <not>
+                <team>purple</team>
+            </not>
+        </deny>
+    </filter>
+    <filter name="deny-tnt">
+        <deny>
+            <block>tnt</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <union name="spawn-houses">
+        <cuboid name="green-spawn-house" min="67,11,-43" max="93,19,-17"/>
+        <cuboid name="purple-spawn-house" min="-67,11,-43" max="-93,19,-17"/>
+    </union>
+    <union name="green-spawn-protection">
+        <region name="green-spawn-house"/>
+        <cuboid min="79,11,-52" max="81,18,-7"/>
+        <cuboid min="59,10,-33" max="67,13,-27"/>
+    </union>
+    <union name="purple-spawn-protection">
+        <region name="purple-spawn-house"/>
+        <cuboid min="-79,11,-52" max="-81,18,-7"/>
+        <cuboid min="-59,10,-33" max="-67,13,-27"/>
+    </union>
+    <union name="portals">
+        <cuboid name="falls-green-portal" min="1,6,-100" max="2,8,-99"/>
+        <cuboid name="falls-purple-portal" min="-2,6,-97" max="-1,8,-96"/>
+        <cuboid name="basin-green-portal" min="1,2,-26" max="2,4,-25"/>
+        <cuboid name="basin-purple-portal" min="-2,2,-23" max="-1,4,-22"/>
+        <cuboid name="hoodoo-green-portal" min="1,5,44" max="2,7,45"/>
+        <cuboid name="hoodoo-purple-portal" min="-2,5,47" max="-1,7,48"/>
+    </union>
+    <apply block="deny-tnt" message="Please don't blow up your teammates">
+        <region name="spawn-houses"/>
+    </apply>
+    <apply block="only-coalTNT">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-purple" message="`cYou may not enter the enemy team's spawn!">
+        <region name="purple-spawn-protection"/>
+    </apply>
+    <apply enter="only-green" message="`cYou may not enter the enemy team's spawn!">
+        <region name="green-spawn-protection"/>
+    </apply>
+    <apply enter="deny-all" message="`cYou may not leave the playing field!">
+        <cuboid min="-oo,49,-oo" max="oo,oo,oo"/>
+    </apply>
+    <apply kit="heal">
+        <region name="spawn-houses"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="purple" kit="purple" yaw="-90">
+        <cuboid min="-84,11,-34" max="-75,11,-25"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="90">
+        <cuboid min="75,11,-34" max="84,11,-25"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="-5,50,-5" max="5,50,5"/>
+    </default>
+</spawns>
+<portals>
+    <!--  Falls green portal  -->
+    <portal x="@79.5" y="@11" z="@-30" pitch="@0" yaw="@-90" filter="only-green">
+        <region name="falls-green-portal"/>
+    </portal>
+    <!--  Falls purple portal  -->
+    <portal x="@-79.5" y="@11" z="@-29" pitch="@0" yaw="@90" filter="only-purple">
+        <region name="falls-purple-portal"/>
+    </portal>
+    <!--  Basin green portal  -->
+    <portal x="@79.5" y="@11" z="@-30" pitch="@0" yaw="@-90" filter="only-green">
+        <region name="basin-green-portal"/>
+    </portal>
+    <!--  Basin purple portal  -->
+    <portal x="@-79.5" y="@11" z="@-29" pitch="@0" yaw="@90" filter="only-purple">
+        <region name="basin-purple-portal"/>
+    </portal>
+    <!--  Hoodoo green portal  -->
+    <portal x="@79.5" y="@11" z="@-30" pitch="@0" yaw="@-90" filter="only-green">
+        <region name="hoodoo-green-portal"/>
+    </portal>
+    <!--  Hoodoo purple portal  -->
+    <portal x="@-79.5" y="@11" z="@-29" pitch="@0" yaw="@90" filter="only-purple">
+        <region name="hoodoo-purple-portal"/>
+    </portal>
+</portals>
+<tutorial>
+    <stage title="Capture and hold the Hills">
+        <message>
+            <line>This map is a `lKing of the Hill `r(KotH) map with `lGear `rsystem.</line>
+            <line>The objective is to be the first team to earn `l2000 points.</line>
+            <line>Earn points by controlling 1 or more of the 3 hills.</line>
+        </message>
+        <teleport>
+            <point angle="-0.5,16,-24.5">-55,64,-52</point>
+        </teleport>
+    </stage>
+    <stage title="The Falls">
+        <message>
+            <line>This is the `lFalls `rhill.</line>
+            <line>The Falls are located on the `lNorth `rside of the map.</line>
+        </message>
+        <teleport>
+            <point angle="0.5,11,-96.5">-8.5,18,-74.5</point>
+        </teleport>
+    </stage>
+    <stage title="The Basin">
+        <message>
+            <line>This is the `lBasin `rhill.</line>
+            <line>The Basin is located in the `lCenter `rof the map.</line>
+        </message>
+        <teleport>
+            <point angle="2.5,7,-24.5">18.5,16,-35.5</point>
+        </teleport>
+    </stage>
+    <stage title="The Hoodoo">
+        <message>
+            <line>This is the `lHoodoo `rhill.</line>
+            <line>The Hoodoo is located on the `lSouth `rside of the map.</line>
+        </message>
+        <teleport>
+            <point angle="2.5,10,45.5">22.5,17,33.5</point>
+        </teleport>
+    </stage>
+    <stage title="Coal Mining">
+        <message>
+            <line>Players can mine for `lCoal `rhere.</line>
+            <line>Coal can be traded for `lGold `rto be used as currency.</line>
+        </message>
+        <teleport>
+            <point angle="89.5,14,28.5">81.5,20,14.5</point>
+        </teleport>
+    </stage>
+    <stage title="Kill rewards">
+        <message>
+            <line>Players will earn `l1 Gold Nugget `rper kill.</line>
+            <line>Gold Nuggets may also be picked up off the ground.</line>
+            <line>Gold Nuggets are used as currency.</line>
+        </message>
+        <teleport>
+            <point angle="-0.5,7,-35.5">-0.5,62,-89.5</point>
+        </teleport>
+    </stage>
+    <stage title="Trading">
+        <message>
+            <line>Here players can trade `lGold Nuggets `rfor better equipment.</line>
+            <line>There are shop keeps trading Weapons, Armor, Apples and Potions.</line>
+            <line>You may also `ltrade your Coal for Gold here`r.</line>
+        </message>
+        <teleport>
+            <point angle="91.5,11,-31.5">85.5,13,-35.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>HorizonDTM</name>
+<version>1.7.5</version>
+<objective>Destroy both of the enemy monuments.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="a6a99e23-34c4-4957-8974-b78b4da9ce7c"/> <!-- AntonyMo -->
+</contributors>
+<teams>
+    <team color="dark red" max="11">Red</team>
+    <team color="blue" max="11">Blue</team>
+</teams>
+<destroyables name="Left Monument" completion="100%">
+    <destroyable owner="blue" materials="wool:11" mode-changes="true">
+       <cylinder base="1460.5,3,-665.5" radius="1" height="6"/>
+    </destroyable>
+    <destroyable owner="red" materials="wool:14" mode-changes="true">
+       <cylinder base="1398.5,3,-577.5" radius="1" height="6"/>
+    </destroyable>
+</destroyables>
+<destroyables name="Right Monument" completion="100%">
+    <destroyable owner="blue" materials="wool:11" mode-changes="true">
+       <cylinder base="1398.5,3,-665.5" radius="1" height="6"/>
+    </destroyable>
+    <destroyable owner="red" materials="wool:14" mode-changes="true">
+       <cylinder base="1460.5,3,-577.5" radius="1" height="6"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="7m" material="stained glass" name="`eGlass Mode"/>
+</modes>
+<spawns>
+    <spawn team="red" kit="red" yaw="-180">
+        <point>1429.5,3,-544.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <point>1429.5,3,-698.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="1428,31,-623" max="1431,31,-620"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" attributes="generic.attackDamage:add:6.25">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="3" amount="8">snow ball</item>
+        <helmet color="000000">leather helmet</helmet>
+        <boots color="000000">leather boots</boots>
+        <leggings>iron leggings</leggings>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo" amplifier="2">slow digging</potion>
+        <potion duration="oo" amplifier="6">jump</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="allow-wool">
+        <allow>
+            <block>wool:11</block>
+            <block>wool:14</block>
+            <block>stained glass:11</block>
+            <block>stained glass:14</block>
+            <block>stained glass:0</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="allow-wool" block="deny-all" use="deny-beacon">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>off</timelock>
+<killreward>
+    <item amount="4">arrow</item>
+    <item damage="8229">potion</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>snow ball</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item damage="11">wool</item>
+    <item damage="14">wool</item>
+    <item>stained glass</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+</itemremove>
+</map>

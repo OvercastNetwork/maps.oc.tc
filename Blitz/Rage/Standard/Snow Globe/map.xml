@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Snow Globe</name>
+<version>1.0.3</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="2fa85349-2276-4850-b7b5-d18c4f4c8376"/> <!-- Solo_Runner -->
+</authors>
+<contributors>
+    <contributor uuid="acc5d8bf-09db-44d2-903a-4a01f8d82356" contribution="XML"/> <!-- sillybillypiggy -->
+</contributors>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<spawns>
+    <spawn team="blue" kit="blue">
+        <point yaw="-90">
+            <cuboid min="-2.5,17,-27.5" max="-4.5,17,-29.5"/>
+        </point>
+        <point yaw="90">
+            <cuboid min="5.5,17,-29.5" max="3.5,17,-27.5"/>
+        </point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-135">
+        <point yaw="90">
+            <cuboid min="5.5,17,30.5" max="3.5,17,28.5"/>
+        </point>
+        <point yaw="-90">
+            <cuboid min="-4.5,17,30.5" max="-2.5,17,28.5"/>
+        </point>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="-1,59,-3" max="3,59,3"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`71-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`71-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>apple</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<include src="blitz-global.xml"/>
+</map>

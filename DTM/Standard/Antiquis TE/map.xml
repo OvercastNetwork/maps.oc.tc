@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.4.0">
+<name>Antiquis TE</name>
+<version>1.1.0</version>
+<objective>Destroy the enemy's monument!</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+</authors>
+<teams>
+    <team id="red" color="dark red" min="4" max="16" max-overfill="20">Red</team>
+    <team id="blue" color="blue" min="4" max="16" max-overfill="20">Blue</team>
+</teams>
+<broadcasts>
+    <alert after="30s" every="5m">Team colored stained clay can be broken with a `lstone pickaxe!</alert>
+    <alert after="1m" every="5m">Green colored stained clay can be broken with an `liron pickaxe!</alert>
+    <alert after="1m30s" every="5m">The beacon can only be broken with a `ldiamond pickaxe!</alert>
+</broadcasts>
+<time>30m</time>
+<spawns>
+    <spawn team="blue">
+        <regions yaw="0">
+            <point>0.5,6,-67.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red">
+        <regions yaw="180">
+            <point>0.5,6,68.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cuboid min="-72,20,-2" max="-68,21,2"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" parents="speed-upgrade-kit,defensive-upgrade-kit">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" unbreakable="true">wood pickaxe</item>
+        <item slot="3" enchantment="durability:3">stone axe</item>
+        <item slot="4" amount="32">wood</item>
+        <item slot="8" amount="64">cooked beef</item>
+        <item slot="28">arrow</item>
+        <item slot="30" enchantment="durability:3">stone spade</item>
+        <potion duration="6" amplifier="4">damage resistance</potion>
+        <potion duration="6" amplifier="4">heal</potion>
+    </kit>
+    <kit id="kit-red" parents="spawn">
+        <helmet color="ff0000">leather helmet</helmet>
+        <chestplate color="ff0000" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <leggings color="ff0000">leather leggings</leggings>
+        <boots color="ff0000">leather boots</boots>
+    </kit>
+    <kit id="kit-blue" parents="spawn">
+        <helmet color="0000ff">leather helmet</helmet>
+        <chestplate color="0000ff" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <leggings color="0000ff">leather leggings</leggings>
+        <boots color="0000ff">leather boots</boots>
+    </kit>
+    <kit id="speed-upgrade-kit" filter="upgrade-speed" force="true">
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit id="defensive-upgrade-kit" filter="upgrade-defensive" force="true">
+        <item slot="4" amount="48">wood</item>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>stone axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>log</item>
+    <item>cobblestone</item>
+    <item>beacon</item>
+    <item>gravel</item>
+    <item>stained clay</item>
+    <item>dirt</item>
+    <item>flint</item>
+    <item>arrow</item>
+    <item>apple</item>
+    <item>smooth brick</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>stained clay</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>ink sack</item>
+</itemremove>
+<itemkeep>
+    <item>nether star</item>
+    <item>wood pickaxe</item>
+    <item>stone pickaxe</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>diamond pickaxe</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>ink sack</item>
+</itemkeep>
+<kill-rewards>
+    <kill-reward>
+        <item amount="1" name="`4Infused Shard">nether star</item>
+    </kill-reward>
+    <kill-reward filter="upgrade-shard">
+        <item amount="1" name="`4Infused Shard">nether star</item>
+    </kill-reward>
+    <kill-reward filter="upgrade-defensive">
+        <item amount="4">wood</item>
+    </kill-reward>
+</kill-rewards>
+<multitrade/>
+<timelock>on</timelock>
+<maxbuildheight>35</maxbuildheight>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <not id="only-some">
+        <material>iron_plate</material>
+    </not>
+    <any id="break-progress">
+        <all id="layer-1">
+            <any>
+                <material>stained_clay:11</material>
+                <material>stained_clay:14</material>
+            </any>
+            <any>
+                <holding><item unbreakable="true">stone_pickaxe</item></holding>
+                <holding><item unbreakable="true">iron_pickaxe</item></holding>
+                <holding><item unbreakable="true" enchantment="dig speed:1">diamond_pickaxe</item></holding>
+            </any>
+        </all>
+        <all id="layer-2">
+            <material>stained_clay:5</material>
+            <any>
+                <holding><item unbreakable="true">iron_pickaxe</item></holding>
+                <holding><item unbreakable="true" enchantment="dig speed:1">diamond_pickaxe</item></holding>
+            </any>
+        </all>
+        <all id="layer-3">
+            <material>beacon</material>
+            <holding><item unbreakable="true" enchantment="dig speed:1">diamond_pickaxe</item></holding>
+        </all>
+        <not>
+            <any>
+                <material>stained clay</material>
+                <material>beacon</material>
+            </any>
+        </not>
+    </any>
+    <carrying id="upgrade-speed">
+        <item 
+           material="ink sack"
+           damage="12"
+           name="`bSpeed upgrade"
+           lore="`dUpgrade(s):|`a - Gain `9Speed I `awhen you spawn!|`f|`7Keep this in your inventory to recieve the upgrade!"/>
+    </carrying>
+    <carrying id="upgrade-defensive">
+        <item 
+           material="ink sack" 
+           damage="10"
+           name="`6Defensive upgrade"
+           lore="`dUpgrade(s):|`a - Spawn with `616 `aextra planks!|`a - Get `64 `aplanks per kill!|`f|`7Keep this in your inventory to recieve the upgrade!"/>
+    </carrying>
+    <carrying id="upgrade-shard">
+        <item 
+           material="ink sack"
+           damage="5"
+           name="`cInfused Shard upgrade"
+           lore="`dUpgrade(s):|`a - Get an extra `4Infused Shard `aper kill!|`f|`7Keep this in your inventory to recieve the upgrade!"/>
+    </carrying>
+</filters>
+<regions>
+    <circle id="playable" center="0.5,0.5" radius="51"/>
+    <rectangle id="redSpawnReg" min="-31,52" max="32,84"/>
+    <rectangle id="blueSpawnReg" min="-31,-84" max="32,-52"/>
+    <cuboid id="blue-spawn-portal" min="-1,2,-69" max="2,4,-66"/>
+    <cuboid id="red-spawn-portal" min="-1,2,67" max="2,4,70"/>
+    
+    <union id="monuments">
+        <cuboid id="blueMonument" min="-2,7,-43" max="3,12,-38"/>
+        <cuboid id="redMonument" min="-2,7,39" max="3,12,44"/>
+    </union>
+    
+    <apply block="break-progress" region="redMonument" message="`cYou need a better pickaxe to break this!"/>
+    <apply block="break-progress" region="blueMonument" message="`cYou need a better pickaxe to break this!"/>
+    <apply block="never">
+        <region>
+            <negative>
+                <region id="playable"/>
+            </negative>
+        </region>
+    </apply>
+    <apply block="only-some"/>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region>
+            <region id="redSpawnReg"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy team's base!">
+        <region>
+            <region id="blueSpawnReg"/>
+        </region>
+    </apply>
+    <apply region="red-spawn-portal" kit="kit-red"/>
+    <apply region="blue-spawn-portal" kit="kit-blue"/>
+</regions>
+<portals>
+    <portal region="red-spawn-portal" x="@0.5" y="@11" z="@68.5" yaw="@0" sound="false"/>
+    <portal region="blue-spawn-portal" x="@0.5" y="@11" z="@-67.5" yaw="@180" sound="false"/>
+</portals>
+<renewables>
+    <renewable sound="false" rate="0.4"> <!-- sound is important to find hiding players -->
+        <region>
+            <cuboid min="-3,1,-3" max="4,5,4"/>
+        </region>
+        <renew-filter>
+            <material>gold ore</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<destroyables name="Monument" materials="stained_clay;beacon" completion="100%" show-progress="true">
+    <destroyable owner="red">
+        <region>
+            <region id="redMonument"/>
+        </region>
+    </destroyable>
+    <destroyable owner="blue">
+        <region>
+            <region id="blueMonument"/>
+        </region>
+    </destroyable>
+</destroyables>
+<crafting>
+    <shapeless>
+        <result unbreakable="true">wood_pickaxe</result>
+        <ingredient amount="1">nether_star</ingredient>
+    </shapeless>
+    <shapeless>
+        <result unbreakable="true">stone_pickaxe</result>
+        <ingredient amount="2">nether_star</ingredient>
+        <ingredient amount="1">wood_pickaxe</ingredient>
+    </shapeless>
+    <shapeless>
+        <result unbreakable="true">iron_pickaxe</result>
+        <ingredient amount="4">nether_star</ingredient>
+        <ingredient amount="1">stone_pickaxe</ingredient>
+    </shapeless>
+    <shapeless>
+        <result unbreakable="true" enchantments="dig_speed:1">diamond_pickaxe</result>
+        <ingredient amount="8">nether_star</ingredient>
+        <ingredient amount="1">iron_pickaxe</ingredient>
+    </shapeless>
+    
+    <!-- Allow of 2X2 crafting as well -->
+    <!-- Infused Plate -->
+    <shaped override="true">
+        <result name="`4Infused Plate" enchantments="durability:1" show-enchantments="false">iron_plate</result>
+        <shape>
+            <row>NN</row>
+            <row>NN</row>
+        </shape>
+        <ingredient symbol="N">nether_star</ingredient>
+    </shaped>
+    <shapeless>
+        <result name="`4Infused Shard" amount="4">nether_star</result>
+        <ingredient>iron_plate</ingredient>
+    </shapeless>
+    <shapeless>
+        <result unbreakable="true">iron_pickaxe</result>
+        <ingredient amount="1">iron_plate</ingredient>
+        <ingredient amount="1">stone_pickaxe</ingredient>
+    </shapeless>
+    <shapeless>
+        <result unbreakable="true" enchantments="dig_speed:1">diamond_pickaxe</result>
+        <ingredient amount="2">iron_plate</ingredient>
+        <ingredient amount="1">iron_pickaxe</ingredient>
+    </shapeless>
+</crafting>
+</map>

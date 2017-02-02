@@ -1,0 +1,187 @@
+<map proto="1.4.0">
+<name>Space Race: 1969</name>
+<version>1.0.0</version>
+<objective>Capture the enemies' flag.</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!--  NixaniaXi  -->
+</authors>
+<time>12m</time>
+<score>
+    <limit>3</limit>
+    <kills>0</kills>
+    <deaths>0</deaths>
+</score>
+<teams>
+    <team id="red" color="dark red" max="5">Red</team>
+    <team id="blue" color="blue" max="5">Blue</team>
+</teams>
+<respawn delay="5s" auto="true"/>
+<spawns>
+    <spawn team="red" filter="spawn1" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,8,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn2" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,56,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn3" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,96,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn4" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,136,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn5" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,176,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn6" kit="redKit">
+        <regions yaw="-90">
+            <block>52.5,216,63.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn1" kit="blueKit">
+        <regions yaw="90">
+            <block>76.5,8,-12.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn2" kit="blueKit">
+        <regions yaw="90">
+            <block>76.5,56,-12.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn3" kit="blueKit">
+       <regions yaw="90">
+            <block>76.5,96,-12.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn4" kit="blueKit">
+        <regions yaw="90">
+            <block>76.5,136,-12.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn5" kit="blueKit">
+        <regions yaw="90">
+            <block>76.5,176,-12.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn6" kit="blueKit">
+        <regions yaw="90">
+            <block>76.5,216,-12.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>64.5,18,25.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8" amount="12">arrow</item>
+        <chestplate enchantment="protection projectile:3" unbreakable="true">iron chestplate</chestplate>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="blue-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <potion duration="0" amplifier="10">slowness</potion>
+    </kit>
+</kits>
+<flags flag-proximity-metric="closest player">
+    <flag id="red-flag" name="Red Flag" owner="red" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+        <post pickup-filter="only-blue" recover-time="12s" respawn-time="10s">72.5,13,53.5</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="blue-flag-kit" drop-kit="reset-kit">
+        <post pickup-filter="only-red" recover-time="12s" respawn-time="10s">56.5,13,-2.5</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag"/>
+        <net region="blue-net" flag="red-flag"/>
+    </flags>
+</flags>
+<killreward>
+    <item>golden apple</item>
+    <item amount="12">arrow</item>
+</killreward>
+<itemremove>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <!-- Time Filters -->
+    <not id="spawn1">
+        <time>2m</time>
+    </not>
+    <all id="spawn2">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="spawn3">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="spawn4">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="spawn5">
+        <time>8m</time>
+        <not>
+            <time>10m</time>
+        </not>
+    </all>
+    <all id="spawn6">
+        <time>10m</time>
+    </all>
+</filters>
+<regions>
+    <cylinder id="blue-net" base="56.5,13,-2.5" radius=".5" height="2" />
+    <cylinder id="red-net" base="72.5,13,53.5" radius=".5" height="2" />
+    <apply block="never" region="everywhere"/>
+</regions>
+<timelock>true</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

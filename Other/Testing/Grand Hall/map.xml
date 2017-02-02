@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Grand Hall</name>
+<version>1.0.0</version>
+<objective>Capture both wools from the enemy team</objective>
+<authors>
+    <author uuid="b5f4323f-aec6-4066-9d9c-9970626b39ba" contribution="'Grand' helper"/> <!-- R3creat3 -->
+    <author uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Overall"/> <!-- xannallax33 -->
+    <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f" contribution="Roman Circles and walkways"/> <!-- kalikakitty -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="XML must-have"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="39866718-8e46-452d-9041-f2d720969e8d" contribution="Nicely done."/> <!-- WannaMineMyCraft -->
+    <contributor uuid="004fd6ef-cc2f-4e37-8550-ed3e96236f54" contribution="Hall design"/> <!-- BeyondFlames -->
+    <contributor uuid="6a9e554e-59f9-494b-b202-f12e7d5755b0" contribution="Hall interior"/> <!-- danielschroeder -->
+</contributors>
+<teams>
+    <team color="blue" max="64">Blue</team>
+    <team color="dark red" max="64">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <potion duration="20" amplifier="4">regeneration</potion>
+        <potion duration="20" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="90"><cylinder base="-905, 31, -860" radius="1" height="0"/></spawn>
+    <spawn team="red" kit="spawn" yaw="90"><cylinder base="-905,31,-544" radius="1" height="0"/></spawn>
+    <default yaw="90">-821, 77, -702</default>
+</spawns>
+<maxbuildheight>70</maxbuildheight>
+<timelock>off</timelock>
+<filters>
+    <filter name="only-blue" parents="deny-players deny-world">
+         <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-players deny-world">
+         <allow><team>red</team></allow>
+    </filter>
+    <filter name="deny-void">
+        <deny><void /></deny>
+    </filter>
+</filters>
+<regions>
+        <!-- Playable -->
+        <union name="playable">
+            <rectangle min="-961,-894" max="-850,-511" /><!-- Main area -->
+
+            <rectangle min="-1064,-652" max="-746,-629"/><!-- Red wool rooms -->
+            <rectangle name="orange-voidmatcher" min="-850,-629" max="-798,-579"/>
+            <rectangle name="purple-voidmatcher" min="-1012,-629" max="-960,-579"/>
+
+            <rectangle min="-1065,-776" max="-747,-753"/><!-- Blue wool rooms -->
+            <rectangle name="lime-voidmatcher" min="-1013,-826" max="-961,-776"/>
+            <rectangle name="yellow-voidmatcher" min="-851,-826" max="-799,-776"/>
+        </union>
+
+        <apply block="deny-all" message="You may not build outside of the playing lane!">
+            <negative><region name="playable"/></negative>
+        </apply>
+        <apply block="deny-void" message="You may not build outside of the playing lane!">
+            <region name="orange-voidmatcher"/>
+            <region name="purple-voidmatcher"/>
+            <region name="lime-voidmatcher"/>
+            <region name="yellow-voidmatcher"/>
+        </apply>
+
+        <!-- Blue wool protections -->
+        <apply block="only-blue" enter="only-blue" message="You may not enter or modify blue team's wool rooms!">
+            <rectangle min="-761,-652" max="-746,-629" /><!-- Orange wool room -->
+            <rectangle min="-1064,-652" max="-1049,-629" /><!-- Purple wool room -->
+        </apply>
+
+        <!-- Red wool protections -->
+        <apply block="only-red" enter="only-red" message="You may not enter or modify red team's wool rooms!">
+            <rectangle min="-1065,-776" max="-1050, -753"/><!-- Lime wool room -->
+            <rectangle min="-762,-776" max="-747,-753"/><!-- Yellow wool room -->
+        </apply>
+
+        <!-- Blue spawn protections -->
+        <apply enter="only-blue" message="You may not enter blue team's spawn!">
+            <cuboid name="blue-spawn" min="-920,30,-876" max="-891,36,-846" />
+        </apply>
+        <!-- Red spawn protections -->
+        <apply enter="only-red" message="You may not enter red team's spawn!">
+            <cuboid name="red-spawn" min="-920,30,-559" max="-891,36,-529" />
+        </apply>
+
+        <!-- Spawn protection -->
+        <apply block="deny-all" message="You may not modify the spawns">
+            <region name="red-spawn"/>
+            <region name="blue-spawn"/>
+        </apply>
+</regions>
+<tnt>
+<blockdamage>off</blockdamage>
+</tnt>
+<modifybowprojectile>
+<velocityMod>2.3</velocityMod>
+</modifybowprojectile>
+<wools>
+    <wools team="blue">
+        <wool color="orange"><!-- First one should be left to attackers -->
+            <block location="-905,32,-848"/>
+        </wool>
+        <wool color="purple">
+            <block location="-907,32,-848"/>
+        </wool>
+    </wools>
+    <wools team="red">
+        <wool color="lime"><!-- First one should be left to attackers -->
+            <block location="-905,32,-558"/>
+        </wool>
+        <wool color="yellow">
+            <block location="-907,32,-558"/>
+        </wool>
+    </wools>
+</wools>
+<itemrepair>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+</itemrepair>
+<itemremove>
+    <item>egg</item>
+    <item>log:2</item>
+    <item>wood</item>
+    <item>baked potato</item>
+    <item>arrow</item>
+    <item>leaves</item>
+    <item>empty map</item>
+    <item>seeds</item>
+    <item>red rose</item>
+</itemremove>
+</map>
+

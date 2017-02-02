@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Full Salvo</name>
+<version>1.0.3</version>
+<objective>Leak lava from the enemy's obsidian core.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<rules>
+</rules>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="4" enchantment="durability:3" name="Stale Rations" amount="32">bread</item>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="blue" yaw="90">
+            <cuboid min="43,25,-69" max="60,25,-62"/>
+        </spawn>
+        <spawn team="red" yaw="270">
+            <cuboid min="-59,25,63" max="-42,25,70"/>
+        </spawn>
+    </spawns>
+    <default yaw="180"><cylinder base="0,61,0" radius="5" height="0"/></default>
+</spawns>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not modify the bases!">
+        <cuboid name="red-tank" min="-63,22,56" max="-31,31,77"/>
+        <cuboid name="blue-tank" min="32,22,-76" max="64,31,-55"/>
+    </apply>
+    <apply block="deny-void" message="You may not build outside of the playing field!">
+        <complement>
+            <circle center="0,0" radius="150"/>
+            <union>
+                <circle center="14,-50" radius="15"/>
+                <circle center="-13,51" radius="15"/>
+            </union>
+        </complement>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn area!">
+        <cuboid min="-31,20,77" max="-64,oo,56"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn area!">
+        <cuboid min="32,20,-76" max="65,oo,-55"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="8">
+    <core team="blue"><cuboid min="11,26,-53" max="17,32,-47"/></core>
+    <core team="red"><cuboid min="-16,26,48" max="-10,32,54"/></core>
+</cores>
+<maxbuildheight>45</maxbuildheight>
+<itemremove>
+    <item>bread</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+</map>

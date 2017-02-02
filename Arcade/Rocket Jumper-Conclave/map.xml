@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Rocket Jumper">
+<name>Conclave</name>
+<objective>Complete two laps before the others!</objective>
+<gamemode>arcade</gamemode>
+<version>1.0.1</version>
+<authors>
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a" /> <!-- LArrowHead !-->
+</authors>
+<contributors>
+    <contributor contribution="XML Template" uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames !-->
+</contributors>
+<players max="8" min="4" max-overfill="8" />
+<score>
+    <limit>2</limit>
+    <box points="1" region="win-zone" />
+</score>
+<time>5m</time>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn auto="false" delay="0s" spectate="true" blackout="false" />
+<disabledamage>
+    <damage ally="true" self="false" enemy="true" other="false">block explosion</damage>
+    <damage>fall</damage>
+    <damage>entity attack</damage>
+</disabledamage>
+<spawns>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point yaw="-90">-38,53,74.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="-90">-38,53,74.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <clear-items/>
+        <boots unbreakable="true" locked="true">chainmail boots</boots>
+        <item slot="0" amount="64">tnt</item>
+        <item slot="1" amount="64">tnt</item>
+        <item slot="2" amount="64">tnt</item>
+        <item slot="3" amount="64">tnt</item>
+        <item slot="4" amount="64">tnt</item>
+        <item slot="5" amount="64">tnt</item>
+        <item slot="6" amount="64">tnt</item>
+        <item slot="7" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+        <potion duration="oo" amplifier="1">invisibility</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo" amplifier="20">resistance</potion>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="kill-kit" force="true">
+        <potion duration="oo" amplifier="1000">harm</potion>
+        <potion duration="0s" amplifier="1">resistance</potion>
+    </kit>
+<!-- CheckPoint Kits -->
+    <kit id="sack-kit-0" force="true">
+        <leggings locked="true" damage="0" name="0">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-1" force="true">
+        <leggings locked="true" damage="1" name="1">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-2" force="true">
+        <leggings locked="true" damage="2" name="2">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-3" force="true">
+        <leggings locked="true" damage="3" name="3">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-4" force="true">
+        <leggings locked="true" damage="4" name="4">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-leftfinal" force="true">
+        <leggings locked="true" damage="5" name="lf">ink sack</leggings>
+    </kit>
+    <kit id="sack-kit-rightfinal" force="true">
+        <leggings locked="true" damage="6" name="rf">ink sack</leggings>
+    </kit>
+</kits>
+<regions>
+    <cuboid id="win-zone" min="30.5,19,55" max="37.5,53,66.5" />
+    <above y="90" id="no-zone" />
+
+    <apply block="place-some" />
+    <apply enter="never" region="no-zone" />
+<!-- Some checkpoints are at different y to prevent glitching of the system. -->
+    <cuboid id="chckpnt-1" min="-14,0,72" max="-25.5,70,32" />
+    <cuboid id="chckpnt-2" min="10.5,43,43" max="-13,70,5" />
+    <cuboid id="chckpnt-3" min="-33.5,43,-8.5" max="-14,70,19" />
+    <cuboid id="chckpnt-4" min="-9,43,2.5" max="16,70,-13" />
+    <cuboid id="chckpnt-lf" min="25,0,43" max="74,70,-15" />
+    <cuboid id="chckpnt-rf" min="25,0,44" max="133,70,75" />
+
+    <apply kit="sack-kit-1" region="chckpnt-1" />
+    <apply kit="sack-kit-2" region="chckpnt-2" />
+    <apply kit="sack-kit-3" region="chckpnt-3" />
+    <apply kit="sack-kit-4" region="chckpnt-4" />
+    <apply kit="sack-kit-leftfinal" region="chckpnt-lf" />
+    <apply kit="sack-kit-rightfinal" region="chckpnt-rf" />
+    <apply kit="spawn-kit" region="win-zone"/>
+
+    <below id="prtl-0" y="23" />
+    <below id="prtl-1" y="23" />
+    <below id="prtl-2" y="23" />
+    <below id="prtl-3" y="23" />
+    <below id="prtl-4" y="23" />
+    <below id="prtl-lf" y="23" />
+    <below id="prtl-rf" y="23" />
+    <cuboid id="portal-left-final" min="18,53,-9" max="22,70,-14" />
+    <cuboid id="portal-right-final" min="18,53,4" max="22.5,70,9" />
+</regions>
+<filters>
+    <all id="place-some">
+        <cause>player</cause>
+        <any>
+            <material>tnt</material>
+        </any>
+    </all>
+    <not id="sack-0">
+        <any>
+            <wearing>
+                <item damage="0" name="0">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="1" name="1">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="2" name="2">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="3" name="3">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="4" name="4">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="5" name="lf">ink sack</item>
+            </wearing>
+            <wearing>
+                <item damage="6" name="rf">ink sack</item>
+            </wearing>
+        </any>
+    </not>
+    <wearing id="sack-1">
+        <item damage="1" name="1">ink sack</item>
+    </wearing>
+    <wearing id="sack-2">
+        <item damage="2" name="2">ink sack</item>
+    </wearing>
+    <wearing id="sack-3">
+        <item damage="3" name="3">ink sack</item>
+    </wearing>
+    <wearing id="sack-4">
+        <item damage="4" name="4">ink sack</item>
+    </wearing>
+    <wearing id="sack-lf">
+        <item damage="5" name="lf">ink sack</item>
+    </wearing>
+    <wearing id="sack-rf">
+        <item damage="6" name="rf">ink sack</item>
+    </wearing>
+</filters>
+<portals>
+    <portal filter="sack-0" region="prtl-0" yaw="@-90">
+        <destination>
+            <point>-38,53,74.5</point>
+        </destination>
+    </portal>
+    <portal filter="sack-1" region="prtl-1" yaw="@180">
+        <destination>
+            <point>-20,50,70</point>
+        </destination>
+    </portal>
+    <portal filter="sack-2" region="prtl-2" yaw="@-150">
+        <destination>
+            <point>-11,54,40</point>
+        </destination>
+    </portal>
+    <portal filter="sack-3" region="prtl-3" yaw="@180">
+        <destination>
+            <point>-23.5,54,13.5</point>
+        </destination>
+    </portal>
+    <portal filter="sack-4" region="prtl-4" yaw="@-90">
+        <destination>
+            <point>-8,56,-2.5</point>
+        </destination>
+    </portal>
+    <portal filter="sack-lf" region="prtl-lf" yaw="@0">
+        <destination>
+            <point>64.5,39,-1.5</point>
+        </destination>
+    </portal>
+    <portal filter="sack-rf" region="prtl-rf" yaw="@90">
+        <destination>
+            <point>115.5,39,53.5</point>
+        </destination>
+    </portal>
+    <portal region="portal-left-final" yaw="@0">
+      <destination>
+          <point>64.5,39,-1.5</point>
+      </destination>
+  </portal>
+  <portal region="portal-right-final" yaw="@90">
+    <destination>
+        <point>115.5,39,53.5</point>
+    </destination>
+</portal>
+    <portal region="win-zone" yaw="@-90">
+        <destination>
+            <point>-38,53,74.5</point>
+        </destination>
+    </portal>
+</portals>
+<item-mods>
+    <rule>
+        <match>
+            <material>tnt</material>
+        </match>
+        <modify>
+            <can-place-on>
+                <material damage="14">stained clay</material>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>1s</fuse>
+    <power>2</power>
+    <licensing>false</licensing>
+</tnt>
+<itemkeep>
+    <item>chainmail boots</item>
+    <item>ink sack</item>
+    <item>tnt</item>
+</itemkeep>
+</map>

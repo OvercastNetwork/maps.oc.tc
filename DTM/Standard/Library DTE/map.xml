@@ -1,0 +1,243 @@
+<map proto="1.4.1">
+<name>Library DTE</name>
+<version>1.0.1</version>
+<objective>Destroy 70% of the enemies side!</objective>
+<gamemode>dtm</gamemode>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" /> <!--   GoldenOre   -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+</rules>
+<teams>
+    <team id="blue" color="blue" max="22" max-overfill="26">Blue</team>
+    <team id="red" color="red" max="22" max-overfill="26">Red</team>
+</teams>
+<kits>
+    <kit id="default">
+        <effect duration="oo" amplifier="1">night vision</effect>
+    </kit>
+    <kit id="spawn" parents="default">
+        <item slot="0">diamond pickaxe</item>
+        <item slot="1" enchantment="arrow damage:1">bow</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="3" amount="64">redstone</item>
+        <item slot="21" amount="32">trap door</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="7" amount="64">tnt</item>
+        <item slot="34" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="25" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="16" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="31" amount="32">step</item>
+        <item slot="30" amount="16">diode</item>
+        <item slot="4" amount="32">nether fence</item>
+        <item slot="32" amount="16">lever</item>
+        <item slot="23" amount="16">redstone torch on</item>
+        <item slot="28" amount="48">arrow</item>
+        <item slot="2">water bucket</item>
+        <item slot="29">water bucket</item>
+        <item slot="20">water bucket</item>
+        <item slot="14" amount="16">ladder</item>
+        <item slot="13" amount="16">redstone block</item>
+        <item slot="22" amount="16">stone plate</item>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <item slot="6" amount="64" damage="11">stained clay</item>
+        <item slot="33" amount="64" damage="11">stained clay</item>
+        <item slot="24" amount="64" damage="11">stained clay</item>
+        <item slot="15" amount="64" damage="11">stained clay</item>
+        <helmet color="0066cc" material="leather helmet" />
+        <chestplate color="0066cc" material="leather chestplate" />
+        <leggings color="0066cc" material="leather leggings" />
+        <boots color="0066cc" material="leather boots" />
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <item slot="6" amount="64" damage="14">stained clay</item>
+        <item slot="33" amount="64" damage="14">stained clay</item>
+        <item slot="24" amount="64" damage="14">stained clay</item>
+        <item slot="15" amount="64" damage="14">stained clay</item>
+        <helmet color="cd0000" material="leather helmet" />
+        <chestplate color="cd0000" material="leather chestplate" />
+        <leggings color="cd0000" material="leather leggings" />
+        <boots color="cd0000" material="leather boots" />
+    </kit>
+</kits>
+<killreward>
+    <kit force="true">
+        <item amount="16">tnt</item>
+        <item amount="6">arrow</item>
+    </kit>
+</killreward>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="0">
+            <cylinder base="5,91,32" radius="0.5" height="0.5"/> 
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="-180">
+            <cylinder base="5,91,29" radius="0.5" height="0.5"/> 
+        </regions>
+    </spawn>
+    <default kit="default">
+        <regions yaw="90">
+            <cylinder base="40,87,30" radius="0.5" height="0.5"/> 
+        </regions>
+    </default>
+</spawns>
+<disabledamage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<filters>
+    <not id="all-but-tnt">
+        <all>
+            <cause>explosion</cause>
+            <material>tnt</material>
+        </all>
+    </not>
+    <not id="deny-blue-explosions">
+        <all>
+            <team>blue</team>
+            <cause>explosion</cause>
+        </all>
+    </not>
+    <not id="deny-red-explosions">
+    <all>
+        <team>red</team>
+        <cause>explosion</cause>
+    </all>
+    </not>
+    <not id="deny-bookshelves-and-glass">
+        <any>
+            <material>wood</material>
+            <material>wood:1</material>
+            <material>wood:2</material>
+            <material>sign</material>
+            <material>stained glass:12</material>
+            <material>stained glass:14</material>
+            <material>stained glass:11</material>
+        </any>
+    </not>
+</filters>
+<regions>
+    <negative id="outside-map">
+        <union id="map">
+            <cuboid id="red-bookcase" min="-26,8,56" max="35,89,71" />
+            <cuboid id="blue-bookcase" min="35,89,-10" max="-26,8,6" />
+        </union>
+    </negative>
+    <cuboid id="centre" min="-27,0,9" max="36,89,53" />   
+    <apply block="never" region="outside-map" message="You may not build outside of the map." />
+    <apply block-break="deny-bookshelves-and-glass" region="map" messgae="This block is unbreakable." />
+    <apply block="deny-blue-explosions" region="blue-bookcase" />
+    <apply block="deny-red-explosions" region="red-bookcase" />
+    <apply enter="never" region="centre" message="You may not cross the centre of the map." />
+</regions>
+    <destroyables name="Bookcase" completion="70%" repairable="false" show-progress="true">
+    <destroyable owner="blue" materials="stone;quartz block;stained clay:11;stained clay:9;stained clay:3;stained clay:15;stained clay:5;stained clay:8;wool:15;wool:14;wool:3;wool:9;diamond block;hard clay;coal block;grass;44:7;44:1;126:1">
+        <region>
+            <cuboid min="35,89,-10" max="-26,8,5" />
+        </region>
+    </destroyable>
+    <destroyable owner="red" materials="stone;quartz block;stained clay:1;stained clay:14;stained clay:4;stained clay:15;stained clay:5;stained clay:8;wool:15;wool:14;wool:3;wool:9;diamond block;hard clay;coal block;grass;44:7;44:1;126:1">
+        <region>
+            <cuboid min="-26,8,56" max="35,89,71" />
+        </region>
+    </destroyable>
+</destroyables>
+<portals>
+    <portal x="@-20.5" y="@75" z="@66.5" yaw="@-126">
+        <region>
+            <cuboid min="11,93,32" max="10,91,34" />
+        </region>
+    </portal>
+    <portal x="@30.5" y="@59" z="@66.5" yaw="@130">
+        <region>
+            <cuboid min="9,94,35" max="7,91,36" />
+        </region>
+    </portal>
+    <portal x="@2.5" y="@42" z="@67.5" yaw="@-180">
+        <region>
+            <cuboid min="6,93,36" max="4,91,35" />
+        </region>
+    </portal>
+    <portal x="@-6" y="@27" z="@67.5" yaw="@-180">
+        <region>
+            <cuboid min="3,93,36" max="1,91,35" />
+        </region>
+    </portal>
+    <portal x="@-0.5" y="@10" z="@66.5" yaw="@-180">
+        <region>
+            <cuboid min="-1,93,34" max="0,91,32" />
+        </region>
+    </portal>
+    <portal x="@30" y="@75" z="@-4.5" yaw="@45">
+        <region>
+            <cuboid min="-1,93,29" max="-0,91,27" />
+        </region>
+    </portal>
+    <portal x="@-20.5" y="@59" z="@-4.5" yaw="@45">
+        <region>
+            <cuboid min="1,93,25" max="3,91,26" />
+        </region>
+    </portal>
+    <portal x="@7.5" y="@42" z="@-6.5" yaw="@0">
+        <region>
+            <cuboid min="4,93,25" max="6,91,26" />
+        </region>
+    </portal>
+    <portal x="@16.5" y="@27" z="@-5.5" yaw="@0">
+        <region>
+            <cuboid min="7,93,25" max="10,91,26" />
+        </region>
+    </portal>
+    <portal x="@10.5" y="@10" z="@-5.5" yaw="@0">
+        <region>
+            <cuboid min="11,93,27" max="10,91,29" />
+        </region>
+    </portal>
+</portals>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>wool</item>
+    <item>quartz</item>
+    <item>dirt</item>
+    <item>clay</item>
+    <item>diamond block</item>
+    <item>coal block</item>
+    <item>step</item>
+    <item>stone</item>
+    <item>grass path</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>stone slab2</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>tnt</item>
+    <item>redstone comparator</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather boots</item>
+</itemremove>
+</map>

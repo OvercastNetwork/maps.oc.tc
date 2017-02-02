@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Garden of Tholos</name>
+<version>1.0.1</version>
+<gamemode>ctw</gamemode>
+<time results="objective">45m</time>
+<objective>Capture both of the enemy team's wools to win!</objective>
+<authors>
+    <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/> <!-- samthecat43 -->
+</authors>
+<contributors>
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Layout Design"/> <!-- Strangey -->
+</contributors>
+<teams>
+   <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
+   <team id="red-team" color="dark red" max="8" max-overfill="8">Red</team>
+</teams>
+<wools team="blue-team">
+    <wool color="yellow" location="334,21,-74" woolproximity-horizontal="true">
+        <monument>
+            <block>185,7,-74</block>
+        </monument>
+    </wool>
+    <wool color="lime" location="359,13,-91" woolproximity-horizontal="true">
+        <monument>
+            <block>189,7,-78</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red-team">
+    <wool color="purple" location="189,21,-73" woolproximity-horizontal="true">
+        <monument>
+            <block>334,7,-78</block>
+        </monument>
+    </wool>
+    <wool color="orange" location="164,13,-91" woolproximity-horizontal="true">
+        <monument>
+            <block>338,7,-74</block>
+        </monument>
+    </wool>
+</wools>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" material="bow">
+            <enchantment level="1">infinity</enchantment>
+        </item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true" material="iron pickaxe">
+            <enchantment level="1">dig speed</enchantment>
+        </item>
+        <item slot="31" unbreakable="true">iron spade</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" damage="1" amount="64">wood</item>
+        <item slot="5" damage="1" amount="64">wood</item>
+        <item slot="6" damage="1" amount="64">wood</item>
+        <item slot="7" amount="24">ladder</item>
+        <item slot="8" amount="24" damage="1">350</item>
+        <effect duration="3" amplifier="4">heal</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue-team" kit="spawn">
+        <regions yaw="-90">
+            <cuboid min="181,11,-92" max="178,10,-88"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn">
+        <regions yaw="90">
+            <cuboid min="342,11,-88" max="345,10,-92"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cuboid min="260,33,-138" max="264,33,-141"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply enter="only-blue" message="You may not enter this area!">
+        <region>
+            <union>
+                <rectangle min="195,-85" max="175,-96"/>
+                <rectangle min="365,-96" max="353,-84"/>
+                <cuboid min="329,18,-68" max="340,30,-79"/>
+            </union>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You may not enter this area!">
+        <region>
+            <union>
+                <cuboid min="183,30,-68" max="195,18,-79"/>
+                <rectangle min="329,-85" max="349,-96"/>
+                <rectangle min="170,-96" max="158,-84"/>
+            </union>
+        </region>
+    </apply>
+    <apply enter="never" message="You may not enter this area!">
+        <region>
+            <cuboid min="184,27,-68" max="194,27,-78"/>
+            <cuboid min="339,27,-79" max="329,27,-69"/>
+            <rectangle min="350,-99" max="351,-77"/>
+            <rectangle min="172,-99" max="173,-77"/>
+        </region>
+    </apply>
+    <apply block="never">
+        <region>
+            <union>
+                <rectangle min="195,-85" max="175,-96"/>
+                <rectangle min="329,-85" max="349,-96"/>
+                <rectangle min="185,-95" max="175,-85"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="only-red" use="only-red">
+        <region>
+            <rectangle min="170,-96" max="159,-85"/> <!-- orange -->
+            <cuboid min="184,30,-68" max="195,18,-79"/> <!-- purple -->
+        </region>
+    </apply>
+    <apply block="only-blue" use="only-blue">
+        <region>
+            <cuboid min="329,18,-68" max="340,oo,-79"/> <!-- yellow -->
+            <rectangle min="365,-85" max="354,-96"/> <!-- lime -->
+        </region>
+    </apply>
+    <apply block="bedrock" message="You may not modify the void area!">
+        <region>
+            <region id="novoid"/>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not modify the void area!">
+        <region>
+            <negative>
+                <union id="novoid">
+                    <rectangle min="307,-121" max="293,-102"/>
+                    <rectangle min="308,-82" max="293,-57"/>
+                    <rectangle min="302,-49" max="293,-38"/>
+                    <rectangle min="293,-121" max="231,-38"/>
+                    <rectangle min="222,-38" max="231,-49"/>
+                    <rectangle min="216,-57" max="231,-82"/>
+                    <rectangle min="217,-102" max="231,-121"/>
+                </union>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <not id="bedrock">
+        <material damage="7">stained clay</material>
+    </not>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+</filters>
+<kill-rewards>
+    <kill-reward>
+        <item>golden apple</item>
+    </kill-reward>
+</kill-rewards>
+<maxbuildheight>27</maxbuildheight>
+<respawn delay="5s" blackout="false"/>
+<crafting>
+    <disable>shield</disable>
+    <disable>minecart</disable>
+    <disable>boat</disable>
+    <disable>444</disable>
+</crafting>
+<itemremove>
+    <item>iron sword</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>bow</item>
+    <item>wood</item>
+    <item>sapling</item>
+    <item>seeds</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item damage="1">350</item>
+    <item>ladder</item>
+    <item damage="8">stained clay</item>
+    <item>155</item>
+    <item damage="2">155</item>
+    <item damage="7">44</item>
+    <item>156</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

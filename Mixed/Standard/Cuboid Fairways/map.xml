@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Cuboid Fairway</name>
+<version>1.1.1</version>
+<objective>Break the two endstone monuments and leak the core to win!</objective>
+<authors>
+    <author uuid="9700d226-f8bb-4b29-8819-48b1cfe2eadd"/> <!-- scorch1183 -->
+</authors>
+<contributors>
+    <contributor uuid="e37f18f1-117b-47db-8806-6d3a0854b518" contributation="Gameplay ideas"/> <!-- chickolympics -->
+    <contributor uuid="321ff02e-bcdc-4471-a95d-a85e3665f2eb" contributation="Initial map help"/> <!-- k3wldud3 -->
+    <contributor uuid="260004f0-996b-4539-ba21-df4ee6336b63" contributation="XML"/> <!-- Captain_Elliott -->
+</contributors>
+<teams>
+    <team color="yellow" max="24">Yellow</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="durability:3">diamond pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="30" enchantment="dig speed:1">iron spade</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="31" amount="64">wood</item>
+        <item slot="22" amount="64">wood</item>
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="32" amount="64">smooth brick</item>
+        <item slot="6" amount="16">glass</item>
+        <item slot="7" amount="8" name="`cRedstone" lore="`75 more are granted per kill.|`7Use this to make spread cannons!">redstone</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!" unbreakable="true">shears</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <potion duration="3" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings unbreakable="true" color="993333">leather leggings</leggings>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <helmet unbreakable="true" color="E5E533">leather helmet</helmet>
+        <leggings unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="yellow" angle="4.5,4,77.5">
+        <cuboid min="7,2,80" max="2,3,75"/>
+    </spawn>
+    <spawn team="red" kit="red" angle="4.5,4,-66.5">
+        <cuboid min="2,2,-69" max="7,3,-64"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="54,28,7" max="57,28,4"/>
+    </default>
+</spawns>
+<destroyables materials="ender stone;ender stone:1" completion="100%" show-progress="true" repairable="false" sparks="true">
+    <destroyable owner="red" name="Left Monument">
+        <sphere origin="28.5,14,-45.5" radius="2"/>
+    </destroyable>
+    <destroyable owner="red" name="Right Monument">
+        <sphere origin="-19.5,14,-45.5" radius="2"/>
+    </destroyable>
+    <destroyable owner="yellow" name="Left Monument">
+        <sphere origin="-19.5,14,56.5" radius="2"/>
+    </destroyable>
+    <destroyable owner="yellow" name="Right Monument">
+        <sphere origin="28.5,14,56.5" radius="2"/>
+    </destroyable>
+</destroyables>
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core team="yellow">
+        <cuboid min="2,13,43" max="7,18,38"/>
+    </core>
+    <core team="red">
+        <cuboid min="7,13,-32" max="2,18,-27"/>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode after="30m" material="glass" name="`7GLASS CORE MODE"/>
+</modes>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main-area" min="45,-107" max="-36,118"/>
+    <cuboid name="yellow-spawn" min="13,0,86" max="-4,oo,69"/>
+    <cuboid name="red-spawn" min="-4,0,-75" max="13,oo,-58"/>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not edit outside of the map!">
+        <negative>
+            <region name="main-area"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not edit the spawn island!">
+        <region name="yellow-spawn"/>
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter the enemy team's base!">
+        <region name="yellow-spawn"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy team's base!">
+        <region name="red-spawn"/>
+    </apply>
+</regions>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>gravel</block>
+        </filter>
+        <drops>
+            <item>gravel</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>ender stone</block>
+        </filter>
+        <replacement>ender stone:1</replacement>
+        <drops/>
+    </rule>
+    <rule>
+        <filter>
+            <block>ender stone:1</block>
+        </filter>
+        <replacement>air</replacement>
+        <drops/>
+    </rule>
+    <rule>
+        <filter>
+            <block>iron block</block>
+        </filter>
+        <drops>
+            <item>iron helmet</item>
+            <item enchantment="protection explosions:5;protection fall:1">iron chestplate</item>
+            <item>iron leggings</item>
+            <item>iron boots</item>
+        </drops>
+    </rule>
+</blockdrops>
+<killreward>
+    <item amount="5" name="`cRedstone" lore="`75 more are granted per kill.|`7Use this to make spread cannons!">redstone</item>
+</killreward>
+<itemremove>
+    <item>redstone</item>
+    <item>gravel</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>step</item>
+    <item>rails</item>
+    <item>carpet</item>
+    <item>ladder</item>
+    <item>stained clay</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>clay ball</item>
+    <item>redstone lamp off</item>
+    <item>redstone lamp on</item>
+    <item>ender stone</item>
+    <item>stone button</item>
+    <item>item frame</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>iron door</item>
+    <item>iron door block</item>
+    <item>redstone block</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>bow</tool>
+</toolrepair>
+<maxbuildheight>25</maxbuildheight>
+</map>

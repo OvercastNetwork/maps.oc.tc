@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Industrial Citadel</name>
+<version>1.5.2</version>
+<objective>Eliminate all opposing team members using agility and intelligence in unison!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Gamemode beta testing, server provider"/> <!-- pepsidawg00 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Gamemode beta testing"/> <!-- dinner1111 -->
+    <contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Gamemode beta testing"/> <!-- xannallax33 -->
+</contributors>
+<rules>
+    <rule>Do not attempt to teleport on to the logos!</rule>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:1" amount="16" name="`8`lGrappling Hook">ender pearl</item>
+        <item slot="1" enchantment="arrow knockback:1">bow</item>
+        <item slot="2" amount="16">bread</item>
+        <item slot="28" amount="32">arrow</item>
+        <chestplate enchantment="protection projectile:3">chainmail chestplate</chestplate>
+        <potion duration="3" amplifier="1">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn" yaw="0">
+        <cylinder base="-3,36,-52" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="spawn" yaw="180">
+        <cylinder base="-27,36,7" radius="2" height="0"/>
+    </spawn>
+    <default>
+        <point yaw="180">
+            <cuboid min="-59,1,-71" max="-55,1,-69"/>
+        </point>
+        <point yaw="0">
+            <cuboid min="-59,1,-68" max="-55,1,-66"/>
+        </point>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item amount="8">arrow</item>
+    <item enchantment="damage all:1" amount="2" name="`8`lGrappling Hook">ender pearl</item>
+</killreward>
+<toolrepair>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>ender pearl</item>
+    <item>bread</item>
+    <item>chainmail chestplate</item>
+    <item>arrow</item>
+</itemremove>
+<blitz>
+    <time>10m</time>
+    <lives>3</lives>
+    <title>Blitz: Grapple</title>
+</blitz>
+<timelock>on</timelock>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<include src="blitz-global.xml"/>
+</map>

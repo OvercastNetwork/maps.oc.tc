@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Boletum</name>
+<version>1.1.0</version>
+<objective>Leak the enemy's obsidian core and defend your own.</objective>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+    <author uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- jollee999 -->
+</authors>
+<teams>
+    <team color="gold" max="24" max-overfill="28">Orange</team>
+    <team color="green" max="24" max-overfill="28">Green</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:1">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64" damage="3">wood</item>
+        <item slot="5" amount="64" damage="3">wood</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="64">apple</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="30">stone spade</item>
+        <potion duration="5">heal</potion>
+        <potion duration="5">damage resistance</potion>
+        <boots unbreakable="true">iron boots</boots>
+        <helmet unbreakable="true">chainmail helmet</helmet>
+    </kit>
+    <kit name="orange" parents="teams">
+        <chestplate unbreakable="true" color="D87F33">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="D87F33">leather leggings</leggings>
+    </kit>
+    <kit name="green" parents="teams">
+        <chestplate unbreakable="true" color="7FCC19">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="7FCC19">leather leggings</leggings>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-enchant">
+        <deny>
+            <block>enchantment table</block>
+        </deny>
+    </filter>
+    <filter name="allow-leaves">
+        <allow>
+            <block>leaves</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <cylinder name="orange-core" base="-39.5,13,-7.5" radius="4" height="6"/>
+    <cylinder name="green-core" base="-169.5,13,-7.5" radius="4" height="6"/>
+    <apply block="deny-all" message="You may not edit the spawn area!">
+<!--  Orange Spawn  -->
+        <rectangle min="-210,-11" max="-236,-4"/>
+        <circle center="-226.5,-7.5" radius="17"/>
+<!--  Green Spawn  -->
+        <rectangle min="1,-4" max="27,-11"/>
+        <circle center="17.5,-7.5" radius="17"/>
+    </apply>
+    <apply block-break="deny-enchant" message="You may not break the enchanting table!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block-break="allow-leaves">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-void" message="You may not edit the void area">
+        <negative>
+            <rectangle min="-148,-69" max="-61,54"/>
+        </negative>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="orange" kit="orange">
+        <regions yaw="90">
+            <point>23.5,18.5,-7.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green" kit="green">
+        <regions yaw="-90">
+            <point>-232.5,18.5,-7.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <point>-103.5,51.5,-7.5</point>
+        </regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="orange" region="orange-core"/>
+    <core team="green" region="green-core"/>
+</cores>
+<modes>
+    <mode after="30m" material="emerald block" name="`aEMERALD `rCORE MODE"/>
+</modes>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone spade</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>apple</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>iron boots</item>
+    <item>chainmail helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>obsidian</item>
+    <item>emerald</item>
+    <item>exp bottle</item>
+</itemremove>
+<killreward>
+    <item>exp bottle</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="2" repeat="true"/>
+    </filter>
+    <item>golden apple</item>
+</killreward>
+<broadcasts>
+    <tip after="10s">`rUnder the Spawn Mushroom you can find an `3Enchanting Table `rand and in front of spawn 4 chests full of `1Defensive Equipment`r.</tip>
+    <tip after="20s">`rYou can find `aEmerald`r, `9Lapis `rand `0Coal `rores in the tunnels on the frontlines to gain experience.</tip>
+    <tip after="22s">`rYou also get a `3`lBottle 'o Enchanting `rafter killing someone.</tip>
+</broadcasts>
+<maxbuildheight>36</maxbuildheight>
+</map>

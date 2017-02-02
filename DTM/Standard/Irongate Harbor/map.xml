@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Irongate Harbor</name>
+<version>1.0.1</version>
+<objective>Destroy the enemy's two monuments</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0" contribution="Buildings, Concept and Map Design"/> <!-- koipen -->
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29" contribution="Aestheics, Buildings and Map Design"/> <!-- Eclipsen -->
+</authors>
+<contributors>
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Feedback"/> <!-- Timothee38 -->
+    <contributor contribution="Building Design and Inspiration">madness64</contributor>
+    <contributor uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Aesthetics and Feedback"/> <!-- EnarRikardz -->
+    <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Aesthetics and Feedback"/> <!-- _IQ -->
+    <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Post-processing help"/> <!-- Tywnis -->
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+</contributors>
+<teams>
+    <team color="blue" max="50" id="blue">Blue</team>
+    <team color="dark red" max="50" id="red">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">cooked fish</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="25" amount="64">arrow</item>
+        <item slot="26" amount="64">arrow</item>
+        <potion duration="7" amplifier="1">heal</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90">
+        <point>268.5,44,11.5</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-9.5,44,11.5</point>
+    </spawn>
+    <default yaw="180">
+        <point>131.5,77,72.5</point>
+    </default>
+</spawns>
+<filters>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build above 65 over the hillside">
+        <cuboid name="hill-limit" min="72,65,-50" max="189,oo,-2"/>
+    </apply>
+    <apply block="deny-all" message="You may not build above 45 blocks over the sea">
+        <cuboid name="sea-limit" min="91,45,-2" max="170,oo,62"/>
+    </apply>
+    <apply block="deny-all" message="You may not build above 60 in this area">
+        <complement>
+            <cuboid min="-oo,60,-oo" max="oo,oo,oo"/>
+            <region name="sea-limit"/>
+            <region name="hill-limit"/>
+            <cuboid name="below-hill" min="72,59,-50" max="189,66,-2"/>
+        </complement>
+    </apply>
+    <union name="spawns">
+        <cuboid name="blue-spawn" min="252,43,8" max="274,55,15"/>
+        <cuboid name="red-spawn" min="-15,43,8" max="6,55,15"/>
+    </union>
+    <apply block="deny-all" message="You may not edit the spawns">
+        <region name="spawns"/>
+    </apply>
+    <apply block="no-void" message="You may not build in the void.">
+        <negative>
+            <cuboid min="-999,0,-999" max="-998,1,-998"/>   
+        </negative>
+    </apply>
+</regions>
+<destroyables>
+    <destroyables name="North Monument" materials="obsidian">
+        <destroyable owner="blue">
+            <cuboid min="229,50,-12" max="230,54,-13"/>
+        </destroyable>
+        <destroyable owner="red">
+            <cuboid min="29,50,-12" max="30,54,-13"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="South Monument" materials="obsidian">
+        <destroyable owner="blue">
+            <cuboid min="222,47,32" max="223,51,33"/>
+        </destroyable>
+        <destroyable owner="red">
+            <cuboid min="36,47,32" max="37,51,33"/>
+        </destroyable>
+    </destroyables>
+</destroyables> 
+<mobs>
+    <filter>
+        <mob>horse</mob>
+    </filter>
+</mobs>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>flint</item>
+    <item>obsidian</item>
+    <item>cooked fish</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<multitrade/>
+<timelock>on</timelock>
+</map>

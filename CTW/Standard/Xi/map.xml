@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Xi</name>
+<version>1.1.6</version>
+<objective>Capture the wool located on the opposite side.</objective>
+<authors>
+    <author uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade"/> <!-- chle_ -->
+</authors>
+<teams>
+    <team id="cyan-team" color="dark aqua" max="32" max-overfill="35">Cyan</team>
+    <team id="purple-team" color="dark purple" max="32" max-overfill="35">Purple</team>
+</teams>
+<spawns>
+    <spawn team="cyan-team" kit="cyan-kit">
+        <regions yaw="180">
+            <cuboid min="307.5,40,-530.5" max="309.5,40,-532.5"/>
+        </regions>
+    </spawn>
+    <spawn team="purple-team" kit="purple-kit">
+        <regions yaw="0">
+            <cuboid min="309.5,40,-782.5" max="307.5,40,-780.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="395.5,42,-656.5" radius="1.5" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item unbreakable="true" slot="0" material="iron sword"/>
+        <item unbreakable="true" slot="1" enchantment="arrow infinite" material="bow"/>
+        <item unbreakable="true" slot="2" enchantment="dig speed:2;durability:3" material="iron pickaxe"/>
+        <item unbreakable="true" slot="3" enchantment="dig speed;durability:2" material="iron axe"/>
+        <item slot="4" amount="16" material="log 2"/>
+        <item slot="6" amount="24" damage="1" material="cooked fish"/>
+        <item slot="7" material="bucket"/>
+        <item slot="28" material="arrow"/>
+        <potion amplifier="100" duration="5">heal</potion>
+        <potion amplifier="100" duration="5">damage resistance</potion>
+        <potion amplifier="100" duration="5">regeneration</potion>
+    </kit>
+    <kit id="cyan-kit" parents="spawn-kit">
+        <item slot="5" damage="9" amount="32" material="stained glass"/>
+    </kit>
+    <kit id="purple-kit" parents="spawn-kit">
+        <item slot="5" damage="10" amount="32" material="stained glass"/>
+    </kit>
+</kits>
+<kill-rewards>
+    <kill-reward>
+        <filter>
+            <all>
+                <kill-streak count="2" repeat="true"/>
+            </all>
+        </filter>
+        <item material="GOLDEN_APPLE"/>
+    </kill-reward>
+    <kill-reward>
+        <item amount="12" material="WOOD" damage="4"/>
+    </kill-reward>
+</kill-rewards>
+<broadcasts>
+    <tip after="2s">`7There are 3 `bdiamond blocks `7behind your spawn!</tip>
+    <tip after="5s">`7You get 1 `egolden apple `7every 2 kills!</tip>
+</broadcasts>
+<filters>
+    <team id="only-cyan">cyan-team</team>
+    <team id="only-purple">purple-team</team>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <not id="no-chest">
+        <any>
+            <material>chest</material>
+        </any>
+    </not>
+    <not id="no-water">
+        <any>
+            <material>stationary water</material>
+            <material>water</material>
+            <material>water bucket</material>
+            <material>bucket</material>
+        </any>
+    </not>
+    <any id="allow-iron">
+        <material>iron block</material>
+        <material>diamond block</material>
+    </any>
+    <deny id="deny-iron">
+        <any>
+            <material>iron block</material>
+            <material>diamond block</material>
+        </any>
+    </deny>
+    <not id="nochest-cyan">
+        <any>
+            <team>cyan-team</team>
+            <material>chest</material>
+        </any>
+    </not>
+    <not id="nochest-purple">
+        <any>
+            <team>purple-team</team>
+            <material>chest</material>
+        </any>
+    </not>
+</filters>
+<regions>
+    <union id="spawns">
+        <circle id="purplespawn" center="308,-770.5" radius="25"/>
+        <circle id="cyanspawn" center="308,-542" radius="25"/>
+    </union>
+    <!--   Cyan Wool Rooms (Wools cyan need to get)   -->
+    <union id="cyanwoolrooms">
+        <rectangle id="redwool" min="260,-783.5" max="279,-801.5"/>
+        <rectangle id="orangewool" min="357,-783.5" max="337,-801.5"/>
+    </union>
+    <!--   Purple Wool Rooms (Wools purple need to get)   -->
+    <union id="purplewoolrooms">
+        <rectangle id="lightbluewool" min="357,-529" max="337,-511"/>
+        <rectangle id="bluewool" min="259,-529" max="279,-511"/>
+    </union>
+    <negative id="yes-void">
+        <union id="void-areas">
+            <rectangle min="265,-641" max="281,-671.5"/>
+            <rectangle min="297,-641" max="320,-671.5"/>
+            <rectangle min="335,-641" max="352,-671.5"/>
+            <rectangle min="301,-602" max="317,-579"/>
+            <rectangle min="300,-733" max="317,-710"/>
+        </union>
+    </negative>
+    <!--  applied  -->
+    <apply use="no-water" region="spawns"/>
+    <apply block="nochest-purple" region="cyanwoolrooms"/>
+    <apply block="nochest-cyan" region="purplewoolrooms"/>
+    <apply enter="only-cyan" use="only-cyan" message="You may not enter your own wool room!" region="cyanwoolrooms"/>
+    <apply enter="only-purple" use="only-purple" message="You may not enter your own wool room!" region="purplewoolrooms"/>
+    <apply block-break="allow-iron" block-place="never" region="cyanspawn" message="You may not modify the spawn!"/>
+    <apply block-break="allow-iron" block-place="never" region="purplespawn" message="You may not modify the spawn!"/>
+    <apply enter="only-cyan" region="cyanspawn" message="You may not enter the enemy spawn"/>
+    <apply enter="only-purple" region="purplespawn" message="You may not enter the enemy spawn"/>
+    <apply block="deny-void" message="You may not build in the void!" region="yes-void"/>
+</regions>
+<wools>
+    <wool team="cyan-team" color="red" location="260,9,-774">
+        <monument>
+            <block>307,8,-543</block>
+        </monument>
+    </wool>
+    <wool team="cyan-team" color="orange" location="357,9,-774">
+        <monument>
+            <block>309,8,-543</block>
+        </monument>
+    </wool>
+    <wool team="purple-team" color="light blue" location="357,9,-529">
+        <monument>
+            <block>309,8,-770.5</block>
+        </monument>
+    </wool>
+    <wool team="purple-team" color="blue" location="259,9,-529">
+        <monument>
+            <block>307,8,-770.5</block>
+        </monument>
+    </wool>
+</wools>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>log 2</item>
+    <item>stained glass</item>
+    <item>cooked fish</item>
+    <item>bucket</item>
+    <item>arrow</item>
+    <item>GOLDEN_APPLE</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>23</maxbuildheight>
+</map>

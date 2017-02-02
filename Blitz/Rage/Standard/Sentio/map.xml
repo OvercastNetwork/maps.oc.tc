@@ -1,0 +1,71 @@
+<map proto="1.3.6">
+<name>Sentio</name> 
+<version>1.0.1</version> 
+<objective>Eliminate the other team before the time is up!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>  <!--  rockymine  -->
+</authors>
+<teams>
+   <team color="red" max="12" max-overfill="14">Red</team>
+   <team color="blue" max="12" max-overfill="14">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="8">arrow</item>
+        <item slot="3" amount="8">apple</item>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="ff0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0000ff" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0000ff" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="0">
+            <block>-562.5,6,-228.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="180">
+            <block>-592.5,6,-74.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="155">
+            <block>-577.5,7.5,-151.5</block>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks" message="You may not modify blocks!">
+        <rectangle min="oo,oo" max="-oo,-oo"/>
+    </apply>
+</regions>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>apple</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<timelock>on</timelock>
+</map>

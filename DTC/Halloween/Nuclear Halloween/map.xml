@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Nuclear Halloween</name>
+<version>1.0.3</version>
+<objective>Destroy both of the enemy's cores located in the reactors!</objective>
+<authors>
+    <author uuid="3a3dab52-a356-4eed-a506-a9a7e53a3f68" contribution="Building, XML"/> <!-- Akorlith -->
+</authors>
+<contributors>
+    <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="XML"/> <!-- i2 -->
+    <contributor contribution="Haunting players">Herobine</contributor>
+</contributors>
+<cores material="obsidian" leak="3" name="Reactor">
+    <cores team="red">
+        <core name="Reactor A">
+            <cuboid min="-20,28,-198" max="-15,33,-202"/>
+        </core>
+        <core name="Reactor B">
+            <cuboid min="19,28,-198" max="14,33,-202"/>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="Reactor A">
+            <cuboid min="-18,28,198" max="-13,33,202"/>
+        </core>
+        <core name="Reactor B">
+            <cuboid min="21,28,198" max="16,33,202"/>
+        </core>
+    </cores>
+</cores>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:1">diamond pickaxe</item>
+        <item slot="3" enchantment="durability:1;dig speed:1">iron axe</item>
+        <item slot="4" amount="32" damage="1">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="7" amount="32">cooked fish</item>
+        <item slot="8" amount="8">jack o lantern</item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="9">damage resistance</potion>
+        <potion duration="10" amplifier="2">regeneration</potion>
+        <potion duration="1" amplifier="2">confusion</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <boots color="cd0000">leather boots</boots>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <boots color="0066cc">leather boots</boots>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>cooked fish</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>log</item>
+    <item>glass</item>
+    <item>jack o lantern</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>55</maxbuildheight>
+<regions>
+    <rectangle name="blue-spawn" min="26,168" max="44,147"/>
+    <rectangle name="red-spawn" min="-26,-168" max="-44,-147"/>
+    <negative name="play-area-negative">
+        <rectangle name="play-area" min="47,224" max="-47,-224"/>
+    </negative>
+    <apply block="deny-all" message="You may not place or break near spawn!">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not build outside the map!">
+        <region name="play-area-negative"/>
+    </apply>
+</regions>
+<spawns>
+    <spawns>
+        <spawn team="blue" kit="blue" yaw="90">
+            <cuboid min="38.5,17,153.5" max="40.5,17,155.5"/>
+            <cuboid min="38.5,17,163.5" max="40.5,17,165.5"/>
+        </spawn>
+        <spawn team="red" kit="red" yaw="270">
+            <cuboid min="-37.5,17,-152.5" max="-39.5,17,-154.5"/>
+            <cuboid min="-37.5,17,-162.5" max="-39.5,17,-164.5"/>
+        </spawn>
+    </spawns>
+    <default yaw="270">
+        <cuboid min="0,78,0" max="1,78,1"/>
+    </default>
+</spawns>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>§rThis map is a §c§lDestroy the Core §r(DTC) map.</line>
+            <line>The objective is to leak the lava from the §5cores§r.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="90">0.5,90,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="The Objective">
+        <message>
+            <line>This is where one of the §5cores §ris located.</line>
+            <line>You must use your §bpickaxe §rto leak the lava from the enemy team's core.</line>
+            <line>There is another §5identical core §rin the other reactor.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="-45">22.5,23,194.5</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Mines">
+        <message>
+            <line>This is where the main deposit of §8iron §ris located.</line>
+            <line>There are other smaller deposits closer to spawn.</line>
+            <line>§8Iron armor §rand §8iron swords §rcan give you the upper hand!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="90">22.5,40,135.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

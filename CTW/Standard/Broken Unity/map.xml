@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Broken Unity</name>
+<version>1.1.2</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="XML"/> <!-- khazhyk -->
+</contributors>
+<teams>
+    <team color="blue" max="75">Blue</team>
+    <team color="dark red" max="75">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="-0.5,29,161.5" radius="5" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder base="1.5,29,-160.5" radius="5" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="136.5,29,0.5" radius="4" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">glass</item>
+        <item slot="5" amount="64" damage="1">log</item>
+        <item slot="6">milk bucket</item>
+        <item slot="7" amount="64">cooked fish</item>
+    </kit>
+        <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-spider">
+        <block>web</block>
+    </filter>
+    <filter name="deny-lava">
+        <deny>
+            <block>lava</block>
+            <block>stationary lava</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- Blue wool rooms on red side -->
+    <circle center="-73.5,-134.5" radius="10.5" name="light-blue-wool-room"/>
+    <circle center="76.5,-134.5" radius="10.5" name="cyan-wool-room"/>
+    <circle center="-73.5,-134.5" radius="30.5" name="light-blue-wool-room-around"/>
+    <circle center="76.5,-134.5" radius="30.5" name="cyan-wool-room-around"/>
+    <!-- Blue monument on red side -->
+    <circle center="51.5,-39.5" radius="20" name="blue-monument"/>
+    <!-- Blue spawn -->
+    <rectangle min="-30,151" max="29,191" name="blue-spawn-room"/>
+    <!-- Blue lower spawn -->
+    <cuboid min="-17,5,133" max="16,10,141" name="blue-lower-spawn"/>
+    <!-- Blue wool rooms on blue side -->
+    <circle center="74.5,135.5" radius="10.5" name="magenta-wool-room"/>
+    <circle center="-75.5,135.5" radius="10.5" name="pink-wool-room"/>
+    <circle center="74.5,135.5" radius="30.5" name="magenta-wool-room-around"/>
+    <circle center="-75.5,135.5" radius="30.5" name="pink-wool-room-around"/>
+    <!-- Red monument on blue side -->
+    <circle center="-50.5,40.5" radius="20" name="red-monument"/>
+    <!-- Red spawn -->
+    <rectangle min="-28,-190" max="31,-150" name="red-spawn-room"/>
+    <!-- Red lower spawn -->
+    <cuboid min="-15,5,-140" max="18,10,-132" name="red-lower-spawn"/>
+    <!-- Playable -->
+    <rectangle min="-122,-150" max="123,151" name="playable"/>
+    <!-- Blue protections -->
+    <apply enter="only-blue" message="You may not enter blue's wool rooms!">
+        <region name="light-blue-wool-room"/>
+        <region name="cyan-wool-room"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue's wool monument!">
+        <region name="blue-monument"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue's spawn!">
+        <region name="blue-spawn-room"/>
+        <region name="blue-lower-spawn"/>
+    </apply>
+    <apply block="only-blue only-iron" message="You can only break iron blocks in your base!">
+        <region name="blue-spawn-room"/>
+        <region name="blue-lower-spawn"/>
+    </apply>
+    <!-- Red protections -->
+    <apply enter="only-red" message="You may not enter red's wool rooms!">
+        <region name="magenta-wool-room"/>
+        <region name="pink-wool-room"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter red's wool monument!">
+        <region name="red-monument"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter red's spawn!">
+        <region name="red-spawn-room"/>
+        <region name="red-lower-spawn"/>
+    </apply>
+    <apply block="only-red only-iron" message="You can only break iron blocks in your base!">
+        <region name="red-spawn-room"/>
+        <region name="red-lower-spawn"/>
+    </apply>
+    <!-- Wool Protections -->
+    <apply block="only-spider" message="You can only break webs in the wool rooms!">
+        <region name="light-blue-wool-room"/>
+        <region name="cyan-wool-room"/>
+        <region name="magenta-wool-room"/>
+        <region name="pink-wool-room"/>
+    </apply>
+    <apply block="deny-lava" message="You cannot place lava near the wool rooms!">
+        <complement>
+            <union>
+                <region name="light-blue-wool-room-around"/>
+                <region name="cyan-wool-room-around"/>
+                <region name="magenta-wool-room-around"/>
+                <region name="pink-wool-room-around"/>
+            </union>
+            <union>
+                <region name="light-blue-wool-room"/>
+                <region name="cyan-wool-room"/>
+                <region name="magenta-wool-room"/>
+                <region name="pink-wool-room"/>
+            </union>
+        </complement>
+    </apply>
+    <!-- Playable -->
+    <apply enter="deny-all" message="You have reached the edge of the playing field!">
+        <negative>
+            <region name="playable"/>
+            <region name="red-spawn-room"/>
+            <region name="blue-spawn-room"/>
+        </negative>
+    </apply>
+</regions>
+<portals>
+    <!-- Portal in red base -->
+    <portal y="-22" z="16"><!-- Goes to lower red base -->
+        <cuboid min="-1,28,-153" max="4,34,-152"/>
+    </portal>
+    <!-- Portal in lower red base -->
+    <portal y="22" z="-16" filter="only-red"><!-- Goes to upper red base -->
+        <cuboid min="-1,7,-139" max="4,11,-138"/>
+    </portal>
+    <!-- Portal in blue base -->
+    <portal y="-22" z="-16"><!-- Goes to lower blue base -->
+        <cuboid min="-3,28,153" max="2,34,154"/>
+    </portal>
+    <!-- Portal in lower blue base -->
+    <portal y="22" z="16" filter="only-blue"><!-- Goes to upper blue base -->
+        <cuboid min="-3,7,139" max="2,11,140"/>
+    </portal>
+</portals>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>milk bucket</item>
+    <item>cooked fish</item>
+    <item>seeds</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>string</item>
+    <item>arrow</item>
+</itemremove>
+<maxbuildheight>23</maxbuildheight>
+<wools>
+    <wools team="red">
+        <wool color="magenta">
+            <block location="-52,20,40"/>
+        </wool>
+        <wool color="pink">
+            <block location="-50,20,40"/>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="light blue">
+            <block location="50,20,-40"/>
+        </wool>
+        <wool color="cyan">
+            <block location="52,20,-40"/>
+        </wool>
+    </wools>
+</wools>
+</map>

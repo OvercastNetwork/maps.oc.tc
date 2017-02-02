@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Mutiny</name>
+<version>3.1</version>
+<objective>Destroy the enemy's core.</objective>
+<authors>
+    <author uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Map design, XML and aesthetics"/> <!-- lonelyhornet -->
+</authors>
+<teams>
+    <team color="blue" max="45">Blue</team>
+    <team color="dark red" max="45">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <helmet>leather helmet</helmet>
+        <chestplate enchantment="protection environmental:1">leather chestplate</chestplate>
+        <leggings>leather leggings</leggings>
+        <boots>leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0"><cylinder base="-298.4,5.0,-57.36" radius="3" height="0"/></default>
+    <spawn team="blue" yaw="0" kit="spawn">
+        <cylinder base="-202.46,15.0,-118.47" radius="2" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="0" kit="spawn">
+        <cylinder base="-203.20,14.0,18.0" radius="2" height="0"/>
+    </spawn>
+</spawns>
+<timelock>on</timelock>
+<maxbuildheight>64</maxbuildheight>
+<cores material="obsidian" leak="5">
+    <core team="blue"><cuboid min="-154,21,-120" max="-147,28,-113"/></core>
+    <core team="red"><cuboid min="-154,21,15" max="-147,28,22"/></core>
+</cores>
+</map>

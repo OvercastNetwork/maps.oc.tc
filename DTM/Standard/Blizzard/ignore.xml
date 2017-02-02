@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Blizzard</name>
+<version>1.0.1</version>
+<objective>Destroy the other team's monuments in order to win.</objective>
+<include src="tutorial.xml"/>
+<authors>
+   <author contribution="Main Building and Terraforming">lonelyhornet</author>
+   <author contribution="Concept and Tech help">xXFracXx</author>
+   <author contribution="Design, Feedback and Support">PlasmaCross</author>
+   <author contribution="Design, Concept and Terraforming">Tywnis</author>
+</authors>
+<rules>
+   <rule>Do not block glitch!</rule>
+</rules>
+<contributors>
+   <contributor contribution="Hosting, Tech Help and Feedback">ElectroidFilms</contributor>
+   <contributor contribution="XML, Feedback and Support">ItsMiiOlly</contributor>
+   <contributor contribution="Building and Feedback">Articray</contributor>
+   <contributor contribution="Design">Winarve</contributor>
+   <contributor contribution="Design">Vetches</contributor>
+   <contributor contribution="Design">erwintrude</contributor>
+   <contributor contribution="Help and Support">The Orange Sunglasses Build Team</contributor>
+</contributors>
+<teams>
+   <team color="dark purple" max="50" max-overfill="55">Purple</team>
+   <team color="dark aqua" max="50" max-overfill="55">Cyan</team>
+</teams>
+<kits>
+   <kit name="spawn">
+      <item slot="0" name="`7Hatchet" lore="`eDMG: 1-3">stone axe</item>
+      <item slot="1" name="`7Pickaxe" lore="`eFor monument(s)">iron pickaxe</item>
+      <item slot="2" name="`7Minor Healing Potion" damage="8261">potion</item>
+      <item slot="3" amount="32">cooked beef</item>
+      <item slot="8">emerald</item>
+      <chestplate name="`7Chain Chestplate" lore="`eProt: 4-5">chainmail chestplate</chestplate>
+      <potion duration="10" amplifier="1">heal</potion>
+   </kit>
+   <kit name="purple" parents="spawn">
+      <leggings color="7f3fb2" name="`7Leather Breeches" lore="`eProt: 3-4">leather leggings</leggings>
+      <boots color="7f3fb2" name="`7Leather Galoshes" lore="`eProt: 2-3">leather boots</boots>
+   </kit>
+   <kit name="cyan" parents="spawn">
+      <leggings color="4c7f99" name="`7Leather Breeches" lore="`eProt: 3-4">leather leggings</leggings>
+      <boots color="4c7f99" name="`7Leather Galoshes" lore="`eProt: 2-3">leather boots</boots>
+   </kit>
+</kits>
+<destroyables name="Monument A" materials="diamond block" completion="100%">
+   <destroyable name="Monument A" owner="cyan">
+      <cuboid min="-39,29,622" max="-39,27,622"/>
+   </destroyable>
+   <destroyable name="Monument A" owner="purple">
+      <cuboid min="-35,15,509" max="-33,13,511"/>
+   </destroyable>
+   <destroyable name="Monument B" owner="cyan">
+      <cuboid min="17,13,591" max="19,15,589"/>
+   </destroyable>
+   <destroyable name="Monument B" owner="purple">
+      <cuboid min="23,27,478" max="23,29,478"/>
+   </destroyable>
+</destroyables>
+<spawns>
+   <spawn team="cyan" kit="cyan" yaw="180">
+      <cylinder base="-8,30,676" radius="4" height="1"/>
+   </spawn>
+   <spawn team="purple" kit="purple" yaw="0">
+      <cylinder base="-8,30,424" radius="4" height="1"/>
+   </spawn>
+   <default yaw="90">
+      <cylinder base="67,46,550" radius="3" height="1"/>
+   </default>
+</spawns><!-- Disable until fixed
+<modifybowprojectile>
+   <projectile>Snowball</projectile>
+   <velocityMod>2.0</velocityMod>
+</modifybowprojectile>-->
+<mobs>
+   <filter>
+      <spawn>spawner</spawn>
+   </filter>
+</mobs>
+<regions>
+   <circle name="cyan-spawnarea" center="-7.5,679.5" radius="25"/>
+   <circle name="purple-spawnarea" center="-7.5,421.5" radius="25"/>
+   <apply enter="cyan-only" message="Don't enter the enemy spawn area!">
+      <region name="cyan-spawnarea"/>
+   </apply>
+   <apply enter="purple-only" message="Don't enter the enemy spawn area!">
+      <region name="purple-spawnarea"/>
+   </apply>
+</regions>
+<filters>
+   <filter name="blocks-only" parents="deny-all">
+      <allow>
+         <block>diamond block</block>
+         <block>glowstone</block>
+      </allow>
+   </filter>
+   <filter name="cyan-only" parents="deny-players">
+      <allow>
+         <team>cyan</team>
+      </allow>
+   </filter>
+   <filter name="purple-only" parents="deny-players">
+      <allow>
+         <team>purple</team>
+      </allow>
+   </filter>
+</filters>
+<regions>
+   <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+   <apply block="blocks-only">
+      <region name="all"/>
+   </apply>
+</regions>
+<portals>
+   <portal x="@-62" y="@23" z="@625">
+      <block>-80,21,628</block>
+   </portal>
+   <portal x="@46" y="@23" z="@475">
+      <block>65,21,472</block>
+   </portal>
+</portals>
+<itemremove>
+   <item>diamond block</item>
+   <item>glowstone</item>
+   <item>arrow</item>
+   <item>bow</item>
+   <item>stone sword</item>
+   <item>iron axe</item>
+   <item>iron sword</item>
+   <item>gold sword</item>
+   <item>diamond sword</item>
+   <item>cooked beef</item>
+   <item>iron leggings</item>
+   <item>iron chestplate</item>
+   <item>iron boots</item>
+   <item>iron leggings</item>
+   <item>diamond leggings</item>
+   <item>diamond chestplate</item>
+   <item>348</item>
+   <item>glass bottle</item>
+</itemremove>
+<toolrepair>
+   <tool>iron pickaxe</tool>
+   <tool>stone axe</tool>
+   <tool>chainmail chestplate</tool>
+   <tool>leather leggings</tool>
+   <tool>leather boots</tool>
+</toolrepair>
+<killreward>
+   <item amount="1">emerald</item>
+</killreward>
+<timelock>on</timelock>
+<friendlyfirerefund>on</friendlyfirerefund>
+<multitrade />
+<tutorial>
+   <stage title="Blizzard - Gear">
+      <message>
+         <line>This is a `c50v50`r Gear map based in a snowy land.</line>
+         <line>In order to win, you must `4destroy`r the other team's two `bdiamond`r monuments</line>
+      </message>
+      <teleport>
+         <point pitch="10" yaw="90">56,76,550</point>
+      </teleport>
+   </stage>
+   <stage title="Spawn and Villagers">
+      <message>
+         <line>This is where your team will spawn when the `agame starts`r.</line>
+         <line>You can also `9trade`r with the villagers using `aemeralds`r, which can be used to buy better equipment.</line>
+         <line>`aEmeralds`r are awarded when you `4kill`r someone.</line>
+      </message>
+      <teleport>
+         <point pitch="10" yaw="-125">-12,33,679</point>
+      </teleport>
+   </stage>
+   <stage title="The Forstbane Cave">
+      <message>
+         <line>This is the `b`lFrostbone Cave`r, located on the side of the mountain near one of the monuments.</line>
+         <line>Here lies the `4boss`r and his `2minions`r.</line>
+         <line>`cKill`r the boss and you will recieve a `6special reward`r!</line>
+      </message>
+      <teleport>
+         <point yaw="60">-56,24,622</point>
+      </teleport>
+   </stage>
+   <stage title="Monuments">
+      <message>
+         <line>This is the `bmonument`r. Monuments can be found by `9`lfollowing the beacon light`r.</line>
+         <line>`cDestroy`r both of the other team's `bmonuments`r in order to win!</line>
+      </message>
+      <teleport>
+         <point pitch="15" yaw="-133">14,16,594</point>
+      </teleport>
+   </stage>
+</tutorial>
+</map>
+

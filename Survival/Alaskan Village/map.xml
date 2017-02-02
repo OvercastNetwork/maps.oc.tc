@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="Survival Games">
+<include src="survival-games.xml"/>
+<name>Alaskan Village</name>
+<version>1.0.0</version>
+<spawns>
+    <spawns exclusive="true" spread="true">
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-7.5,37.0,3.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-6.5,37.0,11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-3.5,37.0,16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-0.5,37.0,20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>3.5,37.0,23.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>8.5,37.0,26.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>16.5,37.0,27.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>24.5,37.0,26.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>29.5,37.0,23.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>33.5,37.0,20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>36.5,37.0,16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>39.5,37.0,11.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>40.5,37.0,3.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>39.5,37.0,-4.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>36.5,37.0,-9.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>33.5,37.0,-13.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>29.5,37.0,-16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>24.5,37.0,-19.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>16.5,37.0,-20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>8.5,37.0,-19.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>3.5,37.0,-16.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-0.5,37.0,-13.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-3.5,37.0,-9.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="16.5,38.0,3.5">
+                <point>-6.5,37.0,-4.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions angle="16.5,38.0,3.5">
+            <point>-7.5,37.0,3.5</point>
+        </regions>
+    </default>
+</spawns>
+<world-borders center="16.5,3.5">
+    <world-border size="450"/>
+    <world-border size="70" after="2m" duration="10m"/>
+</world-borders>
+</map>

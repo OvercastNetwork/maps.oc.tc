@@ -1,0 +1,73 @@
+<map proto="1.4.0">
+<name>Pompeii</name>
+<slug>pompeii_5x5</slug>
+<version>1.0.0</version>
+<objective>kill as many other players as you can in 5 minutes!</objective>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" />
+    <!--    GoldenOre    -->
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" />
+    <!-- _3each -->
+</authors>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true" locked="true">stone sword</item>
+        <item slot="1" unbreakable="true" locked="true">bow</item>
+        <item slot="8" amount="8">arrow</item>
+        <effect duration="3s" amplifier="10">resistance</effect>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">gold chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<players min="3" max="5" max-overfill="5" show-name-tags="false" />
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-180">63.5,47,58.5</point>
+            <point yaw="-80">-4.5,20,23.5</point>
+            <point yaw="-70">36.5,6,-1.5</point>
+            <point yaw="180">61.5,22,-14.5</point>
+            <point yaw="45">88.5,29,-47.5</point>
+            <point yaw="166">29.5,42,62.5</point>
+            <point yaw="180">88.5,34,44.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <region>
+            <point yaw="180">61.5,22,-14.5</point>
+        </region>
+    </default>
+</spawns>
+<regions>
+    <apply block="never" />
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="5s" blackout="true" />
+<killreward>
+    <kit force="true">
+        <potion duration="4" amplifier="3">regeneration</potion>
+        <item amount="4">arrow</item>
+    </kit>
+</killreward>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

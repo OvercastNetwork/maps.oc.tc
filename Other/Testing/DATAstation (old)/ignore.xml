@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="continuity-tnt.xml"/>
+<include src="tutorial.xml"/>
+<name>DATAstation</name>
+<version>1.4.1</version>
+<objective>Destroy 60% of the enemy's battle ship!</objective>
+<authors>
+    <author>ElectroidFilms</author>
+</authors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="yellow" max="24">Yellow</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<spawns>
+    <spawn team="yellow" kit="yellow" yaw="180">
+        <cuboid min="0,53,46" max="-10,54,48"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="-11,53,-103" max="-1,54,-101"/>
+    </spawn>
+    <default kit="obs" yaw="-90">
+        <point>-66.5,65,-27.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="tnt-inventory" force="true">
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3;oxygen:1">chainmail chestplate</chestplate>
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">heal</potion>
+        <potion duration="oo" amplifier="-5">jump</potion>
+        <foodlevel>6</foodlevel>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <helmet damage="4">stained clay</helmet>
+        <item slot="3" damage="4" amount="64">stained clay</item>
+        <item slot="30" damage="4" amount="64">stained clay</item>
+        <item slot="21" damage="4" amount="64">stained clay</item>
+        <item slot="12" damage="4" amount="64">stained clay</item>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet damage="14">stained clay</helmet>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="12" damage="14" amount="64">stained clay</item>
+    </kit>
+    <kit name="velocity" force="true">
+        <potion duration="oo">speed</potion>
+        <potion duration="oo">fast digging</potion>
+        <potion duration="oo">water breathing</potion>
+        <potion duration="0" amplifier="0">heal</potion>
+        <potion duration="0" amplifier="0">damage resistance</potion>
+        <potion duration="0" amplifier="0">jump</potion>
+        <foodlevel>20</foodlevel>
+    </kit>
+    <kit name="haste" force="true">
+        <potion duration="oo" amplifier="20">fast digging</potion>
+        <potion duration="0" amplifier="0">speed</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-tnt-red">
+        <not>
+            <all>
+                <team>red</team>
+                <any>
+                    <block>tnt</block>
+                    <block>dispenser</block>
+                </any>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-tnt-yellow">
+        <not>
+            <all>
+                <team>yellow</team>
+                <any>
+                    <block>tnt</block>
+                    <block>dispenser</block>
+                </any>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="middle" min="-oo,-29" max="oo,-26"/>
+    <union name="spawns">
+        <cuboid name="yellow-spawn" min="6,50,43" max="-16,oo,51"/>
+        <cuboid name="red-spawn" min="-17,50,-98" max="5,oo,-106"/>
+        <cylinder name="obs-spawn" base="-66.5,64,-27.5" radius="5" height="oo"/>
+    </union>
+    <union name="ships">
+        <cuboid name="red-ship" min="-47,0,-69" max="35,60,-50"/>
+        <cuboid name="yellow-ship" min="36,0,14" max="-46,60,-5"/>
+    </union>
+    <union name="velocity-pads">
+        <cuboid name="yellow-pad" min="5,53,43" max="-15,57,45"/> // -z
+        <cuboid name="red-pad" min="-16,53,-98" max="4,57,-100"/> // +z
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="`eYou may not edit outside the main area!">
+        <negative>
+            <region name="ships"/>
+        </negative>
+    </apply>
+    <apply kit="haste">
+        <region name="middle"/>
+    </apply>
+    <apply block-place="deny-tnt-red" message="`aYou can't place tnt on the enemy ship, but you have more haste!">
+        <region name="yellow-ship"/>
+    </apply>
+    <apply block-place="deny-tnt-yellow" message="`aYou can't place tnt on the enemy ship, but you have more haste!">
+        <region name="red-ship"/>
+    </apply>
+    <apply enter="deny-all" message="`eYou may not enter the observers's spawn area!">
+        <region name="obs-spawn"/>
+    </apply>
+    <apply enter="only-yellow" message="`eYou may not enter the enemy's spawn area!">
+        <region name="yellow-spawn"/>
+    </apply>
+    <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply velocity="@0,3.6,-15.75" kit="velocity">
+        <region name="yellow-pad"/>
+    </apply>
+    <apply velocity="@0,3.6,15.75" kit="velocity">
+        <region name="red-pad"/>
+    </apply>
+</regions>
+<destroyables name="Ship" show-progress="true" completion="60%" repairable="true">
+    <destroyable materials="stained clay:4;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;iron door block:10;iron door block:0;iron door block:4;iron door block:2;iron door block:8;iron door block:3;iron door block:6;lever:3;lever:11;lever:4;lever:12;redstone wire;gold block;ladder:2;ladder:3;stained clay:6;stained clay:11;stained clay:10;stained clay:5;ladder:5;stone button" owner="yellow">
+        <region name="yellow-ship"/>
+    </destroyable>
+    <destroyable materials="stained clay:14;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;iron door block:10;iron door block:0;iron door block:4;iron door block:2;iron door block:8;iron door block:3;iron door block:6;lever:3;lever:11;lever:4;lever:12;redstone wire;gold block;ladder:2;ladder:3;stained clay:6;stained clay:11;stained clay:10;stained clay:5;ladder:5;stone button" owner="red">
+        <region name="red-ship"/>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>iron plate</item>
+    <item>iron door block</item>
+    <item>iron door</item>
+    <item>lever</item>
+    <item>gold block</item>
+    <item>chest</item>
+    <item>workbench</item>
+</itemremove>
+<killreward>
+    <item amount="32">tnt</item>
+    <item>dispenser</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>iron block</block>
+        </filter>
+        <drops>
+            <item>iron helmet</item>
+            <item>iron leggings</item>
+            <item>iron boots</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>diamond block</block>
+        </filter>
+        <drops>
+            <item>diamond helmet</item>
+            <item>diamond leggings</item>
+            <item>diamond boots</item>
+        </drops>
+    </rule>
+</blockdrops>
+<disabledamage>
+    <damage>fall</damage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<autorespawn/>
+<tutorial>
+    <stage title="Destroy the Ship">
+        <message>
+            <line>This map is a `aDestroy the Ships `r(DTS) map.</line>
+            <line>The objective is to destroy `c60% `rof the enemy team's ship!</line>
+            <line>Each team has one main ship that you must defend!</line>
+        </message>
+        <teleport>
+            <point yaw="-140" pitch="10">-45,38,-30</point>
+        </teleport>
+    </stage>
+    <stage title="Ships">
+        <message>
+            <line>These ships are highly technologically advanced.</line>
+            <line>Each has 11 cannon stalls, 2 on-board icarus, and 2 supply depots.</line>
+            <line>Please be courteous and not interact with other's cannons without permission.</line>
+            <line>Especially in the cannon stalls.</line>
+        </message>
+        <teleport>
+            <point yaw="-110" pitch="5">-38,30,9</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>When you spawn, you will be secluded high in the air away from the map.</line>
+            <line>Run on the caution area and get launched to your ship. You take no fall damage!</line>
+        </message>
+        <teleport>
+            <point yaw="-55" pitch="25">-19,57,39</point>
+        </teleport>
+    </stage>
+    <stage title="`e`lCannon Stalls">
+        <message>
+            <line>These modual stalls will give you a secluded area to build a cannon in peace.</line>
+            <line>When entering, make sure to pull `aboth `rlevers to the down position.</line>
+            <line>Inside you fill find a shelf with various cannon supplies for you.</line>
+            <line>Entering/taking someone else's stall without permission while they get more supplies is `cillegal`r!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">-11,27,-17</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

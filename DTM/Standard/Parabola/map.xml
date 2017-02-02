@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Parabola</name>
+<version>1.2.4</version>
+<objective>Be the first team to destory both of the other team monuments</objective>
+<authors>
+    <author uuid="9e387daa-20b2-4545-a742-25bff42ae925"/> <!-- Xanpendio -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:1">iron axe</item>
+        <item slot="4" amount="64">log</item>
+        <item slot="6" amount="64">leaves</item>
+        <item slot="7" amount="64">cooked beef</item>
+        <item slot="8" amount="16">ladder</item>
+        <item slot="28">arrow</item>
+        <leggings>iron leggings</leggings>
+        <potion duration="10" amplifier="4">damage resistance</potion>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <boots color="cd0000" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <boots color="0066cc" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cylinder base="91,43,-11" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="-90,43,12" radius="3" height="0"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="0,63,-63" radius="4" height="0"/>
+    </default>
+</spawns>
+<destroyables materials="ender stone" completion="75%" show-progress="true" sparks="true">
+    <destroyables name="Hilltop Monument">
+        <destroyable owner="red">
+            <sphere origin="-113,64,-23" radius="4"/>
+        </destroyable>
+        <destroyable owner="blue">
+            <sphere origin="114,64,24" radius="4"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Lakeside Monument">
+        <destroyable owner="red">
+            <sphere origin="-51,46,29" radius="4"/>
+        </destroyable>
+        <destroyable owner="blue">
+            <sphere origin="52,46,-28" radius="4"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <cylinder name="red-spawn" base="-90,40,12" radius="7" height="20"/>
+        <cylinder name="blue-spawn" base="91,40,-11" radius="7" height="20"/>
+    </union>
+    <apply block="deny-all" message="You may not modify the void!">
+        <negative>
+            <rectangle min="-128,-36" max="128,37"/>
+        </negative>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify spawn!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-beacon" use="deny-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>shears</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>ladder</item>
+    <item>leaves</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>chainmail chestplate</item>
+    <item>gold boots</item>
+    <item>potato item</item>
+    <item>ender stone</item>
+    <item>iron leggings</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>70</maxbuildheight>
+</map>

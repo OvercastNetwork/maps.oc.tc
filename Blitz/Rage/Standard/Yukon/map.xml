@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="blitz-global.xml"/>
+<name>Yukon</name>
+<version>1.0.3</version>
+<objective>Eliminate the opposing team in 5 minutes!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="8e5b106b-f0af-4be1-b199-7b9205ec8af6"/> <!-- dragonsrule9 -->
+</authors>
+<contributors>
+    <contributor uuid="c65e66b3-e932-4b33-b907-fe4916806076" contribution="Feedback and Support"/> <!-- Draco_Rogue -->
+</contributors>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<teams>
+   <team color="blue" max="30">Blue</team>
+   <team color="dark red" max="30">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cuboid min="-42,187,-35" max="-40,188,-33"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-90">
+        <cuboid min="-36,189,43" max="-37,190,45"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="-11,247,0" max="-11,247,-2"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`e`lMachete">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`e`lCompound Bow">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <item slot="3">apple</item>
+        <potion duration="5">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" lore="Combat Helmet" locked="true">leather helmet</helmet>
+        <chestplate lore="Kevlar Vest" locked="true">chainmail chestplate</chestplate>
+        <leggings color="0066cc" lore="Cargo Pants" locked="true">leather leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" lore="Combat Helmet" locked="true">leather helmet</helmet>
+        <chestplate lore="Kevlar Vest" locked="true">chainmail chestplate</chestplate>
+        <leggings color="cd0000" lore="Cargo Pants" locked="true">leather leggings</leggings>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>apple</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+</map>

@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Lunar Barrage">
+<name>Lunar Barrage</name>
+<version>1.0.1</version>
+<gamemode>Arcade</gamemode>
+<objective>Survive the meteor shower!</objective>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" /> <!-- AtlasGames -->
+</authors>
+<rules>
+    <rule>There are no rules!</rule>
+</rules>
+<include src="blitz-global.xml" />
+<include src="void-death.xml"/>
+<time>2m</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<broadcasts>
+    <alert after="1s">`6`lMETEOR SHOWER INBOUND</alert>
+</broadcasts>
+<players min="4" max="8" colors="true"/>
+<spawns>
+    <spawn kit="spawn-kit">
+        <regions angle="-82.5,7,-87.5">
+            <cylinder id="spawn-cyl" base="-83,7,-88" radius="30" height="2" />
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>-82.5,7,-87.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit" potion-particles="false">
+        <double-jump power="3.5" />
+        <potion duration="oo" amplifier="4">jump</potion>
+        <potion duration="oo" amplifier="1">resistance</potion>
+        <helmet material="glass" locked="true" name="`7Astronaut's Helmet" />
+        <chestplate material="iron chestplate" unbreakable="true" locked="true" name="`7Astronaut's Chestplate">
+            <enchantment level="3">protection explosions</enchantment>
+        </chestplate>
+        <leggings material="iron leggings" locked="true" unbreakable="true" name="`7Astronaut's Leggings">
+            <enchantment level="3">protection explosions</enchantment>
+        </leggings>
+        <boots material="iron boots" locked="true" unbreakable="true" name="`7Astronaut's Boots">
+            <enchantment level="3">protection explosions</enchantment>
+        </boots>
+        <item material="stick" name="`9Survival Stick" slot="0">
+            <enchantment level="3">knockback</enchantment>
+        </item>
+        <item slot="1" damage="16421" name="`cHealth Kit">potion</item>
+        <item slot="2" damage="16421" name="`cHealth Kit">potion</item>
+        <item slot="3" damage="16421" name="`cHealth Kit">potion</item>
+        <item slot="4" damage="16421" name="`cHealth Kit">potion</item>
+        <item slot="5" damage="16421" name="`cHealth Kit">potion</item>
+    </kit>
+</kits>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<itemremove>
+    <item>glass</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>stained glass pane</item>
+    <item>stone</item>
+    <item>stone:3</item>
+    <item>stone:4</item>
+    <item>stone:5</item>
+    <item>stone:6</item>
+    <item>stick</item>
+    <item>potion</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <apply block="only-ground" />
+    <apply velocity="0,0,-1">
+        <region>
+            <block>-82.5,26,-61.5</block>
+        </region>
+    </apply>
+    <apply velocity="-1,0,0">
+        <region>
+            <block>-56.5,26,-87.5</block>
+        </region>
+    </apply>
+    <apply velocity="0,0,1">
+        <region>
+            <block>-82.5,26,-113.5</block>
+        </region>
+    </apply>
+    <apply velocity="1,0,0">
+        <region>
+            <block>-108.5,26,-87.5</block>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <all id="only-ground">
+        <not>
+            <cause>player</cause>
+        </not>
+        <any>
+            <material>stone</material>
+            <material>stained glass pane</material>
+        </any>
+    </all>
+</filters>
+</map>

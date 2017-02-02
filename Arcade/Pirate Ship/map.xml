@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<map proto="1.4.1" game="Bomb the Base">
+<name>Pirate Ship</name>
+<version>1.0</version>
+<gamemode>arcade</gamemode>
+<objective>Pirates must survive, Cannoneers must kill!</objective>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+</authors>
+<contributors>
+    <contributor contribution="XML" uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</contributors>
+<broadcasts>
+    <tip after="1s">`4`lCannoneers `rcan `e`lfly `raround and fire TNT at the ship using a portable `c`lTNT Cannon.</tip>
+    <tip after="15s">`9`lPirates `rcan `e`ldouble jump `raround the ship while avoiding getting caught in explosions.</tip>
+    <tip after="30s">`4`lCannoneers `rcan use the left and right side `b`lportals `rto access either side of the ship.</tip>
+    <tip after="45s">`9`lPirates `rshouldn't get too close to the water! They may be `2`lpoisoned `ras a result.</tip>
+    <tip after="60s">`9`lPirates `rcan hit `4`lCannoneers `rwith `lSlowballs `rto slow them down!</tip>
+</broadcasts>
+<teams>
+    <team id="pirates-team" color="blue" min="2" max="4">Pirates</team>
+    <team id="cannoners-team" color="dark red" min="2" max="4">Cannoneers</team>
+</teams>
+<time result="pirates-team">3m</time>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<kits>
+    <kit id="pirate-kit">
+        <helmet color="0000ff" unbreakable="true" locked="true" enchantment="protection_explosions:5" name="`rCap">leather helmet</helmet>
+        <item slot="0" projectile="slowball" amount="32" prevent-sharing="true" name="`rSlowball">snow_ball</item>
+        <item slot="27" name="`rSurrender Flag" prevent-sharing="true" damage="15">banner</item>
+        <game-mode>adventure</game-mode>
+        <double-jump recharge-time="20s"/>
+        <effect duration="oo" amplifier="3">jump_boost</effect>
+        <effect duration="oo" amplifier="1">speed</effect>
+        <effect duration="oo" amplifier="1">saturation</effect>
+        <effect duration="oo" amplifier="1">regeneration</effect>
+    </kit>
+    <kit id="cannoner-kit" force="true">
+        <item slot="0" projectile="tnt-cannon" prevent-sharing="true" name="`6TNT Cannon">armor stand</item>
+        <effect duration="oo" amplifier="1">glowing</effect>
+        <effect duration="oo" amplifier="1">saturation</effect>
+        <effect duration="oo" amplifier="10">resistance</effect>
+        <effect duration="oo" amplifier="1">water_breathing</effect>
+        <fly flying="true" can-fly="true"/>
+    </kit>
+    <kit id="damage-kit">
+        <effect amplifier="2">poison</effect>
+    </kit>
+    <kit id="save-kit" force="true">
+        <effect duration="0" amplifier="2">poison</effect>
+    </kit>
+    <kit id="kill-kit">
+        <effect duration="5">instant_damage</effect>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="tnt-cannon" projectile="TNTPrimed" damage="10" velocity="2" name="`6TNT Cannon" cooldown="1.8s" throwable="false" destroy-filter="always"/>
+    <projectile id="slowball" projectile="Snowball" damage="0" velocity="2" name="`rSlowball">
+        <potion duration="5" amplifier="10">slow</potion>
+        <potion duration="5" amplifier="10">blindness</potion>
+        <potion duration="5" amplifier="10">nausea</potion>
+    </projectile>
+</projectiles>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<spawns>
+    <spawn team="pirates-team" kit="pirate-kit" safe="true">
+        <regions yaw="0">
+            <point>-196,19,-20</point>
+            <point>-196,15,1</point>
+        </regions>
+    </spawn>
+    <spawn team="pirates-team" kit="pirate-kit" safe="true">
+        <regions yaw="180">
+            <point>-196,12,28</point>
+            <point>-196,17,32</point>
+        </regions>
+    </spawn>
+    <spawn team="cannoners-team" kit="cannoner-kit">
+        <regions yaw="90">
+            <cuboid min="-171.5,13,38.5" max="-170.5,17,-21.5"/>
+        </regions>
+    </spawn>
+    <spawn team="cannoners-team" kit="cannoner-kit">
+        <regions yaw="-90">
+            <cuboid min="-220.5,13,-21.5" max="-221.5,17,38.5"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <point>-196,19,39</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-pirates">pirates-team</team>
+    <not id="deny-cannoners">
+        <team>cannoners-team</team>
+    </not>
+    <team id="only-cannoners">cannoners-team</team>
+    <not id="deny-stained-glass">
+        <material>stained glass</material>
+    </not>
+</filters>
+<tnt>
+    <yield>0</yield>
+    <power>5</power>
+    <fuse>1s</fuse>
+</tnt>
+<regions>
+    <apply kit="damage-kit" filter="only-pirates" message="Stay away from the water!">
+        <region>
+            <below y="6"/>
+        </region>
+    </apply>
+    <apply kit="save-kit" filter="only-pirates">
+        <region>
+            <above y="7"/>
+        </region>
+    </apply>
+    <apply kit="kill-kit" filter="only-pirates">
+        <region>
+            <rectangle min="-185,-oo" max="oo,oo"/>
+            <rectangle min="-205,-oo" max="-oo,oo"/>
+        </region>
+    </apply>
+    <apply leave="deny-cannoners" block="never" message="You may not edit or leave the stained glass area!">
+        <region>
+            <rectangle min="-177,42" max="-165,-25"/>
+            <rectangle min="-215,-25" max="-227,42"/>
+        </region>
+    </apply>
+</regions>
+<portals>
+    <portal x="-50" yaw="@180" filter="only-cannoners">
+        <region>
+            <cuboid min="-166,57,41" max="-176,11,40"/>
+        </region>
+    </portal>
+    <portal x="-50" yaw="@0" filter="only-cannoners">
+        <region>
+            <cuboid min="-176,57,-24" max="-166,11,-23"/>
+        </region>
+    </portal>
+    <portal x="50" yaw="@180" filter="only-cannoners">
+        <region>
+            <cuboid min="-216,57,41" max="-226,11,40"/>
+        </region>
+    </portal>
+    <portal x="50" yaw="@0" filter="only-cannoners">
+        <region>
+            <cuboid min="-226,57,-24" max="-216,11,-23"/>
+        </region>
+    </portal>
+</portals>
+<block-drops>
+    <rule>
+        <fall-chance>0.5</fall-chance>
+        <land-chance>0.25</land-chance>
+    </rule>
+</block-drops>
+<itemremove>
+    <item>wool</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>trap_door</item>
+    <item>double_step</item>
+    <item>spruce_wood_stairs</item>
+    <item>birch_wood_stairs</item>
+    <item>dark_oak_stairs</item>
+    <item>rails</item>
+    <item>ladder</item>
+    <item>chest</item>
+    <item>note_block</item>
+    <item>jukebox</item>
+    <item>fence</item>
+    <item>spruce_fence</item>
+    <item>bed</item>
+    <item>item_frame</item>
+    <item>coal_block</item>
+    <item>flower_pot_item</item>
+    <item>flower_pot</item>
+    <item>iron_plate</item>
+    <item>piston_base</item>
+    <item>piston_extension</item>
+    <item>piston_moving_piece</item>
+    <item>jungle_door_item</item>
+    <item>spruce_door_item</item>
+    <item>wood_door</item>
+    <item>stained_glass_pane</item>
+    <item>carpet</item>
+    <item>bookshelf</item>
+    <item>torch</item>
+    <item>painting</item>
+    <item>compass</item>
+    <item>347</item>
+    <item>empty_map</item>
+</itemremove>
+</map>

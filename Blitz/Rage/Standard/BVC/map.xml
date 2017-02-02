@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>BVC</name>
+<version>1.0</version>
+<objective>Kill the enemy team before the time is up!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="4cfcc68b-ccf7-4712-9c6e-ce1ea5cf5a3c"/> <!-- xXJamesXx14 -->
+</authors>
+<contributors>
+    <contributor uuid="bf331953-4f92-43ee-8abc-7544b8234936" contribution="XML"/> <!-- ParaSpider -->
+</contributors>
+<teams>
+   <team color="white" max="12">Chickens</team>
+   <team color="dark gray" max="12">Bats</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="8">arrow</item>
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">speed</potion>
+        <potion duration="oo" amplifier="2">jump</potion>
+        <double-jump/>
+    </kit>
+    <kit name="super-jump" force="true">
+        <potion duration="oo" amplifier="8">jump</potion>
+    </kit>
+    <kit name="reset-to-jump" force="true">
+        <potion duration="oo" amplifier="2">jump</potion>
+    </kit>
+    <kit name="chickens" parents="spawn">
+        <helmet locked="true" color="FFFFFF">leather helmet</helmet>
+        <chestplate locked="true" color="FFFFFF">leather chestplate</chestplate>
+        <leggings locked="true" color="FFFFFF">leather leggings</leggings>
+        <boots locked="true" color="FFFFFF" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+    <kit name="bats" parents="spawn">
+        <helmet locked="true" color="191919">leather helmet</helmet>
+        <chestplate locked="true" color="191919">leather chestplate</chestplate>
+        <leggings locked="true" color="191919">leather leggings</leggings>
+        <boots locked="true" color="191919" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply kit="super-jump">
+        <union name="jump-pads">
+            <cylinder base="191,65,20" radius="5" height="2"/>
+            <cylinder base="231,65,20" radius="5" height="2"/>
+        </union>
+    </apply>
+    <apply kit="reset-to-jump">
+        <negative>
+            <region name="jump-pads"/>
+        </negative>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="bats" kit="bats" yaw="0">
+        <point>211,59,-49.5</point>
+    </spawn>
+    <spawn team="chickens" kit="chickens" yaw="180">
+        <point>211,59,90.5</point>
+    </spawn>
+    <default yaw="90">
+        <point>254,90,20</point>
+    </default>
+</spawns>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<itemremove>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>diamond sword</item>
+    <item>bow</item>
+</itemremove>
+<blitz>
+    <time>5m</time>
+    <lives>2</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<include src="blitz-global.xml"/>
+</map>

@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<map proto="1.4.1" game="Bubble Brawl">
+<name>Bubble Brawl: Turbine</name>
+<version>1.0</version>
+<gamemode>arcade</gamemode>
+<objective>Knock all opponents out of the water!</objective>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+</authors>
+<contributors>
+    <contributor contribution="XML" uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</contributors>
+<broadcasts>
+    <alert after="1s">Fishing rod upgrades will be given every minute!</alert>
+    <alert after="1m">Fishing rods upgraded! `e`lKnockback II</alert>
+    <alert after="2m">Fishing rods upgraded! `6`lKnockback III</alert>
+    <alert after="3m">Fishing rods upgraded! `4`lKnockback IV</alert>
+</broadcasts>
+<players min="4" max="8" colors="true"/>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true" enchantment="knockback:1">fishing rod</item>
+        <helmet unbreakable="true" locked="true" enchantment="oxygen:10;depth strider:3">diamond helmet</helmet>
+        <effect duration="oo" amplifier="1">water breathing</effect>
+        <effect duration="oo" amplifier="1">night vision</effect>
+        <effect duration="oo" amplifier="10">resistance</effect>
+        <effect duration="oo" amplifier="1">saturation</effect>
+    </kit>
+    <kit id="death-kit" force="true">
+        <effect duration="0" amplifier="10">resistance</effect>
+        <effect amplifier="10">instant_damage</effect>
+    </kit>
+    <kit id="upgrade-1" force="true">
+        <item slot="0" unbreakable="true" enchantment="knockback:2" name="`e`lGood Fishing Rod">fishing rod</item>
+    </kit>
+    <kit id="upgrade-2" force="true">
+        <item slot="0" unbreakable="true" enchantment="knockback:3" name="`6`lGreat Fishing Rod">fishing rod</item>
+    </kit>
+    <kit id="upgrade-3" force="true">
+        <item slot="0" unbreakable="true" enchantment="knockback:4" name="`4`lSuper Fishing Rod">fishing rod</item>
+    </kit>
+</kits>
+<filters>
+    <all id="kit-1">
+        <time>1m</time>
+        <not>
+            <any>
+                <time>2m</time>
+                <carrying><item unbreakable="true" enchantment="knockback:2" name="`e`lGood Fishing Rod">fishing rod</item></carrying>
+            </any>
+        </not>
+    </all>
+    <all id="kit-2">
+        <time>2m</time>
+        <not>
+            <any>
+                <time>3m</time>
+                <carrying><item unbreakable="true" enchantment="knockback:3" name="`6`lGreat Fishing Rod">fishing rod</item></carrying>
+            </any>
+        </not>
+    </all>
+    <all id="kit-3">
+        <time>3m</time>
+        <not>
+            <any>
+                <time>4m</time>
+                <carrying><item unbreakable="true" enchantment="knockback:4" name="`4`lSuper Fishing Rod">fishing rod</item></carrying>
+            </any>
+        </not>
+    </all>
+</filters>
+<regions>
+    <apply kit="death-kit">
+        <region>
+            <below y="65"/>
+            <cylinder base="-141,65,78" radius="11" height="17"/>
+        </region>
+    </apply>
+    <apply kit="upgrade-1" filter="kit-1">
+        <region>
+            <cuboid min="-oo,78,-oo" max="oo,77,oo"/>
+            <cuboid min="-oo,75,-oo" max="oo,74,oo"/>
+            <cuboid min="-oo,72,-oo" max="oo,70,oo"/>
+            <cuboid min="-oo,68,-oo" max="oo,67,oo"/>
+            <cuboid min="-oo,66,-oo" max="oo,65,oo"/>
+        </region>
+    </apply>
+    <apply kit="upgrade-2" filter="kit-2">
+        <region>
+            <cuboid min="-oo,78,-oo" max="oo,77,oo"/>
+            <cuboid min="-oo,75,-oo" max="oo,74,oo"/>
+            <cuboid min="-oo,72,-oo" max="oo,70,oo"/>
+            <cuboid min="-oo,68,-oo" max="oo,67,oo"/>
+            <cuboid min="-oo,66,-oo" max="oo,65,oo"/>
+        </region>
+    </apply>
+    <apply kit="upgrade-3" filter="kit-3">
+        <region>
+            <cuboid min="-oo,78,-oo" max="oo,77,oo"/>
+            <cuboid min="-oo,75,-oo" max="oo,74,oo"/>
+            <cuboid min="-oo,72,-oo" max="oo,70,oo"/>
+            <cuboid min="-oo,68,-oo" max="oo,67,oo"/>
+            <cuboid min="-oo,66,-oo" max="oo,65,oo"/>
+        </region>
+    </apply>
+</regions>
+<spawns exclusive="true">
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-140.5,73,102.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-124.5,73,94.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-116.5,73,78.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-124.5,73,94.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-140.5,73,54.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-156.5,73,62.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <regions>
+            <point angle="-141.5,73,78.5">-164.5,73,78.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn-kit">
+        <region>
+            <point angle="-141.5,73,78.5">-156.5,73,94.5</point>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="0">
+            <point>-140.5,83,78.5</point>
+        </region>
+    </default>
+</spawns>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<time>2m</time>
+<timelock>on</timelock>
+</map>

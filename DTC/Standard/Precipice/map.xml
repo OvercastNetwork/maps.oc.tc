@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Precipice</name>
+<version>1.0.1</version>
+<objective>Leak lava from the enemy team's core!</objective>
+<authors>
+    <author uuid="b0b3c5d5-e9bd-4984-bc07-1bd552d4b042"/> <!-- Beebou -->
+</authors>
+<contributors>
+    <contributor uuid="c7826104-05ff-4196-b7f1-eea4180180a6" contribution="Minor help"/> <!-- RowenPete -->
+    <contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Minor help"/> <!-- xannallax33 -->
+    <contributor uuid="c1ea235d-4224-46e4-ba4a-638838f6d039" contribution="Minor help"/> <!-- Daffy_Duck01 -->
+    <contributor uuid="9909505b-1f0f-4af1-ae21-afbee92427ce" contribution="Minor help"/> <!-- Winarve -->
+    <contributor uuid="9e17c951-6c72-4a3c-ae3e-e84691fb4f55" contribution="Minor help"/> <!-- Smidgel -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML help"/> <!-- dinner1111 -->
+    <contributor uuid="9310b44c-55b2-4a51-8be6-151b379d3d4d" contribution="XML help"/> <!-- legobmw99 -->
+</contributors>
+<cores material="obsidian" leak="4">
+    <core team="red">
+        <cuboid min="119,99,-27" max="124,88,-32"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-184,99,-31" max="-179,88,-36"/>
+    </core>
+</cores>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" damage="1" amount="64">wood</item>
+        <item slot="5" amount="32">ladder</item>
+        <item slot="6" amount="32">bread</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="64">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="CD0000">leather helmet</helmet>
+        <chestplate>chainmail chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066CC">leather helmet</helmet>
+        <chestplate>chainmail chestplate</chestplate>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>stone axe</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>chainmail chestplate</item>
+    <item>leather helmet</item>
+    <item>arrow</item>
+    <item>ladder</item>
+    <item>bread</item>
+</itemremove>
+<timelock>on</timelock>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="26,81,3" max="18,81,-0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="-87,81,-62" max="-79,81,-66"/>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="-26,108,79" max="-34,108,84"/>
+    </default>
+</spawns>
+<regions>
+    <rectangle name="red-spawn" min="10,-4" max="29,6"/>
+    <rectangle name="blue-spawn" min="-72,-60" max="-91,-70"/>
+    <rectangle name="map" min="141,-82" max="-203,18"/>
+    <apply enter="only-blue" message="Do not enter the enemy spawn!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="Do not modify the spawns!">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+    </apply> 
+    <apply enter="only-red" message="Do not enter the enemy spawn!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply block="deny-all" message="Don't build outside the map!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+</map>

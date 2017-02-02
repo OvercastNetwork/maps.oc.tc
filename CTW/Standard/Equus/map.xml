@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Equus</name>
+<version>1.3.0</version>
+<objective>
+Take the enemy's wools located to either side of the enemy's base and place it in your victory monument.
+</objective>
+<authors>
+    <author uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- lord_creeper01 -->
+</authors>
+<teams>
+    <team color="blue" max="28" max-overfill="32">Blue</team>
+    <team color="dark red" max="28" max-overfill="32">Red</team>
+</teams>
+<spawns safe="true">
+    <spawn kit="spawn" team="red" yaw="90">
+        <cylinder base="-25.5,26,4.5" height="0" radius="1.5"/>
+    </spawn>
+    <spawn kit="spawn" team="blue" yaw="-90">
+        <cylinder base="-261.5,26,4.5" height="0" radius="1.5"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-142.5,62,-52.5" height="0" radius="2"/>
+    </default>
+</spawns>
+<portals>
+    <!--  blue portals  -->
+    <portal x="@-211" y="@19" z="@4" filter="only-blue">
+        <cuboid name="blue-middle" min="-255,30,2" max="-256,25,7"/>
+    </portal>
+    <portal x="@-192" y="@34" z="@4" filter="only-blue">
+        <cuboid name="blue-upper" min="-264,30,-2" max="-259,25,-1"/>
+    </portal>
+    <portal x="@-196" y="@5" z="@4" filter="only-blue">
+        <cuboid name="blue-lower" min="-259,30,11" max="-264,25,10"/>
+    </portal>
+    <portal x="@-196" y="@5" z="@4" filter="only-blue">
+        <cuboid name="middle-to-lower" min="-193,22,-3" max="-197,17,-4"/>
+    </portal>
+    <portal x="@-192" y="@34" z="@4" filter="only-blue">
+        <cuboid name="middle-to-upper" min="-193,22,13" max="-197,17,12"/>
+    </portal>
+    <portal x="@-211" y="@19" z="@4" filter="only-blue">
+        <cuboid name="upper-to-middle" min="-203,36,7" max="-202,31,2"/>
+    </portal>
+    <portal x="@-211" y="@19" z="@4" filter="only-blue">
+        <cuboid name="lower-to-middle" min="-207,9,2" max="-208,4,7"/>
+    </portal>
+    <!--  red portals -->
+    <portal x="@-75" y="@19" z="@4" filter="only-red">
+        <cuboid name="red--middle" min="-32,30,2" max="-31,25,7"/>
+    </portal>
+    <portal x="@-94" y="@34" z="@4" filter="only-red">
+        <cuboid name="red--upper" min="-23,30,11" max="-28,25,10"/>
+    </portal>
+    <portal x="@-90" y="@5" z="@4" filter="only-red">
+        <cuboid name="red--lower" min="-23,25,-1" max="-28,30,-2"/>
+    </portal>
+    <portal x="@-94" y="@34" z="@4" filter="only-red">
+        <cuboid name="middle--to--upper" min="-90,22,-4" max="-94,17,-3"/>
+    </portal>
+    <portal x="@-90" y="@5" z="@4" filter="only-red">
+        <cuboid name="middle--to--lower" min="-90,22,13" max="-94,17,12"/>
+    </portal>
+    <portal x="@-75" y="@19" z="@4" filter="only-red">
+        <cuboid name="lower--to--middle" min="-80,9,2" max="-79,4,7"/>
+    </portal>
+    <portal x="@-75" y="@19" z="@4" filter="only-red">
+        <cuboid name="upper--to--middle" min="-85,36,7" max="-84,31,2"/>
+    </portal>
+</portals>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item enchantment="dig speed:1" slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item amount="64" slot="4" damage="2">log</item>
+        <item amount="64" slot="5">glass</item>
+        <item amount="2" slot="6">golden apple</item>
+        <item amount="32" slot="7">cooked beef</item>
+        <item slot="8" amount="64">arrow</item>
+        <item slot="35" amount="64">arrow</item>
+        <potion amplifier="1" duration="2">heal</potion>
+        <potion amplifier="3" duration="4">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-tnt">
+        <deny>
+            <block>tnt</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>trap door</block>					
+                </any>
+            <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>trap door</block>
+                </any>
+            <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!--   blue manual regions  -->
+    <union name="blue-side-tnt-filter">
+        <rectangle name="blue-region-1" max="-238,39" min="-251,13"/>
+        <rectangle name="blue-region-2" max="-251,-4" min="-238,-30"/>
+        <rectangle name="blue-region-3" max="-238,25" min="-220,13"/>
+        <rectangle name="blue-region-4" max="-238,-16" min="-220,-4"/>
+        <rectangle name="blue-region-5" max="-218,25" min="-220,-16"/>
+        <rectangle name="blue-region-6" max="-216,24" min="-218,-15"/>
+        <rectangle name="blue-region-7" max="-216,23" min="-215,-14"/>
+        <rectangle name="blue-region-8" max="-215,22" min="-214,-13"/>
+        <rectangle name="blue-region-9" max="-214,21" min="-213,-12"/>
+        <rectangle name="blue-region-10" max="-213,20" min="-212,-11"/>
+        <rectangle name="blue-region-11" max="-212,19" min="-211,-10"/>
+        <rectangle name="blue-region-12" max="-211,16" min="-210,-7"/>
+        <rectangle name="blue-region-13" max="-210,14" min="-208,-5"/>
+        <rectangle name="blue-region-14" max="-208,28" min="-193,-19"/>
+    </union>
+    <!--   red manual regions  -->
+    <union name="red-side-tnt-filter">
+        <rectangle name="red-region-1" max="-49,39" min="-36,13"/>
+        <rectangle name="red-region-2" max="-49,-30" min="-36,-4"/>
+        <rectangle name="red-region-3" max="-49,13" min="-67,25"/>
+        <rectangle name="red-region-4" max="-49,-4" min="-67,-16"/>
+        <rectangle name="red-region-5" max="-69,25" min="-67,-16"/>
+        <rectangle name="red-region-6" max="-71,24" min="-69,-15"/>
+        <rectangle name="red-region-7" max="-71,23" min="-72,-15"/>
+        <rectangle name="red-region-8" max="-73,22" min="-72,-13"/>
+        <rectangle name="red-region-9" max="-74,21" min="-73,-12"/>
+        <rectangle name="red-region-10" max="-75,20" min="-74,-11"/>
+        <rectangle name="red-region-11" max="-76,19" min="-75,-10"/>
+        <rectangle name="red-region-12" max="-77,16" min="-76,-7"/>
+        <rectangle name="red-region-13" max="-79,14" min="-77,-5"/>
+        <rectangle name="red-region-14" max="-79,28" min="-95,-19"/>
+    </union>
+    <rectangle name="frontline" max="-95,28" min="-192,-19"/>
+    <!--   Deny-all outside of all regions  -->
+    <apply block="deny-all" message="You may not place blocks in the void!">
+        <negative>
+            <region name="blue-side-tnt-filter"/>
+            <region name="red-side-tnt-filter"/>
+            <region name="red-wool-rooms"/>
+            <region name="blue-wool-rooms"/>
+            <region name="frontline"/>
+        </negative>
+    </apply>
+    <!--   Deny tnt on all the map except at frontline  -->
+    <apply block="deny-tnt" message="You may only place tnt at frontlines!">
+        <region name="blue-side-tnt-filter"/>
+        <region name="red-side-tnt-filter"/>
+        <region name="red-wool-rooms"/>
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <!--  blue wool room filters  -->
+    <union name="blue-wool-rooms">
+        <rectangle max="-36,25" min="-14,39" name="lime-wool"/>
+        <rectangle max="-14,-30" min="-36,-16" name="yellow-wool"/>
+    </union>
+    <apply block="only-blue" use="only-blue-usage">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <!--  red wool room filters  -->
+    <union name="red-wool-rooms">
+        <rectangle max="-251,-16" min="-273,-30" name="pink-wool"/>
+        <rectangle max="-251,25" min="-273,39" name="purple-wool"/>
+    </union>
+    <apply block="only-red" use="only-red-usage">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <!--   Blue portals protection   -->
+    <apply block="deny-all" message="You may not block the portals!">
+        <cylinder base="-90.5,4,4.5," height="5" name="lower-red-portal" radius="2"/>
+        <cylinder base="-75.5,18,4.5" height="5" name="middle-red-portal" radius="2"/>
+        <cylinder base="-94.5,33,4.5" height="5" name="Upper-red-portal" radius="2"/>
+        <cuboid name="upper-middle-blue" max="-204,37,1" min="-201,31,8"/>
+        <cuboid name="middle-upper-blue" max="-192,23,14" min="-198,17,11"/>
+        <cuboid name="middle-lower-blue" max="-192,23,-5" min="-198,17,2"/>
+        <cuboid name="lower-middle-blue" max="-206,10,8" min="-209,4,1"/>
+    </apply>
+    <!--   Red portals protection   -->
+    <apply block="deny-all" message="You may not block the portals!">
+        <cylinder base="-196.5,4,4.5" height="5" name="lower-blue-portal" radius="2"/>
+        <cylinder base="-211,18,4.5" height="5" name="middle-blue-portal" radius="2"/>
+        <cylinder base="-192.5,33,4.5" height="5" name="Upper-blue-portal" radius="2"/>
+        <cuboid name="upper-middle-red" max="-86,37,7" min="-83,31,2"/>
+        <cuboid name="middle-lower-red" max="-89,23,14" min="-95,17,11"/>
+        <cuboid name="middle-upper-red" max="-95,23,-5" min="-89,17,-2"/>
+        <cuboid name="lower-middle-red" max="-81,10,1" min="-78,10,8"/>
+    </apply>
+</regions>
+<maxbuildheight>45</maxbuildheight>
+<wools>
+    <wool team="red" color="purple">
+        <block>-69,6,6</block>
+    </wool>
+    <wool team="red" color="pink">
+        <block>-69,6,2</block>
+    </wool>
+    <wool team="blue" color="yellow">
+        <block>-219,6,2</block>
+    </wool>
+    <wool team="blue" color="lime">
+        <block>-219,6,6</block>
+    </wool>
+</wools>
+<itemremove>
+    <item>string</item>
+    <item>glowstone dust</item>
+    <item>carpet</item>
+    <item>cooked beef</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron axe</item>
+    <item>diamond pickaxe</item>
+</itemremove>
+<renewables>
+    <renewable rate="6" grow="true" particles="true" sound="true" avoid-entities="false">
+        <region>
+            <cuboid max="-95,0,28" min="-192,60,-19"/>
+        </region>
+        <renew>stained clay:9</renew>
+        <renew>stained clay:14</renew>
+        <renew>stained clay:3</renew>
+        <renew>155</renew>
+        <renew>stone</renew>
+        <renew>glowstone</renew>
+    </renewable>
+</renewables>
+</map>

@@ -1,0 +1,127 @@
+<map proto="1.4.0" game="Rage FFA">
+<name>Simulation #1</name>
+<version>1.1</version>
+<objective>Be the first player to reach a 50 points!</objective>
+<phase>development</phase>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc" />
+    <!--  NixaniaXi  -->
+</authors>
+<rage/>
+<respawn spectate="true"/>
+<teams>
+    <team color="yellow" max="1">Subject #01</team>
+    <team color="yellow" max="1">Subject #02</team>
+    <team color="yellow" max="1">Subject #03</team>
+    <team color="yellow" max="1">Subject #04</team>
+    <team color="yellow" max="1">Subject #05</team>
+    <team color="yellow" max="1">Subject #06</team>
+    <team color="yellow" max="1">Subject #07</team>
+    <team color="yellow" max="1">Subject #08</team>
+    <team color="yellow" max="1">Subject #09</team>
+    <team color="yellow" max="1">Subject #10</team>
+    <team color="yellow" max="1">Subject #11</team>
+    <team color="yellow" max="1">Subject #12</team>
+    <team color="yellow" max="1">Subject #13</team>
+    <team color="yellow" max="1">Subject #14</team>
+    <team color="yellow" max="1">Subject #15</team>
+    <team color="yellow" max="1">Subject #16</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true" enchantment="damage all:10">iron sword</item>
+        <item slot="1" unbreakable="true" projectile="lazer" name="`aLazzzzzer`7">prismarine shard</item>
+        <potion duration="3" amplifier="25">heal</potion>
+        <potion duration="3" amplifier="25">damage resistance</potion>
+        <double-jump recharge-time="0" recharge-before-landing="false"/>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <leggings color="4C4C4C" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="4C4C4C" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit id="flag-pickup" force="true" locked="true">
+        <potion duration="oo" amplifier="1">slowness</potion>
+        <double-jump recharge-time="0.5" power="3" recharge-before-landing="false"/>
+    </kit>
+    <kit id="flag-drop" force="true">
+        <potion duration="0" amplifier="2">slowness</potion>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="lazer" name="lazer" projectile="Snowball" velocity="3" damage="0" throwable="false" click="both" cooldown="0.5s" effects="blindness:40:1;slowness:40:9"
+        potion="blindness:40:1;slowness:40:9"/> <!-- TODO: remove 'potion', leave 'effects' -->
+</projectiles>
+<!-- Blindness for 2 seconds. Fix it Anthonny/Pepsi/Strange/Tywnis!!!! -->
+<spawns>
+    <default>
+        <regions yaw="0">
+            <cylinder name="obs-spawn" base="0.5,68,0.5" radius="1" height="0" />
+        </regions>
+    </default>
+    <spawn kit="spawn" spread="true">
+        <regions angle="0,68,0">
+            <block id="spawn1">0.5,65,-51.5</block>
+            <block id="spawn2">22.5,65,-46.5</block>
+            <block id="spawn3">37.5,65,-36.5</block>
+            <block id="spawn4">47.5,65,-21.5</block>
+            <block id="spawn5">52.5,65,0.5</block>
+            <block id="spawn6">47.5,65,22.5</block>
+            <block id="spawn7">37.5,65,37.5</block>
+            <block id="spawn8">22.5,65,47.5</block>
+            <block id="spawn9">0.5,65,52.5</block>
+            <block id="spawn10">-21.5,65,47.5</block>
+            <block id="spawn11">-36.5,65,37.5</block>
+            <block id="spawn12">-46.5,65,22.5</block>
+            <block id="spawn13">-51.5,65,0.5</block>
+            <block id="spawn14">-46.5,65,-21.5</block>
+            <block id="spawn15">-36.5,65,-36.5</block>
+            <block id="spawn16">-21.5,65,-46.5</block>
+        </regions>
+    </spawn>
+</spawns>
+<filters>
+    <not id="no-flag">
+        <same-team>
+            <carrying-flag>flag</carrying-flag>
+        </same-team>
+    </not>
+    <deny name="no-flag">
+        <carrying-flag>flag</carrying-flag>
+    </deny>
+</filters>
+<score>
+    <kills>0</kills>
+    <limit>50</limit>
+</score>
+<flags pickup-kit="flag-pickup" drop-kit="flag-drop">
+    <post id="post" return-time="0s">
+        <block>0.5,68,0.5</block>
+    </post>
+    <flag name="Testing Item #1" id="flag" color="white" shared="true" post="post" points-rate="1"/>
+</flags>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>starvation</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>iron chestplate</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>prismarine shard</item>
+</itemremove>
+<broadcasts>
+    <tip after="3s" every="2m">`fYou can `aDouble Jump`f on this map.</tip>
+    <tip after="4s" every="2m">`fHolding the flags gives you points.</tip>
+</broadcasts>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

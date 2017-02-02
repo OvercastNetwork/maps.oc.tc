@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<include src="tutorial.xml"/>
+<name>BlockRAGE</name>
+<version>1.5.0</version>
+<objective>Get the most kills in 8 minutes!</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+    <contributor uuid="fe19a0fe-5961-46e1-b98e-b2b6658f8ba2"/> <!-- YukonAppleGeek -->
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</contributors>
+<teams>
+    <team color="blue" max="20">Blue</team>
+    <team color="dark red" max="20">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true" enchantment="arrow damage:10;damage all:10" lore="`aAll-purpose instant killing device">bow</item>
+        <item slot="1" amount="2">arrow</item>
+        <potion duration="3" amplifier="100">regeneration</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+        <potion duration="3" amplifier="100">heal</potion>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="993333" unbreakable="true">leather leggings</leggings>
+        <boots color="993333" unbreakable="true" attributes="generic.movementSpeed:base:0.05">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+        <boots color="334CB2" unbreakable="true" attributes="generic.movementSpeed:base:0.05">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90">
+        <region name="blue-spawn-room"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-90">
+        <region name="red-spawn-room"/>
+    </spawn>
+    <default yaw="56">-48.5,27.5,0.5</default>
+</spawns>
+<!-- normal kill reward -->
+<killreward>
+    <item>arrow</item>
+    <kit>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+</killreward>
+<!-- after 3 kills -->
+<killreward>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <kit force="true">
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+</killreward>
+<!-- after 10 kills -->
+<killreward>
+    <filter>
+        <kill-streak count="10"/>
+    </filter>
+    <kit force="true">
+        <potion duration="oo" amplifier="3">speed</potion>
+    </kit>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<regions>
+    <cuboid name="blue-spawn-room" min="22.5,1,24.5" max="27.5,1,28.5"/>
+    <cuboid name="red-spawn-room" min="-26.5,1,-27.5" max="-21.5,1,-23.5"/>
+    <apply block-place="only-tnt" block-break="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-blue" message="You may not score on your own team's score box!">
+        <cuboid name="blue-goal" min="-7,0,-44" max="-2,5,-39"/>
+    </apply>
+    <apply enter="only-red" message="You may not score on your own team's score box!">
+        <cuboid name="red-goal" min="2,0,40" max="8,5,45"/>
+    </apply>
+    <apply block="deny-all" message="`b`k#### `r`c`lBLOCK GLITCHING RESULTS IN A BAN `r`b`k####">
+        <region name="blue-goal"/>
+        <region name="red-goal"/>
+    </apply>
+    <cuboid name="blue-score-zone" min="-7,1,-44" max="-2,2,-41.5"/>
+    <cuboid name="red-score-zone" min="2,1,42.5" max="8,2,45"/>
+</regions>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-tnt">
+        <block>tnt</block>
+    </filter>
+</filters>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<score>
+    <time>8m</time>
+    <box value="10" filter="only-blue" cooldown="5">
+        <region name="blue-score-zone"/>
+    </box>
+    <box value="10" filter="only-red" cooldown="5">
+        <region name="red-score-zone"/>
+    </box>
+</score>
+<rage/>
+<portals>
+    <!-- portals from score zones to bases -->
+    <portal x="30" z="69.25" yaw="@90" filter="only-blue">
+        <region name="blue-score-zone" />
+    </portal>
+    <portal x="-30" z="-69.25" yaw="@-90" filter="only-red">
+        <region name="red-score-zone" />
+    </portal>
+</portals>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<item-mods>
+    <rule>
+        <match>
+            <material>tnt</material>
+        </match>
+        <modify show-can-place-on="false">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+        </modify>
+    </rule>
+</item-mods>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tutorial>
+    <stage title="Team Death Match">
+        <message>
+            <line>`rThis map is a `a`lRage TDM map with `bscoreboxes`r.</line>
+            <line>The objective is to get the most `bpoints `rin `68 `rminutes.</line>
+            <line>After a kill, you get a `bspeed boost`r. As you get more and more kills, your speed boost `cincreases`r.</line>
+        </message>
+        <teleport>
+            <point angle="-15,22,-3">-44,41,-2</point>
+        </teleport>
+    </stage>
+    <stage title="Red Spawn">
+        <message>
+            <line>`rThis is where the `cRed Team `rspawns.</line>
+            <line>`rStairs to `aleft `rand `aright `rwill lead you into battle.</line>
+        </message>
+        <teleport>
+            <point angle="-23,1,-25.5">-16,3,-25</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Spawn">
+        <message>
+            <line>`rThis is where the `9Blue Team `rspawns.</line>
+            <line>`rStairs to `aleft `rand `aright `rwill lead you into battle.</line>
+        </message>
+        <teleport>
+            <point angle="23,1,26">17,4,26.5</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Scorebox">
+        <message>
+            <line>`rThis is where the `cRed Team `rneeds to enter to score `610 `rpoints.</line>
+            <line>`rOnly the `cRed Team `rcan enter this scorebox.</line>
+        </message>
+        <teleport>
+            <point angle="5,1,40">7,3,34</point>
+        </teleport>
+    </stage>
+    <stage title="Red Scorebox">
+        <message>
+            <line>`rThis is where the `9Blue Team `rneeds to enter to score `610 `rpoints.</line>
+            <line>`rOnly the `9Blue Team `rcan enter this scorebox.</line>
+        </message>
+        <teleport>
+            <point angle="-4,1,-39">-5,4,-32</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

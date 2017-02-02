@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<time result="objectives">10m</time>
+<name>Boom TE</name>
+<version>1.2</version>
+<objective>Destroy the enemy gold orb with TNT</objective>
+<authors>
+    <author uuid="25961a08-c90c-4abd-b136-dad90e89c2eb"/> <!-- Anxuiz -->
+    <author uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9"/> <!-- BrettOgden -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="10">Blue</team>
+    <team color="dark red" max="10">Red</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="no-beacons-anvils">
+        <not>
+            <block>anvil</block>
+            <block>beacon</block>
+        </not>
+    </filter>
+    <filter name="only-tnt-damage">
+        <!-- only allow gold, wool, and beacon to be broken by tnt -->
+        <any>
+            <not>
+                <block>gold block</block>
+                <block>wool</block>
+                <block>beacon</block>
+            </not>
+            <filter name="allow-world"/>
+        </any>
+    </filter>
+    <filter name="only-sandstone-stairs">
+        <block>sandstone stairs</block>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="only-tnt-damage" message="Orbs may only be damaged with TNT">
+        <cuboid name="monument-blue" min="-13,17,-35" max="-10,20,-32"/>
+        <cuboid name="monument-red" min="11,17,33" max="14,20,36"/>
+    </apply>
+    <apply block="no-void" message="You may not build in the void">
+        <cuboid min="-oo,-oo,-oo" max="oo,oo,oo"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the base">
+        <cuboid name="blue-base" min="-28,0,-13" max="-16,18,14"/>
+        <cuboid name="red-base" min="17,0,-13" max="29,18,14"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter Blue Team's base">
+        <region name="blue-base"/>
+        <!-- ladder regions to prevent people from going in through the top -->
+        <rectangle min="-19,-5" max="-17,-2"/>
+        <rectangle min="-19,3" max="-17,6"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter Red Team's base">
+        <region name="red-base"/>
+        <!-- ladder regions to prevent people from going in through the top -->
+        <rectangle min="18,-5" max="20,-2"/>
+        <rectangle min="18,3" max="20,6"/>
+    </apply>
+    <apply block-break="only-sandstone-stairs" block-place="deny-all" message="You may not modify the TNT spawning area">
+        <rectangle min="-6,-58" max="7,-47"/>
+        <rectangle min="-6,48" max="7,59"/>
+    </apply>
+    <apply use="no-beacons-anvils" message="You may not use beacons or anvils on this map">
+        <cuboid min="-oo,-oo,-oo" max="oo,oo,oo"/>
+    </apply>
+    <union name="spawns">
+        <union name="blue-spawns">
+            <block name="blue-spawn-a" yaw="0">-19.5,10,-5.5</block>
+            <block name="blue-spawn-b" yaw="180">-19.5,10, 6.5</block>
+        </union>
+        <union name="red-spawns">
+            <block name="red-spawn-a" yaw="180">20.5,10, 6.5</block>
+            <block name="red-spawn-b" yaw="0">20.5,10,-5.5</block>
+        </union>
+    </union>
+    <empty name="tnt-height-limit"/>
+    <empty name="above-height-limit"/>
+</regions>
+<maxbuildheight>22</maxbuildheight>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="19" amount="32">arrow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:3">iron axe</item>
+        <item slot="4" amount="32" damage="2">wood</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="33" amount="12">smooth brick</item>
+        <item slot="8" damage="8229">potion</item> <!-- instant health 2 -->
+        <chestplate unbreakable="true" enchantment="protection explosions:5">iron chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true" enchantment="protection fall:1">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue">
+        <point yaw="0">-19.5,10,-5.5</point>
+        <point yaw="180">-19.5,10,6.5</point>
+    </spawn>
+    <spawn team="red" kit="red">
+        <point yaw="180">20.5,10, 6.5</point>
+        <point yaw="0">20.5,10,-5.5</point>
+    </spawn>
+    <default>
+        <cylinder base="0.5,27,-84.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<destroyables completion="100%">
+    <destroyables materials="gold block;wool:11;beacon" owner="blue">
+        <destroyable name="Orb">
+            <region name="monument-blue"/>
+        </destroyable>
+    </destroyables>
+    <destroyables materials="gold block;wool:14;beacon" owner="red">
+        <destroyable name="Orb">
+            <region name="monument-red"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<killreward>
+    <item amount="20">arrow</item>
+    <item amount="1" damage="8229">potion</item> <!-- instant health 2 -->
+    <item amount="8" damage="0">smooth brick</item>
+</killreward>
+<friendlyfirerefund>on</friendlyfirerefund>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron sword</tool>
+</toolrepair>
+<itemremove>
+    <item>44:1</item> <!-- sandstone half slab -->
+    <item>44:0</item> <!-- stone slab -->
+    <item>anvil</item>
+    <item>apple</item>
+    <item>arrow</item>
+    <item>beacon</item>
+    <item>cobble wall</item>
+    <item>burning furnace</item>
+    <item>glass</item>
+    <item>glass bottle</item>
+    <item>gold block</item>
+    <item>diamond block</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron block</item>
+    <item>iron chestplate</item>
+    <item>piston base</item>
+    <item>potion</item>
+    <item>smooth stairs</item>
+    <item>sandstone stairs</item>
+    <item>sapling</item>
+    <item>smooth brick:3</item> <!-- chiseled stone brick -->
+    <item>wood</item>
+    <item>wool</item>
+</itemremove>
+</map>

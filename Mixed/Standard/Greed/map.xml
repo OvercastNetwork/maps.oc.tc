@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<map proto="1.3.6" internal="true">
+<name>Greed</name>
+<version>0.11</version>
+<objective>Mine gems and return them to your team's depot</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<broadcasts>
+    <tip after="30s" every="5m">Mine gems from the stalactite and return them to your base to score points</tip>
+    <tip after="1m" every="5m">To unlock your team's shortcut, stand on the capture point at the top level of the cave</tip>
+    <tip after="1m30s" every="5m">Don't get greedy, return to base once you have a few gems, or you might lose them</tip>
+    <tip after="2m" every="5m">Sabotage the other team's mining operation to slow them down</tip>
+    <tip after="2m30s" every="5m">Stand on the enemy capture point to un-capture it and disable their shortcut</tip>
+</broadcasts>
+
+<teams>
+    <team id="red-team" max="14" max-overfill="16" color="dark red">Red</team>
+    <team id="blue-team" max="14" max-overfill="16" color="blue">Blue</team>
+</teams>
+
+<disabledamage>
+    <damage ally="true">block explosion</damage>
+</disabledamage>
+
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron axe</item>
+        <item slot="1">bow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="4" amount="24">vine</item>
+        <item slot="5" amount="2">tnt</item>
+        <item slot="6">flint and steel</item>
+        <item slot="7" damage="8227" potions="fire resistance:400:0:false">potion</item>
+        <item slot="8" amount="64">cooked beef</item>
+        <item slot="28" amount="16">arrow</item>
+    </kit>
+    <kit name="blue-kit" parents="spawn">
+        <item slot="3" amount="48" damage="2">wood</item>
+        <helmet color="5e55dd" locked="true">leather helmet</helmet>
+        <chestplate color="5e55dd" locked="true">leather chestplate</chestplate>
+        <leggings color="5e55dd" locked="true">leather leggings</leggings>
+        <boots color="5e55dd" locked="true">leather boots</boots>
+    </kit>
+    <kit name="red-kit" parents="spawn">
+        <item slot="3" amount="48" damage="4">wood</item>
+        <helmet color="dd5566" locked="true">leather helmet</helmet>
+        <chestplate color="dd5566" locked="true">leather chestplate</chestplate>
+        <leggings color="dd5566" locked="true">leather leggings</leggings>
+        <boots color="dd5566" locked="true">leather boots</boots>
+    </kit>
+</kits>
+
+<killreward>
+    <item amount="5">arrow</item>
+    <item>tnt</item>
+</killreward>
+
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="red-shortcut-unlock">
+        <all>
+            <team>red</team>
+            <objective>red-hill</objective>
+        </all>
+    </filter>
+    <filter name="blue-shortcut-unlock">
+        <all>
+            <team>blue</team>
+            <objective>blue-hill</objective>
+        </all>
+    </filter>
+    <filter name="deny-beacon">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+    <filter name="deny-glowstone">
+        <not>
+            <block>glowstone</block>
+        </not>
+    </filter>
+</filters>
+
+<regions>
+    <!-- on top of one of the islands -->
+    <cylinder name="obs-spawn" base="104.5,73,135.5" radius="1" height="0"/>
+
+    <!-- spawns -->
+    <cylinder name="red-spawn" base="103.5,33,135.5" radius="3" height="0"/>
+    <cylinder name="blue-spawn" base="153.5,33,121.5" radius="3" height="0"/>
+
+    <!-- depots (scoreboxes) -->
+    <cuboid name="red-depot" min="95,33,133" max="98,36,138"/>
+    <cuboid name="blue-depot" min="159,33,119" max="162,36,124"/>
+
+    <!-- base protection regions -->
+    <cuboid name="red-base-enter" min="94,32,113" max="108,46,142"/>
+    <cuboid name="red-base-block" min="94,32,113" max="109,46,142"/>
+    <cuboid name="blue-base-enter" min="149,32,115" max="163,46,144"/>
+    <cuboid name="blue-base-block" min="148,32,115" max="163,46,144"/>
+
+    <!-- the central lode -->
+    <cuboid name="lode" min="123,66,123" max="134,85,134"/>
+
+    <!-- spawn protection -->
+    <apply block="deny-all" message="You may not damage the base">
+        <union>
+            <region name="red-base-block"/>
+            <region name="blue-base-block"/>
+        </union>
+    </apply>
+
+    <!-- spawn entry protection -->
+    <apply enter="only-red" message="You may not enter the enemy base">
+        <region name="red-base-enter"/>
+    </apply>
+
+    <apply enter="only-blue" message="You may not enter the enemy base">
+        <region name="blue-base-enter"/>
+    </apply>
+
+    <!-- resupply -->
+    <apply filter="only-red" kit="red-kit">
+        <region name="red-base-enter"/>
+    </apply>
+
+    <apply filter="only-blue" kit="blue-kit">
+        <region name="blue-base-enter"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not damage the hill">
+        <cuboid min="98,72,132" max="105,77,139"/>
+        <cuboid min="152,72,118" max="159,77,125"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not damage the shortcut">
+        <cuboid min="149,56,129" max="156,61,136"/>
+        <cuboid min="101,56,121" max="108,61,128"/>
+    </apply>
+
+    <apply block="deny-glowstone" message="Glowstone is indestructible">
+        <negative>
+            <empty/>
+        </negative>
+    </apply>
+
+    <apply use="deny-beacon">
+        <negative>
+            <empty/>
+        </negative>
+    </apply>
+</regions>
+
+<filters>
+    <filter name="shuffle-blocks">
+        <any>
+            <block>stone</block>
+            <block>cobblestone</block>
+            <block>gold ore</block>
+            <block>emerald ore</block>
+            <block>diamond ore</block>
+        </any>
+    </filter>
+</filters>
+
+<renewables>
+    <!-- The first renewable is the lower part of the stalactite, with most of the ores -->
+    <renewable rate="2">
+        <region>
+            <cuboid min="123,66,123" max="134,88,134"/>
+        </region>
+        <shuffle-filter>
+            <filter name="shuffle-blocks"/>
+        </shuffle-filter>
+        <renew-filter>
+            <any>
+                <filter name="shuffle-blocks"/>
+                <block>glowstone</block>
+                <block>bedrock</block>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+                <block>lava</block>
+                <block>stationary lava</block>
+            </any>
+        </replace-filter>
+    </renewable>
+
+    <!-- This renewable is above the first one, and has very few gems.
+         It's here to prevent the first renewable from forming a platform,
+         and it's seperate so that players can't farm gems from the top. -->
+    <renewable rate="3">
+        <region>
+            <cuboid min="123,88,123" max="134,100,134"/>
+        </region>
+        <shuffle-filter>
+            <filter name="shuffle-blocks"/>
+        </shuffle-filter>
+        <renew-filter>
+            <any>
+                <filter name="shuffle-blocks"/>
+                <block>glowstone</block>
+                <block>bedrock</block>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+                <block>lava</block>
+                <block>stationary lava</block>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+
+<blockdrops>
+    <rule>
+        <filter>
+            <block>gold ore</block>
+        </filter>
+        <drops>
+            <item lore="Redeemable for 1 point" enchantment="loot bonus blocks:1">gold nugget</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>emerald ore</block>
+        </filter>
+        <drops>
+            <item lore="Redeemable for 3 points" enchantment="loot bonus blocks:3">emerald</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>diamond ore</block>
+        </filter>
+        <drops>
+            <item lore="Redeemable for 5 points" enchantment="loot bonus blocks:5">diamond</item>
+        </drops>
+    </rule>
+</blockdrops>
+
+<control-points capture-time="20s" points="0" neutral-state="true" capture-rule="lead">
+
+    <control-point id="red-hill" name="Red Hill">
+        <capture-filter>
+            <team>red</team>
+        </capture-filter>
+        <capture-region>
+            <cuboid min="99,73,133" max="104,76,138"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="99,72,133" max="104,73,138"/>
+        </progress-display-region>
+        <owner-display-region>
+            <union>
+                <cuboid min="155,57,130" max="156,60,135"/>
+                <cuboid min="96,33,133" max="97,36,138"/>
+            </union>
+        </owner-display-region>
+    </control-point>
+
+    <control-point id="blue-hill" name="Blue Hill">
+        <capture-filter>
+            <team>blue</team>
+        </capture-filter>
+        <capture-region>
+            <cuboid min="153,73,119" max="158,76,124"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="153,72,119" max="158,73,124"/>
+        </progress-display-region>
+        <owner-display-region>
+            <union>
+                <cuboid min="101,57,122" max="102,60,127"/>
+                <cuboid min="160,33,119" max="161,36,124"/>
+            </union>
+        </owner-display-region>
+    </control-point>
+
+</control-points>
+
+<portals>
+    <portal x="57" y="24" z="-3" filter="red-shortcut-unlock">
+        <region>
+            <cuboid min="97,33,133" max="98,36,138"/>
+        </region>
+    </portal>
+    <portal x="-57" y="24" z="3" filter="blue-shortcut-unlock">
+        <region>
+            <cuboid min="159,33,119" max="160,36,124"/>
+        </region>
+    </portal>
+</portals>
+
+<score>
+    <kills>0</kills>
+    <deaths>0</deaths>
+    <limit>300</limit>
+    <box filter="only-red">
+        <region>
+            <cuboid min="101,33,133" max="108,35,138"/>
+        </region>
+        <redeemables>
+            <item points="5">diamond</item>
+            <item points="3">emerald</item>
+            <item points="1">gold nugget</item>
+        </redeemables>
+    </box>
+    <box filter="only-blue">
+        <region>
+            <cuboid min="149,33,119" max="156,35,124"/>
+        </region>
+        <redeemables>
+            <item points="5">diamond</item>
+            <item points="3">emerald</item>
+            <item points="1">gold nugget</item>
+        </redeemables>
+    </box>
+</score>
+
+<spawns>
+    <default>
+        <regions yaw="-90">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+</spawns>
+
+<itemremove>
+    <item>iron axe</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>torch</item>
+    <item>chest</item>
+    <item>vine</item>
+    <item>flint and steel</item>
+    <item>potion</item>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>arrow</item>
+
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+
+<toolrepair>
+    <item>flint and steel</item>
+</toolrepair>
+
+</map>

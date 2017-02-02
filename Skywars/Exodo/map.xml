@@ -1,0 +1,66 @@
+<map proto="1.4.2" game="Skywars">
+<name>Exodo</name>
+<version>1.0</version>
+<authors>
+    <author uuid="f926e3b1-ce9c-4269-a5e8-e339d5056480"/> <!-- Matilaina -->
+</authors>
+<include src="skywars.xml"/>
+<maxbuildheight>63</maxbuildheight>
+<kits>
+    <kit id="all-effects"> <!-- Effects given to observers and players -->
+        <!-- none -->
+    </kit>
+</kits>
+<spawns>
+    <default kit="all-effects" region="observer-spawn" yaw="0"/>
+    <spawns spread="true" exclusive="true" kit="spawn-effects" angle="18.6,35,51.7">
+        <spawn region="player-1-spawn"/>
+        <spawn region="player-2-spawn"/>
+        <spawn region="player-3-spawn"/>
+        <spawn region="player-4-spawn"/>
+        <spawn region="player-5-spawn"/>
+        <spawn region="player-6-spawn"/>
+        <spawn region="player-7-spawn"/>
+        <spawn region="player-8-spawn"/>
+    </spawns>
+</spawns>
+<regions>
+    <!-- Observer spawnpoint -->
+    <point id="observer-spawn">-34.5,51,-25.5</point>
+    <!-- Player spawns -->
+    <point id="player-1-spawn">35.5,40,8.5</point>
+    <point id="player-2-spawn">40.5,40,-43.5</point>
+    <point id="player-3-spawn">2.5,40,-90.5</point>
+    <point id="player-4-spawn">-57.5,40,-92.5</point>
+    <point id="player-5-spawn">-104.5,40,-54.5</point>
+    <point id="player-6-spawn">-106.5,40,-0.5</point>
+    <point id="player-7-spawn">-68.5,40,46.5</point>
+    <point id="player-8-spawn">-11.5,40,46.5</point>
+    <!-- Tier 1 Chests (Player island) -->
+    <sphere id="player-1-chests" radius="15" origin="36,41,4"/>
+    <sphere id="player-2-chests" radius="15" origin="-7,41,47"/>
+    <sphere id="player-3-chests" radius="15" origin="-64,41,47"/>
+    <sphere id="player-4-chests" radius="15" origin="-107,41,3"/>
+    <sphere id="player-5-chests" radius="15" origin="-105,41,-50"/>
+    <sphere id="player-6-chests" radius="15" origin="-61,41,-93"/>
+    <sphere id="player-7-chests" radius="15" origin="-1,41,-91"/>
+    <sphere id="player-8-chests" radius="15" origin="40,41,-47"/>
+    <!--  Tier 2 Chests -->
+    <negative id="tier-2-chests">
+        <union>
+            <region id="tier-1-chests"/>
+            <region id="tier-3-chests"/>
+        </union>
+    </negative>
+    <!--  Tier 3 Chests -->
+    <union id="tier-3-chests">
+        <sphere radius="20" origin="-32,41,-21"/>
+    </union>
+</regions>
+<itemremove>
+    <item>flower_pot</item>
+    <item>sapling</item>
+    <item>seeds</item>
+    <item>sign</item>
+</itemremove>
+</map>

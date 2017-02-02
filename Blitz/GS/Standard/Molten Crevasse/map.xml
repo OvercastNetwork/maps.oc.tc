@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Molten Crevasse</name>
+<version>1.2</version>
+<objective>Kill the other team before time runs out!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="1bac18ba-7935-4a5d-8eec-06be9f44b7ba"/> <!-- chateau4 -->
+</authors>
+<contributors>
+    <contributor uuid="4978504c-ba2f-4b93-9890-38fbaa8e0b5e" contribution="XML"/> <!-- Hydro_Seeds -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Helped with the middle island/Bridges"/> <!-- moo88888888 -->
+</contributors>
+<teams>
+    <team color="gold" max="5">Orange</team>
+    <team color="blue" max="5">Blue</team>
+</teams>
+<spawns>
+    <spawn team="orange" yaw="-90">
+        <cuboid min="7.5,23,0.5" max="5.5,24,-1.5"/>
+    </spawn>
+    <spawn team="blue" yaw="90">
+        <cuboid min="38.5,23,-1.5" max="40.5,24,0.5"/>
+    </spawn>
+    <default yaw="180">
+        <point>21.5,23,-0.5</point>
+    </default>
+</spawns>
+<portals sound="false">
+    <portal x="@39.5" y="@23" z="@-0.5" yaw="@90">
+        <cuboid min="19,8,-15" max="22,12,-17"/>
+    </portal>
+    <portal x="@6.5" y="@23" z="@-0.5" yaw="@-90">
+        <cuboid min="22,9,18" max="19,13,20"/>
+    </portal>
+</portals>
+</map>

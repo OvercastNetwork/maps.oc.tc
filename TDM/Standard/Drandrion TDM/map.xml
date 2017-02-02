@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Drandion: TDM</name>
+<version>1.0</version>
+<objective>Have the most kills by the end of the match!</objective>
+<authors>
+    <author uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Aesthetics and Map Design"/> <!--  xannallax33  -->
+</authors>
+<contributors>
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML"/> <!--  Anthony  -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<score>
+    <time>10m</time>
+    <kills>1</kills>
+</score>
+<teams>
+    <team color="yellow" max="32" max-overfill="35">Yellow</team>
+    <team color="dark red" max="32" max-overfill="35">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="10">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="ffff00" locked="true">leather helmet</helmet>
+        <chestplate color="ffff00" locked="true">chainmail chestplate</chestplate>
+        <leggings color="ffff00" locked="true">leather leggings</leggings>
+        <boots color="ffff00" locked="true">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" locked="true">chainmail chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="4">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<spawns>
+    <spawn team="yellow" kit="yellow">
+        <regions yaw="-135">
+            <cylinder base="-94.5,21,123.5" height="0" radius="2"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red">
+        <regions yaw="45">
+            <cylinder base="-20.5,21,15.5" height="0" radius="2"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90"> 
+            <cuboid min="-101,58,68" max="-98,58,71"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter Yellow Team's portals!">
+        <cuboid name="portal-yellowspawn" min="-113,20,123" max="-112,22,127"/>
+        <cuboid name="portal-yellowbridge" min="-11,20,103" max="-10,22,107"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter Red Team's portals!">
+        <cuboid name="portal-redspawn" min="-3,20,12" max="-2,22,16"/>
+        <cuboid name="portal-redbridge"  min="-105,20,32" max="-104,22,36"/>
+    </apply>
+</regions>
+<portals>
+    <portal region="portal-yellowspawn" filter="only-yellow" x="@-11.5" y="@20" z="@105.5"/>
+    <portal region="portal-yellowbridge" filter="only-yellow" x="@-111.5" y="@20" z="@124.5"/>
+    <portal region="portal-redspawn" filter="only-red" x="@-103.5" y="@20" z="@33.5"/>
+    <portal region="portal-redbridge" filter="only-red" x="@-3.5" y="@20" z="@14.5"/>
+</portals>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

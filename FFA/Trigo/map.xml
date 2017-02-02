@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="RAGE FFA">
+<name>Trigo</name>
+<version>1.0.0</version>
+<objective>Have the most kills after 10 minutes to win.</objective>
+<authors>
+    <author uuid="ff0b4c92-edc5-4474-a145-04a433c9e485" contribution="Map Design, Aesthetics"/> <!-- MySquishyTurtle -->
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Terraforming"/> <!-- PepsiDog -->
+</authors>
+<contributors>
+    <contributor uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
+    <contributor uuid="76aaae9b-8566-4624-9fcf-199172e5285a"/> <!-- LimeSauce -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled on this map.</rule>
+</rules>
+<gamemode>ffa</gamemode>
+<rage/>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<timelock>on</timelock>
+<players min="2" max="20" max-overfill="24"/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<spawns>
+    <default>
+        <regions>
+            <point yaw="90">2.5,58,3.5</point>
+        </regions>
+    </default>
+    <spawn kit="player" spread="true" safe="true">
+        <regions angle="-24.5,7,-4.5">
+            <cuboid min="-75,0,-75" max="75,13,75"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="player">
+        <item slot="0" unbreakable="true" enchantment="damage_all:5">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow_damage:5">bow</item>
+        <item slot="2">arrow</item>
+        <helmet color="EFE533" locked="true">leather helmet</helmet>
+        <chestplate color="EFE533" locked="true">leather chestplate</chestplate>
+        <leggings>chainmail leggings</leggings>
+        <boots color="EFE533">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item>arrow</item>
+    <item>nether star</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item slot="8">nether star</item>
+</itemkeep>
+<regions>
+    <apply block="never"/>
+</regions>
+</map>

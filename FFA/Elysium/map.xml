@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Elysium</name>
+<version>1.4</version>
+<objective>Survive and get the most points.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+
+<kits>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2">wood axe</item>
+        <item slot="3" amount="16">dirt</item>
+        <item slot="4" amount="4">torch</item>
+        <item slot="5" amount="1">flint</item>
+        <item slot="6" amount="16">cooked beef</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8" amount="32">arrow</item>
+        <helmet color="FFFFFF" unbreakable="true">leather helmet</helmet>
+        <chestplate color="FFFFFF" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="FFFFFF" unbreakable="true">leather leggings</leggings>
+        <boots color="FFFFFF" unbreakable="true" enchantment="protection fall:2">leather boots</boots>
+        <potion duration="9" amplifier="2">heal</potion>
+        <potion duration="9" amplifier="100">damage resistance</potion>
+        <potion duration="7" ambient="false" amplifier="1">invisibility</potion>
+        <potion duration="8" ambient="false" amplifier="3">fire resistance</potion>
+    </kit>
+</kits>
+
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+</score>
+<time>40m</time>
+<players min="2" max="32" max-overfill="38" show-name-tags="false" colors="true"/>
+
+<spawns>
+    <spawn kit="spawn" spread="true">
+        <regions>
+            <cylinder base="0.5,130,0.5" radius="135" height="2"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions>
+            <point yaw="90">224.5,53,0.5</point>
+        </regions>
+    </default>
+</spawns>
+
+<killreward>
+    <item amount="4">arrow</item>
+    <item>golden apple</item>
+</killreward>
+
+<regions>    
+    <negative id="reversed-map">
+        <cylinder base="0.5,0,0.5" radius="200" height="200"/>
+    </negative>
+
+    <union id="villages">
+        <sphere id="yellow-village" origin="1.5,36,123.5" radius="4"/>
+        <sphere id="black-village" origin="-112.5,25,-58.5" radius="7"/>
+        <sphere id="blue-village" origin="-19.5,6,-116.5" radius="4"/>
+        <sphere id="green-village" origin="106.5,33,31.5" radius="4"/>
+        <sphere id="blacksmith" origin="-11.5,107,28.5" radius="7"/>
+        <cylinder id="obs-spawn" base="224.5,0,0.5" radius="30" height="200"/>
+    </union>
+    
+    <apply region="reversed-map" block="never" place="never" message="You may not build outside of the map"/>
+    <apply region="villages" block="never" place="never" message="You may not interact with this zone"/>
+</regions>
+
+<multitrade/>
+<maxbuildheight>130</maxbuildheight>
+
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>wood axe</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>dirt</item>
+</itemremove>
+<armorkeep>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+</armorkeep>
+<itemkeep>
+    <item>diamond sword</item>
+    <item>iron sword</item>
+    <item>stone axe</item>
+    <item>stone pickaxe</item>
+    <item>iron axe</item>
+    <item>iron pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond pickaxe</item>
+    <item>tnt</item>
+    <item>flint</item>
+</itemkeep>
+<timelock>off</timelock>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+</map>

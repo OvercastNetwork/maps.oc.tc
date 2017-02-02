@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Vanessa</name>
+<version>1.1</version>
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- kroest -->
+</authors>
+<teams>
+    <team color="blue" max="8">Blue</team>
+    <team color="dark red" max="8">Red</team>
+</teams>
+<regions>
+    <apply velocity="0,1.4,0">
+        <cuboid min="-30.5,24,-25.5" max="-29.5,26,-24.5"/> 
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" yaw="0">
+        <block>-57.5,34.5,-47.5</block>
+    </spawn>
+    <spawn team="red" yaw="50">
+        <block>-9.5,34.5,-4.5</block>
+    </spawn>
+    <default yaw="179">
+        <block>-29.5,28.5,-23.5</block>
+    </default>
+</spawns>
+<disabledamage>
+	<damage>fall</damage>
+</disabledamage>
+</map>

@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Airship Ascendance</name>
+<version>0.4</version>
+<objective>Leak lava from the enemy's obsidian Engine Core</objective>
+<authors>
+    <author uuid="30e27366-0b14-4076-8f55-0819ece49ce3" contribution="original creator"/> <!-- Dewtroid -->
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="overhaul"/> <!-- last_username -->
+</authors>
+<rules>
+    <rule>Spawn camping/killing is ALLOWED</rule>
+</rules>
+<filters>
+    <filter name="deny-cyan-clay">
+        <not>
+            <block>stained clay:9</block>
+        </not>
+    </filter>
+</filters>
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<regions>
+    <union name="red-tunnel">
+        <cuboid min="-35,39,-36" max="-26,oo,-29"/>
+        <cuboid min="-42,39,-36" max="-35,oo,-1"/>
+    </union>
+    <union name="blue-tunnel">
+        <cuboid min="3,39,-36" max="12,oo,-29"/>
+        <cuboid min="12,39,-36" max="19,oo,-1"/>
+    </union>
+    
+    <apply enter="deny-all" message="You may not enter the spawn tunnel">
+        <union>
+            <region name="red-tunnel"/>
+            <region name="blue-tunnel"/>
+        </union>
+    </apply>
+    
+    <apply block="deny-all" message="You may not build outside the playing field">
+        <negative>
+            <rectangle min="-58,-1" max="35,98"/>
+        </negative>
+    </apply>
+
+    <apply block="deny-cyan-clay" message="This material is stronger than it looks">
+        <negative></negative>
+    </apply>
+</regions>
+<kits>
+    <kit name="common">
+        <item slot="0">iron axe</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="4" amount="64">golden carrot</item>
+        <item slot="7" amount="5">arrow</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+
+        <item slot="9" amount="3">dispenser</item>
+    </kit>
+    <kit name="red" parents="common">
+        <item slot="12" amount="64" damage="4">wood</item>
+        <item slot="21" amount="64" damage="4">wood</item>
+        <item slot="30" amount="64" damage="4">wood</item>
+        <item slot="3" amount="64" damage="4">wood</item>
+        <helmet locked="true" color="ff0000">leather helmet</helmet>
+    </kit>
+    <kit name="blue" parents="common">
+        <item slot="12" amount="64" damage="2">wood</item>
+        <item slot="21" amount="64" damage="2">wood</item>
+        <item slot="30" amount="64" damage="2">wood</item>
+        <item slot="3" amount="64" damage="2">wood</item>
+        <helmet locked="true" color="0000ff">leather helmet</helmet>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>iron axe</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>golden carrot</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+</itemremove>
+<spawns>
+    <spawn team="blue" yaw="270" kit="blue">
+        <cuboid min="4.5,40,-34.5" max="8.5,40,-30.5"/>
+    </spawn>
+    <spawn team="red" yaw="90" kit="red">
+        <cuboid min="-31.5,40,-34.5" max="-27.5,40,-30.5"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-11.5,40,-32.5" radius="6" height="0"/>
+    </default>
+</spawns>
+<modes>
+    <mode after="5m" material="gold block" name="Gold Core Mode" show-before="5m"/>
+</modes>
+<cores material="obsidian" leak="9" mode-changes="true">
+    <core team="blue">
+        <cuboid min="13,41,33" max="18,48,38"/>
+    </core>
+    <core team="red">
+        <cuboid min="-41,41,33" max="-36,48,38"/>
+    </core>
+</cores>
+<proximity-alarms>
+    <proximity-alarm message="`4Red `fEngine Core `cis under attack!" flare-radius="3">
+        <detect>
+            <team>blue</team>
+        </detect>
+        <region>
+            <cuboid min="-46,35,28" max="-31,52,43"/>
+        </region>
+    </proximity-alarm>
+    <proximity-alarm message="`1Blue `fEngine Core `cis under attack!" flare-radius="3">
+        <detect>
+            <team>red</team>
+        </detect>
+        <region>
+            <cuboid min="8,35,28" max="23,52,43"/>
+        </region>
+    </proximity-alarm>
+</proximity-alarms>
+<maxbuildheight>80</maxbuildheight>
+</map>

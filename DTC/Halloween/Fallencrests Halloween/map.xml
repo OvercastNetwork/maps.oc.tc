@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Fallencrests: Halloween</name>
+<version>1.2.3</version>
+<objective>Leak lava from each of the enemy's obsidian core 6 blocks downwards</objective>
+<rules>
+    <rule>Players have resistance and reduced knockback, haste and resistance in spawn!</rule>
+</rules>
+<authors>
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
+    <author uuid="8e48d3e6-3abe-4e28-ab01-ac272ecea35f"/> <!-- TinyOrange -->
+</authors>
+<contributors>
+    <contributor uuid="51122eec-f6b4-42f6-9a4d-807aeee960a2" contribution="Misc. map help."/> <!-- ravi60 -->
+    <contributor uuid="3769b4c1-376a-488e-98db-a343fb3439bf" contribution="Misc. map help."/> <!-- Kevinthedude2000 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="639,17,429" max="641,17,431"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="270">
+        <cuboid min="569,17,301" max="571,17,305"/>
+    </spawn>
+    <default yaw="270">
+        <cuboid min="513,47,364" max="526,47,371"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="32">cooked beef</item>
+        <item slot="5" amount="64">log</item>
+        <item slot="6" amount="32">ladder</item>
+        <item slot="7" amount="8">torch</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion amplifier="10" duration="8">damage resistance</potion>
+        <potion amplifier="2" duration="5">fast digging</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+    <kit name="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <potion amplifier="2" duration="oo">fast digging</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>iron sword</item>
+    <item>arrow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>cooked beef</item>
+    <item>flint</item>
+    <item>obsidian</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<filters>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all"> 
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply lend-kit="spawn-protection" enter="only-blue" block="deny-all" message="You may not interact with Blue Team's spawn!">
+        <rectangle min="636,426" max="642,437"/>
+    </apply>
+    <apply lend-kit="spawn-protection" enter="only-red" block="deny-all" message="You may not interact with Red Team's spawn!">
+        <rectangle min="575,309" max="567,298"/>
+    </apply>
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative name="playable-inverse">
+            <rectangle min="567,228" max="643,508"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="5">
+    <core name="Rear Core" team="red">
+        <cuboid min="606,38,250" max="610,42,254"/>
+    </core>
+    <core name="Front Core" team="red">
+        <cuboid min="612,38,310" max="616,42,314"/>
+    </core>
+    <core name="Rear Core" team="blue">
+        <cuboid min="600,38,480" max="604,42,484"/>
+    </core>
+    <core name="Front Core" team="blue">
+        <cuboid min="594,38,420" max="598,42,424"/>
+    </core>
+</cores>
+<maxbuildheight>60</maxbuildheight>
+</map>

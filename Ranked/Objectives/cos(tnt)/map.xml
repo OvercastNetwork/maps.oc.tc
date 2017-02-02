@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>cos(tnt)</name>
+<genre>Objectives</genre>
+<time>20m</time>
+<respawn auto="true" delay="5s"/>
+<version>2.0</version>
+<objective>Get the most points before the 20 minute limit runs out!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</contributors>
+<teams>
+    <team id="red"    color="dark red" min="6" max="8">Red</team>
+    <team id="blue"   color="blue"     min="6" max="8">Blue</team>
+    <team id="yellow" color="yellow"   min="6" max="8">Yellow</team>
+</teams>
+<score/>
+<control-points
+       capture-time="15s"
+       points="1"
+       capture-rule="lead"
+       incremental="true"
+       show-progress="true"
+       neutral-state="false"
+       time-multiplier="0.5"
+       visual-materials="hill-materials">
+    <control-point id="south-point" name="South" capture="south-capture" progress="south-progress" captured="south-captured"/>
+    <control-point id="west-point"  name="West"  capture="west-capture"  progress="west-progress"  captured="west-captured"/>
+    <control-point id="north-point" name="North" capture="north-capture" progress="north-progress" captured="north-captured"/>
+    <control-point id="east-point"  name="East"  capture="east-capture"  progress="east-progress"  captured="east-captured"/>
+</control-points>
+<spawns>
+    <spawn team="yellow" kit="yellow-kit">
+        <regions yaw="0">
+            <cuboid min="5,62,64" max="10,63,66"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="0">
+            <cuboid min="5,57,64" max="10,58,66"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="0">
+            <cuboid min="5,52,64" max="10,53,66"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions angle="5.5,68,70.5">
+            <point yaw="0">8,66,65</point>
+            <point yaw="-180">8,66,75</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="teams" parents="obs">
+        <item slot="0"  amount="1" unbreakable="true" attributes="generic.attackDamage:add:7">diamond pickaxe</item>
+        <item slot="1"  amount="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2"  amount="64">vine</item>
+        <item slot="29" amount="64">vine</item>
+        <item slot="4"  amount="32">nether fence</item>
+        <item slot="31" amount="32">step</item>
+        <item slot="22" amount="32">ladder</item>
+        <item slot="5"  amount="16">stone button</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="6"  amount="1">water bucket</item>
+        <item slot="33" amount="1">water bucket</item>
+        <item slot="24" amount="1">water bucket</item>
+        <item slot="15" amount="1">water bucket</item>
+        <item slot="7"  amount="16">redstone block</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="8"  amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+        <helmet unbreakable="true" enchantment="depth strider:3;protection explosions:3;protection fall:3">iron helmet</helmet>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <item slot="3"  damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="12" damage="11" amount="64">stained clay</item>
+        <chestplate locked="true" unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="12" damage="14" amount="64">stained clay</item>
+        <chestplate locked="true" unbreakable="true" color="dd5566">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="dd5566">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="dd5566">leather boots</boots>
+    </kit>
+    <kit id="yellow-kit" parents="teams">
+        <item slot="3" damage="4" amount="64">stained clay</item>
+        <item slot="30" damage="4" amount="64">stained clay</item>
+        <item slot="21" damage="4" amount="64">stained clay</item>
+        <item slot="12" damage="4" amount="64">stained clay</item>
+        <chestplate locked="true" unbreakable="true" color="E5E533">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <team id="only-yellow">yellow</team>
+    <material id="hill-materials">stained glass</material>
+    <any id="only-explosives">
+        <material>redstone torch on</material>
+        <material>redstone block</material>
+        <material>tnt</material>
+    </any>
+    <all id="not-glass">
+        <not>
+            <material>stained glass</material>
+        </not>
+        <cause>player</cause>
+    </all>
+</filters>
+<regions>
+    <above id="above-26" y="26"/>
+    <cuboid id="between" min="-oo,25,-oo" max="oo,26,oo"/>
+    <complement id="obs-spawn">
+        <cuboid min="14,51,78" max="2,oo,62"/>
+        <cuboid min="13,52,77" max="3,65,63"/>
+    </complement>
+    <negative id="outside-map">
+        <complement id="map">
+            <union>
+                <rectangle id="main" min="155,30" max="-140,110"/>
+                <rectangle id="spawn-to-spawn" min="0,0" max="15,140"/>
+                <rectangle id="blue-2nd-entry" min="-45,60" max="-60,0"/>
+                <rectangle id="red-2nd-entry" min="60,80" max="75,140"/>
+                <rectangle id="red-patch"  min="75,100" max="155,95"/>
+                <rectangle id="blue-patch" min="-60,40" max="-140,45"/>
+            </union>
+            <rectangle id="red-dash" min="60,98" max="15,110"/>
+            <rectangle id="blue-dash" min="0,30" max="-45,42"/>
+            <rectangle id="yellow-patch-a" min="-60,30" max="-140,45"/>
+            <rectangle id="yellow-patch-b" min="75,110" max="155,95"/>
+        </complement>
+    </negative>
+    <union id="spawns">
+        <union id="blue-spawns">
+            <rectangle min="-15,15" max="0,0"/>
+            <rectangle min="-45,15" max="-60,0"/>
+        </union>
+        <union id="red-spawns">
+            <rectangle min="30,125" max="15,140"/>
+            <rectangle min="60,125" max="75,140"/>
+        </union>
+        <union id="yellow-spawns">
+            <rectangle min="120,45"   max="135,30"/>
+            <rectangle min="-120,110" max="-105,95"/>
+        </union>
+    </union>
+    <union id="points">
+        <cuboid id="south-region" min="-15,0,110" max="-30,7,80"/>
+        <cuboid id="west-region"  min="-80,0,45"  max="-99,7,62"/>
+        <cuboid id="north-region" min="30,0,60"   max="45,7,30"/>
+        <cuboid id="east-region"  min="114,0,78"  max="95,7,95"/>
+    </union>
+    <union id="above-points">
+        <cuboid id="above-south-point" min="-15,7,110" max="-30,26,80"/>
+        <cuboid id="above-west-point"  min="-80,7,45"  max="-99,26,62"/>
+        <cuboid id="above-north-point" min="30,7,60"   max="45,26,30"/>
+        <cuboid id="above-east-point"  min="114,7,78"  max="95,26,95"/>
+    </union>
+    <union id="yellow-portals">
+        <cuboid id="yellow-west-portal" min="4,62,75"  max="3,65,67"/>
+        <cuboid id="yellow-east-portal" min="12,62,67" max="13,65,75"/>
+        <union id="back-to-yellow">
+            <block>122.5,7,32.5</block>
+            <block>-107.5,7,107.5</block>
+        </union>
+    </union>
+    <union id="blue-portals">
+        <cuboid id="blue-west-portal"  min="4,57,75"  max="3,60,67"/>
+        <cuboid id="blue-north-portal" min="12,57,67" max="13,60,75"/>
+        <union id="back-to-blue">
+            <block>-12.5,7,2.5</block>
+            <block>-57.5,7,2.5</block>
+        </union>
+    </union>
+    <union id="red-portals">
+        <cuboid id="red-south-portal" min="4,52,75"  max="3,55,67"/>
+        <cuboid id="red-east-portal"  min="12,52,67" max="13,55,75"/>
+        <union id="back-to-red">
+            <block>72.5,7,137.5</block>
+            <block>27.5,7,137.5</block>
+        </union>
+    </union>
+    <union id="south-regions">
+        <cuboid id="south-capture"  min="-15,7,110" max="-30,27,80"/>
+        <cuboid id="south-progress" min="-15,0,110" max="-30,7,80"/>
+        <cuboid id="south-captured" min="-15,6,120" max="-30,25,121"/>
+    </union>
+    <union id="west-regions">
+        <cuboid id="west-capture"  min="-80,7,45" max="-99,27,62"/>
+        <cuboid id="west-progress" min="-80,0,45" max="-99,7,62"/>
+        <cuboid id="west-captured" min="-99,6,34" max="-80,25,35"/>
+    </union>
+    <union id="north-regions">
+        <cuboid id="north-capture"  min="30,7,60" max="45,27,30"/>
+        <cuboid id="north-progress" min="30,0,60" max="45,7,30"/>
+        <cuboid id="north-captured" min="30,6,19" max="45,25,20"/>
+    </union>
+    <union id="east-regions">
+        <cuboid id="east-capture"  min="114,7,78" max="95,27,95"/>
+        <cuboid id="east-progress" min="114,0,78" max="95,7,95"/>
+        <cuboid id="east-captured" min="95,6,105" max="114,25,106"/>
+    </union>
+    <apply block="never"           region="spawns"      message="You may not edit the spawn island"/>
+    <apply block-break="not-glass" region="points"      message="You may not edit the capture point"/>
+    <apply block="never"           region="above-26"    message="You may not edit above the height limit"/>
+    <apply block="never"           region="outside-map" message="You may not edit outside the map"/>
+    <apply block="only-explosives" region="between"     message="Only redstone blocks, tnt, and torches are allowed here"/>
+    <apply enter="never"           region="obs-spawn"   message="You may not enter the observer spawn area!"/>
+</regions>
+<portals filter="only-yellow">
+    <portal region="yellow-east-portal" x="@127.5"  y="@7.5"  z="@37.5"  yaw="@-90"/>
+    <portal region="yellow-west-portal" x="@-112.5" y="@7.5"  z="@102.5" yaw="@90"/>
+    <portal region="back-to-yellow"     x="@8"      y="@62.5" z="@65"    yaw="@0"/>
+</portals>
+<portals filter="only-blue">
+    <portal region="blue-west-portal"   x="@-52.5"  y="@7.5"  z="@7.5"   yaw="@0"/>
+    <portal region="blue-north-portal"  x="@-7.5"   y="@7.5"  z="@7.5"   yaw="@-90"/>
+    <portal region="back-to-blue"       x="@8"      y="@57.5" z="@65"    yaw="@0"/>
+</portals>
+<portals filter="only-red">
+    <portal region="red-south-portal"   x="@22.5"   y="@7.5"  z="@132.5" yaw="@90"/>
+    <portal region="red-east-portal"    x="@67.5"   y="@7.5"  z="@132.5" yaw="@180"/>
+    <portal region="back-to-red"        x="@8"      y="@52.5" z="@65"    yaw="@0"/>
+</portals>
+<blockdrops>
+    <rule>
+        <filter>
+            <material>iron block</material>
+        </filter>
+        <drops>
+            <item attributes="generic.movementSpeed:base:0.15"
+                  enchantment="depth strider:3;protection explosions:3;protection fall:3"
+                  damage="313">diamond helmet</item>
+            <item id="`6Grenade" amount="4" grenade="true" grenade-power="1.5">snow ball</item>
+        </drops>
+    </rule>
+</blockdrops>
+<renewables>
+    <renewable interval="2m" grow="true" avoid-entities="true" particles="false" sound="false">
+        <region>
+            <cuboid min="-140,0,140" max="155,25,0"/>
+        </region>
+        <renew-filter>
+            <not>
+                <any>
+                    <material>stained glass</material>
+                    <material>air</material>
+                </any>
+            </not>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <material>air</material>
+                <material>water</material>
+                <material>stationary water</material>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<modes boss-bar="true">
+    <mode show-before="90s" after="5m"  material="iron block" name="`3Dropping an `airon `3supply"/>
+    <mode show-before="90s" after="10m" material="iron block" name="`3Dropping an `airon `3supply"/>
+    <mode show-before="90s" after="15m" material="iron block" name="`3Dropping an `airon `3supply"/>
+</modes>
+<destroyables show="false" required="false" materials="stained clay:9" owner="yellow" completion="0%" mode-changes="true">
+    <destroyable id="south-drop-zone" name="south-drop-zone">
+        <region>
+            <cuboid min="-54,32,86" max="-51,36,89"/>
+        </region>
+    </destroyable>
+    <destroyable id="north-drop-zone" name="north-drop-zone">
+        <region>
+            <cuboid min="66,32,54" max="69,36,51"/>
+        </region>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>stone plate</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bucket</item>
+    <item>diamond block</item>
+    <item>iron block</item>
+    <item>dispenser</item>
+    <item>quartz block</item>
+</itemremove>
+<itemkeep>
+    <item>dispenser</item>
+</itemkeep>
+<armorkeep>
+    <item>diamond helmet</item>
+</armorkeep>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="32">tnt</item>
+    <item>dispenser</item>
+</killreward>
+<disabledamage>
+    <damage enemy="false" self="false" other="false">block explosion</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <dispenser-tnt-limit>16</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0.05</dispenser-tnt-multiplier>
+</tnt>
+</map>

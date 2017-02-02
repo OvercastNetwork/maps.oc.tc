@@ -1,0 +1,274 @@
+<map proto="1.4.0">
+<name>Foundry</name>
+<version>2.0.0</version>
+<objective>Capture all five control points.</objective>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!--  NixaniaXi  -->
+</authors>
+<time>12m</time>
+<teams>
+    <team id="red" color="dark red" max="5">Red</team>
+    <team id="blue" color="blue" max="5">Blue</team>
+</teams>
+<respawn delay="5s" auto="true"/>
+<spawns>
+    <spawn team="red" filter="spawn1" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,56,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn2" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,95,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn3" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,134,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn4" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,173,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn5" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,212,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" filter="spawn6" kit="redKit">
+        <regions yaw="180">
+            <block>-64.5,251,-.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn1" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,56,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn2" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,95,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn3" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,134,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn4" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,173,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn5" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,212,1.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" filter="spawn6" kit="blueKit">
+        <regions yaw="0">
+            <block>65.5,251,1.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions angle="0,30,0">
+            <point>1.5,26,24.5</point>
+            <point>-0.5,26,-23.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <gamemode>adventure</gamemode>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="6" amount="1">golden apple</item>
+        <item slot="8" amount="32">arrow</item>
+        <chestplate enchantment="protection projectile:3" unbreakable="true">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item>golden apple</item>
+    <item amount="32">arrow</item>
+</killreward>
+<itemremove>
+    <item>golden apple</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <!-- Point Filters -->
+    <objective id="blue2ndPortal">blue-2nd</objective>
+    <objective id="red2ndPortal">red-2nd</objective>
+    <objective id="midPortal">mid</objective>
+    <!-- Time Filters -->
+    <not id="spawn1">
+        <time>2m</time>
+    </not>
+    <all id="spawn2">
+        <time>2m</time>
+        <not>
+            <time>4m</time>
+        </not>
+    </all>
+    <all id="spawn3">
+        <time>4m</time>
+        <not>
+            <time>6m</time>
+        </not>
+    </all>
+    <all id="spawn4">
+        <time>6m</time>
+        <not>
+            <time>8m</time>
+        </not>
+    </all>
+    <all id="spawn5">
+        <time>8m</time>
+        <not>
+            <time>10m</time>
+        </not>
+    </all>
+    <all id="spawn6">
+        <time>10m</time>
+    </all>
+</filters>
+<regions>
+    <cuboid id="blue-spawn" min="69,12,19" max="67,15,16"/>
+    <cuboid id="red-spawn" min="-68,12,-18" max="-66,15,-15"/>
+    <apply block="never" region="everywhere"/>
+    <apply enter="only-blue" region="blue-spawn"/>
+    <apply enter="only-red" region="red-spawn"/>
+</regions>
+<control-points incremental="true" neutral-state="true" show-progress="true" scaled-time="true" time-multiplier="0.25" capture-time="5s">
+    <control-point initial-owner="red" id="red-last" name="Red Last">
+        <capture-region>
+            <cuboid min="-60,15,-21" max="-69,20,-30"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-60,15,-21" max="-69,20,-30"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-2nd</objective>
+                <team>red</team>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="red" id="red-2nd" name="Red 2nd">
+        <capture-region>
+            <cuboid min="-22,10,-7" max="-31,18,-16"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-21,10,-6" max="-32,14,-17"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-last</objective>
+                <objective>mid</objective>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point id="mid" name="Mid">
+        <capture-region>
+            <cuboid min="-4,7,-4" max="5,12,5"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="-4,7,-4" max="5,12,5"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>red-2nd</objective>
+                <objective>blue-2nd</objective>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-2nd" name="Blue 2nd">
+        <capture-region>
+            <cuboid min="23,10,8" max="32,18,17"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="22,10,7" max="33,14,18"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>mid</objective>
+                <objective>blue-last</objective>
+            </any>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-last" name="Blue Last">
+        <capture-region>
+            <cuboid min="61,15,22" max="70,20,31"/>
+        </capture-region>
+        <progress-display-region>
+            <cuboid min="61,15,22" max="70,20,31"/>
+        </progress-display-region>
+        <player-filter>
+            <any>
+                <objective>blue-2nd</objective>
+                <team>blue</team>
+            </any>
+        </player-filter>
+    </control-point>
+</control-points>
+<portals>
+    <!-- Red Portals -->
+    <portal x="@-55.5" y="@13" z="@-17.5" yaw="@-90" filter="red2ndPortal">
+        <region>
+            <cuboid min="-66,12,-5" max="-63,15,-6"/>
+        </region>
+    </portal>
+    <portal x="@-32.5" y="@13" z="@-11.5" yaw="@-90" filter="midPortal">
+        <region>
+            <cuboid min="-66,12,-4" max="-63,15,-5"/>
+        </region>
+    </portal>
+    <portal x="@8.5" y="@9" z="@13.5" yaw="@-90" filter="blue2ndPortal">
+        <region>
+            <cuboid min="-66,12,-3" max="-63,15,-4"/>
+        </region>
+    </portal>
+    <!-- Blue Portals -->
+    <portal x="@57" y="@13" z="@18" yaw="@90" filter="blue2ndPortal">
+        <region>
+            <cuboid min="67,12,6" max="64,15,7"/>
+        </region>
+    </portal>
+    <portal x="@33.5" y="@13" z="@12.5" yaw="@90" filter="midPortal">
+        <region>
+            <cuboid min="67,12,5" max="64,15,6"/>
+        </region>
+    </portal>
+    <portal x="@-7.5" y="@9" z="@-12.5" yaw="@90" filter="red2ndPortal">
+        <region>
+            <cuboid min="67,12,4" max="64,15,5"/>
+        </region>
+    </portal>
+</portals>
+<timelock>true</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

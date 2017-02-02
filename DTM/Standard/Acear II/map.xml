@@ -1,0 +1,114 @@
+<map proto="1.4.0">
+<name>Acear II</name>
+<version>2.3.0</version>
+<objective>Break the enemy team's monument.</objective>
+<authors>
+    <author uuid="022321a8-578b-4438-b035-8a3ca735639f"/>
+    <!--   nintendoboy11   -->
+    <author uuid="cbd5c47c-1137-4f02-93dd-626a46bdd779"/>
+    <!--   Kaskito   -->
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26" contribution="XML"/>
+    <!--   Strmr   -->
+</authors>
+<broadcasts>
+    <tip after="10s">You can get iron armor by crafting it in the far left and right islands!</tip>
+</broadcasts>
+<gamemode>dtm</gamemode>
+<teams>
+    <team id="red-team" color="dark red" max="25" max-overfill="30">Red</team>
+    <team id="blue-team" color="blue" max="25" max-overfill="30">Blue</team>
+</teams>
+<spawns>
+<spawn kit="kit-red" team="red-team">
+    <regions yaw="-90">
+        <cuboid min="-69,50,-1" max="-65,52,2"/>
+    </regions>
+</spawn>
+<spawn kit="kit-blue" team="blue-team">
+    <regions yaw="90">
+        <cuboid min="156,50,-1" max="152,52,2"/>
+    </regions>
+</spawn>
+<default>
+    <regions yaw="90">
+        <point>43,59,0</point>
+    </regions>
+  </default>
+</spawns>
+<kits>
+    <kit id="teams" force="true">
+        <item slot="0" name="Sword">iron sword</item>
+        <item slot="1" name="Bow">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="5" amount="16" damage="1">log</item>
+        <item slot="6" amount="48">leaves</item>
+        <item slot="7" amount="32">cooked beef</item>
+        <item slot="8" amount="1">golden apple</item>
+        <item slot="28" amount="24">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <boots unbreakable="true" locked="false">iron boots</boots>
+    </kit>
+    <kit id="kit-red" parents="teams">
+        <chestplate color="993333" unbreakable="false" locked="false">leather chestplate</chestplate>
+    </kit>
+    <kit id="kit-blue" parents="teams">
+        <chestplate color="334CB2" unbreakable="true" locked="false">leather chestplate</chestplate>
+    </kit>
+</kits>
+<destroyables name="Monument" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="blue-team">
+      <region>
+        <cuboid min="88,5,-0" max="90,12,1"/>
+      </region>
+    </destroyable>
+    <destroyable owner="red-team">
+      <region>
+        <cuboid min="-3,5,-0" max="-1,12,1"/>
+      </region>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="20m" material="gold block"/>
+</modes>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="2s" blackout="true"/>
+<regions>
+    <rectangle id="redfront" min="-67,-9" max="-40,9"/>
+    <apply block="never" region="redfront" message="You may not edit the spawn area"/>
+    <rectangle id="bluefront" min="127,-9" max="154,9"/>
+    <apply block="never" region="bluefront" message="You may not edit the spawn area"/>
+    <cylinder id="one" base="-65,1,0" radius="7" height="50"/>
+    <apply block="never" region="one" message="You may not edit the spawn area"/>
+    <cylinder id="two" base="151,1,0" radius="7" height="50"/>
+    <apply block="never" region="two" message="You may not edit the spawn area"/>
+    <apply block="always">
+        <region>
+            <rectangle min="127,-7" max="-40,8"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not edit blocks outside of the map">
+        <region>
+            <negative><rectangle min="-32,-29" max="119,30"/></negative>
+        </region>
+    </apply>
+</regions>
+<killreward>
+    <item amount="16" material="arrow"/>
+    <item amount="1" material="golden apple"/>
+    <item amout="4" material="water lily"/>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron axe</item>
+    <item>diamond pickaxe</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>obsidian</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>35</maxbuildheight>
+</map>

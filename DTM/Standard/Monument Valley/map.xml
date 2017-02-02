@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Monument Valley</name>
+<version>1.0.2</version>
+<objective>
+    Destroy the enemy team's obsidian monument.
+</objective>
+<authors>
+    <author uuid="5ca79703-1be6-4dca-9073-59d024eb8bb0"/> <!-- koipen -->
+</authors>
+<contributors>
+    <contributor uuid="083ec416-c87e-438f-8732-170798b4fe93" contribution="XML"/> <!-- orky48 -->
+</contributors>
+<rules>
+    <rule>Players have resistance and reduced knockback in spawn!</rule>
+</rules>
+<teams>
+    <team color="blue" max="30">Blue</team>
+    <team color="dark red" max="30">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">stone axe</item>
+        <item slot="4" unbreakable="true">stone spade</item>
+        <item slot="5" amount="32">wood</item>
+        <item slot="6" amount="32">cooked beef</item>
+        <item slot="7">boat</item>
+        <potion duration="10" amplifier="25">heal</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" yaw="180" kit="blue">
+        <cuboid min="3,46,-45" max="6,46,-42"/>
+    </spawn>
+    <spawn team="red" yaw="0" kit="red">
+        <cuboid min="3,46,89" max="6,46,92"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="115,84,22" max="118,84,25"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not build outside of the map">
+        <negative>
+            <complement>
+                <cuboid min="0,0,-54" max="101,70,101"/>
+                <cuboid min="0,50,11" max="101,oo,36"/>
+            </complement>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not edit the team spawns!">
+        <cuboid name="blue-spawn" min="0,42,-54" max="12,55,-35"/>
+        <cuboid name="red-spawn" min="0,42,82" max="12,55,101"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter `4Red Spawn!">
+        <rectangle min="0,101" max="10,82"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter `1Blue Spawn!">
+        <rectangle min="0,-54" max="10,-35"/>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-red">
+        <rectangle min="0,101" max="10,82"/>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-blue">
+        <rectangle min="0,-54" max="10,-35"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all"> 
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+</filters>
+<destroyables name="Monument" materials="obsidian">
+    <destroyable owner="blue">
+        <cuboid min="61,41,-26" max="62,44,-25"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="61,41,72" max="62,44,73"/>
+    </destroyable>
+</destroyables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone axe</tool>
+    <tool>stone spade</tool>
+    <tool>diamond axe</tool>
+    <tool>boat</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

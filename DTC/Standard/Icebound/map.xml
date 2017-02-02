@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Icebound</name>
+<version>1.0</version>
+<objective>Destroy the enemy's obsidian core!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Map feedback and minor aesthetics"/> <!-- moo88888888 -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Map feedback and XML help"/> <!-- ElectroidFilms -->
+    <contributor uuid="c65e66b3-e932-4b33-b907-fe4916806076" contribution="Map feedback"/> <!-- Draco_Rogue -->
+    <contributor uuid="968a1d95-089a-47b7-8840-57eeedde6ea6" contribution="Map feedback"/> <!-- DoctorTardi -->
+    <contributor uuid="17feaec5-9616-49d8-a507-83026050dd8f" contribution="Map feedback"/> <!-- ShinyDialga45 -->
+    <contributor uuid="5bcba185-92a3-4e61-854a-4485ac7d240f" contribution="Map feedback"/> <!-- MonstroGato -->
+</contributors>
+<teams>
+    <team id="cyan" color="dark aqua" max="30">Cyan</team>
+    <team id="purple" color="dark purple" max="30">Purple</team>
+</teams>
+<spawns>
+    <spawn team="cyan" kit="cyan" yaw="-90">
+        <cuboid min="-94,31.1,63" max="-92,32,64"/>
+    </spawn>
+    <spawn team="purple" kit="purple" yaw="90">
+        <cuboid min="-5,31.1,-222" max="-7,32,-223"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="-119.5,53,-79.5" radius="2" height="1"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4">stone spade</item>
+        <item slot="5" amount="32" damage="5">wood</item>
+        <item slot="6" amount="32">smooth brick</item>
+        <item slot="7" amount="8">torch</item>
+        <item slot="8" amount="64">cooked fish</item>
+    </kit>
+    <kit name="cyan" parents="teams">
+        <helmet color="4C7F99" locked="true">leather helmet</helmet>
+        <chestplate color="4C7F99">leather chestplate</chestplate>
+        <boots color="4C7F99">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="teams">
+        <helmet color="7F3FB2" locked="true">leather helmet</helmet>
+        <chestplate color="7F3FB2">leather chestplate</chestplate>
+        <boots color="7F3FB2">leather boots</boots>
+    </kit>
+    <kit name="kill-senses" force="true">
+        <potion duration="5">night vision</potion>
+        <potion duration="4" amplifier="2">speed</potion>
+        <potion duration="4" amplifier="3">regeneration</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-cyan">
+        <team>cyan</team>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="only-water">
+        <any>
+            <block>water</block>
+            <block>stationary water</block>
+        </any>
+    </filter>
+        <filter name="no-ice-and-snow">
+            <not>
+                <all>
+                    <any>
+                        <filter name="allow-world"/>
+                        <filter name="deny-all"/>
+                    </any>
+                    <any>
+                        <block>ice</block>
+                        <block>snow</block>
+                    </any>
+                </all>
+            </not>
+        </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <rectangle name="map" min="1,71" max="-100,-230"/>
+    <cuboid name="ocean" min="1,17,71" max="-100,21,-230"/>
+    <union name="spawns">
+        <cuboid name="cyan-base" min="-88,29,58" max="-100,48,71"/>
+        <mirror name="purple-base-pre" region="cyan-base" origin="-49.5,0,-79.5" normal="0,0,-1"/>
+        <translate name="purple-base" region="purple-base-pre" offset="89,0,0"/>
+    </union>
+    <union name="cores">
+        <union name="front-cores">
+            <sphere name="cyan-front-core" origin="-65.5,29.5,-25.5" radius="3"/>
+            <sphere name="purple-front-core" origin="-33.5,29.5,-133.5" radius="3"/>
+        </union>
+        <union name="back-cores">
+            <sphere name="cyan-back-core" origin="-29.5,31.5,48.5" radius="3"/>
+            <sphere name="purple-back-core" origin="-69.5,31.5,-207.5" radius="3"/>
+        </union>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all" message="You may not edit outside of the map!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not edit the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply block-place="no-ice-and-snow">
+        <region name="map"/>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-cyan" message="You may not enter the enemy base!">
+        <region name="cyan-base"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter the enemy base!">
+        <region name="purple-base"/>
+    </apply>
+</regions>
+<renewables>
+    <renewable rate="20" sound="false" avoid-entities="false" particles="true">
+        <region>
+            <region name="ocean"/>
+        </region>
+        <renew-filter>
+            <filter name="only-water"/>
+        </renew-filter>
+    </renewable>
+</renewables>
+<cores leak="4" material="obsidian">
+    <cores name="Front Core">
+        <core team="cyan">
+            <region name="cyan-front-core"/>
+        </core>
+        <core team="purple">
+            <region name="purple-front-core"/>
+        </core>
+    </cores>
+    <cores name="Back Core">
+        <core team="cyan">
+            <region name="cyan-back-core"/>
+        </core>
+        <core team="purple">
+            <region name="purple-back-core"/>
+        </core>
+    </cores>
+</cores>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>iron block</block>
+        </filter>
+        <drops>
+            <item>iron chestplate</item>
+            <item>iron leggings</item>
+            <item>iron boots</item>
+            <item>iron sword</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>gold block</block>
+        </filter>
+        <drops>
+            <item>gold chestplate</item>
+            <item>gold leggings</item>
+            <item>gold boots</item>
+        </drops>
+    </rule>
+</blockdrops>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <kit name="kill-senses"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="10" repeat="true"/>
+    </filter>
+    <item name="`cExplosive">tnt</item>
+</killreward>
+<tnt>
+    <power>10</power>
+    <fuse>4s</fuse>
+    <instantignite>true</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<broadcasts>
+    <tip after="1s" every="5m">Water in the ocean will regenerate and replace blocks!</tip>
+    <tip after="3s" every="5m">Breaking an iron or gold block will drop a kit.</tip>
+</broadcasts>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>stone spade</tool>
+    <tool>diamond chestplate</tool>
+    <tool>iron sword</tool>
+    <tool>iron chestplate</tool>
+    <tool>iron leggings</tool>
+    <tool>iron boots</tool>
+    <tool>gold chestplate</tool>
+    <tool>gold leggings</tool>
+    <tool>gold boots</tool>
+</toolrepair>
+<itemremove>
+    <item>snow ball</item>
+    <item>flint</item>
+    <item>snow block</item>
+    <item>torch</item>
+    <item>cooked fish</item>
+    <item>obsidian</item>
+    <item>string</item>
+    <item>iron block</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>sapling</item>
+    <item>golden apple</item>
+    <item>obsidian</item>
+    <item>seeds</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>brown mushroom</item>
+    <item>flower pot</item>
+    <item>tnt</item>
+</itemremove>
+<maxbuildheight>40</maxbuildheight>
+</map>

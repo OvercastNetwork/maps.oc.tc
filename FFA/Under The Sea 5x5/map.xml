@@ -1,0 +1,73 @@
+<map proto="1.4.0">
+<name>Under The Sea</name>
+<slug>under_the_sea_5x5</slug>
+<version>1.0.1</version>
+<objective>Get the most kills in 5min!</objective>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!--   GoldenOre   -->
+</authors>
+<score>
+    <kills>1</kills>
+</score>
+<rage/>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false"/>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-43">-30.5,20,-30.5</point>
+            <point yaw="-20">12.5,15,-31.5</point>
+            <point yaw="90">33.5,29,2.5</point>
+            <point yaw="132">33.5,29,31.5</point>
+            <point yaw="-90">-33.5,30,23.5</point>
+            <point yaw="-83">-32.5,32,-7.5</point>
+            <point yaw="-1">14.5,24,-17.5</point>
+            <point yaw="-1">-1.5,24,15.5</point>
+            <point yaw="90">-11.5,17,11.5</point>
+        </regions>
+    </spawn>
+<default yaw="-90">
+    <regions>
+        <cuboid min="-30.5,20,-30.5" max="-30.5,20,-30.5"/>
+    </regions>
+</default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <double-jump power="3.5" recharge-time="2.5s" recharge-before-landing="true"/>
+        <item slot="0" name="Sword" lore="Splish" enchantment="damage all:10">diamond sword</item>
+        <item slot="1" name="Bow" lore="Splash" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <helmet color="334CB2" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2" locked="true">leather chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="334CB2" unbreakable="true" locked="true">leather boots</boots>
+        <potion duration="2.5" amplifier="25">damage resistance</potion>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="2.5s" blackout="true"/>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+</regions>
+<killreward>
+    <item amount="1" material="arrow"/>
+</killreward>
+<itemremove>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>stone sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

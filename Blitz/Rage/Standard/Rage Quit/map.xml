@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Rage Quit</name>
+<version>1.0.4</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="3ce426cd-2ded-4f83-a9bb-46a57d68d9a5"/> <!-- McYukon -->
+</authors>
+<contributors>
+    <contributor contribution="Beta testing and initial feedback">(Team) Starfish</contributor>
+</contributors>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time> 
+    <lives>1</lives> 
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="red" kit="red" yaw="45">
+        <cuboid min="43,9,-42" max="46,9,-45"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <cuboid min="-42,9,43" max="-45,9,46"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="-4,49,-73" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" locked="true">leather leggings</leggings>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

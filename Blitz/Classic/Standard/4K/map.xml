@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>4K</name>
+<version>1.0.7</version>
+<objective>Kill all your opponents! Each person has 2 lives</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Map Idea, Design, Spawners and XML"/> <!-- xXFracXx -->
+    <author uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230" contribution="Map Idea and Design"/> <!-- thegoodguy -->
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Map Design and XML additions"/> <!-- ItsMiiOlly -->
+</authors>
+<contributors>
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML"/> <!-- dinner1111 -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Fixing and Testing the XML"/> <!-- ElectroidFilms -->
+</contributors>
+<rules>
+    <rule>Fall damage, suffocation, and falling block damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="blue" max="15">Blue</team>
+    <team color="dark red" max="15">Red</team>
+</teams>
+<blitz>
+    <time>5m</time>
+    <lives>2</lives>
+</blitz>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone axe</item>
+        <item slot="1">bow</item>
+        <item slot="2">tnt</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="3" amount="16">vine</item>
+        <item slot="4">shears</item>
+        <item slot="8">282</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <leggings color="0066cc">leather leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <leggings color="cd0000">leather leggings</leggings>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-180">
+        <cuboid min="2,34,68" max="-1,32,65"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="0,34,-68" max="1,32,-65"/>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <cuboid min="64,47,1" max="61,45,0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="blue-spawn" min="-8,20" max="8,76"/>
+        <rectangle name="red-spawn" min="8,-18" max="-7,-74"/>
+        <cylinder name="floor-protection" base="0,0,0" radius="50" height="4"/>
+    </apply>
+    <apply velocity="@0,0,-3">
+        <!-- Blue -->
+        <block>-1,32,-54</block>
+        <block>0,32,54</block>
+        <block>1,32,54</block>
+    </apply>
+        <!-- Red -->
+    <apply velocity="@0,0,3">
+        <block>-1,32,-54</block>
+        <block>0,32,-54</block>
+        <block>1,32,-54</block>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<itemremove>
+    <item>arrow</item>
+    <item>mushroom soup</item>
+    <item>stone axe</item>
+    <item>bow</item>
+    <item>chest</item>
+    <item>leather leggings</item>
+    <item>dirt</item>
+    <item>log</item>
+    <item>cobblestone</item>
+    <item>brick</item>
+    <item>brown mushroom</item>
+    <item>red mushroom</item>
+    <item>water lily</item>
+    <item>ladder</item>
+    <item>soul sand</item>
+    <item>leaves</item>
+    <item>vine</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>stone axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage>falling block</damage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<killreward>
+    <item>tnt</item>
+</killreward>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Blitz">
+        <message>
+            <line>This is a `c15v15 Blitz game`r. Each person has `c`l2 lives`r.</line>
+            <line>In order to `awin`r, you must `4eliminate`r the other team!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="30">48,47,1</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>This is where you will spawn when the game starts.</line>
+            <line>Simply run out of it and it will accelerate you towards the arena.</line>
+        </message>
+        <teleport>
+            <point yaw="43" pitch="10">10,37,54</point>
+        </teleport>
+    </stage>
+    <stage title="Arena">
+        <message>
+            <line>This is the `darena`r.</line>
+            <line>At the moment, it looks plain. However, after a couple of seconds...</line>
+            <line>blocks will `9`lfall down from the sky`r and change up the gameplay!</line>
+        </message>
+        <teleport>
+            <point yaw="152" pitch="30">12,20,22</point>
+        </teleport>
+    </stage>
+</tutorial>
+<include src="blitz-global.xml"/>
+</map>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Quavilla</name>
+<version>1.1.5</version>
+<objective>Eliminate the other team before 3 minutes is up.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="4">Red</team>
+    <team id="blue" color="blue" max="4">Blue</team>
+    <team id="green" color="green" max="4">Green</team>
+    <team id="yellow" color="yellow" max="4">Yellow</team>
+</teams>
+<rage/>
+<blitz>
+    <time>3m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="green" kit="green" yaw="-45">
+        <cuboid min="15,10,-69" max="18,11,-66"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="45">
+        <cuboid min="58,10,-65" max="61,11,-62"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-145">
+        <cuboid min="11,10,-26" max="14,11,-23"/>
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="145">
+        <cuboid min="54,10,-22" max="57,11,-19"/>
+    </spawn>
+    <default yaw="45">
+        <cuboid min="-5,38,-6" max="-2,39,-3"/>
+    </default>
+ </spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`8One-Hit Kill">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`8One-Shot Kill">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <leggings locked="true">iron leggings</leggings>
+        <potion duration="4.5" amplifier="100">heal</potion>
+        <potion duration="4.5" amplifier="100">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="CC4C4C" locked="true">leather helmet</helmet>
+        <chestplate color="CC4C4C" locked="true">leather chestplate</chestplate>
+        <boots color="CC4C4C" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="3366CC" locked="true">leather helmet</helmet>
+        <chestplate color="3366CC" locked="true">leather chestplate</chestplate>
+        <boots color="3366CC" locked="true">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="E5E533" locked="true">leather helmet</helmet>
+        <chestplate color="E5E533" locked="true">leather chestplate</chestplate>
+        <boots color="E5E533" locked="true">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="7FCC19" locked="true">leather helmet</helmet>
+        <chestplate color="7FCC19" locked="true">leather chestplate</chestplate>
+        <boots color="7FCC19" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

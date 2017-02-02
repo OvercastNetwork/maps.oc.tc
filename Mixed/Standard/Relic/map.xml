@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Relic</name>
+<version>1.1</version>
+<objective>Destroy the enemy team's core and two endstone monuments to win!</objective>
+<authors>
+    <author uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+</authors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">log</item>
+        <item slot="5" amount="64">bread</item>
+        <chestplate enchantment="protection explosions:3" name="`7`lRusty Flak Vest">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="portal">
+        <potion duration="5">weakness</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="teams" yaw="-90">
+        <point>-205.5,10,1.5</point>
+    </spawn>
+    <spawn team="red" kit="teams" yaw="90">
+        <point>30.5,10,1.5</point>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="-87.5,60,76.5" radius="2" height="0.1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-water">
+        <deny>
+            <block>water</block>
+            <block>stationary water</block>
+        </deny>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="above-50" min="-oo,51,-oo" max="oo,oo,oo"/>
+    <negative name="outside-map">
+        <rectangle name="map" min="-158,49" max="-17,-46"/>
+    </negative>
+    <union name="cores"> <!-- Core defending -->
+        <cuboid name="blue-core" min="-126,12,6" max="-135,23,-3"/>
+        <cuboid name="red-core" min="-49,12,6" max="-40,23,-3"/>
+    </union>
+    <union name="monuments"> <!-- Monument defending -->
+        <cuboid name="blue-right-monument" min="-127,26,35" max="-132,33,40"/>
+        <cuboid name="red-right-monument" min="-48,26,-32" max="-43,33,-37"/>
+        <cuboid name="blue-left-monument" min="-127,26,-32" max="-132,33,-37"/>
+        <cuboid name="red-left-monument" min="-48,26,35" max="-43,33,40"/>
+    </union>
+    <union name="portals">
+        <cuboid name="red-bottom-portal" min="-60,9,4" max="-61,14,-1"/>
+        <cuboid name="red-top-portal" min="-24,26,4" max="-25,31,-1"/>
+        <cuboid name="blue-bottom-portal" min="-114,9,4" max="-115,14,-1"/>
+        <cuboid name="blue-top-portal" min="-151,26,4" max="-150,31,-1"/>
+    </union>
+    <union name="tunnels">
+        <rectangle name="red-tunnel" min="-208,-2" max="-158,5"/>
+        <rectangle name="blue-tunnel" min="33,-2" max="-17,5"/>
+    </union>
+    <!-- Applied -->
+    <apply block-place="deny-all" message="`7You may not modify outside the map boundry!">
+        <complement>
+            <region name="outside-map"/>
+            <region name="tunnels"/>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="`7You may not modify outside the map boundry!">
+        <region name="tunnels"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not modify above the height limit! (`c50 Blocks`7)">
+        <region name="above-50"/>
+    </apply>
+    <apply block="deny-all" use="deny-water" message="`7You may not modify the portals!">
+        <region name="portals"/>
+    </apply>
+    <apply enter="only-red" message="`7You may not enter the `cRED TEAM `7spawn tunnel!">
+        <region name="red-tunnel"/>
+    </apply>
+    <apply enter="only-blue" message="`7You may not enter the `9BLUE TEAM `7spawn tunnel!">
+        <region name="blue-tunnel"/>
+    </apply>
+    <apply kit="portal">
+        <region name="portals"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="1">
+    <core team="blue"><region name="blue-core"/></core>
+    <core team="red"><region name="red-core"/></core>
+</cores>
+<destroyables materials="ender stone" completion="100%" sparks="true" show-progress="true">
+    <destroyables name="Right Monument">
+        <destroyable owner="blue"><region name="blue-right-monument"/></destroyable>
+        <destroyable owner="red"><region name="red-right-monument"/></destroyable>
+    </destroyables>
+    <destroyables name="Left Monument">
+        <destroyable owner="blue"><region name="blue-left-monument"/></destroyable>
+        <destroyable owner="red"><region name="red-left-monument"/></destroyable>
+    </destroyables>
+</destroyables>
+<portals>
+    <portal x="@-56.5" y="@10" z="@1.5" pitch="@-20" yaw="@-90" filter="only-red">
+        <region name="red-top-portal"/>
+    </portal>
+    <portal x="@-28.5" y="@27" z="@1.5" pitch="@0" yaw="@90" filter="only-red">
+        <region name="red-bottom-portal"/>
+    </portal>
+    <portal x="@-118.5" y="@10" z="@1.5" pitch="@-20" yaw="@-90" filter="only-blue">
+        <region name="blue-top-portal"/>
+    </portal>
+    <portal x="@-146.5" y="@27" z="@1.5" pitch="@0" yaw="@90" filter="only-blue">
+        <region name="blue-bottom-portal"/>
+    </portal>
+</portals>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>glowstone dust</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ender stone</item>
+    <item>carpet</item>
+    <item>arrow</item>
+    <item>sapling</item>
+    <item>chainmail chestplate</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>cobblestone</block>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+</blockdrops>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+</map>

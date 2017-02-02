@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<map proto="1.3.5" internal="true">
+<name>AstroGEN</name>
+<version>2.1</version>
+<objective>Be the team with the most amount of kills after 5 minutes!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="e37f18f1-117b-47db-8806-6d3a0854b518" contribution="Limited Hearts Idea"/> <!-- chickolympics -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled.</rule>
+</rules>
+<score>
+    <time>5m</time>
+</score>
+<teams>
+    <team color="green" max="12">Green</team>
+    <team color="blue" max="12">Blue</team>
+</teams>
+<kits>
+    <kit name="night-vision">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="night-vision">
+        <item slot="0" projectile="lazer" name="`aLazer`7">iron barding</item>
+        <chestplate unbreakable="true" enchantment="durability" name="`7Armor" locked="true">iron chestplate</chestplate>
+        <leggings color="191919" unbreakable="true" name="`7Armor" locked="true">leather leggings</leggings>
+        <boots color="191919" unbreakable="true" name="`7Armor" locked="true">leather boots</boots>
+        <potion duration="4" amplifier="10">damage resistance</potion>
+        <potion duration="oo">speed</potion>
+        <potion duration="oo" amplifier="-4">health boost</potion>
+        <double-jump power="3.5" recharge-time="2.5s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet damage="3" name="`9Helmet" locked="true">wool</helmet>
+    </kit>
+    <kit name="green" parents="teams">
+        <helmet damage="5" name="`aHelmet" locked="true">wool</helmet>
+    </kit>
+</kits>
+<projectiles>
+    <projectile
+        id="lazer"
+        name="lazer"
+        projectile="Snowball"
+        velocity="3.5"
+        damage="50"
+        throwable="false"
+        cooldown="1.1s"/>
+</projectiles>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="0.5,33,-33.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="180">
+        <cylinder base="0.5,33,57.5" radius="3" height="0"/>
+    </spawn>
+    <default kit="night-vision" yaw="90">
+        <cuboid min="3,32,14" max="5,32,10"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="allow-some">
+        <any>
+            <block>tnt</block>
+            <block>thin glass</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="allow-some">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <fuse>1.5s</fuse>
+    <power>4</power>
+</tnt>
+<disabledamage>
+    <damage>fall</damage>
+    <damage ally="true" self="true">block explosion</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+<itemremove>
+    <item>iron barding</item>
+    <item>bow</item>
+    <item>wool</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>thin glass</item>
+    <item>arrow</item>
+    <item>snow ball</item>
+</itemremove>
+</map>

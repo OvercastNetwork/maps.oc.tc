@@ -1,0 +1,82 @@
+﻿<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Sandstone Temples</name>
+<version>1.1.2</version>
+<objective>Eliminate the other team before 6 minutes is up.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="facb6996-f160-4c35-8121-3e47da1dab34"/> <!-- _gavin -->
+    <author uuid="dd7fb594-17ef-4716-9a95-238cf0e648a3" contribution="Design Input"/> <!-- SnickersBeast -->
+</authors>
+<rules>
+    <rule>Fall damage and hunger are disabled</rule>
+</rules>
+<teams>
+    <team color="red" max="25">Red</team>
+    <team color="blue" max="25">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>6m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="-584,11,-254" max="-584.5,11,-254.5"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="-584,11,-347" max="-584.5,11,-347.5"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-516,45,-301" max="-516.5,45,-301.5"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="§91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="§91-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="3" amplifier="100">heal</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="993333">leather chestplate</chestplate>
+        <leggings color="993333">leather leggings</leggings>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <leggings color="334CB2">leather leggings</leggings>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="deny-all" message="This area is off limits">
+        <cuboid min="-oo,29,-oo" max="oo,oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

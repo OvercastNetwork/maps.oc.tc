@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<map internal="true" proto="1.4.0">
+<name>Lamanai</name>
+<version>1.2.1</version>
+<objective>Capture the other team's wools to win!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- Chicky -->
+</authors>
+<contributors>
+    <contributor contribution="Map feedback and testing." uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9"/><!-- BrettOgden -->
+    <contributor contribution="Block spawner idea and map feedback/testing." uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/><!-- Strangey -->
+    <contributor contribution="Beacon Suggestion" uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/><!-- Electroid -->
+</contributors>
+<teams>
+   <team id="blue" show-name-tags="true" color="blue" max="32" max-overfill="38">Blue Team</team>
+   <team id="red" show-name-tags="true" color="dark red" max="32" max-overfill="38">Red Team</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue-spawn">
+        <regions angle="0.5,38,0.5">
+            <cylinder radius="1" height="0" base="6,38,175"/>
+            <cylinder radius="1" height="0" base="-5,38,175"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn">
+        <regions angle="0.5,38,0.5">
+            <cylinder radius="1" height="0" base="6,38,-174"/>
+            <cylinder radius="1" height="0" base="-5,38,-174"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder radius="1" height="0" base="48.5,31.5,0.5"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true">
+        <potion duration="5" amplifier="1">heal</potion>
+
+        <item slot="0" enchantment="durability:3">iron sword</item>
+        <item slot="1" enchantment="durability:3;arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="64">bread</item>
+        <item slot="4" damage="3" amount="16">smooth brick</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+    </kit>
+</kits>
+<timelock>on</timelock>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <not id="deny-blue">
+        <team>blue</team>
+    </not>
+    <not id="deny-red">
+        <team>red</team>
+    </not>
+    <not id="only-iron">
+        <not>
+            <material>iron block</material>
+        </not>
+    </not>
+    <deny id="deny-spawners">
+        <any>
+            <material>mob spawner</material>
+            <material>iron plate</material>
+            <material>gold plate</material>
+        </any>
+    </deny>
+    <not id="deny-open">
+        <any>
+            <material>dispenser</material>
+        </any>
+    </not>
+</filters>
+<regions>
+    <apply block="never" message="You may not modify the bottom part of the wool rooms!">
+        <region>
+            <union>
+                <union id="bt-bwr">
+                    <cuboid id="lb-bwr" min="42,0,113" max="25,35,130"/>
+                    <mirror normal="1,0,0" origin="0.5,29,68"><region id="lb-bwr"/></mirror>
+                </union>
+                <mirror id="rt-bwr" normal="0,0,-1" origin="0.5,24,0.5"><region id="bt-bwr"/></mirror>
+                <intersect>
+                    <below y="38"/>
+                    <union id="wool-rooms">
+                        <region id="blue-rooms"/>
+                        <region id="red-rooms"/>
+                    </union>
+                </intersect>
+            </union>
+        </region>
+    </apply>
+
+    <apply enter="deny-blue" block="deny-blue" message="You may not enter or modify the wool rooms which you are defending!">
+        <region>
+            <union id="blue-rooms">
+                <rectangle id="light-blue" min="38,117" max="29,126"/>
+                <mirror id="cyan" normal="1,0,0" origin="0.5,29,68"><region id="light-blue"/></mirror>
+            </union>
+        </region>
+    </apply>
+    <apply enter="deny-red" block="deny-red" message="You may not enter or modify the wool rooms which you are defending!">
+        <region>
+            <mirror id="red-rooms" normal="0,0,-1" origin="0.5,24,0.5"><region id="blue-rooms"/></mirror>
+        </region>
+    </apply>
+
+    <apply block-place="never" block-break="only-iron" message="You may only break iron blocks in the base!">
+        <region>
+            <region id="blue-base"/>
+            <mirror id="red-base" normal="0,0,-1" origin="0.5,24,0.5"><region id="blue-base"/></mirror>
+        </region>
+    </apply>
+
+    <apply enter="deny-red" message="You may not enter the enemy team's base!">
+        <region>
+            <rectangle id="blue-base" min="17,106" max="-16,181"/>
+        </region>
+    </apply>
+    <apply enter="deny-blue" message="You may not enter the enemy team's base!">
+        <region>
+            <region id="red-base"/>
+        </region>
+    </apply>
+
+    <apply block="never" message="You may not modify this lava pool!">
+        <region>
+            <!--Blue Side-->
+            <cuboid min="20,0,92" max="25,38,103"/>
+            <cuboid min="-19,0,92" max="-24,38,103"/>
+            <union id="blue-large">
+                <union id="blue-1">
+                    <cuboid min="12,0,71" max="8,29,66"/>
+                    <cuboid min="8,0,70" max="3,29,64"/>
+                    <cuboid min="3,0,68" max="-2,29,65"/>
+                </union>
+                <mirror normal="1,0,0" origin="0.5,29,68"><region id="blue-1"/></mirror>
+            </union>
+            <!--Red Side-->
+            <cuboid min="20,0,-91" max="25,38,-102"/>
+            <cuboid min="-19,0,-91" max="-24,38,-102"/>
+            <mirror normal="0,0,-1" origin="0.5,24,0.5"><region id="blue-large"/></mirror>
+        </region>
+    </apply>
+
+    <apply block="deny-spawners" message="You may not break this sacred block!">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+
+    <apply block="no-void" message="You may not modify the void area!">
+        <region>
+            <complement>
+                <everywhere/>
+                <region id="blue-base"/>
+                <region id="red-base"/>
+            </complement>
+        </region>
+    </apply>
+
+    <apply use="deny-open" message="You may not open this!">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<crafting>
+    <disable>iron plate</disable>
+    <disable>gold plate</disable>
+    <disable>boat</disable>
+    <disable>bucket</disable>
+    <disable>hopper</disable>
+    <disable>iron door</disable>
+    <disable>iron fence</disable>
+    <disable>iron trapdoor</disable>
+</crafting>
+<toolrepair>
+    <tool>arrow</tool>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>leaves</item>
+    <item>seeds</item>
+    <item>dirt</item>
+    <item>sapling</item>
+    <item>bread</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>apple</item>
+    <item>tnt</item>
+    <item>chest</item>
+    <item>trapped chest</item>
+</itemremove>
+<tnt>
+    <blockdamage>false</blockdamage>
+</tnt>
+<block-drops>
+    <rule wrong-tool="false">
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <any>
+                <material>smooth brick</material>
+                <material>stone</material>
+                <material>double step</material>
+            </any>
+        </filter>
+        <drops>
+            <item damage="3" material="smooth brick"/>
+        </drops>
+    </rule>
+</block-drops>
+<wools team="blue">
+    <wool color="purple" location="32.5,14,0.5">
+        <monument><block>3,39,119</block></monument>
+    </wool>
+    <wool color="orange" location="0.5,10,21.5">
+        <monument><block>-3,39,119</block></monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="cyan" location="-32.5,26,121.5">
+        <monument><block>-3,39,-119</block></monument>
+    </wool>
+    <wool color="light blue" location="33.5,26,121.5">
+        <monument><block>3,39,-119</block></monument>
+    </wool>
+</wools>
+<!--
+<falling-blocks>
+    <rule>
+        <filter>
+            <any>
+                <material>smooth brick:3</material>
+                <material>iron block</material>
+                <material>step</material>
+                <material>double step</material>
+            </any>
+        </filter>
+        <sticky>
+            <any>
+                <material>smooth brick:3</material>
+                <material>smooth brick</material>
+                <material>stone</material>
+                <material>grass</material>
+                <material>dirt</material>
+                <material>iron block</material>
+                <material>step</material>
+                <material>double step</material>
+            </any>
+        </sticky>
+    </rule>
+</falling-blocks>
+-->
+<maxbuildheight>48</maxbuildheight>
+<respawn delay="2s" spectate="false"/>
+<broadcasts>
+    <tip after="1s" every="5m">`r`7Welcome to `9`lLamanai`r`7! `8Iron blocks `7are to the right or left of spawn!</tip>
+    <!--
+    <tip after="4s" every="5m">`r`7Blocks will be affected by `8gravity`7, make sure you support them!</tip>
+    -->
+    <tip after="7s" every="5m">`r`7More building blocks are available from `8spawners`7 with iron pressure plates!</tip>\
+    <tip after="10s" every="5m">`r`6Hidden Treasures`7 are located throughout the map!</tip>
+</broadcasts>
+<kill-rewards>
+    <kill-reward>
+        <item amount="2" material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<disabledamage>
+    <damage>fire tick</damage>
+</disabledamage>
+</map>

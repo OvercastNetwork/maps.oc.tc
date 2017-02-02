@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="gs.xml"/>
+<name>Snowy Vengeance</name>
+<gamemode>gs</gamemode>
+<version>1.0</version>
+<objective>Kill the other team before the time runs out!</objective>
+<authors>
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Idea, Building and Aesthetics"/> <!-- ItsMiiOlly -->
+    <author uuid="ff64ebb9-24aa-4960-86c4-205244b7a407" contribution="Building and Aesthetics"/> <!-- Super_Armor -->
+    <author uuid="ca018920-0133-407e-97f8-3beb034c216f" contribution="Building and Aesthetics"/> <!-- SuperDangerous -->
+</authors>
+<contributors>
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Feedback"/> <!-- lonelyhornet -->
+    <contributor contribution="Help and Support">The Orange Sunglasses Build Team</contributor>
+</contributors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="gold" max="8">Gold</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="-90">
+        <cuboid min="543,4,-791" max="543,4,-790"/>
+    </spawn>
+    <spawn team="gold" yaw="90">
+        <cuboid min="612,4,-791" max="612,4,-792"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="513,10,-789" radius="2" height="0"/>
+    </default>
+</spawns>
+</map>

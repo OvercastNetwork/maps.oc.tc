@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Together</name>
+<version>1.1.0</version>
+<objective>Kill the other team's members!</objective>
+<authors>
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Map building"/> <!-- _3Each -->
+</authors>
+<contributors>
+    <contributor uuid="aa7f91cc-18b7-4aa6-9d87-8f4ec316dd7a" contribution="House Help"/> <!--  Cottex  -->
+    <contributor uuid="b03360db-b8cd-49de-8ba1-b7920c2238a9" contribution="Aesthetics"/> <!--  Obelistics   -->
+    <contributor uuid="a6e1a19b-e1db-47fd-a178-5c4f6ef325e2" contribution="World Edit Help"/> <!--  Impostura   -->
+    <contributor uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Feedback"/> <!--  xCand   -->
+</contributors>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<time>5m</time>
+<rage/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<teams>
+   <team id="red" color="dark red" max="12" max-overfill="15">Red Team</team>
+   <team id="blue" color="blue" max="12" max-overfill="15">Blue Team</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" enchantment="damage all:10">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2">arrow</item>
+    </kit>
+    <kit id="redArmour" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blueArmour" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>bow</item>
+    <item>diamond sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+<item>arrow</item>
+</killreward>
+<regions>
+    <apply block="never" region="everywhere"/>
+</regions>
+<spawns>
+    <spawn team="red" kit="redArmour">
+        <regions yaw="180">
+            <cuboid min="-32,11,92" max="-32,11,92"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blueArmour">
+        <regions yaw="0">
+            <cuboid min="-32,11,-82" max="-32,11,-82"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="23,48,6" max="23,48,6"/>
+        </regions>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<include src="blitz-global.xml"/>
+</map>

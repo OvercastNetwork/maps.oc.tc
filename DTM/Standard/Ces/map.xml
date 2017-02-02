@@ -1,0 +1,194 @@
+<map proto="1.4.2">
+<name>Ces</name>
+<version>1.0.0</version>
+<objective>Destroy the enemy's shards while protecting your own.</objective>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/>
+    <!-- Matic0B -->
+</authors>
+<contributors>
+    <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="XML Help"/>
+    <!-- mitchiii_ -->
+</contributors>
+<time>10m</time>
+<broadcasts>
+    <tip after="1s">You are not able to bridge in the void!</tip>
+    <tip after="5s">Protect your shards from being destroyed!</tip>
+</broadcasts>
+<teams>
+    <team id="blue" color="blue" max="8" max-overfill="10">Blue</team>
+    <team id="green" color="dark green" max="8" max-overfill="10">Green</team>
+</teams>
+<spawns>
+    <default>
+        <regions yaw="0">
+            <point>-120.5,51,-32.5</point>
+        </regions>
+    </default>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <point>-78.5,66,8.5</point>
+        </regions>
+    </spawn>
+    <spawn team="green" kit="green-kit">
+        <regions yaw="-90">
+            <point>-162.5,66,8.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<gamerules>
+    <doDayLightCycle>false</doDayLightCycle>
+</gamerules>
+<maxbuildheight>46</maxbuildheight>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" amount="1">stone sword</item>
+        <item slot="28" amount="1" unbreakable="true">iron axe</item>
+        <item slot="1" amount="1" unbreakable="true">iron pickaxe</item>
+        <item slot="2" amount="32" damage="0">snow ball</item>
+        <item slot="29" amount="1">water bucket</item>
+        <item slot="20" amount="1">water bucket</item>
+        <item slot="11" amount="1">water bucket</item>
+        <item slot="3" amount="32">fence</item>
+        <item slot="30" amount="32">ladder</item>
+        <item slot="12" amount="32">trap door</item>
+        <item slot="5" amount="64">stone button</item>
+        <item slot="6" amount="64">redstone</item>
+        <item slot="33" amount="32">stone plate</item>
+        <item slot="24" amount="32">lever</item>
+        <item slot="15" amount="16">diode</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="34" amount="64">tnt</item>
+        <item slot="25" amount="64">tnt</item>
+        <item slot="16" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="21" amount="32" damage="0">126</item>
+        <item slot="4" amount="64" damage="0">wood</item>
+        <item slot="31" amount="64" damage="0">wood</item>
+        <item slot="22" amount="64" damage="0">wood</item>
+        <item slot="13" amount="64" damage="0">wood</item>
+        <item slot="32" amount="64" damage="0">wood</item>
+        <item slot="23" amount="64" damage="0">wood</item>
+        <item slot="14" amount="64" damage="0">wood</item>
+        <chestplate locked="true" unbreakable="true" enchantment="protection explosions:4">chainmail chestplate</chestplate>
+        <leggings locked="true" unbreakable="true">iron leggings</leggings>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <boots locked="true" unbreakable="true" color="334CB2" enchantment="protection explosions:1">leather boots</boots>
+    </kit>
+    <kit id="green-kit" parents="spawn-kit">
+        <boots locked="true" unbreakable="true" color="667F33" enchantment="protection explosions:1">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <not id="clay-explode">
+        <all>
+            <material>stained clay</material>
+            <cause>explosion</cause>
+        </all>
+    </not>
+    <not id="water-limit">
+        <any>
+            <material>water</material>
+            <material>stationary water</material>
+        </any>
+    </not>
+    <not id="green-tnt">
+        <all>
+            <team>green</team>
+            <material>tnt</material>
+        </all>
+    </not>
+    <not id="blue-tnt">
+        <all>
+            <team>blue</team>
+            <material>tnt</material>
+        </all>
+    </not>
+</filters>
+<regions>
+    <rectangle id="green-base" max="-134,35" min="-168,-18"/>
+    <rectangle id="blue-base" max="-107,35" min="-73,-18"/>
+    <rectangle id="green-drop" max="-157,7" min="-160,10"/>
+    <rectangle id="blue-drop" max="-84,10" min="-81,7"/>
+    <apply block="never" message="You may not block the spawn drop">
+        <region>
+            <region id="green-drop"/>
+            <region id="blue-drop"/>
+        </region>
+    </apply>
+    <apply block-place="green-tnt" message="You may not place TNT on the enemy side">
+        <region>
+            <region id="blue-base"/>
+        </region>
+    </apply>
+    <apply block-place="blue-tnt" message="You may not place TNT on the enemy side">
+        <region>
+            <region id="green-base"/>
+        </region>
+    </apply>
+    <apply block="water-limit" message="You may not place water here">
+        <region>
+            <cuboid max="-143,47,22" min="-98,21,-5"/>
+        </region>
+    </apply>
+    <apply block="clay-explode">
+        <region>
+            <region id="green-base"/>
+            <region id="blue-base"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not bridge here">
+        <region>
+            <negative>
+                <region id="green-base"/>
+                <region id="blue-base"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<destroyables>
+    <destroyable id="blue-shard" name="Ice Shards" material="packed ice" owner="green" show-progress="true">
+        <region>
+            <cuboid min="-151,33,17" max="-147,20,0"/>
+        </region>
+    </destroyable>
+    <destroyable id="green-shard" name="Ice Shards" material="packed ice" owner="blue" show-progress="true">
+        <region>
+            <cuboid min="-90,33,0" max="-93,20,17"/>
+        </region>
+    </destroyable>
+</destroyables>
+<killreward>
+    <item amount="32">tnt</item>
+</killreward>
+<itemremove>
+    <item>tnt</item>
+    <item>chainmail chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>126</item>
+    <item>redstone block</item>
+    <item>diode</item>
+    <item>lever</item>
+    <item>stone plate</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>trap door</item>
+    <item>fence</item>
+    <item>ladder</item>
+    <item>water bucket</item>
+    <item>shears</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>stone sword</item>
+    <item>snow ball</item>
+</itemremove>
+</map>

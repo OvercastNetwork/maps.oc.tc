@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Folina</name>
+<version>1.1.0</version>
+<objective>Be the first team with 2750 points!</objective>
+<authors>
+    <author uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="All Building, Design, XML Writing"/> <!-- BlockDrop74 -->
+</authors>
+<contributors>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="MapDev Host"/> <!-- pepsidawg00 -->
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Testing, and Feedback"/> <!-- ItsMiiOlly -->
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Feedback, Spawners"/> <!-- Stealth5061 -->
+    <contributor uuid="8fda3d23-991f-457c-b679-45ed4b0a576d" contribution="Feedback, Moral Support"/> <!-- feidi_22 -->
+    <contributor uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f" contribution="Feedback"/> <!-- Veiyl -->
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Feedback"/> <!-- HardstyleRaver2 -->
+    <contributor uuid="4111f215-28db-4a0d-9380-ee18641d02cf" contribution="Feedback"/> <!-- salalu -->
+    <contributor uuid="c65e66b3-e932-4b33-b907-fe4916806076" contribution="Feedback"/> <!-- Draco_Rogue -->
+</contributors>
+<teams>
+    <team color="red" max="20" max-overfill="24">Red</team>
+    <team color="blue" max="20" max-overfill="24">Blue</team>
+</teams>
+<kits>
+    <kit name="all">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="4" amount="16">bread</item>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+        <potion duration="4" amplifier="2">slow</potion>
+        <leggings>chainmail leggings</leggings>
+    </kit>
+    <kit name="red" parents="all">
+        <helmet enchantment="protection environmental:4">leaves</helmet>
+        <chestplate color="ff0000">leather chestplate</chestplate>
+        <boots color="ff0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="all">
+        <helmet enchantment="protection environmental:4" damage="2">leaves</helmet>
+        <chestplate color="0000ff">leather chestplate</chestplate>
+        <boots color="0000ff">leather boots</boots>
+    </kit>
+</kits>
+<king>
+    <hills>
+        <hill name="Western" capture-time="10s" points="2">
+            <capture>
+                <cuboid min="-66,0,3" max="-74,256,-5"/>
+            </capture>
+            <progress>
+                <cuboid min="-66,0,3" max="-74,256,-5"/>
+            </progress>
+            <captured>
+                <cuboid min="-75,0,-6" max="-65,256,3"/>
+            </captured>
+        </hill>
+    </hills>
+    <hills>
+        <hill name="Middle" capture-time="15s" points="3">
+            <capture>
+                <cuboid min="-18,0,-6" max="-28,256,4"/>
+            </capture>
+            <progress>
+                <cuboid min="-18,0,-6" max="-28,256,4"/>
+            </progress>
+            <captured>
+                <cuboid min="-16,256,-8" max="-30,0,-6"/>
+            </captured>
+        </hill>
+    </hills>
+    <hills>
+        <hill name="Eastern" capture-time="10s" points="2">
+            <capture>
+                <cuboid min="20,0,-5" max="28,256,3"/>
+            </capture>
+            <progress>
+                <cuboid min="20,0,-5" max="28,256,3"/>
+            </progress>
+            <captured>
+                <cuboid min="29,0,4" max="19,256,-6"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+   <limit>2500</limit>
+   <!-- <box value="5" team="red" filter="only-red" cooldown="1">
+      <cuboid min="-73,13,-79" max="-70,16,-80"/>
+      <cuboid min="-26,13,-79" max="-23,13,-80"/>
+      <cuboid min="21,13,-79" max="18,13,-80"/>
+   </box>
+   <box value="5" team="blue" filter="only-blue" cooldown="1">
+      <cuboid min="27,13,77" max="21,16,78"/>
+      <cuboid min="-20,13,77" max="-26,13,78"/>
+      <cuboid min="-67,13,77" max="-73,13,78"/>
+   </box> -->
+</score>
+<!-- king module is outside score module to add tdm aspect -->
+<king/>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <block>0,16,74</block>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <block>-46,16,74</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <block>-46,16,-76</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <block>0,16,-76</block>
+    </spawn>
+    <default>
+        <cuboid min="-22,15,1" max="-24,15,3"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item amount="16">arrow</item>
+    <item amount="1">golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>bread</item>
+    <item>leaves</item>
+    <item damage="2">leaves</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>off</timelock>
+<tutorial>
+    <stage title="Trifecta">
+        <message>
+            <line>This map, is a `6King of the Hill (KotH), `cTeam Deathmatch (TDM), and `5Scorebox `rmap.</line>
+            <line>In this gamemode, teams are trying to be the first with the maximum amount of points. Here,</line>
+            <line>that goal is `b2750 `rpoints. That can be reached by, capturing the three, "hills" on the map,</line>
+            <line>the two side hills giving `3two `rpoints per second captured, and the middle hill giving `9three</line>
+            <line>`rpoints per second. Players can also get `eone `rpoint for kills, and `1five points for</line>
+            <line>getting in the scorebox.</line>
+        </message>
+    </stage>
+    <stage title="Spawning Equipment">
+        <message>
+            <line>Players will spawn with some usual gear, a `8stone sword`r, a `ebow`r, `916 arrows`r, `e2 golden apples`r,</line>
+            <line>`64 bread`r, as well as `7armor`r.</line>
+        </message>
+    </stage>
+    <stage title="Scorebox">
+        <message>
+            <line>This is where a player would enter a `5scorebox `rto score the `1five `rpoints it gives.</line>
+            <line>After entering, and scoring, players are teleported back to spawn.</line>
+        </message>
+        <teleport>
+            <point yaw="-145" pitch="50">-75,20,-72</point>
+        </teleport>
+    </stage>
+    <stage title="Killreward">
+        <message>
+            <line>When upon killing another player, you will obtain 2 more `egolden apples`r, `916 arrows `ras well</line>
+            <line>as 4 more pieces of `6bread`r. However, capturing a hill, or having captured one, will</line>
+            <line>`4not award you any items.</line>
+        </message>
+    </stage>
+</tutorial>
+</map>

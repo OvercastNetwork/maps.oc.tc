@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Wallop Too</name>
+<version>1.4.1</version>
+<objective>Capture the enemy team's wools.</objective>
+<gamemode>CTW</gamemode>
+<time result="objectives">45m</time>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/>
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/>
+</authors>
+<contributors>
+    <contributor uuid="0b886f80-3d3c-4b1b-8f79-fa7bfd58119f" contribution="Helped"/>
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="8" max-overfill="8">Red Team</team>
+    <team id="blue-team" color="blue" max="8" max-overfill="8">Blue Team</team>
+</teams>
+<respawn delay="1s"/>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">diamond axe</item>
+        <item slot="4" amount="24">cooked mutton</item>
+        <item slot="5" amount="32" damage="1">log 2</item>
+        <item slot="6" amount="64" damage="2">glass</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="64">arrow</item>
+    </kit>
+</kits>
+<wools>
+    <wool team="red-team" color="light blue" location="-142,14,-216">
+        <monument>
+            <block>-96,15,-3</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="yellow" location="-52,19,-216">
+        <monument>
+            <block>-98,15,-3</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="lime" location="-52,14,-30">
+        <monument>
+            <block>-98,15,-243</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="magenta" location="-142,19,-30">
+        <monument>
+            <block>-96,15,-243</block>
+        </monument>
+    </wool>
+</wools>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <material id="only-iron">iron block</material>
+    <cause id="only-explosions">explosion</cause>
+    <not id="deny-anvils">
+        <material>anvil</material>
+    </not>
+</filters>
+<regions>
+    <apply block="only-explosions" message="Only TNT can break this bridge!">
+        <region>
+            <cuboid min="-92,15,-59" max="-101,16,-60"/>
+            <cuboid min="-101,15,-186" max="-92,16,-185"/>
+        </region>
+    </apply>
+    <apply block="only-red" enter="only-red" message="You may not modify or enter your own wool room!">
+        <region>
+            <cuboid min="-145,0,-219" max="-136,29,-210"/>
+            <cuboid min="-48,0,-219" max="-57,29,-210"/>
+        </region>
+    </apply>
+    <apply block="only-blue" enter="only-blue" message="You may not modify or enter your own wool room!">
+        <region>
+            <cuboid min="-48,0,-26" max="-57,29,-35"/>
+            <cuboid min="-145,0,-26" max="-136,29,-35"/>
+        </region>
+    </apply>
+    <apply block="never">
+        <region>
+            <cuboid min="-95,17,-1" max="-98,14,-4"/>
+            <cuboid min="-98,17,-244" max="-95,14,-241"/>
+            <block>-97,9,-123</block>
+        </region>
+    </apply>
+    <apply block="never" message="You may not modify the spawn tower or bridge!">
+        <region>
+            <cylinder base="-97,0,-35" radius="14" height="100"/>
+            <rectangle min="-101,-13" max="-93,-29"/>
+            <cylinder base="-97,0,-211" radius="14" height="100"/>
+            <rectangle min="-92,-232" max="-101,-215"/>
+        </region>
+    </apply>
+    <apply block-break="only-iron" block-place="never" message="You may only break iron blocks!">
+        <region>
+            <cuboid min="-111,31,-17" max="-82,43,12"/>
+            <cuboid min="-82,31,-228" max="-111,43,-257"/>
+        </region>
+    </apply>
+    <apply block="never" message="`cYou have reached the maximum build height at middle (`r`b21 `r`cblocks)">
+        <region>
+            <cuboid min="-57,22,-83" max="-136,oo,-162"/>
+        </region>
+    </apply>
+    <apply block="never" message="`cYou have reached the maximum build height (`r`b28 `r`cblocks)">
+        <region>
+            <above y="29"/>
+        </region>
+    </apply>
+    <apply use="deny-anvils"/>
+    <apply block="deny-void" message="You may not build in the void!">
+        <region>
+            <negative>
+                <union>
+                    <block>-95,7,-67</block>
+                    <block>-99,7,-67</block>
+                    <block>-99,7,-179</block>
+                    <block>-95,7,-179</block>
+                    <rectangle min="-57,-92" max="-92,-153"/>
+                    <rectangle min="-101,-92" max="-136,-153"/>
+                    <rectangle min="-57,-63" max="-71,-92"/>
+                    <rectangle min="-80,-83" max="-92,-92"/>
+                    <rectangle min="-101,-83" max="-113,-92"/>
+                    <rectangle min="-122,-68" max="-136,-92"/>
+                    <rectangle min="-136,-182" max="-122,-157"/>
+                    <rectangle min="-113,-162" max="-101,-153"/>
+                    <rectangle min="-92,-162" max="-80,-153"/>
+                    <rectangle min="-71,-177" max="-57,-153"/>
+                    <rectangle min="-64,-17" max="-77,-26"/>
+                    <rectangle min="-116,-17" max="-129,-26"/>
+                    <rectangle min="-129,-228" max="-116,-219"/>
+                    <rectangle min="-77,-228" max="-64,-219"/>
+                </union>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit">
+        <region yaw="-90">
+            <point>-103.5,12,-34.5</point>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit">
+        <region yaw="90">
+            <point>-89.5,12,-210.5</point>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="90">
+            <point>-52.5,50,-122.5</point>
+        </region>
+    </default>
+</spawns>
+<portals>
+    <portal x="@-96.5" y="@32" z="@-30.5" yaw="@0">
+        <region>
+            <cuboid min="-92,20,-36" max="-93,18,-33"/>
+        </region>
+    </portal>
+    <portal x="@-96.5" y="@32" z="@-214.5" yaw="@180">
+        <region>
+            <cuboid min="-101,20,-209" max="-100,18,-212"/>
+        </region>
+    </portal>
+</portals>
+<crafting>
+    <disable>shield</disable>
+</crafting>
+<itemremove>
+    <item>redstone</item>
+    <item>redstone torch off</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>red rose</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>cooked mutton</item>
+    <item>arrow</item>
+    <item>log</item>
+    <item>log 2</item>
+    <item>glass</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+</toolrepair>
+<timelock>on</timelock>
+<kill-rewards>
+    <kill-reward>
+        <item>golden apple</item>
+    </kill-reward>
+</kill-rewards>
+</map>

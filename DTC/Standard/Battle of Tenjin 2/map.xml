@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Battle of Tenjin 2</name>
+<version>1.0.5</version>
+<objective>Break and leak lava from both of the opposing team's cores.</objective>
+<authors>
+    <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be"/> <!-- MonsieurApple -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="5986da63-a546-49c5-812d-d5c41a42510a" contribution="Feedback and details"/> <!-- Lyzak -->
+    <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Feedback and details"/> <!-- i2 -->
+    <contributor uuid="97abb45c-e545-473d-9b93-e1b9b94a43ee" contribution="Nothing really supid whale"/> <!-- Ander301 -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Shire baggins"/> <!-- IM_A_H0B0 -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="180"><cuboid min="-2,25,-58" max="3,25,-55"/></spawn>
+    <spawn team="red" kit="red" yaw="0"><cuboid min="3,25,59" max="-2,25,56"/></spawn>
+    <default yaw="-90"><cylinder base="92,39,0" radius="3" height="0"/></default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" amount="64" damage="2">wood</item>
+        <item slot="4" amount="32">glass</item>
+        <item slot="5" amount="32">ladder</item>
+        <item slot="6" amount="64">cooked fish</item>
+        <item slot="7" amount="1">golden apple</item>
+        <potion duration="10">heal</potion>
+        <potion duration="15">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="allow-some" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>diamond block</block>
+            <block>ladder</block>
+            <block>rails</block>
+            <block>workbench</block>
+            <block>gold block</block>     
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply enter="only-red">
+        <cuboid min="5,18,53" max="-4,22,54"/>
+        <cuboid min="9,22,59" max="-8,40,76"/>
+    </apply>
+    <apply enter="only-blue">
+        <cuboid min="-4,18,-53" max="5,22,-52"/>
+        <cuboid min="-8,22,-58" max="9,40,-75"/>
+    </apply>
+    <apply block="allow-some">
+        <!-- Red Team -->
+        <cuboid min="17,17,51" max="-16,32,84"/>
+        <cuboid min="9,22,59" max="-8,43,76"/>
+        <!-- Blue Team -->
+        <cuboid min="-16,17,-50" max="17,32,-83"/>
+        <cuboid min="-8,22,-58" max="9,43,-75"/>
+    </apply>
+    <apply block="deny-all">
+        <negative name="playable-inverse">
+            <rectangle min="56,107" max="-55,-106"/>
+        </negative>
+    </apply>
+</regions>
+<maxbuildheight>45</maxbuildheight>
+<timelock>off</timelock>
+<cores material="obsidian" leak="7">
+    <cores team="red">
+        <core name="Left Core">
+            <cuboid min="46,15,92" max="40,22,98"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="-40,15,92" max="-46,22,98"/>
+        </core>
+    </cores>
+    <cores team="blue">
+        <core name="Left Core">
+            <cuboid min="-46,15,-90" max="-39,22,-97"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="40,15,-90" max="47,22,-97"/>
+        </core>
+    </cores>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>ladder</item>
+    <item>glass</item>
+    <item>wood</item>
+    <item>flint</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>sugar cane</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>rails</item>
+    <item>red mushroom</item>
+</itemremove>
+</map>

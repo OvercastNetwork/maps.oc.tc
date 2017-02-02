@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Retaliation</name>
+<genre>Objectives</genre>
+<time>30m</time>
+<respawn delay="5s"/>
+<version>2.0.1</version>
+<objective>Destroy the enemy team's core to win!</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f" contribution="Map Support and Minor Help"/> <!-- Veiyl -->
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Feedback and Support"/> <!-- HardstyleRaver2 -->
+</contributors>
+<teams>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">diamond sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">cooked fish</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64">ladder</item>
+        <item slot="7" amount="64">log</item>
+        <item slot="8">golden apple</item>
+        <item slot="28" amount="32">arrow</item>
+        <chestplate unbrekable="true" enchantment="protection explosions:2;protection projectile:1">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <boots prevent-sharing="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <boots prevent-sharing="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <block>-87.5,7,0.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <block>108.5,7,0.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="180">
+            <cuboid min="9,5,45" max="11,5,47"/>
+        </regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="3">
+    <core team="red">
+        <region>
+            <cuboid min="-26,10,-3" max="-33,16,4"/>
+        </region>
+    </core>
+    <core team="blue">
+        <region>
+            <cuboid min="54,10,4" max="47,16,-3"/>
+        </region>
+    </core>
+</cores>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <material id="only-iron">iron block</material>
+</filters>
+<regions>
+    <apply enter="never" message="You may not enter this area">
+        <rectangle min="17,53" max="4,40"/>
+    </apply>
+    <apply block-place="never" block-break="only-iron" message="You can only break iron blocks in the spawn!">
+        <region>
+            <rectangle min="-107,-34" max="-53,35"/>
+            <rectangle min="74,-35" max="128,35"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You cannot enter the enemy spawn!">
+        <region>
+            <rectangle min="-107,-34" max="-53,35"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter the enemy spawn!">
+        <region>
+            <rectangle min="74,-35" max="128,35"/>
+        </region>
+    </apply>
+    <apply block="never" message="You cannot build outside the map!">
+        <region>
+            <negative>
+                <rectangle min="127.5,35.5" max="-107.5,-34.5"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<maxbuildheight>55</maxbuildheight>
+<itemremove>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ladder</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+</map>

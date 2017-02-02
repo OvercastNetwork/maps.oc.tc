@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Tangled: FFA</name>
+<gamemode>gs</gamemode>
+<version>0.1</version>
+<include src="gs.xml"/>
+<include src="gs-ffa.xml"/>
+<authors>
+    <author uuid="1ac2b1d3-d623-4dab-99e5-08f3cfe1c1a0"/> <!-- Vechs1 -->
+</authors>
+<spawns safe="true">
+    <spawn angle="559.5,27,-281.5">
+        <cylinder base="559.5,19,-281.5" radius="29" height="25"/>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="559,52,-311" max="560,52,-311"/>
+    </default>
+</spawns>
+</map>

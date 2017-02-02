@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<map proto="1.4.2" game="Infection">
+<include src="infection.xml"/>
+<name>Infection: Lost World</name>
+<slug>lost_world_infection</slug>
+<version>0.4</version>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor contribution="Original Game">Gameflot</contributor>
+    <contributor uuid="2a3b7317-ad79-4cfb-90f0-cfa3d52d51ae" contribution="Feedback and Building"/> <!-- IMPaused -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Feedback and Building"/> <!-- moo88888888 -->
+</contributors>
+<spawns>
+    <spawn filter="before-10s" team="zombie-team" kit="zombie-start-kit-override">
+        <regions yaw="50">
+            <cylinder base="47.5,14,-73.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn filter="before-10s" team="human-team" kit="human-kit-override">
+        <regions yaw="50">
+            <cylinder base="47.5,14,-73.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="zombie-team" kit="zombie-kit-override">
+        <regions yaw="50">
+            <cylinder base="47.5,14,-73.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="human-team" kit="zombie-switch-kit-override">
+        <regions yaw="50">
+            <cylinder base="47.5,14,-73.5" radius="2" height="0"/>
+        </regions>
+    </spawn>
+    <default kit="all" yaw="45">
+        <regions>
+            <cylinder base="0.5,82,7.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="participant" force="true">
+        <kit id="all"/>
+    </kit>
+    <kit id="zombie" force="true">
+        <kit id="participant"/>
+        <!--<double-jump enabled="false"/> -->
+    </kit>
+    <give filter="give-double-jump-filter">
+        <kit id="zombie"/>
+    </give>
+    <kit id="human-kit-override">
+        <kit id="human-kit"/>
+        <kit id="participant"/>
+    </kit>
+    <kit id="zombie-start-kit-override">
+        <kit id="zombie-kit-start"/>
+        <kit id="zombie"/>
+    </kit>
+    <kit id="zombie-kit-override">
+        <kit id="zombie-kit"/>
+        <kit id="zombie"/>
+    </kit>
+    <kit id="zombie-switch-kit-override">
+        <kit id="zombie-switch-kit"/>
+        <kit id="zombie"/>
+    </kit>
+</kits>
+<filters>
+    <not id="not-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <above id="height-limit" y="26"/>
+    <apply block="not-void" message="You may not build outside of the map!">
+        <everywhere/>
+    </apply>
+</regions>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+</map>

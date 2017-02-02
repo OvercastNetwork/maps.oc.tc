@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>Revenge TE</name>
+<version>0.3</version>
+<objective>Destroy both enemy monuments and leak their core to win!</objective>
+<authors>
+    <author uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888" contribution="XML, layout"/> <!-- Elijahyap -->
+</authors>
+<contributors>
+    <contributor uuid="ca2306d1-1198-4d46-8c44-a82f5b3c8a4e" contribution="Aesthetic Theme"/> <!-- BeanButt_jar -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="10">Red</team>
+    <team id="blue" color="blue" max="10">Blue</team>
+</teams>
+<spawns>
+    <default kit="obs">
+        <regions yaw="-90">
+            <block>0.5,87,0.5</block>
+        </regions>
+    </default>
+    <spawn team="red" kit="teams">
+        <regions yaw="180">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="teams">
+        <regions yaw="0">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:3;durability:3">iron pickaxe</item>
+        <item slot="3" amount="32">log</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <item slot="28" amount="64">arrow</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>golden carrot</item>
+    <item>emerald block</item>
+    <item>gold block</item>
+    <item>obsidian</item>
+    <item>dispenser</item>
+    <item>beacon</item>
+    <item>cobblestone</item>
+    <item>coal block</item>
+</itemremove>
+<toolrepair>
+	<tool>iron sword</tool>
+	<tool>bow</tool>
+	<tool>iron pickaxe</tool>
+</toolrepair>
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-access">
+        <not>
+            <block>beacon</block>
+            <block>dispenser</block>
+            <block>hopper</block>
+        </not>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="no-barf-cannons">
+        <not>
+            <block>dispenser</block>
+            <block>hopper</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main-area" min="-44,-63" max="45,64"/>
+    <union name="spawn-drops">
+        <cuboid name="blue-spawn-drop" min="-2,32,-53" max="3,256,-58"/>
+        <cuboid name="red-spawn-drop" min="3,oo,54" max="-2,32,59"/>
+    </union>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,67,-oo" max="oo,68,oo"/>
+        <cuboid name="above-height-limit" min="-oo,68,-oo" max="oo,oo,oo"/>
+    </union>
+    <union name="monuments">
+        <cuboid name="blue-right-monument" min="-23,37,-17" max="-28,42,-22"/>
+        <cuboid name="blue-left-monument" min="29,37,-17" max="24,42,-22"/>
+        <cuboid name="red-right-monument" min="24,37,18" max="29,42,23"/>
+        <cuboid name="red-left-monument" min="-28,37,18" max="-23,42,23"/>
+    </union>
+    <union name="cores">
+        <cuboid name="red-core" min="4,43,32" max="-3,36,39"/>
+        <cuboid name="blue-core" min="4,36,-38" max="-3,43,-31"/>
+    </union>
+    <union name="spawns">
+        <block name="blue-spawn">0.5,255,-55.5</block>
+        <block name="red-spawn">0.5,255,56.5</block>
+    </union>
+    <!--  Applied  -->
+    <apply block="deny-all" message="You may not modify the spawns">
+        <region name="spawn-drops"/>
+    </apply>
+    <apply enter="blue-only" message="You may not enter the enemy spawn">
+        <region name="blue-spawn-drop"/>
+    </apply>
+    <apply enter="red-only" message="You may not enter the enemy spawn">
+        <region name="red-spawn-drop"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside of the map">
+        <negative>
+            <region name="main-area"/>
+        </negative>
+    </apply>
+    <apply block-place="no-barf-cannons" message="You may not place this block">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply use="deny-access" message="You may not access this block">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<destroyables owner="red" completion="100%">
+    <destroyable name="Emerald Monument" id="red-left" region="red-left-monument" materials="emerald block;beacon"/>
+    <destroyable name="Coal Monument" id="red-right" region="red-right-monument" materials="coal block;beacon"/>
+</destroyables>
+<destroyables owner="blue" completion="100%">
+    <destroyable name="Emerald Monument" id="blue-left" region="blue-left-monument" materials="emerald block;beacon"/>
+    <destroyable name="Coal Monument" id="blue-right" region="blue-right-monument" materials="coal block;beacon"/>
+</destroyables>
+<cores material="obsidian" leak="3" mode-changes="true" name="Core">
+    <core team="red" id="red-core" region="red-core"/>
+    <core team="blue" id="blue-core" region="blue-core"/>
+</cores>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="packed ice" name="ICE CORE MODE"/>
+</modes>
+<tnt>
+    <dispenser-tnt-limit>2</dispenser-tnt-limit>
+</tnt>
+</map>

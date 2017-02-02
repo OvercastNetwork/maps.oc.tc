@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Corrupted Kingdoms</name>
+<version>1.1.3</version>
+<objective>Hollow out the enemy team's three obsidian monuments!</objective>
+<authors>
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
+</authors>
+<contributors>
+    <contributor uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9" contribution="Feedback and XML"/> <!-- KasiCrafter -->
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Voxel Sniping"/> <!-- khazhyk -->
+    <contributor uuid="a289f56b-0041-45fb-a299-756f3c7d67c3" contribution="Lore"/> <!-- your_loved_one -->
+    <contributor contribution="Building Design">Madnes64</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="70">Blue</team>
+    <team color="dark red" max="70">Red</team>
+</teams>
+<timelock>off</timelock>
+<spawns yaw="90">
+    <spawns>
+        <spawn team="blue" kit="blue">
+            <cuboid min="-75,23,188" max="-60,23,191"/>
+        </spawn>
+        <spawn team="red" kit="red">
+            <cuboid min="-76,23,-192" max="-60,23,-189"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <point>24,104,-1</point>
+        <!-- PGM-66
+        <complement>
+            <cylinder base="31,103,-1" radius="12" height="0"/>
+            <cylinder base="31,103,-1" radius="6" height="0"/>
+        </complement> -->
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="16">bread</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="25" amount="64">arrow</item>
+        <item slot="26" amount="64">arrow</item>
+        <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-fire-spread">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- Prevent void building in the playable region -->
+    <apply block="no-void" message="You may not build outside of the map!">
+        <rectangle name="playable" min="-192,-245" max="-7,242"/>
+    </apply>
+    <!-- Deny fire -->
+    <apply block="deny-fire-spread" message="Don't burn down our town! :(">
+        <region name="playable" />
+    </apply>
+    <!-- Prevent building outside of the playable region -->
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <!-- red team spawn protection -->
+    <apply block="deny-all" message="You cannot place or break blocks this close to spawn!">
+        <circle name="red-team-spawn" center="-89,191" radius="40"/>
+    </apply>
+    <!-- blue team spawn protection -->
+    <apply block="deny-all" message="You cannot place or break blocks this close to spawn!">
+        <circle name="blue-team-spawn" center="-89,-191" radius="40"/>
+    </apply>
+    <!-- Helpful sign protection -->
+    <apply block="deny-all" message="You cannot break the helpful signs :(">
+        <cuboid name="red-team-signs" min="-94,23,-146" max="-93,25,-145"/>
+        <cuboid name="blue-team-signs" min="-94,23,144" max="-93,25,145"/>
+    </apply>
+    <!-- sea section height limit -->
+    <apply block="deny-all" message="You have hit the build limit for the OCEAN section of the map.">
+        <cuboid name="sea-limit" min="-95,30,-57" max="-14,oo,57"/>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>flint</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<maxbuildheight>75</maxbuildheight>
+<destroyables materials="obsidian">
+    <!---blue team monumnets -->
+    <destroyables owner="blue">
+        <destroyable name="Valley Monument">
+            <cuboid min="-154,41,57" max="-153,44,58"/>
+        </destroyable>
+        <destroyable name="Harbor Monument">
+            <cuboid min="-32,28,99" max="-31,31,100"/>
+        </destroyable>
+        <destroyable name="Hillside Monument">
+            <cuboid min="-151,47,139" max="-150,50,140"/>
+        </destroyable>
+    </destroyables>
+    <!---red team monumnets -->
+    <destroyables owner="red">
+        <destroyable name="Valley Monument">
+            <cuboid min="-154,41,-59" max="-153,44,-58"/>
+        </destroyable>
+        <destroyable name="Harbor Monument">
+            <cuboid min="-32,28,-101" max="-31,31,-100"/>
+        </destroyable>
+        <destroyable name="Hillside Monument">
+            <cuboid min="-151,47,-141" max="-150,50,-140"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+</map>

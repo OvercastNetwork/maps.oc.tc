@@ -1,0 +1,107 @@
+<map proto="1.4.0" game="Blitz">
+<name>Rough Patch</name>
+<version>1.0.2</version>
+<objective>Eliminate the enemy team before time runs out!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--  DoomRobotBoy  -->
+</authors>
+<teams>
+    <team id="redt" color="dark red" max="14" max-overfill="16">Red</team>
+    <team id="bluet" color="blue" max="14" max-overfill="16">Blue</team>
+</teams>
+<spawns>
+    <spawn team="redt" kit="red">
+        <regions yaw="-180">
+            <cylinder base="296.5,23,153.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="bluet" kit="blue">
+        <regions yaw="0">
+            <cylinder base="216.5,23,81.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions yaw="180">
+            <cylinder base="256.5,20,117.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="spawn" parents="all">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">shears</item>
+        <item slot="3" amount="64">golden carrot</item>
+        <item slot="6" amount="5">exp bottle</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="17" amount="3" damage="4">ink sack</item>
+        <chestplate locked="true" unbreakable="true" enchantment="protection projectile:1">iron chestplate</chestplate>
+        <leggings locked="true" unbreakable="true">iron leggings</leggings>
+    </kit>
+    <kit id="red" parents="spawn">
+        <item slot="3" damage="14" amount="12">wool</item>
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <boots color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blue" parents="spawn">
+        <item slot="3" damage="11" amount="12">wool</item>
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <boots color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<killreward>
+    <item amount="4" damage="14">wool</item>
+    <filter>
+        <team>redt</team>
+    </filter>
+</killreward>
+<killreward>
+    <item amount="4" damage="11">wool</item>
+    <filter>
+        <team>bluet</team>
+    </filter>
+</killreward>
+<filters>
+    <all id="block-place">
+        <not>
+            <void/>
+        </not>
+        <material>wool</material>
+    </all>
+</filters>
+<regions>
+    <apply block="block-place">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<time>7m</time>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<include src="blitz-global.xml"/>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>exp bottle</item>
+    <item>golden apple</item>
+    <item>ink sack</item>
+    <item>wool</item>
+    <item>shears</item>
+    <item>golden carrot</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

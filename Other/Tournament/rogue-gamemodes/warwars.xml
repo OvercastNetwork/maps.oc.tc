@@ -1,0 +1,35 @@
+<map>
+<version>150</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author>Onsole</author>
+</authors>
+<teams>
+    <team color="blue" max="8">Blue</team>
+    <team color="dark red" max="8">Red</team>
+</teams>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<regions>
+    <negative name="outside"><rectangle name="playable" min="-10,16" max="56,45" /></negative>
+    <apply block="deny-all" message="Can't touch this">
+        <cuboid min="23,50,29" max="25,51,30"/>
+    </apply>
+</regions>
+<blitz>
+    <title>War Wars</title>
+    <time>3m</time>
+    <lives>1</lives>
+</blitz>
+<portals>
+    <portal y="-15000">
+        <region name="outside"/>
+    </portal>
+</portals>
+<modes>
+    <mode after="2m30s" material="tnt" name="EASY MODE ACTIVATED"/>
+</modes>
+</map>

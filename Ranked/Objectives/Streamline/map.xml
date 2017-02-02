@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Streamline</name>
+<genre>Objectives</genre>
+<time>30m</time>
+<respawn delay="10s" auto="true" spectate="true"/>
+<version>3.0</version>
+<objective>Destroy and leak the enemy team's obsidian core.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394"/> <!-- moo88888888 -->
+    <contributor uuid="fb820bf4-5157-4d7b-8cca-e8ec759b87cd"/> <!-- Vetches -->
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Feedback for v2.0"/> <!-- last_username -->
+</contributors>
+<teams>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="0" pitch="-10">
+            <point>-16.5,10,73.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="180" pitch="-10">
+            <point>-16.5,10,-26.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>41.5,29,23.5</point>
+        </regions>
+    </default>
+</spawns>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core id="red-core" team="red">
+        <region>
+            <cuboid min="-14,12,49" max="-19,17,54"/>
+        </region>
+    </core>
+    <core id="blue-core" team="blue">
+        <region>
+            <cuboid min="-19,12,-2" max="-14,17,-7"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="25m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<kits>
+    <kit id="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:2;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="5" amount="64">wood</item>
+        <item slot="32" amount="64">wood</item>
+        <item slot="23" amount="64">wood</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="31" amount="64">smooth brick</item>
+        <item slot="6" amount="16">glass</item>
+        <chestplate prevent-sharing="true" enchantment="protection explosions:3">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <helmet   prevent-sharing="true" color="993333">leather helmet</helmet>
+        <leggings prevent-sharing="true" color="993333">leather leggings</leggings>
+        <boots    prevent-sharing="true" color="993333">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <helmet   prevent-sharing="true" color="334CB2">leather helmet</helmet>
+        <leggings prevent-sharing="true" color="334CB2">leather leggings</leggings>
+        <boots    prevent-sharing="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <complement id="outside-center">
+        <negative>
+            <rectangle id="main" min="2,107" max="-35,-60"/>
+            <rectangle id="center" min="16,-5" max="-49,52"/>
+            <rectangle id="inside-lane" min="-21,-48" max="-12,95"/>
+        </negative>
+        <union id="spawns">
+            <cuboid id="red-spawn" min="-13,8,-39" max="-20,16,-22"/>
+            <cuboid id="blue-spawn" min="-20,8,86" max="-13,16,69"/>
+        </union>
+    </complement>
+    <union id="water-drops">
+        <cuboid id="red-water-drop" min="-14,2,102" max="-19,16,99"/>
+        <cuboid id="blue-water-drop" min="-19,2,-55" max="-14,16,-52"/>
+    </union>
+    <union id="diamond-spawners">
+        <block>-43.5,8,23.5</block>
+        <block>10.5,8,23.5</block>
+    </union>
+    <apply block="never" region="outside-center"   message="You may not edit outside the main area!"/>
+    <apply block="never" region="spawns"           message="You may not edit the spawn!"/>
+    <apply block="never" region="diamond-spawners" message="You may not break the diamond pickaxe spawner!"/>
+    <apply block="never" region="water-drops"      message="You may not edit the water drop!"/>
+</regions>
+<renewables>
+    <renewable interval="1m">
+        <region>
+            <union id="iron-islands"> <!-- Relative distance to observers spawn -->
+                <cuboid id="island-near" min="16,8,13"  max="3,11,34"/>
+                <cuboid id="island-far"  min="-49,8,34" max="-36,11,13"/>
+            </union>
+        </region>
+        <renew>iron block</renew>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wood</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>clay ball</item>
+    <item>redstone lamp off</item>
+    <item>redstone lamp on</item>
+    <item>item frame</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>iron door</item>
+    <item>iron door block</item>
+    <item>redstone block</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="12">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>30</maxbuildheight>
+</map>

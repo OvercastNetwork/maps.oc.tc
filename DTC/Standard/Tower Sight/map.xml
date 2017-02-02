@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Tower Sight</name>
+<version>1.2</version>
+<objective>Leak the core of your enemies and defend your own.</objective>
+<authors>
+    <author uuid="33e00444-5c7b-4767-a28e-177c3041c74d"/> <!-- Michael12lp -->
+</authors>
+<cores material="obsidian" leak="6">
+    <core team="red">
+        <cuboid min="-1.5,17,-73.5" max="2.5,21,-69.5"/>
+    </core>
+    <core team="blue">
+        <cuboid min="2.5,17,74.5" max="-1.5,21,70.5"/>
+    </core>
+</cores>
+<teams>
+    <team color="Dark red" max="16" max-overfill="20">Red</team>
+    <team color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="durability:1">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">stone axe</item>
+        <item slot="4" amount="32">log</item>
+        <item slot="5" amount="5">cooked chicken</item>
+        <item slot="6" amount="1">Golden apple</item>
+        <item slot="7" amount="1">Bucket</item>
+        <item slot="8" amount="1">arrow</item>
+        <potion duration="3" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000" enchantment="protection environmental:1">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:4">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc" enchantment="protection environmental:1">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:4">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone axe</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked chicken</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>obsidian</item>
+    <item>bucket</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>on</blockdamage>
+    <yield>50</yield>
+</tnt>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<timelock>on</timelock>
+<maxbuildheight>32</maxbuildheight>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not modify the void area!">
+        <negative>
+            <rectangle min="51,-5" max="-50,5"/>
+            <rectangle min="5,-50" max="-4,-63"/>
+            <rectangle min="5,50" max="-4,63"/>
+            <rectangle min="-30,-17" max="30,17"/>
+        </negative>
+    </apply>
+    <apply velocity="@0.0,2.2,0.0">
+        <cuboid min="-0.5,10,-0.5" max="1.5,11,1.5"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle name="tower" min="-1,-1" max="2,2"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="27.5,10,-58.5" max="25.5,10,-56.5"/>
+        <cuboid min="-24.5,10,-58.5" max="-26.5,10,-56.5"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="-26.5,10,59.5" max="-24.5,10,57.5"/>
+        <cuboid min="25.5,10,59.5" max="27.5,10,57.5"/>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="-75.5,46,-0.5" max="-73.5,46,1.5"/>
+    </default>
+</spawns>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>`rThis map is a Mini `a`lDestroy the Core `r(DTC) map.</line>
+            <line>`rThe objective is to leak lava from the enemy's `5obsidian `rcore.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="50">-51,42,0</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>`rEach team has 2 spawns on either side of the core.</line>
+            <line>`rYou spawn with all supplies needed to fight!</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="0">-14,13,-46</point>
+        </teleport>
+    </stage>
+    <stage title="The Core">
+        <message>
+            <line>This is `5obsidian `rcore, break your enemy's `5obsidian `rcore and leak the `clava `rfrom inside the core to win.</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="0">0,17,-42</point>
+        </teleport>
+    </stage>
+    <stage title="Map Overview">
+        <message>
+            <line>`rVarious items are scattered throughout the map to help you achieve victory.</line>
+            <line>The tower in the middle has a jump pad inside to get to the top.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="50">-51,42,0</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

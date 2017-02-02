@@ -1,0 +1,175 @@
+<map proto="1.4.0" game="Earth Day">
+<name>Earth Day</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team or survive for 1 minute and 30 seconds.</objective>
+<gamemode>Arcade</gamemode>
+<authors>
+    <author uuid="2958ea4c-3501-404e-88cc-12e8632f68cc"/> <!-- NixaniaXi -->
+</authors>
+<contributers>
+	<contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="XML question answers."/> <!--  DoomRobotBoy  -->
+</contributers>
+<broadcasts>
+    <tip after="1s" filter="only-earth">`2`lEarth Sprites: `rUse your saplings to hide in the trees.</tip>
+    <tip after="1s" filter="only-wood">`8`lLumber Jacks: `rUse your axes to cut down the trees and find those pesky sprites.</tip>
+    <alert after="15s">Lumber Jacks have been released!</alert>
+    <alert after="45s">Lumber Jacks can now see!</alert>
+</broadcasts>
+<filters>
+    <any id="only-some">
+        <material>log</material>
+        <material>wood</material>
+        <material>sapling</material>
+        <material>leaves</material>
+    </any>
+    <team id="only-earth">earth-team</team>
+    <team id="only-wood">wood-team</team>
+    <deny id="no-glass"><material>stained glass</material></deny>
+</filters>
+<regions>
+    <apply enter="never" message="You can not climb any higher!">
+        <region>
+            <above y="15"/>
+        </region>
+    </apply>
+    <apply block-break="no-glass">
+        <everywhere/>
+    </apply>
+    <apply block-break="only-some">
+        <everywhere/>
+    </apply>
+</regions>
+<maxbuildheight>14</maxbuildheight>
+<time result="earth-team">90s</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<include src="blitz-global.xml"/>
+<teams>
+   <team id="earth-team" color="dark green" min="3" max="6" plural="true">Earth Sprites</team>
+   <team id="wood-team" color="dark gray" min="1" max="2" plural="true">Lumber Jacks</team>
+</teams>
+<kits>
+    <kit id="earth-kit">
+        <game-mode>adventure</game-mode>
+        <item slot="0" material="stick" name="`rTree Tap">
+            <can-destroy>
+                <material>leaves</material>
+                <material>log</material>
+            </can-destroy>
+        </item>
+    	<item slot="1" material="sapling" amount="64">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+            <can-destroy>
+                <material>leaves</material>
+                <material>log</material>
+            </can-destroy>
+        </item>
+    	<item slot="2" material="ink_sack" damage="15" amount="64">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+            <can-destroy>
+                <material>leaves</material>
+                <material>log</material>
+            </can-destroy>
+        </item>
+       	<item slot="3" material="ink_sack" damage="15" amount="64">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+            <can-destroy>
+                <material>leaves</material>
+                <material>log</material>
+            </can-destroy>
+        </item>
+       	<item slot="4" material="ink_sack" damage="15" amount="64">
+            <can-place-on>
+                <all-blocks/>
+            </can-place-on>
+            <can-destroy>
+                <material>leaves</material>
+                <material>log</material>
+            </can-destroy>
+        </item>
+        <helmet color="5c722f">leather helmet</helmet>
+        <chestplate color="5c722f">leather chestplate</chestplate>
+        <leggings color="5c722f">leather leggings</leggings>
+        <boots color="5c722f">leather boots</boots>
+        <potion duration="2000" amplifier="5">weakness</potion>
+    </kit>
+    <kit id="wood-kit">
+        <item slot="0" name="`6Woodchopper" lore="`eCan also be used to kill sprites." enchantment="dig speed:3" unbreakable="true" material="iron axe"/>
+        <helmet color="323232">leather helmet</helmet>
+        <chestplate color="323232">leather chestplate</chestplate>
+        <leggings color="323232">leather leggings</leggings>
+        <boots color="323232">leather boots</boots>
+        <potion duration="45" amplifier="1">blindness</potion>
+        <potion duration="15" amplifier="5">slow digging</potion>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<time result="earth-team">100s</time>
+<spawns>
+    <spawn team="earth-team" kit="earth-kit">
+        <regions>
+            <cuboid min="-230,7,-115" max="-227,7,-118"/>
+        </regions>
+    </spawn>
+    <spawn team="wood-team" kit="wood-kit">
+        <regions>
+            <cuboid min="-230,3,-115" max="-227,3,-118"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <cuboid min="-230,24,-115" max="-227,24,-118"/>
+        </regions>
+    </default>
+</spawns>
+<destroyables>
+    <destroyable id="spawn-dome" name="Spawn Closure" completion="100%" materials="stained glass:7" mode-changes="true" owner="wood-team" show="false">
+        <region>
+	        <cuboid min="-232,4,-113" max="-225,7,-120"/>
+	    </region>
+      </destroyable>
+</destroyables>
+<modes>
+    <mode name="`3Lumber Jacks are released" material="air" after="15s" show-before="10s"/>
+</modes>
+<crafting>
+    <disable>workbench</disable>
+</crafting>
+<block-drops>
+    <rule wrong-tool="true">
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <all>
+                <team>wood-team</team>
+                <material>log</material>
+            </all>
+        </filter>
+        <drops>
+            <item material="wood" amount="4"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>sapling</item>
+    <item>ink sack</item>
+    <item>iron axe</item>
+    <item>dirt</item>
+    <item>log</item>
+</itemremove>
+</map>

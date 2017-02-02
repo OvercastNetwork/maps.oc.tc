@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Plunge">
+<name>Plunge: Cavern</name>
+<version>1.0</version>
+<gamemode>Arcade</gamemode>
+<objective>Fall into the void to score and survive!</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
+</authors>
+<players min="4" max="8" colors="true"/>
+<score>
+    <limit>11</limit>
+    <box region="score-box" points="1"/>
+    <box region="everywhere" filter="start-time">
+        <redeemables>
+            <item points="0">stick</item>
+        </redeemables>
+    </box>
+</score>
+<blitz>
+    <lives>1</lives>    
+</blitz>
+<spawns spread="true">
+    <spawn kit="player-1">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>
+    <spawn kit="player-2">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-3">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-4">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-5">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-6">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-7">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>    
+    <spawn kit="player-8">
+        <regions pitch="90">
+            <region id="player-spawn"/>
+        </regions>
+    </spawn>        
+    <default>
+        <regions>
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <game-mode>adventure</game-mode>
+        <potion duration="5s">blindness</potion>
+        <item slot="0" amount="6" material="snow ball"/>
+        <chestplate material="leather chestplate" color="FFFF00" locked="true">
+            <attribute amount="-18">generic.maxHealth</attribute>
+        </chestplate>
+    </kit> 
+    <kit id="fall-success" force="true">
+        <item slot="0" material="snow ball" amount="4"/>
+    </kit>
+    <kit id="player-1" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-1"/>
+    </kit>
+    <kit id="player-2" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-2"/>
+    </kit>
+    <kit id="player-3" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-3"/>
+    </kit>
+    <kit id="player-4" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-4"/>
+    </kit>
+    <kit id="player-5" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-5"/>
+    </kit>
+    <kit id="player-6" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-6"/>
+    </kit>
+    <kit id="player-7" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-7"/>
+    </kit>
+    <kit id="player-8" parents="spawn-kit">
+        <item slot="9" material="stick" name="Player-8"/>
+    </kit>
+</kits>
+<kill-reward>
+    <kit force="true">
+        <item slot="0" amount="6" material="snow ball"/>
+    </kit> 
+</kill-reward>
+<regions>
+    <cuboid id="player-spawn" min="-6,66,-6" max="7,67,7"/>
+    <point id="obs-spawn">0.5,5,0.5</point>
+    <cuboid id="player-box" min="-8,65,-8" max="9,72,9"/>
+    <cuboid id="score-box" min="-7,0,-7" max="8,4,8"/>
+    
+    <apply block="never"/>
+    <apply kit="fall-success" region="score-box"/>
+</regions>
+<!--<destroyables>
+    <destroyable id="dpb" name="Player Box" region="player-box" show="false" owner="player1" required="false" materials="stained_glass" mode-changes="true"/>    
+</destroyables>
+<modes show-before="0s">
+    <mode after="15s" material="air"/>    
+    <mode after="16s" material="stained_glass:15"/>  
+
+    <mode after="28s" material="air"/>    
+    <mode after="29s" material="stained_glass:15"/> 
+
+    <mode after="41s" material="air"/>    
+    <mode after="42s" material="stained_glass:15"/> 
+
+    <mode after="54s" material="air"/>    
+    <mode after="55s" material="stained_glass:15"/>
+    
+   
+    <mode after="63s" material="air"/>    
+    <mode after="64s" material="stained_glass:15"/> 
+    
+   
+    <mode after="71s" material="air"/>    
+    <mode after="72s" material="stained_glass:15"/>  
+
+    <mode after="79s" material="air"/>    
+    <mode after="80s" material="stained_glass:15"/> 
+
+    <mode after="87s" material="air"/>    
+    <mode after="88s" material="stained_glass:15"/> 
+
+    <mode after="95s" material="air"/>    
+    <mode after="96s" material="stained_glass:15"/> 
+
+
+    <mode after="103s" material="air"/>    
+    <mode after="104s" material="stained_glass:15"/> 
+    
+
+    <mode after="111s" material="air"/>
+</modes>
+-->
+<portals>
+    <portal region="score-box" destination="player-spawn" sound="false"/>    
+</portals>
+<itemremove>
+    <item>snow ball</item>    
+    <item>ice</item>    
+    <item>blaze rod</item>    
+    <item>ink sack</item>    
+    <item>leather chestplate</item> 
+    <item>stick</item>   
+</itemremove>
+<hunger>
+    <depletion>off</depletion>    
+</hunger>
+<disabledamage>
+    <damage>ENTITY_ATTACK</damage>    
+</disabledamage>
+<include src="structures.xml"/>
+<include src="broadcast.xml"/>
+</map>

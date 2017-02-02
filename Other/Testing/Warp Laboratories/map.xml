@@ -1,0 +1,482 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Warp Laboratories</name>
+<version>1.0.1</version>
+<objective>Severely damage the opposing team's monument's stone, wool, and endstone layers!</objective>
+<authors>
+    <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
+</authors>
+<contributors>
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="aesthetics"/> <!-- Stealth5061 -->
+</contributors>
+<teams>
+    <team color="blue" max="70">Blue</team>
+    <team color="dark red" max="70">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <cuboid min="111,8,76" max="125,9,82"/>
+        <cuboid min="36,8,76" max="51,9,82"/>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <cuboid min="-111,8,76" max="-123,9,82"/>
+        <cuboid min="-36,8,76" max="-49,9,82"/>
+    </spawn>
+   <default yaw="180"><cylinder base="0,39,24" radius="8" height="0"/></default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="8">cooked beef</item>
+        <item slot="5" amount="16">glass</item>
+        <item slot="8" amount="16">torch</item>
+        <item slot="17" lore="Retrieve this armor from dead players to add durability!" damage="230"
+                        enchantment="protection_environmental:3">chainmail chestplate</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="1">fast digging</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+        <item slot="4" damage="1" amount="64">wood</item>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+        <item slot="4" damage="2" amount="64">wood</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-blues" parents="allow-all">
+        <deny><team>blue</team></deny>
+    </filter>
+    <filter name="deny-reds" parents="allow-all">
+        <deny><team>red</team></deny>
+    </filter>  
+</filters>
+<regions>
+    <union name="red-spawn-rooms">
+        <cuboid min="111,8,76" max="125,9,82"/>
+        <cuboid min="36,8,76" max="51,9,82"/>
+    </union>
+    <union name="blue-spawn-rooms">
+        <cuboid min="-111,8,76" max="-123,9,82"/>
+        <cuboid min="-36,8,76" max="-49,9,82"/>
+    </union>
+    
+    <!-- red are the first two cuboids, blue are the second two -->
+    <union name="red-and-blue-spawn-protection">
+        <union name="red-spawn">
+            <cuboid min="32,0,56" max="60,29,87"/>
+            <cuboid min="98,0,49" max="131,29,87"/>
+        </union>
+        <union name="blue-spawn">
+            <cuboid min="-32,0,56" max="-58,29,87"/>
+            <cuboid min="-98,0,49" max="-129,29,87"/>
+        </union>
+    </union>
+
+    <!-- This is to protect the blocks around the checkpoints -->
+   <union name="checkpoint-protection">
+       <cuboid name="red-checkpoint-one" min="32,6,28" max="46,12,47"/>
+       <cuboid name="red-checkpoint-two" min="115,6,-21" max="130,12,-2"/>
+       <cuboid name="purple-checkpoint-interior" min="-8,6,-10" max="11,12,4"/>
+       <cuboid name="purple-checkpoint-exterior" min="-9,6,-86" max="8,11,-72"/>
+       <cuboid name="blue-checkpoint-one" min="-32,6,28" max="-44,12,47"/>
+       <cuboid name="blue-checkpoint-two" min="-115,6,-21" max="-128,12,-2"/>
+    </union>
+
+    <!-- The two places where you can place blocks, above the lamps -->
+    <union name="checkpoint-block-slot-exceptions">
+        <!-- red checkpoint one -->
+        <block>40,8,35</block>
+        <block>40,8,37</block>
+        
+        <!-- red checkpoint two -->
+        <block>120,8,-12</block>
+        <block>120,8,-10</block>
+
+        <!-- purple checkpoint interior -->
+        <block>1,8,-5</block>
+        <block>-1,8,-5</block>
+
+        <!-- purple checkpoint exterior -->
+        <block>-1,8,-78</block>
+        <block>1,8,-78</block>
+
+        <!-- blue checkpoint one -->
+        <block>-40,8,35</block>
+        <block>-40,8,37</block>
+
+        <!-- blue checkpoint two -->
+        <block>-120,8,-12</block>
+        <block>-120,8,-10</block>
+    </union>
+
+    <!-- Where you go when you fail to capture a point -->
+    <union name="all-noncapture-teleports">
+    <!--red's-->
+        <cuboid min="40,7,28" max="41,8,34"/>
+        <cuboid min="3,7,-5" max="9,8,-4"/>
+        <cuboid min="-40,7,28" max="-39,8,34"/>
+        <cuboid min="120,7,-19" max="121,8,-13"/>
+        <cuboid min="-8,7,-78" max="-2,8,-77"/>
+        <cuboid min="-120,7,-19" max="-119,8,-13"/>
+    <!--blue's-->
+        <cuboid min="-40,7,39" max="-39,8,45"/>
+        <cuboid min="-8,7,-5" max="-2,8,-4"/>
+        <cuboid min="40,7,39" max="41,8,45"/>
+        <cuboid min="-120,7,-8" max="-119,8,-2"/>
+        <cuboid min="3,7,-78" max="9,8,-77"/>
+        <cuboid min="120,7,-8" max="121,8,-2"/>
+    </union>
+
+    <apply block="deny-all" message="You cannot place or break blocks inside spawn!">
+        <region name="red-and-blue-spawn-protection"/>
+    </apply>
+
+    <apply enter="deny-reds" message="This zone is for BLUES only.">
+        <!--blue spawns-->
+        <cuboid min="-32,0,56" max="-58,29,87"/>
+        <cuboid min="-101,0,49" max="-129,29,87"/>
+        
+        <!--checkpoints, from blue one, blue two, purple inter, purple ext, red two and red one"-->
+        <cuboid min="-40,7,39" max="-42,10,45"/>
+        <cuboid min="-120,7,-8" max="-118,11,-2"/>
+        <cuboid min="-8,7,-6" max="-2,11,-4"/>
+        <cuboid min="3,7,-78" max="9,11,-76"/>
+        <cuboid min="119,7,-8" max="121,11,-2"/>
+        <cuboid min="40,7,28" max="42,11,34"/>
+    </apply>
+
+    <apply enter="deny-blues" message="This zone is for REDS only.">
+        <!--red spawns-->
+        <cuboid min="32,0,56" max="60,29,87"/>
+        <cuboid min="101,0,49" max="131,29,87"/>
+
+        <!--checkpoints, from red one, red two, purple inter, purple ext, blue two and blue one"-->
+        <cuboid min="40,7,28" max="41,10,33"/>
+        <cuboid min="119,7,-19" max="120,10,-14"/>
+        <cuboid min="3,7,-6" max="9,11,-4"/>
+        <cuboid min="-8,7,-78" max="-2,11,-76"/>
+        <cuboid min="-120,7,-19" max="-118,11,-13"/>
+        <cuboid min="-41,7,28" max="-39,11,34"/>
+    </apply>
+
+    <apply block="deny-players" message="The only blocks you can place/break this close to the checkpoint are UNDER the REDSTONE LAMPS!">
+        <complement>
+            <region name="checkpoint-protection"/>
+            <region name="checkpoint-block-slot-exceptions"/>
+        </complement>
+    </apply>
+
+    <apply message="Your team has not yet captured this checkpoint. Try another portal or try to capture it yourself!">
+        <region name="all-noncapture-teleports"/>
+    </apply>
+
+    <apply block="deny-players">
+        <cuboid name="observatories" min="-130,51,-86" max="130,57,86"/>
+    </apply>
+</regions>
+<playable>
+    <rectangle min="-130,-86" max="130,86"/>
+</playable>
+<maxbuildheight>34</maxbuildheight>
+<timelock>on</timelock>
+<portals>
+    
+    <!--portals /from/ red home base /to/ checkpoints, first set from exterior base, second from interior base-->
+    <portal x="-69" y="3" z="-35"  yaw="@270">  <!--red exterior-->
+        <cuboid min="109,5,62" max="110,7,69"/>
+    </portal>
+
+    <portal x="11" y="3" z="-72" yaw="@90">  <!--pink exterior-->
+        <cuboid min="109,5,53" max="110,7,60"/>
+    </portal>
+
+    <portal x="-120" y="3" z="-126" yaw="@0"> <!--purple exterior-->
+        <cuboid min="110,5,48" max="118,7,49"/>
+    </portal>
+
+    <portal x="-130" y="3" z="-126" yaw="@180"> <!--magenta exterior-->
+        <cuboid min="121,5,48" max="128,7,49"/>
+    </portal>
+
+    <portal x="-249" y="3" z="-73" yaw="@270"> <!--cyan exterior-->
+        <cuboid min="129,5,53" max="130,7,60"/>
+    </portal>
+
+    <portal x="-169" y="3" z="-35" yaw="@90"> <!--blue exterior-->
+        <cuboid min="129,5,62" max="130,7,69"/>
+    </portal>
+
+
+    <portal x="-11" y="3" z="-35" yaw="@270">  <!--red interioir-->
+        <cuboid min="51,5,62" max="52,7,69"/>
+    </portal>
+
+    <portal x="69" y="3" z="-73" yaw="@90"> <!--pink  interior-->
+        <cuboid min="51,5,53" max="52,7,60"/>
+    </portal>
+
+    <portal x="-52" y="3" z="-126" yaw="@0"> <!--purple interior-->
+        <cuboid min="43,5,48" max="50,7,49"/>
+    </portal>
+
+    <portal x="-30" y="3" z="-53" yaw="@180"> <!--magenta interior-->
+        <cuboid min="34,5,48" max="39,7,49"/>
+    </portal>
+
+    <portal x="-151" y="3" z="-73" yaw="@270"> <!--cyan interior-->
+        <cuboid min="31,5,53" max="32,7,60"/>
+    </portal>
+
+    <portal x="-71" y="3" z="-35" yaw="@90"> <!--blue interior-->
+        <cuboid min="31,5,62" max="32,7,69"/>
+    </portal>
+
+
+    <!--portals /from/ blue home base /to/ checkpoints, first set from exterior base, second from interior base-->
+    <portal x="89" y="3" z="-23" yaw="@90"> <!--blue exterior-->
+        <cuboid min="-129,5,62" max="-128,7,69"/>
+    </portal>
+
+    <portal x="9" y="3" z="-61" yaw="@270">  <!--cyan exterior-->
+        <cuboid min="-129,5,53" max="-128,7,60"/>
+    </portal>
+
+    <portal x="118" y="3" z="-53" yaw="@180">  <!--magenta exterior-->
+        <cuboid min="-127,5,48" max="-120,7,49"/>
+    </portal>
+
+    <portal x="120" y="3" z="-126" yaw="@0"> <!--purple exterior-->
+        <cuboid min="-117,5,48" max="-110,7,49"/>
+    </portal>
+
+    <portal x="229" y="3" z="-61" yaw="@90">  <!--pink exterior-->
+        <cuboid min="-109,5,53" max="-108,7,60"/>
+    </portal>
+
+    <portal x="149" y="3" z="-23" yaw="@270"> <!--red exterior-->
+        <cuboid min="-109,5,62" max="-108,7,69"/>
+    </portal>
+
+
+    <portal x="-9" y="3" z="-23" yaw="@90">  <!--blue interior-->
+        <cuboid min="-31,5,62" max="-30,7,69"/>
+    </portal>
+
+    <portal x="-89" y="3" z="-61" yaw="@270">  <!--cyan interior-->
+        <cuboid min="-31,5,53" max="-30,7,60"/>
+    </portal>
+
+    <portal x="30" y="3" z="-53" yaw="@180">  <!--magenta interior-->
+        <cuboid min="-39,5,48" max="-32,7,49"/>
+    </portal>
+
+    <portal x="52" y="3" z="-126" yaw="@0">  <!--purple interior-->
+        <cuboid min="-49,5,48" max="-43,6,48"/>
+    </portal>
+
+    <portal x="171" y="3" z="-61" yaw="@90">  <!--pink interior-->
+        <cuboid min="-51,5,53" max="-50,7,60"/>
+    </portal>
+
+    <portal x="91" y="3" z="-23" yaw="@270">  <!--red interior-->
+        <cuboid min="-51,5,62" max="-50,7,69"/>
+    </portal>
+
+
+
+    <!--noncapture trigger portals: red's field to base teleports-->
+    <portal x= "@41" y="@5" z="@66" yaw="@90">  <!--from red #1 to red interior-->
+        <cuboid min="40,6,28" max="41,7,35"/>
+    </portal>
+
+    <portal x= "@41" y="@5" z="@66" yaw="@90">  <!--from magenta(mid interior) to red interior-->
+        <cuboid min="3,6,-5" max="9,7,-3"/>
+    </portal>
+
+    <portal x= "@41" y="@5" z="@66" yaw="@90">  <!--from blue#1 to red interior-->
+        <cuboid min="-40,6,28" max="-39,7,35"/>
+    </portal>
+
+    <portal x= "@119" y="@5" z="@66" yaw="@270">  <!--from red#2 to red exterior-->
+        <cuboid min="120,6,-19" max="121,7,-12"/>
+    </portal>
+
+    <portal x= "@119" y="@5" z="@66" yaw="@270">  <!--from purple(mid exterior) to red exterior-->
+        <cuboid min="-8,6,-78" max="-2,7,-76"/>
+    </portal>
+
+    <portal x= "@119" y="@5" z="@66" yaw="@270">  <!--from blue#2 to red exterior-->
+        <cuboid min="-120,6,-19" max="-119,7,-14"/>
+    </portal>
+
+
+    <!--noncapture trigger portals: blues's field to base teleports-->
+    <portal x="@-41" y="@5" z="@66" yaw="@270">  <!--from blue#1 to blue interior-->
+        <cuboid min="-40,6,39" max="-39,7,46"/>
+    </portal>
+
+    <portal x="@-41" y="@5" z="@66" yaw="@270">  <!--from magenta(mid interior) to blue interior-->
+        <cuboid min="-8,6,-5" max="-2,7,-5"/>
+    </portal>
+
+    <portal x="@-41" y="@5" z="@66" yaw="@270">  <!--from red#1 to blue interior-->
+        <cuboid min="40,6,39" max="41,7,46"/>
+    </portal>
+
+    <portal x="@-119" y="@5" z="@66" yaw="@90">  <!--from blue#2 to blue exterior-->
+        <cuboid min="-120,6,-8" max="-119,7,-1"/>
+    </portal>
+
+    <portal x="@-119" y="@5" z="@66" yaw="@90">  <!--from purple(mid exterior) to blue exterior-->
+        <cuboid min="3,6,-78" max="9,7,-76"/>
+    </portal>
+
+    <portal x="@-119" y="@5" z="@66" yaw="@90">  <!--from red#2 to blue exterior exterior-->
+        <cuboid min="120,6,-8" max="121,7,-1"/>
+    </portal>
+
+
+
+    <!--portals from red base to observatories and back-->
+    <portal x="-25" y="44" z="-55" yaw="@90">  <!--from red exterior to red observatory1-->
+        <cuboid min="104,8,84" max="110,10,85"/>
+    </portal> 
+
+    <portal x="27" y="44" z="-55" yaw="@90">  <!--from red interior to red observatory1-->
+        <cuboid min="51,8,84" max="57,10,85"/>
+    </portal> 
+
+    <portal x="-34" y="-44" z="50" yaw="@270">  <!--from red observatory1 to red interior-->
+        <cuboid min="70,52,25" max="71,54,33"/>
+    </portal> 
+
+    <portal x="34" y="-44" z="50" yaw="@90">  <!--from red observatory1 to red exterior-->
+        <cuboid min="90,52,25" max="91,54,33"/>
+    </portal>
+
+    <portal x="10" y="-44" z="121" yaw="@270">  <!--from red observatory2 to red interior-->
+        <cuboid min="26,52,-47" max="27,54,-39"/>        
+    </portal> 
+
+    <portal x="78" y="-44" z="121" yaw="@90">  <!--from red observatory2 to red exterior-->
+        <cuboid min="46,52,-47" max="47,54,-39"/>
+    </portal>
+
+    <portal x="-45" z="-50" yaw="@180">  <!--from red observatory1 to red observatory2-->
+        <cuboid min="85,52,16" max="89,55,17"/>
+    </portal> 
+
+    <portal x="45" z="50" yaw="@0">  <!--from red observatory2 to red observatory1 -->
+        <cuboid min="41,52,-31" max="45,55,-30"/>
+    </portal> 
+
+
+
+    <!--portals from blue base to observatories and back-->
+    <portal x="25" y="44" z="-58" yaw="@270">  <!--from blue exterior to blue observatory1-->
+        <cuboid min="-104,8,84" max="-108,10,85"/>
+    </portal> 
+
+    <portal x="-27" y="44" z="-55" yaw="@270">  <!--from blue interior to blue observatory1-->
+        <cuboid min="-51,8,84" max="-55,10,85"/>
+    </portal> 
+
+    <portal x="34" y="-44" z="50" yaw="@90">  <!--from blue observatory1 to blue interior-->
+        <cuboid min="-90,52,25" max="-89,54,33"/>
+    </portal> 
+
+    <portal x="-34" y="-44" z="50" yaw="@270">  <!--from blue observatory1 to blue exterior-->
+        <cuboid min="-70,52,25" max="-69,54,33"/>
+    </portal>
+
+    <portal x="-10" y="-44" z="121" yaw="@90">  <!--from blue observatory2 to blue interior-->
+        <cuboid min="-26,52,-47" max="-25,54,-39"/>        
+    </portal> 
+
+    <portal x="-78" y="-44" z="121" yaw="@90">  <!--from blue observatory2 to blue exterior-->
+        <cuboid min="-46,52,-47" max="-45,54,-39"/>
+    </portal>
+
+    <portal x="31" z="-50" yaw="@180">  <!--from blue observatory1 to blue observatory2-->
+        <cuboid min="-88,52,17" max="-84,55,-30"/>
+    </portal> 
+
+    <portal x="-31" z="50" yaw="@0">  <!--from blue observatory2 to blue observatory1 -->
+        <cuboid min="-40,52,-32" max="-44,55,-31"/>
+    </portal>
+
+
+
+    <!--supply room teleport from red interior/exterior and reverse-->
+    <portal x="-54" z="2" yaw="@0">  <!--from red exterior to red interior-->
+        <cuboid min="106,8,56" max="109,11,57"/>
+    </portal>
+
+    <portal x="54" z="2" yaw="@0">  <!--from red interior to red exterior-->
+        <cuboid min="52,8,56" max="55,11,57"/>
+    </portal>
+
+
+    <!--supply room teleport from blue interior/exterior and reverse-->
+    <portal x="54" z="2" yaw="@0">  <!--from blue exterior to blue interior-->
+        <cuboid min="-106,8,56" max="-107,11,57"/>
+    </portal>
+
+    <portal x="-54" z="2" yaw="@0">  <!--from blue interior to blue exterior-->
+        <cuboid min="-52,8,56" max="-53,11,57"/>
+    </portal>
+</portals>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>chainmail chestplate</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>clay</item>
+    <item>arrow</item>
+    <item damage="1">log</item>
+    <item damage="1">wood</item>
+    <item damage="2">log</item>
+    <item damage="2">wood</item>
+</itemremove>
+<destroyables>
+    <!---red team monument layers -->
+    <destroyable name="Redstone Layer" completion="50%" owner="red" materials="redstone ore">
+        <cuboid min="71,6,66" max="90,32,84"/>
+    </destroyable>
+    <destroyable name="Wool Layer" completion="30%" owner="red" materials="wool:14">
+        <cuboid min="71,6,66" max="90,32,84"/>
+    </destroyable>
+    <destroyable name="Enderstone layer" completion="10%" owner="red" materials="ender stone">
+        <cuboid min="71,6,66" max="90,32,84"/>
+    </destroyable>
+
+    <!---blue team monumnets -->
+    <destroyable name="Lapis Layer" completion="50%" owner="blue" materials="lapis ore">
+        <cuboid min="-71,6,66" max="-88,32,83"/>
+    </destroyable>
+    <destroyable name="Wool Layer" completion="30%" owner="blue" materials="wool:11">
+        <cuboid min="-71,6,66" max="-88,32,83"/>
+    </destroyable>
+    <destroyable name="Enderstone layer" completion="10%" owner="blue" materials="ender stone">
+        <cuboid min="-71,6,66" max="-88,32,83"/>
+    </destroyable>
+</destroyables>
+</map>
+

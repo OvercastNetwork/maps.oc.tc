@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Pipe Factory</name>
+<version>1.0.3</version>
+<objective>Be the team to have to most amount of kills after 6 minutes!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518" contribution="Main design and building"/> <!-- chickolympics -->
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Flawless XML and Map Feedback"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="968a1d95-089a-47b7-8840-57eeedde6ea6" contribution="Map Feedback"/> <!-- DoctorTardi -->
+    <contributor uuid="c574d557-0c42-4dfb-ae1a-dca10e96e6b7" contribution="Map Feedback And Kitten Lovin"/> <!-- Dirky_Jerky -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="gold" max="50" max-overfill="75">Pipe Makers</team>
+    <team color="dark purple" max="50" max-overfill="75">Management</team>
+</teams>
+<score>
+    <time>6m</time>
+</score>
+    <rage/>
+<spawns>
+    <spawn team="pipe makers" kit="orange" yaw="90">
+        <cylinder base="11,67,184" radius="4" height="0"/>
+    </spawn>
+    <spawn team="pipe makers" kit="orange" yaw="-90">
+        <cylinder base="-12,67,184" radius="4" height="0"/>
+    </spawn>
+    <spawn team="management" kit="purple" yaw="90">
+        <cylinder base="11,67,-143" radius="4" height="0"/>
+    </spawn>
+    <spawn team="management" kit="purple" yaw="-90">
+        <cylinder base="-12,67,-143" radius="4" height="0"/>
+    </spawn>
+    <default kit="observers" yaw="0">
+        <cylinder base="0,102,20" radius="1" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="2">arrow</item>
+        <potion duration="10" amplifier="25">heal</potion>
+        <potion duration="10" amplifier="25">damage resistance</potion>
+        <potion duration="oo" amplifier="4">speed</potion>
+        <potion duration="oo" amplifier="7">jump</potion>
+        <potion duration="oo" amplifier="7">night vision</potion>
+        <helmet>beacon</helmet>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="D87F33" unbreakable="true">leather chestplate</chestplate>
+        <boots color="D87F33" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <chestplate color="7F3FB2" unbreakable="true">leather chestplate</chestplate>
+        <boots color="7F3FB2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo" amplifier="7">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="allow-tnt">
+        <block>TNT</block>
+    </filter>
+</filters>
+<regions>
+    <apply block="allow-tnt">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Orange Jumpads -->
+    <apply velocity="@0,2,0">
+        <block name="orange-1">-1,54,158</block>
+        <block name="orange-2">-1,54,104</block>
+    </apply>
+    <apply velocity="@0,1.75,0">
+        <block name="orange-3">27,54,127</block>
+        <block name="orange-4">-28.5,54,127</block>
+        <block name="orange-5">-52.5,54,77</block>
+        <block name="orange-6">51,54,77</block>
+    </apply>
+    <!-- Purple Jumpads -->
+    <apply velocity="@0,2,0">
+        <block name="purple-1">-1,54,-118</block>
+        <block name="purple-2">-0.5,54,-63.5</block>
+    </apply>
+    <apply velocity="@0,1.75,0">
+        <block name="purple-3">-28.5,54,-86.5</block>
+        <block name="purple-4">27.5,54,-86.5</block>
+        <block name="purple-5">51.5,54,-36.5</block>
+        <block name="purple-6">-52.5,54,-36.5</block>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>beacon</item>
+    <item>tnt</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<killreward>
+    <item amount="2">arrow</item>
+    <item amount="1">tnt</item>
+</killreward>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+    <yield>0</yield>
+    <power>5</power>
+    <fuse>2s</fuse>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+<tutorial>
+    <stage title="Pipe Factory">
+        <message>
+            <line>The feud started when a salary negotiation between the `6Pipe Maker's Union`r and the `5Management`r got a little out of hand. Now it's up to you to decide what the salarys will be.</line>
+        </message>
+        <teleport>
+            <point yaw="-90">0,102,20</point>
+        </teleport>
+    </stage>
+    <stage title="Rage TDM">
+        <message>
+            <line>Welcome to Pipe Factory! This map is a rage TDM, meaning it is a one hit kill, but with unlimited lives.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="90">0,137,20</point>
+        </teleport>
+    </stage>
+    <stage title="How To Win">
+        <message>
+            <line>In order to win the match, you must kill the enemy team more times than they kill you. When you kill an enemy, you get two arrows as well as one TNT that ignites on placement.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="10">-0,65,54</point>
+        </teleport>
+    </stage>
+    <stage title="Pipe Makers Spawn">
+        <message>
+            <line>This is the `6Pipe Maker's`r spawn. Each team has two spawns right next to eachother. To discourage spawn camping, all players spawn with 10 seconds of invincibility.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">-0,67,184</point>
+        </teleport>
+    </stage>
+    <stage title="Jump Pads">
+        <message>
+            <line>This is one of the jump pads on the `6Pipe Maker's`r side. To go up the jump pad you must walk onto the orange carpet. The black carpets will not work.</line>
+        </message>
+        <teleport>
+            <point yaw="-16" pitch="5">-1,55,155</point>
+        </teleport>
+    </stage>
+    <stage title="Enjoy the map!">
+        <message>
+            <line>That's all! Now go out and negotiate those salarys once and for all!</line>
+        </message>
+        <teleport>
+            <point yaw="-90">0,102,20</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

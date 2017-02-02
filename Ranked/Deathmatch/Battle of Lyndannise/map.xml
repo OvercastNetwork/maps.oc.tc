@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Battle of Lyndanisse</name>
+<genre>Deathmatch</genre>
+<time>15m</time>
+<respawn delay="5s" auto="false"/>
+<version>2.0</version>
+<objective>Get the most amount of points before 15 minutes!</objective>
+<authors>
+    <author uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!--  Eclipsen  -->
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Terrain and XML"/> <!-- khazhyk -->
+    <contributor uuid="07fa10c6-f564-4630-861e-fe134ae27527" contribution="XML and Banter"/> <!-- Yoyo_ -->
+    <contributor uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8" contribution="Feedback"/> <!-- Cratain -->
+</contributors>
+<teams>
+    <team id="red"  color="dark red" min="8" max="10">Red</team>
+    <team id="blue" color="blue"     min="8" max="10">Blue</team>
+</teams>
+<score>
+    <kills>1</kills>
+    <deaths>1</deaths>
+</score>
+<regions>
+    <union id="tunnels">
+        <union id="red-tunnel">
+            <cuboid id="red-back-spawn"  min="76,6,303"  max="106,13,294"/>
+            <cuboid id="red-front-spawn" min="105,6,303" max="117,13,285"/>
+        </union>
+        <union id="blue-tunnel">
+            <cuboid id="blue-back-spawn"  min="85,6,12" max="127,13,21"/>
+            <cuboid id="blue-front-spawn" min="97,6,12" max="85,13,30"/>
+        </union>
+    </union>
+    <union id="protected-spawners">
+        <cuboid min="114,12,6"  max="118,16,2"/>
+        <cuboid min="99,1,159"  max="104,4,155"/>
+        <cuboid min="84,16,312" max="88,12,308"/>
+    </union>
+    <union id="buildable">
+        <cuboid id="blue-grass"   min="64,0,-2"   max="139,26,108"/>
+        <cuboid id="red-grass"    min="64,0,208"  max="139,26,318"/>
+        <cuboid id="no-mans-land" min="64,0,107"  max="139,18,209"/>
+        <rectangle id="map"       min="64.5,-1.5" max="138.5,316.5"/>
+    </union>
+    <apply block="never" region="tunnels" message="You may not build inside the spawn tunnels!"/>
+    <apply block="never" message="You may not build in the void!">
+        <region>
+            <negative>
+                <region id="map"/>
+            </negative>
+        </region>
+    </apply>
+    <apply block="never" message="You may not build this high!">
+        <region>
+            <intersect>
+                <region id="map"/>
+                <negative>
+                    <region id="blue-grass"/>
+                    <region id="red-grass"/>
+                    <region id="no-mans-land"/>
+                </negative>
+            </intersect>
+        </region>
+    </apply>
+    <apply block-break="deny-spawner" region="protected-spawners" message="You may not break the TNT spawner!"/>
+</regions>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">stone pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="32">bread</item>
+        <item slot="5" amount="10">wood</item>
+        <item slot="6">golden apple</item>
+        <item slot="7" amount="8">torch</item>
+        <item slot="8">web</item>
+        <item slot="28" amount="16">arrow</item>
+        <chestplate locked="true" unbreakable="true" enchantment="protection projectile:1">chainmail chestplate</chestplate>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet   locked="true" unbreakable="true" color="cd0000">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="cd0000">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet   locked="true" unbreakable="true" color="0066cc">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="0066cc">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<killreward>
+    <item amount="3">tnt</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>bread</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>web</item>
+</itemremove>
+<spawns>
+<spawns safe="true">
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <point>78.5,7,298.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <point>124.5,7,16.5</point>
+        </regions>
+    </spawn>
+</spawns>
+    <default>
+        <regions yaw="270">
+            <point>17,70,157</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-spawner">
+        <material>mob spawner</material>
+    </not>
+</filters>
+</map>

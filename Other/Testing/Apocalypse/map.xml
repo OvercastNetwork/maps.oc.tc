@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Apocalypse: Hell Came to Earth</name>
+<version>1.0</version>
+<objective>Be the team with the most kills after 15 minutes</objective>
+<authors>
+    <author uuid="aad7dc7b-5b2b-4eb5-bf14-cfa6c1d09eef" contribution="Derper"/> <!-- neseril -->
+    <author uuid="224361af-0a28-41c5-928b-312f80adb544" contribution="Herper"/> <!-- MC_Tydale -->
+</authors>
+<teams>
+    <team color="dark green" max="50">Green</team>
+    <team color="yellow" max="50">Yellow</team>
+</teams>
+<rules>
+    <rule>No building at spawn</rule>
+    <rule>No team griefing</rule>
+</rules>
+<filters>
+    <filter name="disable-fire-spread">
+        <any>
+            <filter name="deny-world" />
+            <deny><block>fire</block></deny>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="disable-fire-spread">
+        <circle name="main" center="-532,1206" radius="101"/>
+    </apply>
+    <apply block="deny-all" message="You may not interact with spawns!">
+        <rectangle name="greenspawnprotect" min="-540,1283" max="-524,1305"/>
+    </apply>
+    <apply block="deny-all" message="You may not interact with spawns!">
+        <rectangle name="yellowspawnprotect" min="272,-764" max="281,-773"/>
+    </apply>
+    <apply block="deny-all" message="You may not build up to the observers spawn!">
+        <cylinder name="observerspawnprotect" base="-523,173,1206" radius="101" height="3"/>
+    </apply>
+</regions>
+<playable>
+    <region name="main" />
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="32">cooked chicken</item>
+        <item slot="3" amount="16">vine</item>
+        <item slot="4" damage="8194">potion</item><!-- potion of swiftness I 3:00 -->
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="7" amount="16">arrow</item>
+        <item slot="8" amount="1">iron ingot</item>
+        <helmet>leather helmet</helmet>
+        <chestplate>chainmail chestplate</chestplate>
+        <leggings>leather leggings</leggings>
+        <boots>leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="90">-532,184,1206</default>
+    <spawn team="green" yaw="180">-532,64,1293</spawn>
+    <spawn team="yellow" yaw="0">-532,64,1119</spawn>
+</spawns>
+<score>
+    <time>900</time>
+</score>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+</map>

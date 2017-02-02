@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Foxtrot: A Dance to the Moonlight</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
+</authors>
+<contributors>
+    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13"/> <!-- lord_creeper01 -->
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/> <!-- matic0basle -->
+    <contributor uuid="8fd93764-6206-46c8-95c1-a6d764343461"/> <!-- gibbodaman -->
+    <contributor uuid="f6e61e24-5143-4ab9-b269-d765c3ffb216"/> <!-- RedstoneVEVO -->
+    <contributor uuid="33e00444-5c7b-4767-a28e-177c3041c74d"/> <!-- michael12lp -->
+</contributors>
+<teams>
+    <team color="dark green" max="20" max-overfill="30">Zombie</team>
+    <team color="light purple" max="20" max-overfill="30">Pigman</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="zombie" kit="green" yaw="180">
+        <point>75.5,30,168.5</point>
+        <point>21.5,30,168.5</point>
+    </spawn>
+    <spawn team="pigman" kit="purple" yaw="0">
+        <point>75.5,30,-11.5</point>
+        <point>21.5,30,-11.5</point>
+    </spawn>
+    <default yaw="90">
+        <point>104,37,78</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="3" amplifier="100">heal</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="667F33" locked="true">leather helmet</helmet>
+        <chestplate color="667F33" locked="true">leather chestplate</chestplate>
+        <leggings color="667F33" locked="true">leather leggings</leggings>
+        <boots color="667F33" locked="true">leather boots</boots>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <helmet color="7F3FB2" locked="true">leather helmet</helmet>
+        <chestplate color="7F3FB2" locked="true">leather chestplate</chestplate>
+        <leggings color="7F3FB2" locked="true">leather leggings</leggings>
+        <boots color="7F3FB2" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!--green front pads-->
+    <apply velocity="@-2,3,-5">
+        <cuboid min="81,6,105" max="88,7,112"/>
+    </apply>
+    <apply velocity="@2,3,-5">
+        <cuboid min="0,6,112" max="16,7,105"/>
+    </apply>
+    <!--purple front pads-->
+    <apply velocity="@-4,3,7">
+        <cuboid min="81,6,52" max="88,7,45"/>
+    </apply>
+    <apply velocity="@2,3,5">
+        <cuboid min="16,6,45" max="9,7,52"/>
+    </apply>
+    <!--green back pads-->
+    <apply velocity="@0,3,-4">
+        <cylinder base="48,2,141" radius="3" height="2"/>
+    </apply>
+    <!--purple back pads-->
+    <apply velocity="0,3,4">
+        <cylinder base="48,2,15" radius="3" height="2"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-pigmen">
+        <team>pigman</team>
+    </filter>
+    <filter name="only-zombies">
+        <team>zombie</team>
+    </filter>
+</filters>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<include src="blitz-global.xml"/>
+</map>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>Spaceship Battles</name>
+<version>1.2.2</version>
+<objective>Leak lava from the enemy's obsidian core and break their 2 coal ore monuments</objective>
+<authors>
+    <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
+</authors>
+<timelock>on</timelock>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<filters>
+    <filter name="deny-dispenser">
+        <not>
+            <block>dispenser</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block-place="deny-dispenser" message="Dispensers are disabled on this map!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks in the water drops.">
+        <union>
+            <rectangle min="239,75" max="244,80"/>
+            <rectangle min="239,136" max="244,141"/>
+        </union>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter the spawn area!">
+        <union name="spawn-areas">
+            <cuboid name="red-tunnel" min="238,70,142" max="294,oo,135"/>
+            <cuboid name="horizontal-tunnel" min="300,70,142" max="294,oo,74"/>
+            <cuboid name="blue-tunnel" min="294,70,81" max="238,oo,74"/>
+            <cuboid name="obs-spawn" min="283,70,92" max="315,oo,124"/>
+        </union>
+    </apply>
+    <!-- Playable region -->
+    <cuboid name="play" min="170,-oo,50" max="260,70,170"/>
+    <apply block="deny-all" message="You may not interact with blocks outside the playing field.">
+        <negative>
+            <region name="play"/>
+        </negative>
+    </apply>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,70,-oo" max="oo,71,oo"/>
+        <cuboid name="above-height-limit" min="-oo,71,-oo" max="oo,oo,oo"/>
+    </union>
+</regions>
+<spawns>
+    <spawn team="blue" yaw="180"><cuboid min="295.5,72,88.5" max="298.5,72,91.5"/></spawn>
+    <spawn team="red" yaw="0"><cuboid min="295.5,72,124.5" max="298.5,72,127.5"/></spawn>
+    <default yaw="270"><cylinder base="298.5,71,108.5" radius="2" height="0"/></default>
+</spawns>
+<cores material="obsidian" leak="0">
+    <core team="blue"><cuboid min="208,42,76" max="211,48,79"/></core>
+    <core team="red"><cuboid min="208,42,137" max="211,48,140"/></core>
+</cores>
+<destroyables owner="blue" materials="coal ore">
+    <destroyable name="Antenna A"><cuboid min="226,49,68" max="229,58,71"/></destroyable>
+    <destroyable name="Antenna B"><cuboid min="242,49,68" max="245,58,71"/></destroyable>
+</destroyables>
+<destroyables owner="red" materials="coal ore">
+    <destroyable name="Antenna A"><cuboid min="226,49,145" max="229,58,148"/></destroyable>
+    <destroyable name="Antenna B"><cuboid min="242,49,145" max="245,58,148"/></destroyable>
+</destroyables>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>

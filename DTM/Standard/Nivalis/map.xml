@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Nivalis</name>
+<version>1.1.2</version>
+<objective>Break the other team's obsidian monument to win!</objective>
+<authors>
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+    <author uuid="4111f215-28db-4a0d-9380-ee18641d02cf"/> <!-- salalu -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Map building and feedback"/> <!-- moo88888888 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawns>
+        <spawn team="blue" kit="blue" yaw="-90">
+            <cuboid min="-161.5,40,-39.5" max="-153.5,40,-48.5" />
+        </spawn>
+        <spawn team="red" kit="red" yaw="89">
+            <cuboid min="207.5,40,-94.5" max="199.5,40,-85.5" />
+        </spawn>
+    </spawns>
+    <default yaw="0">
+        <cuboid min="24.5,82,-128.5" max="21.5,82,-125.5" />
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="32">log</item>
+        <item slot="5" amount="64">stone</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="8" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="A54C4C">leather helmet</helmet>
+        <chestplate color="A54C4C">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="6678C5">leather helmet</helmet>
+        <chestplate color="6678C5">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="213.5,30,-100.5" max="192.5,100,-78.5" />
+        <cuboid name="blue-spawn" min="-167.5,30,-33.5" max="-146.5,100,-55.5" />
+    </union>
+    <union name="tunnels">
+        <cuboid name="red-tunnel" min="181,25,-89" max="196,39,-92"/>
+        <cuboid name="blue-tunnel" min="-135,25,-45" max="-150,39,-42"/>
+    </union>
+    <!-- Main playing area -->
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative>
+            <rectangle name="playable" min="-175,-25" max="221,-109" />
+        </negative>
+    </apply>
+    <apply use="deny-beacon">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+    <apply block="deny-blocks" message="You may not modify the spawns!">
+        <region name="spawns" />
+        <region name="tunnels" />
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <region name="red-spawn" />
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <region name="blue-spawn" />
+    </apply>
+</regions>
+<destroyables name="Monument" materials="obsidian" mode-changes="true">
+    <destroyable owner="blue">
+        <cuboid name="blue-monument" min="-118,26,-68" max="-120,30,-66" />
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid name="red-monument" min="163,26,-69" max="165,30,-67" />
+    </destroyable>
+</destroyables>
+<modes>
+    <mode material="beacon" after="1h" name="`bBEACON MONUMENT MODE" />
+</modes>
+<maxbuildheight>40</maxbuildheight>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>redstone</item>
+    <item>beacon</item>
+    <item>obsidian</item>
+    <item>diamond block</item>
+    <item>snow ball</item>
+    <item>red mushroom</item>
+    <item>flint</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>golden carrot</item>
+    <item>arrow</item>
+    <item>stone</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

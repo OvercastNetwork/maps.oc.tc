@@ -1,0 +1,68 @@
+<map proto="1.4.2" game="Skywars">
+<name>Camping</name>
+<version>1.0.1</version>
+<authors>
+    <author uuid="b5967591-14fc-421f-a5e2-931498e10fb8"/>
+    <!-- OCNs_OMEN -->
+    <author uuid="6972affb-504d-4114-b52f-696e5b567095"/>
+    <!-- Salty_Dude -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+    <author uuid="d1e3251c-def5-4328-a7e9-09335934d316"/>
+    <!-- byRobo -->
+</authors>
+<include src="skywars.xml"/>
+<maxbuildheight>75</maxbuildheight>
+<kits>
+    <kit id="all-effects">
+        <!-- Effects to give all players/observers, i.e. night vision -->
+        <!--  none  -->
+    </kit>
+</kits>
+<spawns>
+    <default kit="all-effects" region="observer-spawn" yaw="-90"/>
+    <spawns spread="true" exclusive="true" kit="spawn-effects" angle="0, 64, 0">
+        <spawn region="player-1-spawn"/>
+        <spawn region="player-2-spawn"/>
+        <spawn region="player-3-spawn"/>
+        <spawn region="player-4-spawn"/>
+        <spawn region="player-5-spawn"/>
+        <spawn region="player-6-spawn"/>
+        <spawn region="player-7-spawn"/>
+        <spawn region="player-8-spawn"/>
+    </spawns>
+</spawns>
+<regions>
+    <!-- Obs spawn -->
+    <point id="observer-spawn">0, 53.5, 0</point>
+    <!-- Player spawns -->
+    <point id="player-1-spawn">-29, 61, -75</point>
+    <point id="player-2-spawn">-73, 61, -27</point>
+    <point id="player-3-spawn">-75, 61, 29</point>
+    <point id="player-4-spawn">-27, 61, -73</point>
+    <point id="player-5-spawn">29, 61, 75</point>
+    <point id="player-6-spawn">73, 61, 27</point>
+    <point id="player-7-spawn">75, 61, -29</point>
+    <point id="player-8-spawn">27, 61, -73</point>
+    <!--  Tier 1 Chests -->
+    <sphere id="player-1-chests" radius="15" origin="-29, 61, -75"/>
+    <sphere id="player-2-chests" radius="15" origin="-73, 61, -27"/>
+    <sphere id="player-3-chests" radius="15" origin="-75, 61, 29"/>
+    <sphere id="player-4-chests" radius="15" origin="-27, 61, -73"/>
+    <sphere id="player-5-chests" radius="15" origin="29, 61, 75"/>
+    <sphere id="player-6-chests" radius="15" origin="73, 61, 27"/>
+    <sphere id="player-7-chests" radius="15" origin="75, 61, -29"/>
+    <sphere id="player-8-chests" radius="15" origin="27, 61, -73"/>
+    <!--  Tier 2 Chests -->
+    <negative id="tier-2-chests">
+        <union id="all-chests">
+            <region id="tier-1-chests"/>
+            <region id="tier-3-chests"/>
+        </union>
+    </negative>
+    <!--  Tier 3 Chests -->
+    <union id="tier-3-chests">
+        <sphere radius="18" origin="0, 64, 0"/>
+    </union>
+</regions>
+</map>

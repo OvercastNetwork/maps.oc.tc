@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>DATAcenter</name>
+<version>1.3</version>
+<objective>Destroy 60% of the enemy's battle ship! You only have 30 minutes!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="yellow" max="12" max-overfill="15">Yellow</team>
+    <team color="dark red" max="12" max-overfill="15">Red</team>
+</teams>
+<spawns>
+    <spawn team="yellow" kit="yellow" yaw="0">
+        <cuboid min="-27,52,-102" max="-17,53,-104"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="-28,52,44" max="-18,53,42"/>
+    </spawn>
+    <default kit="obs" yaw="-90" pitch="-20">
+        <point>-61.5,76,-29.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="31" amount="64">wood</item>
+        <item slot="22" amount="64">wood</item>
+        <item slot="5" amount="64">tnt</item>
+        <item slot="6">bucket</item>
+        <item slot="33">bucket</item>
+        <item slot="24" amount="8">fence gate</item>
+        <item slot="15" amount="8">trap door</item>
+        <item slot="7" amount="16">wood step</item>
+        <item slot="8" amount="8">redstone</item>
+        <item slot="34" amount="8">fence</item>
+        <item slot="35" amount="8">ladder</item>
+        <item slot="25" amount="4">diode</item>
+        <item slot="26" amount="16">stone button</item>
+        <item slot="16" amount="16">lever</item>
+        <item slot="17" amount="16">stone plate</item>
+        <item slot="29" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!">shears</item>
+        <item slot="28">arrow</item>
+        <item slot="9" amount="8" damage="9" name="`aHull Repair Block" lore="`7Place this over your ship to repair it!">stained clay</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker:3">chainmail chestplate</chestplate>
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">fast digging</potion>
+        <potion duration="oo">water breathing</potion>
+        <potion duration="oo">heal</potion>
+        <potion duration="oo">damage resistance</potion>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <helmet damage="4">stained clay</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet damage="14">stained clay</helmet>
+    </kit>
+    <kit name="velocity" force="true">
+        <potion duration="5" amplifier="100">heal</potion>
+        <potion duration="5" amplifier="100">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-fire">
+        <not>
+            <block>fire</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <union name="spawns">
+        <cuboid name="yellow-spawn" min="-11,50,-106" max="-33,oo,-98"/>
+        <cuboid name="red-spawn" min="-34,50,46" max="-12,oo,38"/>
+    </union>
+    <union name="ships">
+        <cuboid name="red-ship" min="-49,0,8" max="1,42,-8"/>
+        <cuboid name="yellow-ship" min="-46,0,-52" max="4,42,-68"/>
+    </union>
+    <union name="velocity-pads">
+        <cuboid name="yellow-pad" min="-12,53,-100" max="-33,56,-98"/> <!-- +z -->
+        <cuboid name="red-pad" min="-33,53,40" max="-13,56,38"/> <!-- -z -->
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="`eYou may not edit outside the main area!">
+        <negative>
+            <region name="ships"/>
+        </negative>
+    </apply>
+    <apply block-place="deny-fire" message="`eYou may not burn down the ship!">
+        <region name="ships"/>
+    </apply>
+    <apply enter="only-yellow" message="`eYou may not enter the enemy's spawn area!">
+        <region name="yellow-spawn"/>
+    </apply>
+    <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply velocity="@0,2,12" kit="velocity">
+        <region name="yellow-pad"/>
+    </apply>
+    <apply velocity="@0,2,-12" kit="velocity">
+        <region name="red-pad"/>
+    </apply>
+</regions>
+<destroyables name="Ship" show-progress="true" completion="60%" repairable="true">
+    <destroyable materials="stained clay:4;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:9;trap door:13;redstone wire;gold block;stone button" owner="yellow">
+        <region name="yellow-ship"/>
+    </destroyable>
+    <destroyable materials="stained clay:14;stained clay:9;stained clay:1;stained clay:2;stained clay:3;stained clay:13;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;43:8;glass;thin glass;iron plate;71:10;71:0;71:4;71:2;71:8;71:3;71:6;lever:3;lever:11;lever:4;lever:12;trap door:8;trap door:12;redstone wire;gold block;stone button" owner="red">
+        <region name="red-ship"/>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>stone sword</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>bow</item>
+    <item>flint and steel</item>
+    <item>arrow</item>
+    <item>step</item>
+    <item>chainmail chestplate</item>
+    <item>shears</item>
+    <item>rails</item>
+    <item>ladder</item>
+    <item>gold block</item>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>stone plate</item>
+    <item>diode</item>
+    <item>lever</item>
+    <item>iron door</item>
+    <item>fence</item>
+    <item>wood</item>
+    <item>tnt</item>
+    <item>stone button</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>log</item>
+    <item>wood step</item>
+    <item>gravel</item>
+    <item>flint</item>
+    <item>trap door</item>
+    <item>fence gate</item>
+</itemremove>
+<killreward>
+    <item amount="16">wood</item>
+    <item amount="16">tnt</item>
+    <item amount="8" damage="9" name="`aHull Repair Block" lore="`7Place this over your ship to repair it!">stained clay</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<autorespawn/>
+<time result="objectives">30m</time>
+<tutorial>
+    <stage title="Destroy the Ship">
+        <message>
+            <line>This map is a `aDestroy the Ships `r(DTS) map.</line>
+            <line>The objective is to destroy `c60% `rof the enemy team's ship!</line>
+            <line>Each team has one main ship that you must defend!</line>
+        </message>
+        <teleport>
+            <point yaw="-45" pitch="20">-67,48,-73</point>
+        </teleport>
+    </stage>
+    <stage title="Ships">
+        <message>
+            <line>These ships are highly technologically advanced.</line>
+            <line>Each has 2 cannon stalls, 1 on-board icarus, and 2 supply depots.</line>
+            <line>Please be courteous and not interact with other's cannons without permission.</line>
+            <line>Especially in the cannon stalls.</line>
+        </message>
+        <teleport>
+            <point yaw="-30" pitch="5">-36,25,-20</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>When you spawn, you will be secluded high in the air away from the map.</line>
+            <line>Run on the caution area and get launched to your ship. You take no fall damage!</line>
+            <line>You only have `a30 minutes`r, so hurry up!</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="60">-23,65,48</point>
+        </teleport>
+    </stage>
+    <stage title="`a`lBETA: `e`lCannon Stalls">
+        <message>
+            <line>These modual stalls will give you a secluded area to build a cannon in peace.</line>
+            <line>When entering, make sure to pull `aboth `rlevers to the down position.</line>
+            <line>Inside you fill find a shelf with various cannon supplies for you.</line>
+            <line>Entering/taking someone else's stall without permission while they get more supplies is `cillegal`r!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="5">-30,23,-14</point>
+        </teleport>
+    </stage>
+    <stage title="Kill Rewards">
+        <message>
+            <line>When you kill an enemy, you will recieve:</line>
+            <line>16 `6Wood`r and 16 `cTNT`r.</line>
+        </message>
+    </stage>
+</tutorial>
+</map>

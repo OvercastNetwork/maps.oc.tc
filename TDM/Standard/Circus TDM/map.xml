@@ -1,0 +1,136 @@
+<map proto="1.3.2">
+<name>Circus TDM</name>
+<version>1.0.4</version>
+<objective>Be the team with the most kills after 13 minutes.</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+    <author uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906"/> <!-- elego123 -->
+</authors>
+<contributors>
+    <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
+</contributors>
+<multitrade/>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<timelock>on</timelock>
+<score>
+    <time>13m</time>
+</score>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<multitrade/>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-tnt">
+        <block>tnt</block>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    <circle name="red-base" center="213.5,-78.5" radius="10"/>
+    <circle name="blue-base" center="5.5,-21.5" radius="10"/>
+    <apply block="only-tnt">
+        <region name="map"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the other team's base!">
+        <region name="red-base"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the other team's base!">
+        <region name="blue-base"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="2">golden apple</item>
+        <item slot="3" amount="64" name="Funnel Cake">pumpkin pie</item>
+        <item slot="4" name="`rPopcorn">pumpkin seeds</item>
+        <potion duration="4" amplifier="4">heal</potion>
+        <potion duration="4" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="b2324b" unbreakable="true">leather helmet</helmet>
+        <chestplate color="b2324b" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="b2324b" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="334cb2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334cb2" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="334cb2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cylinder base="213.5,16,-78.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="213.5,16,-78.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cylinder base="5.5,16,-21.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cylinder base="5.5,16,-21.5" radius="1" height="0"/>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="111,55,20" max="108,55,22"/>
+    </default>
+</spawns>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <fuse>2s</fuse>
+    <power>5</power>
+    <blockdamage>off</blockdamage>
+</tnt>
+<killreward>
+    <item name="`rPopcorn" amount="2">pumpkin seeds</item>
+    <item amount="8">arrow</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>pumpkin pie</item>
+    <item>sign</item>
+    <item>iron sword</item>
+    <item>rotten flesh</item>
+    <item damage="3">skull</item>
+    <item>golden carrot</item>
+    <item>diamond sword</item>
+    <item>blaze rod</item>
+    <item>iron boots</item>
+    <item>gold chestplate</item>
+    <item>diamond helmet</item>
+    <item>chainmail chestplate</item>
+    <item>diamond chestplate</item>
+    <item>fireball</item>
+    <item>glass bottle</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<broadcasts>
+    <tip after="2s" every="2m">`7Every time you kill an enemy, you get 2 `6Popcorn `7plus whatever they drop!</tip>
+    <tip after="3s" every="2m">`7Use `6Popcorn `7to trade with villagers back at your spawn tent!</tip>
+    <tip after="1m" every="2m30s">`7Parkour up on top of the trees to find chests with `6Popcorn `7in it!</tip>
+</broadcasts>
+</map>

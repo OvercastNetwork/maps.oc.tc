@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>ChristmasQuad</name>
+<version>1.0.2</version>
+<objective>Destroy your opponents within 10 minutes.</objective>
+<authors>
+    <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
+    <author uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="Helping with Christmas version because Zaner is lazy"/> <!-- lord_creeper01 -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- last_username -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Kits and Ideas (From Cannon Duel)"/> <!-- ElectroidFilms -->
+</contributors>
+<rules>
+    <rule>Do not attempt to hide.</rule>
+</rules>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="24.5,61,-75.5" radius="3" height="0"/> 
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cylinder base="24.5,61,-1.5" radius="3" height="0"/> 
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cylinder base="-49.5,61,-75.5" radius="3" height="0"/> 
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="-90">
+        <cylinder base="-49.5,61,-1.5" radius="3" height="0"/> 
+    </spawn>
+    <default yaw="0" pitch="20">
+        <cylinder base="-12.5,37,-38.5" radius="1" height="0"/> 
+    </default>
+</spawns>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+</blitz>
+<teams>
+    <team color="dark red" max="5" max-overfill="8">Red</team>
+    <team color="blue" max="5" max-overfill="8">Blue</team>
+    <team color="green" max="5" max-overfill="8">Green</team>
+    <team color="yellow" max="5" max-overfill="8">Yellow</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item amount="1" attributes="generic.attackDamage:add:2" enchantment="knockback:1" name="`fBlunt Diamond Pickaxe" slot="0">diamond pickaxe</item>
+        <item amount="64" slot="1">snow ball</item>
+        <item amount="64" damage="3" name="Bridge Builder" slot="8">leaves</item>
+        <item slot="27" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!">shears</item>
+        <item slot="10" amount="64">tnt</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="11" amount="64">tnt</item>
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="9" amount="64">tnt</item>
+        <item slot="18" amount="64">tnt</item>
+        <item slot="19" amount="64">tnt</item>
+        <item slot="20" amount="64">tnt</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="32" amount="8">stone plate</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="14" amount="16">trap door</item>
+        <item slot="6">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="15" amount="16">piston base</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="35" amount="8">sand</item>
+        <item slot="26" amount="3">dispenser</item>
+        <item slot="17" amount="8">redstone comparator</item>
+        <potion duration="28" amplifier="5">damage resistance</potion>
+        <potion duration="28" amplifier="5">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <helmet locked="true" color="DD5566" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="DD5566" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="DD5566" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="DD5566" durability="-3000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <item slot="12" damage="11" amount="64">stained glass</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <helmet locked="true" color="334CB2" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="334CB2" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="334CB2" durability="-3000">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <item slot="12" damage="13" amount="64">stained glass</item>
+        <item slot="21" damage="13" amount="64">stained clay</item>
+        <item slot="30" damage="13" amount="64">stained clay</item>
+        <item slot="3" damage="13" amount="64">stained clay</item>
+        <helmet locked="true" color="667F33" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="667F33" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="667F33" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="667F33" durability="-3000">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <item slot="12" damage="4" amount="64">stained glass</item>
+        <item slot="21" damage="4" amount="64">stained clay</item>
+        <item slot="30" damage="4" amount="64">stained clay</item>
+        <item slot="3" damage="4" amount="64">stained clay</item>
+        <helmet locked="true" color="E5E533" enchantment="water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="E5E533" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="E5E533" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="E5E533" durability="-3000">leather boots</boots>
+    </kit>
+    <kit name="death">
+        <potion duration="oo" amplifier="5">harm</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-glass-world">
+        <not>
+            <all>
+                <any>
+                    <block>160</block>
+                    <block>95</block>
+                    <block>chest</block>
+                </any>
+                <any>
+                    <filter name="allow-world"/>
+                    <filter name="deny-all"/>
+                </any>
+            </all>
+        </not>
+    </filter>
+    <filter name="deny-glass-break">
+        <deny>
+            <block>160</block>
+            <block>95</block>
+            <block>chest</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <rectangle name="main" min="oo,oo" max="-oo,-oo"/>
+    <rectangle name="playable" min="34,8" max="-60,-86"/>
+    <cuboid name="top" min="oo,51,oo" max="-oo,oo,-oo"/>
+    <rectangle name="green-side" min="-60,-86" max="-19,-45"/>
+    <rectangle name="red-side" min="-6,-87" max="36,-45"/>
+    <rectangle name="blue-side" min="-6,-32" max="35,10"/>
+    <rectangle name="yellow-side" min="-59,-32" max="-19,8"/>
+    <!-- Applied Rules -->
+    <apply kit="death">
+        <cuboid min="-18,31,-44" max="-8,50,-34"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not build here.">
+        <region name="top"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not build outside the playable area.">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+    <apply block="deny-blocks" message="You may not bridge outside your area.">
+        <negative>
+            <region name="blue-side"/>
+            <region name="yellow-side"/>
+            <region name="green-side"/>
+            <region name="red-side"/>
+        </negative>
+    </apply>
+    <apply block-break="deny-glass-world">
+        <region name="main"/>
+    </apply>
+    <apply block-break="deny-glass-break" message="You may not break this block.">
+        <region name="main"/>
+    </apply>
+</regions>
+<blockdrops>
+    <rule>
+        <fall-chance>0.5</fall-chance>
+        <land-chance>0.75</land-chance>
+        <fall-speed>1.5</fall-speed>
+    </rule>
+    <filter>
+        <not>
+            <block>tnt</block>
+        </not>
+    </filter>
+</blockdrops>
+<killreward>
+    <filter>
+        <kill-streak count="2"/>
+    </filter>
+    <item name="`a`oiCarus Blade">wood sword</item>
+</killreward>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<broadcasts>
+    <alert after="1s">`7You have 20 seconds to prepare.</alert>
+    <tip after="10s">`7After 4 minutes the bridges will connect (You cannot bridge until then).</tip>
+    <alert after="15s">`7TNT is hidden underneath the islands, so be careful or you may be destroyed.</alert>
+    <tip after="20s">After 2 kills, you are automatically given an iCarus blade. (You must have inventory space)</tip>
+</broadcasts>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>shears</item>
+    <item>snow ball</item>
+    <item>leaves</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bucket</item>
+    <item>diamond block</item>
+    <item>iron block</item>
+    <item>iron ingot</item>
+    <item>hopper</item>
+    <item>redstone comparator</item>
+    <item>sand</item>
+    <item>leather chestplate</item>
+    <item>dispenser</item>
+    <item>wool</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>25</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<destroyables>
+    <destroyable name="Placeholder" materials="stained glass" completion="0%" show="false" mode-changes="true" owner="blue">
+        <cuboid min="100,63,100" max="-100,6,-100"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="20s" material="air" show-before="20" name="Fight!"/>
+    <mode after="4m" material="95:15" show-before="120" name="Connecting the platforms."/>
+</modes>
+</map>

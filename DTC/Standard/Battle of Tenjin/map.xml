@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<map proto="1.0.1">
+<name>Battle of Tenjin</name>
+<version>1.2.3</version>
+<objective>Break and drain the opposing team's core.</objective>
+<authors>
+    <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba"/> <!-- SajinZero -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Map design and coding assistance"/> <!-- Plastix -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Map design"/> <!-- IM_A_H0B0 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="180" kit="spawn">
+        <cylinder base="0,14,-98" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="0" kit="spawn">
+        <cylinder base="0,14,98" radius="3" height="0"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="69,32,0" radius="3" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="7" amount="64">log</item>
+        <item slot="8" amount="64">cooked fish</item>
+        <item slot="28" amount="1">arrow</item>
+	</kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+<regions>
+    <!-- red base -->
+    <complement name="red-base-real">
+        <cuboid name="red-base" min="-16,6,116" max="17,26,83"/>
+        <union name="red-base-edges">
+            <cuboid min="17,6,83" max="12,26,88"/>
+            <cuboid min="-16,6,83" max="-11,26,88"/>
+            <cuboid min="-16,6,116" max="-11,26,111"/>
+            <cuboid min="17,6,116" max="12,26,111"/>
+        </union>
+    </complement>
+    <!-- blue base -->
+    <complement name="blue-base-real">
+        <cuboid name="blue-base" min="-16,6,-115" max="17,26,-82"/>
+        <union name="blue-base-edges">
+            <cuboid min="-11,6,-87" max="-16,26,-82"/>
+            <cuboid min="12,6,-87" max="17,26,-82"/>
+            <cuboid min="12,6,-110" max="17,26,-115"/>
+            <cuboid min="-11,6,-110" max="-16,26,-115"/>
+        </union>
+    </complement>
+    <!-- Prevent base entering -->
+    <apply enter="only-red" message="You may not enter the enemy base">
+        <region name="red-base-real"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base">
+        <region name="blue-base-real"/>
+    </apply>
+    <!-- Prevent chest usage -->
+    <apply block-break="only-iron" block-place="deny-all" message="You may only break iron blocks in your base">
+        <region name="red-base-real"/>
+        <region name="blue-base-real"/>
+    </apply>
+    <!-- Prevent building on the side -->
+    <apply block="deny-all" message="You may not build in the void on the side">
+    <negative name="playable-inverse">
+        <rectangle min="36,119" max="-35,-118"/>
+    </negative>
+    </apply>
+</regions>
+<maxbuildheight>45</maxbuildheight>
+<timelock>off</timelock>
+<cores material="obsidian" leak="7">
+    <core team="red">
+        <cuboid min="4,23,69" max="-3,31,76"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-3,23,-68" max="4,31,-75"/>
+    </core>
+</cores>
+<itemremove>
+    <item>flint</item>
+</itemremove>
+</map>

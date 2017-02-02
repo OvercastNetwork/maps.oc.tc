@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>The Archives</name>
+<version>1.0.6</version>
+<objective>Be the team with the most amount of kills after 10 minutes.</objective>
+<authors>
+    <author uuid="e1e9e6af-f826-44ce-b1e2-5efb4e5c5d9e" contribution="Overall Map Design and XML Code"/> <!-- zemphon -->
+</authors>
+<contributors>
+    <contributor uuid="b1752e32-f2c9-4edf-9515-11db4bffd593" contribution="Passages and Feedback"/> <!-- viper077 -->
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Map Building and Feedback"/> <!-- Reshif -->
+</contributors>
+<score>
+    <time>10m</time>
+</score>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+    <team color="green" max="20">Green</team>
+    <team color="yellow" max="20">Yellow</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="64">bread</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="8" amount="16">arrow</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="cd0000" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0006cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0006cc" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0006cc" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="00cd00" unbreakable="true">leather helmet</helmet>
+        <chestplate color="00cd00" unbreakable="true">leather chestplate</chestplate>
+        <boots color="00cd00" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="ffff00" unbreakable="true">leather helmet</helmet>
+        <chestplate color="ffff00" unbreakable="true">leather chestplate</chestplate>
+        <boots color="ffff00" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>bread</item>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<spawns>
+    <spawns safe="true">
+        <spawn team="red" kit="red" yaw="-45">
+            <cuboid min="-48,8,-48" max="-44,8,-44"/>
+        </spawn>
+        <spawn team="green" kit="green" yaw="45">
+            <cuboid min="44,8,-44" max="48,8,-48"/>
+        </spawn>
+        <spawn team="yellow" kit="yellow" yaw="135">
+            <cuboid min="44,8,44" max="48,8,48"/>
+        </spawn>
+        <spawn team="blue" kit="blue" yaw="225">
+            <cuboid min="-48,8,48" max="-44,8,44"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <cuboid min="-1,41,1" max="1,41,-3"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+
+<timelock>on</timelock>
+</map>

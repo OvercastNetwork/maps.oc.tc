@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Fortress Battles:TD</name>
+<version>1.3-tourney</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="08cf450b-5115-408d-a19f-c5eafc01a46a"/> <!-- Johnisdapoof -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+    <author>NicoBachicha</author>
+</authors>
+<rules>
+    <rule>No building at spawn</rule>
+    <rule>No fighting at spawn</rule>
+    <rule>No using a bucket on lava</rule>
+    <rule>No damaging your own core</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="270"><cuboid min="1283.5,50,516.5" max="1285.5,50,518.5"/></spawn>
+    <spawn team="red" yaw="90"><cuboid min="1249.5,50,516.5" max="1251.5,50,518.5"/></spawn>
+    <default yaw="180"><cylinder base="1267.5,49,517.5" radius="3" height="0"/></default>
+</spawns>
+<playable>
+    <rectangle min="1217,550" max="1318,646"/> <!-- Main area -->
+    <rectangle min="1240,540" max="1295,550"/> <!-- Area between spawn tunnels -->
+</playable>
+<cores material="obsidian" leak="7">
+    <core team="blue"><cuboid min="1302,45,589" max="1307,52,597"/></core>
+    <core team="red"><cuboid min="1228,45,589" max="1233,52,597"/></core>
+</cores>
+</map>

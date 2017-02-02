@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Tower Defence 1</name>
+<version>1.1.0</version>
+<objective>Leak the enemies core through punching the obsidian using your diamond pickaxe</objective>
+<authors>
+     <author uuid="8ff6ee2c-fb71-4352-baea-803395851c7e" contribution="map design and code"/> <!--  shefles  -->
+    <author uuid="81c3a8ef-ac3b-40ae-92fe-70709c7ca12a" contribution="map design"/> <!--  Lyktan  -->
+</authors>
+<contributors>
+    <contributor uuid="e77a266b-ad20-490d-895b-3e13017d9325" contribution="blockplacment and design"/>    <!--  Cvrobber  -->
+    <contributor uuid="b10c232f-ebef-4b90-a03a-669137977333" contribution="Blockplacment"/> <!--  Babbtox  -->
+    <contributor uuid="76ff6c95-bb13-4b16-9240-e196ca692b06" contribution="Blockplacment"/> <!--  LuddCool  -->
+</contributors>
+<!--  Tutorial  -->
+<tutorial>
+    <stage title="General">
+        <message>
+            <line>This is destroy the core</line>
+            <line>The objective is to cross into enemy lines and break their core.</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="30">0.5,39,-90.5</point>
+        </teleport>
+    </stage>
+    <stage title="Cyan Core">
+        <message>
+            <line>This is cyans core!</line> 
+        </message>
+        <teleport>
+            <point yaw="180" pitch="30">-121.5,31,5.5</point>
+        </teleport>
+    </stage>
+    <stage title="Orange Core">
+    	<message>
+    		<line>This is Oranges core!</line>
+    		
+    	</message>
+    	<teleport>
+    		<point yaw="180" pitch="30">121.5,31,5.5</point>
+        </teleport>
+    </stage>
+    <stage title="Objective">
+        <message>
+            <line>Depending on what team you will be on, you must try to destroy the other teams core!</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="30">0.5,39,-90.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<!--  Kit given to player when spawned in a team  -->
+<kits>
+    <kit id="spawn">
+        <item slot="0" enchantment="damage all:1">wood sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="5">stone axe</item>
+        <item slot="3" amount="32">glass</item>
+        <item slot="4" amount="32">log</item>
+        <item slot="6" amount="16">cooked beef</item>
+        <item slot="28">arrow</item>
+    </kit>
+    <kit id="cyan-kit" parents="spawn">
+        <chestplate color="4C7F99">leather chestplate</chestplate>
+        <boots color="4C7F99">leather boots</boots>
+    </kit>
+    <kit id="orange-kit" parents="spawn">
+        <chestplate color="D87F33">leather chestplate</chestplate>
+        <boots color="D87F33">leather boots</boots>
+    </kit>
+</kits>
+<!--  Team cyan and orange  -->
+<teams>
+    <team id="cyan" color="DARK_AQUA" max="32" max-overfill="40">Cyan</team>
+    <team id="orange" color="GOLD" max="32" max-overfill="40">Orange</team>
+</teams>
+<!--  Spawnpoint for cyan, orange and observers  -->
+<spawns>
+    <spawn team="cyan" kit="cyan-kit" yaw="-90">
+        <regions>
+            <cylinder base="-187,8.5,0" radius="0" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="orange-kit" yaw="90">
+        <regions>
+            <cylinder base="187,8.5,0" radius="0" height="0"/>
+        </regions>
+    </spawn>
+    <default yaw="0">
+        <regions>
+            <cylinder base="0,39,-91" radius="0" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<respawn delay="3s"/>
+<!--  Repair listed items in inventory when picked up from the ground  -->
+<toolrepair>
+    <tool>wood sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<!--  Remove listed items when dropped on the ground or spawned in to the world -->
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>stone</item>
+    <item>stone button</item>
+    <item>wood button</item>
+    <item>fence</item>
+    <item>sandstone</item>
+    <item>dark oak fence</item>
+    <item>spruce fence</item>
+    <item>wool</item>
+    <item>sapling</item>
+    <item>carpet</item>
+    <item>dirt</item>
+    <item>obsidian</item>
+    <item>glowstone dust</item>
+    <item>iron fence</item>
+    <item>smooth brick</item>
+    <item>smooth stairs</item>
+    <item>smooth stairs</item>
+    <item>trap door</item>
+    <item>cobble wall</item>
+    <item>seeds</item>
+</itemremove>
+<!--  Cyan and orange core  -->
+<cores material="obsidian" leak="4">
+    <core team="orange">
+        <region><cuboid min="123,27,-2" max="119,31,2"/></region>
+    </core>
+</cores>
+<cores material="obsidian" leak="5">
+    <core team="cyan">
+    	<region><cuboid min="-123,27,-2" max="-119,31,2"/></region>
+    </core>
+</cores>
+<!--  Can't build over y=35  -->
+<maxbuildheight>35</maxbuildheight>
+<regions>
+    <union id="extra-build">
+        <circle center="0,0" radius="65"/>
+        <rectangle min="-152,25" max="153,-24"/>
+    </union>
+    <union id="never-build">
+        <rectangle min="168,-13" max="198,14"/>
+        <rectangle min="-168,-13" max="-198,14"/>
+        <rectangle min="-54,-58" max="54,-67"/>
+        <rectangle min="-54,58" max="54,67"/>
+    </union>
+    <apply block="never" region="never-build" message="You may not modify blocks in this area"/>
+    <apply block="always" region="extra-build"/>
+    <apply block="no-void" message="You may not modify blocks in this area" region="everywhere"/>
+</regions>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+</map>

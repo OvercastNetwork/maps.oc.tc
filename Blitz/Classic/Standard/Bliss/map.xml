@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Bliss</name>
+<version>1.0.4</version>
+<objective>Kill an enemy 3 times to eliminate them; eliminate all enemies to win the match.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Map layout, aesthetics, and XML"/> <!-- Stealth5061 -->
+    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Assorted help, aesthetics"/> <!-- Zelocksurian -->
+</authors>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">wood sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="16">cooked fish</item>
+        <item slot="3" amount="32" damage="3">leaves</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="C40000">leather helmet</helmet>
+        <chestplate color="C40000">leather chestplate</chestplate>
+        <leggings color="C40000">leather leggings</leggings>
+        <boots color="C40000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="000099">leather helmet</helmet>
+        <chestplate color="000099">leather chestplate</chestplate>
+        <leggings color="000099">leather leggings</leggings>
+        <boots color="000099">leather boots</boots>
+    </kit>
+</kits>
+<maxbuildheight>16</maxbuildheight>
+<toolrepair>
+    <tool>wood sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leaves</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>sapling</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>ink sack</item>
+</itemremove>
+<killreward>
+    <item amount="2">exp bottle</item>
+    <item damage="4">ink sack</item>
+    <item amount="16">arrow</item>
+</killreward>
+<filters>
+    <filter name="allow-some" parents="deny-players">
+        <allow>
+            <block>leaves</block>
+            <block>water lily</block>
+        </allow>
+    </filter>
+</filters>
+<spawns>
+    <spawn team="red" kit="red" yaw="45">
+        <cylinder base="39,8,-94" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <cylinder base="-51,8,-4" radius="2" height="0"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-6,21,16" radius="1" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <rectangle min="-56,-99" max="45,2" name="playable"/>
+    <apply block="allow-some">
+        <region name="playable"/>
+    </apply>
+    <apply block="deny-all">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+</regions>
+<blitz>
+    <time>10m</time>
+    <lives>3</lives>
+</blitz>
+<include src="blitz-global.xml"/>
+</map>

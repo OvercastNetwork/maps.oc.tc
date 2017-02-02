@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Cataclysmic Temple</name>
+<version>1.1</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="cad50f71-cff2-4fe4-8122-f8ff520f88eb"/> <!-- Blackholeson -->
+    <author uuid="0375062d-f6c2-4452-9404-1bbab24b54c4"/> <!-- Queso1297 -->
+</authors>
+<rules>
+    <rule>No building at spawn</rule>
+    <rule>No fighting at spawn</rule>
+    <rule>No using a bucket on lava</rule>
+    <rule>No damaging your own core</rule>
+</rules>
+<teams>
+    <team color="blue" max="64">Blue</team>
+    <team color="dark red" max="64">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="270"><cylinder base="-165,65,152" radius="5" height="0"/></spawn>
+    <spawn team="red" yaw="90"><cylinder base="5,65,151" radius="5" height="0"/></spawn>
+    <default yaw="180"><cylinder base="-80,68,259" radius="5" height="0"/></default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <cuboid name="blue-storage-room" min="-172,64,145" max="-158,72,159"/>
+        <cuboid name="red-storage-room" min="-2,64,144" max="12,72,158"/>
+    </apply>
+</regions>
+<playable>
+    <rectangle min="-194,84" max="32,219"/>
+</playable>
+<cores material="obsidian" leak="5">
+    <core team="blue"><cuboid min="-136,67,150" max="-133,72,154"/></core>
+    <core team="red"><cuboid min="-27,67,149" max="-24,72,153"/></core>
+</cores>
+</map>

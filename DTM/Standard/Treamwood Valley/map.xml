@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Treamwood Valley</name>
+<version>1.0.0</version>
+<objective>Destroy the enemy's two Monuments</objective>
+<authors>
+    <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
+</authors>
+<contributors>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="General map help"/> <!-- PepsiDawg00 -->
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Fortress aesthetics"/> <!-- Stealth5061 -->
+</contributors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true" name="Archaic Stone Sword">stone sword</item>
+        <item slot="7" name="`5`l`oHonor" lore="`aBuy items at the Fortress with this!">nether star</item>
+        <item slot="8" amount="48">cooked beef</item>
+    </kit>
+    <kit name="kerg" parents="spawn">
+        <helmet color="990000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="990000" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="galg" parents="spawn">
+        <helmet color="000099" unbreakable="true">leather helmet</helmet>
+        <chestplate color="000099" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="only-gold">
+        <block>gold block</block>
+    </filter>
+</filters>
+<regions>
+    <apply enter="only-red">
+        <union name="red-gatehouses">
+            <rectangle min="87,19" max="74,16"/>
+            <rectangle min="87,-19" max="74,-16"/>
+        </union>
+    </apply>
+    <apply enter="only-blue">
+        <union name="blue-gatehouses">
+            <rectangle min="-86,16" max="-73,19"/>
+            <rectangle min="-86,-16" max="-73,-19"/>
+        </union>
+    </apply>
+    <apply block="only-gold" use="deny-all">
+        <rectangle min="oo,oo" max="-oo,-oo"/>
+    </apply>
+    <cuboid name="red-monument-a" min="31,28,39" max="33,31,37"/>
+    <cuboid name="red-monument-b" min="31,28,-39" max="33,31,-37"/>
+    <cuboid name="blue-monument-a" min="-30,28,39" max="-32,31,37"/>
+    <cuboid name="blue-monument-b" min="-30,28,-39" max="-32,31,-37"/>
+    <cuboid name="red-spawn" min="63,47,0" max="64,47,-0"/>
+    <cuboid name="blue-spawn" min="-62,47,-0" max="-63,47,0"/>
+</regions>
+<spawns>
+    <spawn team="red" yaw="-90" kit="kerg">
+        <region name="red-spawn"/>
+    </spawn>
+    <spawn team="blue" yaw="90" kit="galg">
+        <region name="blue-spawn"/>
+    </spawn>
+    <default>
+        <cuboid min="0,78,-1" max="0,78,1"/>
+    </default>
+</spawns>
+<destroyables materials="gold block" completion="100%">
+    <destroyable name="Monument A" owner="red">
+        <region name="red-monument-a"/>
+    </destroyable>
+    <destroyable name="Monument B" owner="red">
+        <region name="red-monument-b"/>
+    </destroyable>
+    <destroyable name="Monument A" owner="blue">
+        <region name="blue-monument-a"/>
+    </destroyable>
+    <destroyable name="Monument B" owner="blue">
+        <region name="blue-monument-b"/>
+    </destroyable>
+</destroyables>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<killreward>
+    <item name="`5`l`oHonor" lore="`aBuy items at the Fortress with this!">nether star</item>
+</killreward>
+<timelock>on</timelock>
+
+<multitrade/>
+<portals>
+    <portal x="@0" y="@37" z="@-34">
+        <block>0,35,-32</block>
+        <block>0,36,-32</block>
+    </portal>
+    <portal x="@0" y="@37" z="@34">
+        <block>0,35,32</block>
+        <block>0,36,32</block>
+    </portal>
+</portals>
+<itemremove>
+    <item>stone sword</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>iron sword</item>
+    <item>iron axe</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>stone pickaxe</item>
+    <item>stone axe</item>
+    <item>iron pickaxe</item>
+    <item>potion</item>
+    <item>glass bottle</item>
+    <item>gold sword</item>
+    <item>gold axe</item>
+    <item>gold pickaxe</item>
+    <item>gold chestplate</item>
+    <item>stick</item>
+    <item>gold block</item>
+    <item>log:1</item>
+    <item>cobble wall</item>
+    <item>44:3</item>
+    <item>bone</item>
+    <item>skull</item>
+    <item>cooked beef</item>
+</itemremove>
+</map>

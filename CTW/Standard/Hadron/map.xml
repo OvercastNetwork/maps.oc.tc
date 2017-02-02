@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Hadron</name>
+<version>1.0.3</version>
+<objective>Take both of the enemy team's wools back to your base before the other team can do the same!</objective>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contibution="Overall map design and aesthetics"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contibutor contribution="Minor aesthetics help">SH4D0W_HAWK</contibutor>
+</contributors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="blue">
+            <point yaw="0">
+                <cylinder name="blue1" base="47,16,97" radius="3" height="0"/>
+            </point>
+            <point yaw="180">
+                <cylinder name="blue2" base="47,16,121" radius="3" height="0"/>
+            </point>
+        </spawn>
+        <spawn team="red">
+            <point yaw="0">
+                <cylinder name="red1" base="175,16,97" radius="3" height="0"/>
+            </point>
+            <point yaw="180">
+                <cylinder name="red2" base="175,16,121" radius="3" height="0"/>
+            </point>
+        </spawn>
+    </spawns>
+    <default yaw="-90">
+        <cylinder base="111,8,109" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" amount="32">cooked chicken</item>
+        <item slot="4" amount="32" damage="2">log</item>
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="6" amount="2">golden apple</item>
+    </kit>
+</kits>
+<filters>
+    <!-- voidmatcher -->
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <any>
+            <block>iron block</block>
+        </any>
+    </filter>
+    <!-- Spawn room filters only allow breaking of iron blocks-->
+    <filter name="blue-spawn-prot">
+        <all>
+            <filter name="only-iron"/>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="red-spawn-prot">
+        <all>
+            <filter name="only-iron"/>
+            <team>red</team>
+        </all>
+    </filter>
+    <!-- Wool room filters -->
+    <filter name="blue-wool" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="red-wool" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Prevent players from building over the void -->
+    <apply block="no-void" message="You may not edit the void area.">
+        <complement>
+            <rectangle name="main" min="-11,5" max="234,214"/>
+            <union>
+                <rectangle name="fl1" min="97,143" max="126,168"/>
+                <rectangle name="fl2" min="97,51" max="125,76"/>
+            </union>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="You may not edit the void area.">
+        <negative><region name="main"/></negative>
+    </apply>
+    <!-- Blue side room regions -->
+    <circle name="green-wool" center="9.5,25.5" radius="11.5"/>
+    <complement name="outside-green">
+        <circle center="9.5,25.5" radius="15.5"/>
+        <region name="green-wool"/>
+    </complement>
+    <circle name="purple-wool" center="9.5,193.5" radius="11.5"/>
+    <complement name="outside-purple">
+        <circle center="9.5,193.5" radius="15.5"/>
+        <region name="purple-wool"/>
+    </complement>
+    <!-- Only allow reds to build in blue's wool rooms-->
+    <apply block="red-wool" enter="red-wool" use="only-red-usage" message="Only red team may enter and modify this wool room.">
+        <region name="green-wool"/>
+        <region name="purple-wool"/>
+    </apply>
+    <!-- Red side wool rooms -->
+    <circle name="pink-wool" center="213.5,25.5" radius="11.5"/>
+    <complement name="outside-pink"> 
+        <circle center="213.5,25.5" radius="15.5"/>
+        <region name="pink-wool"/>
+    </complement>
+    <circle name="magenta-wool" center="213.5,193.5" radius="11.5"/>
+    <complement name="outside-magenta"> 
+        <circle center="213.5,193.5" radius="15.5"/>
+        <region name="magenta-wool"/>
+    </complement>
+    <!-- Add protections -->
+    <apply block="blue-wool" enter="blue-wool" use="only-blue-usage" message="Only blue team may enter and modify this wool room.">
+        <region name="pink-wool"/>
+        <region name="magenta-wool"/>
+    </apply>
+    <!-- Blue spawn -->
+    <apply block-break="blue-spawn-prot" block-place="deny-all" message="Blue may modify only iron blocks in their base. Red can't break blocks here.">
+        <rectangle min="35,82" max="60,102"/>
+        <rectangle min="35,117" max="60,137"/>
+        <cuboid min="31,13,100" max="64,32,119"/>
+    </apply>
+    <!-- Red spawn -->
+    <apply block-break="red-spawn-prot" block-place="deny-all" message="Red may modify only iron blocks in their base. Blue can't break blocks here.">
+        <rectangle min="163,117" max="188,136"/>
+        <rectangle min="163,82" max="188,102"/>
+        <cuboid min="159,13,100" max="192,32,119"/>
+    </apply>
+    <!-- Prevent all building outside wool rooms -->
+    <apply block="deny-all" message="You may not modify the area around the wool rooms.">
+        <region name="outside-pink"/>
+        <region name="outside-purple"/>
+        <region name="outside-green"/>
+        <region name="outside-magenta"/>
+    </apply>
+    <!-- Protect wool Monuments -->
+    <apply block-break="deny-all">
+        <cuboid name="pink" min="46,8,116" max="49,11,117"/>
+        <block>47,8,115</block>
+        <cuboid name="magenta" min="46,8,102" max="49,11,103"/>
+        <block>47,8,103</block>
+        <cuboid name="purple" min="174,8,116" max="177,11,117"/>
+        <block>175,8,115</block>
+        <cuboid name="green" min="174,8,102" max="177,11,103"/>
+        <block>175,8,103</block>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked chicken</item>
+    <item>glowstone dust</item>
+    <item>sapling</item>
+    <item>string</item>
+    <item>golden apple</item>
+    <item>smooth brick</item>
+</itemremove>
+<maxbuildheight>40</maxbuildheight>
+<wools>
+    <!-- Blue wools -->
+    <wool team="blue" color="magenta">
+        <block location="47,9,102"/>
+    </wool>
+    <wool team="blue" color="pink">
+        <block location="47,9,116"/>
+    </wool>
+    <!-- Red wools -->
+    <wool team="red" color="green">
+        <block location="175,9,102"/>
+    </wool>
+    <wool team="red" color="purple">
+        <block location="175,9,116"/>
+    </wool>
+</wools>
+</map>

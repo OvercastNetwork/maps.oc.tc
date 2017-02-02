@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>BoomBox</name>
+<genre>Objectives</genre>
+<time result="defenders">20m</time>
+<version>0.54</version>
+<objective>Attackers have 20 minutes to destroy the Ice Pillar, while the Defenders try to hold them back.</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<rules>
+    <rule>There are NO restrictions on spawn camping/killing</rule>
+    <rule>Attacker pickaxes do double damage</rule>
+    <rule>Smooth quartz blocks are fully blast resistant (and can be mined)</rule>
+    <rule>Return to spawn to be fully healed and resupplied</rule>
+</rules>
+
+<teams>
+    <team id="attackers" color="dark red" min="8" max="10" plural="true">Attackers</team>
+    <team id="defenders" color="blue"     min="8" max="10" plural="true">Defenders</team>
+</teams>
+
+<kits>
+    <!-- kit given to everyone, including observers -->
+    <kit id="all-kit" potion-particles="false">
+        <potion duration="oo" ambient="true">night vision</potion>
+        <potion duration="oo" ambient="true">saturation</potion>
+    </kit>
+
+    <!-- kit given to both teams -->
+    <kit id="team-kit" parents="all-kit">
+        <item slot="9">workbench</item>
+        <item slot="18" amount="3">dispenser</item>
+        <!-- slot="27" -->
+        <!-- slot="0" -->
+
+        <item slot="10">shears</item>
+        <!-- slot="19" -->
+        <!-- slot="28" -->
+        <!-- slot="1" -->
+
+        <!-- slot="11" -->
+        <!-- slot="20" -->
+        <item slot="29" amount="64">vine</item>
+        <item slot="2" amount="64">vine</item>
+
+        <!-- slot="12" -->
+        <!-- slot="21" -->
+        <!-- slot="30" -->
+        <!-- slot="3" -->
+
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="4" amount="64">nether fence</item>
+
+        <item slot="14" amount="16">piston base</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="7" amount="16">redstone block</item>
+
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+    </kit>
+
+    <kit id="attacker-kit" parents="team-kit">
+        <item slot="0"
+              attributes="generic.attackDamage:add:10"
+              name="Sharpened Diamond Pickaxe"
+            >diamond pickaxe</item>
+
+        <item slot="1" amount="64">snow ball</item>
+
+        <item slot="11" name="Blade of Icarus">wood sword</item>
+
+        <item slot="12" damage="14" amount="64">stained glass</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+
+        <helmet color="222222" enchantment="protection explosions:3;water worker:3" damage="-3000">leather helmet</helmet>
+        <chestplate locked="true" color="dd5566" damage="-3000">leather chestplate</chestplate>
+        <leggings locked="true" color="dd5566" damage="-3000">leather leggings</leggings>
+        <boots locked="true" color="dd5566" enchantment="protection fall:1" durability="-3000">leather boots</boots>
+    </kit>
+
+    <kit id="defender-kit" parents="team-kit">
+        <item slot="0">diamond pickaxe</item>
+
+        <item slot="28" amount="16">arrow</item>
+        <item slot="1">bow</item>
+
+        <item slot="12" damage="11" amount="64">stained glass</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+
+        <helmet enchantment="protection explosions:3" damage="-3000">iron helmet</helmet>
+        <chestplate locked="true" color="5e55dd" damage="-3000">leather chestplate</chestplate>
+        <leggings locked="true" color="5e55dd" damage="-3000">leather leggings</leggings>
+        <boots locked="true" color="5e55dd" enchantment="protection fall:3" durability="-3000">leather boots</boots>
+
+        <!-- this will be removed when they leave spawn -->
+        <potion duration="oo" amplifier="5" ambient="true">damage resistance</potion>
+    </kit>
+
+    <kit id="spawn-buff-apply" force="true">
+        <potion amplifier="5" duration="oo" ambient="true">damage resistance</potion>
+        <potion amplifier="10" duration="1" ambient="true">heal</potion>
+    </kit>
+
+    <kit id="spawn-buff-remove" force="true">
+        <potion amplifier="5" duration="3" ambient="true">damage resistance</potion>
+    </kit>
+
+    <kit id="attacker-spawn-kit" force="true" parents="attacker-kit">
+        <walk-speed>4</walk-speed>
+        <potion duration="oo" amplifier="5" ambient="true">damage resistance</potion>
+        <potion duration="oo" amplifier="5" ambient="true">slow digging</potion>
+        <potion duration="oo" amplifier="1" ambient="true">regeneration</potion>
+    </kit>
+</kits>
+
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>snow ball</item>
+    <item>arrow:0</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>melon</item>
+</itemremove>
+
+<killreward>
+    <item amount="16">tnt</item>
+</killreward>
+
+<killreward>
+    <filter>
+        <team>defenders</team>
+    </filter>
+    <item>dispenser</item>
+    <item amount="8">arrow</item>
+</killreward>
+
+<killreward>
+    <filter>
+        <team>attackers</team>
+    </filter>
+    <item>dispenser</item>
+    <item amount="32">snow ball</item>
+</killreward>
+
+<blockdrops>
+    <rule>
+        <filter>
+            <material>quartz block:0</material>
+        </filter>
+        <drops>
+            <item>quartz</item>
+        </drops>
+    </rule>
+</blockdrops>
+
+<filters>
+    <team id="attackers-only">attackers</team>
+    <team id="defenders-only">defenders</team>
+
+    <deny id="deny-attackers">
+        <team>attackers</team>
+    </deny>
+
+    <deny id="deny-unbreakable-blocks">
+        <any>
+            <material>stained glass:8</material> <!-- light grey stained glass -->
+            <material>stained glass:15</material> <!-- black stained glass -->
+            <material>stained glass pane:11</material> <!-- blue stained glass pane -->
+            <material>beacon</material>
+            <material>emerald block</material>
+        </any>
+    </deny>
+
+    <deny id="deny-beacon">
+        <material>beacon</material>
+    </deny>
+
+    <deny id="deny-water">
+        <any>
+            <material>water</material>
+            <material>stationary water</material>
+        </any>
+    </deny>
+
+    <deny id="deny-manual-ice">
+        <all>
+            <material>packed ice</material>
+            <cause>player</cause>
+        </all>
+    </deny>
+
+    <deny id="deny-quartz-explosion">
+        <all>
+            <any>
+                <material>quartz block:0</material>
+                <material>quartz stairs</material>
+            </any>
+            <cause>explosion</cause>
+        </all>
+    </deny>
+
+    <any id="building-blocks">
+        <material>stained clay</material>
+        <material>stained glass</material>
+        <material>step</material>
+        <material>nether fence</material>
+        <material>quartz block</material>
+        <material>quartz stairs</material>
+    </any>
+
+    <deny id="deny-building-blocks">
+        <filter id="building-blocks"/>
+    </deny>
+
+    <deny id="deny-defender-building-blocks">
+        <all>
+            <team>defenders</team>
+            <filter id="building-blocks"/>
+        </all>
+    </deny>
+
+    <!--                    -->
+    <!-- Region Definitions -->
+    <!--                    -->
+
+    <!-- everything above the box except the footprint of the attacker drop -->
+    <complement id="above-box">
+        <above y="50"/>
+        <rectangle min="2,2" max="11,11"/>
+    </complement>
+
+    <!-- the entire inside of the box -->
+    <cuboid id="box" min="2,0,2" max="102,50,102"/>
+
+    <!-- the attacker drop tube, including walls -->
+    <cuboid id="attacker-drop" min="2,9,2" max="12,50,12"/>
+
+    <!-- the melon clog -->
+    <cuboid id="melons" min="2,20,2" max="11,42,11"/>
+
+    <!-- the attacker's protected zone -->
+    <rectangle id="attacker-base" min="2,2" max="32,32"/>
+
+    <!-- the entire fortress -->
+    <cuboid id="fortress" min="67,0,67" max="102,40,102"/>
+
+    <!-- the ice pillar -->
+    <cuboid id="pillar" min="92,11,92" max="97,50,97"/>
+
+    <cuboid id="top-layer" min="2,47,2" max="102,48,102"/>
+
+    <!-- the defender spawn area, including floor and ceiling -->
+    <union id="defender-spawn">
+        <cuboid min="87,4,87" max="102,11,102"/> <!-- platform -->
+        <cuboid min="82,5,82" max="92,10,92"/> <!-- stairs -->
+    </union>
+
+    <!-- water exclusion region inside the fortress -->
+    <union id="water-free-zone">
+        <cuboid min="87,11,87" max="102,50,102"/>
+        <cuboid min="82,0,82" max="102,11,102"/>
+    </union>
+
+    <union id="defender-bridge-gates">
+        <cuboid id="gate1" min="102,5,12" max="103,10,17"/>
+        <cuboid id="gate2" min="102,19,7" max="103,24,12"/>
+        <cuboid id="gate3" min="102,35,2" max="103,40,7"/>
+
+        <cuboid id="gate4" min="102,5,72" max="103,10,77"/>
+        <cuboid id="gate5" min="102,19,72" max="103,24,77"/>
+        <cuboid id="gate6" min="102,35,72" max="103,40,77"/>
+
+        <cuboid id="gate7" min="12,5,102" max="17,10,103"/>
+        <cuboid id="gate8" min="7,19,102" max="12,24,103"/>
+        <cuboid id="gate9" min="2,35,102" max="7,40,103"/>
+
+        <cuboid id="gate10" min="72,5,102" max="77,10,103"/>
+        <cuboid id="gate11" min="72,19,102" max="77,24,103"/>
+        <cuboid id="gate12" min="72,35,102" max="77,40,103"/>
+    </union>
+
+    <!-- defender bridges -->
+    <intersect id="defender-bridges">
+        <below y="50"/>
+        <union>
+            <cuboid min="103,0,12" max="117,18,17"/>
+            <cuboid min="103,18,7" max="117,34,17"/>
+            <cuboid min="103,34,2" max="117,oo,17"/>
+            <rectangle min="103,72" max="117,77"/>
+            <rectangle min="107,17" max="117,72"/>
+
+            <cuboid min="12,0,103" max="17,18,117"/>
+            <cuboid min="7,18,103" max="17,34,117"/>
+            <cuboid min="2,34,103" max="17,oo,117"/>
+            <rectangle min="72,103" max="77,117"/>
+            <rectangle min="17,107" max="72,117"/>
+        </union>
+    </intersect>
+
+    <!-- forward drop shafts -->
+    <cuboid id="forward-drop" min="0,0,0" max="7,50,7"/>
+    <union id="forward-drops">
+        <translate id="north-drop" region="forward-drop"  offset="49,0,11"/>
+        <translate id="east-drop"  region="forward-drop"  offset="76,0,38"/>
+        <mirror    id="west-drop"  region="north-drop"    normal="1,0,-1"/>
+        <mirror    id="south-drop" region="east-drop"     normal="1,0,-1"/>
+    </union>
+
+    <intersect id="forward-drop-tubes">
+        <region id="forward-drops"/>
+        <above y="30"/>
+        <below y="50"/>
+    </intersect>
+
+    <!--             -->
+    <!-- Block Rules -->
+    <!--             -->
+
+    <apply block="never" message="You may not modify the drop tube area">
+        <region>
+            <union>
+                <complement>
+                    <region id="attacker-drop"/>
+                    <region id="melons"/>
+                </complement>
+                <region id="forward-drop-tubes"/>
+            </union>
+        </region>
+    </apply>
+
+    <apply block="never" region="defender-spawn" message="You may not modify the spawn area"/>
+
+    <apply block="deny-unbreakable-blocks" region="everywhere" message="This type of block is unbreakable"/>
+
+    <apply block="deny-water" region="water-free-zone"
+        message="You may not place `9water`c around the pillar"/>
+
+    <apply block="deny-water" region="melons"
+        message="You may not place `9water`c in the drop tube area"/>
+
+    <apply block="deny-water" region="forward-drops"
+        message="You may not place `9water`c under the drop tubes"/>
+
+    <apply block-place="deny-defender-building-blocks" region="forward-drops"
+        message="Do not build under the attacker drop tubes!"/>
+
+    <apply block-place="deny-building-blocks" region="top-layer"
+        message="You may not place building blocks at this level"/>
+
+    <!-- prevent manual mining of the monument -->
+    <apply block-break="deny-manual-ice" region="pillar"
+        message="The Ice Pillar can only be damaged with TNT"/>
+
+    <apply block="never" message="You may not place or break blocks outside of the BoomBox">
+        <region>
+            <complement>
+                <negative>
+                    <region id="box"/>
+                </negative>
+                <region id="defender-bridges"/>
+            </complement>
+        </region>
+    </apply>
+
+    <apply block-break="deny-quartz-explosion" region="everywhere"/>
+
+    <!-- prevent beacons from being used -->
+    <apply use="deny-beacon" region="everywhere"/>
+
+    <apply block="deny-attackers" region="defender-bridges"
+        message="You may not place or break blocks on defender bridges"/>
+
+
+    <!--                 -->
+    <!-- Player Movement -->
+    <!--                 -->
+
+    <apply enter="attackers-only" region="attacker-base"
+        message="You may not enter Attacker territory"/>
+
+    <apply enter="defenders-only" region="defender-bridges"
+        message="You may not use the defender bridges" sound="true"/>
+
+    <apply enter="never" region="above-box"/>
+
+
+    <!--                 -->
+    <!-- Kit Application -->
+    <!--                 -->
+
+    <!-- apply spawn buffs -->
+    <apply filter="attackers-only" region="attacker-drop">
+        <kit parents="attacker-kit,spawn-buff-apply"/>
+    </apply>
+
+    <!-- remove spawn buffs -->
+    <apply kit="spawn-buff-remove" filter="attackers-only">
+        <region>
+            <negative>
+                <region id="above-box"/>
+                <region id="attacker-drop"/>
+            </negative>
+        </region>
+    </apply>
+
+    <!-- remove speed and apply resistance when an attacker drops into the box -->
+    <apply filter="attackers-only">
+        <region>
+            <negative>
+                <region id="above-box"/>
+            </negative>
+        </region>
+
+        <kit force="true">
+            <walk-speed>1</walk-speed>
+            <potion amplifier="0" duration="0" ambient="true">slow digging</potion>
+        </kit>
+    </apply>
+
+    <apply filter="defenders-only" region="defender-spawn">
+        <kit parents="defender-kit,spawn-buff-apply"/>
+    </apply>
+
+    <apply kit="spawn-buff-remove" filter="defenders-only">
+        <region>
+            <negative>
+                <region id="defender-spawn"/>
+            </negative>
+        </region>
+    </apply>
+</filters>
+
+<spawns yaw="135" pitch="0">
+    <default kit="all-kit">
+        <regions yaw="315">
+            <cylinder base="7,70,7" radius="4" height="0"/>
+        </regions>
+    </default>
+    <spawn team="attackers" kit="attacker-spawn-kit">
+        <regions>
+            <cylinder base="79.5,52,79.5" radius="3" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="defenders" kit="defender-kit">
+        <regions>
+            <cylinder base="94.5,5,94.5" radius="3" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+
+<destroyables>
+    <destroyable id="ice-pillar"
+                 name="Ice Pillar"
+                 region="pillar"
+                 owner="defenders"
+                 show-progress="true"
+                 materials="packed ice"
+                 sparks="true"
+                 proximity-metric="closest block"
+                 proximity-horizontal="true"/>
+</destroyables>
+
+<disabledamage>
+    <damage self="false" ally="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+
+</map>

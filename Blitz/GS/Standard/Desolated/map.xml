@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Desolated</name>
+<version>1.0</version>
+<objective>Eliminate the other team</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
+</authors>
+<teams>
+    <team color="blue" max="5">Blue</team>
+    <team color="dark red" max="5">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="180">
+        <cuboid min="-24,59,-54" max="-22,59,-56"/>
+    </spawn>
+    <spawn team="red" yaw="0">
+        <cuboid min="27,59,-138" max="25,59,-136"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="1.5,89,-98" radius="2" height="1"/>
+    </default>
+</spawns>
+</map>

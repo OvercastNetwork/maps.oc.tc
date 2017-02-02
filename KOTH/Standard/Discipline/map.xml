@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Discipline</name>
+<version>1.0.2</version>
+<objective>Be the first team to get to 750 points by capturing the points!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83"/> <!-- lonelyhornet -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled on this map!</rule>
+</rules>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="32">bread</item>
+        <item slot="8" amount="64">arrow</item>
+        <helmet unbreakable="true">gold helmet</helmet>
+        <leggings unbreakable="true">gold leggings</leggings>
+    </kit>
+    <kit name="red" parents="teams">
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="45" pitch="0">
+        <point>2086.5,22,-1735.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-135" pitch="0">
+        <point>1998.5,22,-1647.5</point>
+    </spawn>
+    <default yaw="135">
+        <point>2054.5,55,-1679.5</point>
+    </default>
+</spawns>
+<filters>
+    <filter name="allow-tnt" parents="deny-all">
+        <allow>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="deny-all" block-place="allow-tnt">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <union name="center-point">
+        <union name="center-point-capture">
+            <cuboid min="2037,9,-1686" max="2048,14,-1697"/> <!-- Main -->
+            <cuboid min="2036,9,-1689" max="2049,14,-1694"/>
+            <cuboid min="2040,9,-1698" max="2045,14,-1685"/>
+        </union>
+        <cuboid name="center-point-progress" min="2036,9,-1685" max="2049,10,-1698"/>
+    </union>
+    <union name="point-a">
+        <cylinder name="point-a-capture" base="2087.5,7,-1646.5" radius="7" height="5"/>
+        <cuboid name="point-a-progress" min="2089,7,-1645" max="2080,8,-1654"/>
+    </union>
+    <union anme="point-b">
+        <cylinder name="point-b-capture" base="1997.5,7,-1736.5" radius="7" height="5"/>
+        <cuboid name="point-b-progress" min="1996,7,-1738" max="2005,8,-1729"/>
+    </union>
+    <union name="jump-pads">
+        <cuboid name="jump-pad-a" min="1997,4,-1717" max="2000,5,-1714"/>
+        <cuboid name="jump-pad-b" min="1992,5,-1693" max="1995,6,-1690"/>
+        <cuboid name="jump-pad-c" min="1997,4,-1669" max="2000,5,-1666"/>
+        <cuboid name="jump-pad-d" min="2017,4,-1646" max="2020,5,-1649"/>
+        <cuboid name="jump-pad-e" min="2041,5,-1641" max="2044,6,-1644"/>
+        <cuboid name="jump-pad-f" min="2065,4,-1646" max="2068,5,-1649"/>
+        <cuboid name="jump-pad-g" min="2088,4,-1666" max="2085,5,-1669"/>
+        <cuboid name="jump-pad-h" min="2090,5,-1690" max="2093,6,-1693"/>
+        <cuboid name="jump-pad-i" min="2085,4,-1717" max="2088,5,-1714"/>
+        <cuboid name="jump-pad-j" min="2068,4,-1737" max="2065,5,-1734"/>
+        <cuboid name="jump-pad-k" min="2044,5,-1739" max="2041,6,-1742"/>
+        <cuboid name="jump-pad-l" min="2017,4,-1734" max="2020,5,-1737"/>
+    </union>
+    <apply velocity="0,1.5,0.6">
+        <region name="jump-pad-a"/>
+        <region name="jump-pad-i"/>
+        <region name="jump-pad-k"/>
+    </apply>
+    <apply velocity="0.6,1.5,0">
+        <region name="jump-pad-b"/>
+        <region name="jump-pad-d"/>
+        <region name="jump-pad-f"/>
+        <region name="jump-pad-l"/>
+    </apply>
+    <apply velocity="0,1.5,-0.6">
+        <region name="jump-pad-c"/>
+        <region name="jump-pad-e"/>
+        <region name="jump-pad-g"/>
+    </apply>
+    <apply velocity="-0.6,1.5,0">
+        <region name="jump-pad-f"/>
+        <region name="jump-pad-h"/>
+        <region name="jump-pad-j"/>
+    </apply>
+</regions>
+<king>
+    <hills>
+        <hill name="Point A" capture-time="5s" ratio="1">
+            <capture>
+                <region name="point-a-capture"/>
+            </capture>
+            <progress>
+                <region name="point-a-progress"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+        <hill name="Center" capture-time="10s" ratio="1">
+            <capture>
+                <region name="center-point-capture"/>
+            </capture>
+            <progress>
+                <region name="center-point-progress"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+        <hill name="Point B" capture-time="5s" ratio="1">
+            <capture>
+                <region name="point-b-capture"/>
+            </capture>
+            <progress>
+                <region name="point-b-progress"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>750</limit>
+    <king/>
+</score>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>gold helmet</item>
+    <item>leather chestplate</item>
+    <item>gold leggings</item>
+    <item>leather boots</item>
+    <item>bread</item>
+    <item>golden apple</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<tutorial>
+    <stage title="King of the Hill">
+        <message>
+            <line>`rThis map is a `aKing of the Hill `r(KotH) map.</line>
+            <line>`rThe objective is to capture the 3 points and be the first team to get to `c750 points`r!</line>
+        </message>
+        <teleport>
+            <point yaw="30" pitch="15">2063.5,30,-1748.5</point>
+        </teleport>
+    </stage>
+    <stage title="Spawns">
+        <message>
+            <line>`rThis is the `cRed Team`r's spawn area.</line>
+            <line>`rYou must pass through the cobwebs every time before leaving spawn.</line>
+            <line>`rThis acts as a re-spawn timer.</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="30">2075.5,25,-1724.5</point>
+        </teleport>
+    </stage>
+    <stage title="Jump Pads">
+        <message>
+            <line>`rThis is an example of the several jump pads on the map.</line>
+            <line>`rIt will launch you onto the top level, but don't worry you don't take fall damage!</line>
+        </message>
+        <teleport>
+            <point yaw="-55" pitch="20">1986.5,7,-1696.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

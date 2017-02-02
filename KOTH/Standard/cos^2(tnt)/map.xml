@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>cos^2(tnt)</name>
+<version>0.14</version>
+<objective>You must be the first team to get to 1000 points before time runs out!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</contributors>
+<rules>
+    <rule>Spawn killing/camping is ALLOWED</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="16">Red</team>
+    <team id="blue" color="blue" max="16">Blue</team>
+    <team id="yellow" color="yellow" max="16">Yellow</team>
+</teams>
+<!--                 -->
+<!-- Spawns and Kits -->
+<!--                 -->
+<spawns>
+    <spawn team="yellow" kit="yellow">
+        <point yaw="0">-81,29,96</point>
+        <point yaw="180">-113,29,64</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-207,29,80</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <point>16,29,80</point>
+    </spawn>
+    <default kit="all">
+        <point yaw="45">-56.5,31,56.5</point>
+        <point yaw="-135">-135.5,31,103.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="on-the-glass" force="true" parents="all">
+        <walk-speed>4</walk-speed>
+        <knockback-reduction>1</knockback-reduction>
+        <potion duration="oo" amplifier="5">weakness</potion>
+        <potion duration="oo" amplifier="5">damage resistance</potion>
+        <potion duration="oo" amplifier="5">slow digging</potion>
+    </kit>
+    <kit name="below-the-glass" force="true" parents="all">
+        <walk-speed>1</walk-speed>
+        <knockback-reduction>0</knockback-reduction>
+        <potion duration="0" amplifier="0">weakness</potion>
+        <potion duration="0" amplifier="0">slow digging</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="teams" parents="all,on-the-glass">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7">diamond pickaxe</item>
+        <item slot="27" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water|`7Use `a/report `7to alert the staff">shears</item>
+        <item slot="9" amount="64">tnt</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="48">arrow</item>
+        <item slot="10" amount="64">tnt</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="29" amount="64">vine</item>
+        <item slot="11" amount="64">tnt</item>
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="32" amount="8">stone plate</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="14" amount="16">trap door</item>
+        <item slot="6">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="15">water bucket</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="16" amount="16">piston base</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="3" name="`7Auto TNT Machine" lore="`rYou will receive an addition dispenser every kill!">dispenser</item>
+        <item slot="26" amount="8">redstone comparator</item>
+        <item slot="17" amount="16">diode</item>
+        <chestplate name="`bSuper Chestplate" unbreakable="true" enchantment="protection explosions;oxygen;water worker;protection projectile;protection fall:3" attributes="generic.movementSpeed:base:0.15" locked="true">diamond chestplate</chestplate>
+        <potion duration="oo">regeneration</potion>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="13" damage="11" amount="64">stained glass</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="12" damage="11" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="334CB2" locked="true">leather helmet</helmet>
+        <leggings unbreakable="true" color="334CB2" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="red" parents="teams">
+        <item slot="13" damage="14" amount="64">stained glass</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="12" damage="14" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="dd5566" locked="true">leather helmet</helmet>
+        <leggings unbreakable="true" color="dd5566" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" color="dd5566">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <item slot="13" damage="4" amount="64">stained glass</item>
+        <item slot="3" damage="4" amount="64">stained clay</item>
+        <item slot="30" damage="4" amount="64">stained clay</item>
+        <item slot="21" damage="4" amount="64">stained clay</item>
+        <item slot="12" damage="4" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="E5E533" locked="true">leather helmet</helmet>
+        <leggings unbreakable="true" color="E5E533" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<!--                 -->
+<!--     Filters     -->
+<!--                 -->
+<filters>
+    <!-- Team Specific -->
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <!-- Control Point -->
+    <filter name="hill-materials">
+        <any>
+            <block>stained glass</block>
+            <block>stained clay</block>
+        </any>
+    </filter>
+    <!-- Block Interaction -->
+    <filter name="only-explosives">
+        <any>
+            <block>redstone torch on</block>
+            <block>redstone block</block>
+            <block>tnt</block>
+        </any>
+    </filter>
+    <filter name="only-quartz-manual">
+        <all>
+            <not>
+                <block>stained glass</block>
+            </not>
+            <cause>player</cause>
+        </all>
+    </filter>
+    <filter name="deny-quartz-explosives">
+        <not>
+            <all>
+                <block>quartz block</block>
+                <cause>explosion</cause>
+            </all>
+        </not>
+    </filter>
+</filters>
+<!--                 -->
+<!--     Regions     -->
+<!--                 -->
+<regions>
+    <!-- Definitions -->
+    <rectangle name="map" min="0,0" max="-192,160"/>
+    <cuboid name="renewables" min="0,0,0" max="-192,15,160"/>
+    <cuboid name="below-the-glass" min="-oo,-oo,-oo" max="oo,28,oo"/>
+    <cuboid name="between-25-and-26" min="-oo,25,-oo" max="oo,26,oo"/>
+    <cuboid name="above-26" min="-oo,26,-oo" max="oo,oo,oo"/>
+    <cuboid name="above-33" min="-oo,33,-oo" max="oo,oo,oo"/>
+    <!-- Points for <hills> -->
+    <cuboid name="point-for-capture" min="0,0,0" max="-16,27,16"/>
+    <union name="points">
+        <translate name="north-point" region="point-for-capture" offset="-48,0,0"/>
+        <translate name="west-point" region="point-for-capture" offset="-176,0,48"/>
+        <translate name="south-point" region="point-for-capture" offset="-128,0,144"/>
+        <translate name="east-point" region="point-for-capture" offset="0,0,96"/>
+    </union>
+    <!-- Points for <filters> -->
+    <cuboid name="point-for-filters" min="0,0,0" max="-16,6,16"/>
+    <union name="points-for-filters">
+        <translate region="point-for-filters" offset="-48,0,0"/>
+        <translate region="point-for-filters" offset="-176,0,48"/>
+        <translate region="point-for-filters" offset="-128,0,144"/>
+        <translate region="point-for-filters" offset="0,0,96"/>
+    </union>
+    <!-- Signs for <captured> -->
+    <cuboid name="sign-north-south" min="0,18,0" max="-6,27,2"/>
+    <cuboid name="sign-west-east" min="0,18,0" max="-2,27,6"/>
+    <union name="signs">
+        <translate name="north-sign" region="sign-north-south" offset="-53,0,-5"/>
+        <translate name="west-sign" region="sign-west-east" offset="-194,0,53"/>
+        <translate name="south-sign" region="sign-north-south" offset="-133,0,163"/>
+        <translate name="east-sign" region="sign-west-east" offset="5,0,101"/>
+    </union>
+    <!-- Chutes -->
+    <cuboid name="chute" min="0,19,0" max="-8,oo,8"/>
+    <union name="chutes">
+        <union name="yellow-chutes">
+            <translate name="yellow-1-chute" region="chute" offset="-4,0,52"/>
+            <translate name="yellow-2-chute" region="chute" offset="-180,0,100"/>
+        </union>
+        <union name="blue-chutes">
+            <translate name="blue-1-chute" region="chute" offset="-52,0,148"/>
+            <translate name="blue-2-chute" region="chute" offset="-84,0,4"/>
+        </union>
+        <union name="red-chutes">
+            <translate name="red-1-chute" region="chute" offset="-132,0,4"/>
+            <translate name="red-2-chute" region="chute" offset="-100,0,148"/>
+        </union>
+    </union>
+    <!-- Applications -->
+    <apply block="deny-all" message="You may not edit the spawn chute">
+        <region name="chutes"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside of the map">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not edit above the maximum build height">
+        <region name="above-26"/>
+    </apply>
+    <apply block="only-explosives" message="You may only place tnt, redstone block, or torches at this height">
+        <region name="between-25-and-26"/>
+    </apply>
+    <apply block-break="only-quartz-manual" message="You may only break the quartz on the capture points">
+        <region name="points-for-filters"/>
+    </apply>
+    <apply block-break="deny-quartz-explosives">
+        <region name="map"/>
+    </apply>
+    <apply leave="deny-all" message="You may not re-enter the glass platform">
+        <region name="below-the-glass"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter an enemy spawn chute">
+        <region name="yellow-chutes"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter an enemy spawn chute">
+        <region name="red-chutes"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter an enemy spawn chute">
+        <region name="blue-chutes"/>
+    </apply>
+    <apply enter="deny-all" message="You may not block glitch out of here">
+        <region name="above-33"/>
+    </apply>
+    <apply kit="below-the-glass">
+        <region name="below-the-glass"/>
+    </apply>
+</regions>
+<!--                 -->
+<!--  Capture Points -->
+<!--                 -->
+<king>
+    <hills capture-time="30s" points="0.40" capture-rule="lead" neutral-state="false" time-multiplier="0.30" points-growth="15000" visual-materials="hill-materials">
+        <hill id="north" name="North">
+            <capture>
+                <region name="north-point"/>
+            </capture>
+            <progress>
+                <region name="north-point"/>
+            </progress>
+            <captured>
+                <region name="north-sign"/>
+            </captured>
+        </hill>
+        <hill id="west" name="West">
+            <capture>
+                <region name="west-point"/>
+            </capture>
+            <progress>
+                <region name="west-point"/>
+            </progress>
+            <captured>
+                <region name="west-sign"/>
+            </captured>
+        </hill>
+        <hill id="south" name="South">
+            <capture>
+                <region name="south-point"/>
+            </capture>
+            <progress>
+                <region name="south-point"/>
+            </progress>
+            <captured>
+                <region name="south-sign"/>
+            </captured>
+        </hill>
+        <hill id="east" name="East">
+            <capture>
+                <region name="east-point"/>
+            </capture>
+            <progress>
+                <region name="east-point"/>
+            </progress>
+            <captured>
+                <region name="east-sign"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <limit>1000</limit>
+    <kills>0</kills>
+    <deaths>0</deaths>
+</score>
+<!--                 -->
+<!--    Block Drops  -->
+<!--                 -->
+<blockdrops>
+    <rule>
+        <filter>
+            <block>diamond block</block>
+        </filter>
+        <drops>
+            <item damage="359" attributes="generic.movementSpeed:base:0.15;generic.knockbackResistance:add:1">diamond boots</item>
+            <item name="`6Grenade" amount="16" grenade="true" grenade-power="1.2">snow ball</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <not>
+                <any>
+                    <block>tnt</block>
+                    <block>dispenser</block>
+                </any>
+            </not>
+        </filter>
+        <fall-chance>0.4</fall-chance>
+        <land-chance>0.3</land-chance>
+        <fall-speed>0.7</fall-speed>
+        <drops/>
+    </rule>
+</blockdrops>
+<!--                 -->
+<!--    Renewables   -->
+<!--                 -->
+<renewables>
+    <renewable rate="55" grow="true" avoid-entities="true" particles="false" sound="false">
+        <region>
+            <region name="renewables"/>
+        </region>
+        <renew-filter>
+            <not>
+                <block>stained glass</block>
+            </not>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </replace-filter>
+    </renewable>
+    <renewable rate="1" grow="false" avoid-entities="true" particles="false" sound="false">
+        <region>
+            <region name="points"/>
+        </region>
+        <renew-filter>
+            <block>quartz block</block>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<!--                 -->
+<!--      Misc.      -->
+<!--                 -->
+<modes boss-bar="true">
+    <mode show-before="90s" after="5m"  material="air" name="`3Dropping a `adiamond `3supply"/>
+    <mode show-before="90s" after="10m" material="air" name="`3Dropping a `adiamond `3supply"/>
+    <mode show-before="90s" after="15m" material="air" name="`3Dropping a `adiamond `3supply"/>
+    <mode show-before="90s" after="20m" material="air" name="`3Dropping a `adiamond `3supply"/>
+    <mode show-before="90s" after="25m" material="air" name="`3Dropping a `adiamond `3supply"/>
+</modes>
+<broadcasts>
+    <alert after="5s">`oEvery `65 `b`ominutes there is a diamond supply drop</alert>
+    <tip after="10s" every="8m">You will receive an addition dispenser every kill</tip>
+</broadcasts>
+<disabledamage>
+    <damage enemy="false" self="false" other="false">block explosion</damage>
+</disabledamage>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <item amount="32">tnt</item>
+    <item amount="16">arrow</item>
+    <item name="`7Auto TNT Machine" lore="`rYou will receive an addition dispenser every kill!">dispenser</item>
+</killreward>
+<armorkeep>
+    <item>diamond boots</item>
+</armorkeep>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>shears</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bucket</item>
+    <item>diamond block</item>
+    <item>redstone comparator</item>
+    <item>dispenser</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <power>4</power>
+    <fuse>4s</fuse>
+    <yield>0</yield>
+    <instantignite>false</instantignite>
+    <blockdamage>true</blockdamage>
+    <dispenser-tnt-limit>64</dispenser-tnt-limit>
+    <dispenser-tnt-multiplier>0.75</dispenser-tnt-multiplier>
+</tnt>
+</map>

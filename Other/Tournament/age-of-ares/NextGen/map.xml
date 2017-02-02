@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<autorespawn/>
+<time result="objectives">45m</time>
+<name>NextGen</name>
+<version>3.1</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="reinventing the map"/> <!-- ElectroidFilms -->
+</authors>
+<contributors>
+    <contributor uuid="cbdc7b1d-7a07-465b-bebb-4f20bfb8ebd8" contribution="re-reinventing the map"/> <!-- Cratain -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="bias"/>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="old map design"/> <!-- Plastix -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="old map design"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="old map design and gameplay management"/> <!-- MonsieurApple -->
+    <contributor uuid="25961a08-c90c-4abd-b136-dad90e89c2eb" contribution="old map design and item management"/> <!-- Anxuiz -->
+</contributors>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="180">
+        <point>-158.5,4,69.5</point>
+    </spawn>
+    <spawn team="blue" yaw="0">
+        <point>-158.5,4,-42.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="-158.5,51,13.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- Block Filters -->
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <!-- Usage Filters -->
+    <filter name="not-chest">
+        <not>
+            <block>chest</block>
+        </not>
+    </filter>
+    <filter name="not-glass">
+        <not>
+            <block>glass</block>
+        </not>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<block-drops>
+    <rule wrong-tool="true">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </region>
+        <filter>
+            <any>
+                <material>gravel</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="flint"/>
+        </drops>
+    </rule>
+</block-drops>
+<regions>
+    <!-- Region Definitions -->
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <union name="void-exemptions">
+        <rectangle min="-118,70" max="-133,-43"/>
+        <rectangle min="-184,70" max="-199,-43"/>
+        <rectangle min="-184,31" max="-163,-4"/>
+        <rectangle min="-133,-4" max="-154,31"/>
+        <rectangle min="-163,7" max="-154,20"/>
+        <rectangle min="-163,-28" max="-154,-21"/>
+        <rectangle min="-163,48" max="-154,55"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-144,0,56" max="-173,9,80"/>
+        <mirror name="blue-spawn" region="red-spawn" origin="-158.5,0,13.5" normal="0,0,-1"/>
+    </union>
+    <union name="wool-rooms">
+        <union name="blue-rooms">
+            <union name="yellow-room">
+                <rectangle min="-132,96" max="-118,86"/>
+                <rectangle min="-131,85" max="-118,86"/>
+                <rectangle min="-130,84" max="-118,86"/>
+                <rectangle min="-129,83" max="-118,86"/>
+                <rectangle min="-128,82" max="-118,86"/>
+            </union>
+            <union name="purple-room">
+                <rectangle min="-185,96" max="-199,86"/>
+                <rectangle min="-186,85" max="-199,86"/>
+                <rectangle min="-187,84" max="-199,86"/>
+                <rectangle min="-188,83" max="-199,86"/>
+                <rectangle min="-189,82" max="-199,86"/>
+            </union>
+        </union>
+        <union name="red-rooms">
+            <union name="orange-room">
+                <rectangle min="-185,-69" max="-199,-59"/>
+                <rectangle min="-186,-58" max="-199,-59"/>
+                <rectangle min="-187,-57" max="-199,-59"/>
+                <rectangle min="-188,-56" max="-199,-59"/>
+                <rectangle min="-189,-55" max="-199,-59"/>
+            </union>
+            <union name="lime-room">
+                <rectangle min="-132,-69" max="-118,-59"/>
+                <rectangle min="-131,-58" max="-118,-59"/>
+                <rectangle min="-130,-57" max="-118,-59"/>
+                <rectangle min="-129,-56" max="-118,-59"/>
+                <rectangle min="-128,-55" max="-118,-59"/>
+            </union>
+        </union>
+    </union>
+    <union name="wool-placements">
+        <block location="-159.5,5.5,78.5" name="orange-wool"/>
+        <block location="-157.5,5.5,78.5" name="lime-wool"/>
+        <block location="-159.5,5.5,-51.5" name="purple-wool"/>
+        <block location="-157.5,5.5,-51.5" name="yellow-wool"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block-place="not-glass" message="You may not place glass in the side lanes!">
+        <rectangle min="-118,70" max="-133,-43"/>
+        <rectangle min="-184,70" max="-199,-43"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply block-place="deny-void" message="You may not build outside the map!">
+        <negative>
+            <region name="void-exemptions"/>
+        </negative>
+    </apply>
+    <apply block="only-red" message="You may not edit the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply block="only-blue" message="You may not edit the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-red" message="You may not enter the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Usage Rules -->
+    <apply use="only-blue-usage" message="You may not interact with the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <apply use="only-red-usage" message="You may not interact with the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+</regions>
+<wools craftable="false">
+    <wool team="blue" color="purple" location="-193.5,14.5,90.5">
+        <region name="purple-wool"/>
+    </wool>
+    <wool team="blue" color="yellow" location="-123.5,14.5,90.5">
+        <region name="yellow-wool"/>
+    </wool>
+    <wool team="red" color="lime" location="-123.5,14.5,-63.5">
+        <region name="lime-wool"/>
+    </wool>
+    <wool team="red" color="orange" location="-193.5,14.5,-63.5">
+        <region name="orange-wool"/>
+    </wool>
+</wools>
+<itemremove>
+    <item>string</item>
+    <item>glowstone dust</item>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>sugar cane</item>
+    <item>clay ball</item>
+    <item>stone plate</item>
+    <item>sand</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron spade</item>
+    <item>log 2</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>glass bottle</item>
+    <item>cooked fish</item>
+    <item>redstone</item>
+</itemremove>
+<maxbuildheight>28</maxbuildheight>
+<gamerules>
+    <doDaylightCycle>true</doDaylightCycle>
+</gamerules>
+<respawn delay="5s"/>
+</map>

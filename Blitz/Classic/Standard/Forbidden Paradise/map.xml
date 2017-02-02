@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="blitz-global.xml"/>
+<name>Forbidden Paradise</name>
+<version>1.0.1</version>
+<objective>Eliminate the other team before 10 minutes is up.</objective>
+<gamemode>blitz</gamemode>
+<timelock>on</timelock>
+<authors>
+    <author uuid="6e2d0ce5-0dad-4e8a-b013-3dc9500add92"/> <!-- RastaLulz -->
+</authors>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>
+</blitz>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="16">baked potato</item>
+        <item slot="7" amount="32">arrow</item>
+        <item slot="8" amount="1">golden apple</item>
+        <helmet>iron helmet</helmet>
+        <boots>iron boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+    </kit>
+</kits>
+<itemremove>
+    <item>baked potato</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>iron helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>wood</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <cuboid min="-80,70,140" max="-81,71,141"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="52,70,141" max="53,70,140"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="-16,122,206" max="-12,122,207"/>
+    </default>
+</spawns>
+</map>

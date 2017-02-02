@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Atlantis</name>
+<version>2.0.1</version>
+<objective>Eliminate the other team before the time runs out.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="035312e6-79ec-4726-9337-36b282c22063" contribution="Planning, Building"/> <!-- S33K3R -->
+</authors>
+<rules>
+    <rule>Do not jump in the water, you will die</rule>
+</rules>
+<blitz>
+    <time>6m</time>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<include src="blitz-global.xml" />
+<teams>
+    <team color="gold" max="20" max-overfill="25">Orange</team>
+    <team color="dark green" max="20" max-overfill="25">Green</team>
+</teams>
+<spawns>
+    <spawn team="green" kit="green">
+        <regions yaw="180">
+            <cuboid min="-2, 12, 67" max="3, 12, 62" />
+        </regions>
+    </spawn>
+    <spawn team="orange" kit="orange">
+        <regions yaw="0">
+            <cuboid min="-2, 14, -57" max="2.5, 14, -61.5" />
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cuboid min="-37, 49, 2" max="-34, 49, -1" />
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`31 Hit Kill">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`31 Shot Kill">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="3" amplifier="1">heal</potion>
+        <potion duration="3" amplifier="10">damage resistance</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="D87F33" name="Helmet" locked="true">leather helmet</helmet>
+        <chestplate color="D87F33" name="Kevlar" locked="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="667F33" name="Helmet" locked="true">leather helmet</helmet>
+        <chestplate color="667F33" name="Kevlar" locked="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="kill">
+        <potion duration="1" amplifier="10">harm</potion>
+    </kit>
+</kits>
+<regions>
+    <cylinder name="water" base="0.5,0,0.5" radius="80" height="7" />
+    <!-- Kill the player upon entering the water" -->
+    <apply kit="kill">
+        <region name="water"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>

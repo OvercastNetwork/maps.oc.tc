@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Haunted Blocks</name>
+<version>1.2.2</version>
+<objective>Leak lava from the enemy's obsidian core.</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+</authors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="90">
+        <cylinder base="123,25,72" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="270">
+        <cylinder base="-89,25,72" radius="3" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="17,34,-17" radius="5" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <union name="blue-storage">
+        <cuboid name="blue-storage-main" min="117,24,58" max="129,32,86"/>
+        <cuboid name="blue-storage-left" min="116,24,41" max="130,30,50"/>
+        <cuboid name="blue-storage-right" min="116,24,94" max="130,30,103"/>
+    </union>
+    <union name="red-storage">
+        <cuboid name="red-storage-main" min="-95,24,58" max="-83,32,86"/>
+        <cuboid name="red-storage-left" min="-96,24,94" max="-82,30,103"/>
+        <cuboid name="red-storage-right" min="-96,24,41" max="-82,30,50"/>
+    </union>
+    <union name="tnt-chests">
+        <cuboid name="red-chest1" min="-78,47,85" max="-79,42,83"/>
+        <cuboid name="red-chest2" min="-78,47,80" max="-79,42,78"/>
+        <cuboid name="red-chest3" min="-78,44,73" max="-79,42,71"/>
+        <cuboid name="red-chest4" min="-78,47,66" max="-79,42,64"/>
+        <cuboid name="red-chest5" min="-78,47,61" max="-79,42,59"/>
+        <cuboid name="blue-chest1" min="113,47,59" max="112,42,61"/>
+        <cuboid name="blue-chest2" min="113,47,64" max="112,42,66"/>
+        <cuboid name="blue-chest3" min="113,44,71" max="112,42,73"/>
+        <cuboid name="blue-chest4" min="113,47,78" max="112,42,80"/>
+        <cuboid name="blue-chest5" min="113,47,83" max="112,42,85"/>
+    </union>
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <region name="blue-storage"/>
+        <region name="red-storage"/>
+    </apply>
+    <apply block="deny-all" message="You may not break the chests!">
+        <region name="tnt-chests"/>
+    </apply>
+    <!-- Main Area -->
+    <apply block="deny-all" message="You may not build in the void on the side">
+    <negative name="playable-inverse">
+        <rectangle min="131,40" max="-97,104"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="8">
+    <core team="blue">
+        <cuboid min="92,44,70" max="99,54,74"/>
+    </core>
+    <core team="red">
+        <cuboid min="-65,44,70" max="-58,54,74"/>
+    </core>
+</cores>
+<gamerules>
+    <doFireTick>false</doFireTick>
+</gamerules>
+</map>

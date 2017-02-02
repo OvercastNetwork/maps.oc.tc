@@ -1,0 +1,333 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Clover</name>
+<version>1.0.3</version>
+<objective>Destroy the core and capture the 3 wools.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Intial Map Layout"/> <!-- Tywnis -->
+    <author uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Extension and Ingenuity"/> <!-- i2 -->
+</authors>
+<contributors>
+    <contributor uuid="19388047-f04b-43ac-9546-22aa69aea75c" contribution="Block Cyclone"/> <!-- bleangamer -->
+    <contributor uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c" contribution="Moral Support"/> <!-- ItzaMeLuigi_ -->
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="Raging and Building"/> <!-- nixter1029 -->
+</contributors>
+<teams>
+    <team color="dark aqua" max="50">Cyan</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" amount="32">glass</item>
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="5" amount="32" name="Clover Root">golden carrot</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="3">heal</potion>
+        <potion duration="7">damage resistance</potion>
+    </kit>
+    <kit name="cyan" parents="spawn">
+        <helmet color="1d998b">leather helmet</helmet>
+        <chestplate color="1d998b">leather chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="observer">
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>cooked fish</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<spawns safe="true">
+    <default yaw="-45">
+        <cylinder base="0.5,56.6,0.5" radius="3" height="0"/>
+    </default>
+    <spawn team="red" kit="red" yaw="45">
+        <cylinder base="192.5,19,-191.5" radius="11" height="0"/>
+    </spawn>
+    <spawn team="cyan" kit="cyan" yaw="-135">
+        <cylinder base="-191.5,19,192.5" radius="11" height="0"/>
+    </spawn>
+</spawns>
+<maxbuildheight>27</maxbuildheight>
+<filters>
+    <filter name="only-cyan">
+        <team>cyan</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="no-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-chest">
+        <rectangle min="oo,oo" max="-oo,-oo"/>
+    </apply>
+    <!-- Where red cap their stuff -->
+    <apply block="deny-all">
+        <union name="red-cap">
+            <union name="red-y-cap">
+                <rectangle min="-147,148" max="-152,153"/>
+                <rectangle min="-149,150" max="-154,155"/>
+                <cuboid min="-151,10,152" max="-165,15,166"/>
+            </union>
+            <union name="red-p-cap">
+                <rectangle min="-159,128" max="-162,125"/>
+                <cylinder base="-160.5,6,126.5" height="7" radius="5"/>
+            </union>
+            <union name="red-l-cap">
+                <rectangle min="-127,160" max="-124,163"/>
+                <cylinder base="-125.5,6,161.5" height="7" radius="5"/>
+            </union>
+        </union>
+    </apply>
+    <apply  enter="only-red" message="Can not enter enemies wool area, go to their base!">
+        <region name="red-cap"/>
+    </apply>
+    <!-- Where cyan cap their stuff -->
+    <apply block="deny-all">
+        <union name="cyan-cap">
+            <union name="cyan-y-cap">
+                <rectangle min="148,-147" max="153,-152"/>
+                <rectangle min="150,-149" max="155,-154"/>
+                <cuboid min="152,10,-151" max="166,15,-165"/>
+            </union>
+            <union name="cyan-p-cap">
+                <rectangle min="125,-162" max="128,-159"/>
+                <cylinder base="126.5,6,-160.5" height="7" radius="5"/>
+            </union>
+            <union name="cyan-l-cap">
+                <rectangle min="160,-127" max="163,-124"/>
+                <cylinder base="161.5,6,-125.5" height="7" radius="5"/>
+            </union>
+        </union>
+    </apply>
+    <apply  enter="only-cyan" message="Can not enter enemies wool area, go to their base!">
+        <region name="cyan-cap"/>
+    </apply>
+    <apply use="deny-all">
+        <union name="wool-dispensers">
+            <union name="yellow-dispensers">
+                <!-- Centered Blocks -->
+                <block>0,2,7</block>
+                <block>-7,2,0</block>
+                <block>0,2,-7</block>
+                <block>7,2,0</block>
+                <!-- Diagonal Blocks -->
+                <block>4,2,4</block>
+                <block>-4,2,4</block>
+                <block>4,2,-4</block>
+                <block>-4,2,-4</block>
+            </union>
+            <block name="purple-dispensers">100,1,100</block>
+            <block name="lime-dispensers">-100,1,-100</block>
+            <union name="cap-dispensers">
+                <union name="red-cap-dispensers">
+                    <block>-150,11,150</block>
+                    <block>-161,6,126</block>
+                    <block>-126,6,161</block>
+                </union>
+                <union name="cyan-cap-dispensers">
+                    <block>150,11,-150</block>
+                    <block>161,6,-126</block>
+                    <block>126,6,-161</block>
+                </union>
+            </union>
+        </union>
+    </apply>
+    <apply block="deny-all">
+        <union name="chest-island">
+            <cylinder name="l-b" base="-125.5,0,48.5" radius="15" height="3"/>
+            <cylinder name="r-b" base="-47.5,0,126.5" radius="15" height="3"/>
+            <cylinder name="l-r" base="126.5,0,-47.5" radius="15" height="3"/>
+            <cylinder name="r-r" base="48.5,0,-125.5" radius="15" height="3"/>
+        </union>
+        <circle name="yellow-room" center="0.5,0.5" radius="20"/>
+        <union name="purple-room">
+            <circle center="100.5,100.5" radius="18"/>
+            <circle center="109.5,91.5" radius="11"/>
+            <circle center="109.5,109.5" radius="11"/>
+            <circle center="91.5,109.5" radius="11"/>
+            <circle center="91.5,91.5" radius="11"/>
+        </union>
+        <union name="lime-room">
+            <circle center="-99.5,-99.5" radius="18"/>
+            <circle center="-108.5,-90.5" radius="11"/>
+            <circle center="-108.5,-108.5" radius="11"/>
+            <circle center="-90.5,-108.5" radius="11"/>
+            <circle center="-90.5,-90.5" radius="11"/>
+        </union>
+    </apply>
+    <!-- Spawns -->
+    <apply block="only-iron" use="only-cyan" enter="only-cyan">
+        <circle name="cyanspawn" center="-197.5,198.5" radius="30"/>
+    </apply>
+    <apply block="only-iron" use="only-red" enter="only-red">
+        <circle name="redspawn" center="198.5,-197.5" radius="30"/>
+    </apply>
+    <apply block="deny-void" message="You may not build out this far!">
+        <negative>
+            <union name="main">
+                <circle name="center" center="0.5,0.5" radius="104"/>
+                <circle name="left-area" center="74.5,74.5" radius="64"/>
+                <circle name="right-area" center="-73.5,-73.5" radius="64"/>
+                <circle name="b-front-middle" center="-80.5,81.5" radius="30"/>
+                <circle name="r-front-middle" center="81.5,-80.5" radius="30"/>
+                <circle name="l-b-l" center="-125.5,48.5" radius="36"/>
+                <circle name="r-b-l" center="-47.5,126.5" radius="36"/>
+                <circle name="l-r-l" center="126.5,-47.5" radius="36"/>
+                <circle name="r-r-l" center="48.5,-125.5" radius="36"/>
+            </union>
+        </negative>
+    </apply>
+    <apply block="deny-all">
+        <!-- cyan -->
+        <circle center="-172.5,173.5" radius="20"/>
+        <complement>
+            <circle center="-146.5,147.5" radius="31"/>
+            <region name="red-cap"/>
+            <circle center="-147.5,104.5" radius="20"/>
+            <circle center="-103.5,148.5" radius="20"/>
+            <circle center="-125.5,126.5" radius="13"/>
+        </complement>
+        <!-- Red -->
+        <circle center="173.5,-172.5" radius="20"/>
+        <complement>
+            <circle center="147.5,-146.5" radius="31"/>
+            <region name="cyan-cap"/>
+            <circle center="104.5,-147.5" radius="20"/>
+            <circle center="148.5,-103.5" radius="20"/>
+            <circle center="126.5,-125.5" radius="13"/>
+        </complement>
+    </apply>
+</regions>
+<cores material="obsidian" leak="2">
+    <core team="red">
+        <cuboid min="74,9,-78" max="79,13,-73"/>
+    </core>
+    <core team="cyan">
+        <cuboid min="-78,9,74" max="-73,13,79"/>
+    </core>
+</cores>
+<wools>
+    <wool team="red" color="purple">
+        <block location="-161,9,126"/>
+    </wool>
+    <wool team="red" color="yellow">
+        <block location="-157,15,157"/>
+    </wool>
+    <wool team="red" color="lime">
+        <block location="-126,9,161"/>
+    </wool>
+    <wool team="cyan" color="lime">
+        <block location="126,9,-161"/>
+    </wool>
+    <wool team="cyan" color="yellow">
+        <block location="157,15,-157"/>
+    </wool>
+    <wool team="cyan" color="purple">
+        <block location="161,9,-126"/>
+    </wool>
+</wools>
+<tutorial>
+    <stage title="Invasion">
+        <message>
+            <line>`rThis map is an `a`lInvasion `rmap</line>
+        </message>
+        <teleport>
+            <point yaw="-45">2.5,56,2.5</point>
+        </teleport>
+    </stage>
+    <stage title="Neutral Wools">
+        <message>
+            <line>`rThe first objective is to grab the `a`lNeutral Wools `r and bring them to the opponent's base</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="45">-6.5,18,7.5</point>
+        </teleport>
+    </stage>
+    <stage title="Neutral Wools Pt 2.">
+        <message>
+            <line>`rThe wools can be found on the `b`lcenter`r line dividing the two bases</line>
+            <line>`rAnd are signified by a floating `d`lcolored`r monument</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="0">105,12,105</point>
+        </teleport>
+    </stage>
+    <stage title="Neutral Wools Pt 3.">
+        <message>
+            <line>`rTo grab the wool, just walk over the `a`lpressure plate `rbelow the monument!</line>
+        </message>
+        <teleport>
+            <point yaw="-60" pitch="20">-104,2,-102</point>
+        </teleport>
+    </stage>
+    <stage title="Placing the Wool">
+        <message>
+            <line>`rOnce you grab your wool, `4`linvade`r!</line>
+            <line>`rLook for the beacons in the opponent's base!</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="35">-124.5,31,125.5</point>
+        </teleport>
+    </stage>
+    <stage title="Into the Rabbit Hole">
+        <message>
+            <line>`rDon't be afraid, jump down and place that wool!</line>
+        </message>
+        <teleport>
+            <point yaw="-55" pitch="75">-162,17,125</point>
+        </teleport>
+    </stage>
+    <stage title="The Core">
+        <message>
+            <line>The `lsecond`r objective in this map is to break open the other team's core!</line>
+            <line>Mine out the obsidian and make the `clava`r leak out!</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="30">-56.5,25,57.5</point>
+        </teleport>
+    </stage>
+    <stage title="Spawning">
+        <message>
+            <line>You'll be spawning back behind the wool monuments.</line>
+            <line>Remember that those are for the other team!</line>
+            <line>Your goal is to get to `a`ltheir`r monuments!</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="30">198.5,37,-197.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>
+

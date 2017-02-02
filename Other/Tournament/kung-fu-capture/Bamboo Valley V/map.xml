@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<map proto="1.4.2">
+<name>Bamboo Valley V</name>
+<version>1.2</version>
+<objective>Capture the enemy team's wools.</objective>
+<gamemode>CTW</gamemode>
+<time results="objective">45m</time>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/>
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042" contribution="XML"/>
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="8" max-overfill="8">Red</team>
+    <team id="blue-team" color="blue" max="8" max-overfill="8">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" enchantment="dig speed:1" unbreakable="true">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64" damage="3">wood</item>
+        <item slot="5" amount="64" damage="3">wood</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="7" amount="64">golden carrot</item>
+        <item slot="28">arrow</item>
+        <effect duration="4" amplifier="5">resistance</effect>
+    </kit>
+</kits>
+<wools>
+    <wool team="red-team" color="yellow" location="99,23,-61">
+        <monument>
+            <block>47,37,-189</block>
+        </monument>
+    </wool>
+    <wool team="red-team" color="orange" location="-6,23,-61">
+        <monument>
+            <block>46,37,-189</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="purple" location="-6,23,-163">
+        <monument>
+            <block>46,37,-35</block>
+        </monument>
+    </wool>
+    <wool team="blue-team" color="pink" location="99,23,-163">
+        <monument>
+            <block>47,37,-35</block>
+        </monument>
+    </wool>
+</wools>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <material id="only-iron">iron block</material>
+    <not id="deny-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <apply block="only-iron" message="You may only break iron blocks in your spawn!">
+        <region>
+            <cuboid min="-6,10,-211" max="100,0,-197"/>
+            <cuboid min="100,10,-12" max="-6,0,-26"/>
+        </region>
+    </apply>
+    <apply block="only-red" enter="only-red" message="You may not enter or modify your own wool room!">
+        <region>
+            <rectangle min="100,-60" max="90,-70"/>
+            <rectangle min="4,-60" max="-6,-70"/>
+        </region>
+    </apply>
+    <apply block="only-blue" enter="only-blue" message="You may not enter or modify your own wool room!">
+        <region>
+            <rectangle min="-6,-163" max="4,-153"/>
+            <rectangle min="90,-163" max="100,-153"/>
+        </region>
+    </apply>
+    <apply block="deny-void" message="You may not build in the void!">
+        <region>
+            <negative>
+                <union>
+                    <rectangle min="-6,-196" max="100,-184"/>
+                    <rectangle min="-6,-196" max="42,-179"/>
+                    <rectangle min="100,-196" max="52,-179"/>
+                    <rectangle min="100,-27" max="-6,-39"/>
+                    <rectangle min="100,-27" max="52,-44"/>
+                    <rectangle min="-6,-27" max="42,-44"/>
+                    <rectangle min="25,-170" max="69,-53"/>
+                </union>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red-team" kit="spawn-kit">
+        <regions yaw="0">
+            <point>47,3,-206.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit">
+        <regions yaw="180">
+            <point>47,3,-16.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>-0.5,40,-111.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawn delay="7s"/>
+<maxbuildheight>38</maxbuildheight>
+<timelock>on</timelock>
+<crafting>
+    <disable>shield</disable>
+    <disable>minecart</disable>
+</crafting>
+<itemremove>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden carrot</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+    <item amount="32" damage="3">wood</item>
+</killreward>
+</map>

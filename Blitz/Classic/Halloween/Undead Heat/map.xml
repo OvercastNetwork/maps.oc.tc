@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="blitz-global.xml"/>
+<include src="tutorial.xml"/>
+<name>Undead Heat</name>
+<version>2.5.2</version>
+<objective>Capture the black wool or eliminate the other team.</objective>
+<gamemode>blitz</gamemode>
+<gamemode>ctw</gamemode>
+<authors>
+    <author uuid="a6a99e23-34c4-4957-8974-b78b4da9ce7c"/> <!-- AntonyMo -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Aesthetics"/> <!-- Plastix -->
+    <contributor uuid="5986da63-a546-49c5-812d-d5c41a42510a" contribution="Aesthetics"/> <!-- Lyzak -->
+</contributors>
+<rules>
+    <rule>Each player may only carry one wool at a time.</rule>
+</rules>
+<teams>
+    <team color="dark gray" max="12">Skeleton</team>
+    <team color="dark green" max="12">Zombie</team>
+</teams>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+</blitz>
+<timelock>on</timelock>
+<spawns>
+    <spawn team="skeleton" kit="skeleton" yaw="0">
+        <cylinder base="0,5,-56" radius="2" height="0"/>
+    </spawn>
+    <spawn team="zombie" kit="zombie" yaw="180">
+        <cylinder base="0,5,56" radius="2" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-41,25,0" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage undead:5">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+    </kit>
+    <kit name="zombie" parents="spawn">
+        <helmet damage="2">skull item</helmet>
+        <chestplate color="667f33">leather chestplate</chestplate>
+        <leggings color="667f33">leather leggings</leggings>
+        <boots color="667f33">leather boots</boots>
+    </kit>
+    <kit name="skeleton" parents="spawn">
+        <helmet damage="1">skull item</helmet>
+        <chestplate color="4c4c4c">leather chestplate</chestplate>
+        <leggings color="4c4c4c">leather leggings</leggings>
+        <boots color="4c4c4c">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>skull item</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wool</item>
+</itemremove>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply use="deny-dispenser">
+        <rectangle min="-27,-72" max="27,72"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="skeleton" color="black">
+        <block location="0,6,-62"/>
+    </wool>
+    <wool team="zombie" color="black">
+        <block location="0,6,62"/>
+    </wool>
+</wools>
+<tutorial>
+    <stage title="Blitz">
+        <message>
+            <line>`rThis map is a `a`lBlitz `rmap.</line>
+            <line>The objective is to be the team with the most players alive when the match ends.</line>
+            <line>`6Blitz `rmeans you only have one life!</line>
+        </message>
+        <teleport>
+            <point angle="0,9,0">-23,42,1</point>
+        </teleport>
+    </stage>
+    <stage title="Capture The Wool">
+        <message>
+            <line>`rThis map is also a `a`lCapture the Wool `r(CTW) map</line>
+            <line>This is a `bvictory monument`r. The objective is to grab the wool from the center and return it to your victory monument.</line>
+            <line>If no wool is capped in `65 `rminutes the team with the most alive players will win.</line>
+        </message>
+        <teleport>
+            <point angle="0,6,-61">-3,6,-57</point>
+        </teleport>
+    </stage>
+    <stage title="Zombie Team Spawn">
+        <message>
+            <line>`rThis is where the `4zombie Team `rspawns.</line>
+            <line>You spawn with gear ready for battle!</line>
+        </message>
+        <teleport>
+            <point angle="0.5,5,56">0.5,13,40</point>
+        </teleport>
+    </stage>
+    <stage title="Skeleton Team Spawn">
+        <message>
+            <line>`rThis is where the `8skeleton Team `rspawns.</line>
+            <line>You spawn with gear ready for battle!</line>
+        </message>
+        <teleport>
+            <point angle="0.5,5,-55">0.5,13,-41</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Chest">
+        <message>
+            <line>`rThis is where the wool can be found that needs to be `acaptured`r.</line>
+        </message>
+        <teleport>
+            <point angle="0,1,0">2,6,0</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

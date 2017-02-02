@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Coastline</name>
+<version>1.0.9</version>
+<objective>Destroy all three of the enemy's monuments.</objective>
+<authors>
+    <author uuid="e39fe3bc-b80e-46d2-81fe-d18042471989" contribution="Map design"/> <!-- EnarRikardz -->
+    <author uuid="3d4c3318-8487-4c9f-b137-df73fa930ea9" contribution="XML design"/> <!-- ttaylorr -->
+</authors>
+<contibutors>
+    <contributor uuid="41373965-b60a-40d5-8fad-72e61d951ea2" contribution="Spawn kit"/> <!-- Rokosnocone -->
+    <contributor uuid="e82504ac-8c95-4895-9dca-222f924d697c" contribution="Tower creation"/> <!-- TiggyLi -->
+    <contributor uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4" contribution="Moral support"/> <!-- DiamondAx -->
+    <contributor uuid="a02e9415-05bc-40f8-be9f-7b1b521b6a0e" contribution="Feedback and moral support"/> <!-- CacklingPanda -->
+</contibutors>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<modes>
+    <mode name="`3The back monument is beacon" after="25m" material="beacon"/>
+    <mode name="`3The back monument is coal" after="40m" material="coal block"/>
+</modes>
+<destroyables name="Monument A" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="blue">
+        <cuboid min="0,25,-55" max="1,27,-56"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="0,25,56" max="1,27,57"/>
+    </destroyable>
+</destroyables>
+<destroyables name="Monument B" materials="obsidian" completion="100%">
+    <destroyable owner="blue">
+        <cuboid min="-12,16,-40" max="-13,18,-41"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="13,16,41" max="14,18,42"/>
+    </destroyable>
+</destroyables>
+<destroyables name="Monument C" materials="obsidian" completion="100%">
+    <destroyable owner="blue">
+        <cuboid min="13,16,-40" max="14,18,-41"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="-12,16,41" max="-13,18,42"/>
+    </destroyable>
+</destroyables>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="red-spawn-b" min="19,16,82" max="-18,26,91"/>
+    <rectangle name="red-spawn-e" min="19,82" max="-18,91"/>
+    <cuboid name="blue-spawn-b" min="-18,16,-90" max="19,26,-81"/>
+    <rectangle name="blue-spawn-e" min="-18,-90" max="19,-81"/>
+    <!-- Applied -->
+    <apply block="deny-all" message="Do not modify your spawn!">
+        <region name="red-spawn-b"/>
+        <region name="blue-spawn-b"/>
+    </apply>
+    <apply enter="only-blue" message="Do not enter the enemy spawn!">
+        <region name="blue-spawn-e"/>
+    </apply>
+    <apply enter="only-red" message="Do not enter the enemy spawn!">
+        <region name="red-spawn-e"/>
+    </apply>
+    <apply block="deny-all" message="Don't edit outside the map area!">
+        <negative>
+            <rectangle name="map" min="32,-90" max="-31,91"/>
+        </negative>
+    </apply>
+    <apply use="deny-beacon">
+        <region name="map"/>
+    </apply>
+</regions>
+<maxbuildheight>32</maxbuildheight>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64" damage="1">cooked fish</item>
+        <item slot="5" damage="3" amount="32">leaves</item>
+        <item slot="6" damage="2" amount="32">log</item>
+        <item slot="8" amount="7">gold nugget</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="30" unbreakable="true">iron spade</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="b60000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="b60000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="b60000" unbreakable="true">leather leggings</leggings>
+        <boots color="b60000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="004de6" unbreakable="true">leather helmet</helmet>
+        <chestplate color="004de6" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="004de6" unbreakable="true">leather leggings</leggings>
+        <boots color="004de6" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>cooked fish</item>
+    <item>leaves</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>coal block</item>
+    <item>beacon</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<killreward>
+    <item amount="8">arrow</item>
+</killreward>
+<spawns>
+    <spawn team="red" kit="red">
+        <point yaw="90">16,17,87</point>
+        <point yaw="-90">-15,17,87</point>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <point yaw="90">16,17,-86</point>
+        <point yaw="-90">-15,17,-86</point>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="43,47,1" max="43,47,1"/>
+    </default>
+</spawns>
+</map>

@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Ascendance</name>
+<version>1.5.3</version>
+<edition>ranked</edition>
+<objective>Capture all 5 sequential control points.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team color="dark red" min="7" max="8" id="red">Red</team>
+    <team color="blue" min="7" max="8" id="blue">Blue</team>
+</teams>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="blue-2nd" parents="deny-all">
+        <allow><objective>blue-2nd</objective></allow>
+    </filter>
+    <filter name="red-2nd" parents="deny-all">
+        <allow><objective>red-2nd</objective></allow>
+    </filter>
+    <filter name="mid-held" parents="deny-all">
+        <allow><objective>mid</objective></allow>
+    </filter>
+    <filter name="spawn1">
+        <not>
+            <time>2m</time>
+        </not>
+    </filter>
+    <filter name="spawn2">
+        <all>
+            <time>2m</time>
+            <not>
+                <time>4m</time>
+            </not>
+        </all>
+    </filter>
+    <filter name="spawn3">
+        <all>
+            <time>4m</time>
+            <not>
+                <time>6m</time>
+            </not>
+        </all>
+    </filter>
+    <filter name="spawn4">
+        <all>
+            <time>6m</time>
+            <not>
+                <time>8m</time>
+            </not>
+        </all>
+    </filter>
+    <filter name="spawn5">
+        <all>
+            <time>8m</time>
+            <not>
+                <time>10m</time>
+            </not>
+        </all>
+    </filter>
+    <filter name="spawn6">
+        <all>
+            <time>10m</time>
+        </all>
+    </filter>
+</filters>
+<spawns>
+    <default kit="obs" yaw="-90"><cylinder base="-24,16,0" radius="1" height="0"/></default>
+        <spawn team="red" kit="red" filter="spawn1" yaw="0">
+            <cylinder base="0,42,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" filter="spawn2" yaw="0">
+            <cylinder base="0,80,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" filter="spawn3" yaw="0">
+            <cylinder base="0,124,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" filter="spawn4" yaw="0">
+            <cylinder base="0,165,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" filter="spawn5" yaw="0">
+            <cylinder base="0,206,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" filter="spawn6" yaw="0">
+            <cylinder base="0,247,88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn1" yaw="180">
+            <cylinder base="0,42,-88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn2" yaw="180">
+            <cylinder base="0,80,-88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn3" yaw="180">
+            <cylinder base="0,124,-88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn4" yaw="180">
+            <cylinder base="0,165,-88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn5" yaw="180">
+            <cylinder base="0,206,-88" radius=".3" height="0"/>
+        </spawn>
+        <spawn team="blue" kit="blue" filter="spawn6" yaw="180">
+            <cylinder base="0,247,-88" radius=".3" height="0"/>
+        </spawn>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not interact with blocks">
+        <rectangle name="field" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <rectangle name="red-spawn" min="-13,85" max="13,93"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <rectangle name="blue-spawn" min="-13,-85" max="13,-93"/>
+    </apply>
+    <union name="red-2nd-owner">
+        <cuboid min="2,2,-94" max="6,3,-92"/>
+        <cuboid min="2,2,92" max="6,3,94"/>
+        <cuboid min="-2,6,16" max="2,10,25"/>
+    </union>
+    <union name="mid-owner">
+        <cuboid min="-2,2,-94" max="2,3,-92"/>
+        <cuboid min="-2,2,92" max="2,3,94"/>
+    </union>
+    <union name="blue-2nd-owner">
+        <cuboid min="-6,2,-94" max="-2,3,-92"/>
+        <cuboid min="-6,2,92" max="-2,3,94"/>
+        <cuboid min="-2,6,-25" max="2,10,-16"/>
+    </union>
+</regions>
+<playable>
+    <region name="field"/>
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" damage="8192" potions="regeneration:120:1:false;heal:1:0:false" name="`rPotion of Regeneration">potion</item>
+        <item slot="3" amount="32">cooked beef</item>
+        <item slot="8" amount="24">arrow</item>
+        <potion duration="6" amplifier="3">heal</potion>
+        <potion duration="7" amplifier="2">damage resistance</potion>
+        <leggings unbreakable="true" enchantment="protection_fire:2">iron leggings</leggings>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="obs" force="true">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron leggings</item>
+    <item>cooked beef</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+    <item>arrow</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron boots</item>
+</itemremove>
+<killreward>
+    <item amount="12">arrow</item>
+    <item damage="8192" potions="regeneration:120:1:false;heal:1:0:false" name="`rPotion of Regeneration">potion</item>
+    <item amount="1">iron ingot</item>
+</killreward>
+<itemkeep>
+    <item>iron ingot</item>
+</itemkeep>
+<portals>
+    <portal x="@0" y="@6" z="@55" yaw="180" filter="red-2nd">
+        <cuboid min="3,1,92" max="5,4,93"/>
+    </portal>
+    <portal x="@0" y="@6" z="@23" yaw="180" filter="mid-held">
+        <cuboid min="-1,1,92" max="1,4,93"/>
+    </portal>
+    <portal x="@0" y="@6" z="@-18" yaw="180" filter="blue-2nd">
+        <cuboid min="-5,1,92" max="-3,4,93"/>
+    </portal>
+    <portal x="@0" y="@6" z="@-55" yaw="180" filter="blue-2nd">
+        <cuboid min="-5,1,-93" max="-3,4,-92"/>
+    </portal>
+    <portal x="@0" y="@6" z="@-23" yaw="180" filter="mid-held">
+        <cuboid min="-1,1,-93" max="1,4,-92"/>
+    </portal>
+    <portal x="@0" y="@6" z="@18" yaw="180" filter="red-2nd">
+        <cuboid min="3,1,-93" max="5,4,-92"/>
+    </portal>
+</portals>
+<control-points incremental="true" neutral-state="true" show-progress="true" scaled-time="true" time-multiplier="0.25">
+    <control-point initial-owner="red" id="red-last" name="Red Last" capture-time="3s">
+        <capture-region> <cuboid min="-4,5,59" max="4,9,67"/> </capture-region>
+        <progress-display-region> <cuboid min="-4,5,59" max="4,9,67"/> </progress-display-region>
+        <player-filter><any>
+            <objective>red-2nd</objective>
+            <team>red</team>
+        </any></player-filter>
+    </control-point>
+    <control-point initial-owner="red" id="red-2nd" name="Red 2nd" capture-time="4s">
+        <capture-region> <cuboid min="-4,7,28" max="4,11,36"/> </capture-region>
+        <progress-display-region> <cuboid min="-4,7,28" max="4,11,36"/> </progress-display-region>
+        <owner-display-region> <region name="red-2nd-owner"/> </owner-display-region>
+        <player-filter><any>
+            <objective>red-last</objective>
+            <objective>mid</objective>
+        </any></player-filter>
+    </control-point>
+    <control-point id="mid" name="Mid" capture-time="5s">
+        <capture-region> <cuboid min="-4,1,-4" max="4,5,4"/> </capture-region>
+        <progress-display-region> <cuboid min="-4,1,-4" max="4,5,4"/> </progress-display-region>
+        <owner-display-region> <region name="mid-owner"/> </owner-display-region>
+        <player-filter><any>
+            <objective>red-2nd</objective>
+            <objective>blue-2nd</objective>
+        </any></player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-2nd" name="Blue 2nd" capture-time="4s">
+        <capture-region> <cuboid min="-4,7,-28" max="4,11,-36"/> </capture-region>
+        <progress-display-region> <cuboid min="-4,7,-28" max="4,11,-36"/> </progress-display-region>
+        <owner-display-region> <region name="blue-2nd-owner"/> </owner-display-region>
+        <player-filter><any>
+            <objective>mid</objective>
+            <objective>blue-last</objective>
+        </any></player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-last" name="Blue Last" capture-time="3s">
+        <capture-region> <cuboid min="-4,5,-67" max="4,9,-59"/> </capture-region>
+        <progress-display-region> <cuboid min="-4,5,-67" max="4,9,-59"/> </progress-display-region>
+        <player-filter><any>
+            <objective>blue-2nd</objective>
+            <team>blue</team>
+        </any></player-filter>
+    </control-point>
+</control-points>
+<king/>
+<time result="objectives">12m</time>
+<destroyables>
+    <destroyable name="Wall" completion="0%" materials="air" mode-changes="true" owner="blue" show="false">
+        <union>
+            <cuboid min="-12,1,-86" max="12,5,-85"/>
+            <cuboid min="-12,1,85" max="12,5,86"/>
+        </union>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode name="Spawns are blocked, you may only use portals!" after="8m" material="glass"/>
+</modes>
+</map>

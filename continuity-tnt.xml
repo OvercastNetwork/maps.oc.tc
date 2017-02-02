@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<map>
+<!-- -  - -  - -  - -  - -  - -  - -  - -  - -  - -->
+<!--                Inventory Chart               -->
+<!-- -  - -  - -  - -  - -  - -  - -  - -  - -  - -->
+<!--  [103]  - -  - -  - -  - -  - -  - -  - -  - -->
+<!--  [102]  - -  - -  - -  - -  - -  - -  - -  - -->
+<!--  [101]  - -  - -  - -  - -  - -  - -  - -  - -->
+<!--  [100]  - -  - -  - -  - -  - -  - -  - -  - -->
+<!-- -  - -  - -  - -  - -  - -  - -  - -  - -  - -->
+<!-- [09] [10] [11] [12] [13] [14] [15] [16] [17] -->
+<!-- [18] [19] [20] [21] [22] [23] [24] [25] [26] -->
+<!-- [27] [28] [29] [30] [31] [32] [33] [34] [35] -->
+<!-- -  - -  - -  - -  - -  - -  - -  - -  - -  - -->
+<!-- [00] [01] [02] [03] [04] [05] [06] [07] [08] -->
+<!-- -  - -  - -  - -  - -  - -  - -  - -  - -  - -->
+<kits>
+    <kit name="tnt-inventory">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7">diamond pickaxe</item>
+        <item slot="27" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!">shears</item>
+        <item slot="9" amount="64">tnt</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="10" amount="64">tnt</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="29" unbreakable="true" attributes="generic.attackDamage:add:1" name="`aiCarus Blade" lore="`7Right click to reduce TNT damage">wood sword</item>
+        <item slot="11" amount="64">tnt</item>
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="32" amount="8">stone plate</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="14" amount="16">trap door</item>
+        <item slot="6">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="15" amount="16">piston base</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="8">sand</item>
+        <item slot="26" amount="3">dispenser</item>
+        <item slot="17" amount="8">redstone comparator</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>workbench</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bucket</item>
+    <item>diamond block</item>
+    <item>iron block</item>
+    <item>iron ingot</item>
+    <item>hopper</item>
+    <item>redstone comparator</item>
+    <item>sand</item>
+    <item>chainmail chestplate</item>
+    <item>dispenser</item>
+</itemremove>
+<!-- Future Pipeline: 1.8 -->
+<ignore-kits>
+    <kit name="tnt-inventory-1.8">
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:7">diamond pickaxe</item>
+        <item slot="27" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse team griefer's TNT|`7Does not work in `9water`7.|`7Use `a/report `7to alert the staff!">shears</item>
+        <item slot="18" unbreakable="true" attributes="generic.attackDamage:add:1" name="`aiCarus Blade" lore="`7Right click to reduce TNT damage">wood sword</item>
+        <item slot="9">arrow</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="29" amount="8">slime block</item>
+        <item slot="20" amount="8">piston sticky base</item>
+        <item slot="11" amount="8">piston base</item>
+        <item slot="4" amount="32">nether fence</item>
+        <item slot="31" amount="32">step</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="13" amount="8">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="32" amount="16">lever</item>
+        <item slot="23" amount="16">diode</item>
+        <item slot="14" amount="16">redstone comparator</item>
+        <item slot="6">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="15" amount="3">sponge</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="16" amount="3">dispenser</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="17" amount="64">tnt</item>
+    </kit>
+</ignore-kits>
+<ignore-itemrmeove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>workbench</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>diamond chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>bucket</item>
+    <item>diamond block</item>
+    <item>iron block</item>
+    <item>iron ingot</item>
+    <item>hopper</item>
+    <item>redstone comparator</item>
+    <item>slime block</item>
+    <item>sponge</item>
+    <item>piston sticky base</item>
+    <item>chainmail chestplate</item>
+    <item>dispenser</item>
+</ignore-itemrmeove>
+</map>

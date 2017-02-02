@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Below Zero</name>
+<version>1.1.0</version>
+<objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
+<authors>
+    <author uuid="17107a74-087e-4704-8d4f-121b1910d6e6" contribution="Main Design"/> <!-- Kauimala -->
+    <author uuid="1e3b1b79-307a-4093-aaeb-21b2fd419336" contribution="Detailing"/> <!-- BlockDrop74 -->
+</authors>
+<contributors>
+    <contributor uuid="2f1547d6-8fe4-4c63-a4b5-9598662a82f7" contribution="Feedback"/> <!-- RuvDatRice -->
+    <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="XML"/> <!-- lord_creeper01 -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3" amount="64">baked potato</item>
+        <item slot="4" amount="2">golden apple</item>
+        <item slot="5" amount="64" damage="1">log</item>
+        <item slot="6" amount="16">snow ball</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="64">arrow</item>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>baked potato</item>
+    <item>string</item>
+    <item>apple</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<spawns>
+    <spawn team="blue" kit="spawn">
+        <point yaw="-135">
+            <cylinder base="583.5,14,256.5" radius="2" height="0" />
+        </point>
+    </spawn>
+    <spawn team="red" kit="spawn">
+        <point yaw="45">
+            <cylinder base="761.5,14,75.5" radius="2" height="0" />
+        </point>
+    </spawn>
+    <default>
+        <point yaw="-45">
+            <cylinder base="622.5,34,114.5" radius="2" height="0" />
+        </point>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="allow-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="deny-chest">
+        <not>
+            <block>chest</block>
+        </not>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!--  void protection  -->
+    <union name="blue-base">
+        <rectangle name="b-snowman" max="554,284" min="606,231" />
+        <rectangle name="b-lake" max="597,204" min="618,219" />
+        <rectangle name="b-middle" max="618,219" min="632,205" />
+        <rectangle name="b-orange-road" max="618,205" min="576,220" />
+        <rectangle name="b-yellow-road" max="632,219" min="617,261" />
+        <rectangle name="b-right-road" max="632,220" min="684,205" />
+        <rectangle name="b-left-road" max="617,205" min="632,153" />
+    </union>
+    <union name="blue-wool-rooms">
+        <rectangle name="orange-wool" max="576,220" min="554,205" />
+        <rectangle name="yellow-wool" max="632,283" min="617,261" />
+    </union>
+    <union name="red-base">
+        <rectangle name="r-snowman" max="739,98" min="792,45" />
+        <rectangle name="r-lake" max="743,94," min="727,110," />
+        <rectangle name="r-middle" max="727,110," min="713,124," />
+        <rectangle name="r-pink-road" max="713,110," min="728,68" />
+        <rectangle name="r-purple-road" max="727,124," min="769,109" />
+        <rectangle name="r-right-road" max="713,109," min="661,124" />
+        <rectangle name="r-left-road" max="728,124" min="713,176" />
+    </union>
+    <union name="red-wool-rooms">
+        <rectangle name="pink-wool" max="713,44" min="728,68" />
+        <rectangle name="purple-wool" max="791,124" min="769,109" />
+    </union>
+    <union name="map">
+        <rectangle name="middle" max="713,124" min="632,205" />
+        <region name="red-wool-rooms" />
+        <region name="blue-wool-rooms" />
+        <region name="red-base" />
+        <region name="blue-base" />
+    </union>
+    <apply block="deny-all" message="You may not build outside the map">
+        <negative>
+            <region name="map" />
+        </negative>
+    </apply>
+    <!--  Red wool rooms  -->
+    <apply block="only-red deny-chest" use="only-red-usage">
+        <region name="blue-wool-rooms" />
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="blue-wool-rooms" />
+    </apply>
+    <!--  Blue wool rooms  -->
+    <apply block="only-blue deny-chest" use="only-blue-usage">
+        <region name="red-wool-rooms" />
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="red-wool-rooms" />
+    </apply>
+    <!--  spawn protection  -->
+    <apply block="allow-iron" message="You may only modify iron blocks in the base">
+        <region name="r-snowman" />
+        <region name="b-snowman" />
+    </apply>
+</regions>
+<maxbuildheight>55</maxbuildheight>
+<wools>
+    <wool team="red" color="yellow">
+        <block location="761,15,85" />
+    </wool>
+    <wool team="red" color="orange">
+        <block location="751,15,75" />
+    </wool>
+    <wool team="blue" color="pink">
+        <block location="583,15,243" />
+    </wool>
+    <wool team="blue" color="purple">
+        <block location="593,15,253" />
+    </wool>
+</wools>
+</map>

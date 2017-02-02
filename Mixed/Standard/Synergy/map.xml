@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<name>Synergy</name>
+<version>1.1.5</version>
+<objective>Leak lava from the core and destroy both team's monuments.</objective>
+<authors>
+	<author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+</authors>
+<contributors>
+	<contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="Build Slave and XML"/> <!-- dinner1111 -->
+	<contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Server"/> <!-- pepsidawg00 -->
+	<contributor uuid="5f8aeb60-e337-42ca-90a9-4104cccb4d2a" contribution="General Derpiness"/> <!-- StaticFaultz -->
+	<contributor uuid="af209afd-77dc-4bdb-8cf1-f1513c77bb0b" contribution="Head Build Slave"/> <!-- TranquilSea -->
+	<contributor uuid="d8ba993b-77dc-443d-ab5f-690f30ec8dfb" contribution="Build Slave"/> <!-- vPixel -->
+	<contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Feedback and OcD"/> <!-- xannallax33 -->
+	<contributor uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="MCedit wizard"/> <!-- xXFracXx -->
+	<contributor uuid="d556bcdf-57ad-4220-92f6-150a9b12380b" contribution="Feedback and Finding the missing pistons"/> <!-- three_two -->
+	<contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Forgot to update XML repeatedly"/> <!-- Stealth5061 -->
+</contributors>
+<teams>
+	<team color="dark purple" max="45">Purple</team>
+	<team color="dark aqua" max="45">Cyan</team>
+</teams>
+<kits>
+	<kit name="spawn">
+		<item slot="0">iron sword</item>
+		<item slot="1" enchantment="arrow infinite:1">bow</item>
+		<item slot="2" enchantment="durability:3">diamond pickaxe</item>
+		<item slot="3" enchantment="dig speed:1;durability:3">iron axe</item>
+		<item slot="4" amount="64">350</item>
+		<item slot="5" amount="64">glass</item>
+		<item slot="6" amount="64" damage="1">log</item>
+		<item slot="28">arrow</item>
+		<potion amplifier="5" duration="5">heal</potion>
+		<potion amplifier="3" duration="3">damage resistance</potion>
+	</kit>
+</kits>
+<spawns>
+	<spawns kit="spawn">
+		<spawn team="purple" yaw="-90">
+			<cuboid min="-97,5.3,-112" max="-96,6,-111"/>
+		</spawn>
+		<spawn team="cyan" yaw="90">
+			<cuboid min="118,5.3,-111" max="117,6,-112"/>
+		</spawn>
+	</spawns>
+	<default yaw="0">
+		<cuboid min="8,21.3,-185" max="12,22,-181"/>
+	</default>
+</spawns>
+<filters>
+	<filter name="only-iron" parents="deny-all">
+		<allow>
+			<block>iron block</block>
+			<block>leaves</block>
+			<block>glowstone</block>
+			<block>trap_door</block>
+			<block>glass</block>
+		</allow>
+	</filter>
+	<filter name="no-void">
+		<deny>
+			<void/>
+		</deny>
+	</filter>
+	<filter name="gravel" parents="deny-all">
+		<allow>
+			<block>gravel</block>
+			<block>stone plate</block>
+		</allow>
+	</filter>
+	<filter name="only-cyan">
+		<team>cyan</team>
+	</filter>
+	<filter name="only-purple">
+		<team>purple</team>
+	</filter>
+</filters>
+<regions>
+	<cuboid name="cyan-base" min="82,-oo,-123" max="135,25,-99"/>
+	<cuboid name="purple-base" min="-114,-oo,-123" max="-61,25,-99"/>
+	<union name="all-lanes">
+		<union name="cyan-lanes">
+			<union name="cyan-left-lanes">
+				<rectangle min="48,-63" max="34,-79"/>
+				<rectangle min="44,-106" max="33,-90"/>
+			</union>
+			<union name="cyan-right-lanes">
+				<rectangle min="48,-159" max="34,-143"/>
+				<rectangle min="44,-132" max="33,-116"/>
+			</union>
+		</union>
+		<union name="purple-lanes">
+			<union name="purple-left-lanes">
+				<rectangle min="-27,-159" max="-12,-143"/>
+				<rectangle min="-24,-90" max="-12,-106"/>
+			</union>
+			<union name="purple-right-lanes">
+				<rectangle min="-23,-116" max="-12,-132"/>
+				<rectangle min="-27,-79" max="-12,63"/>
+			</union>
+		</union>
+	</union>
+	<union name="extra-loot-chests">
+		<cuboid min="71,7,-100" max="67,3,-104"/>
+		<cuboid min="71,7,-118" max="67,3,-122"/>
+		<cuboid min="-50,7,-104" max="-46,3,-100"/>
+		<cuboid min="-50,7,-122" max="-46,3,-118"/>
+	</union>
+<!--  Applies  -->
+	<apply block="deny-all" message="Don't break the extra loot chests!">
+		<region name="extra-loot-chests"/>
+	</apply>
+	<apply block-place="deny-all" block-break="only-iron" message="You can only break iron blocks in the bases!">
+		<region name="cyan-base"/>
+		<region name="purple-base"/>
+	</apply>
+	<apply block="no-void" message="You cannot modify in this area!">
+		<complement>
+			<negative>
+				<region name="all-lanes"/>
+			</negative>
+			<rectangle min="20,-108" max="1,-114"/>
+		</complement>
+	</apply>
+	<apply enter="only-cyan" message="You may not enter the opposing team's spawn!">
+		<cuboid min="82,-oo,-123" max="135,25,-99"/>
+	</apply>
+	<apply enter="only-purple" message="You may not enter the opposing team's spawn!">
+		<cuboid min="-114,-oo,-123" max="-61,25,-99"/>
+	</apply>
+	<apply block="gravel" message="You cannot modify this area!">
+		<rectangle min="20,-108" max="1,-114"/>
+	</apply>
+</regions>
+<maxbuildheight>26</maxbuildheight>
+<cores material="obsidian" leak="5">
+	<core team="cyan">
+		<cuboid name="cyan-core" min="160,12,-106" max="169,21,-116"/>
+	</core>
+	<core team="purple">
+		<cuboid name="purple-core" min="-148,12,-106" max="-139,21,-116"/>
+	</core>
+</cores>
+<destroyables completion="100%" materials="obsidian">
+	<destroyable name="Monument A" owner="cyan">
+		<cuboid min="135,17,-209" max="134,20,-208"/>
+	</destroyable>
+	<destroyable name="Monument B" owner="cyan">
+		<cuboid min="134,17,-13" max="135,20,-14"/>
+	</destroyable>
+	<destroyable name="Monument A" owner="purple">
+		<cuboid min="-113,17,-13" max="-114,20,-14"/>
+	</destroyable>
+	<destroyable name="Monument B" owner="purple">
+		<cuboid min="-113,17,-209" max="-114,20,-208"/>
+	</destroyable>
+</destroyables>
+<toolrepair>
+	<tool>iron sword</tool>
+	<tool>bow</tool>
+	<tool>diamond pickaxe</tool>
+	<tool>iron axe</tool>
+	<tool>arrow</tool>
+</toolrepair>
+<itemremove>
+	<item>350</item>
+	<item>glass</item>
+	<item>wood</item>
+	<item>log</item>
+	<item>gold block</item>
+	<item>obsidian</item>
+	<item>gold sword</item>
+	<item>flint</item>
+	<item>gravel</item>
+	<item>beacon</item>
+	<item>glowstone_dust</item>
+	<item>trap_door</item>
+	<item>sapling</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

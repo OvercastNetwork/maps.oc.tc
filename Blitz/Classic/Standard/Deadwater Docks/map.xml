@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Deadwater Docks</name>
+<version>2.0.6</version>
+<objective>Kill all of your enemies before time runs out. You have 2 lives!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- minimitch0199 -->
+</authors>
+<teams>
+   <team color="dark red" max="12">Red</team>
+   <team color="blue" max="12">Blue</team>
+</teams>
+<blitz>
+    <time>10m</time>
+    <lives>1</lives>      
+</blitz>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90">
+        <point>54.5,61.5,50.5</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-52.5,61.5,63.5</point>
+    </spawn>
+    <default yaw="165">
+        <point>0.5,66,0.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" name="`7`lSword">iron sword</item>
+        <item slot="1" name="`7`lBow">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="8" amount="2">golden apple</item>
+        <chestplate enchantment="protection projectile:1">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="teams">
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+    <kit name="poison">
+        <potion duration="3" amplifier="2">poison</potion>
+    </kit>
+</kits>
+<timelock>on</timelock>
+<killreward>
+    <item amount="8">arrow</item>
+</killreward>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<itemremove>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<regions>
+    <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-64" min="-oo,65,-oo" max="oo,oo,oo"/>
+    <cuboid name="below-60" min="-oo,-oo,-oo" max="oo,61,oo"/>
+    <apply block="deny-all">
+        <region name="playable"/>
+    </apply>
+   <apply enter="deny-all" message="`7Don't climb above the map boundry!">
+        <region name="above-64"/>
+    </apply>
+    <apply kit="poison">
+        <region name="below-60"/>
+    </apply>
+</regions>
+<include src="blitz-global.xml"/>
+</map>

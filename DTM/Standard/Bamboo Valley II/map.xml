@@ -1,0 +1,171 @@
+<map proto="1.3.2">
+<name>Bamboo Valley II</name>
+<version>1.3.1</version>
+<objective>Destroy the other team's obsidian monument!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<contributors>
+    <contributor uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906" contribution="Helped"/> <!-- elego123 -->
+    <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
+</contributors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<timelock>on</timelock>
+<destroyables materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable name="Cliff Monument" owner="red">
+        <cuboid min="97,43,1," max="96,47,0"/>
+    </destroyable>
+    <destroyable name="Cliff Monument" owner="blue">
+        <cuboid min="-71,43,1" max="-72,47,0"/>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="45m" material="beacon"/>
+    <mode after="90m" material="coal ore"/>
+</modes>
+<filters>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="main-area" min="181,-49" max="-156,50"/>
+    <union name="bases">
+        <rectangle name="red-base" min="150,50" max="181,-49"/>
+        <rectangle name="blue-base" min="-125,-49" max="-156,50"/>
+    </union>
+    <union name="spawns">
+        <union name="red-spawns">
+            <cuboid name="red-left-spawn" min="151,59,-48" max="157,65,-41"/>
+            <cuboid name="red-right-spawn" min="151,58,49" max="157,65,42"/>
+        </union>
+        <union name="blue-spawns">
+            <cuboid name="blue-left-spawn" min="-126,58,49" max="-132,65,42"/>
+            <cuboid name="blue-right-spawn" min="-126,58,-48" max="-132,655,-41"/>
+        </union>
+    </union>
+    <apply enter="only-red" message="`7You may not enter the other team's spawn!">
+        <region name="red-spawns"/>
+    </apply>
+    <apply enter="only-blue" message="`7You may not enter the other team's spawn!">
+        <region name="blue-spawns"/>
+    </apply>
+    <apply block="only-iron" message="`7You may not interact with team bases!">
+        <region name="bases"/>
+    </apply>
+    <apply use="deny-all">
+        <region name="bases"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not build outside of the playable area!">
+        <negative>
+            <region name="main-area"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You have hit the build limit over the void.">
+        <cuboid min="0,oo,-49" max="25,36,50"/>
+    </apply>
+    <apply block="deny-all" message="You have hit the build limit over the team areas.">
+        <cuboid min="0,oo,-49" max="-156,52,50"/>
+    </apply>
+    <apply block="deny-all" message="You have hit the build limit over the team areas.">
+        <cuboid min="25,oo,50" max="181,52,-49"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1;durability:3">iron axe</item>
+        <item slot="4" amount="64" damage="3">log</item>
+        <item slot="5" amount="64" damage="3">leaves</item>
+        <item slot="6" amount="32">vine</item>
+        <item slot="7" amount="64">cooked chicken</item>
+        <item slot="8" amount="2">golden apple</item>
+        <item slot="35" amount="1">bucket</item>
+        <potion duration="7" amplifier="4">heal</potion>
+        <potion duration="7" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="993333" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+        <boots color="993333" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="334CB2" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+        <boots color="334CB2" enchantment="protection fall:2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="red">
+        <spawns team="red">
+            <spawn yaw="-90">
+                <cuboid min="153.5,59,44.5" max="154.5,59,46.5"/>
+            </spawn>
+            <spawn yaw="-90">
+                <cuboid min="153.5,59,-45.5" max="154.5,59,-43.5"/>
+            </spawn>
+        </spawns>
+    </spawns>
+    <spawns kit="blue">
+        <spawns team="blue">
+            <spawn yaw="90">
+                <cuboid min="-128.5,59,-43.5" max="-129.5,59,-45.5"/>
+            </spawn>
+            <spawn yaw="90">
+                <cuboid min="-128.5,59,46.5" max="-129.5,59,44.5"/>
+            </spawn>
+        </spawns>
+    </spawns>
+    <default yaw="180">
+        <cylinder base="12.5,75,-0.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<itemremove>
+    <item>obsidian</item>
+    <item>wood</item>
+    <item>cooked chicken</item>
+    <item>wood</item>
+    <item>vine</item>
+    <item>leaves</item>
+    <item>leather boots</item>
+    <item>leather chestplate</item>
+    <item>bucket</item>
+    <item damage="3">sapling</item>
+    <item>arrow</item>
+    <item>sugar cane</item>
+    <item>cocoa</item>
+    <item>clay ball</item>
+    <item>seeds</item>
+    <item>cobble wall</item>
+    <item damage="1">cobble wall</item>
+    <item>anvil</item>
+    <item>torch</item>
+    <item>sand</item>
+    <item>smooth brick</item>
+    <item damage="1">smooth brick</item>
+    <item damage="2">smooth brick</item>
+    <item>smooth stairs</item>
+    <item>wood stairs</item>
+    <item damage="11">stained clay</item>
+    <item damage="14">stained clay</item>
+    <item>beacon</item>
+    <item>coal</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+</map>

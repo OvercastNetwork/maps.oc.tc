@@ -1,0 +1,106 @@
+<map proto="1.4.0" game="Battleship">
+<name>Battleship</name>
+<objective>Eliminate the other team to win!</objective>
+<version>1.0.0</version>
+<gamemode>arcade</gamemode>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
+    <!-- AtlasGames !-->
+</authors>
+<broadcasts>
+    <alert after="1s">`6`lGet to a spot quick before the wall falls!</alert>
+    <alert after="5s">`6`lThe wall falls in 10 seconds!</alert>
+    <alert after="10s">`6`lThe wall falls in 5 seconds!</alert>
+    <alert after="13s">`6`lThe wall falls in 3 seconds!</alert>
+    <alert after="14s">`6`lThe wall falls in 2 seconds!</alert>
+    <alert after="15s">`6`lThe wall falls in 1 seconds!</alert>
+    <alert after="16s">`6`lThe wall has fallen! Fire away!</alert>
+</broadcasts>
+<time>2m</time>
+<blitz>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<teams>
+    <team color="blue" id="blue" min="2" max="4" max-overfill="4" show-name-tags="false">Blue</team>
+    <team color="red" id="red" min="2" max="4" max-overfill="4" show-name-tags="false">Red</team>
+</teams>
+<kits>
+    <kit id="spawn-kit">
+        <item projectile="tnt-cannon" name="`6`lCannon Blast">end rod</item>
+        <effect duration="oo" amplifier="2">poison</effect>
+        <effect duration="3" amplifier="3">resistance</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+    </kit>
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+    </kit>
+    <kit id="no-poison" force="true">
+        <effect duration="0" amplifier="1">poison</effect>
+        <effect duration="2" amplifier="3">regeneration</effect>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <region id="red-spawn" />
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <region id="blue-spawn" />
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point>0.5,8,-16.5</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <cuboid id="small-wall" min="0,0,-13" max="1,6,14" />
+    <cuboid id="large-wall" min="0,0,16" max="1,14,43" />
+    <cuboid id="wall-zone" min="-2.5,1,-12" max="3.5,10,13" />
+
+    <point id="red-spawn">-14.5,3,0.5</point>
+    <point id="blue-spawn">15.5,3,0.5</point>
+
+    <below id="board" y="3" />
+
+    <apply enter="never" region="wall-zone" />
+    <apply kit="no-poison" region="board" />
+    <apply block="never" region="everywhere" />
+</regions>
+<structures>
+    <structure id="sml-struct" region="small-wall" />
+    <structure id="lg-struct" region="large-wall" />
+
+    <dynamic structure="sml-struct" filter="sml-filter" location="0,0,-13" />
+    <dynamic structure="lg-struct" filter="lg-filter" location="0,0,-13" />
+</structures>
+<filters>
+    <not id="lg-filter">
+        <time>16s</time>
+    </not>
+
+    <time id="sml-filter">16s</time>
+</filters>
+<projectiles>
+    <projectile id="tnt-cannon" projectile="TNTPrimed" damage="10" name="`6`lCannon Blast" velocity="1.5" destroy-filter="never" cooldown="1s" throwable="false" />
+</projectiles>
+<disabledamage>
+    <!-- TNT damages enemies and self, but not teammates -->
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<itemremove>
+    <item>egg</item>
+    <item>leather helmet</item>
+    <item>end rod</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

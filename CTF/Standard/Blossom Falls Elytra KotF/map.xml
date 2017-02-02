@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="King of the Flag">
+<name>Blossom Falls: Elytra KotF</name>
+<version>1.2.3</version>
+<objective>Hold the flag until you get 300 points!</objective>
+<authors>
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
+    <!-- AtlasGames -->
+    <author uuid="d31e22be-a729-417f-967e-3636c19e0909" />
+    <!-- ThirdKnight -->
+</authors>
+<broadcasts>
+    <alert after="10s" every="30s" count="oo">`lHold the FLAGS to score points!!</alert>
+</broadcasts>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>suffocation</damage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+</disabledamage>
+<players max="45" max-overfill="54" />
+<respawn auto="true" delay="2s" spectate="true" blackout="false" />
+<score>
+    <limit>300</limit>
+    <kills>4</kills>
+</score>
+<rage/>
+<spawns>
+    <spawn kit="spawn-kit" safe="true" spread="true">
+        <regions>
+            <point yaw="180">15.5,91,135.5</point>
+            <point yaw="180">60.5,78,133.5</point>
+            <point yaw="180">80.5,60,114.5</point>
+            <point yaw="180">84.5,88,128.5</point>
+            <point yaw="135">102.5,85,111.5</point>
+            <point yaw="135">104.5,52,89.5</point>
+            <point yaw="135">121.5,80,96.5</point>
+            <point yaw="135">132.5,70,80.5</point>
+            <point yaw="135">137.5,61,68.5</point>
+            <point yaw="135">167.5,88,61.5</point>
+            <point yaw="135">188.5,101,55.5</point>
+            <point yaw="45">199.5,99,-27.5</point>
+            <point yaw="45">167.5,103,-51.5</point>
+            <point yaw="45">151.5,98,-63.5</point>
+            <point yaw="-45">7.5,84,-77.5</point>
+            <point yaw="-45">-15.5,91,-62.5</point>
+            <point yaw="-60">-35.5,99,-42.5</point>
+            <point yaw="-90">-38.5,74,24.5</point>
+            <point yaw="-45">-43.5,101,4.5</point>
+            <point yaw="-90">-54.5,97,28.5</point>
+            <point yaw="-90">-67.5,95,54.5</point>
+            <point yaw="-135">-54.5,96,115.5</point>
+            <point yaw="-145">-42.5,116,137.5</point>
+            <point yaw="180">-11.5,100,141.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="135">121, 121, 107</point>
+        </regions>
+    </default>
+</spawns>
+<flags pickup-kit="flag-pickup">
+    <post id="pink-post" return-time="10s">
+        <block>-1,91,62</block>
+    </post>
+    <post id="purple-post" return-time="10s">
+        <block>163,82,13</block>
+    </post>
+    <post id="green-post" return-time="10s">
+        <block>76,32,-3</block>
+    </post>
+    <flag name="Pink" id="pink-flag" color="pink" shared="true" post="pink-post" points-rate="2" />
+    <flag name="Purple" id="purple-flag" color="purple" shared="true" post="purple-post" points-rate="2" />
+    <flag name="Green" id="green-flag" color="green" shared="true" post="green-post" points-rate="2" />
+</flags>
+<kits>
+    <kit id="spawn-kit">
+        <helmet unbreakable="true">chainmail helmet</helmet>
+        <chestplate unbreakable="true" locked="true">elytra</chestplate>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2" enchantment="frost walker:1">leather boots</boots>
+        <item slot="0" enchantments="damage_all:10">iron sword</item>
+        <item slot="1" projectile="wand" name="`khh`r`l~Wand~`r`khh`r">end rod</item>
+        <potion duration="2" amplifier="10">resistance</potion>
+        <double-jump power="12" recharge-time="10s" recharge-before-landing="true" />
+    </kit>
+    <kit id="flag-pickup">
+        <potion duration="oo" amplifier="1">glowing</potion>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="wand" click="left" damage="100" throwable="false" velocity="5" projectile="Snowball" />
+</projectiles>
+<itemremove>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>elytra</item>
+    <item>end rod</item>
+</itemremove>
+<killreward>
+    <item slot="2">arrow</item>
+</killreward>
+<regions>
+    <cuboid min="25,60,44" max="28,61,47" id="pTOg-pad" />
+    <cuboid min="68,21,17" max="71,22,20" id="gTOp-pad" />
+    <cuboid min="101,22,-2" max="103,23,1" id="gTOpu-pad" />
+    <cuboid min="139,49,7" max="141,50,10" id="puTOg-pad" />
+    <cuboid min="117,121,103" max="119,122,105" id="obsspawn" />
+
+    <cylinder id="playable-area" base="75,-500,41" radius="140" height="700" />
+
+    <apply velocity="5,3.5,-5" region="pTOg-pad" />
+    <apply velocity="-6,5,5" region="gTOp-pad" />
+    <apply velocity="5,5,0" region="gTOpu-pad" />
+    <apply velocity="-5,2,0" region="puTOg-pad" />
+    <apply velocity="-5,2,-5" region="obsspawn" />
+
+    <apply block="never" />
+    <apply leave="never" region="playable-area" message="Please stay in the playable area!" />
+</regions>
+<filters>
+    <any id="only-ice">
+        <material>212</material>
+        <material>212:0</material>
+        <material>212:1</material>
+        <material>212:2</material>
+        <material>212:3</material>
+    </any>
+</filters>
+</map>

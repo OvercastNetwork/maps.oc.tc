@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Anirniit</name>
+<version>2.1</version>
+<objective>Capture the other team's wools!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/>
+</authors>
+<teams>
+    <team color="dark red" max="30">Red Team</team>
+    <team color="blue" max="30">Blue Team</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" enchantment="dig speed:1">iron spade</item>
+        <item slot="5" damage="2" amount="8">log</item>
+        <item slot="7" amount="64" name="`rFrozen Salmon" damage="1">cooked fish</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <item slot="6" damage="14" amount="32">stained glass</item>
+        <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+        <boots color="cd0000" enchantment="protection fall:2" damage="-3000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <item slot="6" damage="11" amount="32">stained glass</item>
+        <helmet color="0066cc" damage="-3000">leather helmet</helmet>
+        <boots color="0066cc" enchantment="protection fall:2" damage="-3000">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+    <tool>iron pickaxe</tool>
+    <item>arrow</item>
+</toolrepair>
+<itemremove>
+    <item>37</item>
+    <item>log</item>
+    <item>cooked fish</item>
+    <item>wood</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder base="-684.5,6,1534.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="-684.5,6,1219.5" radius="1" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-590,49,1376" radius="2" height="0"/>
+    </default>
+</spawns>
+<wools>
+    <wools team="red">
+        <wool color="magenta">
+            <block>-683.5,7,1537.5</block>
+        </wool>
+        <wool color="cyan">
+            <block>-685.5,7,1537.5</block>
+        </wool>
+    </wools>
+    <wools team="blue">
+        <wool color="lime">
+            <block>-683.5,7,1216.5</block>
+        </wool>
+        <wool color="yellow">
+            <block>-685.5,7,1216.5</block>
+        </wool>
+    </wools>
+</wools>
+<filters>
+    <filter name="no-red">
+        <team>blue</team>
+    </filter>
+    <filter name="no-blue">
+        <team>red</team>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>ladder</block>
+            <block>wood stairs</block>
+            <block>96</block>
+            <block>66</block>
+        </allow>
+    </filter>
+</filters>
+
+<regions>
+    <apply block-break="only-iron" block-place="deny-all" message="`7You may only break `6iron blocks `7in the base!">
+        <cylinder base="-684.5,0,1534.5" radius="26" height="14"/>
+    </apply>
+    <apply block-break="only-iron" block-place="deny-all" message="`7You may only break `6iron blocks `7in the base!">
+        <cylinder base="-684.5,0,1219.5" radius="26" height="14"/>
+    </apply>
+
+    <apply block-place="deny-void" message="You may not build in the void">
+        <negative>
+            <rectangle min="-619,1530" max="-750,1224"/>
+        </negative>
+    </apply>
+
+    <apply enter="no-red" message="You may not enter the enemies spawn!">
+        <cylinder base="-684.5,0,1219.5" radius="26" height="40"/>
+    </apply>
+    <apply enter="no-blue" message="You may not enter the enemies spawn!">
+        <cylinder base="-684.5,0,1534.5" radius="26" height="40"/>
+    </apply>
+    <apply enter="no-blue" message="You may not enter your own wool rooms!">
+        <cylinder base="-639.5,0,1244.5" radius="11" height="40"/>
+        <cylinder base="-729.5,0,1244.5" radius="11" height="40"/>
+    </apply>
+    <apply enter="no-red" message="You may not enter your own wool rooms!">
+        <cylinder base="-639.5,0,1509.5" radius="11" height="40"/>
+        <cylinder base="-729.5,0,1509.5" radius="11" height="40"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">diamond</item>
+</killreward>
+<maxbuildheight>23</maxbuildheight>
+</map>

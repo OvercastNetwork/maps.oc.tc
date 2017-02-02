@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<include src="blitz-global.xml"/>
+<name>Christmas Eve: Rage</name>
+<version>1.0.1</version>
+<objective>Eliminate the other team before 3 minutes is up!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="5b25f6bc-44d8-47a7-ab52-f985ed309758"/> <!-- RealCrazyCreeper -->
+    <author uuid="0caa6216-70e0-408b-be4b-7a95778a48dd"/> <!-- Lasse54210 -->
+</authors>
+<contributors>
+    <contributor uuid="ee864d09-99c7-4c3d-9e3e-852e51339107" contribution="Building help and feedback"/> <!-- hansko1031 -->
+    <contributor uuid="03236737-c1f8-429c-83df-24b537365f5a" contribution="XML assistance"/> <!-- Guicotsch -->
+</contributors>
+<teams>
+    <team color="dark red" max="10" max-overfill="15">Reindeers</team>
+    <team color="green" max="10" max-overfill="15">Elves</team>
+</teams>
+<blitz>
+    <time>3m</time>
+    <lives>2</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<spawns>
+    <spawn team="reindeers" kit="reindeers" yaw="90">
+        <cuboid min="721,27,-760" max="722,27,-763"/>
+    </spawn>
+    <spawn team="elves" kit="elves" yaw="-90">
+        <cuboid min="612,27,-763" max="611,27,-760"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="665,69,-761" max="664,69,-760"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!">bow</item>
+        <item slot="3" amount="1">arrow</item>
+        <potion duration="4" amplifier="10">heal</potion>
+        <potion duration="4" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit name="reindeers" parents="spawn">
+        <helmet color="993333" locked="false">leather helmet</helmet>
+        <chestplate color="993333" locked="false">leather chestplate</chestplate>
+        <leggings color="993333" locked="false">leather leggings</leggings>
+        <boots color="993333" locked="false">leather boots</boots>
+    </kit>
+    <kit name="elves" parents="spawn">
+        <helmet color="7FCC19" locked="false">leather helmet</helmet>
+        <chestplate color="7FCC19" locked="false">leather chestplate</chestplate>
+        <leggings color="7FCC19" locked="false">leather leggings</leggings>
+        <boots color="7FCC19" locked="false">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+<apply block="deny-all">
+    <rectangle min="-oo,-oo" max="oo,oo"/>
+</apply>
+</regions>
+    <timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove><!-- Disable until fixed
+<modifybowprojectile>
+    <projectile>Snowball</projectile>
+    <velocityMod>10</velocityMod>
+</modifybowprojectile>-->
+</map>

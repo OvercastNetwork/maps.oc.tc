@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Demaroo</name>
+<version>1.1.1</version>
+<objective>Leak lava from the enemy's obsidian core!</objective>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+</authors>
+<contributors>
+    <contributor uuid="8fda3d23-991f-457c-b679-45ed4b0a576d" contribution="XML"/> <!-- feidi_22 -->
+</contributors>
+<cores material="obsidian" leak="2">
+    <core team="orange">
+        <cuboid min="-22,7,132" max="-17,15,137" />
+    </core>
+    <core team="blue">
+        <cuboid min="-22,7,89" max="-17,15,84" />
+    </core>
+</cores>
+<teams>
+    <team color="blue" max="20" max-overfill="30">Blue</team>
+    <team color="gold" max="20" max-overfill="30">Orange</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2">iron axe</item>
+        <item slot="4" amount="2">golden apple</item>
+        <item slot="5" amount="32">log</item>
+        <item slot="6" amount="64">golden carrot</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="8" amplifier="1">heal</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="ff6600">leather helmet</helmet>
+        <chestplate color="ff6600">leather chestplate</chestplate>
+        <leggings color="ff6600">leather leggings</leggings>
+        <boots color="ff6600">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>wood</item>
+    <item>golden carrot</item>
+    <item>golden apple</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>glass</item>
+</itemremove>
+
+<spawns>
+    <spawn team="orange" kit="orange" yaw="180">
+        <cuboid min="-21,22,167" max="-19,22,165" />
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="-19,22,53" max="-21,22,55" />
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="26,27,108" max="24,27,110" />
+    </default>
+</spawns>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <!-- Main Area -->
+    <rectangle name="main-area" min="-46,44" max="7,177" />
+    <!-- Spawns -->
+    <union name="spawns">
+        <union name="orange-spawn">
+            <cuboid min="-38,17,164" max="-1,oo,169" />
+            <cuboid min="-23,17,163" max="-16,oo,170" />
+        </union>
+        <union name="blue-spawn">
+            <cuboid min="-38,17,52" max="-1,oo,57" />
+            <cuboid min="-23,17,53" max="-16,oo,58" />
+        </union>
+    </union>
+    <apply block="deny-all">
+        <union>
+            <region name="spawns" />
+            <negative>
+                <region name="main-area" />
+            </negative>
+        </union>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn.">
+        <region name="blue-spawn" />
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy spawn.">
+        <region name="orange-spawn" />
+    </apply>
+</regions>
+<maxbuildheight>22</maxbuildheight>
+</map>

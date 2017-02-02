@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Sandbox</name>
+<version>0.6</version>
+<objective>Destroy all of the enemy's redstone monument.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="75">Red</team>
+    <team id="blue" color="blue" max="75">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="speed-boost">
+        <regions angle="-150.5,45,150.5">
+            <region name="blue-spawn-a"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="speed-boost">
+        <regions angle="-12.5,45,12.5">
+            <region name="red-spawn-a"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="speed-boost">
+        <regions angle="-150.5,45,150.5">
+            <region name="blue-spawn-b"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="speed-boost">
+        <regions angle="-12.5,45,12.5">
+            <region name="red-spawn-b"/>
+        </regions>
+    </spawn>
+    <default region="obs-spawn" kit="obs">
+        <regions yaw="45">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<broadcasts>
+    <alert after="10s">You have 10 minutes to make defenses on your side</alert>
+    <alert after="12s">After this time you will be able to cross to the enemy side</alert>
+    <alert after="14s">You must protect your redstone monument</alert>
+</broadcasts>
+<kits>
+    <kit name="obs" force="true">
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="speed-boost">
+        <walk-speed>3</walk-speed>
+        <potion duration="oo" amplifier="5">slow digging</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="add-kit" force="true">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="18" amount="64">rails</item>
+        <item slot="9" amount="16">powered rail</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="10">workbench</item>
+        <item slot="2" unbreakable="true">iron spade</item>
+        <item slot="29">boat</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="30" amount="64">redstone</item>
+        <item slot="21" amount="64">wood button</item>
+        <item slot="12" amount="64">wood plate</item>
+        <item slot="4" unbreakable="true">iron pickaxe</item>
+        <item slot="31" amount="32">piston base</item>
+        <item slot="22" amount="16">piston sticky base</item>
+        <item slot="13" amount="8">dispenser</item>
+        <item slot="5" amount="64">sand</item>
+        <item slot="32" amount="64">sand</item>
+        <item slot="23" amount="64">sand</item>
+        <item slot="14" amount="64">sand</item>
+        <item slot="6" amount="64">sand</item>
+        <item slot="33" amount="64">sand</item>
+        <item slot="24" amount="64">sand</item>
+        <item slot="15" amount="64">sand</item>
+        <item slot="7" amount="64" damage="2">wood</item>
+        <item slot="34" amount="64" damage="2">wood</item>
+        <item slot="25" amount="64" damage="2">wood</item>
+        <item slot="16" amount="64" damage="2">wood</item>
+        <item slot="8" amount="64">glass</item>
+        <item slot="35" amount="64">ladder</item>
+        <item slot="26" amount="64">fence</item>
+        <item slot="17" amount="8">bucket</item>
+        <walk-speed>1</walk-speed>
+        <potion duration="0" amplifier="0">slow digging</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="add-red" parents="add-kit">
+        <helmet unbreakable="true" color="993333" locked="false">leather helmet</helmet>
+        <chestplate unbreakable="true" color="993333" locked="false">leather chestplate</chestplate>
+    </kit>
+    <kit name="add-blue" parents="add-kit">
+        <helmet unbreakable="true" color="334CB2" locked="false">leather helmet</helmet>
+        <chestplate unbreakable="true" color="334CB2" locked="false">leather chestplate</chestplate>
+    </kit>
+</kits>
+<destroyables name="Monument" sparks="true" show-progress="true" repairable="false" materials="redstone block">
+    <destroyable id="red-monument" owner="red" region="red-monument"/>
+    <destroyable id="blue-monument" owner="blue" region="blue-monument"/>
+</destroyables>
+<destroyables name="Walls" id="walls" show="false" materials="stained glass:11;stained glass:14" mode-changes="true" completion="0%">
+    <destroyable owner="red" region="walls"/>
+</destroyables>
+<modes>
+    <mode name="`3Walls are down" material="air" after="10m" show-before="10m"/>
+</modes>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-wall">
+        <deny>
+            <block>stained glass:11</block>
+            <block>stained glass:14</block>
+        </deny>
+    </filter>
+    <filter name="no-quartz">
+        <deny>
+            <block>quartz block</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- Definitions -->
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="walls" min="0,0,0" max="-163,42,163"/>
+    <cuboid name="above-glass" min="-oo,47,-oo" max="oo,oo,oo"/>
+    <cuboid name="on-the-glass" min="-oo,43,-oo" max="oo,oo,oo"/>
+    <cuboid name="not-the-floor" min="-oo,1,-oo" max="oo,oo,oo"/>
+    <complement name="map">
+        <cuboid name="main-box" min="0,0,0" max="-163,38,163"/>
+        <cuboid name="inside-box" min="-61,-oo,61" max="-102,oo,102"/>
+    </complement>
+    <union name="spawns">
+        <union name="red-spawns">
+            <block name="red-spawn-a">-56.5,43,87.5</block>
+            <block name="red-spawn-b">-87.5,43,56.5</block>
+        </union>
+        <union name="blue-spawns">
+            <block name="blue-spawn-a">-106.5,43,75.5</block>
+            <block name="blue-spawn-b">-75.5,43,106.5</block>
+        </union>
+        <cuboid name="obs-spawn" min="-85,47,78" max="-78,48,85"/>
+    </union>
+    <union name="monuments">
+        <cuboid name="red-monument" min="-40,21,41" max="-43,28,44"/>
+        <cuboid name="blue-monument" min="-123,21,122" max="-120,28,119"/>
+    </union>
+    <!-- Applications -->
+    <apply block="deny-all" message="You may not edit outside of the main area">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block="no-quartz" message="You may not break quartz">
+        <region name="all"/>
+    </apply>
+    <apply block-break="deny-wall" message="The wall comes down after 10 minutes">
+        <region name="all"/>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter the glass platform">
+        <region name="on-the-glass"/>
+    </apply>
+    <apply kit="add-red" filter="only-red">
+        <negative>
+            <region name="on-the-glass"/>
+        </negative>
+    </apply>
+    <apply kit="add-blue" filter="only-blue">
+        <negative>
+            <region name="on-the-glass"/>
+        </negative>
+    </apply>
+</regions>
+<blockdrops>
+    <rule>
+        <filter>
+            <all>
+                <block>sand</block>
+                <random>[0.10,0.30]</random>
+            </all>
+        </filter>
+        <drops>
+            <item>iron ingot</item>
+        </drops>
+    </rule>
+</blockdrops>
+<killreward>
+    <item>iron ingot</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>rails</item>
+    <item>powered rail</item>
+    <item>arrow</item>
+    <item>workbench</item>
+    <item>boat</item>
+    <item>wood plate</item>
+    <item>wood button</item>
+    <item>redstone</item>
+    <item>dispenser</item>
+    <item>piston sticky base</item>
+    <item>piston base</item>
+    <item>sand</item>
+    <item>gravel</item>
+    <item>wood</item>
+    <item>bucket</item>
+    <item>fence</item>
+    <item>ladder</item>
+    <item>glass</item>
+</itemremove>
+</map>

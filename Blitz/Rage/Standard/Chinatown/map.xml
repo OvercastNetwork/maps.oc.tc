@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Chinatown</name>
+<version>1.1.0</version>
+<objective>Eliminate the enemy team within 5 minutes!</objective>
+<authors>
+    <author uuid="a37e4da3-1c6c-4dc9-b085-63783406a963"/> <!-- candcshow -->
+        <author uuid="d943b497-0b4b-4eb6-a5e1-3ba0b3fd57a0"/> <!-- inano2000 -->
+</authors>
+<teams>
+    <team id="yellow" color="yellow" max="10" max-overfill="12">Yellow</team>
+    <team id="blue" color="blue" max="10" max-overfill="12">Blue</team>
+</teams>
+<time>5m</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<include src="blitz-global.xml"/>
+<rage/>
+<kits>
+    <kit id="kitSpawn">
+        <leggings locked="true">chainmail leggings</leggings>
+        <item slot="0" unbreakable="true" enchantment="damage all:10">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10">bow</item>
+        <item slot="2">arrow</item>
+    </kit>
+    <kit id="kitBlue" parents="kitSpawn">
+        <helmet locked="true" color="0000aa">leather helmet</helmet>
+        <chestplate locked="true" color="0000aa">leather chestplate</chestplate>
+        <boots locked="true" color="0000aa">leather boots</boots>
+    </kit>
+    <kit id="kitYellow" parents="kitSpawn">
+        <helmet locked="true" color="E5E533">leather helmet</helmet>
+        <chestplate locked="true" color="E5E533">leather chestplate</chestplate>
+        <boots locked="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="yellow" kit="kitYellow">
+        <regions yaw="180">
+            <block>9,14,-41</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="kitBlue">
+        <regions yaw="0">
+            <block>9,14,42</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <block>64,50,3</block>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block-break="never"/>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>

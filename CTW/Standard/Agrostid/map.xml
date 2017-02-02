@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.4.0">
+<name>Agrostid</name>
+<version>2.0.1</version>
+<objective>Capture the two enemy's wools!</objective>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
+    <!--  Matic0B  -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
+    <!--  rockymine  -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="14" max-overfill="18">Red</team>
+    <team id="blue" color="blue" max="14" max-overfill="18">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:1">iron spade</item>
+        <item slot="4" unbreakable="true" enchantment="dig speed:2">iron axe</item>
+        <item slot="6" amount="16">glass</item>
+        <item slot="7" amount="16" damage="1">log</item>
+        <item slot="8" amount="32">golden carrot</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+        <potion duration="3" amplifier="25">heal</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="ff0000">leather helmet</helmet>
+        <chestplate color="ff0000">leather chestplate</chestplate>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="0000ff">leather helmet</helmet>
+        <chestplate color="0000ff">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <default>
+        <regions yaw="90">
+            <point>-700.5,39,-288.5</point>
+        </regions>
+    </default>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="180">
+            <point>-765.5,9,-199.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="0">
+            <point>-765.5,9,-377.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<broadcasts>
+    <tip after="5s">`7Your wool rooms are located to the sides of your spawn. Defend them!</tip>
+    <tip after="30s">`7Four `fIron Blocks `r`7can be found in the middle of the map!</tip>
+</broadcasts>
+<wools>
+    <wool team="red" color="green" craftable="false" location="-810.5,9,-351.5">
+        <monument>
+            <block>-773,9,-208</block>
+        </monument>
+    </wool>
+    <wool team="red" color="lime" craftable="false" location="-720.5,9,-351.5">
+        <monument>
+            <block>-759,9,-208</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="purple" craftable="false" location="-720.5,9,-225.5">
+        <monument>
+            <block>-759,9,-370</block>
+        </monument>
+    </wool>
+    <wool team="blue" color="pink" craftable="false" location="-810.5,9,-225.5">
+        <monument>
+            <block>-773,9,-370</block>
+        </monument>
+    </wool>
+</wools>
+<filters>
+    <not id="no-void">
+        <void />
+    </not>
+    <not id="deny-red">
+        <team>red</team>
+    </not>
+    <not id="deny-blue">
+        <team>blue</team>
+    </not>
+    <allow id="leaves">
+        <material>leaves</material>
+    </allow>
+    <any id="only-some">
+        <material>web</material>
+        <material>leaves</material>
+    </any>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="red-spawn" min="-746,-217" max="-785,-193"/>
+        <rectangle id="blue-spawn" min="-785,-360" max="-746,-384"/>
+    </union>
+    <union id="bridges">
+        <rectangle min="-785,-346" max="-774,-231" />
+        <rectangle min="-746,-346" max="-757,-231" />
+        <rectangle min="-774,-276" max="-757,-301" />
+    </union>
+    <negative id="no-bridges">
+        <region id="bridges" />
+    </negative>
+    <union id="red-wool-rooms">
+        <!--    Red must defend    -->
+        <rectangle id="purple-woolroom" min="-716,-231" max="-727,-220" />
+        <rectangle id="pink-woolroom" min="-815,-220" max="-804,-231" />
+    </union>
+    <union id="blue-wool-rooms">
+        <!--    Blue must defend    -->
+        <rectangle id="green-wool-room" min="-815,-346" max="-804,-357" />
+        <rectangle id="lime-wool-room" min="-716,-357" max="-727,-346" />
+    </union>
+    <union id="wool-rooms">
+        <region id="red-wool-rooms" />
+        <region id="blue-wool-rooms" />
+    </union>
+    <union id="only-blue-areas">
+        <region id="blue-spawn"/>
+        <region id="red-wool-rooms"/>
+    </union>
+    <union id="only-red-areas">
+        <region id="red-spawn"/>
+        <region id="blue-wool-rooms"/>
+    </union>       
+    <!--  Applyness  -->
+    <apply block="never" region="spawns" message="You may not edit spawns!"/>
+    <apply block-break="only-some" block-place="never" region="wool-rooms" />
+    <apply block-break="leaves" region="no-bridges" />
+    <apply block="no-void" region="no-bridges" message="You may not build in the void!" />   
+    <apply enter="deny-red" region="only-blue-areas"/>
+    <apply enter="deny-blue" region="only-red-areas"/>
+    <apply block="deny-red" region="red-wool-rooms" message="You may not enter this area!" />
+    <apply block="deny-blue" region="blue-wool-rooms" message="You may not enter this area" />
+</regions>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+    <tool>stone sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>redstone</item>
+    <item>iron boots</item>
+    <item>leather helmet</item>
+    <item>chainmail leggings</item>
+    <item>string</item>
+    <item>golden carrot</item>
+    <item>wood:1</item>
+    <item>shears</item>
+    <item>log:1</item>
+</itemremove>
+<maxbuildheight>22</maxbuildheight>
+<timelock>on</timelock>
+</map>

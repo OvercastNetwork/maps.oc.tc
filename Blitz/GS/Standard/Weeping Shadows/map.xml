@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Weeping Shadows</name>
+<version>1.0</version>
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+    <author uuid="af209afd-77dc-4bdb-8cf1-f1513c77bb0b"/> <!-- TranquilSea -->
+</authors>
+<contributors>
+    <contributor uuid="b5071a63-bba3-491a-909f-02db314f4319" contribution="Gardener"/> <!-- dcstarwars -->
+    <contributor uuid="dd60aceb-9b2b-4088-9ac3-b2660399bff4" contribution="Mushroom King"/> <!-- jody7777 -->
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Note Blocks"/> <!-- moo88888888 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML steak"/> <!-- dinner1111 -->
+</contributors>
+<teams>
+    <team color="dark green" max="5">Green</team>
+    <team color="dark gray" max="5">Gray</team>
+</teams>
+<spawns>
+    <spawn team="green" yaw="90">
+        <cuboid min="66,14,15" max="67,14,14"/>
+    </spawn>
+    <spawn team="gray" yaw="180">
+        <cuboid min="4,14,-12" max="3,14,-11"/>
+    </spawn>
+    <default yaw="90">
+        <point>85,20,0</point>
+    </default>
+</spawns>
+</map>

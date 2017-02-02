@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<time result="objectives">1h</time>
+<include src="../house-of-cores.xml"/>
+<name>Highlands</name>
+<version>1.5.2</version>
+<objective>Destroy the enemy's emerald monuments and leak their core!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<contributors>
+    <contributor uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- xCLAFx -->
+    <contributor uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</contributors>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64" damage="1">log 2</item>
+        <item slot="5" amount="64">cooked fish</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+</kits>
+<spawns>
+    <default kit="obs" yaw="90">
+        <point>11,23.5,-35</point>
+    </default>
+    <spawn team="red" kit="spawn" yaw="0">
+        <block>-45.5,94.5,-167.5</block>
+    </spawn>
+    <spawn team="blue" kit="spawn" yaw="180">
+        <block>-45.5,94.5,97.5</block>
+    </spawn>
+</spawns>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void">
+        <negative>
+            <rectangle name="map" min="-6,-112" max="-85,42"/>
+        </negative>
+    </apply>
+    <apply block="deny-blocks" message="You may not edit the spawn area!">
+        <rectangle min="-58,62" max="-32,100"/>
+        <rectangle min="-33,-132" max="-58,-170"/>
+    </apply>
+    <union name="height-limits">
+        <cuboid name="tnt-height-limit" min="-oo,50,-oo" max="oo,51,oo"/>
+        <cuboid name="above-height-limit" min="-oo,51,-oo" max="oo,oo,oo"/>
+    </union>
+</regions>
+<cores material="obsidian" leak="2" mode-changes="true">
+    <core team="red">
+        <cuboid min="-44,21,-65" max="-47,14,-62"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-44,21,-8" max="-47,14,-5"/>
+    </core>
+</cores>
+<modes>
+    <mode after="10m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<destroyables materials="emerald block" completion="100%">
+    <destroyables owner="red">
+        <destroyable name="East Monument">
+            <cuboid min="-12,27,-75" max="-15,22,-72"/>
+        </destroyable>
+        <destroyable name="West Monument">
+            <cuboid min="-76,27,-75" max="-79,22,-72"/>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="blue">
+        <destroyable name="East Monument">
+            <cuboid min="-12,27,2" max="-15,22,5"/>
+        </destroyable>
+        <destroyable name="West Monument">
+            <cuboid min="-76,27,2" max="-79,22,5"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item damage="5">126</item>
+    <item>item frame</item>
+    <item>torch</item>
+    <item>cobblestone</item>
+    <item>obsidian</item>
+    <item damage="3">wood</item>
+    <item damage="14">stained clay</item>
+    <item damage="11">stained clay</item>
+    <item>cooked fish</item>
+    <item>arrow</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <item>emerald block</item>
+    <item>gold block</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

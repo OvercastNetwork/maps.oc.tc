@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Mushroom Gorge</name>
+<version>1.0.9</version>
+<objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
+<rules>
+    <rule>Players recieve knockback resistance and no knockback in spawns.</rule>
+</rules>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="c97373ef-4582-4350-8993-8a78f2775c29"/> <!-- Eclipsen -->
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff"/> <!-- khazhyk -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed">iron pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2">iron axe</item>
+        <item slot="4" amount="64" damage="1">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="32">grilled pork</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8">milk bucket</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+    <kit name="spawn-protection">
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit name="spawn-regen">
+        <potion duration="15" amplifier="1">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn">
+        <point yaw="-90">
+            <cuboid min="-49,26,71" max="-47,26,74"/>
+        </point>
+        <point yaw="90">
+            <cuboid min="-41, 26, 71" max="-39,26,74"/>
+        </point>
+    </spawn>
+    <spawn team="blue" kit="spawn">
+        <point yaw="-90">
+            <cuboid min="-49,26,-79" max="-47,26,-76"/>
+        </point>
+        <point yaw="90">
+            <cuboid min="-41, 26, -79" max="-39,26,-76"/>
+        </point>
+    </spawn>
+    <default yaw="270" kit="obs">
+        <cylinder base="-95.5,53,-2.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<killreward>
+    <item damage="4" material="ink sack" filter="streak"/>
+</killreward>
+<regions>
+    <!-- Team base protections -->
+    <union name="red-base-sides">
+        <rectangle min="-34,71" max="-21,77"/>
+        <rectangle min="-67,71" max="-54,77"/>
+    </union>
+    <union name="blue-base-sides">
+        <rectangle min="-67,-82" max="-54,-76"/>
+        <rectangle min="-34,-82" max="-21,-76"/>
+    </union>
+    <apply enter="only-red" message="You cannot enter red's base!">
+        <union name="red-base">
+            <rectangle min="-67,71" max="-54,77"/> <!-- West side -->
+            <rectangle min="-54,66" max="-34,82"/> <!-- Main -->
+            <rectangle min="-34,71" max="-21,77"/> <!-- East side -->
+        </union>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter blue's base!">
+        <union name="blue-base">
+            <rectangle min="-67,-82" max="-54,-76"/> <!-- West side -->
+            <rectangle min="-54,-87" max="-34,-71"/> <!-- Main -->
+            <rectangle min="-34,-82" max="-21,-76"/> <!-- East side -->
+        </union>
+    </apply>
+    <apply block="deny-all" message="You may not modify the bases!">
+        <region name="red-base"/>
+        <region name="blue-base"/>
+    </apply>
+    <!-- Playable region -->
+    <apply block="no-void" message="You cannot build in the void">
+        <complement>
+            <rectangle name="main-region" min="-102,-149" max="14,146"/><!-- Main -->
+            <union>
+                <rectangle min="-75,-37" max="-13,32"/> <!-- Building region in center -->
+                <region name="red-base"/>
+                <region name="blue-base"/>
+            </union>
+        </complement>
+    </apply>
+    <apply block="deny-all">
+        <negative>
+            <region name="main-region"/>
+        </negative> <!-- Can't build outside of the main region, including spawn. -->
+    </apply>
+    <!-- Wool room protections -->
+    <!-- Blue side -->
+    <apply enter="only-red" use="only-red-usage" block="only-red" message="You may not enter or modify your own wool room!">
+        <rectangle min="-96,-143" max="-71,-125"/> <!-- Purple wool -->
+        <rectangle min="-17,-143" max="8,-125"/> <!-- Green wool -->
+    </apply>
+    <!-- Red side -->
+    <apply enter="only-blue" use="only-blue-usage" block="only-blue" message="You may not enter or modify your own wool room!">
+        <rectangle min="-96,120" max="-71,138"/> <!-- Yellow wool -->
+        <rectangle min="-17,120" max="8,138"/> <!-- Orange wool -->
+    </apply>
+    <!-- Wool chest protection -->
+    <apply block="deny-all" message="Please don't break the wool chests">
+        <block>-83,38,-138</block> <!-- Purple wool -->
+        <block>-85,38,-138</block>
+        <block>-4,38,-138</block> <!-- Green wool -->
+        <block>-6,38,-138</block>
+        <block>-4,38,132</block> <!-- Orange wool -->
+        <block>-6,38,132</block>
+        <block>-85,38,132</block> <!-- Yellow wool -->
+        <block>-83,38,132</block>
+    </apply>
+    <apply block="deny-all" message="Please don't break the enchanting tables!">
+        <block>-64,10,-49</block> <!-- Blue side -->
+        <block>-25,10,-49</block>
+        <block>-64,10,43</block> <!-- Red side -->
+        <block>-25,10,43</block>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-red">
+        <region name="red-base-sides"/>
+    </apply>
+    <apply lend-kit="spawn-protection" filter="only-blue">
+        <region name="blue-base-sides"/>
+    </apply>
+    <apply kit="spawn-regen">
+        <region name="blue-base-sides"/>
+        <region name="red-base-sides"/>
+    </apply>
+</regions>
+<maxbuildheight>58</maxbuildheight>
+<wools>
+    <wools team="blue">
+        <wool color="orange">
+            <block location="-44,27,-74"/>
+        </wool>
+        <wool color="yellow">
+            <block location="-45,27,-74"/>
+        </wool>
+    </wools>
+    <wools team="red">
+        <wool color="purple">
+            <block location="-45,27,68"/>
+        </wool>
+        <wool color="green">
+            <block location="-44,27,68"/>
+        </wool>
+    </wools>        
+</wools>
+<renewables>
+    <renewable grow="false">
+        <!-- orange -->
+        <renew>wool:1</renew>
+        <region>
+            <cuboid min="-10,42,123" max="1,44,134"/>
+        </region>
+    </renewable>
+    <renewable grow="false">
+        <!-- yellow -->
+        <renew>wool:4</renew>
+        <region>
+            <cuboid min="-89,42,123" max="-78,44,134"/>
+        </region>
+    </renewable>
+    <renewable grow="false">
+        <!-- purple -->
+        <renew>wool:10</renew>
+        <region>
+            <cuboid min="-89,42,-139" max="-78,44,-128"/>
+        </region>
+    </renewable>
+    <renewable grow="false">
+        <!-- green -->
+        <renew>wool:13</renew>
+        <region>
+            <cuboid min="-10,42,-139" max="1,44,-128"/>
+        </region>
+    </renewable>
+</renewables>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron sword</tool>
+</toolrepair>
+<itemremove>
+    <item>milk bucket</item>
+    <item>grilled pork</item>
+</itemremove>
+</map> 

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Spaceship Battles: DTE</name>
+<version>2.0.1</version>
+<objective>Destroy 65% of the enemy ship!</objective>
+<authors>
+    <author uuid="73711d58-d786-4007-8c95-c93b1311de1a"/> <!-- Oversoul96 -->
+</authors>
+<timelock>on</timelock>
+<rules>
+    <rule>Dispensers are disabled</rule>
+</rules>
+<teams>
+    <team color="dark red" max="24">Red</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0">diamond sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">diamond axe</item>
+        <item slot="7" amount="32">golden carrot</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="give-resistance" force="true">
+        <potion duration="7" amplifier="3">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not place or break blocks in the water drops.">
+        <union>
+            <rectangle min="239,75" max="244,80"/>
+            <rectangle min="239,136" max="244,141"/>
+        </union>
+    </apply>
+    <apply enter="deny-all" message="You may not re-enter the spawn area!">
+        <union name="spawn-areas">
+            <cuboid name="red-tunnel" min="238,70,142" max="294,oo,135"/>
+            <cuboid name="horizontal-tunnel" min="300,70,142" max="294,oo,74"/>
+            <cuboid name="blue-tunnel" min="294,70,81" max="238,oo,74"/>
+            <cuboid name="obs-spawn" min="283,70,92" max="315,oo,124"/>
+        </union>
+    </apply>
+    <union name="play">
+        <rectangle min="253,95" max="181,60"/>
+        <rectangle min="253,157" max="181,121"/>
+    </union>
+    <apply block="deny-all" message="You may not interact with blocks outside the playing field.">
+        <negative>
+            <region name="play"/>
+        </negative>
+    </apply>
+    <apply block-place="deny-dispenser" message="You cannot place dispensers on this map!">
+        <region name="play"/>
+    </apply>
+    <apply kit="give-resistance">
+        <union name="resist-drops">
+            <cuboid name="red-resist-drop" min="243,71,140" max="240,72,137"/>
+            <cuboid name="blue-resist-drop" min="243,71,79" max="240,72,76"/>
+        </union>
+    </apply>
+</regions>
+<maxbuildheight>70</maxbuildheight>
+<spawns>
+    <spawn team="blue" kit="teams" yaw="180">
+        <cuboid min="295.5,72,88.5" max="298.5,72,91.5"/>
+    </spawn>
+    <spawn team="red" kit="teams" yaw="0">
+        <cuboid min="295.5,72,124.5" max="298.5,72,127.5"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="298.5,71,108.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<destroyables name="Ship" materials="coal ore;stone;wool:11;wool:14;chest:2;chest:3;chest:4;chest:5;step;smooth brick;cobblestone" show-progress="true" sparks="true" completion="65%">
+    <destroyable owner="blue">
+        <cuboid min="253,30,95" max="181,60,60"/>
+    </destroyable>
+    <destroyable owner="red">
+        <cuboid min="253,30,157" max="181,60,121"/>
+    </destroyable>
+</destroyables>
+<itemremove>
+    <item>obsidian</item>
+    <item>shears</item>
+    <item>coal</item>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>chainmail chestplate</item>
+    <item>diamond pickaxe</item>
+    <item>diamond axe</item>
+    <item>golden carrot</item>
+</itemremove>
+</map>

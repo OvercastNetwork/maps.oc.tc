@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>UBoat König</name>
+<version>3.8</version>
+<objective>Be the team with the most amount of points within the given time.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="green" max="22">Green</team>
+    <team color="dark red" max="22">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow damage:1" >bow</item>
+        <item slot="8" amount="64">arrow</item>
+        <item slot="3" amount="32">bread</item>
+        <potion duration="7" amplifier="5">heal</potion>
+        <potion duration="7" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate>iron chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots enchantment="protection fall:3">gold boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="667F33">leather helmet</helmet>
+        <chestplate>iron chestplate</chestplate>
+        <leggings color="667F33">leather leggings</leggings>
+        <boots enchantment="protection fall:3">gold boots</boots>
+    </kit>
+    <kit name="heal">
+        <potion duration="2" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" kit="green">
+        <point yaw="-135">
+            <cylinder base="1726,20,-1066" radius="1" height="0"/>
+        </point>
+        <point yaw="-45">
+            <cylinder base="1726,20,-1130" radius="1" height="0"/>
+        </point>
+    </spawn>
+    <spawn team="red" kit="red" >
+        <point yaw="135">
+            <cylinder base="1802,20,-1066" radius="1" height="0"/>
+        </point>
+        <point yaw="45">
+            <cylinder base="1802,20,-1130" radius="1" height="0"/>
+        </point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="1764,39.5,-1097" radius="1" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+    <filter name="allow-break" parents="deny-all">
+        <allow>
+            <block>diamond block</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <!-- Regions for block drops -->
+    <union name="blockdrops">
+        <cuboid name="one" min="1733,11,-1060" max="1746,15,-1073"/>
+        <cuboid name="two" min="1733,11,-1121" max="1746,15,-1134"/>
+        <cuboid name="three" min="1782,11,-1060" max="1795,15,-1073"/>
+        <cuboid name="four" min="1782,11,-1121" max="1795,15,-1134"/>
+    </union>
+    <!-- Normal map regions -->
+    <apply block-break="allow-break">
+        <rectangle name="main-area" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter your own scorebox!">
+        <cuboid min="1801,10,-1100" max="1796,12,-1095"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own scorebox!">
+        <cuboid min="1727,10,-1095" max="1732,12,-1100"/>
+    </apply>
+    <apply kit="heal">
+        <block>1730,8,-1098</block>
+        <block>1729,8,-1098</block>
+        <block>1798,8,-1098</block>
+        <block>1799,8,-1098</block>
+    </apply>
+</regions>
+<portals>
+    <portal x="@1803" y="@20" z="@-1064" yaw="@135" pitch="@0" filter="only-red">
+        <block>1730,8,-1098</block>
+        <block>1729,8,-1098</block>
+    </portal>
+    <portal x="@1725" y="@20" z="@-1130" yaw="@-45" pitch="@0" filter="only-green">
+        <block>1798,8,-1098</block>
+        <block>1799,8,-1098</block>
+    </portal>
+</portals>
+<score>
+    <time>15m</time>
+    <box value="7" team="red" filter="only-red" cooldown="3">
+        <block>1730,8,-1098</block>
+        <block>1729,8,-1098</block>
+    </box>
+    <box value="7" team="green" filter="only-green" cooldown="3">
+        <block>1798,8,-1098</block>
+        <block>1799,8,-1098</block>
+    </box>
+</score>
+<king>
+    <hills>
+        <hill name="Submarine" capture-time="5s" points="1" scaled-time="true" capture-rule="majority">
+            <capture>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </capture>
+            <progress>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </progress>
+            <captured>
+                <cuboid min="1779,0,-1093" max="1750,9,-1102"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+
+<blockdrops>
+    <rule>
+        <region>
+            <region name="blockdrops"/>
+        </region>
+        <!-- Make diamond blocks drop diamond items -->
+        <filter>
+            <block>diamond block</block>
+        </filter>
+        <drops>
+            <item amount="1" attributes="generic.maxHealth:add:-1">diamond helmet</item>
+            <item amount="1" attributes="generic.maxHealth:add:-1" enchantment="protection fall:3">diamond boots</item>
+        </drops>
+    </rule>
+</blockdrops>
+
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>iron pickaxe</item>
+    <item>diamond block</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>bread</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>potion</item>
+</itemremove>
+<killreward>
+    <filter>
+        <kill-streak count="4"/>
+    </filter>
+    <item amount="1" damage="249">iron pickaxe</item>
+</killreward>
+<killreward>
+    <kill-streak count="1"/>
+    <item amount="2">golden apple</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="5"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="7"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="9"/>
+    </filter>
+    <kit name="heal"/>
+</killreward>
+<tutorial>
+    <stage title="Team Death Match (TDM/KOTH)">
+        <message>
+            <line>`rThis map is a `4Team Death Match `r(TDM/KOTH) `rmap.</line>
+            <line>`rThe objective is to get as many `apoints for your team by killing the enemy or controlling the Sub!</line>
+        </message>
+        <teleport>
+            <point yaw="70" pitch="15">1795,13,-1104</point>
+        </teleport>
+    </stage>
+    <stage title="Scorebox">
+        <message>
+            <line>There is `cone `rscorebox per side.</line>
+            <line>Everytime you get in, your team recieves `a2 points</line>
+            <line>You also will get your health regenerated!</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="10">1790,11,-1089</point>
+        </teleport>
+    </stage>
+    <stage title="Diamond Supplies">
+        <message>
+            <line>If you can get a 10 kills streak, you will be rewarded</line>
+            <line>with a pickaxe. You can then break the diamond blocks</line>
+            <line>to get some new gears ! Awesome right ?!</line>
+        </message>
+    </stage>
+</tutorial>
+<broadcasts>
+    <tip after="4s" every="4m">`aA `6Kill Streak `aof `64 kills`a will reward you with a `6Pickaxe`a. </tip>
+    <tip after="5s" every="4m">`aUse it to break the `6Diamond Blocks `aand get new `6Gears`a.</tip>
+</broadcasts>
+</map>

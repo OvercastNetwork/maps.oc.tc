@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Equinox</name>
+<version>1.2.1</version>
+<objective>Control the center point.</objective>
+<authors>
+    <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
+    <author uuid="57f5535d-6b9e-4013-ad71-e2cc63ec8d7c"/> <!-- ItzaMeLuigi_ -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<score>
+    <limit>300</limit>
+</score>
+<teams>
+    <team id="red" color="dark red" max="20">Red</team>
+    <team id="blue" color="blue" max="20">Blue</team>
+</teams>
+<spawns>
+    <spawn kit="kit-red" team="red">
+        <regions yaw="135">
+            <cylinder base="68,23,-128" radius="4" height="0"/>
+        </regions>
+        <regions yaw="45">
+            <cylinder base="68,23,-150" radius="4" height="0"/>
+        </regions>
+    </spawn>
+    <spawn kit="kit-blue" team="blue">
+        <regions yaw="-135">
+            <cylinder base="-70,23,-128" radius="4" height="0"/>
+        </regions>
+        <regions yaw="-45">
+            <cylinder base="-70,23,-150" radius="4" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="-1,54,-139" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="kit-spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="2" amount="16">cooked beef</item>
+        <item slot="3" amount="1">golden apple</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit id="kit-red" parents="kit-spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots color="cd0000" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="kit-blue" parents="kit-spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="never">
+        <region>
+            <rectangle id="playable" min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+    <apply velocity="@-1,1.2,0">
+        <region>
+            <cuboid min="-32,15,-141" max="-28,16,-137"/>
+        </region>
+    </apply>
+    <apply velocity="@1,1.2,0">
+        <region>
+            <cuboid min="30,15,-137" max="26,16,-141"/>
+        </region>
+    </apply>
+</regions>
+<king>
+    <hills>
+        <hill name="Hill" capture-time="7s" points="1" required="false">
+            <capture>
+                <cylinder base="-0.5,29,-138.5" radius="7.5" height="6"/>
+            </capture>
+            <progress>
+                <cylinder base="-0.5,29,-138.5" radius="7.5" height="1"/>
+            </progress>
+            <captured>
+                <cuboid min="-6,37,-144" max="5,38,-133"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<portals>
+    <portal x="@-16.5" y="@33" z="@-138.5" yaw="@-90">
+        <region><cuboid min="-9,24,-140" max="-8,26,-137"/></region>
+    </portal>
+    <portal x="@15.5" y="@33" z="@-138.5" yaw="@90">
+        <region><cuboid min="7,24,-140" max="8,26,-137"/></region>
+    </portal>
+</portals>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="6">arrow</item>
+    <item amount="1">golden apple</item>
+</killreward>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+</map>

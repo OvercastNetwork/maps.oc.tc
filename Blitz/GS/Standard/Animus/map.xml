@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="gs.xml"/>
+<name>Animus</name>
+<version>1.0.0</version>
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
+</authors>
+<contributors>
+    <contributor uuid="82d03646-d1a1-4383-a533-9509b130f751" contribution="Map name"/> <!-- iLifting -->
+</contributors>
+<teams>
+    <team color="red" max="8" max-overfill="12">Red</team>
+    <team color="blue" max="8" max-overfill="12">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" yaw="-90">
+        <cuboid min="-124,4,-1" max="-125,4,0"/>
+    </spawn>
+    <spawn team="blue" yaw="90">
+        <cuboid min="-66,4,-1" max="-65,4,-2"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-99,46,0" max="-98,46,-1"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<timelock>on</timelock>
+</map>

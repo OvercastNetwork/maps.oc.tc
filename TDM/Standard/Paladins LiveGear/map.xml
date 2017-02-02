@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Paladins - LiveGear</name>
+<version>1.3</version>
+<objective>Kill as many opponents as you can before 9 minutes runs out!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="13">Blue</team>
+    <team color="yellow" max="13">Yellow</team>
+</teams>
+<score>
+    <time>9m</time>
+</score>
+<spawns safe="true">
+    <spawn team="Blue" kit="blue" angle="0.5,30,0.5">
+        <cylinder base="1195.5,5,-1416.5" radius="7" height="7"/>
+    </spawn>
+    <spawn team="Yellow" kit="yellow" angle="0.5,30,0.5">
+        <cylinder base="1123.5,5,-1344.5" radius="7" height="7"/>
+    </spawn>
+    <default kit="obs" yaw="90">
+        <point>1165.5,89,-1380.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:1">bow</item>
+        <item slot="2" unbreakable="true">shears</item>
+        <item slot="3" damage="4" amount="12">leaves</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="8" amount="8">arrow</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="5" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <item slot="4" damage="11" amount="8">wool</item>
+        <helmet color="6699D8" unbreakable="true">leather helmet</helmet>
+        <chestplate color="6699D8" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="6699D8" unbreakable="true">leather leggings</leggings>
+        <boots color="6699D8" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <item slot="4" damage="4" amount="8">wool</item>
+        <helmet color="E5E533" unbreakable="true">leather helmet</helmet>
+        <chestplate color="E5E533" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="E5E533" unbreakable="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 0" force="true" locked="true">
+        <potion duration="5" amplifier="1">speed</potion>
+        <potion duration="3" amplifier="2">heal</potion>
+    </kit>
+    <kit name="tier 1" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5">stone sword</item>
+        <helmet unbreakable="true">iron helmet</helmet>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 2" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.25">stone sword</item>
+        <leggings unbreakable="true">gold leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 3" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.5">stone sword</item>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 4" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:5.75">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:2">bow</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 5" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:2">bow</item>
+        <boots unbreakable="true">iron boots</boots>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 6" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.25">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:2">bow</item>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 7" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.5">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:2">bow</item>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+    <kit name="tier 8" force="true" locked="true">
+        <item slot="0" attributes="generic.attackDamage:add:6.75">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:2">bow</item>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="5" amplifier="1">speed</potion>
+    </kit>
+</kits>
+<!-- Normal rewards, every kill -->
+<killreward>
+    <item amount="2">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<!-- Tier 0 -->
+<killreward>
+    <filter>
+        <kill-streak count="1"/>
+    </filter>
+    <kit name="tier 0"/>
+</killreward>
+<!-- Tier 1 -->
+<killreward>
+    <filter>
+        <kill-streak count="2"/>
+    </filter>
+    <kit name="tier 1"/>
+</killreward>
+<!-- Tier 2 -->
+<killreward>
+    <filter>
+        <kill-streak count="3"/>
+    </filter>
+    <kit name="tier 3"/>
+</killreward>
+<!-- Tier 3 -->
+<killreward>
+    <filter>
+        <kill-streak count="4"/>
+    </filter>
+    <kit name="tier 3"/>
+</killreward>
+<!-- Tier 4 -->
+<killreward>
+    <filter>
+        <kill-streak count="5"/>
+    </filter>
+    <kit name="tier 4"/>
+</killreward>
+<!-- Tier 5 -->
+<killreward>
+    <filter>
+        <kill-streak count="6"/>
+    </filter>
+    <kit name="tier 5"/>
+</killreward>
+<!-- Tier 6 -->
+<killreward>
+    <filter>
+        <kill-streak count="7"/>
+    </filter>
+    <kit name="tier 6"/>
+</killreward>
+<!-- Tier 7 -->
+<killreward>
+    <filter>
+        <kill-streak count="9"/>
+    </filter>
+    <kit name="tier 7"/>
+</killreward>
+<!-- Tier 8 -->
+<killreward>
+    <filter>
+        <kill-streak count="11"/>
+    </filter>
+    <kit name="tier 8"/>
+</killreward>
+
+
+<filters>
+    <filter name="allow-break" parents="deny-all">
+        <allow>
+            <block>leaves</block>
+            <block>wool</block>
+            <block>long grass</block>
+            <block>red rose</block>
+            <block>yellow flower</block>
+            <block>double plant</block>
+            <block>vine</block>
+            <block>monster eggs</block>
+            <block>79</block>
+        </allow>
+    </filter>
+    <filter name="allow-place" parents="deny-all">
+        <allow>
+            <block>79</block>
+            <block>leaves</block>  
+            <block>wool</block> 
+            <block>monster eggs</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="allow-break" block-place="allow-place">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>shears</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>glass</item>
+    <item>wood</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>golden apple</item>
+    <!-- Breakable -->
+    <item>leaves</item>
+    <item>79</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>double plant</item>
+    <item>snow ball</item>
+    <item>vine</item>
+    <item>bone</item>
+</itemremove>
+<friendlyfire>off</friendlyfire>
+<timelock>off</timelock>
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<broadcasts>
+    <alert after="2s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
+    <alert after="3s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
+    <alert after="122s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
+    <alert after="123s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
+    <alert after="242s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
+    <alert after="243s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
+    <alert after="482s">`a`oThis is a `6Live Gear `a`omap. The more `6kills `a`oyou get,</alert>
+    <alert after="483s">`a`othe more your `6Gear `a`o upgrades itself.</alert>
+</broadcasts>
+</map>

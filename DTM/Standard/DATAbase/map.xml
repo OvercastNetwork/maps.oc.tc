@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>DATAbase</name>
+<version>1.0</version>
+<objective>Destroy 75% of both of the enemy's battle ships! You only have 15 minutes!</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="yellow" max="10" max-overfill="12">Yellow</team>
+    <team color="dark red" max="10" max-overfill="12">Red</team>
+</teams>
+<spawns>
+    <spawn team="yellow" kit="yellow" yaw="-90">
+        <point>-66.5,73,12.5</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <point>8.5,73,12.5</point>
+    </spawn>
+    <default kit="obs" yaw="0">
+        <point>-28.5,80,12.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">fast digging</potion>
+    </kit>
+    <kit name="teams" parents="obs">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" amount="64">wood</item>
+        <item slot="4" amount="12">tnt</item>
+        <item slot="5" unbreakable="true">flint and steel</item>
+        <item slot="6" unbreakable="true" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="8" amount="16">arrow</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:3">chainmail chestplate</chestplate>
+        <potion duration="3">heal</potion>
+        <potion duration="4">damage resistance</potion>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <helmet damage="4">stained clay</helmet>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet damage="14">stained clay</helmet>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-fire">
+        <not>
+            <block>fire</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-35" min="-oo,36,-oo" max="oo,oo,oo"/>
+    <negative name="outside-55">
+        <circle name="inside-55" center="-28.5,10.5" radius="55"/>
+    </negative>
+    <union name="spawns">
+        <cylinder name="yellow-spawn" base="-66.5,72,12.5" radius="5" height="oo"/>
+        <cylinder name="red-spawn" base="8.5,72,12.5" radius="5" height="oo"/>
+        <cylinder name="obs-spawn" base="-28.5,76,12.5" radius="7" height="oo"/>
+    </union>
+    <union name="ships">
+        <union name="red-ships">
+            <cuboid name="red-main-ship" min="-6,16,-6" max="6,44,28"/>
+            <cuboid name="red-sub-ship" min="9,12,4" max="21,34,28"/>
+        </union>
+        <union name="blue-ships">
+            <cuboid name="yellow-main-ship" min="-64,16,-7" max="-52,44,27"/>
+            <cuboid name="yellow-sub-ship" min="-80,12,-7" max="-67,34,17"/>
+        </union>
+    </union>
+    <union name="icari"> <!-- multiple icarus -->
+        <union name="yellow-icari">
+            <cuboid name="yellow-main-icarus" min="-52,16,17" max="-63,20,12"/>
+            <cuboid name="yellow-tnt-area" min="-60,17,14" max="-54,18,16"/>
+            <block name="yellow-button">-57.5,18,11.5</block>
+        </union>
+        <union name="red-icari">
+            <cuboid name="red-main-icarus" min="-6,16,4" max="5,20,9"/>
+            <cuboid name="red-tnt-area" min="2,17,5" max="-4,18,7"/>
+            <block name="red-button">-0.5,18,9.5</block>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block-place="deny-fire" message="`eYou may not place down fire!">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit outside the main area! (`c55 Radius`e)">
+        <region name="outside-55"/>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit above the height limit! (`c35 Blocks`e)">
+        <complement>
+            <region name="above-35"/>
+            <region name="spawns"/>
+            <region name="ships"/>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="`eYou may not edit the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="deny-all" message="`eYou may not enter the observers' spawn area!">
+        <region name="obs-spawn"/>
+    </apply>
+    <apply enter="only-yellow" message="`eYou may not enter the enemy's spawn area!">
+        <region name="yellow-spawn"/>
+    </apply>
+    <apply enter="only-red" message="`eYou may not enter the enemy's spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+</regions>
+<destroyables show-progress="true" completion="75%" repair="true">
+    <destroyables materials="stained clay:4;stained clay:9;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;ladder:2;ladder:3" owner="yellow">
+        <destroyable name="Main Ship">
+            <region name="yellow-main-ship"/>
+        </destroyable>
+        <destroyable name="Sub Ship">
+            <region name="yellow-sub-ship"/>
+        </destroyable>
+    </destroyables>
+    <destroyables materials="stained clay:14;stained clay:9;chest:2;chest:3;chest:4;chest:5;workbench;step:0;step:8;ladder:2;ladder:3" owner="red">
+        <destroyable name="Main Ship">
+            <region name="red-main-ship"/>
+        </destroyable>
+        <destroyable name="Sub Ship">
+            <region name="red-sub-ship"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<itemremove>
+    <item>stone sword</item>
+    <item>stone pickaxe</item>
+    <item>bow</item>
+    <item>flint and steel</item>
+    <item>tnt</item>
+    <item>arrow</item>
+    <item>step</item>
+    <item>chainmail chestplate</item>
+    <item>shears</item>
+    <item>rails</item>
+    <item>ladder</item>
+</itemremove>
+<killreward>
+    <item amount="16">wood</item>
+    <item amount="16">arrow</item>
+    <item amount="12">tnt</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<autorespawn/>
+<time result="objectives">15m</time>
+<tutorial>
+    <stage title="Destroy the Ships">
+        <message>
+            <line>This map is a `aDestroy the Ships `r(DTS) map.</line>
+            <line>The objective is to destroy `c75% `rof both of the enemy team's ships!</line>
+            <line>Each team has 2 ships that you must defend!</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="10">-80,25,32</point>
+        </teleport>
+    </stage>
+    <stage title="Ships">
+        <message>
+            <line>Each team has 2 ships. A main ship and a sub ship.</line>
+            <line>The main ship contains an iron depot, an onboard icarus, and more chest supplies.</line>
+            <line>The sub ship contains mostly extra chest supplies.</line>
+        </message>
+        <teleport>
+            <point yaw="30" pitch="25">16,33,-11</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>When you spawn, you will be secluded high in the air away from the map.</line>
+            <line>Jump down towards any of your two ships, you do not take any fall damage!</line>
+            <line>You only have `a20 minutes`r, so hurry up!</line>
+        </message>
+        <teleport>
+            <point yaw="50" pitch="60">22,85,2</point>
+        </teleport>
+    </stage>
+    <stage title="Kill Rewards">
+        <message>
+            <line>When you kill an enemy, you will recieve:</line>
+            <line>16 `6Wood`r, 16 `7Arrows`r, and 8 `cTNT`r.</line>
+        </message>
+        <teleport>
+            <point yaw="50" pitch="60">22,85,2</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

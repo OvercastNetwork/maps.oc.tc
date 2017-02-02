@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Network: TDM</name>
+<version>1.1.2</version>
+<objective>Get the most kills after 5 minutes!</objective>
+<authors>
+    <author uuid="1bdd0192-aa8e-460e-8cad-4f1326544b64"/> <!-- Pentadar -->
+    <author uuid="616fd61a-5784-4975-8329-c74a4406122a"/> <!-- Pwnerz64 -->
+    <author uuid="6c40f54a-bccc-4c91-8ddd-55152b18eb87"/> <!-- CM790PlaysMC -->
+</authors>
+<contributors>
+    <contributor uuid="616fd61a-5784-4975-8329-c74a4406122a" contribution="Helped with ideas, etc."/> <!-- Pwnerz64 -->
+    <contributor uuid="fcaa22e9-dc55-45ea-a780-6f4629c1d5be" contribution="Helped with ideas, etc."/> <!-- JonnyN001 -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+    <rule>Auto respawn is enabled!</rule>
+</rules>
+<teams>
+    <team color="red" max="8" max-overfill="10">Red</team>
+    <team color="blue" max="8" max-overfill="10">Blue</team>
+    <team color="green" max="8" max-overfill="10">Green</team>
+    <team color="yellow" max="8" max-overfill="10">Yellow</team>
+</teams>
+<rage/>
+<score>
+    <time>5m</time>
+</score>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`5One hit kill!" name="`5`fDirk">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`5One shot kill!" name="`5`fCrossbow">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="3" amplifier="25">heal</potion>
+        <potion duration="3" amplifier="25">damage resistance</potion>
+    </kit>
+        <kit name="red" parents="spawn">
+        <helmet color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+        <leggings color="993333">leather leggings</leggings>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="334CB2">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <leggings color="334CB2">leather leggings</leggings>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="7FCC19">leather helmet</helmet>
+        <chestplate color="7FCC19">leather chestplate</chestplate>
+        <leggings color="7FCC19">leather leggings</leggings>
+        <boots color="7FCC19">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="spawn">
+        <helmet color="E5E533">leather helmet</helmet>
+        <chestplate color="E5E533">leather chestplate</chestplate>
+        <leggings color="E5E533">leather leggings</leggings>
+        <boots color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="observer">
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather boots</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather helmet</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<filters>
+    <filter name="deny-some">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-blocks" use="deny-some">
+        <rectangle name="main-area" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<playable>
+    <region name="main-area"/>
+</playable>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cylinder base="-8,33,-25" radius="3" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cylinder base="-42,33,8" radius="3" height="0"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="179">
+        <cylinder base="-8,33,42" radius="3" height="0"/>
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="90">
+        <cylinder base="25,33,8" radius="3" height="0"/>
+    </spawn>
+    <default yaw="-179" kit="observer">
+        <cylinder base="-7,116,8" radius="1" height="0"/>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<autorespawn/>
+</map>

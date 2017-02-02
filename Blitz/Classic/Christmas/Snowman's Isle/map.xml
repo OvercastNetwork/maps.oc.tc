@@ -1,0 +1,145 @@
+<map proto="1.4.0" game="Blitz">
+<include src="blitz-global.xml" />
+<name>Deadwater: Snowman's Isle</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team within 8 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<blitz />
+<time>8m</time>
+<teams>
+    <team id="redTeam"  color="dark red" max="12">Red</team>
+    <team id="blueTeam" color="blue"     max="12">Blue</team>
+</teams>
+<kits>
+    <kit id="main">
+        <item slot="0"                                     unbreakable="true"  material="stone sword" />
+        <item slot="1"                                     unbreakable="true"  material="bow" />
+        <item slot="8" amount="28"                                             material="arrow" />
+        <chestplate enchantment="protection environmental" unbreakable="true"  material="gold chestplate" />
+        <potion duration="5"     amplifier="25">damage resistance</potion>
+        <potion duration="3"     amplifier="25">heal</potion>
+        <potion duration="2m"                  >absorption</potion>
+    </kit>
+    <kit id="redKit" parents="main">
+        <helmet color="cd0000"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="cd0000" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+    <kit id="blueKit" parents="main">
+        <helmet color="0066cc"                               unbreakable="true"  material="leather helmet" />
+        <boots  color="0066cc" enchantment="protection fall" unbreakable="true"  material="leather boots" />
+    </kit>
+    <kit id="wither" force="true">
+        <potion duration="oo" amplifier="12">wither</potion>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="snowballgun" name="snowball" projectile="Snowball" velocity="3.5" damage="2" effect="slowness:80:1" throwable="false" cooldown="6s" click="right"
+        potion="slowness:80:1" /> <!-- TODO: remove 'potion', leave 'effect' -->
+</projectiles>
+<item-mods>
+    <rule>
+        <match>
+            <material>Gold Helmet</material>
+        </match>
+        <modify unbreakable="true" name="`bParty Hat">
+            <attribute operation="add" amount="0.05">generic.movementSpeed</attribute>
+        </modify>
+    </rule>
+    <rule>
+        <match>
+            <material>Coal Block</material>
+        </match>
+        <modify unbreakable="true" name="`cLooks like you've been very naughty..">
+            <attribute operation="add" amount="4">generic.attackDamage</attribute>
+            <attribute operation="add" amount="0.05">generic.movementSpeed</attribute>
+            <enchantment level="1">fire aspect</enchantment>
+        </modify>
+    </rule>
+</item-mods>
+<spawns>
+    <default                               region="defaultSpawn" yaw="-90" />
+    <spawn   team="redTeam"  kit="redKit"  region="redSpawn"     yaw="135" />
+    <spawn   team="blueTeam" kit="blueKit" region="blueSpawn"    yaw="40" />
+</spawns>
+<filters>
+    <any id="allowedBlocks">
+        <material>long grass</material>
+        <material>double plant</material>
+        <material>red rose</material>
+        <material>skull</material>
+    </any>
+</filters>
+<regions>
+    <point id="defaultSpawn">-3,14.5,1</point>
+    <point id="redSpawn"    >3,7.5,41</point>
+    <point id="blueSpawn"   >3,7.5,-39</point>
+    <below id="applyWither" y="4" />
+
+    <apply kit="wither" region="applyWither" />
+    <apply block="allowedBlocks" />
+</regions>
+<block-drops>
+    <rule wrong-tool="false">
+        <filter>
+            <material>skull</material>
+        </filter>
+        <drops>
+            <item chance="0.6" amount="3" material="coal" />
+            <item chance="0.6" amount="6" material="arrow" />
+            <item chance="0.5" amount="6" material="snow ball" />
+            <item chance="0.3"            material="golden apple" />
+            <item chance="0.3" amount="1" material="coal" />
+            <item chance="0.1"            material="gold helmet" />
+            <item chance="0.05"            material="iron sword" unbreakable="true" name="`bIcy Sword" projectile="snowballgun" lore="`r`7Right-click to shoot a slowing snowball!"/>
+            <item chance="0.0001"          material="coal block" />
+        </drops>
+    </rule>
+</block-drops>
+<crafting>
+    <shapeless override="true">
+        <result material="coal block" />
+        <ingredient>bedrock</ingredient>
+    </shapeless>
+</crafting>  
+<broadcasts>
+    <tip after="8s">`bBreak open up gifts to find a surprise inside..</tip>
+</broadcasts>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>gold chestplate</item>
+    <item>leather boots</item>
+    <item>leather helmet</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>bone</item>
+    <item>skull item</item>
+</itemremove>
+<itemkeep>
+    <item>snow ball</item>
+    <item>coal</item>
+    <item>coal block</item>
+    <item>iron sword</item>
+    <item>gold helmet</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemkeep>
+<killreward>
+    <item amount="6">arrow</item>
+    <item>golden apple</item>
+</killreward> 
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

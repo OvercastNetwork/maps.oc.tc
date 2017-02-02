@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<name>Barr DTC</name>
+<version>1.2.5</version>
+<objective>Destroy the core of the enemy team to win!</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/>
+</authors>
+<gamemode>dtc</gamemode>
+<teams>
+    <team id="blue" color="blue" max="26">Blue</team>
+    <team id="red" color="dark red" max="26">Red</team>
+</teams>
+<kits>
+    <kit id="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2">iron axe</item>
+        <item slot="4" enchantment="dig speed:1">iron spade</item>
+        <item slot="5" amount="64" damage="5">wood</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="64">grilled pork</item>
+        <item slot="28" amount="64">arrow</item>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <chestplate unbreakable="true" color="993333">leather chestplate</chestplate>
+        <boots unbreakable="true" color="993333">leather boots</boots>
+        <helmet unbreakable="true" color="993333">leather helmet</helmet>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <chestplate unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+    </kit>
+</kits>
+<maxbuildheight>25</maxbuildheight>
+<cores material="obsidian" leak="4" mode-changes="false">
+    <core id="blue-core" team="blue">
+        <region>
+            <sphere origin="531,19,809" radius="2"/>
+        </region>
+    </core>
+    <core id="red-core" team="red">
+        <region>
+            <sphere origin="531,19,685" radius="2"/>
+        </region>
+    </core>
+</cores>
+<spawns>
+    <spawn team="blue" kit="blue-kit" yaw="0">
+        <regions>
+            <cuboid min="530,2,811" max="533,4,808"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit" yaw="180">
+        <regions>
+            <cuboid min="530,2,684" max="533,4,687"/>
+        </regions>
+    </spawn>
+    <default>
+        <region yaw="0">
+            <cuboid min="533,36,746" max="530,39,749"/>
+        </region>
+    </default>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+</filters>
+<regions>
+    <union id="spawns">
+        <cylinder id="red-spawn" base="531,1,685" radius="8" height="5"/>
+        <cylinder id="blue-spawn" base="531,1,809" radius="8" height="5"/>
+    </union>
+    <apply block="never" region="spawns" message="You are not allowed to edit the spawns!"/>
+    <apply enter="only-red" region="red-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply enter="only-blue" region="blue-spawn" message="You may not enter the enemy team's spawn!"/>
+    <apply block="no-void" message="You may not build in the void area!">
+        <region>
+            <complement id="bridging">
+                <everywhere/>
+                <rectangle id="bridge-region-1" min="520,780" max="492,716"/>
+                <rectangle id="bridge-region-2" min="571,779" max="543,715"/>
+            </complement>
+        </region>
+    </apply>
+</regions>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>seeds</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>glass</item>
+</itemremove>
+</map>

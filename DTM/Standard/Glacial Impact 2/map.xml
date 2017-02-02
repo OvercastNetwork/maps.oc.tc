@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Glacial Impact 2</name>
+<version>1.1.2</version>
+<objective>Destroy the enemy team's monuments while defending your own.</objective>
+<authors>
+    <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
+</authors>
+<contributors>
+    <contributor contribution="Feedback">Project Ares Community</contributor>
+</contributors>
+<teams>
+    <team color="dark green" max="75">Green</team>
+    <team color="dark red" max="75">Red</team>
+</teams>
+<filters>
+    <filter name="deny-some" parents="deny-world">
+        <deny>
+            <any>
+                <block>snow</block>
+                <block>snow block</block>
+                <block>glowstone</block>
+                <block>ice</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+</filters>
+<regions>
+    <union name="dests">
+        <cuboid name="green-front-mon" min="-4,32,-196" max="3,42,-189"/>
+        <cuboid name="green-rear-mon" min="-4,9,-320" max="3,20,-313"/>
+        <cuboid name="red-rear-mon" min="-4,9,54" max="3,20,61"/>
+        <cuboid name="red-front-mon" min="-4,32,-70" max="3,42,-63"/>
+    </union>
+    <apply block="deny-some" message="Don't break the ice and snow! :(">
+        <complement name="protected-area">
+            <circle name="main-area" center="-0.5,-129.5" radius="225.5"/>
+            <region name="dests"/>
+        </complement>
+    </apply>
+    <apply use="deny-beacon">
+        <region name="protected-area"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter red's spawn!">
+        <complement name="green-spawn">
+            <cuboid name="green-spawn-main" min="-22,9,-285" max="21,14,-270"/>
+            <union> <!-- Stairwells -->
+                <cuboid min="12,10,-281" max="17,14,-274"/>
+                <cuboid min="-18,10,-281" max="-13,14,-274"/>
+            </union>
+        </complement>
+    </apply>
+    <apply enter="only-red" message="You may not enter green's spawn!">
+        <complement name="red-spawn">
+            <cuboid name="red-spawn-main" min="-22,9,11" max="21,14,26" />
+            <union> <!-- Stairwells -->
+                <cuboid min="-18,10,15" max="-13,14,22"/>
+                <cuboid min="12,10,15" max="17,14,22"/>
+            </union>
+        </complement>
+    </apply>
+    <apply block="deny-all" message="You may not alter the team spawns!">
+        <region name="red-spawn-main"/>
+        <region name="green-spawn-main"/>
+    </apply>
+</regions>
+<playable>
+    <region name="main-area"/>
+</playable><!-- Disable until fixed
+<modifybowprojectile>
+    <projectile>Snowball</projectile>
+    <velocityMod>1</velocityMod>
+</modifybowprojectile>-->
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="durability:1">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1;durability:1">bow</item>
+        <item slot="2" enchantment="durability:1;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:1">iron axe</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="4" amount="64" damage="1">log</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6" amount="1" damage="32722">potion</item> <!-- Splash potion of speed 6 min -->
+        <item slot="7" amount="2" damage="16373">potion</item> <!-- Bottle potion of health II -->
+        <item slot="8" amount="7">pumpkin pie</item>
+        <helmet>leather helmet</helmet>
+        <chestplate>leather chestplate</chestplate>
+        <leggings>leather leggings</leggings>
+        <boots enchantment="protection fall:1">iron boots</boots>
+        <potion duration="900" amplifier="1">night vision</potion>
+    </kit>
+    <kit name="default">
+        <potion duration="900" amplifier="1">night vision</potion>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="90" kit="default">
+        <cylinder base="0,75,-130" radius="3" height="0"/>
+    </default>
+    <spawns kit="spawn">
+        <spawn team="green" yaw="0">
+            <cylinder base="-0.5,10,-277.5" radius="4" height="0"/>
+        </spawn>
+        <spawn team="red" yaw="180">
+            <cylinder base="-0.5,10,18.5" radius="4" height="0"/>
+        </spawn>
+    </spawns>
+</spawns>
+<mobs>
+    <filter>
+        <any>
+            <all>
+                <spawn>spawner</spawn>
+                <mob>snowman</mob>
+            </all>
+            <all>
+                <mob>pig</mob>
+                <spawn>spawner egg</spawn>
+            </all>
+        </any>
+    </filter>
+</mobs>
+<destroyables completion="75%">
+    <destroyables owner="red">
+        <destroyable name="Front Monument" materials="redstone ore;glowing redstone ore">
+            <region name="red-front-mon"/>
+        </destroyable>
+        <destroyable name="Rear Monument" materials="redstone ore;glowing redstone ore">
+            <region name="red-rear-mon"/>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="green">
+        <destroyable name="Front Monument" materials="emerald ore">
+            <region name="green-front-mon"/>
+        </destroyable>
+        <destroyable name="Rear Monument" materials="emerald ore">
+            <region name="green-rear-mon"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<portals>
+    <!-- Green Drilling portal dest=-136,2,130 -->
+    <portal x="-79" y="-5" z="16" yaw="180">
+        <cuboid min="-59,7,-149" max="-54,8,-144"/>
+    </portal>
+    <!-- Red Drilling portal dest=133,2,-130 -->
+    <portal x="77" y="-5" z="-17" yaw="180">
+        <cuboid min="53,7,-115" max="58,8,-110"/>
+    </portal>
+    <!-- Red Large Portal loc=136, 2, -130 -->
+    <portal x="-272" y="1" z="0" yaw="0">
+        <cuboid min="136,2,-133" max="137,10,-126"/>
+    </portal>
+    <!-- Green Large Portal loc=-138,2,-130 -->
+    <portal x="272" y="1" z="0" yaw="0">
+        <cuboid min="-138,2,-133" max="-137,10,-126"/>
+    </portal>
+</portals>
+<toolrepair>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+    <tool>iron sword</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>iron boots</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>emerald</item>
+    <item>redstone</item>
+    <item>ladder</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+</itemremove>
+<maxbuildheight>64</maxbuildheight>
+<timelock>off</timelock>
+</map>

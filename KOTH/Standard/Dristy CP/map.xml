@@ -1,0 +1,169 @@
+<map proto="1.4.0">
+<name>Dristy</name>
+<version>1.1.0</version>
+<objective>Short description about the maps objective.</objective>
+<authors>
+    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/> <!-- SheriffSoco -->
+</authors>
+<contributors>
+    <contributor contribution="Feedback; Bridge" uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+    <contributor contribution="Trees" uuid="5c6751aa-96b0-478b-b46d-c55a7d8b6ed1"/> <!-- CHShadow -->
+    <contributor contributoin="Server Host" uuid="c2848337-b526-4db0-9130-fabd0a5c7cfb"/> <!-- Rasta_Jol -->
+</contributors>
+<broadcasts>
+    <tip after="5s" every="1m" filter="only-blue">You can only capture `r`4`lRed Point `r`b`oif you control `r`7`lCenter</tip>
+    <tip after="5s" every="1m" filter="only-red">You can only capture `r`9`lBlue Point `r`b`oif you control `r`7`lCenter</tip>
+</broadcasts>
+<!-- Teams and Kits -->
+<teams>
+   <team id="red-team" color="dark red" max="28" max-overfill="35">Red</team>
+   <team id="blue-team" color="blue" max="28" max-overfill="35">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="DURABILITY:1;DIG_SPEED:1">iron pickaxe</item>
+        <item slot="3" enchantment="DURABILITY:1;DIG_SPEED:1">iron axe</item>
+        <item slot="4" amount="64">grilled pork</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" amount="64">brick</item>
+        <item slot="7" amount="16">162</item> <!-- Acacia Log -->
+        <item slot="8" amount="32">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <helmet color="801515">leather helmet</helmet>
+        <chestplate color="801515">leather chestplate</chestplate>
+        <leggings color="801515">leather leggings</leggings>
+        <boots color="801515">leather boots</boots>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <helmet color="1a1a51">leather helmet</helmet>
+        <chestplate color="1a1a51">leather chestplate</chestplate>
+        <leggings color="1a1a51">leather leggings</leggings>
+        <boots color="1a1a51">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="redKit">
+        <regions yaw="90">
+            <region id="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="blueKit">
+        <regions yaw="-90">
+            <region id="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="45">
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<!-- Filters and Regions -->
+<filters>
+    <all id="red-can-cap">
+        <team>red-team</team>
+        <objective team="red-team">center</objective>
+    </all>
+    <all id="blue-can-cap">
+        <team>blue-team</team>
+        <objective team="blue-team">center</objective>
+    </all>
+    <not id="no-void">
+        <void/>
+    </not>
+    <all id="hillBlocks">
+        <not>
+            <material>159:0</material>
+        </not>
+        <not>
+            <material>159:11</material>
+        </not>
+        <not>
+            <material>159:14</material>
+        </not>
+    </all>
+    <all id="only-blue">
+        <team>blue-team</team>
+    </all>
+    <all id="only-red">
+        <team>red-team</team>
+    </all>
+</filters>
+<regions>
+    <rectangle id="center-region" min="-18,-89" max="93,14"/>
+    <complement id="voidMap">
+        <region id="everywhere"/>
+        <region id="center-region"/>
+        <region id="center-display-region"/>
+        <region id="blue-display-region"/>
+        <region id="red-display-region"/>
+    </complement>
+    <cylinder id="center-display-region-1" base="37.5,6,-37.5" radius="4" height="1"/>
+    <cuboid id="center-display-region-2" min="8,0,-56" max="67,1,-19"/>
+    <union id="center-display-region">
+        <region id="center-display-region-1"/>
+        <region id="center-display-region-2"/>
+    </union>
+    <cylinder id="blue-display-region" base="-16.5,29,-132.5" radius="4" height="1"/>
+    <cylinder id="red-display-region" base="91.5,29,57.5" radius="4" height="1"/>
+    <cylinder id="center-capture-region" base="37.5,7,-37.5" radius="4" height="5"/>
+    <cylinder id="blue-capture-region" base="-16.5,30,-132.5" radius="4" height="5"/>
+    <cylinder id="red-capture-region" base="91.5,30,57.5" radius="4" height="5"/>
+    <block id="obs-spawn">39,75,-40</block>
+    <block id="red-spawn">150,31,60</block>
+    <block id="blue-spawn">-76,31,-136</block>
+    <apply block="no-void" message="Build to the center between the `3Red Sandstone Lines">
+        <region>
+            <region id="voidMap"/>
+        </region>
+    </apply>
+    <apply block="hillBlocks" message="Do not destroy the hill indicators!!">
+        <region>
+            <region id="everywhere"/>
+        </region>
+    </apply>
+</regions>
+<!-- CP -->
+<control-points capture-players="lead" incremental="true" show-progress="true">
+    <control-point id="center" name="Center" capture-time="20s">
+        <capture><region id="center-capture-region"/></capture>
+        <progress><region id="center-display-region"/></progress>
+    </control-point>
+    <control-point id="blue-point" name="Blue Point" capture-time="60s" time-multiplier=".02" player-filter="red-can-cap" initial-owner="blue-team">
+        <capture><region id="blue-capture-region"/></capture>
+        <progress><region id="blue-display-region"/></progress>
+    </control-point>
+    <control-point id="red-point" name="Red Point" capture-time="60s" time-multiplier=".02" player-filter="blue-can-cap" initial-owner="red-team">
+        <capture><region id="red-capture-region"/></capture>
+        <progress><region id="red-display-region"/></progress>
+    </control-point>
+</control-points>
+<!-- etc. -->
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="16">arrow</item>
+</killreward>
+<maxbuildheight>42</maxbuildheight>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>brick</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>grilled pork</item>
+</itemremove>
+
+</map>

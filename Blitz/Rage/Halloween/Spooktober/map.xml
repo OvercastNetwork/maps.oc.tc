@@ -1,0 +1,60 @@
+<map proto="1.3.5">
+<name>Spooktober</name>
+<version>1.0.0</version>
+<objective>One in the chamber!</objective>
+<gamemode>rage</gamemode>
+<authors>
+	<author uuid="f5099105-0d7f-42fe-aa16-b6de22861ef6"/> <!-- kingoros -->
+	<author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+	<author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
+</authors>
+<teams>
+	<team color="dark green" max="20">Green</team>
+	<team color="dark purple" max="20">Purple</team>
+</teams>
+<rage/>
+<blitz>
+	<time>5m</time>
+	<lives>1</lives>
+	<title>Blitz: Rage</title>
+</blitz>
+<spawns>
+	<spawn team="green" kit="spawn" angle="-30,14,6">
+		<cuboid min="-36,13,12" max="-32,13,8"/>
+	</spawn>
+	<spawn team="purple" kit="spawn" angle="3,14,-27">
+		<cuboid min="9,13,-33" max="5,13,-29"/>
+	</spawn>
+	<default kit="obs" yaw="90">
+		<cylinder base="-13,25,-10" radius="2" height="0"/>
+	</default>
+</spawns>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+	<kit name="spawn" parents="obs">
+		<item slot="0" enchantment="damage all:10" name="`9`l1-Hit Kill!">bone</item>
+		<item slot="1" enchantment="arrow damage:10" name="`9`l1-Shot Kill!">bow</item>
+		<item slot="2" amount="1">arrow</item>
+		<item slot="3" amount="1">pumpkin pie</item>
+	</kit>
+</kits>
+<regions>
+	<apply block="deny-all">
+		<rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+	</apply>
+	<apply enter="deny-all" message="You are not allowed to enter this area!">
+	</apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+	<item>arrow</item>
+</killreward>
+<itemremove>
+	<item>pumpkin pie</item>
+	<item>bow</item>
+	<item>bone</item>
+	<item>arrow</item>
+</itemremove>
+</map>

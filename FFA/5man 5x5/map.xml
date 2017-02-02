@@ -1,0 +1,116 @@
+<map proto="1.4.0">
+<name>5man</name>
+<slug>5man</slug>
+<version>1.5.2</version>
+<objective>Get the most kills within 5 minutes!</objective>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
+</authors>
+<contributers>
+        <contributer uuid="f690a591-348b-482e-a18d-7779d0c0a28c" contribution="XML Source Material"/> <!--  mitchiii_  -->
+</contributers>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+</score>
+<players min="3" max="5" max-overfill="5" show-name-tags="false" />
+<respawn auto="true" />
+<spawns safe="true">
+    <default kit="default-kit" region="default-spawn" yaw="0" />
+    <spawn   kit="spawn-kit"   spread="true">
+        <regions>
+            <point yaw="-30">20.5,5,-29.5</point>
+            <point yaw="-90">-21.5,13,-14.5</point>
+            <point yaw="60">30.5,13,19.5</point>
+            <point yaw="63">-12.5,5,26.6</point>
+            <point yaw="-45">-19.5,5,13.5</point>
+            <point yaw="0">-25.5,5,-8.5</point>
+            <point yaw="-45">-31.5,5,-2.5</point>
+            <point yaw="135">-21.5,13,-16.5</point>
+            <point yaw="-85">-26.5,13,-26.5</point>
+            <point yaw="-90">-4.5,5,-26</point>
+            <point yaw="145">23.5,7,-11.5</point>
+            <point yaw="-50">-29.5,5,16.5</point>
+            <point yaw="-90">-28.5,5,11.5</point>
+            <point yaw="-129">23.5,7,0.5</point>
+            <point yaw="-178">-18.5,7,-12.5</point>
+            <point yaw="72">-17.5,11,-21.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="default-kit">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="0" unbreakable="true"               material="stone sword" />
+        <item slot="1" unbreakable="true"               material="bow" />
+        <item slot="8"                    amount="24"   material="arrow" />
+        <helmet        unbreakable="true" locked="true" material="leather helmet" />
+        <chestplate    unbreakable="true" locked="true" material="gold chestplate" />
+        <boots         unbreakable="true" locked="true" material="iron boots" />
+        <potion        duration="1m30s"                >absorption</potion>
+        <potion        duration="3s"      amplifier="5">resistance</potion>
+    </kit>
+    <kit id="kill-boost">
+        <potion duration="4" amplifier="2">speed</potion>
+        <potion duration="3">night vision</potion>
+    </kit>
+</kits>
+<killreward>
+    <kit id="kill-boost" />
+    <item material="golden apple" />
+</killreward>
+<filters>
+    <all id="allowed-blocks">
+        <any>
+            <material>stained glass</material>
+            <material>leaves</material>
+            <material>torch</material>
+            <material>long grass</material>
+            <material>red rose</material>
+            <material>water lily</material>
+            <material>water</material>
+            <material>stationary water</material>
+            <material>stained glass pane</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+</filters>
+<regions>
+    <cylinder id="default-spawn" base="18.5,13,7.5" radius="1" height="1" />
+    <apply block="allowed-blocks" />
+</regions>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>stone spade</item>
+    <item>stone axe</item>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>red rose</item>
+    <item>carpet</item>
+    <item>wool</item>
+    <item>torch</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>water lily</item>
+    <item>stained glass</item>
+    <item>seeds</item>
+</itemremove>
+<!--XML based of Mitchiii_'s Frontier 5x5-->
+</map>

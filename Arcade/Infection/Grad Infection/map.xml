@@ -1,0 +1,66 @@
+<map proto="1.4.2" game="Infection">
+<name>Infection: Grad</name>
+<version>1.2.0</version>
+<slug>infection_grad</slug>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/> <!-- Matic0B -->
+</authors>
+<contributors>
+    <contributor uuid="23518e31-4110-41ce-9732-333888ae822d" contribution="Trees"/> <!-- crikimaruc -->
+    <contributor contribution="Building Style">TheMadnes64</contributor>
+</contributors>
+<include src="infection.xml"/>
+<broadcasts>
+    <tip after="5s">Humans may not cross the river!</tip>
+</broadcasts>
+<spawns>
+    <spawn filter="before-10s" team="zombie-team" kit="zombie-kit-start">
+        <regions yaw="90">
+            <point>-14.5,10,-71.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="before-10s" team="human-team" kit="human-kit">
+        <regions yaw="180">
+            <point>-28,9,57</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="zombie-team" kit="zombie-kit">
+        <regions yaw="90">
+            <point>-14.5,10,-71.5</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="human-team" kit="zombie-switch-kit">
+        <region yaw="90">
+            <point>-14.5,10,-71.5</point>
+        </region>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>-14.5,10,-70.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <above id="height-limit" y="32"/>
+    <apply enter="only-zombies" message="You may not cross the river!">
+        <region>
+            <rectangle min="-79,-84" max="12,-56"/>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not build here!">
+        <region>
+            <everywhere/>
+        </region>
+    </apply>
+</regions>
+<itemremove>
+    <item>wheat</item>
+    <item>seeds</item>
+</itemremove>
+<maxbuildheight>32</maxbuildheight>
+</map>

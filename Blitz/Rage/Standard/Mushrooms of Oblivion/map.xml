@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Mushrooms of Oblivion</name>
+<version>1.5.2</version>
+<objective>Eliminate the opposing team in under 5 minutes.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<teams>
+   <team color="green" max="25">Green</team>
+   <team color="dark purple" max="25">Purple</team>
+</teams>
+<spawns>
+    <spawn team="purple" kit="purple" yaw="180">
+        <cuboid min="0,113,36" max="-4,113,40"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="0,113,-36" max="-4,113,-40"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="71,162,-5" max="79,162,3"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:127" name="`3`l1-Hit kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:127" name="`3`l1-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <chestplate color="B266E5" name="`dArmor" locked="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="green" parents="spawn">
+        <chestplate color="7FCC19" name="`aArmor" locked="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<itemremove>
+    <item>leather chestplate</item>
+</itemremove>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<include src="blitz-global.xml"/>
+</map>

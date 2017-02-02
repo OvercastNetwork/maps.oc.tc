@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Woodwork Harbor</name>
+<version>1.1.4</version>
+<objective>Destroy the obsidian core and two endstone monuments on the enemy side to win.</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="35">Red</team>
+    <team id="blue" color="blue" max="35">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="0">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="180">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<cores mode-changes="true">
+    <core id="red-core" team="red" region="red-core"/>
+    <core id="blue-core" team="blue" region="blue-core"/>
+</cores>
+<destroyables materials="ender stone" completion="100%" show-progress="true" sparks="true">
+    <destroyables owner="red">
+        <destroyable name="Left Monument" region="red-left-monument"/>
+        <destroyable name="Right Monument" region="red-right-monument"/>
+    </destroyables>
+    <destroyables owner="blue">
+        <destroyable name="Left Monument" region="blue-left-monument"/>
+        <destroyable name="Right Monument" region="blue-right-monument"/>
+    </destroyables>
+</destroyables>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="5" amount="64">smooth brick</item>
+        <item slot="32" amount="64">smooth brick</item>
+        <item slot="6" amount="16">glass</item>
+        <item slot="8" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <potion duration="6">absorption</potion>
+        <potion duration="6" amplifier="5">regeneration</potion>
+        <potion duration="6" amplifier="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet enchantment="protection explosions:3" color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+        <item slot="4" amount="64" damage="3">wood</item>
+        <item slot="31" amount="64" damage="3">wood</item>
+        <item slot="22" amount="64" damage="3">wood</item>
+        <item slot="13" amount="64" damage="3">wood</item>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet enchantment="protection explosions:3" color="334CB2">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="31" amount="64" damage="2">wood</item>
+        <item slot="22" amount="64" damage="2">wood</item>
+        <item slot="13" amount="64" damage="2">wood</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <!-- Definitions -->
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="map-cuboid" min="-40,0,-148" max="41,45,149"/>
+    <cylinder name="red-spawn" base="0.5,12,-134.5" radius="2" height="1"/>
+    <cylinder name="blue-spawn" base="0.5,12,135.5" radius="2" height="1"/>
+    <block name="obs-spawn" location="72.5,35,0.5"/>
+    <negative name="outisde-map">
+        <rectangle name="map" min="-40,-148" max="41,149"/>
+    </negative>
+    <union name="spawns">
+        <circle center="0.5,-134.5" radius="6"/>
+        <circle center="0.5,135.5" radius="6"/>
+    </union>
+    <union name="fountains">
+        <cuboid name="red-fountain" min="-6,9,-126" max="6,26,-113"/>
+        <mirror name="blue-fountain" region="red-fountain" origin="0.5,0,0.5" normal="0,0,1"/>
+    </union>
+    <union name="cores">
+        <sphere name="red-core" origin="0.5,18.5,-71.5" radius="5"/>
+        <mirror name="blue-core" region="red-core" origin="0.5,0,0.5" normal="0,0,1"/>
+    </union>
+    <union name="monuments">
+        <union name="red-monuments">
+            <cylinder name="red-left-monument" base="36.5,32,-48.5" radius="3" height="7"/>
+            <translate name="red-right-monument" region="red-left-monument" offset="-71,0,0"/>
+        </union>
+        <union name="blue-monuments">
+            <mirror name="blue-left-monument" region="red-right-monument" origin="0.5,11,0.5" normal="0,0,1"/>
+            <mirror name="blue-right-monument" region="red-left-monument" origin="0.5,11,0.5" normal="0,0,1"/>
+        </union>
+    </union>
+    <!-- Applications -->
+    <apply block="deny-all" region="outisde-map" message="You may not edit outside of the map"/>
+    <apply block="deny-all" region="fountains" message="You may not interact with the fountain"/>
+    <apply block="deny-all" region="spawns" message="You may not edit the spawn area"/>
+</regions>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>gravel</block>
+        </filter>
+        <drops>
+            <item>gravel</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>stone</block>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+</blockdrops>
+<falling-blocks>
+    <rule>
+        <filter>
+            <block>wood:0</block>
+        </filter>
+    </rule>
+</falling-blocks>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <doFireTick>false</doFireTick>
+    <doMobLoot>false</doMobLoot>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<maxbuildheight>45</maxbuildheight>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>diamond pickaxe</item>
+    <item>iron axe</item>
+    <item>glass</item>
+    <item>smooth brick</item>
+    <item>wood</item>
+    <item>shears</item>
+    <item>obsidian</item>
+    <item>ender stone</item>
+    <item>bread</item>
+    <item>log</item>
+    <item>potion</item>
+</itemremove>
+</map> 

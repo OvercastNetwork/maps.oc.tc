@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<map>
+<stamina>
+    <mutators>
+        <stand          add=" 0.2 "/>
+        <sneak          add=" 0.15"/>
+        <walk           add=" 0.1 "/>
+        <run            add="-0.05"/>
+        <jump           add="-0.05"/>
+        <run-jump       add="-0.1 "/>
+        <melee-miss     mul="-0.15"/>
+        <melee-hit      add="-0.05"/>
+        <archery        add="-0.1 "/>
+        <injury         add="-0.3 "/>
+    </mutators>
+    <symptoms>
+        <symptoms lt="0.7">
+            <potion  effect="slow digging" amplifier="1"/>
+            <melee   mul="0.5"/>
+            <archery mul="0.5"/>
+        </symptoms>
+
+        <symptoms lt="0.5">
+            <potion  effect="slow digging" amplifier="4"/>
+            <melee   mul="0.5"/>
+            <archery mul="0.5"/>
+        </symptoms>
+
+        <symptoms lt="0.3">
+            <potion  effect="slow digging" amplifier="10"/>
+            <potion  effect="slow" amplifier="1"/>
+            <melee   mul="0.5"/>
+            <archery mul="0.5"/>
+        </symptoms>
+
+        <symptoms lt="0.2">
+            <potion  effect="confusion"/>
+        </symptoms>
+    </symptoms>
+</stamina>
+</map>

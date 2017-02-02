@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Facility</name>
+<genre>Deathmatch</genre>
+<time>10m</time>
+<respawn delay="2s"/>
+<version>2.0</version>
+<objective>Be the team with the most points after 10 minutes.</objective>
+<authors>
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924"/> <!-- Mikeg542 -->
+</authors>
+<contributors>
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab" contribution="Tourney Edits"/> <!-- Reshif -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" min="8" max="10">Red</team>
+    <team id="blue" color="blue" min="8" max="10">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="64">bread</item>
+        <item slot="8" amount="12">arrow</item>
+        <leggings unbreakable="true" locked="true">chainmail leggings</leggings>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet unbreakable="true" locked="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true" color="cd0000">leather chestplate</chestplate>
+        <boots unbreakable="true" locked="true" color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet unbreakable="true" locked="true" color="0066cc">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true" color="0066cc">leather chestplate</chestplate>
+        <boots unbreakable="true" locked="true" color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="90">
+            <cylinder base="-101,4,41" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="-90">
+            <cylinder base="-113,4,157" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cylinder base="-77,15,99" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+</filters>
+<score>
+    <kills>1</kills>
+    <box value="2" filter="only-red">
+        <region>
+            <union>
+                <cuboid min="-140,8,147" max="-135,12,148"/>
+                <cuboid min="-74,8,147" max="-79,12,148"/>
+            </union>
+        </region>
+    </box>
+    <box value="2" filter="only-blue">
+        <region>
+            <union>
+                <cuboid min="-135,8,52" max="-140,12,50"/>
+                <cuboid min="-74,8,52" max="-79,12,50"/>
+            </union>
+        </region>
+    </box>
+</score>
+<portals>
+    <portal x="@-101" y="@4" z="@41" yaw="@90">
+        <region>
+            <union>
+                <cuboid min="-140,8,147" max="-135,12,148"/>
+                <cuboid min="-74,8,147" max="-79,12,148"/>
+            </union>
+        </region>
+    </portal>
+    <portal x="@-113" y="@4" z="@157" yaw="@-90">
+        <region>
+            <union>
+                <cuboid min="-135,8,52" max="-140,12,50"/>
+                <cuboid min="-74,8,52" max="-79,12,50"/>
+            </union>
+        </region>
+    </portal>
+</portals>
+<regions>
+    <apply block="never" region="everywhere"/>
+    <apply enter="only-blue" message="You may not enter the enemy's spawn!">
+        <rectangle min="-93,144" max="-121,164"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy's spawn!">
+        <rectangle min="-121,54" max="-93,35"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own scorebox!">
+        <cuboid min="-140,8,145" max="-135,12,148"/>
+        <cuboid min="-74,8,145" max="-79,12,148"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own scorebox!">
+        <cuboid min="-135,8,54" max="-140,12,50"/>
+        <cuboid min="-74,8,54" max="-79,12,50"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<itemremove>
+    <item>bread</item>
+    <item>bow</item>
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>blaze rod</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>potion</item>
+</itemremove>
+</map>

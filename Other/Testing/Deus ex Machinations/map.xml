@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+    <name>Deus ex Machinations: DTC</name>
+    <version>1.0.0</version>
+    <objective>Defend your side and drain the Enemy Core!</objective>
+    <authors>
+        <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
+    </authors>
+    <contributors>
+        <contributor uuid="5c934a59-fd50-48aa-99ff-c87e0468f639" contribution="XML and Testing"/> <!-- iamramsey -->
+        <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="XML and Testing"/> <!-- nixter1029 -->
+        <contributor uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" contribution="Aesthetics and Gameplay"/> <!-- Tywnis -->
+        <contributor uuid="a348a860-8c8b-475f-b793-d556d45252a7" contribution="Aesthetics and Gameplay"/> <!-- i2 -->
+    </contributors>
+    <teams>
+        <team color="gold" max="75" max-overfill="100">Machinists</team>
+        <team color="dark aqua" max="75" max-overfill="100">Administration</team>
+    </teams>
+    <cores material="obsidian" leak="4">
+        <core team="administration"><cuboid min="-3,58,-129" max="1,56,-133"/></core>
+        <core team="machinists"><cuboid min="1,58,127" max="-3,56,131"/></core>
+    </cores>
+    <rules>
+        <rule>No spawncamping or spawnkilling.</rule>
+        <rule>Don't block or otherwise obstruct team spawns.</rule>
+        <rule>Fall and Suffocation Damage is disabled!</rule>
+    </rules>
+    <kits>
+        <kit name="main">
+            <potion duration="oo">speed</potion>
+            <potion duration="oo">night vision</potion>
+        </kit>
+        <kit name="spawn" parents="main">
+         <item slot="3" name="Scaffolding" amount="64">glass</item>
+         <item slot="2" name="Plasma Core Gear" enchantment="durability:1">diamond pickaxe</item>
+         <item slot="0" name="Plasma Blade" enchantment="durability:1">diamond sword</item>
+         <item slot="1" name="Katana Blaster" enchantment="arrow infinite:1;durability:1">bow</item>
+         <item slot="4" name="Health Kit">golden apple</item>
+         <item slot="8" name="Medallion">nether star</item>
+         <item slot="28" name="Blaster Round">arrow</item>
+         <potion duration="5" amplifier="1">regeneration</potion>
+         <chestplate enchantment="protection environmental:1">iron chestplate</chestplate>
+         <leggings>iron leggings</leggings>
+         <boots enchantment="protection environmental:1;protection fall:5">iron boots</boots>
+     </kit>
+     <kit name="machinists" parents="spawn">
+        <helmet color="D87F33" enchantment="protection environmental:1">leather helmet</helmet>
+    </kit>
+    <kit name="administration" parents="spawn">
+        <helmet color="4C7F99" enchantment="protection environmental:1">leather helmet</helmet>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>nether star</item>
+    <item>iron boots</item>
+    <item>iron chestplate</item>
+    <item>leather helmet</item>
+    <item>iron leggings</item>
+</itemremove>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+
+<killreward>
+    <item amount="1" name="Medallion">nether star</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<spawns>
+    <spawns team="machinists" kit="machinists">
+        <spawn yaw="0">
+            <cylinder base="0.5,35,50" height="0" radius="2"/>
+        </spawn>
+    </spawns>
+    <spawns team="administration" kit="administration">
+        <spawn yaw="180">
+            <cylinder base="-0.5,35,-50" height="0" radius="2"/>
+        </spawn>
+    </spawns>
+    <default kit="main" yaw="90">
+        <cylinder base="-0.5,85,-0.5" height="0" radius="4"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-icemelt">
+        <all>
+            <any>
+                <filter name="allow-world"/>
+                <filter name="deny-all"/>
+            </any>
+            <block>ice</block>
+        </all>
+    </filter>
+    <filter name="block-break" parents="deny-blocks">
+        <allow>
+            <block>obsidian</block>
+            <block>glass</block>
+            <block>diamond block</block>
+            <block>tnt</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-icemelt block-break">
+        <complement>
+            <sphere name="icemelt-block" origin="-0.5,86,-0.5" radius="150"/>
+            <cylinder base="-0.5,51,-130.5" radius="4" height="15"/>
+            <cylinder base="-0.5,51,129.5" radius="4" height="15"/>
+        </complement>
+    </apply>
+    <apply velocity="@0,1.6,0">
+        <union name="jumpads">
+            <cuboid min="34,38,-2" max="30,39,1"/>
+            <cuboid min="1,38,33" max="-2,39,36"/>
+            <cuboid min="-32,38,1" max="-35,39,-2"/>
+            <cuboid min="-2,38,-34" max="1,39,-37"/>
+        </union>
+    </apply>
+    <apply block="deny-all" message="You cannot modify the spawns!">
+        <cylinder base="0.5,35,50" height="10" radius="15"/>
+        <cylinder base="-0.5,35,-50" height="10" radius="15"/>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Objective">
+        <message>
+            <line>`rThis map is a `a`lTeam-Based `bDTC-Type `fmap</line>
+            <line>The objective is to defend your team's base and</line>
+            <line>destroy/drain the opposing team's Core</line>
+        </message>
+        <teleport>
+            <point yaw="-90">-70,60,0</point>
+        </teleport>
+    </stage>
+    <stage title="Destroying the Core">
+        <message>
+            <line>This is the `6Orange Team`f's `l(Machinists) `b"Core Hub"`f, located</line>
+            <line>inside `3Cyan Team`f's `l(Administration) `b"Command Center"`f.</line>
+            <line>`6Orange Team `fmust use the `aCore Gear `l(Diamond Pickaxe) `fto</line>
+            <line>break a hole into the Core and drain it.</line>
+            <line>`3Cyan Team `fshould defend these areas against `6Orange Team</line>
+            <line>invaders who are trying to break the `aCore`f.</line>
+        </message>
+        <teleport>
+            <point yaw="180">0,60,-100</point>
+        </teleport>
+    </stage>
+    <stage title="Getting Equipment">
+        <message>
+            <line>This is one of the 3 available Diamond Deposits in the map</line>
+            <line>Players are encouraged to mine these for making better gear.</line>
+            <line>All three sections will be condensed towards the center</line>
+            <line>of the map, with a few other locations hidden in small areas.</line>
+            <line>Keep a lookout for pressure plates or other Redstone</line>
+            <line>activation tools. It might reveal a hidden chest!</line>
+        </message>
+        <teleport>
+            <point yaw="90">-31,42,-0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Team Spawns">
+        <message>
+            <line>Here is primary spawn point for `6Orange Team`f.</line>
+            <line>Equipment will be provided in the chests lining</line>
+            <line>the walls inside, so be sure to grab what you need!</line>
+        </message>
+        <teleport>
+            <point yaw="-131" pitch="10">-12,37,58</point>
+        </teleport>
+    </stage>
+    <stage title="Jump Pads">
+        <message>
+            <line>If you get stuck in the center region, use these</line>
+            <line>`b"Jump Pads" `fto get back to the upper level.</line>
+            <line>You will also use these if you want to reach the</line>
+            <line>Diamond Deposits!</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="45">0,43,31</point>
+        </teleport>
+    </stage>
+    <stage title="Join the Game">
+        <message>
+            <line>Now that you know how the game works, feel free to join!</line>
+            <line>You may join the game by typing `c/join `for using the `a`lTeam Selection</line>
+            <line>book in your inventory.</line>
+            <line>You can find out more about the server by reading the `a`lHow To: Guide `fin</line>
+            <line>your inventory! Get additional perks in-game at `6`lhttps://oc.tc/shop`f!</line>
+            <line>`d`lHave fun!</line>
+        </message>
+        <teleport>
+            <point yaw="0">0,85,0</point>
+        </teleport>
+    </stage>
+</tutorial>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<map proto="1.4.1">
+<include src="tutorial.xml"/>
+<name>Desert Cataract</name>
+<version>1.1.6</version>
+<objective>Destroy enemy team's obsidian monument!</objective>
+<authors>
+    <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
+</authors>
+<contributors>
+    <contributor uuid="cc3a70bf-2702-4bf8-81b7-4b19a748e0a2"/> <!-- Ben_The_Conquer -->
+</contributors>
+<destroyables materials="obsidian" completion="100%">
+    <destroyable owner="blue-team" name="Monument">
+        <region>
+            <cuboid id="blue-monument" min="-34,10,0" max="-33,18,-1"/>
+        </region>
+    </destroyable>
+    <destroyable owner="red-team" name="Monument">
+        <region>
+            <cuboid id="red-monument" min="34,10,0" max="35,18,-1"/>
+        </region>
+    </destroyable>
+</destroyables>
+<teams>
+    <team id="blue-team" color="blue" max="16">Blue</team>
+    <team id="red-team" color="dark red" max="16">Red</team>
+</teams>
+<timelock>on</timelock>
+<spawns>
+    <spawn team="blue-team" kit="blue-kit" yaw="-90">
+        <region>
+            <cylinder base="-102.5,9,0.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <spawn team="red-team" kit="red-kit" yaw="90">
+        <region>
+            <cylinder base="103.5,9,0.5" radius="1" height="0"/>
+        </region>
+    </spawn>
+    <default yaw="180">
+        <region>
+            <cylinder base="0.5,39,1.5" radius="2" height="0"/>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2">stone axe</item>
+        <item slot="4" amount="64">sandstone</item>
+        <item slot="5" amount="64" damage="2">wood</item>
+        <item slot="6" amount="64" damage="2">wood</item>
+        <item slot="7" amount="64">bread</item>
+        <item slot="8">golden apple</item>
+        <item slot="28">arrow</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+        <leggings>chainmail leggings</leggings>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="6699d8">leather helmet</helmet>
+        <chestplate color="6699d8">leather chestplate</chestplate>
+        <leggings>chainmail leggings</leggings>
+        <boots color="6699d8">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <team id="only-blue">blue-team</team>
+    <team id="only-red">red-team</team>
+</filters>
+<regions>
+    <apply block="never" message="`7You may not edit this part of the map!">
+        <region>
+            <negative>
+                <rectangle min="88,51" max="-86,-52"/>
+            </negative>
+        </region>
+    </apply>
+    <apply enter="only-blue">
+        <cuboid id="blue-protection1" min="-94,7,-4" max="-98,100,3"/>
+    </apply>
+    <apply enter="only-red">
+        <cuboid id="red-protection1" min="95,7,3" max="99,100,-4"/>
+    </apply>
+</regions>
+<maxbuildheight>28</maxbuildheight>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>bread</item>
+    <item damage="2">wood</item>
+    <item>golden apple</item>
+</itemremove>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>`rThis map is a `a`lDestroy the Monument (DTM) `rmap.</line>
+            <line>The objective is to destroy the other team's monument on their side.</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="45">1.5,58,54.5</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Base">
+        <message>
+            <line>`rThis is the `9Blue Base`r.</line>
+            <line>`rThis is where the `9Blue Team `rspawns. You spawn with gear ready to go into battle!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="40">-48.5,43,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Red Base">
+        <message>
+            <line>`rThis is the `cRed Base`r.</line>
+            <line>`rThis is where the `cRed Team `rspawns. You spawn with gear ready to go into battle!</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="40">48.5,43,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Red Monument">
+        <message>
+            <line>`rThis is the `cRed Monument`r.</line>
+            <line>`rThe two `5obsidian blocks `rare what the `9Blue Team `rneeds to destroy to win.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="65">48.5,43,0.5</point>
+        </teleport>
+    </stage>
+    <stage title="Blue Monument">
+        <message>
+            <line>`rThis is the `9Blue Monument`r.</line>
+            <line>`rThe two `5obsidian blocks `rare what the `cRed Team `rneeds to destroy to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="65">-48.5,43,0.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>
+

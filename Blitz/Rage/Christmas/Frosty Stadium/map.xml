@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="`f`lBlitz: Rage">
+<name>Frosty Stadium</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="95763a18-eb88-44e7-8a10-780acffceae8"/> <!-- Creephunter -->
+</authors>
+<contributors>
+    <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" contribution="XML and some gameplay help"/>
+    <!--  Kroest  -->
+</contributors>
+<teams>
+    <team id="green" color="green" max="20" max-overfill="30">Green</team>
+    <team id="red" color="red" max="20" max-overfill="30">Red</team>
+</teams>
+<time>5m</time>
+<rage/>
+<blitz>
+    <lives>2</lives>
+</blitz>
+<spawns>
+    <spawn team="green" kit="green-kit" yaw="90">
+        <region>
+            <block>65.5,30,-55</block>
+        </region>
+    </spawn>
+    <spawn team="red" kit="red-kit" yaw="-90">
+        <region>
+            <block>-64.5,30,56</block>
+        </region>
+    </spawn>
+    <default yaw="135" kit="obs">
+        <region>
+            <block>53.5 ,45,51.5</block>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="obs">
+        <potion duration="oo" amplifier="1" ambient="true">night vision</potion>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" enchantment="damage all:100">iron sword</item>
+        <item slot="1" enchantment="arrow damage:100">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="3" amplifier="100">heal</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+        <potion duration="oo" amplifier="2">speed</potion>
+        <potion duration="oo" amplifier="2">jump</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="green-kit" parents="spawn">
+        <chestplate color="2AFA00" locked="true">leather chestplate</chestplate>
+        <leggings color="2AFA00" locked="true">leather leggings</leggings>
+        <boots color="2AFA00" locked="true">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="FA5700" locked="true">leather helmet</helmet>
+        <chestplate color="FA5700" locked="true">leather chestplate</chestplate>
+        <leggings color="FA5700" locked="true">leather leggings</leggings>
+        <boots color="FA5700" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="never">
+        <everywhere />
+    </apply>
+    <apply velocity="0, 2.2, 0">
+        <region>
+            <cylinder base="-57,10,40" radius="2.2" height="2"/>
+        </region>
+    </apply>	
+    <apply velocity="0, 2.2, 0">
+        <region>
+            <cylinder base="58,10,-39" radius="2.2" height="2"/>
+        </region>
+    </apply>		
+    <apply velocity="-1.5, 1.4, 1.5">
+        <region>
+            <cylinder base="37.5,12,-36.5" radius="2" height="2"/>
+        </region>
+    </apply>	
+    <apply velocity="1.5, 1.4, -1.5">
+        <region>
+            <cylinder base="-36.5,12,37.5" radius="2" height="2"/>
+        </region>
+    </apply>		
+    <apply velocity="-0.5, 1.4, -5">
+        <region>
+            <cylinder base="-50.5,10,17.5" radius="2" height="2"/>
+        </region>
+    </apply>			
+    <apply velocity="5, 1.4, 0.5">
+        <region>
+            <cylinder base="-16.5,10,51.5" radius="2" height="2"/>
+        </region>
+    </apply>		
+    <apply velocity="0.5, 1.4, 5">
+        <region>
+            <cylinder base="51.5,10,-16.5" radius="2" height="2"/>
+        </region>
+    </apply>			
+    <apply velocity="-5, 1.4, -0.5">
+        <region>
+            <cylinder base="17.5,10,-50.5" radius="2" height="2"/>
+        </region>
+    </apply>		
+    <apply velocity="-3, 2, -3">
+        <region>
+            <cylinder base="37,14,37" radius="2" height="2"/>
+        </region>
+    </apply>
+    <apply velocity="3, 2, 3">
+        <region>
+            <cylinder base="-36,14,-36" radius="2" height="2"/>
+        </region>
+    </apply>			
+    <apply velocity="0, 1.3, 0">
+        <region>
+            <cuboid min="-32,9,-32" max="33,10.5,33"/> 
+        </region>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<include src="blitz-global.xml"/>
+</map>

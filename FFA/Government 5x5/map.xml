@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Government</name>
+<slug>government_5x5</slug>
+<version>1.0.4</version>
+<objective>Kill as many players as you can in 5 minutes</objective>
+<authors>
+    <author uuid="755acf7d-c9b4-4f1d-b7ac-db4dfdfa2b26"/> <!-- Strmr -->
+</authors>
+<contributors>
+    <contributor uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Obstacle course"/> <!-- Timotheeee -->
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Trees and garden"/> <!--Rockymine -->
+</contributors>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="true"/>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point>132,15,113</point>
+            <point>132,15,152</point>
+            <point>113,15,164</point>
+            <point>126,7,167</point>
+            <point>105,7,124</point>
+            <point>96,15,144</point>
+            <point>89,11,96</point>
+            <point>103,7,166</point>
+            <point>128,7,154</point>
+            <point>128,15,103</point>
+        </regions>
+    </spawn>
+    <default yaw="-90">
+        <regions>
+            <cuboid min="70,13,136" max="68,10,132"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="10">arrow</item>
+        <helmet color="667F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <leggings color="667F33" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="667F33" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="kill-boost">
+        <potion duration="3s" amplifier="3">regeneration</potion>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<respawn delay="2s" blackout="true"/>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+</regions>
+<killreward>
+    <item amount="3" material="arrow"/>
+    <kit id="kill-boost"/>
+</killreward>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

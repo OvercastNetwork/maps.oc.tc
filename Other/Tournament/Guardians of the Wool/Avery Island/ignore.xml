@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Avery Island</name>
+<version>1.1</version>
+<objective>Capture the enemy team's wool and return it safely to your victory monument.</objective>
+<authors>
+    <author>koipen</author>
+</authors>
+<contributors>
+    <contributor contribution="XML">Reshif</contributor>
+</contributors>
+<teams>
+    <team color="dark red" max="10">Red</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="45">
+        <point>191.5,42,83.5</point>
+    </spawn>
+    <spawn team="red" yaw="135">
+        <point>191.5,42,163.5</point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="145.5,46,125.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <rectangle name="map" min="158,72" max="223,175"/>
+    <cuboid name="above-47" min="-oo,47,-oo" max="oo,oo,oo"/>
+    <union name="spawns">
+        <cuboid name="blue-spawn" min="188,41,80" max="195,46,87"/>
+        <cuboid name="red-spawn" min="188,41,160" max="195,46,167"/>
+    </union>
+    <union name="wool-rooms">
+        <cuboid name="blue-room" min="208,29,147" max="213,34,155"/>
+        <cuboid name="red-room" min="208,29,92" max="213,34,100"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all" message="You may not edit above the height limit">
+        <region name="above-47"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the spawn area">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside the map!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block="only-blue" use="only-blue-usage" message="You may not modify the enemy wool room!">
+        <region name="blue-room"/>
+    </apply>
+    <apply block="only-red" use="only-red-usage" message="You may not modify the enemy wool room!">
+        <region name="red-room"/>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-blue" message="You may not enter the enemy wool room!">
+        <region name="blue-room"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy wool room!">
+        <region name="red-room"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="red" color="green" location="210.5,30,96" craftable="false">
+        <block>186,42,158</block>
+    </wool>
+    <wool team="blue" color="orange" location="210.5,30,151" craftable="false">
+        <block>186,42,88</block>
+    </wool>
+</wools>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+</map>

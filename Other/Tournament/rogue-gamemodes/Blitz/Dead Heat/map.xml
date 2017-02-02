@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<map proto="1.4.2" game="Blitz">
+<include src="tutorial.xml"/>
+<name>Dead Heat</name>
+<version>2.6.2</version>
+<objective>Capture the black wool or eliminate the other team.</objective>
+<gamemode>blitz</gamemode>
+<gamemode>ctw</gamemode>
+<authors>
+    <author uuid="a6a99e23-34c4-4957-8974-b78b4da9ce7c"/> <!-- AntonyMo -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Aesthetics"/> <!-- Plastix -->
+    <contributor uuid="5986da63-a546-49c5-812d-d5c41a42510a" contribution="Aesthetics"/> <!-- Lyzak -->
+</contributors>
+<teams>
+    <team id="purple" color="dark purple" max="8" max-overfill="8">Purple</team>
+    <team id="cyan" color="dark aqua" max="8" max-overfill="8">Cyan</team>
+</teams>
+<blitz>
+    <lives>1</lives>
+	<broadcastLives>false</broadcastLives>
+</blitz>
+<time>5m</time>
+<timelock>on</timelock>
+<respawns>
+    <respawn blackout="true" auto="true" message="You may not move until the match is over!"/>
+</respawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="10">arrow</item>
+    </kit>
+    <kit id="cyankit" parents="spawn">
+        <helmet color="3089A8">leather helmet</helmet>
+        <chestplate enchantment="protection fire:2" color="3089A8">leather chestplate</chestplate>
+        <leggings color="3089A8">leather leggings</leggings>
+        <boots color="3089A8">leather boots</boots>
+    </kit>
+    <kit id="purplekit" parents="spawn">
+        <helmet color="cc00ff">leather helmet</helmet>
+        <chestplate enchantment="protection fire:2" color="cc00ff">leather chestplate</chestplate>
+        <leggings color="cc00ff">leather leggings</leggings>
+        <boots color="cc00ff">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="purple" kit="purplekit" yaw="0" filter="respawn">
+        <regions><cylinder base="0,5,-56" radius="2" height="0"/></regions>
+    </spawn>
+    <spawn team="cyan" kit="cyankit" yaw="180" filter="respawn">
+        <regions><cylinder base="0,5,56" radius="2" height="0"/></regions>
+    </spawn>
+    <default yaw="90">
+        <regions><cylinder base="-41,25,0" radius="2" height="0"/></regions>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>wool</item>
+</itemremove>
+<filters>
+    <not id="deny-dispenser">
+        <material>dispenser</material>
+    </not>
+    <not id="respawn">
+        <time>1s</time>
+    </not>
+</filters>
+<regions>
+<apply use="deny-dispenser">
+    <rectangle min="-27,-72" max="27,72"/>
+</apply>
+<apply block="never">
+    <rectangle min="-oo,-oo" max="oo,oo"/>
+</apply>
+</regions>
+<wools>
+    <wool team="purple" color="black" location="0,0,0">
+        <monument><block>0,6,-62</block></monument>
+    </wool>
+    <wool team="cyan" color="black" location="0,0,0">
+        <monument><block>0,6,62</block></monument>
+    </wool>
+</wools>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<include src="blitz-global.xml"/>
+</map>

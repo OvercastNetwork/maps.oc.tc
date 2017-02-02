@@ -1,0 +1,92 @@
+<map proto="1.3.0">
+<name>Condemned Spires: Blitz</name>
+<version>1.0.1</version>
+<objective>Eliminate each enemy 3 times to win the match.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
+    <!--  Stealth5061  -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/>
+    <!--  Tywnis  -->
+</authors>
+<contributors>
+    <contributor uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06" contribution="Idea of blitz conversion"/>
+    <!--  thestrangeboy1  -->
+</contributors>
+<rules>
+    <rule>Block glitching IS allowed, but if NCP stops you, don't complain!</rule>
+    <rule>Fall damage is disabled.</rule>
+    <rule>Don't hide!</rule>
+</rules>
+<teams>
+    <team color="dark red" max="16" max-overfill="18">Red</team>
+    <team color="blue" max="16" max-overfill="18">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="durability:1">stone sword</item>
+        <item slot="1" enchantment="durability:1">bow</item>
+        <item slot="2" amount="16">bread</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="16">arrow</item>
+        <potion duration="3">damage resistance</potion>
+        <potion duration="3">heal</potion>
+        <chestplate>chainmail chestplate</chestplate>
+        <leggings>iron leggings</leggings>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="000099">leather helmet</helmet>
+        <boots color="000099" enchantment="protection fall:2" lore="`8`oYou will not take fall damage.">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="C40000">leather helmet</helmet>
+        <boots color="C40000" enchantment="protection fall:2" lore="`8`oYou will not take fall damage.">leather boots</boots>
+    </kit>
+</kits>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<spawns>
+    <spawn team="red" kit="red" yaw="-135">
+        <cylinder base="-59.5,21.1,3.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="45">
+        <cylinder base="35.5,21.1,-43.5" radius="1" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="-11,31.1,25" radius="2.5" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all" message="You may not modify blocks!">
+        <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- jump pads -->
+    <apply velocity="@0.06,2,0.61">
+        <cylinder name="blue-jumppad" base="35.5,21,-37.5" radius="1" height="3"/>
+    </apply>
+    <apply velocity="@-0.06,2,-0.61">
+        <cylinder name="red-jumppad" base="-59.5,21,-2.5" radius="1" height="3"/>
+    </apply>
+</regions>
+<killreward>
+    <item amount="8">arrow</item>
+</killreward>
+<timelock>on</timelock>
+<blitz>
+    <lives>2</lives>
+    <time>8m</time>
+</blitz>
+<itemremove>
+    <item>bread</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+</map>

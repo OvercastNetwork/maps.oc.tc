@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Medieval Warfare: DTE</name>
+<version>1.7.2</version>
+<objective>Demolish the enemy's castle</objective>
+<authors>
+    <author uuid="c1ea235d-4224-46e4-ba4a-638838f6d039"/> <!-- Daffy_Duck01 -->
+</authors>
+<contributors>
+    <contributor uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112" contribution="DTE Mode"/> <!-- last_username -->
+</contributors>    
+<rules>
+    <rule>Dispensers cannot be placed on this map</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<regions>
+    <union name="spawn">
+        <cuboid name="blue-spawn-protect" min="84,93,74" max="78,oo,80"/>
+        <cuboid name="red-spawn-protect" min="-84,93,74" max="-78,oo,80"/>
+    </union>
+    <complement name="blue-base-nodrop">
+        <cuboid name="blue-base" min="70,83,66" max="93,103,88"/>
+        <region name="blue-spawn-protect"/>
+    </complement>
+    <complement name="red-base-nodrop">
+        <cuboid name="red-base" min="-70,83,88" max="-93,103,66"/>
+        <region name="red-spawn-protect"/>
+    </complement>
+    <union name="blue-supplies">
+        <cuboid name="blue-diamond" min="39,82,107" max="51,92,80"/>
+        <cuboid name="blue-iron" min="39,82,47" max="51,92,74"/>
+    </union>
+    <union name="red-supplies">
+        <cuboid name="red-diamond" min="-39,82,107" max="-51,92,80"/>
+        <cuboid name="red-iron" min="-39,82,47" max="-51,92,74"/>
+    </union>
+    
+    <cuboid name="blue-chests" min="92,86,67" max="71,93,87" />
+    <cuboid name="red-chests" min="-92,86,67" max="-71,93,87" />
+
+    <cuboid name="blue-wall" min="0,0,16" max="1,136,144"/>
+    <cuboid name="red-wall" min="-1,0,16" max="0,136,144"/>
+    
+    <!-- Applied -->
+    <apply block="deny-all">
+        <region name="spawn"/>
+    </apply>
+    <apply block-place="deny-dispenser" message="Dispensers are disabled on this map!">
+        <negative>
+            <region name="spawn"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="Don't build outside the map boundry!">
+        <negative>
+            <cuboid min="-155,-oo,3" max="155,127,172"/>
+        </negative>
+    </apply>
+    <apply block="deny-chest">
+        <union>
+            <region name="blue-chests"/>
+            <region name="red-chests"/>
+        </union>
+    </apply>
+    <apply block-break="deny-glass">
+        <union>
+            <region name="blue-wall"/>
+            <region name="red-wall"/>
+        </union>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+    <filter name="deny-chest">
+        <deny>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="deny-glass">
+        <deny>
+            <block>glass</block>
+        </deny>
+    </filter>
+</filters>
+<kits>
+    <kit name="spawnkit">
+        <item slot="0">diamond sword</item>
+        <item slot="1">bow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="8" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate enchantment="protection explosions:4">chainmail chestplate</chestplate>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+    <item>arrow</item>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <item>chainmail chestplate</item>
+</itemremove>
+<spawns kit="spawnkit">
+    <spawn team="blue" yaw="90">
+        <cuboid min="90.5,157,75.5" max="87.5,157,78.5"/>
+    </spawn>
+    <spawn team="red" yaw="270">
+        <cuboid min="-90.5,157,75.5" max="-87.5,157,78.5"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="-0.5,90,-32.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<destroyables>
+    <destroyables name="Castle" show-progress="true" completion="50%" materials="smooth brick;step:0;step:5;double step:0;double step:5;smooth stairs;thin glass;wool">
+        <destroyable owner="blue">
+            <cuboid min="33,86,40" max="95,112,114"/>
+        </destroyable>
+        <destroyable owner="red">
+            <cuboid min="-95,86,40" max="-33,112,114"/>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Wall" mode-changes="true" materials="glass" completion="0%" show="false">
+        <destroyable owner="blue">
+            <region name="blue-wall"/>
+        </destroyable>
+        <destroyable owner="red">
+            <region name="red-wall"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<modes boss-bar="false">
+    <mode name="THE WALL IS GONE!! BOOM BOOM TIEM!!!" after="190s" material="air"/>
+</modes>
+<broadcasts>
+    <alert after="10s">The wall comes down in 3 minutes</alert>
+    <alert after="70s">The wall comes down in 2 minutes</alert>
+    <alert after="130s">The wall comes down in 1 minute</alert>
+    <alert after="160s">The wall comes down in 30 seconds</alert>
+    <alert after="180s">The wall comes down in 10 seconds</alert>
+</broadcasts>
+</map>

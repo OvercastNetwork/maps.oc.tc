@@ -1,0 +1,59 @@
+<map proto="1.4.0" game="Infection">
+<name>Infection: Bill's Town</name>
+<version>1.1.1</version>
+<objective>Survive the zombie army</objective>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/> <!-- Yoyo_-->
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042"/> <!-- Diamyx -->
+    <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7"/> <!-- AtlasGames -->
+</authors>
+<include src="infection.xml"/>
+<spawns>
+    <spawn filter="before-10s" team="zombie-team" kit="zombie-kit-start">
+        <regions yaw="0">
+            <point>968.5,6,-1194</point>
+        </regions>
+    </spawn>
+    <spawn filter="before-10s" team="human-team" kit="human-kit">
+        <regions yaw="0">
+            <point>968.5,6,-1194</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="zombie-team" kit="zombie-kit">
+        <regions yaw="0">
+            <point>968.5,6,-1194</point>
+        </regions>
+    </spawn>
+    <spawn filter="after-10s" team="human-team" kit="zombie-switch-kit">
+        <region yaw="0">
+            <point>968.5,6,-1194</point>
+        </region>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>968.5,6,-1194</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <not id="deny-ender-chest">
+        <material>ender chest</material>
+    </not>
+</filters>
+<regions>
+    <above id="height-limit" y="22"/>
+    <apply block="never" message="You may not modify this area!">
+        <region>
+            <cuboid min="964,5,-1198" max="971,9,-1192"/>
+        </region>
+    </apply>
+    <apply block="deny-void" message="You may not build outside of the playable region!"/>
+    <apply use="deny-ender-chest"/>
+</regions>
+<itemremove>
+    <item>obsidian</item>
+</itemremove>
+</map>

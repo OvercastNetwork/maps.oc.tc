@@ -1,0 +1,100 @@
+<map proto="1.4.0" game="Blitz">
+<include src="blitz-global.xml" />
+<name>Forsaken Stronghold</name>
+<version>1.0.2</version>
+<objective>Eliminate the other team!</objective>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/>
+    <!--  mitchiii_  -->
+</authors>
+<blitz />
+<time>10m</time>
+<teams>
+    <team id="red-team"  color="dark red" max="16" max-overfill="18">Red</team>
+    <team id="blue-team" color="blue"     max="16" max-overfill="18">Blue</team>
+</teams>
+<spawns safe="true">
+    <spawn team="red-team"  kit="red-kit"     region="red-spawn"     yaw="180" />
+    <spawn team="blue-team" kit="blue-kit"    region="blue-spawn"    yaw="0" />
+    <default                kit="default-kit" region="default-spawn" yaw="90" />
+</spawns>
+<kits>
+    <kit id="default-kit">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true"     material="stone sword" />
+        <item slot="1" unbreakable="true"     material="bow" />
+        <item slot="2" unbreakable="true"     material="stone axe" />
+        <item slot="3" damage="1" amount="24" material="wood" />
+        <item slot="4"            amount="16" material="torch" />
+        <item slot="8"            amount="24" material="arrow" />
+        <chestplate unbreakable="true"        material="gold chestplate" />
+        <boots      unbreakable="true"        material="iron boots" />
+        <potion     duration="1m30s" ambient="true">absorption</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="FF0000" unbreakable="true" material="leather helmet" />
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="0000FF" unbreakable="true" material="leather helmet" />
+    </kit>
+</kits>
+<killreward>
+    <item                       material="golden apple" />
+    <item damage="1" amount="6" material="wood" />
+    <item amount="8" material="arrow" />
+</killreward>
+<filters>
+    <all id="allowed-blocks">
+        <any>
+            <material>wood</material>
+            <material>leaves</material>
+            <material>torch</material>
+            <material>long grass</material>
+            <material>red rose</material>
+            <material>water lily</material>
+            <material>water</material>
+            <material>stationary water</material>
+            <material>carpet</material>
+            <material>wool</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+</filters>
+<regions>
+    <cylinder id="default-spawn" base="46.5,36,0.5"  radius="2" height="2" />
+    <cylinder id="red-spawn"     base="1.5,18,44.5"  radius="2" height="2" />
+    <cylinder id="blue-spawn"    base="1.5,18,-43.5" radius="2" height="2" />
+    <apply block="allowed-blocks" />
+</regions>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>stone spade</item>
+    <item>stone axe</item>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>red rose</item>
+    <item>carpet</item>
+    <item>wool</item>
+    <item>torch</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>water lily</item>
+</itemremove>
+</map>

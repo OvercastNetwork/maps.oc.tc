@@ -1,0 +1,390 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<map proto="1.3.0" internal="true">
+<name>Cathedral 0.2</name>
+<version>0.2.1</version>
+<objective>Destroy the two obsidian blocks in the center of the enemy's cavern</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<filters>
+    <filter name="blue-only" parents="deny-players">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="red-only" parents="deny-players">
+        <allow><team>red</team></allow>
+    </filter>
+    <filter name="deny-beacons">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="deny-anvils">
+        <deny>
+            <block>anvil</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <union name="blue-spawn">
+        <circle center="27.5,-69.5" radius="8.9"/>
+        <circle center="70.5,-26.5" radius="8.9"/>
+    </union>
+    <union name="red-spawn">
+        <circle center="-54.5,98.5" radius="8.9"/>
+        <circle center="-97.5,55.5" radius="8.9"/>
+    </union>
+    <cylinder name="obs-spawn" base="-13.5,127,14.5" radius="8.9" height="1"/>
+    <union name="spawns">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+        <region name="obs-spawn"/>
+    </union>
+    <union name="blue-monument">
+        <block name="blue-upper" location="27,128,-27"/>
+        <block name="blue-lower" location="27,126,-27"/>
+    </union>
+    <union name="red-monument">
+        <block name="red-upper" location="-55,128,55"/>
+        <block name="red-lower" location="-55,126,55"/>
+    </union>
+
+    <union name="portals">
+        <!-- monument platform -->
+        <cylinder base=" 27.5, 120, -18.5" radius="1.5" height="4"/>
+        <cylinder base=" 27.5, 130,   8.5" radius="1.5" height="4"/>
+        <cuboid min="25,130,9" max="30,131,14"/>
+
+        <cylinder base=" 19.5, 120, -26.5" radius="1.5" height="4"/>
+        <cylinder base=" -7.5, 130, -26.5" radius="1.5" height="4"/>
+        <cuboid min="-13,130,-29" max="-8,131,-24"/>
+        
+        <cylinder base="-54.5, 120,  47.5" radius="1.5" height="4"/>
+        <cylinder base="-54.5, 130,  20.5" radius="1.5" height="4"/>
+        <cuboid min="-57,130,15" max="-52,131,20"/>
+        
+        <cylinder base="-46.5, 120,  55.5" radius="1.5" height="4"/>
+        <cylinder base="-19.5, 130,  55.5" radius="1.5" height="4"/>
+        <cuboid min="-19,130,53" max="-14,131,58"/>
+
+        <!-- bridges -->
+        <cylinder base=" 34.5, 112,   3.5" radius="1.5" height="4"/>
+        <cylinder base=" 20.5, 112,   3.5" radius="1.5" height="4"/>
+
+        <cylinder base=" -2.5, 112, -33.5" radius="1.5" height="4"/>
+        <cylinder base=" -2.5, 112, -19.5" radius="1.5" height="4"/>
+        
+        <cylinder base="-61.5, 112,  25.5" radius="1.5" height="4"/>
+        <cylinder base="-47.5, 112,  25.5" radius="1.5" height="4"/>
+
+        <cylinder base="-24.5, 112,  62.5" radius="1.5" height="4"/>
+        <cylinder base="-24.5, 112,  48.5" radius="1.5" height="4"/>
+
+        <!-- floating islands -->
+        <cylinder base=" 33.5, 120, -32.5" radius="1.5" height="4"/>
+        <cylinder base=" 39.5, 132, -38.5" radius="1.5" height="4"/>
+
+        <cylinder base=" 33.5, 120, -20.5" radius="1.5" height="4"/>
+        <cylinder base=" 39.5, 148, -14.5" radius="1.5" height="4"/>
+
+        <cylinder base=" 21.5, 120, -20.5" radius="1.5" height="4"/>
+        <cylinder base=" 15.5, 132, -14.5" radius="1.5" height="4"/>
+
+        <cylinder base=" 21.5, 120, -32.5" radius="1.5" height="4"/>
+        <cylinder base=" 15.5, 148, -38.5" radius="1.5" height="4"/>
+        
+        <cylinder base="-60.5, 120,  61.5" radius="1.5" height="4"/>
+        <cylinder base="-66.5, 132,  67.5" radius="1.5" height="4"/>
+
+        <cylinder base="-60.5, 120,  49.5" radius="1.5" height="4"/>
+        <cylinder base="-66.5, 148,  43.5" radius="1.5" height="4"/>
+
+        <cylinder base="-48.5, 120,  49.5" radius="1.5" height="4"/>
+        <cylinder base="-42.5, 132,  43.5" radius="1.5" height="4"/>
+
+        <cylinder base="-48.5, 120,  61.5" radius="1.5" height="4"/>
+        <cylinder base="-42.5, 148,  67.5" radius="1.5" height="4"/>
+    </union>
+
+    <apply block="deny-all" message="You may not modify the spawn area">
+        <region name="spawns"/>
+        <region name="obs-spawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify teleporters">
+        <region name="portals"/>
+    </apply>
+    <apply enter="blue-only" message="You may not enter the enemy's spawn area">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="red-only" message="You may not enter the enemy's spawn area">
+        <region name="red-spawn"/>
+    </apply>
+    <apply block-break="deny-beacons" message="Beacons are indestructible">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply use="deny-beacons">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply use="deny-anvils">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<portals>
+    <!-- monument platform to upper caves -->
+    <portal y="10" z="27" filter="blue-only" bidirectional="true">
+        <block location="27,121,-19"/>
+    </portal>
+    <portal y="10" x="-27" filter="blue-only" bidirectional="true">
+        <block location="19,121,-27"/>
+    </portal>
+    <portal y="10" z="-27" filter="red-only" bidirectional="true">
+        <block location="-55,121,47"/>
+    </portal>
+    <portal y="10" x="27" filter="red-only" bidirectional="true">
+        <block location="-47,121,55"/>
+    </portal>
+
+    <!-- monument platform to floating islands -->
+    <portal x="6" y="12" z="-6" filter="blue-only" bidirectional="true">
+        <block location="33,121,-33"/>
+    </portal>
+    <portal x="6" y="28" z="6" filter="blue-only" bidirectional="true">
+        <block location="33,121,-21"/>
+    </portal>
+    <portal x="-6" y="12" z="6" filter="blue-only" bidirectional="true">
+        <block location="21,121,-21"/>
+    </portal>
+    <portal x="-6" y="28" z="-6" filter="blue-only" bidirectional="true">
+        <block location="21,121,-33"/>
+    </portal>
+
+    <portal x="-6" y="12" z="6" filter="red-only" bidirectional="true">
+        <block location="-61,121,61"/>
+    </portal>
+    <portal x="-6" y="28" z="-6" filter="red-only" bidirectional="true">
+        <block location="-61,121,49"/>
+    </portal>
+    <portal x="6" y="12" z="-6" filter="red-only" bidirectional="true">
+        <block location="-49,121,49"/>
+    </portal>
+    <portal x="6" y="28" z="6" filter="red-only" bidirectional="true">
+        <block location="-49,121,61"/>
+    </portal>
+
+    <!-- bridges -->
+    <portal x="-14" filter="blue-only" bidirectional="true">
+        <block location="34,113,3"/>
+    </portal>
+    <portal z="14" filter="blue-only" bidirectional="true">
+        <block location="-3,113,-34"/>
+    </portal>
+    <portal x="14" filter="red-only" bidirectional="true">
+        <block location="-62,113,25"/>
+    </portal>
+    <portal z="-14" filter="red-only" bidirectional="true">
+        <block location="-25,113,62"/>
+    </portal>
+
+    <!-- back island -->
+    <portal z="22" y="16" filter="blue-only" bidirectional="true">
+        <block location="42,133,-38"/>
+    </portal>
+    <portal x="-22" y="16" filter="blue-only" bidirectional="true">
+        <block location="38,133,-42"/>
+    </portal>
+    <portal z="-22" y="16" filter="red-only" bidirectional="true">
+        <block location="-70,133,66"/>
+    </portal>
+    <portal x="22" y="16" filter="red-only" bidirectional="true">
+        <block location="-66,133,70"/>
+    </portal>
+
+    <!-- front island -->
+    <portal x="22" y="16" filter="blue-only" bidirectional="true">
+        <block location="16,133,-12"/>
+    </portal>
+    <portal z="-22" y="16" filter="blue-only" bidirectional="true">
+        <block location="12,133,-16"/>
+    </portal>
+    <portal x="-22" y="16" filter="red-only" bidirectional="true">
+        <block location="-44,133,40"/>
+    </portal>
+    <portal z="22" y="16" filter="red-only" bidirectional="true">
+        <block location="-40,133,44"/>
+    </portal>
+</portals>
+<spawns>
+    <spawn team="blue" yaw="0" pitch="0" kit="spawn-blue" safe="true">
+        <cylinder base="27.5,107,-69.5" radius="7" height="0"/>
+    </spawn>
+    <spawn team="blue" yaw="90" pitch="0" kit="spawn-blue" safe="true">
+        <cylinder base="70.5,107,-26.5" radius="7" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="180" pitch="0" kit="spawn-red" safe="true">
+        <cylinder base="-54.5,107,98.5" radius="7" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="-90" pitch="0" kit="spawn-red" safe="true">
+        <cylinder base="-97.5,107,55.5" radius="7" height="0"/>
+    </spawn>
+    <default safe="true">
+        <cylinder base="-13.5,128,14.5" radius="8" height="0"/>
+    </default>
+</spawns>
+<destroyables materials="obsidian" completion="100%" repair="false">
+    <destroyable name="Upper Block" owner="blue">
+        <region name="blue-upper"/>
+    </destroyable>
+    <destroyable name="Lower Block" owner="blue">
+        <region name="blue-lower"/>
+    </destroyable>
+    <destroyable name="Upper Block" owner="red">
+        <region name="red-upper"/>
+    </destroyable>
+    <destroyable name="Lower Block" owner="red">
+        <region name="red-lower"/>
+    </destroyable>
+</destroyables>
+<renewables>
+    <renewable grow="true" rate="1">
+        <region>
+            <cylinder base="-13.5,95,14.5" radius="8" height="31"/>
+        </region>
+
+        <renew>obsidian</renew>
+        <renew>iron ore</renew>
+        <renew>glowstone</renew>
+        <renew>stone</renew>
+        
+        <replace>air</replace>
+        <replace>lava</replace>
+        <replace>stationary lava</replace>
+        
+        <shuffle>stone</shuffle>
+        <shuffle>iron ore</shuffle>
+    </renewable>
+</renewables>
+<kits>
+    <kit name="spawn">
+        <potion amplifier="1" duration="oo">speed</potion>
+        <potion amplifier="2" duration="oo">jump</potion>
+        <item slot="0">diamond pickaxe</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" amount="64">ladder</item>
+        <item slot="5" amount="16">iron fence</item>
+        <item slot="6" amount="64">torch</item>
+        <item slot="7" damage="8227" potions="fire resistance:900:0:false">potion</item>
+        <item slot="8" amount="64">cooked beef</item>
+        <item slot="27" amount="16" damage="2">wood</item>
+        <item slot="28">arrow</item>
+        <item slot="30" amount="32">quartz stairs</item>
+        <item slot="31" amount="32" damage="7">step</item>
+    </kit>
+    <kit name="spawn-blue" parents="spawn">
+        <item slot="3" amount="64" damage="11">stained clay</item>
+        <item slot="4" amount="64" damage="11">stained clay</item>
+        <helmet color="5e55dd">leather helmet</helmet>
+        <chestplate color="5e55dd">leather chestplate</chestplate>
+        <leggings color="5e55dd">leather leggings</leggings>
+        <boots color="5e55dd" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+    <kit name="spawn-red" parents="spawn">
+        <item slot="3" amount="64" damage="14">stained clay</item>
+        <item slot="4" amount="64" damage="14">stained clay</item>
+        <helmet color="dd5566">leather helmet</helmet>
+        <chestplate color="dd5566">leather chestplate</chestplate>
+        <leggings color="dd5566">leather leggings</leggings>
+        <boots color="dd5566" enchantment="protection fall:3">leather boots</boots>
+    </kit>
+</kits>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>cooked beef</item>
+    <item>wood</item>
+    <item>arrow</item>
+    <item>stained clay</item>
+    <item>quartz stairs</item>
+    <item>step:7</item>
+    <item>torch</item>
+    <item>ladder</item>
+    <item>iron fence</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<itemkeep>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+</itemkeep>
+<blockdrops>
+    <rule>
+        <filter><block>iron ore</block></filter>
+        <drops>
+            <item>iron ingot</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter><block>double step:9</block></filter>
+        <drops>
+            <item damage="9" name="Butterstone">43</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter><block>step:1</block></filter>
+        <drops>
+            <item damage="1" name="Butterstone Slab">step</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter><block>obsidian</block></filter>
+        <drops>
+            <item>anvil</item>
+        </drops>
+    </rule>
+</blockdrops>
+<disabledamage>
+    <damage>fire tick</damage>
+</disabledamage>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Destroy the Monument">
+        <message>
+            <line>`rThis is a `bmonument`r. There is one in the center of</line>
+            <line>each team's base. Break the `btwo obsidian blocks`r</line>
+            <line>in the enemy's monument to win. Or, build a `bbridge`r</line>
+            <line>to your own monument and `bdefend it`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="20">22.5,128,-21.5</point>
+        </teleport>
+    </stage>
+    <stage title="Teleporters">
+        <message>
+            <line>`rThis is a `bteleporter`r. You can use them to move around</line>
+            <line>your base more easily. The enemy can't use your teleporters,</line>
+            <line>and you can't use theirs. `bTry walking into this one now!`r</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">-2.5,113,-37.5</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Island">
+        <message>
+            <line>`rIn the center of the map is this floating island containing</line>
+            <line>`biron ore`r. The ore blocks drop iron ingots when mined, so</line>
+            <line>no smelting is needed. They also `bgrow back`r over time.</line>
+            <line>When you die, you get to `bkeep your iron armor`r.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="-20">-1.5,106,2.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<autorespawn/>
+<time result="objectives">45m</time>
+<name>Deepwind Jungle</name>
+<version>2.0.2</version>
+<objective>Retrieve the wool from the enemy's side and place it on your team's monument</objective>
+<authors>
+    <author uuid="91295196-9cd2-4963-b7ec-afd1a110edbe"/> <!-- PandaBattalion -->
+</authors>
+<contributors>
+    <contributor uuid="41373965-b60a-40d5-8fad-72e61d951ea2" contribution="Aesthetics and spawn kit help"/> <!-- Rokosnocone -->
+</contributors>
+<teams>
+    <team color="blue" max="10" max-overfill="10">Blue</team>
+    <team color="dark red" max="10" max-overfill="10">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <point>0,249,-83</point>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <point>0,249,84</point>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-50.5,59,0.5" radius="2.5" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="durability:2;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:2;dig speed:1">stone axe</item>
+        <item slot="30" enchantment="durability:1">iron spade</item>
+        <item slot="4" amount="64" damage="3">wood</item>
+        <item slot="31" amount="64" damage="3">wood</item>
+        <item slot="5" amount="16">glass</item>
+        <item slot="6" amount="64">cooked fish</item>
+        <item slot="7">golden apple</item>
+        <item slot="28" amount="32">arrow</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="db1818" unbreakable="true">leather helmet</helmet>
+        <chestplate color="db1818" enchantment="protection projectile:2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="db1818" unbreakable="true">leather leggings</leggings>
+        <boots color="db1818" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="3c1cd9" unbreakable="true">leather helmet</helmet>
+        <chestplate color="3c1cd9" enchantment="protection projectile:2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="3c1cd9" unbreakable="true">leather leggings</leggings>
+        <boots color="3c1cd9" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- Block Filters -->
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <!-- Usage Filters -->
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <union name="void-exception">
+        <rectangle name="main" min="-31,-48" max="31,49"/>
+        <rectangle name="red-gap" min="4,56" max="-4,49"/>
+        <mirror name="blue-gap" region="red-gap" origin="0,0,0.5" normal="0,0,-1"/>
+    </union>
+    <union name="spawns">
+        <rectangle name="red-spawn" min="8,56" max="-8,84"/>
+        <mirror name="blue-spawn" region="red-spawn" origin="0,0,0.5" normal="0,0,-1"/>
+    </union>
+    <union name="wool-rooms">
+        <union name="blue-rooms">
+            <rectangle name="green-room" min="35,61" max="15,74"/>
+            <mirror name="cyan-room" region="green-room" origin="0,0,0.5" normal="-1,0,0"/>
+        </union>
+        <mirror name="red-rooms" region="blue-rooms" origin="0,0,0.5" normal="0,0,1"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all" message="You may not edit the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="only-red" message="You may not edit the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply block="only-blue" message="You may not edit the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <apply block="no-void" message="You may not edit outside of the main area!">
+        <negative>
+            <region name="void-exception"/>
+        </negative>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-red" message="You may not enter the enemy spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn area!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Usage Rules -->
+    <apply use="only-red-usage" message="You may not interact with the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply use="only-blue-usage" message="You may not interact with the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron spade</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>fence</item>
+    <item>string</item>
+    <item>chainmail helmet</item>
+    <item>gold boots</item>
+    <item>bucket</item>
+    <item>water bucket</item>
+    <item>cocoa</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>iron door</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<maxbuildheight>26</maxbuildheight>
+<!-- <block location=""/> is location to place wool -->
+<!-- <wool location=""/> is location of wool room for proximity -->
+<wools>
+    <wool team="blue" color="cyan" location="-27.5,9,69.5">
+        <block location="-1.5,10,-80.5"/>
+    </wool>
+    <wool team="blue" color="green" location="27.5,9,69.5">
+        <block location="1.5,10,-80.5"/>
+    </wool>
+    <wool team="red" color="purple" location="-27.5,9,-68.5">
+        <block location="-1.5,10,81.5"/>
+    </wool>
+    <wool team="red" color="yellow" location="27.5,9,-68.5">
+        <block location="1.5,10,81.5"/>
+    </wool>
+</wools>
+</map>

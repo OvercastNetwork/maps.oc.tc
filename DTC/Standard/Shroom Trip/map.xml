@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Shroom Trip</name>
+<version>1.6.6</version>
+<objective>Leak lava from the enemy's obsidian shroom into the void.</objective>
+<authors>
+    <author uuid="8b210772-8b0c-44b4-a4e2-2b543707ffc6"/> <!-- Omnigarde -->
+</authors>
+<rules>
+    <rule>Carpet Bombing is illegal: The creation of a large pillar/structure made to drop seemingly endless quantities of TNT onto an enemy structure.</rule>
+</rules>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<kits>
+    <kit name="shears">
+        <item slot="35" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>shears</item>
+    <item>obsidian</item>
+</itemremove>
+<spawns>
+    <spawn team="blue" kit="shears" yaw="180">
+        <cuboid min="-1047.5,74,-348.5" max="-1045.5,74,-346.5"/>
+    </spawn>
+    <spawn team="red" kit="shears" yaw="0">
+        <cuboid min="-1047.5,74,-310.5" max="-1045.5,74,-308.5"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="-1046.5,74,-328.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<playable>
+    <rectangle min="-1017,-400" max="-940,-270"/> <!-- main area -->
+    <rectangle min="-1031,-359" max="-1017,-298"/> <!-- area between spawn tunnels -->
+</playable>
+<maxbuildheight>128</maxbuildheight>
+<cores material="obsidian" leak="5">
+    <core team="blue">
+        <cuboid min="-981,84,-354" max="-986,90,-349"/>
+    </core>
+    <core team="red">
+        <cuboid min="-981,84,-304" max="-986,90,-309"/>
+    </core>
+</cores>
+</map>

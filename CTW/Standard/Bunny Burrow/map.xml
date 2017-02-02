@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Bunny Burrow</name>
+<version>1.5</version>
+<objective>Capture the Wools before the other team does.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <region name="red-spawn-point"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <region name="blue-spawn-point"/>
+    </spawn>
+    <default yaw="180">
+        <region name="observer-spawn-point"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:1;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:1;dig speed:1">iron axe</item>
+        <item slot="4" damage="2" amount="8">log</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6" amount="48">cooked beef</item>
+        <item slot="27">arrow</item>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333">leather helmet</helmet>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="0041C2">leather helmet</helmet>
+        <boots color="0041C2">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <cylinder name="red-spawn-point" base="1196.5,5,-1100.5" radius="3" height="1"/>
+    <cylinder name="blue-spawn-point" base="1381.5,5,-1100.5" radius="3" height="1"/>
+    <circle name="red-spawn-area" center="1196.5,-1100.5" radius="12"/>
+    <circle name="blue-spawn-area" center="1381.5,-1100.5" radius="12"/>
+    <cylinder name="observer-spawn-point" base="1288.5,19,-1173.5" radius="1" height="1"/>
+    <cuboid name="above-16" min="-oo,16,-oo" max="oo,oo,oo"/>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="orange-wool-room" min="1388.5,-1130.5" max="1374.5,-1144.5"/>
+    <rectangle name="magenta-wool-room" min="1374.5,-1070.5" max="1388.5,-1056.5"/>
+    <rectangle name="lime-wool-room" min="1203.5,-1130.5" max="1189.5,-1144.5"/>
+    <rectangle name="silver-wool-room" min="1189.5,-1056.5" max="1203.5,-1070.5"/>
+    <union name="red-wool-rooms"> <!-- Red needs to Enter -->
+        <region name="orange-wool-room"/>
+        <region name="magenta-wool-room"/>
+    </union>
+    <union name="blue-wool-rooms"> <!-- Blue needs to Enter -->
+        <region name="silver-wool-room"/>
+        <region name="lime-wool-room"/>
+    </union>
+    <complement name="all-above-16">
+        <region name="above-16"/>
+        <region name="red-wool-rooms"/>
+        <region name="blue-wool-rooms"/>
+    </complement>
+    <union name="anti-cheat">
+        <block>1405,5,-1102</block>
+        <block>1405,5,-1100</block>
+        <block>1172,5,-1102</block>
+        <block>1172,5,-1100</block>
+    </union>
+    <!-- Applies -->
+    <apply enter="only-red" message="You cannot enter your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply block="only-red" use="only-red-usage">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply block="only-blue" use="only-blue-usage">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="Don't enter the enemy spawn!">
+        <region name="red-spawn-area"/>
+    </apply>
+    <apply enter="only-blue" message="Don't enter the enemy spawn!">
+        <region name="blue-spawn-area"/>
+    </apply>
+    <apply block="allow-bars" message="Don't break the spawn area!">
+        <region name="red-spawn-area"/>
+        <region name="blue-spawn-area"/>
+    </apply>
+    <apply enter="deny-players" message="You cannot leave the playing field!">
+        <region name="all-above-16"/>
+    </apply>
+    <apply block="deny-spawners" message="Ha. You thought you could grief the spawners? NOPE">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-all" message="Ha. You thought you could cheat a win? NOPE">
+        <region name="anti-cheat"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="all-above-16"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="allow-bars" parents="deny-all">
+        <block>iron fence</block>
+    </filter>
+    <filter name="deny-spawners">
+        <deny><block>mob spawner</block></deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>hopper</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>hopper</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<wools>
+   <wool team="red" color="magenta">                  
+       <block>1172,6,-1100</block>
+   </wool>
+   <wool team="red" color="orange">                  
+       <block>1172,6,-1102</block>
+   </wool>
+   <wool team="blue" color="silver">
+       <block>1405,6,-1102</block>
+   </wool>
+   <wool team="blue" color="lime">
+       <block>1405,6,-1100</block>
+   </wool>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>wood</item>
+    <item>cobblestone</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<timelock>on</timelock>
+<maxbuildheight>16</maxbuildheight>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>3s</fuse>
+</tnt>
+</map>

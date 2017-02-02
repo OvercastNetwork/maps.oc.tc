@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Xion</name>
+<version>1.0.4</version>
+<objective>Capture the other team's wool to win the game!</objective>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/>
+    <!-- Avaleer -->
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor contribution="Map Improvements and XML" uuid="10c1b730-49b9-4f75-9212-91facc371477"/>
+    <!-- Qixit -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="28" max-overfill="32">Red</team>
+    <team id="blue" color="blue" max="28" max-overfill="32">Blue</team>
+</teams>
+<kits>    
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">stone axe</item>
+        <item slot="4" amount="16">log</item>
+        <item slot="5" amount="16">leaves</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="32">cooked beef</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="7" amplifier="10">heal</potion>
+        <potion duration="5" amplifier="3">strength</potion>
+        <potion duration="3" amplifier="2">slow</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="ff0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <chestplate color="0000ff" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0000ff" unbreakable="true">leather boots</boots>   
+    </kit>
+    <kit id="leaves">
+        <item amount="16" slot="5">leaves</item>
+    </kit>
+</kits>
+<itemremove>
+    <item>log</item>
+    <item>stone axe</item>
+    <item>wood</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>iron pickaxe</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron leggings</item>
+    <item>fence</item>
+    <item>seeds</item>
+    <item>cauldron</item>
+    <item>trap door</item>
+    <item>bucket</item>
+    <item>carrot</item>
+    <item>wood</item>
+    <item>string</item>
+    <item>leaves</item>
+    <item>cauldron</item>
+    <item>redstone</item>
+    <item>redstone lamp off</item>
+    <item>redstone block</item>
+    <item>cooked beef</item>
+</itemremove>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions>
+            <block yaw="0">-101.5,9,-218.5</block>
+            <block yaw="180">-101.5,9,-218.5</block>
+            <block yaw="90">-101.5,9,-218.5</block>
+            <block yaw="-90">-101.5,9,-218.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions>
+            <block yaw="0">32.5,9,-84.5</block>
+            <block yaw="180">32.5,9,-84.5</block>
+            <block yaw="90">32.5,9,-84.5</block>
+            <block yaw="-90">32.5,9,-84.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <block>-34.5,31,-151.5</block>
+        </regions>
+    </default>
+</spawns>
+<respawn delay="3s"/>
+<filters>
+    <team id="only-blue">blue</team>
+    <team id="only-red">red</team>
+    <not id="deny-void">
+        <void />
+    </not>  
+    <all id="allowed-blocks-red">
+        <material>web</material>
+        <not>
+            <team>red</team>
+        </not>
+    </all>
+    <all id="allowed-blocks-blue">
+        <material>web</material>
+        <not>
+            <team>blue</team>
+        </not>
+    </all>
+    <deny id="usage">
+        <material>dispenser</material>
+    </deny>
+    <deny id="obs-usage">
+        <material>chest</material>
+    </deny>
+    <deny id="carpet-place">
+        <any>
+            <material>carpet:11</material>
+            <material>carpet:14</material>
+        </any>
+    </deny>
+</filters>
+<maxbuildheight>19</maxbuildheight>
+<regions>
+    <!-- Red Side: Regions -->
+    <apply block="carpet-place" message="`f`lYou may not place carpet!">
+        <everywhere />
+    </apply>
+    <union id="red-spawn">
+        <rectangle min="-96,-221" max="-104,-216"/>
+        <rectangle min="-104,-216" max="-99,-213"/>
+        <rectangle min="-104,-216" max="-107,-221"/>
+        <rectangle min="-104,-221" max="-99,-224"/>
+        <rectangle min="-99,-216" max="-104,-221"/>
+    </union>
+    <union id="red-leaves">
+        <cuboid min="-101,6,-214" max="-102,8,-215"/>
+        <cuboid min="-106,6,-218" max="-105,8,-219"/>
+        <cuboid min="-102,6,-223" max="-101,8,-222"/>
+        <cuboid min="-97,6,-219" max="-98,8,-218"/>
+    </union>
+    <rectangle id="red-room" min="-119,-236" max="-134,-251"/>
+    <!-- Red Side: Applied filters to regions -->
+    <apply region="red-spawn" block="never" message="`f`lYou may not place or break blocks in `4`lRed Spawn!"/>
+    <apply region="red-spawn" enter="only-red" message="`f`lYou may not enter `4`lRed Spawn!"/>
+    <apply region="red-room" enter="only-blue" message="`f`lYou may enter your own `4`lWool Room!"/>
+    <apply region="red-room" block="allowed-blocks-red"/>
+    <apply region="red-leaves" kit="leaves"/>
+    <!-- Blue Side: Regions -->
+    <union id="blue-spawn">
+        <rectangle min="27,-87" max="35,-82"/>
+        <rectangle min="30,-79" max="35,-82"/>
+        <rectangle min="38,-82" max="35,-87"/>
+        <rectangle min="35,-90" max="30,-87"/>
+        <rectangle min="30,-87" max="35,-82"/>
+    </union>
+    <union id="blue-leaves">
+        <cuboid min="33,6,-89" max="32,8,-88"/>
+        <cuboid min="28,6,-85" max="29,8,-84"/>
+        <cuboid min="33,6,-80" max="32,8,-81"/>
+        <cuboid min="37,6,-84" max="36,8,-85"/>
+    </union>
+    <rectangle id="blue-room" min="50,-67" max="65,-52"/>
+    <!-- Blue Side: Applied filters to regions -->
+    <apply region="blue-spawn" block="never" message="`f`lYou may not place or break blocks in `9`lBlue Spawn!"/>
+    <apply region="blue-spawn" enter="only-blue" message="`f`lYou may not enter `9`lBlue Spawn!"/>
+    <apply region="blue-room" enter="only-red" message="`f`lYou may not enter your own `9`lWool Room!"/>
+    <apply region="blue-room" block="allowed-blocks-blue"/>
+    <apply region="blue-leaves" kit="leaves"/>
+    <apply block="deny-void" message="`f`lYou may not place blocks in the void!"/>
+    <apply use="usage"/>
+    <apply use="obs-usage">
+        <region><cuboid min="-34,18,-151" max="-34,25,-151"/></region>
+    </apply>
+</regions>
+<wools>
+    <wool team="blue" color="red" location="-126,19,-243">
+        <monument><block location="42.5,7,-74.5"/></monument>
+    </wool>
+    <wool team="red" color="blue" location="57,19,-59">
+        <monument><block location="-111.5,7,-228.5"/></monument>
+    </wool>
+</wools>
+<blockdrops>
+    <!-- Custom smooth sandstone block will drop normal sandstone, as opposed to it dropping two sandstone slabs -->
+    <rule>
+        <filter>
+            <material>double step:9</material>
+        </filter>
+        <drops>
+            <item>sandstone</item>
+        </drops>
+    </rule>
+</blockdrops>
+</map>

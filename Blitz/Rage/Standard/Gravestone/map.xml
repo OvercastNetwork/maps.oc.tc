@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Gravestone</name>
+<version>1.1.3</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team color="dark red" max="20">Red</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="red" kit="red" yaw="-135">
+        <cylinder base="-37,23,35" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="45">
+        <cylinder base="38,16,-32" radius="2" height="0"/>
+    </spawn>
+    <default kit="observer" yaw="-45">
+        <cylinder base="0.5,34,0.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="observer">
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <potion duration="oo" amplifier="1">jump</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`91-Hit Kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`91-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <potion duration="oo" amplifier="1">jump</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" enchantment="protection fall:2" locked="true">leather chestplate</chestplate>
+        <boots color="cd0000" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc" enchantment="protection fall:2" locked="true">leather chestplate</chestplate>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

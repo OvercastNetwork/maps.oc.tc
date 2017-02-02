@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Fairy Tales 2: A Tale or Two</name>
+<version>3.9.6</version>
+<objective>Take the enemy's wool located in bedrock castles on the enemy's side and place it in your victory monument.</objective>
+<authors>
+    <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Team Spawn Beautification"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba" contribution="Map Design"/> <!-- GabeisAwesome199 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<rules>
+    <rule>You many not make lava curtains near the wool rooms or across entire lanes.</rule>
+</rules>
+<spawns>
+    <spawn team="blue" yaw="0" kit="spawn-kit">
+        <cylinder base="-51,7,-94" radius="2.5" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="180" kit="spawn-kit">
+        <cylinder base="-51,7,84" radius="2.5" height="0"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="59.5,12,-4.5" radius="4" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn-kit">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="durability:2;dig speed:3">iron pickaxe</item>
+        <item slot="3" amount="64" damage="1">log</item>
+        <item slot="4" amount="32">glass</item>
+        <item slot="5" amount="32">snow ball</item>
+        <item slot="6" amount="64">cooked beef</item>
+        <item slot="7">golden apple</item>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <potion duration="2" amplifier="1">heal</potion>
+        <item slot="8" amount="64">arrow</item>
+    </kit>
+
+    <kit name="red" parents="spawn-kit">
+        <chestplate color="993333" enchantment="protection projectile">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn-kit">
+        <chestplate color="334CB2" enchantment="protection projectile">leather chestplate</chestplate>
+    </kit>
+    <kit name="enchantingKit">
+        <item slot="9" amount="9" damage="4">ink sack</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue" parents="deny-players deny-world">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-players deny-world">
+        <allow><team>red</team></allow>
+    </filter>
+    <filter name="deny-blue" parents="deny-players deny-world">
+        <deny><team>blue</team></deny>
+    </filter>
+    <filter name="deny-red" parents="deny-players deny-world">
+        <deny><team>red</team></deny>
+    </filter>
+    <filter name="deny-lava">
+        <not>
+            <block>lava</block>
+            <block>stationary lava</block>
+        </not>
+    </filter>
+    <filter name="red-woolrooms">
+        <not>
+            <block>chest</block>
+			<block>sign post</block>
+			<block>wall sign</block>
+			<block>torch</block>
+			<block>ladder</block>
+			<block>redstone wire</block>
+			<block>redstone torch on</block>
+        </not>
+		<any>
+			<all>
+				<team>red</team>
+				<any>
+					<block>leaves</block>
+					<block>smooth brick</block>
+					<block>iron fence</block>
+					<block>glass</block>
+					<block>step</block>
+					<block>wool</block>
+					<block>soul sand</block>
+				</any>
+			</all>
+		</any>
+    </filter>
+    <filter name="blue-woolrooms">
+        <not>
+            <block>chest</block>
+			<block>sign post</block>
+			<block>wall sign</block>
+			<block>torch</block>
+			<block>ladder</block>
+			<block>redstone wire</block>
+			<block>redstone torch on</block>
+        </not>
+		<any>
+			<all>
+				<team>blue</team>
+				<any>
+					<block>leaves</block>
+					<block>smooth brick</block>
+					<block>iron fence</block>
+					<block>glass</block>
+					<block>step</block>
+					<block>wool</block>
+					<block>soul sand</block>
+				</any>
+			</all>
+		</any>
+    </filter>
+</filters>
+<regions>
+    <!-- blue wool room protection (these are the wools blue has to get) -->
+    <union name="blue-wool-rooms">
+        <rectangle name="light-gray-room" min="-147,44" max="-135,74"/>
+        <rectangle name="yellow-room" min="-66,117" max="-36,129"/>
+        <rectangle name="green-room" min="33,44" max="45,74"/>
+    </union>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <!-- red wool room protection (these are the wools red has to get) -->
+    <union name="red-wool-rooms">
+        <rectangle name="orange-room" min="-147,-84" max="-135,-54"/>
+        <rectangle name="cyan-room" min="-66,-139" max="-36,-127"/>
+        <rectangle name="magenta-room" min="33,-84" max="45,-54"/>
+    </union>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <!-- some void protection -->
+	<apply block="deny-all" message="You may not bridge behind the wizard houses!">
+        <rectangle name="west-side-story" min="-152,-28" max="-86,18"/>
+        <rectangle name="east-side-story" min="-16,-28" max="50,18"/>
+    </apply>
+    <rectangle name="playable" min="-152,-144" max="50,134"/>
+    <!-- supply room protection -->
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <union name="storage-rooms">
+            <cuboid name="blue-storage-room" min="-67,6,-102" max="-35,13,-87"/>
+            <cuboid name="blue-storage-room-stairs" min="-49,6,-87" max="-54,14,-73"/>
+            <cuboid name="red-storage-room" min="-67,6,77" max="-35,13,92"/>
+            <cuboid name="red-storage-room-stairs" min="-49,14,63" max="-53,6,77"/>
+        </union>
+    </apply>
+    <!-- no lava around the spawns -->
+    <apply block-place="deny-lava" message="You may place lava around the spawn area!">
+        <complement>
+            <union name="no-lava">
+                <rectangle name="blue-no-lava-main" min="-67,-102" max="-35,-87"/>
+                <rectangle name="blue-no-lava-stairs" min="-49,-87" max="-54,-73"/>
+                <rectangle name="red-no-lava-main" min="-67,77" max="-35,92"/>
+                <rectangle name="red-no-lava-stairs" min="-49,63" max="-53,77"/>
+            </union>
+            <region name="storage-rooms"/>
+        </complement>
+    </apply>
+    <!-- prevent teams from entering each other's spawns -->
+    <apply enter="only-red" message="You may not enter red's storage room!">
+        <region name="red-storage-room"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue's storage room!">
+        <region name="blue-storage-room"/>
+    </apply>
+	<!-- fix breaking in wool rooms -->
+   	<apply block="blue-woolrooms">
+		<region name="blue-wool-rooms"/>
+	</apply>
+	<apply block="red-woolrooms">
+		<region name="red-wool-rooms"/>
+	</apply>
+</regions>
+<playable>
+    <region name="playable"/>
+</playable>
+<maxbuildheight>38</maxbuildheight>
+<wools>
+    <wool team="red" color="orange">
+        <block location="-51,8,90"/>
+    </wool>
+    <wool team="red" color="cyan">
+        <block location="-52,9,90"/>
+    </wool>
+    <wool team="red" color="magenta">
+        <block location="-51,10,90"/>
+    </wool>
+    <wool team="blue" color="green">
+        <block location="-51,8,-101"/>
+    </wool>
+    <wool team="blue" color="silver">
+        <block location="-51,10,-101"/>
+    </wool>
+    <wool team="blue" color="yellow">
+        <block location="-52,9,-101"/>
+    </wool>
+</wools>
+<killreward>
+    <item>golden apple</item>
+    <item amount="16">arrow</item>
+    <kill-reward>
+        <filter>
+            <kill-streak count="2" repeat="true"/>
+        </filter>
+        <item damage="4" material="ink sack"/>
+    </kill-reward>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>snow ball</item>
+    <item>arrow</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+    <item>leather chestplate</item>
+    <item>ink sack</item>
+</itemremove>
+</map>

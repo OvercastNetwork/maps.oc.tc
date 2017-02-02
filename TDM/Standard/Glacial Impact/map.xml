@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Glacial Impact</name>
+<version>1.7.2</version>
+<objective>Be the team with the least amount of deaths after 10 minutes.</objective>
+<authors>
+    <author uuid="19388047-f04b-43ac-9546-22aa69aea75c"/> <!-- bleangamer -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9"/> <!-- IM_A_H0B0 -->
+</authors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="dark green" max="40">Green</team>
+</teams>
+<rules>
+    <rule>Don't block glitch!</rule>
+    <rule>Fall/suffocation damage is disabled!</rule>
+</rules>
+<filters>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="main-area" min="-51,-286" max="51,24"/>
+        <union name="green-score-boxes">
+        <rectangle min="44,2" max="37,3"/>
+        <rectangle min="-44,2" max="-37,3"/>
+        <rectangle min="29,10" max="30,17"/>
+        <rectangle min="-29,10" max="-30,17"/>
+        <circle center="-40.5,13.5" radius="7"/>
+        <circle center="40.5,13.5" radius="7"/>
+    </union>
+    <union name="red-score-boxes">
+        <rectangle min="-44,-265" max="-37,-264"/>
+        <rectangle min="44,-265" max="37,-264"/>
+        <rectangle min="-29,-272" max="-30,-279"/>
+        <rectangle min="29,-272" max="30,-279"/>
+        <circle center="-40.5,-275.5" radius="7"/>
+        <circle center="-40.5,-275.5" radius="7"/>
+    </union>
+    <apply enter="only-red" message="You may not score in your own goal.">
+        <region name="red-score-boxes"/>
+    </apply>
+    <apply enter="only-green" message="You may not score in your own goal.">
+        <region name="green-score-boxes"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="-79,-110" max="-137,-147"/>
+        <region name="main-area"/>
+    </apply>
+    <cuboid name="green-score-1" min="43,9,16" max="38,10,11"/>
+    <cuboid name="green-score-2" min="-43,9,16" max="-38,10,11"/>
+    <cuboid name="red-score-1" min="-38,9,-278" max="-43,10,-273"/>
+    <cuboid name="red-score-2" min="38,9,-278" max="43,10,-273"/>
+</regions>
+<playable>
+    <region name="main-area"/>
+</playable>
+<kits>
+    <kit name="spawn">
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="0" enchantment="damage all:1">diamond spade</item>
+        <item slot="2" amount="16">cooked beef</item>
+        <item slot="3" damage="8229">potion</item>
+        <!-- potion of instant health 2 -->
+        <potion duration="oo">speed</potion>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" enchantment="protection projectile:4" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots enchantment="protection fall:1" unbreakable="true">iron boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <chestplate color="45b711" enchantment="protection projectile:4" unbreakable="true">leather chestplate</chestplate>
+        <helmet color="45b711" unbreakable="true">leather helmet</helmet>
+        <leggings color="45b711" unbreakable="true">leather leggings</leggings>
+        <boots enchantment="protection fall:1" unbreakable="true">iron boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="-9,12,-264" max="9,12,-261"/>
+        <cuboid min="27,12,-248" max="40,12,-240"/>
+        <cuboid min="-40,12,-248" max="-27,12,-240"/>
+        <cuboid min="-39,22.5,-238" max="-28,22.5,-231"/>
+        <cuboid min="28,22.5,-238" max="39,22.5,-231"/>
+        <cylinder base="0.5,11,-233.5" radius="4" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="-9,12,-1" max="9,12,2"/>
+        <cuboid min="27,12,-22" max="40,12,-15"/>
+        <cuboid min="-40,12,-22" max="-27,12,-15"/>
+        <cuboid min="-39,22.5,-31" max="-28,22.5,-24"/>
+        <cuboid min="28,22.5,-31" max="39,22.5,-24"/>
+        <cylinder base="0.5,12,-28.5" radius="4" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="-126,47,-128" max="-120,47,-134"/>
+    </default>
+</spawns>
+<portals>
+    <!-- Red Portals -->
+    <portal x="40" z="247" y="1">
+        <region name="red-score-1"/>
+    </portal>
+    <portal x="-40" z="247" y="1">
+        <region name="red-score-2"/>
+    </portal>
+    <!-- Green Portals -->
+    <portal x="-40" z="-247" y="1">
+        <region name="green-score-1"/>
+    </portal>
+    <portal x="40" z="-247" y="1">
+        <region name="green-score-2"/>
+    </portal>
+</portals><!-- Disable until fixed
+<modifybowprojectile>
+    <projectile>Snowball</projectile>
+    <velocityMod>2.0</velocityMod>
+</modifybowprojectile>-->
+<score>
+    <time>10m</time>
+    <box value="3" team="green">
+        <region name="green-score-1"/>
+    </box>
+    <box value="3" team="green">
+        <region name="green-score-2"/>
+    </box>
+    <box value="3" team="red">
+        <region name="red-score-1"/>
+    </box>
+    <box value="3" team="red">
+        <region name="red-score-2"/>
+    </box>
+</score>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>diamond spade</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>cooked beef</item>
+    <item>glass bottle</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+</map>

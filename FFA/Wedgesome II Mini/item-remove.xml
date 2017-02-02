@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<itemremove>
+    <!--  Weapons  -->
+    <item>stone sword</item>
+    <item>iron sword</item>
+    <item>diamond sword</item>
+    <item>bow</item>
+    <!--  Armor  -->
+    <item>chainmail boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail leggings</item>
+    <item>chainmail chestplate</item>
+    <item>leather boots</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>iron leggings</item>
+    <item>iron chestplate</item>
+    <item>iron helmet</item>
+    <item>diamond leggings</item>
+    <item>diamond chestplate</item>
+    <!--  Tools -->
+    <item>stone pickaxe</item>
+    <item>iron pickaxe</item>
+    <item>diamond pickaxe</item>
+    <item>stone spade</item>
+    <item>iron spade</item>
+    <item>diamond spade</item>
+    <!--  Other  -->
+    <item>nether star</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+    <!--  Breakable  -->
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>seeds</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+    <item>double plant</item>
+    <item>bed</item>
+    <item>monster eggs</item>
+    <item>vine</item>
+    <item>step</item>
+    <item>carrot item</item>
+    <item>potato item</item>
+    <item>melon</item>
+    <item>melon seeds</item>
+    <item>poisonous potato</item>
+    <item>sugar cane</item>
+    <item>wheat</item>
+    <item>cobblestone</item>
+    <item>dirt</item>
+</itemremove>
+
+<toolrepair>
+    <tool>arrow</tool>
+</toolrepair>
+
+</map>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Xyth Koth</name>
+<version>1.0</version>
+<objective>Get the most points in 8 minutes!</objective>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+    <rule>You can't fly too far away.</rule>
+</rules>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="8">Blue</team>
+    <team id="red" color="dark red" max="8">Red</team>
+</teams>
+<rage/>
+
+<kits>
+    <kit id="spawn">
+        <item slot="0" damage="-3000" enchantment="arrow damage:10;damage all:10" lore="`aAll-purpose instant killing device">bow</item>
+        <item slot="1" amount="2">arrow</item>
+        <potion duration="3" amplifier="100">heal</potion>
+        <potion duration="3" amplifier="100">damage resistance</potion>
+        <fly flying="true" can-fly="true" fly-speed="1"/> 
+    </kit> 
+    <kit id="redkit" parents="spawn" filter="red-only">
+        <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+        <chestplate color="cd0000" damage="-3000">leather chestplate</chestplate>
+        <leggings color="cd0000" damage="-3000">leather leggings</leggings>
+        <boots damage="-3000">iron boots</boots>
+    </kit>
+    <kit id="bluekit" parents="spawn" filter="blue-only">
+        <helmet color="74BBFB" damage="-3000">leather helmet</helmet>
+        <chestplate color="74BBFB" damage="-3000">leather chestplate</chestplate>
+        <leggings color="74BBFB" damage="-3000">leather leggings</leggings>
+        <boots damage="-3000">iron boots</boots>
+    </kit>
+</kits>    
+<spawns>
+    <default> 
+        <regions yaw="-45">
+            <cylinder name="obs-spawn" base="-56.5,101,-70.5" radius="1" height="0" />
+        </regions>
+    </default>
+    <spawn kit="redkit" team="red">
+        <regions yaw="-135">
+            <cylinder name="red-spawn-low" base="-31.5,12,32.5" radius="1" height="0"/>
+            <cylinder name="red-spawn-high" base="-31.5,42,32.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn kit="bluekit" team="blue">
+        <regions yaw="45">
+            <cylinder name="blue-spawn-low" base="46.5,12,-45.5" radius="1" height="0"/>
+            <cylinder name="blue-spawn-high" base="46.5,42,-45.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+</spawns>
+
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+</filters>
+
+<regions>
+    <!-- Team Spawn Protections -->
+    <rectangle id="walls" min="-48.5,49.5" max="63.5,-62.5"/>
+    <cuboid id="roof" min="-50.5,75,51.5" max="65.5,91,-64.5"/>
+
+    <!-- Applications -->
+    <apply block="never">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+
+    <apply enter="red-only" message="`eYou may not enter the enemy spawn area!">
+        <region>
+            <cylinder base="-30,0,30" radius="8" height="100"/>
+        </region>
+    </apply>
+    <apply enter="blue-only" message="`eYou may not enter the enemy spawn area!">
+        <region>
+            <cylinder base="45,0,-44" radius="8" height="100"/>
+        </region>
+    </apply>
+    <!-- Applications 
+    <apply enter="never" message="`4You may not go beyond this point. ">
+        <region>
+            <negative>
+                <region id="walls"/>
+            </negative>
+            <region id="roof"/>
+        </region>
+    </apply>-->
+</regions>
+
+<score>
+    <kills>1</kills>
+    <limit>300</limit>
+</score>
+
+<king>
+    <hills>
+        <hill name="Central Cube" capture-time="7s" points="1" required="false" show-progress="true" neutral-state="true" capture-rule="majority">
+            <capture><cuboid min="-0.5,45,-14.5" max="15.5,30,1.5"/></capture>
+            <progress><cuboid min="-0.5,45,-14.5" max="15.5,30,1.5"/></progress>
+        </hill>
+    </hills>
+</king>
+
+<disabledamage>
+    <damage>fall</damage>
+    <damage>starvation</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+
+<killreward>
+    <item amount="2">arrow</item>
+</killreward>
+
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather chestplate</item>
+    <item>iron boots</item>
+    <item>glass bottle</item>
+    <item>potion</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<broadcasts>
+    <tip after="3s" every="2m">`fYou can `aFly`f on this map.</tip>
+    <tip after="4s" every="2m">`fHolding the hill gives more points to your team.</tip>
+</broadcasts>
+</map>

@@ -1,0 +1,96 @@
+<map proto="1.3.6">
+<name>Les</name>
+<version>1.1.2</version>
+<objective>Capture 5 flags for your team, or be the team with the most flags captured!</objective>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
+    <!--Matic0B-->
+</authors>
+<teams>
+    <team id="Red" max="10" max-overfill="12" color="red">Red</team>
+    <team id="Blue" max="10" max-overfill="12" color="blue">Blue</team>
+</teams>
+<kits>
+    <kit name="default" force="true">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+    </kit>
+    <kit name="red" parents="default">
+        <helmet color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+        <leggings color="993333">leather leggings</leggings>
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="default">
+        <helmet color="334CB2">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <leggings color="334CB2">leather leggings</leggings>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="flag" force="true">
+        <potion duration="oo" amplifier="1">slowness</potion>
+    </kit>
+    <kit name="reset" force="true">
+        <potion duration="1" amplifier="0">slowness</potion>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<spawns>
+    <default>
+        <regions yaw="180">
+            <point>-0.5,25,-0.5</point>
+        </regions>
+    </default>
+    <spawn team="Red" kit="red">
+        <regions yaw="90">
+            <point>41.5,1,-0.5</point>
+        </regions>
+    </spawn>
+    <spawn team="Blue" kit="blue">
+        <regions yaw="-90">
+            <point>-42.5,1,-0.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<flags>
+    <flag id="flag" name="Gray Flag" color="gray" pickup-kit="flag" drop-kit="reset">
+        <post return-time="10s">-0.5,5,-0.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="41.5,1,-0.5" radius="3" height="3" />
+                <cylinder base="-42.5,1,-0.5" radius="3" height="3" />
+            </region>
+        </net>
+    </flag>
+</flags>
+<score>
+    <kills>0</kills>
+    <deaths>0</deaths>
+    <time>10m</time>
+    <limit>5</limit>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<broadcasts>
+    <tip after="1s" every="1m45s">`b`oThere is only one flag on the map that is located in the `a`omiddle`b`o!</tip>
+    <tip after="2s" every="1m45s">`b`oBring the flag back to `a`oyour spawn `b`oto score. The score limit is `a`o5`b`o.</tip>
+    <tip after="5s" every="1m45s">`b`oThere is a layout of the map on the ceiling to help you navigate through the lower area.</tip>
+</broadcasts>
+</map>

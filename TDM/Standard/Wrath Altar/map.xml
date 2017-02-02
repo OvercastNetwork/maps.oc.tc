@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Wrath Altar</name>
+<version>2.3.5</version>
+<objective>Be the team with the highest score after 9 minutes!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark green" max="30">Green</team>
+    <team color="dark red" max="30">Red</team>
+</teams>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<score>
+    <time>9m</time>
+</score>
+<rage/>
+ <!-- Exit the hill for spreading players away from mid 
+<king>
+    <hills>
+        <hill name="Altar" capture-time="5s" points="1" show="true">
+            <capture><cylinder name="Altar" base="1687.5,8,-1461.5" radius="7" height="7"/> </capture>
+            <progress><cuboid min="0,0,0" max="0,0,0"/></progress>
+            <captured><cuboid min="0,0,0" max="0,0,0"/></captured>
+        </hill>
+    </hills>
+</king>
+-->
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true" enchantment="damage all:10" lore="`aOne hit slice!">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne shot pierce!">bow</item>
+        <item slot="2" amount="2">ender pearl</item>
+        <item slot="8" amount="6">arrow</item>
+        <potion duration="oo">speed</potion>
+        <potion duration="4" amplifier="100">heal</potion>
+        <potion duration="4" amplifier="100">damage resistance</potion>
+    </kit>
+    <kit name="green" parents="teams">
+        <helmet color="667F33">leather helmet</helmet>
+        <chestplate color="667F33">leather chestplate</chestplate>
+        <leggings color="667F33">leather leggings</leggings>
+        <boots color="667F33">leather boots</boots>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+        <leggings color="993333">leather leggings</leggings>
+        <boots color="993333">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="2">arrow</item>
+    <item>ender pearl</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="5"/>
+    </filter>
+    <item name="`bSpeed II" lore="`7Speed tier 2!" damage="8194" potions="speed:54000:1:true">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak count="15"/>
+    </filter>
+    <item name="`bSpeed III" lore="`7Speed tier 3!" damage="8194" potions="speed:54000:2:true">potion</item>
+</killreward>
+<filters>
+    <filter name="deny-fence">
+        <not>
+            <block>fence</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" use="deny-fence">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="1681,8,-1357" max="1694,8,-1357"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="1694,8,-1566" max="1681,8,-1565"/>
+    </spawn>
+    <default angle="1692.5,100.5,-1461.5">
+        <cuboid min="1689,100,-1465" max="1686,100,-1458"/>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>potion</item>
+    <item>golden apple</item>
+    <item>ender pearl</item>
+    <item>glass bottle</item>
+    <item>arrow</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tutorial>
+    <stage title="TDM Rage">
+        <message>
+            <line>`rThis map is a `aTeam Death Match `r(RAGE) map.</line>
+            <line>`rThe objective is to get the most points before the end of the time limit!</line>
+        </message>
+        <teleport>
+            <point yaw="-150" pitch="10">1675.5,35,-1382.5</point>
+        </teleport>
+    </stage>
+    <stage title="Spawns">
+        <message>
+            <line>`rThis the `cRed Team`r's spawn area.</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="20">1672.5,10,-1366.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

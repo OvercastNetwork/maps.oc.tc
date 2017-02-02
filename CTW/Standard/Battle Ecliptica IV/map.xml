@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+<include src="kits.xml"/>
+<include src="item-remove.xml"/>
+<include src="kill-rewards.xml"/>
+
+<name>Battle Ecliptica IV</name>
+<version>1.0.3</version>
+<objective>Capture the other team's wools to win the game!</objective>
+
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+
+<contributors>
+    <contributor contribution="Map feedback." uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9"/><!-- BrettOgden -->
+    <contributor contribution="Pessimism." uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/><!-- Strangey -->
+    <contributor contribution="Map testing." uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/><!-- Electroid -->
+</contributors>
+
+<teams>
+    <team id="yellow-team" color="yellow" max="18">Yellow</team>
+    <team id="green-team" color="dark green" max="18">Green</team>
+    <team id="red-team" color="dark red" max="18">Red</team>
+    <team id="blue-team" color="blue" max="18">Blue</team>
+</teams>
+
+<spawns>
+    <spawn team="blue-team" kit="blue" angle="-110.5,27,-110.5" safe="true">
+        <regions>
+            <cylinder id="blue-spawn" base="-110.5,27,-110.5" radius="6" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow-team" kit="yellow" angle="111.5,27,-110.5" safe="true">
+        <regions>
+            <cylinder base="111.5,27,-110.5" radius="6" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="red" angle="-110.5,27,111.5" safe="true">
+        <regions>
+            <cylinder base="-110.5,27,111.5" radius="6" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="green" angle="111.5,27,111.5" safe="true">
+        <regions>
+            <cylinder base="111.5,27,111.5" radius="6" height="0"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions>
+            <block>0.5,6,0.5</block>
+        </regions>
+    </default>
+</spawns>
+
+<regions>
+    <apply block-break="allow-some" block-place="never" message="`7You may not modify the blocks in spawn!">
+        <region>
+            <union id="spawns">
+               <circle id="blue-base" center="-110.5,-110.5" radius="15.5"/>
+               <mirror id="yellow-base" normal="1,0,0" origin="0.5,50,0.5"><region id="blue-base"/></mirror>
+               <mirror id="red-base" normal="0,0,1" origin="0.5,50,0.5"><region id="blue-base"/></mirror>
+               <mirror id="green-base" normal="1,0,1" origin="0.5,50,0.5"><region id="blue-base"/></mirror>
+           </union>
+        </region>
+    </apply>
+
+    <apply block-break="allow-some" block-place="never" message="`7You may not modify the blocks in the wool rooms!">
+        <region>
+            <union id="wool-rooms">
+               <circle id="blue-room" center="-56.5,-56.5" radius="6.6"/>
+               <mirror id="yellow-room" normal="1,0,0" origin="0.5,50,0.5"><region id="blue-room"/></mirror>
+               <mirror id="red-room" normal="0,0,1" origin="0.5,50,0.5"><region id="blue-room"/></mirror>
+               <mirror id="green-room" normal="1,0,1" origin="0.5,50,0.5"><region id="blue-room"/></mirror>
+           </union>
+        </region>
+    </apply>
+
+    <apply enter="allow-blue" region="blue-base" message="`7You may not enter the enemy team's base!"/>
+    <apply enter="allow-green" region="green-base" message="`7You may not enter the enemy team's base!"/>
+    <apply enter="allow-yellow" region="yellow-base" message="`7You may not enter the enemy team's base!"/>
+    <apply enter="allow-red" region="red-base" message="`7You may not enter the enemy team's base!"/>
+
+    <apply enter="not-blue" region="blue-room" message="`7You may not enter your own wool room!"/>
+    <apply enter="not-green" region="green-room" message="`7You may not enter your own wool room!"/>
+    <apply enter="not-yellow" region="yellow-room" message="`7You may not enter your own wool room!"/>
+    <apply enter="not-red" region="red-room" message="`7You may not enter your own wool room!"/>
+
+    <apply block="deny-world" block-place="no-wool" message="`7You may not place safety wools!" region="everywhere"/>
+
+    <apply block="deny-spawners" message="`7You may not break this spawner!" region="everywhere"/>
+
+    <apply block="deny-void" message="`7You may not edit the void area!">
+        <region>
+            <negative>
+                <!--
+                <rectangle id="yellow-green-sides" min="56,5" max="48,-4"/>
+                <mirror normal="-1,0,1" origin="0.5,50,0.5"><region id="yellow-green-sides"/></mirror>
+                <mirror normal="-1,0,0" origin="0.5,50,0.5"><region id="yellow-green-sides"/></mirror>
+                <mirror normal="-1,0,-1" origin="0.5,50,0.5"><region id="yellow-green-sides"/></mirror>
+                -->
+
+                <union id="yellow-green-mid">
+                    <rectangle id="yellow-middle" min="41,-13" max="36,-6"/>
+                    <translate offset="0,0,20"><region id="yellow-middle"/></translate>
+                </union>
+                <mirror normal="-1,0,1" origin="0.5,50,0.5"><region id="yellow-green-mid"/></mirror>
+                <mirror normal="-1,0,0" origin="0.5,50,0.5"><region id="yellow-green-mid"/></mirror>
+                <mirror normal="-1,0,-1" origin="0.5,50,0.5"><region id="yellow-green-mid"/></mirror>
+
+                <rectangle id="yellow-green-to-mid" min="20,-5" max="14,6"/>
+                <mirror normal="-1,0,1" origin="0.5,50,0.5"><region id="yellow-green-to-mid"/></mirror>
+                <mirror normal="-1,0,0" origin="0.5,50,0.5"><region id="yellow-green-to-mid"/></mirror>
+                <mirror normal="-1,0,-1" origin="0.5,50,0.5"><region id="yellow-green-to-mid"/></mirror>
+            </negative>
+        </region>
+    </apply>
+</regions>
+
+<filters>
+    <any id="allow-some">
+        <material>iron block</material>
+        <material>leaves</material>
+    </any>
+
+    <deny id="deny-world"><cause>world</cause></deny>
+
+    <not id="deny-void">
+        <void/>
+    </not>
+
+    <team id="allow-blue">blue-team</team>
+    <team id="allow-yellow">yellow-team</team>
+    <team id="allow-green">green-team</team>
+    <team id="allow-red">red-team</team>
+
+    <not id="not-blue">
+        <team>blue-team</team>
+    </not>
+
+    <not id="not-yellow">
+        <team>yellow-team</team>
+    </not>
+
+    <not id="not-green">
+        <team>green-team</team>
+    </not>
+
+    <not id="not-red">
+        <team>red-team</team>
+    </not>
+
+    <deny id="no-wool">
+        <material>wool</material>
+    </deny>
+
+    <deny id="deny-spawners">
+        <any>
+            <material>mob spawner</material>
+            <material>iron plate</material>
+            <material>gold plate</material>
+        </any>
+    </deny>
+</filters>
+
+<wools team="blue-team">
+    <wool color="red" location="-56.5,9,57.5">
+        <monument><block>-120.5,17,-118.5</block></monument>
+    </wool>
+    <wool color="green" location="57.5,9,57.5">
+        <monument><block>-119.5,17,-119.5</block></monument>
+    </wool>
+    <wool color="yellow" location="57.5,9,-56.5">
+        <monument><block>-118.5,17,-120.5</block></monument>
+    </wool>
+</wools>
+
+<wools team="red-team">
+    <wool color="green" location="57.5,9,57.5">
+        <monument><block>-118.5,17,121.5</block></monument>
+    </wool>
+    <wool color="yellow" location="57.5,9,-56.5">
+        <monument><block>-119.5,17,120.5</block></monument>
+    </wool>
+    <wool color="blue" location="-56.5,9,-56.5">
+        <monument><block>-120.5,17,119.5</block></monument>
+    </wool>
+</wools>
+
+
+<wools team="green-team">
+    <wool color="yellow" location="57.5,9,-56.5">
+        <monument><block>121.5,17,119.5</block></monument>
+    </wool>
+    <wool color="blue" location="-56.5,9,-56.5">
+        <monument><block>120.5,17,120.5</block></monument>
+    </wool>
+    <wool color="red" location="-56.5,9,57.5">
+        <monument><block>119.5,17,121.5</block></monument>
+    </wool>
+</wools>
+
+
+<wools team="yellow-team">
+    <wool color="blue" location="-56.5,9,-56.5">
+        <monument><block>119.5,17,-120.5</block></monument>
+    </wool>
+    <wool color="red" location="-56.5,9,57.5">
+        <monument><block>120.5,17,-119.5</block></monument>
+    </wool>
+    <wool color="green" location="57.5,9,57.5">
+        <monument><block>121.5,17,-118.5</block></monument>
+    </wool>
+</wools>
+
+<crafting>
+    <disable>iron plate</disable>
+    <disable>gold plate</disable>
+    <disable>bucket</disable>
+    <disable>iron door</disable>
+    <disable>iron fence</disable>
+    <disable>iron trapdoor</disable>
+    <disable>carpet</disable>
+</crafting>
+
+<block-drops>
+    <rule>
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <any>
+                <material>ice</material>
+            </any>
+        </filter>
+        <replacement>air</replacement>
+    </rule>
+</block-drops>
+
+<block-drops>
+    <rule wrong-tool="true">
+        <filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </filter>
+        <drops>
+            <item material="iron boots"/>
+            <item material="iron chestplate"/>
+            <item material="iron helmet"/>
+        </drops>
+    </rule>
+</block-drops>
+
+<maxbuildheight>15</maxbuildheight>
+
+</map>

@@ -1,0 +1,211 @@
+<map proto="1.4.2">
+<name>Arch</name>
+<version>1.0.13</version>
+<objective>Capture both wools and destroy the end stone monument!</objective>
+<authors>
+    <author uuid="74e59389-2b3e-490d-954a-a7af1fb1eded"/> <!-- Dowly_ -->
+</authors>
+<contributors>
+    <contributor uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="XML"/> <!-- GoldenOre -->
+    <contributor uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" contribution="XML"/> <!-- Matic0B -->
+    <contributor uuid="8f6695e0-5a11-4feb-b44f-3b01ad7d7d85"/> <!-- LoveMatiBlood -->
+    <contributor uuid="21a798e3-e1be-4eea-9104-615191d87139"/> <!-- _Banana_Juice_ -->
+    <contributor uuid="62b6d081-8df8-4c09-aa15-71141ca7df76"/> <!-- Arzanex -->
+    <contributor uuid="72be230a-0615-4b8e-960e-fe6f8afbc1b0"/> <!-- ZodiacNeo -->
+    <contributor uuid="a576ef17-2c05-4a4a-8cf1-50f62ef4aacd" contribution="Observer Spawn"/> <!-- SrNativee -->
+</contributors>
+<gamemode>dtm</gamemode>
+<gamemode>ctw</gamemode>
+<teams>
+    <team id="red" color="dark red" max="24" max-overfill="26">Red</team>
+    <team id="blue" color="blue" max="24" max-overfill="26">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="2" enchantment="durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3">iron axe</item>
+        <item slot="4" amount="48" damage="2">wood</item>
+        <item slot="5" amount="16">glass</item>
+        <item slot="6" amount="32">cooked chicken</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8">bucket</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="30" enchantment="efficiency:3">iron spade</item>
+        <effect duration="4" amplifier="5">resistance</effect>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <chestplate material="leather chestplate" unbreakable="true" color="993333"/>
+        <boots material="leather boots" unbreakable="true" color="993333"/>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <chestplate material="leather chestplate" unbreakable="true" color="334CB2"/>
+        <boots material="leather boots" unbreakable="true" color="334CB2"/>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <point>120.5,20,3.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <point>-27.5,20,3.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>47.0,52.0,3.0</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <not id="deny-void">
+        <void/>
+    </not>
+    <not id="no-chests">
+        <material>chest</material>
+    </not>
+    <all id="red-chests">
+        <filter id="no-chests"/>
+        <team>red</team>
+    </all>
+    <all id="blue-chests">
+        <filter id="no-chests"/>
+        <team>blue</team>
+    </all>
+</filters>
+<regions>
+    <union id="bridgezone">
+        <cuboid id="bridgezone1" min="-9,36,48" max="103,0,-42"/>
+        <cuboid id="bridgezone2" min="-49,36,25" max="-9,0,13"/>
+        <cuboid id="bridgezone3" min="-49,36,-7" max="-9,0,-19"/>
+        <cuboid id="bridgezone4" min="143,36,-19" max="103,0,-7"/>
+        <cuboid id="bridgezone5" min="143,36,13" max="103,0,25"/>
+        <rectangle min="-9,-19" max="-64,-7"/>
+        <rectangle min="-64,13" max="-9,25"/>
+        <rectangle min="103,25" max="158,13"/>
+        <rectangle min="158,-7" max="103,-19"/>
+    </union>
+    <union id="bases">
+        <cuboid id="blue-base" min="115,36,-3" max="103,0,9"/>
+        <cuboid id="red-base" min="-21,36,9" max="-9,0,-3"/>
+    </union>
+    <!-- Red must enter -->
+    <union id="red-wools">
+        <rectangle id="green-wool" min="158,13" max="143,25"/>
+        <rectangle id="lime-wool" min="158,-19" max="143,-7"/>
+    </union>
+    <!-- Blue must enter -->
+    <union id="blue-wools">
+        <rectangle id="pink-wool" min="-64,25" max="-49,13"/>
+        <rectangle id="purple-wool" min="-64,-7" max="-49,-19"/>
+    </union>
+    <!-- Applied -->
+    <apply enter="only-red" message="You may not enter the enemy base!">
+        <region>
+            <region id="red-base"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <region>
+            <region id="blue-base"/>
+        </region>
+    </apply>
+    <apply block="red-chests" region="red-wools" message="Only Red Team can break blocks here!"/>
+    <apply block="blue-chests" region="blue-wools" message="Only Blue Team can break blocks here!"/>
+    <apply enter="only-red" block="only-red" message="You may not enter or modify your own wool room!">
+        <region>
+            <region id="red-wools"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" block="only-blue" message="You may not enter or modify your own wool room!">
+        <region>
+            <region id="blue-wools"/>
+        </region>
+    </apply>
+    <apply block="deny-void" message="You may not build here!">
+        <region>
+            <negative>
+                <region id="bridgezone"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<wools team="blue">
+    <wool color="pink" location="-59,20,20" craftable="false">
+        <monument>
+            <block>124,20,5</block>
+        </monument>
+    </wool>
+    <wool color="magenta" location="-58,20,-13" craftable="false">
+        <monument>
+            <block>124,20,0</block>
+        </monument>
+    </wool>
+</wools>
+<wools team="red">
+    <wool color="lime" location="152,20,-13" craftable="false">
+        <monument>
+            <block>-31,20,0</block>
+        </monument>
+    </wool>
+    <wool color="green" location="152,20,19" craftable="false">
+        <monument>
+            <block>-31,20,5</block>
+        </monument>
+    </wool>
+</wools>
+<destroyables name="Monument" materials="ender stone" completion="100%">
+    <destroyable owner="blue">
+        <region>
+            <cuboid min="84,34,2" max="82,27,4"/>
+        </region>
+    </destroyable>
+    <destroyable owner="red">
+        <region>
+            <cuboid min="10,34,4" max="12,27,2"/>
+        </region>
+    </destroyable>
+</destroyables>
+<renewables>
+    <renewable rate="2.5" grow="true" particles="true" sound="false">
+        <region>
+            <region id="bridgezone1"/>
+        </region>
+        <renew-filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </renew-filter>
+    </renewable>
+</renewables>
+<maxbuildheight>36</maxbuildheight>
+<itemremove>
+    <item>wood</item>
+    <item>glass</item>
+    <item>stained clay</item>
+    <item>ender stone</item>
+    <item>cooked chicken</item>
+    <item>arrow</item>
+    <item>bucket</item>
+    <item>string</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+</map>

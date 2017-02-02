@@ -1,0 +1,133 @@
+<map proto="1.4.0" game="Blitz">
+<include src="blitz-global.xml" />
+<name>Frost Bound</name>
+<version>2.0.1</version>
+<objective>Eliminate the other team within 8 minutes.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="f690a591-348b-482e-a18d-7779d0c0a28c"/> <!-- mitchiii_ -->
+</authors>
+<blitz />
+<time>8m</time>
+<teams>
+    <team id="magenta-team" color="light purple" max="16">Magenta</team>
+    <team id="blue-team"    color="blue"         max="16">Blue</team>
+</teams>
+<kits>
+    <kit id="main-kit">
+        <item slot="0"                                     unbreakable="true"  material="stone sword" />
+        <item slot="1"                                     unbreakable="true"  material="bow" />
+        <item slot="7" amount="6"                                              material="torch" />
+        <item slot="8" amount="28"                                             material="arrow" />
+        <chestplate enchantment="protection environmental" unbreakable="true"  material="gold chestplate" />
+        <boots                                             unbreakable="true"  material="iron boots">
+            <enchantment level="1">protection fall</enchantment>
+            <enchantment level="1">frost walker</enchantment>
+        </boots>
+        <potion duration="5"     amplifier="25">damage resistance</potion>
+        <potion duration="3"     amplifier="25">heal</potion>
+        <potion duration="2m"                  >absorption</potion>
+    </kit>
+    <kit id="magenta-kit" parents="main-kit"> 
+        <item slot="2" amount="24" damage="2"                                   material="stained glass" />
+        <helmet color="b24cd8"                               unbreakable="true" material="leather helmet" />
+    </kit>
+    <kit id="blue-kit" parents="main-kit">
+        <item slot="2" amount="24" damage="3"                                   material="stained glass" />
+        <helmet color="0066cc"                               unbreakable="true" material="leather helmet" />
+    </kit>
+    <kit id="kill-boost">
+        <potion duration="2s" amplifier="3">regeneration</potion>
+        <potion duration="2s" amplifier="2">speed</potion>
+        <potion duration="3s"              >night vision</potion>
+    </kit>
+    <kit id="boots-remove-ice" force="true">
+        <boots unbreakable="true" material="iron boots">
+            <enchantment level="1">protection fall</enchantment>
+        </boots>
+    </kit>
+</kits>
+<killreward>
+    <kit id="kill-boost" />
+    <item amount="6" material="arrow" />
+</killreward>
+<spawns>
+    <default                                       region="default-spawn" yaw="24" />
+    <spawn   team="magenta-team" kit="magenta-kit" region="magenta-spawn" yaw="-90" />
+    <spawn   team="blue-team"    kit="blue-kit"    region="blue-spawn"    yaw="90" />
+</spawns> 
+<filters>
+    <all id="build-blocks">
+        <any id="break-blocks">
+            <material>stained glass</material>
+            <material>leaves</material>
+            <material>torch</material>
+            <material>long grass</material>
+            <all>
+                <material>ice</material>
+                <not>
+                    <cause>world</cause>
+                </not>
+            </all>
+            <material>frosted ice</material>
+            <material>water</material>
+            <material>stationary water</material>
+            <material>stained glass pane</material>
+            <material>snow</material>
+        </any>
+        <not>
+            <void />
+        </not>
+    </all>
+</filters>
+<regions>
+    <point id="default-spawn">39.5,31,-37.5</point>
+    <point id="magenta-spawn">-45.5,27,-3.5</point>
+    <point id="blue-spawn"   >80.5,27,-3.5</point>
+    <apply block-place="build-blocks" block-break="break-blocks" />
+</regions>
+<block-drops>
+    <rule>
+        <filter>
+            <material>snow</material>
+        </filter>
+        <drops>
+            <item amount="2" chance="0.6" material="snow ball" />
+            <item amount="1" chance="0.4" material="snow ball" />
+            <item amount="3" chance="0.1" material="snow ball" />
+        </drops>
+    </rule>
+    <rule trample="true" kit="boots-remove-ice">
+        <filter>
+            <all>
+                <random>0.04</random>
+                <material>frosted ice</material>
+            </all>
+        </filter>
+    </rule>
+</block-drops>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>gold chestplate</item>
+    <item>leather helmet</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>long grass</item>
+    <item>torch</item>
+    <item>arrow</item>
+    <item>stained glass</item>
+    <item>seeds</item>
+    <item>barrier</item>
+</itemremove>
+<itemkeep>
+    <item>snow ball</item>
+</itemkeep>
+<hunger>
+    <depletion>off</depletion>
+</hunger>  
+<maxbuildheight>64</maxbuildheight>
+</map>

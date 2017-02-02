@@ -1,0 +1,220 @@
+<map proto="1.4.0">
+<name>Opal</name>
+<version>1.0</version>
+<objective>Take the enemy's wools back to your side and place them on your victory monument!</objective>
+<gamemode>ctw</gamemode>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+</authors>
+<maxbuildheight>29</maxbuildheight>
+<timelock>on</timelock>
+<respawn delay="3s" spectate="false"/>
+<teams>
+    <team id="red" color="dark red" max="36" max-overfill="40">Red Team</team>
+    <team id="blue" color="blue" max="36" max-overfill="40">Blue Team</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-spawn-kit">
+        <regions yaw="180">
+            <block>29.5,14,-19.5</block>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-spawn-kit">
+        <regions yaw="0">
+            <block>-332.5,14,-191.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <block>-151.5,8,-105.5</block>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite" unbreakable="true">bow</item> 
+        <item slot="2" enchantment="dig speed:2" unbreakable="true">iron pickaxe</item>            
+        <item slot="3" enchantment="dig speed:1" unbreakable="true">iron axe</item>
+        <item slot="4" enchantment="dig speed:1" unbreakable="true">stone spade</item>
+        <item slot="5" unbreakable="true">shears</item>            
+        <item slot="6" amount="48">bread</item>            
+        <item slot="7" damage="2" amount="64">wood</item> 
+        <item slot="8" damage="2" amount="32">wood</item>            
+        <item slot="28">arrow</item> 		
+    </kit>
+    <kit id="red-spawn-kit" parents="spawn">
+        <helmet unbreakable="true" color="ff0000">leather helmet</helmet>
+        <chestplate unbreable="true" color="ff0000">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots unbreakable="true" color="ff0000">leather boots</boots>
+    </kit>
+    <kit id="blue-spawn-kit" parents="spawn">
+        <helmet unbreakable="true" color="0000ff">leather helmet</helmet>
+        <chestplate unbreable="true" color="0000ff">leather chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <boots unbreakable="true" color="0000ff">leather boots</boots>
+    </kit>
+    <kit id="wool-room-gear" force="true">
+        <item amount="8">golden apple</item>
+		<chestplate unbreable="true" enchantment="protection:1">diamond chestplate</chestplate>
+		<potion amplifier="1" duration="90">speed</potion>
+    </kit>
+</kits>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <allow id="breakable">
+        <any>
+		    <material>leaves</material>
+            <material damage="1">leaves 2</material>
+	        <material damage="1">prismarine</material>
+	        <material damage="1">log 2</material>
+	        <material>wood step</material>
+	        <material>wood</material>
+        </any>
+    </allow>
+    <not id="deny-red">
+        <team>red</team>
+    </not>
+    <not id="deny-blue">
+        <team>blue</team>
+    </not>
+    <material id="only-some">web</material>
+    <material id="only-iron">iron block</material>
+</filters>
+<renewables>
+    <renewable rate="2.5" grow="true" particles="true" sound="true" avoid-entities="true">
+        <region>
+            <region id="iron-renew"/>
+        </region>
+        <renew-filter>
+            <any>
+                <material>iron block</material>
+            </any>
+        </renew-filter>
+    </renewable>
+</renewables>
+<regions>
+    <negative id="non-bridge">
+        <union>
+            <rectangle id="red-front-bridge" min="-114,-64" max="-99,-43"/>
+            <rectangle id="red-middle-bridge" min="-74,-58" max="-59,-21"/>
+            <rectangle id="red-back-bridge" min="-59,-47" max="-48,-32"/>
+            <rectangle id="blue-front-bridge" min="-189,-147" max="-204,-168"/>
+            <rectangle id="blue-middle-bridge" min="-229,-153" max="-244,-190"/> 
+            <rectangle id="blue-back-bridge" min="-244,-164" max="-255,-179"/>
+            <rectangle id="middle-bridge-a" min="-128,-133" max="-166,-118"/>
+            <rectangle id="middle-bridge-b" min="-175,-78" max="-137,-93"/>
+        </union>
+    </negative>
+    <union id="spawns">
+        <rectangle id="red-spawn" min="17,-6" max="41,-73"/>
+        <rectangle id="blue-spawn" min="-320,-205" max="-344,-138"/>
+    </union>
+    <rectangle id="observer-spawn" min="-145,-101" max="-158,-110"/>
+    <union id="red-wool-rooms">
+        <rectangle id="pink-wool-room" min="14,-92" max="42,-134"/>
+        <rectangle id="magenta-wool-room" min="14,13" max="42,55"/>            
+    </union>
+    <union id="blue-wool-rooms">
+        <rectangle id="light-blue-wool-room" min="-317,-119" max="-345,-77"/>
+        <rectangle id="cyan-wool-room" min="-317,-224" max="-345,-266"/>
+    </union>
+    <union id="wool-rooms">
+        <region id="red-wool-rooms"/>
+        <region id="blue-wool-rooms"/>
+    </union>
+    <union id="only-red-zones">
+        <region id="red-spawn"/>
+        <region id="blue-wool-rooms"/>
+    </union>
+    <union id="only-blue-zones">
+        <region id="blue-spawn"/>
+        <region id="red-wool-rooms"/>
+    </union>
+    <union id="iron-renew">
+        <cylinder id="red-iron" base="29.5,12,-59.5" radius="5" height="6"/>
+        <cylinder id="blue-iron" base="-332.5,12,-151.5" radius="5" height="6"/>
+    </union>
+	<union id="spawner">
+	    <block id="red-left-bricks">-26.5,9,-19.5</block>
+		<block id="red-right-bricks">-26.5,9,-59.5</block>
+		<block id="red-wood">-103.5,12,-2.5</block>
+		<block id="blue-left-bricks">-276.5,9,-191.5</block>
+		<block id="blue-right-bricks">-276.5,9,-151.5</block>
+		<block id="blue-wood">-199.5,12,-208.5</block>
+	</union>		
+    <apply block-break="only-some" block-place="never" region="wool-rooms"/>
+    <apply block="only-iron" region="spawns" message="You may only break iron in spawn!"/>
+	<apply block="never" region="spawner" message="You may not modify this spawner!"/>
+    <apply block-break="breakable" region="non-bridge"/> 
+	<apply block="no-void" region="non-bridge" message="You may not modify the void area!"/>
+    <apply enter="deny-red" message="Only blue team may enter this region!" region="only-blue-zones"/>
+    <apply enter="deny-blue" message="Only red team may enter this region!" region="only-red-zones"/>
+    <apply enter="never" block="never" region="observer-spawn" message="You may not enter this area!"/>		
+	<apply kit="wool-room-gear" region="wool-rooms"/>
+</regions>
+<wools team="red">
+    <wool color="light blue" location="-332.5,10,-97.5">
+        <monument>
+            <block>25,14,-48</block>
+        </monument>
+    </wool>
+    <wool color="cyan" location="-332.5,10,-245.5">
+        <monument>
+            <block>33,14,-48</block>
+        </monument>
+    </wool>        
+</wools>
+<wools team="blue">
+    <wool color="pink" location="29.5,10,-113.5">
+        <monument>
+            <block>-329,14,-164</block>
+        </monument>
+    </wool>
+    <wool color="magenta" location="29.5,10,34.5">
+        <monument>
+            <block>-337,14,-164</block>
+        </monument>
+    </wool>        
+</wools>
+<toolrepair>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>        
+    <tool>iron sword</tool>  
+    <tool>stone spade</tool>
+    <tool>bow</tool>    
+    <tool>arrow</tool>		
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>        
+    <item>leather boots</item>
+    <item>diamond chestplate</item>        
+    <item>apple</item>        
+    <item>flint</item>        
+    <item>gravel</item>        
+    <item>string</item>                
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>leaves</item>
+	<item>leaves:2</item>
+    <item>grass</item>
+    <item>red rose</item>
+    <item>step</item>
+    <item damage="1">leaves 2</item>        
+</itemremove>
+<killreward>
+    <item damage="2" amount="4">wood</item>
+</killreward>	
+<tnt>
+    <instantignite>on</instantignite>
+	<power>6.5</power>
+</tnt>
+<disabledamage>
+    <damage>block explosion</damage>
+</disabledamage>	
+</map>

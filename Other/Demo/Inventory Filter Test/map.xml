@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<map proto="1.3.2" internal="true">
+<name>Inventory Filter Test</name>
+<version>0.1</version>
+<objective>Test the control points</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+    <team color="green" max="24">Green</team>
+</teams>
+
+<broadcasts>
+    <alert after="1s">Hi Cubist. To enter the "default hill" you must have pass a filter that checks for iron boots.</alert>
+    <alert after="3s">You spawn with iron boots with damage of 100. If your change works you can enter the "default hill".</alert>
+</broadcasts>
+
+<kits>
+    <kit name="kit" force="true">
+        <boots damage="100">iron boots</boots>
+    </kit>
+</kits>
+
+<spawns yaw="180" pitch="0">
+    <spawn team="blue" kit="kit">
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="red" kit="kit">
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </spawn>
+    <default kit="kit">
+        <cylinder base="3.5,65,7.5" radius="0" height="0"/>
+    </default>
+</spawns>
+
+<regions>
+    <union name="union">
+        <cuboid name="capture" min="1,65,1" max="6,66,6"/>
+        <cuboid name="progress" min="1,64,1" max="6,65,6"/>
+        <cuboid name="owner" min="1,65,1" max="6,66,6"/>
+    </union>
+    <apply enter="boots?" message="You don't have the right boots">
+        <region name="union"/>
+    </apply>
+</regions>
+
+<filters>
+    <filter name="boots?">
+        <wearing><item>iron boots</item></wearing>
+    </filter>
+</filters>
+
+<control-points capture-time="5s" show-progress="true">
+ 
+    <control-point name="Default">
+        <capture-region>           <translate offset="0,0,0"><region name="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="0,0,0"><region name="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="0,0,0"><region name="owner"/></translate></owner-display-region>
+    </control-point>
+
+    <control-point name="Neutral State" neutral-state="true">
+        <capture-region>           <translate offset="10,0,0"><region name="capture"/></translate></capture-region>
+        <progress-display-region>  <translate offset="10,0,0"><region name="progress"/></translate></progress-display-region>
+        <owner-display-region>     <translate offset="10,0,0"><region name="owner"/></translate></owner-display-region>
+    </control-point>
+
+</control-points>
+
+</map>

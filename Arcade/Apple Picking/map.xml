@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Apple Picking</name>
+<version>1.0</version>
+<gamemode>Arcade</gamemode>    
+<objective>Pick apples and bring them back to Mr. Apple!</objective>
+<authors>
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- PepsiDog -->
+</authors>
+<contributors>
+    <contributor uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</contributors>
+<broadcasts>
+    <alert after="0s">`6`lGo into the forest and scavange for food!</alert>
+    <alert after="1s">`6`lBring what ever you find back to Mr. Apple to get points!</alert>
+    <tip after="20s">`aJungle tree leaves drop something special!</tip>
+    <alert after="1m30s">`6Remember to bring the apples back to Mr. Apple to get points!</alert>
+</broadcasts>
+<players min="4" max="8" colors="true"/>
+<time>2m</time>
+<score>
+    <box>
+        <region><cuboid min="-3,16,-42" max="3,19,-35"/></region>
+        <redeemables>
+            <item points="1">apple</item>
+            <item point="5">cookie</item>
+            <item points="5">golden apple</item>
+            <item points="20" damage="1">golden apple</item>
+        </redeemables>
+    </box>
+</score>
+<spawns>
+    <spawns kit="spawn" exclusive="true">
+        <spawn><regions angle="0,16,-14"><point>9.5,16,-29.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>7.5,16,-27.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>4.5,16,-26.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>1.5,16,-25.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>-1.5,16,-25.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>-4.5,16,-26.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>-7.5,16,-27.5</point></regions></spawn>
+        <spawn><regions angle="0,16,-14"><point>-9.5,16,-29.5</point></regions></spawn>
+    </spawns>
+    <default>
+        <regions>
+            <point>4,40,-70</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" material="shears" enchantment="knockback:2;damage_all:1" unbreakable="true" name="`8Harvester"/>
+        <item slot="1" material="flint and steel" enchantment="knockback:2;damage_all:1" unbreakable="true" name="`aCreeper Igniter"/>
+        <chestplate color="00FFFF" locked="true" unbreakable="true" material="leather chestplate">
+            <attribute amount="-14">generic.maxHealth</attribute>
+        </chestplate>
+    </kit>
+</kits>
+<regions>
+    <apply block="only-some"/>
+</regions>
+<filters>
+    <all id="only-some">
+        <material>leaves</material>
+        <cause>PLAYER</cause>
+    </all>
+</filters>
+<portals>
+    <portal x="@0.5" y="@15" z="@22.5" yaw="@180" pitch="@0">
+        <region><below y="0"/></region>
+    </portal>
+</portals>
+<block-drops>
+    <rule>
+        <filter>
+            <any>
+                <material>leaves:0</material>
+                <material>leaves:2</material>
+                <material>leaves:8</material>
+                <material>leaves:10</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0.25" material="apple" name="`rApple `71 Point"/>
+            <item chance="0.01" material="golden apple" name="`rGolden Apple `75 Points"/>
+            <item chance="0.001" material="golden apple" damage="1" name="`r`6Golden Apple `720 Points"/>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <any>
+                <material>leaves:3</material>
+                <material>leaves:11</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0.15" material="cookie" name="`rCookie `75 Points"/>
+        </drops>
+    </rule>
+</block-drops>
+<itemremove>
+    <item>leaves</item>
+    <item>sapling</item>
+    <item>long grass</item>
+    <item>stick</item>
+    <item>shears</item>
+    <item>sulphur</item>
+    <item>rotten flesh</item>
+    <item>leather chestplate</item>
+    <item>flint and steel</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<damage>
+    <allow>
+        <any>
+            <entity>ZOMBIE</entity>
+            <entity>CREEPER</entity>
+        </any>
+    </allow>
+    <deny>
+        <all>
+            <attacker>
+                <cause>PLAYER</cause>
+            </attacker>
+            <victim>
+                <cause>PLAYER</cause>
+            </victim>
+        </all>
+    </deny>
+    <deny>
+        <cause>FALL</cause>
+    </deny>
+</damage>
+<difficulty>hard</difficulty>
+</map>

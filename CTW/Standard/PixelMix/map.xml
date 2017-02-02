@@ -1,0 +1,222 @@
+<map proto="1.4.0">
+<!-- <include src="tutorial.xml"/> -->
+<name>PixelMix</name>
+<version>2.1.3</version>
+<objective>
+    Take the enemy's wool located at two sides of the enemy's base and place it in your victory monument.
+</objective>
+<authors>
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Idea, Map design and XML"/> <!--   DoomRobotBoy   -->
+</authors>
+<contributors>
+    <contributor uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="XML Fixing"/> <!--   ollyj   -->
+</contributors>
+<teams>
+    <team id="red-team" color="red" max="36" max-overfill="40">Red</team>
+    <team id="blue-team" color="blue" max="36" max-overfill="40">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true" material="iron sword"/>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true" material="bow"/>
+        <item slot="2" unbreakable="true" material="diamond pickaxe"/>
+        <item slot="3" unbreakable="true" material="iron axe"/>
+        <item slot="4" unbreakable="true" material="diamond spade"/>
+        <item slot="5" amount="32" material="golden carrot"/>
+        <item slot="6" amount="32" damage="10" material="stained clay"/>
+        <item slot="7" amount="32" damage="2" material="wood"/>
+        <item slot="8" attributes="generic.movementSpeed:base:0.20" name="`bSpeed Star `6| `9+20 Speed" lore="`3Hold this for a speed boost!" material="nether star"/>
+        <item slot="28" material="arrow"/>
+        <potion duration="5" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit id="red" parents="spawn">
+        <helmet color="ff0000" unbreakable="true" material="leather helmet"/>
+        <chestplate color="ff0000" unbreakable="true" material="leather chestplate"/>
+        <boots color="ff0000" unbreakable="true" material="leather boots" enchantment="protection fall:1"/>
+    </kit>
+    <kit id="blue" parents="spawn">
+        <helmet color="0000ff" unbreakable="true" material="leather helmet"/>
+        <chestplate color="0000ff" unbreakable="true" material="leather chestplate"/>
+        <boots color="0000ff" unbreakable="true" material="leather boots" enchantment="protection fall:1"/>
+    </kit>
+</kits>
+<kill-reward>
+    <kill-reward>
+        <item>golden apple</item>
+    </kill-reward>
+</kill-reward>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+    <material id="only-iron">iron block</material>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<regions>
+    <!-- Union "blue-side" contains all regions where any form of building is allowed or, void excluded, disallowed, on blue's side -->
+    <union id="blue-side">
+        <!-- General region -->
+        <rectangle id="front-spawn-brige" min="75,-191" max="65,-184"/>
+        <!-- North Side -->
+        <union id="north-blue-side">
+            <rectangle id="mushroom-jump" min="41,-202" max="52,-213"/>
+            <rectangle id="north-spawn-bridge" min="81,-197" max="88,-219"/>
+            <rectangle min="62,-235" max="-12,-187"/>
+
+            <rectangle min="94,-196" max="62,-179"/>
+
+            <rectangle min="30,-235" max="62,-237"/>
+            <rectangle min="31,-237" max="61,-238"/>
+            <rectangle min="32,-238" max="60,-239"/>
+            <rectangle min="34,-239" max="58,-240"/>
+            <rectangle min="36,-240" max="56,-241"/>
+
+            <rectangle min="62,-235" max="63,-218"/>
+
+            <rectangle min="62,-235" max="108,-218"/>
+            <rectangle min="76,-241" max="93,-235"/>
+            <rectangle min="108,-219" max="110,-234"/>
+            <rectangle min="110,-220" max="111,-233"/>
+            <rectangle min="111,-221" max="112,-232"/>
+            <rectangle min="112,-222" max="113,-231"/>
+            <rectangle min="113,-224" max="114,-229"/>
+            <rectangle min="110,-219" max="99,-196"/>
+        </union>
+        <mirror id="south-blue-side" normal="0,0,-1" origin="-71.5,1,-187.5">
+            <region id="north-blue-side"/>
+        </mirror>
+    </union>
+    <mirror id="red-side" normal="-1,0,0" origin="-11.5,1,-187.5">
+        <region id="blue-side"/>
+    </mirror>
+    <mirror id="red-spawn-1" normal="-1,0,0" origin="-11.5,1,-187.5">
+        <rectangle id="blue-spawn-1" min="94,-196" max="115,-179"/>
+    </mirror>
+    <mirror id="red-spawn-2" normal="-1,0,0" origin="-11.5,1,-187.5">
+        <rectangle id="blue-spawn-2" min="115,-181" max="128,-194"/>
+    </mirror>
+    <union id="spawns">
+        <union id="blue-spawn">
+            <region id="blue-spawn-1"/>
+            <region id="blue-spawn-2"/>
+        </union>
+        <union id="red-spawn">
+            <region id="red-spawn-1"/>
+            <region id="red-spawn-2"/>
+        </union>
+    </union>
+    <union id="iron-mines">
+        <union id="blue-iron-mines">
+            <cylinder base="85.5,1,-202.5" radius="5" height="8"/>
+            <cylinder base="85.5,1,-172.5" radius="5" height="8"/>
+        </union>
+        <mirror id="red-iron-mines" normal="-1,0,0" origin="-11.5,1,-187.5">
+            <region id="blue-iron-mines"/>
+        </mirror>
+    </union>
+    <union id="wool-rooms">
+        <union id="red-wools">
+            <rectangle id="purple" min="73,-272" max="96,-288"/>
+            <rectangle id="pink" min="73,-103" max="96,-87"/>
+        </union>
+        <union id="blue-wools">
+            <rectangle id="cyan" min="-96,-103" max="-119,-87"/>
+            <rectangle id="light-blue" min="-96,-272" max="-119,-288"/>
+        </union>
+    </union>
+    <union id="spawn-applies">
+        <cylinder id="red-apply" base="-127.5,17,-187.5" radius="3" height="4"/>
+        <cylinder id="blue-apply" base="104.5,17,-187.5" radius="3" height="4"/>
+    </union>
+    <union id="build-region">
+        <region id="blue-side"/>
+        <region id="red-side"/>
+        <rectangle id="center" min="-2,-255" max="-21,-120"/>
+        <region id="spawns"/>
+        <region id="iron-mines"/>
+        <region id="wool-rooms"/>
+    </union>
+<!--  Applied  -->
+    <apply kit="red" region="red-apply"/>
+    <apply kit="blue" region="blue-apply"/>
+    <apply enter="only-red" region="red-spawn-2" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-blue" region="blue-spawn-2" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-red" region="red-wools" message="You may not enter your own wool room!"/>
+    <apply enter="only-blue" region="blue-wools" message="You may not enter your own wool room!"/>
+    <apply block="only-iron" region="iron-mines" message="You may not modify this block here!"/>
+    <apply block="never" region="spawns" message="You may not place or break blocks here!"/>
+    <apply block="never" region="wool-rooms" message="You may not modify blocks on the wool room islands!"/>
+    <apply block="no-void" message="You may not place or break blocks here!">
+        <region>
+            <negative>
+                <region id="build-region"/>
+            </negative>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red-team">
+        <regions>
+            <point yaw="-90">-127.5,57,-187.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue-team">
+        <regions>
+            <point yaw="90">104.5,57,-187.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="0">-11.5,64,-258.5</point>
+        </regions>
+    </default>
+</spawns>
+<renewables>
+    <renewable interval="5s" grow="true" particles="false" sound="false" avoid-players="3">
+        <region>
+            <region id="iron-mines"/>
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+    </renewable>
+</renewables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>glowstone dust</item>
+    <item>golden carrot</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>nether star</item>
+    <item>arrow</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>stained clay</item>
+    <item>cobblestone</item>
+    <item>diamond spade</item>
+</itemremove>
+<maxbuildheight>32</maxbuildheight>
+<wools>
+    <wool team="red-team" color="pink" location="84.5,10,-95.5">
+        <monument><block>-147,9,-189</block></monument>
+    </wool>
+    <wool team="red-team" color="purple" location="84.5,10,-279.5">
+        <monument><block>-147,9,-187</block></monument>
+    </wool>
+    <wool team="blue-team" color="light blue" location="-107.5,10,-279.5">
+        <monument><block>123,9,-187</block></monument>
+    </wool>
+    <wool team="blue-team" color="cyan" location="-107.5,10,-95.5">
+        <monument><block>123,9,-189</block></monument>
+    </wool>
+</wools>
+</map>

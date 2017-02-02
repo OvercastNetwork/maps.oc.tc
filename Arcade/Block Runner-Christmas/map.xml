@@ -1,0 +1,69 @@
+<map proto="1.4.0" game="`eProgress">
+<name>BR: Christmas</name>
+<version>1.0.1</version>
+<slug>block_runner_christmas</slug>
+<include src="void-death.xml"/>
+<include src="block-runner.xml"/> <!-- Required by all Block Runner maps -->
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" contribution="Main Builder, XML"/>
+    <!-- GoldenOre -->
+    <author uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b" contribution="Tree Builder, XML editing"/>
+    <!-- Jexel-->
+    <author uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad" contribution="Builder"/>
+    <!-- breadandcinnamon -->
+    <author uuid="a37e4da3-1c6c-4dc9-b085-63783406a963" contribution="Builder"/>
+    <!-- xCand -->
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" contribution="Builder"/>
+    <!-- _3Each -->
+    <author uuid="bd12f89a-2137-4068-8f8b-ab46e248d2a7" contribution="Tree Builder"/>
+    <!-- MyChemicalKitten -->
+    <author uuid="5fe81b40-984e-4e0b-a125-2d5eebf5dd3a" contribution="Aesthetics, Builder"/>
+    <!-- Principals -->
+    <author uuid="5f386e2d-6962-45a3-a9b6-adf1b8075e08" contribution="Builder"/>
+    <!-- Twynix_ -->
+    <author uuid="97307a17-8869-4138-b573-5ce4cc050974" contribution="Aesthetics, Building"/>
+    <!-- GreatWallOfTrump -->
+</authors>
+<contributors>
+    <contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Concept and XML"/>
+    <!-- AtlasGames -->
+</contributors>
+<regions>
+    <block id="spawn-location">15,14,0</block>
+    <above id="checkpoint1" x="77"/>
+    <above id="checkpoint2" x="124"/>
+    <above id="checkpoint3" x="164"/>
+    <cuboid id="mon" min="8,8,0" max="7,7,1"/>
+    <cuboid id="chimney" min="205,8,-3" max="206,9,-4"/>
+    <point id="obs-spawn">-15,23,0</point>
+    <cuboid id="box-win" min="362,10,-2" max="367,12,3"/>
+    <rectangle id="elytra-region" min="232,244" max="430,-65"/>
+    <apply kit="elytra" region="elytra-region"/>
+    <apply velocity="0.0,2.7,0.0" region="chimney"/>
+</regions>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="-90">
+            <region id="spawn-location"/>
+        </regions>
+    </spawn>
+    <default kit="obs">
+        <regions yaw="-90">
+            <region id="obs-spawn"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="obs">
+        <helmet color="cd0000" name="`4J`6o`el`2l`by `r`9H`5a`4t" lore="`4Have a `agreat `4Holiday!">leather helmet</helmet>
+        <chestplate name="`4J`6o`el`2l`by `r`9W`5i`4n`6g`es" lore="`4Spread your `awings `4to fly!">elytra</chestplate>
+    </kit>
+    <kit id="elytra" parents="spawn" force="true">
+        <chestplate name="`4J`6o`el`2l`by `r`9W`5i`4n`6g`es" lore="`4Spread your `awings `4to fly!" attributes="generic.maxHealth:add:-19">elytra</chestplate>
+        <health>1</health>
+    </kit>
+</kits>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+</map>

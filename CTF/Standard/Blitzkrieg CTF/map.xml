@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Blitzkrieg: CTF</name>
+<version>1.1</version>
+<objective>Capture the enemy's flag 3 times to win!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+   <team id="orange" color="gold" max="13">Orange</team>
+   <team id="blue" color="blue" max="13">Blue</team>
+</teams>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="0">
+        <point>-784.5,27,-957.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <point>-784.5,27,-833.5</point>
+    </spawn>
+    <default yaw="-90">
+        <point>-724.5,99,-895.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+         <item slot="0" enchantment="durability:10" name="Topaz Blade" attributes="generic.attackDamage:add:5.5">gold sword</item>
+         <item slot="1" name="Deer Horn Bow">bow</item>
+         <item slot="3" amount="16">arrow</item>
+         <item slot="4" amount="3">golden apple</item>
+         <item slot="5" amount="16">cooked beef</item>
+         <potion duration="oo" amplifier="1">speed</potion>
+         <potion duration="3" amplifier="20">regeneration</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="FF7F00">leather helmet</helmet>
+        <boots color="FF7F00" enchantement="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <boots color="0066cc" enchantement="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+</kits>
+<flags>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="light blue" pickup-filter="only-orange">
+        <post yaw="180" return-time="15s">-784.5,20,-845.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-784.5,18,-945.5" radius="3" height="5"/>
+            </region>
+        </net>
+    </flag>
+    <flag id="orange-flag" name="Orange Flag" owner="orange" color="orange" pickup-filter="only-blue">
+        <post yaw="0" return-time="15s">-784.5,20,-945.5</post>
+        <net points="1">
+            <region>
+                <cylinder base="-784.5,18,-845.5" radius="3" height="5"/>
+            </region>
+        </net>
+    </flag>
+</flags>
+<score>
+    <kills>0</kills>
+    <deaths>0</deaths>
+    <limit>3</limit>
+</score>
+<timelock>off</timelock>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-833.5" radius="3" height="5"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-957.5" radius="3" height="5"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<toolrepair>
+    <tool>gold sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+</itemremove>
+<killreward>
+    <item amount="5">arrow</item>
+    <item amount="1">golden apple</item>
+</killreward>
+</map>

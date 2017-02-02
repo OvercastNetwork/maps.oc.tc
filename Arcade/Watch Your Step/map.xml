@@ -1,0 +1,103 @@
+<map proto="1.4.0" game="Watch Your Step!">
+    <name>Watch Your Step</name>
+    <objective>Survive the Gaudete's attack!</objective>
+    <version>1.0.5</version>
+    <gamemode>arcade</gamemode>
+    <authors>
+        <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
+        <!-- AtlasGames !-->
+    </authors>
+    <respawn auto="true" delay="2s"/>
+    <include src="void-death.xml"/>
+    <time result="libramentum">90s</time>
+    <broadcasts>
+        <alert after="3s" filter="libra-only">`6`lSurvive until the time is up!</alert>
+        <alert after="3s" filter="gaudete-only">`6`lKnock out all the players before time is up!</alert>
+    </broadcasts>
+    <blitz>
+        <lives>3</lives>
+        <broadcastLives>true</broadcastLives>
+    </blitz>
+    <teams>
+        <team color="gray" id="gaudete" min="1" max="2" max-overfill="2">Gaudete</team>
+        <team color="red" id="libramentum" min="3" max="6" max-overfill="6">Libramentum</team>
+    </teams>
+    <kits>
+        <kit id="gaudete-kit">
+            <item slot="0" projectile="boom-stick" name="`6`lBomb Wand">end rod</item>
+            <game-mode>adventure</game-mode>
+            <walk-speed>3</walk-speed>
+        </kit>
+        <kit id="libramentum-kit">
+            <double-jump recharge-time="5s" />
+            <game-mode>adventure</game-mode>
+            <effect amplifier="3" duration="oo">resistance</effect>
+            <effect amplifire="1" duration="3">levitation</effect>
+        </kit>
+    </kits>
+    <spawns>
+        <spawn team="libramentum" kit="libramentum-kit" safe="true">
+            <regions angle="0,11,0">
+                <cuboid min="-5,9,-5" max="6,10,6" />
+            </regions>
+        </spawn>
+        <spawn team="gaudete" kit="gaudete-kit">
+            <regions angle="0,2,0">
+                <point>9,1,9</point>
+            </regions>
+        </spawn>
+        <default>
+            <regions yaw="90">
+                <point>0,19,0</point>
+            </regions>
+        </default>
+    </spawns>
+    <regions>
+        <union id="fall-box">
+            <cuboid min="-5,-50,-5" max="6,19,6" />
+            <below y="0" />
+        </union>
+
+        <apply leave="never" region="fall-box" message="`6`lYou may not leave your cage!" />
+        <apply block="bomb-filter" region="everywhere" />
+    </regions>
+    <filters>
+        <team id="libra-only">libramentum</team>
+        <team id="gaudete-only">gaudete</team>
+
+        <all id="bomb-filter">
+            <not>
+                <cause>player</cause>
+            </not>
+            <any>
+                <material>stained glass</material>
+            </any>
+        </all>
+
+        <material id="stained-glass" damage="7">stained glass</material>
+    </filters>
+    <projectiles>
+        <projectile id="boom-stick" projectile="Fireball" damage="0" name="`6`lBomb Wand" velocity="1" destroy-filter="stained-glass" cooldown="1s" throwable="false" />
+    </projectiles>
+    <renewables>
+        <renewable rate="5" grow="false" particles="true" region="everywhere">
+            <renew-filter>
+                <any>
+                    <material damage="7">stained glass</material>
+                </any>
+            </renew-filter>
+            <replace-filter>
+                <any>
+                    <material damage="7">stained glass</material>
+                    <material>air</material>
+                </any>
+            </replace-filter>
+        </renewable>
+    </renewables>
+    <disabledamage>
+        <damage>fall</damage>
+    </disabledamage>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</map>

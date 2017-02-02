@@ -1,0 +1,92 @@
+<map proto="1.4.2" game="Blitz: Rage">
+<name>Ice Pond</name>
+<version>1.1.0</version>
+<objective>Kill the opposing team before the time runs out!</objective>
+<gamemode>rage</gamemode>
+<slug>icey</slug>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/>
+    <!-- Matic0B -->
+    <author uuid="b492b6da-65a6-4eda-92d4-1f010af3c265"/>
+    <!-- eza1 -->
+</authors>
+<blitz>
+    <lives>1</lives>
+</blitz>
+<time>6m</time>
+<rage/>
+<gamerules>
+    <doDayLightCycle>false</doDayLightCycle>
+</gamerules>
+<teams>
+    <team id="red" color="dark red" max="12" max-overfill="16">Red</team>
+    <team id="blue" color="blue" max="12" max-overfill="16">Blue</team>
+</teams>
+<spawns>
+    <default>
+        <regions yaw="0">
+            <point>0.5,40,-62.5</point>
+        </regions>
+    </default>
+    <spawn team="blue" kit="bluespawn">
+        <regions yaw="90">
+            <point>32.5,8,0.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="redspawn">
+        <regions yaw="-90">
+            <point>-31.5,8,0.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" enchantment="damage all:10" name="Sharpened Icicle">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="Icey Slingshot">bow</item>
+        <item slot="2" amount="4">pumpkin pie</item>
+        <item slot="3" amount="1">arrow</item>
+        <potion duration="3s" amplifier="1">heal</potion>
+        <potion duration="3s" amplifier="1">damage resistance</potion>
+    </kit>
+    <kit id="bluespawn" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+    <kit id="redspawn" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="no-void" message="You are not allowed to break blocks!">
+        <region>
+            <rectangle id="main-area" min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+</filters>
+<killreward>
+    <item amount="1">arrow</item>
+    <item amount="2">pumpkin pie</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>pumpkin pie</item>
+</itemremove>
+</map>

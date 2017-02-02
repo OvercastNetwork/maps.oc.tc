@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Zeta</name>
+<version>1.0.1</version>
+<objective>Take your wool to the opposing team's side and cap it</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- xCLAFx -->
+    <author uuid="f0c14429-3e28-4174-b275-02cd38584267"/> <!-- Eastpont -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<teams>
+   <team color="dark red" max="24" max-overfill="30">Red</team>
+   <team color="blue" max="24" max-overfill="30">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">golden carrot</item>
+        <item slot="5" amount="32" damage="2">log</item>
+        <item slot="6" amount="64">glass</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8">golden apple</item>
+        <item slot="28">arrow</item>
+        <item slot="35" damage="15" name="`8Wool `6| `9Place this on the other team's side!">wool</item>
+        <potion amplifier="10" duration="oo">damage resistance</potion>
+        <potion amplifier="10" duration="oo">heal</potion>
+    </kit>
+    <kit name="potion-remove" force="true">
+        <potion amplifier="10" duration="4">damage resistance</potion>
+        <potion amplifier="10" duration="4">heal</potion>
+    </kit>
+</kits>
+<wools>
+    <wool team="blue" color="black" location="-317,27,-313">
+        <block>-317,27,-313</block>
+    </wool>
+    <wool team="red" color="black" location="-187,27,-413">
+        <block>-187,27,-413</block>
+    </wool>
+</wools>
+<renewables>
+    <renewable rate="1" grow="true" particles="true" sound="true">
+        <region>
+            <region name="spawns"/>
+        </region>
+        <renew>iron block</renew>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<filters>
+    <filter name="deny-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-266,69,-336" max="-294,56,-364"/>
+        <cuboid name="blue-spawn" min="-238,69,-390" max="-210,56,-362"/>
+    </union>
+    <union name="negative-remove">
+        <rectangle min="-304.5,-389.5" max="-198.5,-335.5"/>
+        <rectangle id="blue-side-void" min="-181,-418" max="-232,-367"/>
+        <rectangle id="red-side-void" min="-322,-307" max="-271,-358"/>
+    </union>
+    <apply block-break="only-iron">
+        <region name="spawns"/>
+    </apply>
+    <apply kit="potion-remove">
+        <cylinder base="-279,55,-349" radius="2" height="2"/>
+        <cylinder base="-223,55,-375" radius="2" height="2"/>
+    </apply>
+    <apply block="deny-void" message="You may not build in the void!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<spawns>
+    <spawns team="red" kit="spawn">
+        <spawn yaw="180">
+            <cuboid min="-280,57,-343" max="-280,58,-343"/>
+        </spawn>
+        <spawn yaw="-90">
+            <cuboid min="-287,57,-350" max="-287,58,-350"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="-280,57,-357" max="-280,58,-357"/>
+        </spawn>
+        <spawn yaw="90">
+            <cuboid min="-273,57,-350" max="-273,58,-350"/>
+        </spawn>
+    </spawns>
+    <spawns team="blue" kit="spawn">
+        <spawn yaw="180">
+            <cuboid min="-224,57,-369" max="-224,58,-369"/>
+        </spawn>
+        <spawn yaw="-90">
+            <cuboid min="-231,57,-376" max="-231,58,-376"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="-224,57,-383" max="-224,58,-383"/>
+        </spawn>
+        <spawn yaw="90">
+            <cuboid min="-217,57,-376" max="-217,58,-376"/>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <cuboid min="-253,95,-360" max="-251,93,-358"/>
+    </default>
+</spawns>
+<maxbuildheight>31</maxbuildheight>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>arrow</item>
+    <item>string</item>
+    <item damage="15">wool</item>
+    <item>quartz block</item>
+    <!-- Half Slabs -->
+    <item>162</item>
+    <item>fence</item>
+    <item>redstone</item>
+    <!-- Sticky Pistons -->    
+    <item>29</item>
+</itemremove>
+<broadcasts>
+    <alert after="3s" every="2m">`e`lTake the wool in your inventory and place it on the other team's side!</alert>
+</broadcasts>
+<timelock>on</timelock>
+</map>

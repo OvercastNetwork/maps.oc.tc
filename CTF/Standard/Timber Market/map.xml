@@ -1,0 +1,103 @@
+<map proto="1.4.0">
+<name>Timber Market</name>
+<version>1.0.2</version>
+<objective>Hold the flag for 300 seconds to win.</objective>
+<authors>
+    <author uuid="bd029cbe-ec66-48cb-8760-6509c1607328" />
+    <!--   Hoodovah   -->
+</authors>
+<teams>
+    <team color="blue" id="blue" max="12" max-overfill="14">Blue</team>
+    <team color="red" id="red" max="12" max-overfill="14">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="48">arrow</item>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <item slot="2" amount="64">golden carrot</item>
+        <item slot="3">golden apple</item>
+        <health>20</health>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="AF002A" unbreakable="true">leather helmet</helmet>
+        <boots color="AF002A" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="6E6EF9" unbreakable="true">leather helmet</helmet>
+        <boots color="6E6EF9" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="flag-kit" force="true">
+        <potion duration="oo" amplifier="-3">health boost</potion>
+        <potion duration="3" amplifier="1">absorption</potion>
+    </kit>
+    <kit id="reset-health" force="true">
+        <potion duration="1" amplifier="0">health boost</potion>
+        <potion duration="1" amplifier="10">regeneration</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red-kit" yaw="0" filter="no-flag">
+        <regions>
+            <point>-10.5,19,-55</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit" yaw="180" filter="no-flag">
+        <regions>
+            <point>-10.5,19,34</point>
+        </regions>
+    </spawn>
+    <default yaw="90">
+        <regions>
+            <cylinder base="-10.5,51,-10.5" radius="2" height="0" />
+        </regions>
+    </default>
+</spawns>
+<respawn spectate="true">
+    <message>{ translate: "death.respawn.confirmed.waiting.flagDropped" }</message>
+</respawn>
+<filters>
+    <not id="no-flag">
+        <same-team>
+            <carrying-flag>flag</carrying-flag>
+        </same-team>
+    </not>
+</filters>
+<regions>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>arrow</item>
+    <item>golden carrot</item>
+    <item>golden apple</item>
+</itemremove>
+<score>
+    <limit>300</limit>
+    <kills>0</kills>
+    <deaths>0</deaths>
+</score>
+<killreward>
+    <item amount="12">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<flags>
+    <post id="post" return-time="0s" respawn-time="23s">
+        <block>-10.5,10,-10.5</block>
+        <block>-70.5,17,-10.5</block>
+        <block>49.5,17,-10.5</block>
+    </post>
+    <flag id="flag" name="Flag" color="magenta" shared="true" post="post" points-rate="1" pickup-kit="flag-kit" drop-kit="reset-health" />
+</flags>
+</map>

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Woolirium</name>
+<version>1.0.7</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="17">Blue</team>
+    <team color="dark red" max="17">Red</team>
+</teams>
+<spawns>
+    <spawns>
+        <spawn team="blue" kit="blue" yaw="90">
+            <cylinder base="1536,4,-1385" radius="2" height="0"/>
+        </spawn>
+        <spawn team="red" kit="red" yaw="-90">
+            <cylinder base="1330,4,-1385" radius="2" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="-180"><cylinder base="1433,51,-1385" radius="1" height="0"/></default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="32" damage="2">log</item>
+        <item slot="5" amount="64">iron fence</item>
+        <item slot="6" amount="64">cooked fish</item>
+        <item slot="7" amount="3">web</item>
+        <item slot="8" enchantment="knockback:1">stick</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet  enchantment="protection explosions:3" unbreakable="true">iron helmet</helmet>
+        <chestplate color="FF0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="FF0000" unbreakable="true">leather leggings</leggings>
+        <boots color="FF0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet enchantment="protection explosions:3" unbreakable="true">iron helmet</helmet>
+        <chestplate unbreakable="true" color="0000FF">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="0000FF">leather leggings</leggings>
+        <boots unbreakable="true" color="0000FF">leather boots</boots>
+    </kit>
+</kits>
+<wools>
+    <wool team="blue" color="light blue">                  
+        <block>1539,5,-1384</block>
+    </wool>
+    <wool team="blue" color="green">                  
+        <block>1539,5,-1386</block>
+    </wool>
+    <wool team="red" color="orange">
+        <block>1327,5,-1384</block>
+    </wool>
+    <wool team="red" color="yellow">
+        <block>1327,5,-1386</block>
+    </wool>
+</wools>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>iron pickaxe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>iron helmet</item>
+    <item>leather boots</item>
+    <item>leather leggings</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>string</item>
+    <item>stick</item>
+    <item>web</item>
+    <item>iron fence</item>
+    <item>redstone</item>
+    <item>redstone torch off</item>
+</itemremove>
+<maxbuildheight>30</maxbuildheight>
+<filters>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+            <block>tnt</block>
+        </deny>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+        <deny>
+            <block>chest</block>
+            <block>tnt</block>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-lava">
+        <deny>
+            <block>lava</block>
+            <block>stationary lava</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <union name="woolrooms">
+        <union name="red-woolrooms">
+            <rectangle name="yellow-woolroom" min="1528,-1363" max="1542,-1352"/>
+            <rectangle name="orange-woolroom" min="1528,-1417" max="1542,-1406"/>
+        </union>
+        <union name="blue-woolrooms">
+            <rectangle name="lightblue-woolroom" min="1339,-1363" max="1325,-1352"/>
+            <rectangle name="green-woolroom" min="1339,-1417" max="1325,-1406"/>
+        </union>
+    </union>
+    <cylinder name="blue-victory" base="1539,5,-1385" radius="3" height="3"/>
+    <cylinder name="red-victory" base="1327,5,-1385" radius="3" height="3"/>
+    <negative name="center">
+        <rectangle min="1398,-1420" max="1469,-1349"/>
+    </negative>
+    <rectangle name="red-spawn" min="1362,-1379" max="1325,-1390"/>
+    <rectangle name="blue-spawn" min="1505,-1379" max="1542,-1390"/>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <!--  Applied  -->
+    <apply block="only-blue" use="only-blue-usage">
+        <region name="blue-woolrooms"/>
+    </apply>
+    <apply enter="only-blue" message="`7This is a `9BLUE TEAM `7only wool room!">
+        <region name="blue-woolrooms"/>
+    </apply>
+    <apply block="only-red" use="only-red-usage">
+        <region name="red-woolrooms"/>
+    </apply>
+    <apply enter="only-red" message="`7This is a `cRED TEAM `7only wool room!">
+        <region name="red-woolrooms"/>
+    </apply>
+    <apply enter="only-red" message="`7You may not enter the `cRED TEAM`7's base!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="`7You may not enter the `9BLUE TEAM`7's base!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not modify the base!">
+        <region name="red-spawn"/>
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not modify the victory monument!">
+        <region name="blue-victory"/>
+        <region name="red-victory"/>
+    </apply>
+    <apply block="deny-void" message="`7Don't edit the void area!">
+        <region name="center"/>
+    </apply>
+    <apply block="deny-lava" use="deny-lava" message="`7Lava is `cdisabled `7on this map!">
+        <region name="all"/>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
+            <line>`rThe objective is to capture both of the enemy's wools and place it at your victory monument!</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="15">1429,23,-1429</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Room">
+        <message>
+            <line>`rThis is the `eYellow `rwool room.</line>
+            <line>`rThe `9Blue Team `rmust defend this.</line>
+            <line>`rThe `cRed Team `rmust enter this.</line>
+            <line>`rThere are some goodies such as `cTNT `rin the wool room!</line>
+        </message>
+        <teleport>
+            <point yaw="-130" pitch="10">1523,10,-1346</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`rPlace the other team's wools here to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">1536,4,-1384</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

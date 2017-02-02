@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Elytra KotF</name>
+<version>1.2.9</version>
+<objective>Hold flag without using portal.</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!-- JTr -->
+</authors>
+<rules>
+    <rule>Try your best!</rule>
+</rules>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<players min="3" max="5" max-overfill="5" show-name-tags="false" colors="true"/>
+<rage/>
+<projectiles>
+    <projectile
+        id="gun"
+        name="Machine Gun"
+        projectile="Arrow"
+        velocity="4.0"
+        damage="15"
+        throwable="false"
+        click="both"
+        cooldown="0.01"/>
+</projectiles>
+<broadcasts>
+    <alert after="1s">This is a Elytra King of the Flag Map</alert>
+    <alert after="2s">Hold the flag to get points.</alert>
+    <alert after="3s">Flag Carriers can not use the portal.</alert>
+    <alert after="4s">Person with most points after 5 minutes wins.</alert>
+</broadcasts>
+<kits>
+    <kit id="default-kit">
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" projectile="gun" name="`eMachine Gun">gold hoe</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <potion duration="3" amplifier="10">damage resistance</potion>
+        <helmet color="E5E533" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="E5E533" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="E5E533" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="flag-pickup">
+        <potion duration="oo">glowing</potion>
+        <double-jump power="6" recharge-time="10s" recharge-before-landing="false"/>
+    </kit>
+    <kit id="death" force="true">
+        <effect duration="3" amplifier="1000">harm</effect>
+    </kit>
+</kits>
+​
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="20">5.5,109.5,-12.5</point>
+            <point yaw="94">14.5,109.5,1.5</point>
+            <point yaw="168">3.5,109.5,14.5</point>
+            <point yaw="-107">-12.5,109.5,4.5</point>
+            <point yaw="-44">-9.5,109.5,-9.5</point>
+        </regions>
+    </spawn>
+    <default kit="default-kit" yaw="0">
+        <regions>
+            <cuboid min="0,43,-1" max="2,43,-1"/>
+        </regions>
+    </default>
+</spawns>
+<portals>
+    <!-- Adds 110 to the players X position, Y, Z, pitch & yaw remain unchanged -->
+    <portal filter="use-portal" y="125">
+        <region><cylinder base="1,2,0" radius="50" height="2"/></region>
+    </portal>
+</portals>
+<regions>
+    <apply block="never"/>
+    <apply kit="death" filter="die" region="portal"/>
+</regions>
+<filters>
+    <carrying-flag id="die">red-flag</carrying-flag>
+    <not id="use-portal">
+        <carrying-flag>red-flag</carrying-flag>
+    </not>
+</filters>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>443</item>
+    <item>gold hoe</item>
+</itemremove>
+    <flags pickup-kit="flag-pickup">
+        <post id="red-post" return-time="5s">
+            <block>0,82,0</block>
+        </post>
+        <flag name="Take Me" id="red-flag" color="red" shared="true" post="red-post" points-rate="2" />
+    </flags>
+<world-borders center="1,1">
+    <world-border size="100"/>
+</world-borders>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!"/>
+    <cylinder id="portal" base="1,2,0" radius="60" height="2"/>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<timelock>on</timelock>
+</map>

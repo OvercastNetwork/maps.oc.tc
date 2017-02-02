@@ -1,0 +1,65 @@
+<map proto="1.4.2" game="Skywars">
+<name>Leyst</name>
+<version>1.0</version>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/>
+    <!-- Matic0B -->
+</authors>
+<contributors>
+    <contributor uuid="fe3608b7-d105-4029-8800-34b3147065b6" contribution="Trees"/>
+    <!-- Rockymine -->
+</contributors>
+<include src="skywars.xml"/>
+<maxbuildheight>45</maxbuildheight>
+<kits>
+    <kit id="all-effects"><!-- Effects given to observers and players -->
+        <!-- none -->
+    </kit>
+</kits>
+<spawns>
+    <default kit="all-effects" region="observer-spawn" yaw="-90"/>
+    <spawns spread="true" exclusive="true" kit="spawn-effects" angle="-4.5,36,-2.5">
+        <spawn region="player-1-spawn"/>
+        <spawn region="player-2-spawn"/>
+        <spawn region="player-3-spawn"/>
+        <spawn region="player-4-spawn"/>
+        <spawn region="player-5-spawn"/>
+        <spawn region="player-6-spawn"/>
+        <spawn region="player-7-spawn"/>
+        <spawn region="player-8-spawn"/>
+    </spawns>
+</spawns>
+<regions>
+    <!-- Observer spawnpoint -->
+    <point id="observer-spawn">0.5,34,-1.5</point>
+    <!-- Player spawns -->
+    <point id="player-1-spawn">6.5,34.5,43.5</point>
+    <point id="player-2-spawn">-15.5,34.5,43.5</point>
+    <point id="player-3-spawn">-50.5,34.5,8.5</point>
+    <point id="player-4-spawn">-50.5,34.5,-13.5</point>
+    <point id="player-5-spawn">-15.5,34.5,-48.5</point>
+    <point id="player-6-spawn">6.5,34.5,-48.5</point>
+    <point id="player-7-spawn">41.5,34.5,-13.5</point>
+    <point id="player-8-spawn">41.5,34.5,8.5</point>
+    <!-- Tier 1 Chests (Player island) -->
+    <sphere id="player-1-chests" radius="8" origin="6.5,34,43.5"/>
+    <sphere id="player-2-chests" radius="8" origin="-15.5,34,43.5"/>
+    <sphere id="player-3-chests" radius="8" origin="-50.5,34,8.5"/>
+    <sphere id="player-4-chests" radius="8" origin="-50.5,34,-13.5"/>
+    <sphere id="player-5-chests" radius="8" origin="-15.5,34,-48.5"/>
+    <sphere id="player-6-chests" radius="8" origin="6.5,34,-48.5"/>
+    <sphere id="player-7-chests" radius="8" origin="41.5,34,-13.5"/>
+    <sphere id="player-8-chests" radius="8" origin="41.5,34,8.5"/>
+    <!-- Tier 2 Chests (Outer middle) -->
+    <negative id="tier-2-chests">
+        <union>
+            <region id="tier-1-chests"/>
+            <region id="tier-3-chests"/>
+        </union>
+    </negative>
+    <!-- Tier 3 Chests (Very middle) -->
+    <union id="tier-3-chests">
+        <sphere radius="10" origin="-4.5,36,-2.5"/>
+    </union>
+</regions>
+</map> 

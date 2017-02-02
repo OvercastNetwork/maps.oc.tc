@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<include src="tutorial.xml"/>
+<name>Circus DTC: Halloween</name>
+<version>1.2.5</version>
+<objective>DTC: Leak the opposing circus's cannonball (core) mid-flight while defending your own.</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- xCLAFx -->
+    <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+</authors>
+<contributors>
+    <contributor uuid="5519d739-24ff-42a1-8f0e-cbe9830cb0fc" contribution="Build"/> <!-- BigBadLoser -->
+    <contributor uuid="d563101f-4e74-4f14-8707-b8f32c54902b" contribution="Build slave"/> <!-- NoArmorScrub -->
+    <contributor uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906" contribution="Build more"/> <!-- elego123 -->
+</contributors>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" amount="32">cooked fish</item>
+        <item slot="6" amount="32" damage="1">log</item>
+        <item slot="7" amount="64">ladder</item>
+        <item slot="8" amount="2">golden apple</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="30" unbreakable="true">iron spade</item>
+        <item slot="35">iron ingot</item>
+        <potion duration="4" amplifier="1">heal</potion>
+        <potion duration="4">damage resistance</potion>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <helmet>jack o lantern</helmet>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000" unbreakable="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true">leather boots</boots>
+        <item slot="5" amount="64" damage="14">stained clay</item>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+        <item slot="5" amount="64" damage="11">stained clay</item>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-135">
+        <cylinder base="-910.5,18,110.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="-45">
+        <cylinder base="-910.5,18,46.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="135">
+        <cylinder base="-741.5,18,110.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="45">
+        <cylinder base="-741.5,18,46.5" radius="0" height="0"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-827,70,77" max="-829,73,79"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+        </deny>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+        <deny>
+            <block>mob spawner</block>
+            <block>chest</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-void" message="You may not build in the void!">
+        <negative>
+            <rectangle min="-801,49" max="-852,107"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <circle center="-911,46" radius="13"/>
+        <circle center="-911,110" radius="13"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter Red's spawn!">
+        <circle center="-911,46" radius="8"/>
+        <circle center="-911,110" radius="8"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <circle center="-742,46" radius="13"/>
+        <circle center="-742,110" radius="13"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter Blue's spawn!">
+        <circle center="-742,46" radius="8"/>
+        <circle center="-742,110" radius="8"/>
+    </apply>
+    <apply block="only-red" message="You may not modify the Red's redstone tent!">
+        <circle center="-911,78" radius="4"/>
+    </apply>
+    <apply block="only-blue" message="You may not modify the Blue's redstone tent!">
+        <circle center="-742,78" radius="4"/>
+    </apply>
+    <apply block="deny-all" message="You may not break the spawners!">
+        <block>-852,3,97</block>
+        <block>-852,3,59</block>
+        <block>-801,3,59</block>
+        <block>-801,3,97</block>
+    </apply>
+</regions>
+<cores material="obsidian" leak="4" mode-changes="true">
+    <core team="blue">
+        <cuboid min="-775,12,76" max="-780,17,81"/>
+    </core>
+    <core team="red">
+        <cuboid min="-872,12,76" max="-877,17,81"/>
+    </core>
+</cores>
+<modes>
+    <mode after="20m" material="gold block" name="`6GOLD CORE MODE"/>
+    <mode after="30m" material="glass" name="`bGLASS CORE MODE"/>
+</modes>
+<maxbuildheight>27</maxbuildheight>
+<timelock>on</timelock>
+<killreward>
+    <item amount="2">iron ingot</item>
+    <item amount="24">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron spade</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked fish</item>
+    <item>stained clay</item>
+    <item>log</item>
+    <item>ladder</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<tutorial>
+    <stage title="Destory the Core">
+        <message>
+            <line>`rThis map is a `a`lDestroy the Core `r(DTC) map</line>
+            <line>`rThe objective is to leak the other team's `c`lobsidian core</line>
+            <line>`rYour `c`lcore `ris inside the fire ring</line>
+        </message>
+        <teleport>
+            <point yaw="125" pitch="0">-866,13,84</point>
+        </teleport>
+    </stage>
+    <stage title="Spawns">
+        <message>
+            <line>`rEach team has `atwo `rspawns</line>
+            <line>`rOne on the right, and the other on the left</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="10">-833,25,79</point>
+        </teleport>
+    </stage>
+    <stage title="Arrow Spawner">
+        <message>
+            <line>`rIn this tent, there is an `aarrow spawner</line>
+            <line>`rUse this to gain more arrows, since you only start out with 32</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">-860,5,45</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

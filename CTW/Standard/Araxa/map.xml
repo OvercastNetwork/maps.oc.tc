@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Araxa</name>
+<version>2.0.1</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="e41edd14-9b0e-4501-a0c5-7fda64d2b2f3"/> <!-- JonnyBallgame -->
+    <author uuid="3b95de2f-2bb6-4a16-b0ba-c723794af4d6"/> <!-- Chaselic204 -->
+	<author uuid="037d948e-4bbb-441f-8a59-068ab65af822"/> <!-- Tigo -->
+</authors>
+<contributors>
+    <contributor uuid="9cb7274d-02f9-451b-9ae0-6645a1d31884" contribution="XML"/> <!-- Diano -->
+	<contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="XML and Feedback"/> <!-- DoomyBoy -->
+</contributors>
+<teams>
+    <team id="orange" color="gold" max="32" max-overfill="38">Orange</team>
+    <team id="purple" color="dark purple" max="32" max-overfill="38">Purple</team>
+</teams>
+<spawns>
+    <spawn kit="spawn" team="orange" yaw="90">
+        <regions>
+            <point>713.5,7.5,463.5</point>
+        </regions>
+    </spawn>
+    <spawn kit="spawn" team="purple" yaw="-90">
+        <regions>
+            <point>447.5,7.5,463.5</point>
+        </regions>
+    </spawn>
+    <default yaw="0">
+        <regions>
+            <point>580.5,60,463.5</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:2;durability:2">iron pickaxe</item>
+        <item slot="3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="64">bread</item>
+        <item slot="5" amount="16">glass</item>
+        <item slot="6" amount="24">log</item>
+        <item slot="28" amount="1">arrow</item>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <team id="only-orange">orange</team>
+    <team id="only-purple">purple</team>
+    <!-- Block Filters -->
+    <not id="deny-void">
+        <void/>
+    </not>
+    <material id="only-iron">iron block</material>
+    <!-- Usage Filters -->
+    <not id="not-chest">
+        <material>chest</material>
+    </not>
+    <all id="only-purple-woolrooms">
+        <team>purple</team>
+        <material>web</material>
+    </all>
+    <all id="only-orange-woolrooms">
+        <team>orange</team>
+        <material>web</material>
+    </all>
+</filters>
+<regions>
+    <complement id="spawns">
+        <union>
+            <cuboid id="purple-spawn" min="441,0,446" max="474,25,481"/>
+            <cuboid id="orange-spawn" min="681,0,446" max="726,25,481"/>
+        </union>
+        <region id="iron-mines"/>
+    </complement>
+    <union id="wool-rooms">
+        <union id="purple-rooms">
+            <union id="cyan-room">
+                <rectangle min="688,541" max="707,561"/>
+            </union>
+            <union id="blue-room">
+                <rectangle min="707,385" max="688,365"/>
+            </union>
+        </union>
+        <union id="orange-rooms">
+            <union id="red-room">
+                <rectangle min="472,385" max="453,365"/>
+            </union>
+            <union id="yellow-room">
+                <rectangle min="453,541" max="472,561"/>
+            </union>
+        </union>
+    </union>
+    <union id="iron-mines">
+        <complement>
+            <cuboid id="orange-iron" min="702,5,473" max="713,12,454"/>
+            <cuboid id="orange-iron-complement" min="702,5,469" max="713,12,458"/>
+        </complement>
+        <complement>
+            <cuboid id="purple-iron" min="458,5,454" max="447,12,473"/>
+            <cuboid id="purple-iron-complement" min="458,5,458" max="447,12,469"/>
+        </complement>
+    </union>
+    <!-- Entry Rules -->
+    <apply enter="only-orange" region="orange-rooms" message="You may not enter the enemy wool room!"/>
+    <apply enter="only-purple" region="purple-rooms" message="You may not enter the enemy wool room!"/>
+    <apply enter="only-orange" region="orange-spawn" message="You may not enter the enemy spawn!"/>
+    <apply enter="only-purple" region="purple-spawn" message="You may not enter the enemy spawn!"/>
+     
+	<apply block="only-orange-woolrooms" region="orange-rooms" message="You may not edit the enemy wool room!"/>
+    <apply block="only-purple-woolrooms" region="purple-rooms" message="You may not edit the enemy wool room!"/>
+	 
+    <!-- Usage Rules -->
+    <!--
+    <apply use="only-purple-usage" region="purple-rooms" message="You may not interact with the enemy wool room!"/>
+    <apply use="only-orange-usage" region="orange-rooms" message="You may not interact with the enemy wool room!"/>
+    -->
+    <apply block="only-iron" region="iron-mines" message="You may only break iron blocks in spawn!"/>
+    <apply block="never" region="spawns" message="You may only break iron blocks in spawn!"/>
+    <!--
+    <apply block="never" message="You may not place blocks under y=100!">
+        <region>
+            <cuboid min="-oo,0,-oo" max="oo,100,oo"/>
+        </region>
+    </apply>
+    -->
+    <apply block="deny-void" message="You may not modify blocks in the void!">
+        <region>
+            <complement>
+                <everywhere/>
+                <rectangle id="center-void-gap" min="528,430" max="632,496"/>
+            </complement>
+        </region>
+    </apply>
+</regions>
+<wools>
+    <wool team="purple" color="cyan" location="0,0,0">
+        <monument><block>443,8,464</block></monument>
+    </wool>
+    <wool team="purple" color="blue" location="0,0,0">
+        <monument><block>443,8,462</block></monument>
+    </wool>
+    <wool team="orange" color="red" location="0,0,0">
+        <monument><block>717,8,462</block></monument>
+    </wool>
+    <wool team="orange" color="yellow" location="0,0,0">
+        <monument><block>717,8,464</block></monument>
+    </wool>
+</wools>
+<renewables>
+    <renewable interval="5" grow="true" particles="true" sound="false" avoid-players="2">
+        <region>
+            <region id="iron-mines"/>          
+        </region>
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+    <!--<renewable id="purple-regen" region="purple-iron">
+        <renew-filter>
+            <material>iron block</material>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>-->
+</renewables>
+<itemremove>
+    <item>string</item>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>bread</item>
+    <item>rails</item>
+    <item>red_rose</item>
+    <item>seeds</item>
+    <item>yellow flower</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<broadcasts>
+	<tip after="20s"> Defensive supplies are in front of the first defense wall!</tip>
+</broadcasts>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+    <doFireTick>true</doFireTick>
+</gamerules>
+<maxbuildheight>32</maxbuildheight>
+</map>

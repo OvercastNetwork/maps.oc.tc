@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Battleship Halberd</name>
+<version>1.1</version>
+<objective>Destroy the enemies monument and break the core!</objective>
+<authors>
+    <author uuid="5e1c0b5d-cfdd-4e10-95cd-c53f8ee92150"/> <!-- Pandaboy999 -->
+    <author uuid="c95e0a45-8208-430a-a1a2-1e27333445a4" contribution="nothing"/> <!-- skippy369 -->
+</authors>
+<contributors>
+    <contributor uuid="62c41f0e-133d-4192-ad33-f0896f47d23a" contribution="XML and Packaging"/> <!-- nixter1029 -->
+</contributors>
+<teams>
+    <team id="red" color="dark red" max="30">Red</team>
+    <team id="blue" color="blue" max="30">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="teams" yaw="0">
+        <region name="red-spawn"/>
+    </spawn>
+    <spawn team="blue" kit="teams" yaw="180">
+        <region name="blue-spawn"/>
+    </spawn>
+    <default yaw="0">
+        <point>34.5,72,-33.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="17" amount="9">torch</item>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+        <potion duration="5" amplifier="3">regeneration</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not place or break blocks on the spawn area">
+        <cuboid name="red-spawn" min="-2,24,16" max="3,27,11"/>
+        <cuboid name="blue-spawn" min="72,24,63" max="67,27,68"/>
+    </apply>
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative>
+            <cuboid name="map" min="97,0,-42" max="-18,60,112"/>
+        </negative>
+    </apply>
+    <apply block-place="deny-dispenser" message="You may not use dispensers on this map!">
+        <region name="map"/>
+    </apply>
+</regions>
+<destroyables name="Monument" materials="double step:8;redstone block" completion="100%">
+    <destroyable id="red-monument" owner="red">
+        <cuboid min="3,37,29" max="-3,42,23"/>
+    </destroyable>
+    <destroyable id="blue-monument" owner="blue">
+        <cuboid min="66,27,49" max="72,42,55"/>
+    </destroyable>
+</destroyables>
+<cores material="obsidian" leak="2">
+    <core id="red-core" team="red">
+        <cuboid min="-1,21,72" max="1,27,74"/>
+    </core>
+    <core id="blue-core" team="blue">
+        <cuboid min="68,27,4" max="70,21,6"/>
+    </core>
+</cores>
+<itemremove>
+    <item>step</item>
+    <item>coal block</item>
+    <item>stained clay</item>
+    <item>wool</item>
+    <item>apple</item>
+    <item>obsidian</item>
+</itemremove>
+<gamerules>
+    <doDaylightCycle>false</doDaylightCycle>
+</gamerules>
+<maxbuildheight>60</maxbuildheight>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>glowstone</block>
+        </filter>
+        <drops>
+            <item>glowstone</item>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+</blockdrops>
+</map>

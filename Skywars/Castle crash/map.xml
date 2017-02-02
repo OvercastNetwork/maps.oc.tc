@@ -1,0 +1,60 @@
+<map proto="1.4.2" game="Skywars">
+<name>Castle Crash</name>
+<version>1.0</version>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/>
+</authors>
+<include src="skywars.xml"/>
+<maxbuildheight>48</maxbuildheight>
+<kits>
+    <kit id="all-effects"><!-- Effects given to observers and players -->
+        <!-- none -->
+    </kit>
+</kits>
+<spawns>
+    <default kit="all-effects" region="observer-spawn" yaw="90"/>
+    <spawns spread="true" exclusive="true" kit="spawn-effects" angle="-27,35,28">
+        <spawn region="player-1-spawn"/>
+        <spawn region="player-2-spawn"/>
+        <spawn region="player-3-spawn"/>
+        <spawn region="player-4-spawn"/>
+        <spawn region="player-5-spawn"/>
+        <spawn region="player-6-spawn"/>
+        <spawn region="player-7-spawn"/>
+        <spawn region="player-8-spawn"/>
+    </spawns>
+</spawns>
+<regions>
+    <!-- Observer spawnpoint -->
+    <point id="observer-spawn">-28.5,26,28.5</point>
+    <!-- Player spawns -->
+    <point id="player-1-spawn">-0.5,26.5,82.5</point>
+    <point id="player-2-spawn">-52.5,26.5,82.5</point>
+    <point id="player-3-spawn">-80.5,26.5,54.5</point>
+    <point id="player-4-spawn">-80.5,26.5,2.5</point>
+    <point id="player-5-spawn">-52.5,26.5,-25.5</point>
+    <point id="player-6-spawn">-0.5,26.5,-25.5</point>
+    <point id="player-7-spawn">27.5,26.5,2.5</point>
+    <point id="player-8-spawn">27.5,26.5,54.5</point>
+    <!-- Tier 1 Chests (Player island) -->
+    <cuboid id="player-1-chests" min="-9,22,74" max="4,40,87"/>
+    <cuboid id="player-2-chests" min="-44,22,74" max="-57,40,87"/>
+    <cuboid id="player-3-chests" min="-72,22,46" max="-85,40,59"/>
+    <cuboid id="player-4-chests" min="-72,22,11" max="-85,40,-2"/>
+    <cuboid id="player-5-chests" min="-44,22,-17" max="-57,40,-30"/>
+    <cuboid id="player-6-chests" min="-9,22,-17" max="4,40,-30"/>
+    <cuboid id="player-7-chests" min="19,22,11" max="32,40,-2"/>
+    <cuboid id="player-8-chests" min="19,22,46" max="32,40,59"/>
+    <!-- Tier 2 Chests (Outer middle) -->
+    <negative id="tier-2-chests">
+        <union>
+            <region id="tier-1-chests"/>
+            <region id="tier-3-chests"/>
+        </union>
+    </negative>
+    <!-- Tier 3 Chests (Very middle) -->
+    <union id="tier-3-chests">
+        <sphere origin="-26.5,32,28.5" radius="12"/>
+    </union>
+</regions>
+</map> 

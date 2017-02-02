@@ -1,0 +1,85 @@
+<map proto="1.3.6">
+<include src="blitz-global.xml"/>
+<name>Summer Day</name>
+<version>1.0.1</version>
+<objective>Blitz: Eliminate the other team within 5 minutes</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+</authors>
+<contributors>
+    <contributor uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" contribution="XML"/> <!-- Diamyx -->
+</contributors>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<teams>
+    <team color="dark red" max="8" max-overfill="10">Red</team>
+    <team color="yellow" max="8" max-overfill="10">Yellow</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" damage="16453">potion</item>
+        <item slot="3" damage="16453">potion</item>
+         <item slot="4" damage="16453">potion</item>
+         <item slot="5">boat</item>
+         <item slot="8" amount="16">arrow</item>
+         <potion duration="9999" amplifier="1">saturation</potion>
+        <potion duration="3" amplifier="10">damage resistance</potion>
+        <potion duration="1" amplifier="1">blindness</potion>
+    </kit>
+    <kit name="yellow" parents="spawn">
+         <helmet locked="true" unbreakable="true" color="E5E533">leather helmet</helmet>
+         <chestplate locked="false" unbreakable="true">gold chestplate</chestplate>
+         <leggings locked="true" unbreakable="true" color="E5E533">leather leggings</leggings>
+         <boots locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+         <helmet locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+         <chestplate locked="false" unbreakable="true">gold chestplate</chestplate>
+         <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+         <boots locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="0">
+            <cuboid min="193,6,-179" max="191,6,-177"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow">
+        <regions yaw="180">
+            <cuboid min="191,6,-111" max="193,6,-113"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cuboid min="192,20,-147" max="192,21,-143"/>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>potion</item>
+    <item>boat</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>water lily</item>
+    <item>stick</item>
+    <item>wood</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

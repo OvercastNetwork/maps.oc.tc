@@ -1,0 +1,2496 @@
+<map proto="1.4.1" game="Elytra Race">
+    <name>Spinal Vertigo</name>
+    <version>2.0.1</version>
+    <objective>Fly 3 complete laps to win!</objective>
+    <authors>
+        <author uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" />
+        <!-- AtlasGames -->
+    </authors>
+    <players max="100" />
+    <respawn delay="0s" />
+    <score>
+        <limit>3</limit>
+        <box region="finish-line" points="1" />
+    </score>
+    <spawns>
+        <spawn kit="spawn-kit">
+            <regions angle="-6,210,28">
+                <region id="player-spawn" />
+            </regions>
+        </spawn>
+        <default kit="obs-kit">
+            <regions yaw="180">
+                <region id="obs-spawn" />
+            </regions>
+        </default>
+    </spawns>
+    <kits>
+        <kit id="spawn-kit">
+            <chestplate unbreakable="true" locked="true">elytra</chestplate>
+            <leggings unbreakable="true" locked="true">leather leggings</leggings>
+            <boots name="player-boots" unbreakable="true" locked="true">leather boots</boots>
+            <effect duration="5s" amplifier="1">speed</effect>
+            <effect duration="5s" amplifier="1">invisibility</effect>
+            <item name="Gatling Gun" slot="0" projectile="gatlinggun">end rod</item>
+            <double-jump/>
+            <game-mode>adventure</game-mode>
+        </kit>
+        <kit id="obs-kit">
+            <chestplate unbreakable="true">elytra</chestplate>
+            <effect duration="oo" amplifier="1">night vision</effect>
+        </kit>
+        <kit id="point1-kit" force="true">
+            <item damage="1" name="point1" slot="9">ink sack</item>
+        </kit>
+        <kit id="point2-kit" force="true">
+            <item damage="2" name="point2" slot="9">ink sack</item>
+        </kit>
+        <kit id="point3-kit" force="true">
+            <item damage="3" name="point3" slot="9">ink sack</item>
+        </kit>
+        <kit id="point4-kit" force="true">
+            <item damage="4" name="point4" slot="9">ink sack</item>
+        </kit>
+        <kit id="point5-kit" force="true">
+            <item damage="5" name="point5" slot="9">ink sack</item>
+        </kit>
+        <kit id="point6-kit" force="true">
+            <item damage="6" name="point6" slot="9">ink sack</item>
+        </kit>
+        <kit id="point7-kit" force="true">
+            <item damage="7" name="point7" slot="9">ink sack</item>
+        </kit>
+        <kit id="speed-1" force="true">
+            <effect duration="2s" amplifier="2">speed</effect>
+        </kit>
+        <kit id="speed-2" force="true">
+            <effect duration="4s" amplifier="3">speed</effect>
+        </kit>
+        <kit id="clear-kit" force="true">
+            <item slot="9">air</item>
+        </kit>
+    </kits>
+    <itemremove>
+        <item>elytra</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+        <item>end rod</item>
+    </itemremove>
+    <itemkeep>
+        <item>ink sack</item>
+    </itemkeep>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+    <disabledamage>
+        <damage>fall</damage>
+        <damage>fly into wall</damage>
+        <damage>suffocation</damage>
+        <damage>fire tick</damage>
+        <damage>lava</damage>
+    </disabledamage>
+    <damage>
+        <deny>
+            <region id="walkable-area"/>
+        </deny>
+    </damage>
+    <projectiles>
+        <projectile id="gatlinggun" name="Gatling Gun" projectile="SmallFireball" velocity="5" damage="10" throwable="false"/>
+    </projectiles>
+    <regions>
+        <apply block="never"/>
+        
+        <!--Spawns-->
+        <point id="obs-spawn">-5.5,209.5,11.5</point>
+        <cuboid id="player-spawn" min="-7,210.5,10" max="-4,209.6,13" />
+
+        <!--Scorebox-->
+        <below id="finish-line" x="-300" />
+
+        <!--Checkpoint locations-->
+        <point id="checkpoint-1">-5.5,210.5,23</point>
+        <point id="checkpoint-2">-33,75.5,-21</point>
+        <point id="checkpoint-3">79,49.5,211</point>
+        <point id="checkpoint-4">28,110.5,70</point>
+        <point id="checkpoint-5">-3,106,284</point>
+        <point id="checkpoint-6">7,248,203</point>
+        <point id="checkpoint-7">-89,219.5,253</point>
+
+        <!--Checkpoint areas-->
+        <cuboid id="checkpoint-1-area" min="-16,200,5" max="10,250,40" />
+        <cuboid id="checkpoint-2-area" min="-59,59,-33" max="-8,110,-5" />
+        <cuboid id="checkpoint-3-area" min="56,30,186" max="114,100,244" />
+        <cuboid id="checkpoint-4-area" min="5,95,46" max="37,131,95" />
+        <cuboid id="checkpoint-5-area" min="-31,81,275" max="25,122,296" />
+        <cuboid id="checkpoint-6-area" min="-4,229,188" max="42,257,228" />
+        <cuboid id="checkpoint-7-area" min="-112,200,242" max="-57,265,265" />
+
+        <union id="walkable-area">
+            <region id="checkpoint-1-area" />
+            <region id="checkpoint-2-area" />
+            <region id="checkpoint-3-area" />
+            <region id="checkpoint-4-area" />
+            <region id="checkpoint-5-area" />
+            <region id="checkpoint-6-area" />
+            <region id="checkpoint-7-area" />
+        </union>
+
+<!--        <apply kit="point1-kit" region="checkpoint-1-area" />-->
+        <apply kit="point2-kit" region="checkpoint-2-area" />
+        <apply kit="point3-kit" region="checkpoint-3-area" />
+        <apply kit="point4-kit" region="checkpoint-4-area" />
+        <apply kit="point5-kit" region="checkpoint-5-area" />
+        <apply kit="point6-kit" region="checkpoint-6-area" />
+        <apply kit="point7-kit" region="checkpoint-7-area" />
+        <!--        <apply kit="point1-kit" region="finish-line" />-->
+        <negative id="out-of-spawn">
+            <region id="checkpoint-1-area"/>
+        </negative>
+        <apply region="out-of-spawn" kit="point1-kit"/>
+
+        <!--Yellow Flags-->
+        <cuboid id="yflag-1" min="-57,77,128" max="-51,82,129" />
+        <cuboid id="yflag-2" min="-30,69,86" max="-24,76,87" />
+        <cuboid id="yflag-3" min="-67,64,42" max="-61,70,43" />
+        <cuboid id="yflag-4" min="-12,62,-54" max="-11,68,-48" />
+        <cuboid id="yflag-5" min="19,62,-31" max="20,67,-25" />
+        <cuboid id="yflag-6" min="59,32,-13" max="65,38,-12" />
+        <cuboid id="yflag-7" min="35,13,17" max="41,19,18" />
+        <cuboid id="yflag-8" min="60,32,46" max="66,37,47" />
+        <cuboid id="yflag-9" min="124,53,104" max="130,58,105" />
+        <cuboid id="yflag-10" min="107,38,129" max="113,43,130" />
+        <cuboid id="yflag-11" min="117,47,177" max="124,54,178" />
+        <cuboid id="yflag-12" min="94,48,179" max="95,53,185" />
+        <cuboid id="yflag-13" min="80,37,240" max="86,42,241" />
+        <cuboid id="yflag-14" min="40,36,219" max="41,42,255" />
+        <cuboid id="yflag-15" min="55,50,255" max="62,56,256" />
+        <cuboid id="yflag-16" min="22,50,247" max="23,56,253" />
+        <cuboid id="yflag-17" min="10,50,287" max="11,55,293" />
+        <cuboid id="yflag-18" min="-15,43,292" max="-16,49,298" />
+        <cuboid id="yflag-19" min="-66,62,317" max="-65,69,324" />
+        <cuboid id="yflag-20" min="-135,40,296" max="-129,46,297" />
+        <cuboid id="yflag-21" min="-146,34,260" max="-140,40,261" />
+        <cuboid id="yflag-22" min="-121,34,260" max="-117,40,261" />
+        <cuboid id="yflag-23" min="-142,47,221" max="-135,53,222" />
+        <cuboid id="yflag-24" min="-120,38,194" max="-114,44,195" />
+        <cuboid id="yflag-25" min="-136,63,168" max="-130,68,169" />
+        <cuboid id="yflag-26" min="-116,53,138" max="-110,59,139" />
+        <cuboid id="yflag-27" min="-72,103,70" max="-71,109,76" />
+        <cuboid id="yflag-28" min="-29,103,66" max="-28,108,72" />
+        <cuboid id="yflag-29" min="4,112,45" max="5,118,51" />
+        <cuboid id="yflag-30" min="29,55,153" max="35,60,154" />
+        <cuboid id="yflag-31" min="18,55,139" max="19,60,145" />
+        <cuboid id="yflag-32" min="-7,67,176" max="-1,75,177" />
+        <cuboid id="yflag-33" min="-21,76,204" max="-15,82,205" />
+        <cuboid id="yflag-34" min="-34,97,231" max="-28,102,232" />
+        <cuboid id="yflag-35" min="-16,91,259" max="-10,97,260" />
+        <cuboid id="yflag-36" min="-10,94,291" max="-4,99,292" />
+        <cuboid id="yflag-37" min="17,96,304" max="16,102,310" />
+        <cuboid id="yflag-38" min="44,97,321" max="45,103,327" />
+        <cuboid id="yflag-39" min="72,82,292" max="73,88,298" />
+        <cuboid id="yflag-40" min="93,90,304" max="94,97,310" />
+        <cuboid id="yflag-41" min="108,102,273" max="109,107,280" />
+        <cuboid id="yflag-42" min="136,121,268" max="137,128,274" />
+        <cuboid id="yflag-43" min="138,126,254" max="144,132,255" />
+        <cuboid id="yflag-44" min="158,139,239" max="164,145,240" />
+        <cuboid id="yflag-45" min="150,141,213" max="156,147,214" />
+        <cuboid id="yflag-46" min="164,153,199" max="171,59,200" />
+        <cuboid id="yflag-47" min="144,162,176" max="150,168,177" />
+        <cuboid id="yflag-48" min="145,175,142" max="146,180,148" />
+        <cuboid id="yflag-49" min="119,182,148" max="120,188,155" />
+        <cuboid id="yflag-50" min="98,198,125" max="99,204,131" />
+        <cuboid id="yflag-51" min="73,203,132" max="74,209,138" />
+        <cuboid id="yflag-52" min="44,211,147" max="45,218,154" />
+        <cuboid id="yflag-53" min="50,211,170" max="56,217,171" />
+        <cuboid id="yflag-54" min="17,226,180" max="23,232,181" />
+        <cuboid id="yflag-55" min="18,233,228" max="24,240,229" />
+        <cuboid id="yflag-56" min="21,243,280" max="27,256,281" />
+        <cuboid id="yflag-57" min="4,210,296" max="10,215,297" />
+        <cuboid id="yflag-58" min="-15,196,320" max="-14,202,326" />
+        <cuboid id="yflag-59" min="-16,182,298" max="-15,189,304" />
+        <cuboid id="yflag-60" min="-57,198,272" max="-51,204,273" />
+        <cuboid id="yflag-61" min="-84,213,274" max="-78,219,275" />
+        <cuboid id="yflag-62" min="-101,216,235" max="-95,222,236" />
+        <cuboid id="yflag-63" min="-94,223,235" max="-88,229,236" />
+        <cuboid id="yflag-64" min="-88,216,235" max="-82,222,236" />
+        <cuboid id="yflag-65" min="-169,89,171" max="-168,94,177" />
+        <cuboid id="yflag-66" min="-201,89,192" max="-200,95,198" />
+        <cuboid id="yflag-67" min="-222,97,169" max="-221,102,175" />
+        <cuboid id="yflag-68" min="-243,109,189" max="-242,115,195" />
+        <cuboid id="yflag-69" min="-264,117,170" max="-263,124,177" />
+
+        <!--Green Flags-->
+        <cuboid id="gflag-1" min="-43,68,111" max="-39,72,112" />
+        <cuboid id="gflag-2" min="-52,64,14" max="-48,69,15" />
+        <cuboid id="gflag-3" min="51,13,7" max="55,16,8" />
+        <cuboid id="gflag-4" min="105,35,150" max="109,38,151" />
+        <cuboid id="gflag-5" min="77,35,211" max="81,39,212" />
+        <cuboid id="gflag-6" min="26,35,276" max="30,38,277" />
+        <cuboid id="gflag-7" min="-147,34,296" max="-143,37,297" />
+        <cuboid id="gflag-8" min="-108,75,106" max="-104,79,107" />
+        <cuboid id="gflag-9" min="-112,87,99" max="-108,91,100" />
+        <cuboid id="gflag-10" min="-102,88,102" max="-101,92,106" />
+        <cuboid id="gflag-11" min="25,50,146" max="30,53,151" />
+        <cuboid id="gflag-12" min="-21,87,268" max="-17,90,269" />
+        <cuboid id="gflag-13" min="56,89,319" max="57,93,323" />
+        <cuboid id="gflag-14" min="121,108,287" max="122,112,291" />
+        <cuboid id="gflag-15" min="161,158,173" max="165,162,174" />
+        <cuboid id="gflag-16" min="96,193,150" max="97,198,154" />
+        <cuboid id="gflag-17" min="5,247,223" max="9,250,224" />
+        <cuboid id="gflag-18" min="-93,213,234" max="-89,217,235" />
+
+        <!--Yellow flag pads-->
+        <apply region="yflag-1" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-2" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-3" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-4" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-5" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-6" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-7" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-8" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-9" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-10" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-11" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-12" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-13" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-14" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-15" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-16" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-17" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-18" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-19" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-20" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-21" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-22" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-23" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-24" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-25" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-26" velocity="0,0.5,-2" kit="speed-1" />
+        <apply region="yflag-27" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-28" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-29" velocity="2,0,2" kit="speed-1" />
+        <apply region="yflag-30" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-31" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-32" velocity="-1.5,0.5,2.5" kit="speed-1" />
+        <apply region="yflag-33" velocity="-1.5,0.5,2.5" kit="speed-1" />
+        <apply region="yflag-34" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-35" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-36" velocity="2,0,2" kit="speed-1" />
+        <apply region="yflag-37" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-38" velocity="2,0,0" kit="speed-1" />
+        <apply region="yflag-39" velocity="2,0.5,0" kit="speed-1" />
+        <apply region="yflag-40" velocity="2,0.5,-2" kit="speed-1" />
+        <apply region="yflag-41" velocity="2,0.5,-2" kit="speed-1" />
+        <apply region="yflag-42" velocity="2,0.5,-2" kit="speed-1" />
+        <apply region="yflag-43" velocity="2,0.5,-2" kit="speed-1" />
+        <apply region="yflag-44" velocity="0,0.5,-2" kit="speed-1" />
+        <apply region="yflag-45" velocity="0,0.5,-2" kit="speed-1" />
+        <apply region="yflag-46" velocity="0,0.5,-2" kit="speed-1" />
+        <apply region="yflag-47" velocity="0,0.5,-2" kit="speed-1" />
+        <apply region="yflag-48" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-49" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-50" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-51" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-52" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-53" velocity="-2,0,2" kit="speed-1" />
+        <apply region="yflag-54" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-55" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-56" velocity="0,0,2" kit="speed-1" />
+        <apply region="yflag-57" velocity="-2,0,0.5" kit="speed-1" />
+        <apply region="yflag-58" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-59" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-60" velocity="-2,0.5,-2" kit="speed-1" />
+        <apply region="yflag-61" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-62" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-63" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-64" velocity="0,0,-2" kit="speed-1" />
+        <apply region="yflag-65" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-66" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-67" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-68" velocity="-2,0,0" kit="speed-1" />
+        <apply region="yflag-69" velocity="-2,0,0" kit="speed-1" />
+
+        <!--Green flag pads-->
+        <apply region="gflag-1" velocity="0,0,-4" kit="speed-2" />
+        <apply region="gflag-2" velocity="2,0,-4" kit="speed-2" />
+        <apply region="gflag-3" velocity="0,0.5,4" kit="speed-2" />
+        <apply region="gflag-4" velocity="-2,0,3.5" kit="speed-2" />
+        <apply region="gflag-5" velocity="-2.5,0,2.5" kit="speed-2" />
+        <apply region="gflag-6" velocity="-2.5,0,2.5" kit="speed-2" />
+        <apply region="gflag-7" velocity="0,0,-4" kit="speed-2" />
+        <apply region="gflag-8" velocity="2.5,1,-2.5" kit="speed-2" />
+        <apply region="gflag-9" velocity="2.5,1,-2.5" kit="speed-2" />
+        <apply region="gflag-10" velocity="2.5,1,-2.5" kit="speed-2" />
+        <apply region="gflag-11" velocity="-2,0,2" kit="speed-2" />
+        <apply region="gflag-12" velocity="3,0.5,3" kit="speed-2" />
+        <apply region="gflag-13" velocity="4,0.5,0" kit="speed-2" />
+        <apply region="gflag-14" velocity="2,1,-2" kit="speed-2" />
+        <apply region="gflag-15" velocity="-2,0.5,-2" kit="speed-2" />
+        <apply region="gflag-16" velocity="-3,0.5,0" kit="speed-2" />
+        <apply region="gflag-17" velocity="1.5,0,3.5" kit="speed-2" />
+        <apply region="gflag-18" velocity="0,0,-4" kit="speed-2" />
+
+        <!--Below regions-->
+        <below id="below-0" y="0" />
+        <below id="below-1" y="1" />
+        <below id="below-2" y="2" />
+        <below id="below-3" y="3" />
+        <below id="below-4" y="4" />
+        <below id="below-5" y="5" />
+        <below id="below-6" y="6" />
+        <below id="below-7" y="7" />
+        <below id="below-8" y="8" />
+        <below id="below-9" y="9" />
+        <below id="below-10" y="10" />
+        <below id="below-11" y="11" />
+        <below id="below-12" y="12" />
+        <below id="below-13" y="13" />
+        <below id="below-14" y="14" />
+        <below id="below-15" y="15" />
+        <below id="below-16" y="16" />
+        <below id="below-17" y="17" />
+        <below id="below-18" y="18" />
+        <below id="below-19" y="19" />
+        <below id="below-20" y="20" />
+        <below id="below-21" y="21" />
+        <below id="below-22" y="22" />
+        <below id="below-23" y="23" />
+        <below id="below-24" y="24" />
+        <below id="below-25" y="25" />
+        <below id="below-26" y="26" />
+        <below id="below-27" y="27" />
+        <below id="below-28" y="28" />
+        <below id="below-29" y="29" />
+        <below id="below-30" y="30" />
+        <below id="below-31" y="31" />
+        <below id="below-32" y="32" />
+        <below id="below-33" y="33" />
+        <below id="below-34" y="34" />
+        <below id="below-35" y="35" />
+        <below id="below-36" y="36" />
+        <below id="below-37" y="37" />
+        <below id="below-38" y="38" />
+        <below id="below-39" y="39" />
+        <below id="below-40" y="40" />
+        <below id="below-41" y="41" />
+        <below id="below-42" y="42" />
+        <below id="below-43" y="43" />
+        <below id="below-44" y="44" />
+        <below id="below-45" y="45" />
+        <below id="below-46" y="46" />
+        <below id="below-47" y="47" />
+        <below id="below-48" y="48" />
+        <below id="below-49" y="49" />
+        <below id="below-50" y="50" />
+        <below id="below-51" y="51" />
+        <below id="below-52" y="52" />
+        <below id="below-53" y="53" />
+        <below id="below-54" y="54" />
+        <below id="below-55" y="55" />
+        <below id="below-56" y="56" />
+        <below id="below-57" y="57" />
+        <below id="below-58" y="58" />
+        <below id="below-59" y="59" />
+        <below id="below-60" y="60" />
+        <below id="below-61" y="61" />
+        <below id="below-62" y="62" />
+        <below id="below-63" y="63" />
+        <below id="below-64" y="64" />
+        <below id="below-65" y="65" />
+        <below id="below-66" y="66" />
+        <below id="below-67" y="67" />
+        <below id="below-68" y="68" />
+        <below id="below-69" y="69" />
+        <below id="below-70" y="70" />
+        <below id="below-71" y="71" />
+        <below id="below-72" y="72" />
+        <below id="below-73" y="73" />
+        <below id="below-74" y="74" />
+        <below id="below-75" y="75" />
+        <below id="below-76" y="76" />
+        <below id="below-77" y="77" />
+        <below id="below-78" y="78" />
+        <below id="below-79" y="79" />
+        <below id="below-80" y="80" />
+        <below id="below-81" y="81" />
+        <below id="below-82" y="82" />
+        <below id="below-83" y="83" />
+        <below id="below-84" y="84" />
+        <below id="below-85" y="85" />
+        <below id="below-86" y="86" />
+        <below id="below-87" y="87" />
+        <below id="below-88" y="88" />
+        <below id="below-89" y="89" />
+        <below id="below-90" y="90" />
+        <below id="below-91" y="91" />
+        <below id="below-92" y="92" />
+        <below id="below-93" y="93" />
+        <below id="below-94" y="94" />
+        <below id="below-95" y="95" />
+        <below id="below-96" y="96" />
+        <below id="below-97" y="97" />
+        <below id="below-98" y="98" />
+        <below id="below-99" y="99" />
+        <below id="below-100" y="100" />
+        <below id="below-101" y="101" />
+        <below id="below-102" y="102" />
+        <below id="below-103" y="103" />
+        <below id="below-104" y="104" />
+        <below id="below-105" y="105" />
+        <below id="below-106" y="106" />
+        <below id="below-107" y="107" />
+        <below id="below-108" y="108" />
+        <below id="below-109" y="109" />
+        <below id="below-110" y="110" />
+        <below id="below-111" y="111" />
+        <below id="below-112" y="112" />
+        <below id="below-113" y="113" />
+        <below id="below-114" y="114" />
+        <below id="below-115" y="115" />
+        <below id="below-116" y="116" />
+        <below id="below-117" y="117" />
+        <below id="below-118" y="118" />
+        <below id="below-119" y="119" />
+        <below id="below-120" y="120" />
+        <below id="below-121" y="121" />
+        <below id="below-122" y="122" />
+        <below id="below-123" y="123" />
+        <below id="below-124" y="124" />
+        <below id="below-125" y="125" />
+        <below id="below-126" y="126" />
+        <below id="below-127" y="127" />
+        <below id="below-128" y="128" />
+        <below id="below-129" y="129" />
+        <below id="below-130" y="130" />
+        <below id="below-131" y="131" />
+        <below id="below-132" y="132" />
+        <below id="below-133" y="133" />
+        <below id="below-134" y="134" />
+        <below id="below-135" y="135" />
+        <below id="below-136" y="136" />
+        <below id="below-137" y="137" />
+        <below id="below-138" y="138" />
+        <below id="below-139" y="139" />
+        <below id="below-140" y="140" />
+        <below id="below-141" y="141" />
+        <below id="below-142" y="142" />
+        <below id="below-143" y="143" />
+        <below id="below-144" y="144" />
+        <below id="below-145" y="145" />
+        <below id="below-146" y="146" />
+        <below id="below-147" y="147" />
+        <below id="below-148" y="148" />
+        <below id="below-149" y="149" />
+        <below id="below-150" y="150" />
+        <below id="below-151" y="151" />
+        <below id="below-152" y="152" />
+        <below id="below-153" y="153" />
+        <below id="below-154" y="154" />
+        <below id="below-155" y="155" />
+        <below id="below-156" y="156" />
+        <below id="below-157" y="157" />
+        <below id="below-158" y="158" />
+        <below id="below-159" y="159" />
+        <below id="below-160" y="160" />
+        <below id="below-161" y="161" />
+        <below id="below-162" y="162" />
+        <below id="below-163" y="163" />
+        <below id="below-164" y="164" />
+        <below id="below-165" y="165" />
+        <below id="below-166" y="166" />
+        <below id="below-167" y="167" />
+        <below id="below-168" y="168" />
+        <below id="below-169" y="169" />
+        <below id="below-170" y="170" />
+        <below id="below-171" y="171" />
+        <below id="below-172" y="172" />
+        <below id="below-173" y="173" />
+        <below id="below-174" y="174" />
+        <below id="below-175" y="175" />
+        <below id="below-176" y="176" />
+        <below id="below-177" y="177" />
+        <below id="below-178" y="178" />
+        <below id="below-179" y="179" />
+        <below id="below-180" y="180" />
+        <below id="below-181" y="181" />
+        <below id="below-182" y="182" />
+        <below id="below-183" y="183" />
+        <below id="below-184" y="184" />
+        <below id="below-185" y="185" />
+        <below id="below-186" y="186" />
+        <below id="below-187" y="187" />
+        <below id="below-188" y="188" />
+        <below id="below-189" y="189" />
+        <below id="below-190" y="190" />
+        <below id="below-191" y="191" />
+        <below id="below-192" y="192" />
+        <below id="below-193" y="193" />
+        <below id="below-194" y="194" />
+        <below id="below-195" y="195" />
+        <below id="below-196" y="196" />
+        <below id="below-197" y="197" />
+        <below id="below-198" y="198" />
+        <below id="below-199" y="199" />
+        <below id="below-200" y="200" />
+        <below id="below-201" y="201" />
+        <below id="below-202" y="202" />
+        <below id="below-203" y="203" />
+        <below id="below-204" y="204" />
+        <below id="below-205" y="205" />
+        <below id="below-206" y="206" />
+        <below id="below-207" y="207" />
+        <below id="below-208" y="208" />
+        <below id="below-209" y="209" />
+        <below id="below-210" y="210" />
+        <below id="below-211" y="211" />
+        <below id="below-212" y="212" />
+        <below id="below-213" y="213" />
+        <below id="below-214" y="214" />
+        <below id="below-215" y="215" />
+        <below id="below-216" y="216" />
+        <below id="below-217" y="217" />
+        <below id="below-218" y="218" />
+        <below id="below-219" y="219" />
+        <below id="below-220" y="220" />
+        <below id="below-221" y="221" />
+        <below id="below-222" y="222" />
+        <below id="below-223" y="223" />
+        <below id="below-224" y="224" />
+        <below id="below-225" y="225" />
+        <below id="below-226" y="226" />
+        <below id="below-227" y="227" />
+        <below id="below-228" y="228" />
+        <below id="below-229" y="229" />
+        <below id="below-230" y="230" />
+        <below id="below-231" y="231" />
+        <below id="below-232" y="232" />
+        <below id="below-233" y="233" />
+        <below id="below-234" y="234" />
+        <below id="below-235" y="235" />
+        <below id="below-236" y="236" />
+        <below id="below-237" y="237" />
+        <below id="below-238" y="238" />
+        <below id="below-239" y="239" />
+        <below id="below-240" y="240" />
+        <below id="below-241" y="241" />
+        <below id="below-242" y="242" />
+        <below id="below-243" y="243" />
+        <below id="below-244" y="244" />
+        <below id="below-245" y="245" />
+        <below id="below-246" y="246" />
+        <below id="below-247" y="247" />
+        <below id="below-248" y="248" />
+        <below id="below-249" y="249" />
+        <below id="below-250" y="250" />
+        <below id="below-251" y="251" />
+        <below id="below-252" y="252" />
+        <below id="below-253" y="253" />
+        <below id="below-254" y="254" />
+        <below id="below-255" y="255" />
+    </regions>
+    <filters>
+        <not id="needs-reset">
+            <gliding/>
+        </not>
+
+        <all id="point-1">
+            <carrying>
+                <item damage="1" name="point1" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-2">
+            <carrying>
+                <item damage="2" name="point2" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-3">
+            <carrying>
+                <item damage="3" name="point3" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-4">
+            <carrying>
+                <item damage="4" name="point4" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-5">
+            <carrying>
+                <item damage="5" name="point5" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-6">
+            <carrying>
+                <item damage="6" name="point6" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+        <all id="point-7">
+            <carrying>
+                <item damage="7" name="point7" slot="9">ink sack</item>
+            </carrying>
+            <carrying>
+                <item slot="slot.armor.boots" name="player-boots" unbreakable="true">leather boots</item>
+            </carrying>
+            <filter id="needs-reset" />
+            <not>
+                <region id="walkable-area" />
+            </not>
+            <time>3s</time>
+        </all>
+
+        <not id="walkable-filter">
+            <region id="walkable-area" />
+        </not>
+
+        <all id="has-point-7">
+            <carrying>
+                <item damage="7" name="point7" slot="9">ink sack</item>
+            </carrying>
+        </all>
+    </filters>
+    <portals observers="never">
+        <!--Finish line portal-->
+        <portal filter="has-point-7" region="finish-line" destination="player-spawn" yaw="@0" />
+
+        <!--Reset Portals-->
+        <portal filter="point-1" region="below-0" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-0" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-0" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-0" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-0" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-0" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-0" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-1" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-1" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-1" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-1" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-1" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-1" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-1" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-2" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-2" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-2" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-2" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-2" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-2" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-2" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-3" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-3" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-3" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-3" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-3" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-3" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-3" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-4" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-4" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-4" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-4" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-4" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-4" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-4" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-5" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-5" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-5" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-5" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-5" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-5" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-5" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-6" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-6" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-6" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-6" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-6" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-6" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-6" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-7" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-7" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-7" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-7" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-7" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-7" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-7" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-8" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-8" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-8" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-8" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-8" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-8" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-8" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-9" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-9" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-9" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-9" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-9" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-9" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-9" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-10" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-10" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-10" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-10" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-10" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-10" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-10" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-11" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-11" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-11" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-11" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-11" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-11" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-11" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-12" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-12" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-12" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-12" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-12" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-12" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-12" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-13" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-13" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-13" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-13" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-13" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-13" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-13" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-14" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-14" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-14" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-14" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-14" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-14" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-14" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-15" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-15" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-15" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-15" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-15" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-15" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-15" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-16" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-16" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-16" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-16" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-16" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-16" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-16" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-17" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-17" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-17" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-17" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-17" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-17" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-17" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-18" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-18" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-18" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-18" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-18" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-18" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-18" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-19" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-19" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-19" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-19" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-19" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-19" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-19" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-20" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-20" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-20" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-20" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-20" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-20" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-20" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-21" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-21" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-21" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-21" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-21" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-21" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-21" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-22" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-22" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-22" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-22" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-22" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-22" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-22" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-23" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-23" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-23" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-23" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-23" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-23" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-23" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-24" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-24" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-24" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-24" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-24" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-24" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-24" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-25" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-25" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-25" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-25" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-25" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-25" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-25" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-26" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-26" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-26" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-26" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-26" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-26" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-26" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-27" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-27" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-27" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-27" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-27" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-27" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-27" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-28" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-28" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-28" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-28" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-28" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-28" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-28" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-29" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-29" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-29" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-29" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-29" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-29" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-29" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-30" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-30" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-30" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-30" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-30" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-30" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-30" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-31" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-31" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-31" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-31" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-31" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-31" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-31" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-32" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-32" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-32" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-32" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-32" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-32" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-32" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-33" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-33" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-33" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-33" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-33" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-33" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-33" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-34" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-34" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-34" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-34" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-34" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-34" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-34" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-35" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-35" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-35" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-35" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-35" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-35" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-35" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-36" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-36" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-36" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-36" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-36" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-36" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-36" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-37" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-37" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-37" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-37" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-37" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-37" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-37" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-38" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-38" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-38" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-38" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-38" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-38" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-38" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-39" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-39" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-39" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-39" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-39" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-39" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-39" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-40" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-40" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-40" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-40" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-40" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-40" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-40" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-41" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-41" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-41" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-41" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-41" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-41" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-41" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-42" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-42" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-42" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-42" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-42" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-42" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-42" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-43" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-43" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-43" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-43" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-43" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-43" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-43" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-44" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-44" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-44" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-44" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-44" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-44" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-44" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-45" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-45" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-45" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-45" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-45" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-45" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-45" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-46" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-46" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-46" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-46" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-46" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-46" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-46" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-47" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-47" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-47" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-47" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-47" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-47" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-47" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-48" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-48" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-48" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-48" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-48" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-48" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-48" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-49" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-49" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-49" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-49" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-49" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-49" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-49" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-50" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-50" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-50" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-50" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-50" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-50" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-50" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-51" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-51" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-51" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-51" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-51" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-51" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-51" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-52" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-52" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-52" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-52" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-52" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-52" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-52" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-53" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-53" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-53" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-53" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-53" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-53" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-53" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-54" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-54" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-54" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-54" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-54" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-54" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-54" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-55" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-55" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-55" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-55" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-55" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-55" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-55" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-56" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-56" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-56" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-56" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-56" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-56" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-56" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-57" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-57" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-57" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-57" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-57" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-57" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-57" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-58" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-58" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-58" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-58" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-58" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-58" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-58" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-59" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-59" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-59" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-59" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-59" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-59" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-59" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-60" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-60" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-60" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-60" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-60" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-60" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-60" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-61" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-61" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-61" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-61" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-61" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-61" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-61" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-62" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-62" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-62" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-62" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-62" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-62" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-62" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-63" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-63" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-63" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-63" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-63" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-63" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-63" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-64" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-64" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-64" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-64" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-64" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-64" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-64" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-65" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-65" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-65" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-65" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-65" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-65" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-65" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-66" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-66" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-66" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-66" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-66" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-66" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-66" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-67" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-67" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-67" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-67" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-67" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-67" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-67" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-68" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-68" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-68" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-68" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-68" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-68" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-68" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-69" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-69" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-69" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-69" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-69" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-69" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-69" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-70" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-70" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-70" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-70" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-70" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-70" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-70" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-71" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-71" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-71" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-71" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-71" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-71" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-71" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-72" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-72" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-72" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-72" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-72" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-72" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-72" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-73" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-73" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-73" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-73" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-73" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-73" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-73" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-74" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-74" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-74" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-74" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-74" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-74" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-74" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-75" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-75" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-75" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-75" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-75" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-75" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-75" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-76" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-76" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-76" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-76" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-76" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-76" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-76" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-77" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-77" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-77" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-77" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-77" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-77" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-77" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-78" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-78" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-78" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-78" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-78" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-78" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-78" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-79" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-79" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-79" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-79" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-79" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-79" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-79" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-80" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-80" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-80" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-80" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-80" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-80" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-80" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-81" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-81" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-81" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-81" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-81" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-81" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-81" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-82" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-82" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-82" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-82" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-82" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-82" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-82" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-83" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-83" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-83" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-83" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-83" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-83" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-83" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-84" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-84" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-84" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-84" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-84" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-84" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-84" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-85" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-85" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-85" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-85" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-85" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-85" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-85" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-86" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-86" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-86" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-86" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-86" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-86" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-86" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-87" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-87" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-87" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-87" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-87" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-87" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-87" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-88" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-88" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-88" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-88" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-88" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-88" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-88" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-89" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-89" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-89" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-89" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-89" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-89" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-89" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-90" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-90" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-90" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-90" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-90" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-90" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-90" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-91" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-91" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-91" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-91" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-91" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-91" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-91" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-92" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-92" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-92" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-92" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-92" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-92" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-92" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-93" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-93" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-93" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-93" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-93" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-93" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-93" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-94" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-94" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-94" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-94" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-94" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-94" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-94" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-95" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-95" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-95" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-95" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-95" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-95" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-95" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-96" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-96" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-96" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-96" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-96" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-96" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-96" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-97" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-97" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-97" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-97" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-97" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-97" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-97" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-98" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-98" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-98" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-98" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-98" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-98" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-98" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-99" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-99" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-99" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-99" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-99" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-99" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-99" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-100" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-100" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-100" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-100" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-100" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-100" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-100" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-101" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-101" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-101" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-101" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-101" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-101" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-101" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-102" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-102" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-102" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-102" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-102" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-102" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-102" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-103" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-103" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-103" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-103" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-103" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-103" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-103" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-104" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-104" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-104" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-104" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-104" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-104" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-104" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-105" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-105" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-105" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-105" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-105" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-105" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-105" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-106" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-106" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-106" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-106" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-106" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-106" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-106" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-107" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-107" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-107" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-107" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-107" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-107" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-107" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-108" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-108" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-108" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-108" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-108" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-108" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-108" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-109" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-109" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-109" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-109" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-109" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-109" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-109" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-110" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-110" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-110" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-110" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-110" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-110" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-110" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-111" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-111" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-111" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-111" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-111" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-111" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-111" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-112" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-112" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-112" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-112" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-112" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-112" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-112" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-113" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-113" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-113" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-113" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-113" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-113" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-113" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-114" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-114" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-114" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-114" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-114" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-114" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-114" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-115" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-115" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-115" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-115" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-115" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-115" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-115" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-116" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-116" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-116" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-116" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-116" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-116" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-116" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-117" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-117" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-117" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-117" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-117" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-117" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-117" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-118" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-118" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-118" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-118" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-118" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-118" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-118" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-119" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-119" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-119" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-119" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-119" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-119" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-119" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-120" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-120" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-120" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-120" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-120" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-120" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-120" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-121" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-121" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-121" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-121" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-121" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-121" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-121" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-122" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-122" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-122" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-122" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-122" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-122" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-122" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-123" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-123" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-123" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-123" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-123" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-123" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-123" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-124" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-124" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-124" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-124" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-124" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-124" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-124" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-125" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-125" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-125" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-125" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-125" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-125" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-125" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-126" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-126" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-126" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-126" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-126" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-126" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-126" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-127" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-127" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-127" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-127" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-127" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-127" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-127" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-128" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-128" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-128" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-128" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-128" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-128" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-128" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-129" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-129" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-129" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-129" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-129" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-129" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-129" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-130" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-130" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-130" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-130" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-130" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-130" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-130" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-131" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-131" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-131" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-131" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-131" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-131" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-131" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-132" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-132" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-132" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-132" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-132" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-132" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-132" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-133" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-133" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-133" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-133" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-133" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-133" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-133" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-134" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-134" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-134" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-134" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-134" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-134" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-134" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-135" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-135" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-135" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-135" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-135" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-135" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-135" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-136" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-136" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-136" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-136" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-136" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-136" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-136" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-137" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-137" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-137" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-137" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-137" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-137" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-137" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-138" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-138" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-138" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-138" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-138" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-138" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-138" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-139" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-139" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-139" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-139" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-139" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-139" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-139" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-140" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-140" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-140" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-140" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-140" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-140" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-140" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-141" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-141" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-141" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-141" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-141" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-141" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-141" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-142" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-142" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-142" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-142" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-142" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-142" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-142" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-143" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-143" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-143" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-143" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-143" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-143" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-143" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-144" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-144" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-144" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-144" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-144" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-144" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-144" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-145" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-145" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-145" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-145" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-145" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-145" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-145" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-146" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-146" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-146" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-146" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-146" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-146" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-146" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-147" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-147" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-147" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-147" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-147" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-147" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-147" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-148" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-148" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-148" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-148" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-148" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-148" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-148" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-149" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-149" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-149" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-149" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-149" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-149" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-149" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-150" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-150" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-150" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-150" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-150" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-150" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-150" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-151" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-151" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-151" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-151" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-151" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-151" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-151" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-152" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-152" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-152" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-152" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-152" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-152" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-152" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-153" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-153" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-153" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-153" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-153" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-153" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-153" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-154" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-154" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-154" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-154" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-154" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-154" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-154" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-155" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-155" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-155" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-155" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-155" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-155" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-155" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-156" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-156" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-156" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-156" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-156" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-156" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-156" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-157" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-157" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-157" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-157" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-157" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-157" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-157" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-158" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-158" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-158" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-158" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-158" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-158" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-158" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-159" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-159" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-159" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-159" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-159" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-159" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-159" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-160" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-160" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-160" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-160" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-160" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-160" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-160" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-161" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-161" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-161" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-161" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-161" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-161" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-161" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-162" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-162" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-162" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-162" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-162" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-162" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-162" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-163" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-163" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-163" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-163" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-163" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-163" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-163" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-164" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-164" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-164" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-164" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-164" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-164" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-164" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-165" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-165" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-165" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-165" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-165" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-165" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-165" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-166" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-166" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-166" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-166" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-166" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-166" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-166" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-167" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-167" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-167" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-167" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-167" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-167" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-167" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-168" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-168" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-168" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-168" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-168" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-168" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-168" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-169" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-169" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-169" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-169" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-169" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-169" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-169" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-170" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-170" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-170" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-170" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-170" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-170" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-170" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-171" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-171" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-171" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-171" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-171" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-171" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-171" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-172" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-172" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-172" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-172" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-172" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-172" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-172" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-173" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-173" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-173" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-173" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-173" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-173" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-173" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-174" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-174" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-174" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-174" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-174" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-174" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-174" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-175" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-175" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-175" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-175" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-175" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-175" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-175" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-176" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-176" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-176" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-176" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-176" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-176" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-176" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-177" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-177" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-177" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-177" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-177" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-177" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-177" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-178" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-178" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-178" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-178" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-178" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-178" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-178" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-179" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-179" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-179" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-179" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-179" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-179" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-179" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-180" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-180" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-180" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-180" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-180" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-180" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-180" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-181" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-181" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-181" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-181" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-181" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-181" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-181" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-182" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-182" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-182" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-182" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-182" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-182" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-182" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-183" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-183" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-183" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-183" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-183" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-183" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-183" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-184" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-184" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-184" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-184" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-184" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-184" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-184" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-185" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-185" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-185" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-185" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-185" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-185" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-185" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-186" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-186" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-186" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-186" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-186" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-186" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-186" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-187" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-187" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-187" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-187" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-187" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-187" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-187" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-188" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-188" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-188" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-188" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-188" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-188" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-188" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-189" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-189" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-189" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-189" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-189" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-189" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-189" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-190" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-190" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-190" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-190" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-190" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-190" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-190" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-191" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-191" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-191" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-191" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-191" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-191" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-191" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-192" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-192" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-192" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-192" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-192" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-192" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-192" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-193" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-193" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-193" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-193" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-193" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-193" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-193" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-194" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-194" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-194" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-194" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-194" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-194" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-194" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-195" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-195" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-195" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-195" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-195" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-195" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-195" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-196" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-196" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-196" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-196" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-196" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-196" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-196" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-197" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-197" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-197" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-197" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-197" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-197" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-197" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-198" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-198" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-198" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-198" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-198" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-198" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-198" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-199" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-199" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-199" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-199" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-199" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-199" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-199" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-200" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-200" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-200" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-200" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-200" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-200" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-200" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-201" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-201" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-201" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-201" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-201" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-201" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-201" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-202" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-202" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-202" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-202" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-202" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-202" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-202" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-203" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-203" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-203" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-203" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-203" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-203" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-203" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-204" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-204" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-204" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-204" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-204" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-204" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-204" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-205" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-205" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-205" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-205" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-205" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-205" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-205" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-206" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-206" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-206" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-206" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-206" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-206" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-206" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-207" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-207" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-207" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-207" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-207" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-207" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-207" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-208" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-208" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-208" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-208" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-208" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-208" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-208" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-209" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-209" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-209" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-209" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-209" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-209" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-209" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-210" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-210" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-210" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-210" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-210" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-210" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-210" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-211" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-211" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-211" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-211" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-211" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-211" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-211" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-212" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-212" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-212" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-212" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-212" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-212" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-212" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-213" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-213" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-213" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-213" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-213" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-213" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-213" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-214" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-214" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-214" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-214" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-214" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-214" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-214" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-215" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-215" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-215" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-215" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-215" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-215" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-215" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-216" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-216" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-216" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-216" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-216" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-216" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-216" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-217" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-217" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-217" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-217" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-217" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-217" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-217" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-218" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-218" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-218" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-218" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-218" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-218" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-218" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-219" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-219" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-219" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-219" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-219" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-219" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-219" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-220" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-220" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-220" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-220" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-220" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-220" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-220" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-221" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-221" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-221" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-221" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-221" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-221" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-221" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-222" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-222" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-222" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-222" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-222" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-222" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-222" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-223" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-223" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-223" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-223" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-223" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-223" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-223" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-224" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-224" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-224" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-224" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-224" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-224" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-224" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-225" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-225" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-225" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-225" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-225" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-225" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-225" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-226" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-226" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-226" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-226" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-226" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-226" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-226" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-227" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-227" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-227" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-227" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-227" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-227" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-227" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-228" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-228" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-228" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-228" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-228" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-228" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-228" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-229" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-229" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-229" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-229" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-229" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-229" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-229" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-230" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-230" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-230" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-230" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-230" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-230" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-230" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-231" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-231" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-231" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-231" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-231" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-231" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-231" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-232" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-232" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-232" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-232" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-232" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-232" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-232" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-233" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-233" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-233" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-233" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-233" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-233" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-233" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-234" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-234" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-234" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-234" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-234" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-234" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-234" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-235" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-235" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-235" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-235" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-235" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-235" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-235" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-236" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-236" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-236" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-236" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-236" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-236" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-236" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-237" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-237" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-237" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-237" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-237" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-237" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-237" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-238" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-238" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-238" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-238" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-238" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-238" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-238" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-239" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-239" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-239" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-239" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-239" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-239" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-239" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-240" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-240" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-240" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-240" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-240" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-240" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-240" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-241" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-241" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-241" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-241" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-241" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-241" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-241" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-242" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-242" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-242" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-242" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-242" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-242" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-242" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-243" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-243" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-243" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-243" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-243" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-243" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-243" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-244" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-244" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-244" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-244" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-244" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-244" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-244" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-245" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-245" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-245" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-245" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-245" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-245" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-245" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-246" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-246" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-246" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-246" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-246" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-246" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-246" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-247" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-247" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-247" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-247" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-247" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-247" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-247" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-248" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-248" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-248" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-248" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-248" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-248" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-248" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-249" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-249" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-249" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-249" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-249" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-249" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-249" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-250" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-250" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-250" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-250" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-250" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-250" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-250" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-251" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-251" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-251" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-251" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-251" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-251" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-251" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-252" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-252" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-252" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-252" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-252" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-252" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-252" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-253" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-253" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-253" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-253" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-253" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-253" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-253" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-254" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-254" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-254" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-254" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-254" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-254" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-254" destination="checkpoint-7" yaw="@180" />
+        <portal filter="point-1" region="below-255" destination="checkpoint-1" yaw="@0" />
+        <portal filter="point-2" region="below-255" destination="checkpoint-2" yaw="@-120" />
+        <portal filter="point-3" region="below-255" destination="checkpoint-3" yaw="@45" />
+        <portal filter="point-4" region="below-255" destination="checkpoint-4" yaw="@180" />
+        <portal filter="point-5" region="below-255" destination="checkpoint-5" yaw="@45" />
+        <portal filter="point-6" region="below-255" destination="checkpoint-6" yaw="@45" />
+        <portal filter="point-7" region="below-255" destination="checkpoint-7" yaw="@180" />
+    </portals>
+</map>

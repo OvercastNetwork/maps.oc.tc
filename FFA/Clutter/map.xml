@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Clutter</name>
+<version>1.0.0</version>
+<objective>Eliminate you, and you, and that guy over there.</objective>
+<authors>
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11"/> <!--Jtr-->
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!--Anthonny-->
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!--Pepsidog-->
+</authors>
+<score>
+    <kills>1</kills>
+    <deaths>1</deaths>
+</score>
+<time>8m</time>
+<regions>
+    <apply block="deny-unbreakable-blocks">
+        <region>
+            <rectangle id="playable" min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+</regions>
+<kits>
+    <kit id="spawn-kit" force="true">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron axe</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="16">arrow</item>
+        <helmet locked="true" color="ffff55">leather helmet</helmet>
+        <chestplate locked="true" color="ffff55">leather chestplate</chestplate>
+        <leggings locked="true">chainmail leggings</leggings>
+        <boots locked="true" color="ffff55">leather boots</boots>
+        <double-jump power="3.5" recharge-time="4s" recharge-before-landing="true"/>
+    </kit>
+</kits>
+<filters>
+    <deny id="deny-unbreakable-blocks">
+        <not>
+            <any>
+                <material>crops</material>
+                <material>sugar cane block</material>
+                <material>long grass</material>
+                <material>leaves</material>
+                <material>yellow flower</material>
+                <material>red rose</material>
+                <material>sapling</material>
+                <material>carrot</material>
+                <material>potato</material>
+                <material>double plant</material>
+            </any>
+        </not>
+    </deny>
+</filters>
+<respawn delay="0.5s" auto="false"/>
+<killreward>
+    <item>golden apple</item>
+    <item amount="8">arrow</item>
+</killreward>
+<spawns safe="true">
+    <default>
+        <regions yaw="90">
+            <block>32.5,60,46.5</block>
+        </regions>
+    </default>
+    <spawn safe="true" kit="spawn-kit">
+        <regions angle="56.5,20,49.5">
+            <point>33.5,38,33.5</point>
+            <point>43.5,38,52.5</point>
+            <point>62.5,38,75.5</point>
+            <point>79.5,38,68.5</point>
+            <point>77.5,38,29.5</point>
+            <point>82.5,41,58.5</point>
+            <point>77.5,26,66.5</point>
+            <point>72.5,26,32.5</point>
+            <point>61.5,26,45.5</point>
+            <point>49.5,26,75.5</point>
+            <point>32.5,26,49.5</point>
+            <point>42.5,26,25.5</point>
+            <point>62.5,34,24.5</point>
+            <point>72.5,14,74.5</point>
+            <point>82.5,14,53.5</point>
+            <point>79.5,14,33.5</point>
+            <point>40.5,20,41.5</point>
+            <point>63.5,14,51.5</point>
+            <point>28.5,14,75.5</point>
+            <point>31.5,18,51.5</point>
+            <point>33.5,2,30.5</point>
+            <point>33.5,2,67.5</point>
+            <point>61.5,8,77.5</point>
+            <point>82.5,6,71.5</point>
+            <point>46.5,2,75.5</point>
+            <point>31.5,6,52.5</point>
+            <point>33.5,2,33.5</point>
+            <point>57.5,6,23.5</point>
+        </regions>
+    </spawn>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>golden apple</item>
+    <item>chainmail leggings</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>iron axe</item>
+</itemremove>
+<players min="2" max="25" max-overfill="30" show-name-tags="false"/>
+</map>

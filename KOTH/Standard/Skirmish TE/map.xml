@@ -1,0 +1,159 @@
+<map proto="1.4.0">
+<name>Skirmish TE</name>
+<version>1.1</version>
+<objective>Conquer all the points and eliminate your foes.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<!-- Teams and Kits -->
+<teams>
+   <team id="red-team" color="dark red" min="3" max="5" max-overfill="5">Red Team</team>
+   <team id="blue-team" color="blue" min="3" max="5" max-overfill="5">Blue Team</team>
+</teams>
+<blitz>
+    <lives>11</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<score>
+    <limit>51</limit>
+    <kills>1</kills> <!-- +1 points for every kill -->
+    <deaths>1</deaths> <!-- -1 points for accidentally dying -->
+</score>
+<kits>
+    <kit id="spawn" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="38">grilled pork</item>
+        <item slot="3" amount="2">golden apple</item>
+        <item slot="4" amount="32">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit id="redKit" parents="spawn">
+        <helmet color="801515">leather helmet</helmet>
+        <chestplate color="801515">leather chestplate</chestplate>
+        <leggings color="801515">leather leggings</leggings>
+        <boots color="801515">leather boots</boots>
+    </kit>
+    <kit id="blueKit" parents="spawn">
+        <helmet color="1a1a51">leather helmet</helmet>
+        <chestplate color="1a1a51">leather chestplate</chestplate>
+        <leggings color="1a1a51">leather leggings</leggings>
+        <boots color="1a1a51">leather boots</boots>
+    </kit>
+</kits>
+
+<spawns>
+    <default><regions yaw="90"><region id="obs-spawn"/></regions></default>
+    <spawn team="red-team" yaw="-90" kit="redKit" region="red-spawn-original" filter="only-first-spawn"/>
+    <spawn team="red-team" yaw="-90" kit="redKit" region="red-spawn-forest" filter="red-captured-point-forest"/>
+    <spawn team="red-team" yaw="-90" kit="redKit" region="red-spawn-village" filter="red-captured-point-village"/>
+    <spawn team="red-team" yaw="-90" kit="redKit" region="red-spawn-ruins" filter="red-captured-point-ruins"/>
+    <spawn team="blue-team" yaw="-90" kit="blueKit" region="blue-spawn-original" filter="only-first-spawn"/>
+    <spawn team="blue-team" yaw="-90" kit="blueKit" region="blue-spawn-forest" filter="blue-captured-point-forest"/>
+    <spawn team="blue-team" yaw="-90" kit="blueKit" region="blue-spawn-village" filter="blue-captured-point-village"/>
+    <spawn team="blue-team" yaw="-90" kit="blueKit" region="blue-spawn-ruins" filter="blue-captured-point-ruins"/>
+</spawns>
+<respawn delay="5s"/>
+<filters>
+    <not id="only-first-spawn">
+        <time>15s</time>
+    </not>
+    <any id="allowed-to-win">
+        <all>
+            <team>red-team</team>
+            <objective id="red-captured-point-forest" team="red-team">Forest</objective>
+            <objective id="red-captured-point-village" team="red-team">Village</objective>
+            <objective id="red-captured-point-ruins" team="red-team">Ruins</objective>
+        </all>
+        <all>
+            <team>blue-team</team>
+            <objective id="blue-captured-point-forest" team="blue-team">Forest</objective>
+            <objective id="blue-captured-point-village" team="blue-team">Village</objective>
+            <objective id="blue-captured-point-ruins" team="blue-team">Ruins</objective>
+        </all>
+    </any>
+    <not id="no-void">
+        <void/>
+    </not>
+    <all id="only-blue">
+        <team>blue-team</team>
+    </all>
+    <all id="only-red">
+        <team>red-team</team>
+    </all>
+</filters>
+<regions>
+    <block id="obs-spawn">56,13,0</block>
+    <!-- Possible Red Spawns -->
+    <block id="red-spawn-original">-24,10,46</block>
+    <block id="red-spawn-forest">10,9,-22</block>
+    <block id="red-spawn-village">9,9,23</block>
+    <block id="red-spawn-ruins">-56,10,0</block>
+    <!-- Possible Blue Spawns -->
+    <block id="blue-spawn-original">-24,10,-45</block>
+    <block id="blue-spawn-forest">10,9,-22</block>
+    <block id="blue-spawn-village">9,9,23</block>
+    <block id="blue-spawn-ruins">-56,10,0</block>
+
+    <!-- DA FINAL HILL -->
+    <cylinder base="0.5,0,0.5" radius="65" height="40" id="WinTimer"/>
+    <cylinder base="0.5,0,0.5" radius="65" height="0" id="WinTimerDisplay"/>
+    <!-- Hill's Capture Zones -->
+    <cylinder base="26.5,0,-41.5" radius="6" height="40" id="forest point"/>
+    <cylinder base="26.5,0,42.5" radius="6" height="40" id="village point"/>
+    <cylinder base="-38.5,0,0.5" radius="6" height="40" id="ruins point"/>
+    <!-- Hill's Display Zone -->
+    <cylinder base="26.5,0,-41.5" radius="13" height="40" id="forest point display"/>
+    <cylinder base="26.5,0,42.5" radius="13" height="40" id="village point display"/>
+    <cylinder base="-38.5,0,0.5" radius="13" height="40" id="ruins point display"/>
+    <apply block="never">
+        <region>
+            <region id="everywhere"/>
+        </region>
+    </apply>
+</regions>
+<!-- CP -->
+<control-points capture-players="lead" incremental="true" show-progress="true">
+    <control-point id="Forest" name="Forest" owner="blue-team" capture-time="5s" points="0">
+        <capture><region id="forest point"/></capture>
+        <progress><region id="forest point display"/></progress>
+    </control-point>
+    <control-point id="Village" name="Village" owner="red-team" capture-time="5s" points="0">
+        <capture><region id="village point"/></capture>
+        <progress><region id="village point display"/></progress>
+    </control-point>
+    <control-point id="Ruins" name="Ruins" capture-time="5s" points="0">
+        <capture><region id="ruins point"/></capture>
+        <progress><region id="ruins point display"/></progress>
+    </control-point>
+    <control-point capture-rule="exclusive" show="true" id="MapIsHill" filter="allowed-to-win" name="Map" capture-time="10s" points="0">
+        <capture><region id="WinTimer"/></capture>
+        <progress><region id="WinTimerDisplay"/></progress>
+    </control-point>
+</control-points>
+<!-- etc. -->
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="16">arrow</item>
+</killreward>
+<maxbuildheight>42</maxbuildheight>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>brick</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>grilled pork</item>
+    <item>golden apple</item>
+    <item>arrow</item>
+</itemremove>
+</map>

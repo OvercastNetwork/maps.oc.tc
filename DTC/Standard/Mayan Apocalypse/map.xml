@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Mayan Apocalypse</name>
+<version>1.0.6</version>
+<objective>Destroy the enemy's core.</objective>
+<authors>
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Overall Map Design"/> <!-- Mikeg542 -->
+</authors>
+<contributors>
+    <contributor uuid="10e0a7d8-065a-4a93-8136-42a2c5d78b54" contribution="XML Code"/> <!-- XX_iiShockzz_XX -->
+    <contributor uuid="02e231d1-107d-46e0-9327-d32a0fed78ab" contribution="Cleansing XML Code"/> <!-- msalihov -->
+</contributors>
+<teams>
+    <team color="gold" max="32">Orange</team>
+    <team color="dark purple" max="32">Purple</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item enchantment="arrow infinite:1" slot="1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item amount="64" damage="2" slot="4">log</item>
+        <item amount="1" slot="5">golden Apple</item>
+        <item amount="32" slot="6">cooked fish</item>
+        <helmet>leather helmet</helmet>
+        <chestplate>leather chestplate</chestplate>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <chestplate color="7F3FB2" damage="-32000">leather chestplate</chestplate>
+        <helmet color="7F3FB2" damage="-32000" enchantment="protection fall:1">leather helmet</helmet>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="D87F33" damage="-32000">leather chestplate</chestplate>
+        <helmet color="D87F33" damage="-32000" enchantment="protection fall:1">leather helmet</helmet>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0">
+        <cylinder base="-17.0,67.0,116" height="0" radius="2"/>
+    </default>
+    <spawn kit="orange" team="orange" yaw="0">
+        <cylinder base="-134.0,31.0,4.5" height="0" radius="2"/>
+    </spawn>
+    <spawn kit="purple" team="purple" yaw="180">
+        <cylinder base="107.0,31.0,75" height="0" radius="2"/>
+    </spawn>
+</spawns>
+<filters>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+<regions>
+    <!-- Playable region -->
+    <apply block="deny-all" message="You may not build outside the map!">
+        <negative>
+            <rectangle max="126,81" min="-152,0"/>
+        </negative>
+    </apply>
+    <!-- Beacon Protection -->
+    <apply block="deny-all" use="deny-all" message="You may not interact with the core beacon.">
+        <cuboid max="-152,23,73" min="-148,100,69"/>
+        <cuboid max="125,23,7" min="121,100,11"/>
+    </apply>
+    <!-- spawn protection -->
+    <apply block="only-iron" message="You may not break or place blocks other than iron!">
+        <!-- Orange Side -->
+        <rectangle max="-116,37" min="-152,0"/>
+        <!-- Purple Side -->
+        <rectangle max="126,81" min="89,43"/>
+    </apply>
+</regions>
+<timelock>off</timelock>
+<maxbuildheight>75</maxbuildheight>
+<cores leak="4" material="obsidian">
+    <core team="orange">
+        <cuboid max="-144.0,40.0,66.0" min="-138.0,34.0,75.0"/>
+    </core>
+    <core team="purple">
+        <cuboid max="117.0,40.0,14.0" min="112.0,34.0,6.0"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>flint</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>cooked fish</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>string</item>
+    <item>seeds</item>
+</itemremove>
+</map>

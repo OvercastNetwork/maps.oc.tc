@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Enchanted Woods</name>
+<version>1.0.0</version>
+<objective>Leak lava from the other team's core.</objective>
+<authors>
+    <author uuid="9ad7df89-519e-4b35-bb9c-752bc8803f19" contribution="Map Design and Construction"/> <!-- exrisaf -->
+    <author uuid="9f7e3b12-206e-4f64-974b-fd03a1071bb7" contribution="Map Design and Construction, Moral Support"/> <!-- Kuuichi -->
+</authors>
+<contributors>
+    <contributor uuid="d69968b1-abb3-4a78-a682-4b017a3dec27" contribution="WorldEdit and Bukkit Help"/> <!-- Fire_Pengo -->
+</contributors>
+<cores material="obsidian" leak="8">
+    <core team="blue">
+        <cuboid min="3,20,42" max="8,15,47"/>
+    </core>
+    <core team="red">
+        <cuboid min="104,20,54" max="99,15,49"/>
+    </core>
+</cores>
+<teams>
+   <team color="blue" max="50" max-overfill="70">Blue</team>
+   <team color="dark red" max="50" max-overfill="70">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64" damage="1">log</item>
+        <item slot="5" amount="64">cooked beef</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>obsidian</item>
+    <item>string</item>
+    <item>seeds</item>
+</itemremove>
+<maxbuildheight>70</maxbuildheight>
+
+<spawns>
+    <spawn team="red" kit="red" yaw="135">
+        <cuboid min="129,4,92" max="125,4,88"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-45">
+        <cuboid min="-22,4,3" max="-18,4,7"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="58,80,47" max="54,80,50"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all">
+        <negative>
+            <rectangle min="134,97" max="-27,-1"/>
+        </negative>
+    </apply>
+    <apply enter="only-blue" block="deny-all" message="This spawning area is protected">
+        <circle center="-19.5,6.5" radius="6.5"/>
+    </apply>
+    <apply enter="only-red" block="deny-all" message="This spawning area is protected">
+        <circle center="126.5,89.5" radius="6.5"/>
+    </apply>
+</regions>
+</map>

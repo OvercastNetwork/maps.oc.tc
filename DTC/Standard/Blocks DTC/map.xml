@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<include src="tutorial.xml"/>
+<name>Blocks DTC</name>
+<version>1.4.4</version>
+<objective>Leak lava from the enemy's obsidian core.</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+</authors>
+<teams>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit name="spawn-protection">
+        <potion amplifier="5" duration="10">damage resistance</potion>
+        <potion amplifier="1" duration="8">strength</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn-protection" yaw="90">
+        <cylinder base="123,25,72" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" kit="spawn-protection" yaw="270">
+        <cylinder base="-89,25,72" radius="3" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="17,34,-17" radius="5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-water" parents="deny-all">
+        <allow>
+            <block>water</block>
+            <block>stationary water</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <union name="blue-storage">
+        <cuboid name="blue-storage-main" min="116,24,58" max="129,34,86"/>
+        <cuboid name="blue-storage-left" min="116,24,41" max="130,30,50"/>
+        <cuboid name="blue-storage-right" min="116,24,94" max="130,30,103"/>
+        <cuboid name="blue-storage-entrance" min="111,23,67" max="116,31,77"/>
+    </union>
+    <union name="red-storage">
+        <cuboid name="red-storage-main" min="-95,24,58" max="-82,34,86"/>
+        <cuboid name="red-storage-left" min="-96,24,94" max="-82,30,103"/>
+        <cuboid name="red-storage-right" min="-96,24,41" max="-82,30,50"/>
+        <cuboid name="red-storage-entrance" min="-77,23,77" max="-82,31,67"/>
+    </union>
+    <union name="tnt-chests">
+        <cuboid name="red-chest1" min="-78,47,85" max="-79,42,83"/>
+        <cuboid name="red-chest2" min="-78,47,80" max="-79,42,78"/>
+        <cuboid name="red-chest3" min="-78,44,73" max="-79,42,71"/>
+        <cuboid name="red-chest4" min="-78,47,66" max="-79,42,64"/>
+        <cuboid name="red-chest5" min="-78,47,61" max="-79,42,59"/>
+        <cuboid name="blue-chest1" min="113,47,59" max="112,42,61"/>
+        <cuboid name="blue-chest2" min="113,47,64" max="112,42,66"/>
+        <cuboid name="blue-chest3" min="113,44,71" max="112,42,73"/>
+        <cuboid name="blue-chest4" min="113,47,78" max="112,42,80"/>
+        <cuboid name="blue-chest5" min="113,47,83" max="112,42,85"/>
+    </union>
+    <apply block-break="only-water" block-place="deny-all" message="You may not modify storage room!">
+        <region name="blue-storage"/>
+        <region name="red-storage"/>
+    </apply>
+    <apply block="deny-all" message="You may not break the chests!">
+        <region name="tnt-chests"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy base!">
+        <region name="red-storage-main"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <region name="blue-storage-main"/>
+    </apply>
+    <!-- Main Area -->
+    <apply block="deny-all" message="You may not build in the void on the side">
+        <negative name="playable-inverse">
+            <rectangle min="131,40" max="-97,104"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="8">
+    <core team="blue">
+        <cuboid min="86,46,74" max="92,40,70"/>
+    </core>
+    <core team="red">
+        <cuboid min="-52,46,74" max="-59,40,70"/>
+    </core>
+</cores>
+<maxbuildheight>90</maxbuildheight>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>`rThis map is a `a`lDestroy the Core `r(DTC) map.</line>
+            <line>`rThe objective is to leak lava from the enemy's `5obsidian `rcore.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="50">16.5,102,18</point>
+        </teleport>
+    </stage>
+    <stage title="Spawn">
+        <message>
+            <line>`rYou spawn inside your base which looks like a double chest.</line>
+            <line>`rThe chests in the base contain all the necessary gear to get ready for battle!</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="15">83,31,72</point>
+        </teleport>
+    </stage>
+    <stage title="Armor">
+        <message>
+            <line>`bDiamond blocks `rcan be found in both of the furnaces on either side of the base.</line>
+            <line>You can use diamond blocks to craft armor.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="25">107,33,42</point>
+        </teleport>
+    </stage>
+    <stage title="The Core">
+        <message>
+            <line>This is `5obsidian `rcore, break your enemy's `5obsidian `rcore and leak the `clava `rfrom inside the core to win.</line>
+        </message>
+        <teleport>
+            <point yaw="-150" pitch="35">83,45,80</point>
+        </teleport>
+    </stage>
+    <stage title="Extra Supplies">
+        <message>
+            <line>`rUseful extra supplies can be found above the base.</line>
+            <line>Stairs from the `aleft `rand `aright `rof spawn allow direct access.</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="-10">90,42,60</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

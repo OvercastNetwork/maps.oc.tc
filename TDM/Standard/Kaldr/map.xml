@@ -1,0 +1,210 @@
+<map proto="1.3.6">
+    <name>Kaldr</name>
+    <version>1.0.0</version>
+    <objective>Be the team with the most kills after the time limit of 12 minutes is reached</objective>
+    <include src="tutorial.xml"/>
+    <multitrade/>
+    <maxbuildheight>23</maxbuildheight>
+    <timelock>on</timelock>
+    <authors>
+        <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" />
+        <!-- Diamyx -->
+    </authors>
+    <contributors>
+        <contributor contribution="Building inspiration">/u/noafro1991</contributor>
+    </contributors>
+    <teams>
+        <team color="dark red" max="15" max-overfill="17">Red</team>
+        <team color="blue" max="15" max-overfill="17">Blue</team>
+    </teams>
+    <score>
+        <time>12m</time>
+        <kills>1</kills>
+    </score>
+    <kits>
+        <kit name="spawn">
+            <item slot="0">stone sword</item>
+            <item slot="1">bow</item>
+            <item slot="2">iron pickaxe</item>
+            <item slot="3">gold spade</item>
+            <item slot="6" amount="30">arrow</item>
+            <item slot="7">golden apple</item>
+            <item slot="8" amount="64">grilled pork</item>
+            <helmet unbreakable="true" enchantment="protection projectile">iron helmet</helmet>
+            <potion duration="5" amplifier="50">damage resistance</potion>
+            <potion duration="5" amplifier="50">regeneration</potion>
+        </kit>
+        <kit name="blue" parents="spawn">
+            <leggings color="0066cc">leather leggings</leggings>
+            <chestplate color="0066cc">leather chestplate</chestplate>
+            <boots color="0066cc">leather boots</boots>
+        </kit>
+        <kit name="red" parents="spawn">
+            <leggings color="cd0000">leather leggings</leggings>
+            <chestplate color="cd0000">leather chestplate</chestplate>
+            <boots color="cd0000">leather boots</boots>
+        </kit>
+    </kits>
+    <killreward>
+        <item>golden apple</item>
+    </killreward>
+    <spawns>
+        <spawn team="red" kit="red">
+            <regions yaw="-90">
+                <block>-13.5,7,140.5</block>
+            </regions>
+        </spawn>
+        <spawn team="blue" kit="blue">
+            <regions yaw="90">
+                <block>2.5,7,4.5</block>
+            </regions>
+        </spawn>
+        <default safe="true">
+            <regions yaw="-90">
+                <block>-57.5,34,72.5</block>
+            </regions>
+        </default>
+    </spawns>
+    <blockdrops>
+        <rule>
+            <region>
+                <region name="renewable-areas" />
+            </region>
+            <filter>
+                <block>emerald ore</block>
+            </filter>
+            <drops>
+                <item>emerald</item>
+            </drops>
+        </rule>
+    </blockdrops>
+    <renewables>
+        <renewable grow="false">
+            <region>
+                <region name="renewable-areas" />
+            </region>
+            <renew>emerald ore</renew>
+            <replace>air</replace>
+        </renewable>
+    </renewables>
+    <regions>
+        <union name="spawns">
+            <cuboid name="red-spawn" min="11,23,130" max="-24,4,147" />
+            <cuboid name="blue-spawn" min="-22,23,14" max="13,4,-2" />
+        </union>
+        <union name="renewable-areas">
+            <cuboid min="-10,9,66" max="-32,3,77" />
+            <cuboid min="21,9,66" max="0,3,78" />
+        </union>
+        <rectangle name="playable-area" min="37,-2" max="-48,147" />
+        <!-- Applied -->
+        <apply enter="only-blue" message="You may not enter the enemy spawn">
+            <region name="blue-spawn" />
+        </apply>
+        <apply enter="only-red" message="You may not enter the enemy spawn">
+            <region name="red-spawn" />
+        </apply>
+        <apply block="deny-all" message="You may not modify the spawns">
+            <region name="spawns" />
+        </apply>
+        <apply block="allow-some">
+            <region name="playable-area" />
+        </apply>
+        <apply block="deny-all">
+            <region name="playable-area" />
+        </apply>
+        
+    </regions>
+    <filters>
+        <filter name="only-red">
+            <any>
+                <team>red</team>
+            </any>
+        </filter>
+        <filter name="only-blue">
+            <any>
+                <team>blue</team>
+            </any>
+        </filter>
+        <filter name="allow-some">
+            <any>
+                <block>snow</block>
+                <block>emerald ore</block>
+                <block>tnt</block>
+            </any>
+        </filter>
+    </filters>
+    <tnt>
+        <instantignite>on</instantignite>
+        <fuse>2s</fuse>
+        <blockdamage>false</blockdamage>
+    </tnt>
+    <toolrepair>
+        <tool>stone sword</tool>
+        <tool>iron pickaxe</tool>
+    </toolrepair>
+    <itemremove>
+        <!-- From the spawn kit -->
+        <item>bow</item>
+        <item>gold spade</item>
+        <item>stained clay</item>
+        <item>grilled pork</item>
+        <item>golden apple</item>
+        <item>iron helmet</item>
+        <item>leather chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+        <item>arrow</item>
+        <!-- From the environment -->
+        <item>carpet</item>
+        <item>red rose</item>
+        <item>seeds</item>
+        <item>log</item>
+        <item>sapling</item>
+        <item>apple</item>
+        <!-- From the villagers trades -->
+        <item>iron boots</item>
+        <item>chainmail chestplate</item>
+        <item>gold sword</item>
+        <item>blaze rod</item>
+        <item>iron sword</item>
+        <item>potion</item>
+        <item>snow ball</item>
+        <item>tnt</item>
+        <item>fishing rod</item>
+    </itemremove>
+    <tutorial>
+        <stage title="Team Deathmatch">
+            <message>
+                <line>`rThis map is a `b`lTeam Deathmatch `rmap.</line>
+                <line>The objective is to have more kills than the enemy team by the end of the match.</line>
+            </message>
+        </stage>
+        <stage title="Emerald Mine">
+            <message>
+                <line>`rThis is the emerald mine in the center of the map.</line>
+                <line>`rYou must break the Emerald Ore in order to get `b`lEmeralds `rthat you can trade for better gear.</line>
+            </message>
+            <teleport>
+                <point yaw="90" pitch="45">14.5,9,72.5</point>
+            </teleport>
+        </stage>
+        <stage title="Villager Trades">
+            <message>
+                <line>`rThese are the 3 merchants in the spawn.</line>
+                <line>`rThey can sell you better `b`lArmor`r, `b`lWeapons`r or `b`lMiscellaneous `ritems for Emeralds.</line>
+            </message>
+            <teleport>
+                <point yaw="90">-9.5,7,4.5</point>
+            </teleport>
+        </stage>
+        <stage title="Archer Tower">
+            <message>
+                <line>`rIn the Archer Tower, there's a merchant that can sell you `b`lRanged Weaponry`r.</line>
+            </message>
+            <teleport>
+                <point yaw="180" pitch="45">-4.5,16,59.5</point>
+            </teleport>
+        </stage>
+    </tutorial>
+</map>

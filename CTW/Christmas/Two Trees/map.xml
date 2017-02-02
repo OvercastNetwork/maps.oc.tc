@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Two Trees</name>
+<version>1.0.0</version>
+<objective>Capture the wool from the enemies wool rooms and return them to your victory monument</objective>
+<authors>
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+    <author uuid="62c41f0e-133d-4192-ad33-f0896f47d23a"/> <!-- nixter1029 -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="'Borrowed' the trees"/> <!-- ElectroidFilms -->
+</contributors>
+<rules>
+    <rule>You may not use lava or obsidian to cover over 50% of a lane.</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="blue" yaw="-90">
+            <cuboid name="blue-spawn-point" min="-156.5,19,52.5" max="-154.5,19,59.5"/>
+        </spawn>
+        <spawn team="red" yaw="90">
+            <cuboid name="red-spawn-point" min="21.5,19,59.5" max="19.5,19,52.5"/>
+        </spawn>
+    </spawns>
+    <default yaw="180">
+        <cuboid name="observer-spawn" min="-68.5,53,53.5" max="-65.5,53,56.5"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3;dig speed:1">iron axe</item>
+        <item slot="4" enchantment="durability:3;silk touch:1">stone spade</item>
+        <item slot="5" amount="64" damage="2">log</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="8" amount="64" name="Frozen Fish">cooked fish</item>
+    </kit>
+</kits>
+<maxbuildheight>32</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>wood</item>
+    <item>cooked fish</item>
+    <item>iron sword</item>
+    <item>glass</item>
+    <item>diamond block</item>
+    <item>emerald block</item>
+    <item>gold block</item>
+    <item>snow ball</item>
+    <item>rails</item>
+    <item>activator rail</item>
+</itemremove>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-spawners">
+        <deny>
+            <block>mob spawner</block>
+        </deny>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-spawners" message="You may not edit spawners!">
+        <rectangle name="mappy" min="36,103" max="-171,9"/>
+    </apply>
+    <negative name="outside-map">
+        <rectangle name="map" min="36,103" max="-171,9"/>
+    </negative>
+    <negative name="outside-center">
+        <rectangle min="-80,18" max="-55,28"/>
+        <rectangle min="-79,84" max="-55,94"/>
+    </negative>
+    <rectangle name="red-spawn" min="13,47" max="26,65"/>
+    <rectangle name="blue-spawn" min="-148,65" max="-161,47"/>
+    <union name="blue-wool-rooms">
+    <!--  Yellow Room  -->
+        <rectangle min="-170.5,102.5" max="-152.5,75.5"/>
+    <!--  Lime Room  -->
+        <rectangle min="-170.5,9.5" max="-152.5,36.5"/>
+    </union>
+    <union name="red-wool-rooms">
+    <!--  Cyan Room  -->
+        <rectangle min="35.5,9.5" max="17.5,36.5"/>
+    <!--  Purple Room  -->
+        <rectangle min="35.5,102.5" max="17.5,75.5"/>
+    </union>
+    <apply block="no-void">
+        <region name="outside-center"/>
+    </apply>
+    <apply enter="only-red" block="only-red" use="only-red-usage" message="You may not enter or modify your own wool rooms!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" block="only-blue" use="only-blue-usage" message="You may not enter or modify your own wool rooms!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter enemy spawn room!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter enemy spawn room!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block="deny-all" message="Don't modify outside the map!">
+        <region name="outside-map"/>
+    </apply>
+    <apply block="deny-all" message="Don't modify the spawns!">
+        <region name="blue-spawn"/>
+        <region name="red-spawn"/>
+    </apply>
+    <apply block="deny-all" message="Do not block the spawns!">
+        <rectangle min="-129,63" max="-151,49"/>
+        <rectangle min="-6,49" max="17,63"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="red" color="lime">
+        <block location="24,21,55"/>
+    </wool>
+    <wool team="red" color="yellow">
+        <block location="24,21,56"/>
+    </wool>
+    <wool team="blue" color="cyan">
+        <block location="-160,21,55"/>
+    </wool>
+    <wool team="blue" color="purple">
+        <block location="-160,21,56"/>
+    </wool>
+</wools>
+<modifybowprojectile><!-- Disable until fixed
+    <projectile>Snowball</projectile>-->
+    <potion duration="4" amplifier="1">confusion</potion>
+</modifybowprojectile>
+</map>

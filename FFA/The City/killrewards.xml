@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<map>
+<killreward>
+    <item name="`eGolden Pack">golden apple</item>
+    <item amount="8">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="3"/>
+    </filter>
+    <item name="`ePunch Bow"
+          damage="354"
+          enchantment="arrow knockback:1;arrow infinite:1"
+          attributes="generic.movementSpeed:base:-0.20"
+          >bow</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="4"/>
+    </filter>
+    <item name="`eSuper Sword"
+          damage="200"
+          attributes="generic.attackDamage:add:6"
+          >iron sword</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="5"/>
+    </filter>
+    <item name="`eSpeed Upgrade"
+          lore="`7Changes your speed to tier 1 for 5 minutes!"
+          damage="8226"
+          potions="speed:6000:0:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="6"/>
+    </filter>
+    <item name="`eSuper Chestplate"
+          unbreakable="true"
+          enchantment="protection projectile:2;protection fall:3"
+          >diamond chestplate</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="7"/>
+    </filter>
+    <item name="`eBlooper"
+          lore="`7Confuses the player that this is thrown on."
+          damage="16424"
+          potions="slow:80:0:false;blindness:100:0:false;poison:20:2:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="8"/>
+    </filter>
+    <item name="`eGolden Pack x3"
+          amount="3"
+          >golden apple</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="9"/>
+    </filter>
+    <item name="`eSpeed Upgrade"
+          lore="`7Changes your speed to tier 2 for 5 minutes!"
+          damage="8226"
+          potions="speed:6000:1:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="10"/>
+    </filter>
+    <item name="`eUndead Guard"
+          damage="54"
+          amount="5"
+          >monster egg</item>
+    <item name="`aBom-omb"
+          damage="50"
+          >monster egg</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="11"/>
+    </filter>
+    <item name="`ePower Bow"
+          damage="344"
+          enchantment="arrow damage:1;arrow infinite:1"
+          attributes="generic.movementSpeed:base:-0.15"
+          >bow</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="12"/>
+    </filter>
+    <item name="`eCrystal Sword"
+          damage="200"
+          attributes="generic.attackDamage:add:6.5"
+          >diamond sword</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="13"/>
+    </filter>
+    <item name="`eFreezer"
+          lore="`7Freezes the player that this isn thrown on."
+          amount="2"
+          damage="16429"
+          potions="slow:20:9:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="14"/>
+    </filter>
+    <item name="`eQuick Escape"
+          lore="`7Gives you super jump boost and speed for a quick escape!"
+          damage="16386"
+          potions="jump:150:14:false;speed:150:9:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="15"/>
+    </filter>
+    <item name="`eWolf Clan"
+          damage="95"
+          amount="5"
+          >monster egg</item>
+    <item name="`eWolf Snacks"
+          amount="32"
+          >bone</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="16"/>
+    </filter>
+    <item name="`eEnder Teleporter">ender pearl</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="17"/>
+    </filter>
+    <item name="`eRelocate"
+          lore="`7Soar into the sky and relocate around the map"
+          damage="16386"
+          potions="jump:200:29:false;night vision:200:0:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="18"/>
+    </filter>
+    <item name="`eSpeed Upgrade"
+          lore="`7Changes your speed to tier 3 for 5 minutes!"
+          damage="8226"
+          potions="speed:6000:2:false"
+          >potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="19"/>
+    </filter>
+    <item name="`eSpidy Guard"
+          damage="59"
+          amount="3"
+          >monster egg</item>
+    <item name="`eExtra Milk">milk bucket</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="20"/>
+    </filter>
+    <item name="`eFinal Reward"
+          lore="`7Or is it..|`7Get 30 kills for the 'Earthshaker'"
+          damage="1"
+          >golden apple</item>
+</killreward>
+<killreward>
+    <filter>
+        <kill-streak persistent="true" count="30"/>
+    </filter>
+    <item name="`cEARTHSHAKER"
+          lore="`7You'll see.."
+          amount="3"
+          >tnt</item>
+</killreward>
+</map>

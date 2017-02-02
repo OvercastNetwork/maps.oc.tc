@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Escensio</name>
+<version>1.0.6</version>
+<objective>Destroy the three enemy flags to win the match.</objective>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+    <author uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2"/> <!-- dinner1111 -->
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+    <author uuid="76cf5483-a7ea-4b5d-8830-385f768c4807"/> <!-- xannallax33 -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="XML Fixing"/> <!-- IM_A_H0B0 -->
+</contributors>
+<teams>
+    <team color="blue" max="25">Blue</team>
+    <team color="dark red" max="25">Red</team>
+</teams>
+<filters>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative>
+            <rectangle min="-100,0" max="102,-100"/>
+        </negative>
+    </apply>
+    <apply block="deny-world">
+        <cuboid min="101,8,-99" max="-99,-8,-99"/>
+    </apply>
+    <apply block="deny-all" message="Don't modify the spawn!">
+        <cuboid name="red-spawn" min="91,37,-25" max="100,oo,-3"/>
+        <cuboid name="blue-spawn" min="-89,37,-75" max="-98,oo,-97"/>
+    </apply>
+    <apply enter="only-red" message="Don't enter the enemy spawn!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="Don't enter the enemy spawn!">
+        <region name="blue-spawn"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="durability:1;dig speed:1">iron axe</item>
+        <item slot="1">bow</item>
+        <item slot="2">stone pickaxe</item>
+        <item slot="4" amount="32" damage="2">log</item>
+        <item slot="5">golden apple</item>
+        <item slot="3" amount="32">cooked beef</item>
+        <item slot="6" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="2">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="FF3300">leather helmet</helmet>
+        <chestplate color="FFFFFF">leather chestplate</chestplate>
+        <leggings color="000000">leather leggings</leggings>
+        <boots color="FF3300">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000CC">leather helmet</helmet>
+        <chestplate color="FFFFFF">leather chestplate</chestplate>
+        <leggings color="000000">leather leggings</leggings>
+        <boots color="0000CC">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="270">
+        <cuboid min="-94,39,-83" max="-92,39,-88"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="96,39,-11" max="94,39,-16"/>
+    </spawn>
+    <default>
+        <cuboid min="-0,57,-122" max="2,57,-120"/>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+    <tool>stone pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>wool:11</item>
+    <item>wool:14</item>
+    <item>wool:15</item>
+    <item>wool:0</item>
+    <item>wool:7</item>
+    <item>wool</item>
+    <item>log:2</item>
+    <item>wood:2</item>
+    <item>spruce wood stairs</item>
+    <item>wood step:1</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>shears</item>
+</itemremove>
+<destroyables completion="75%" materials="wool:11;wool:15;wool:14;wool:7;wool">
+    <destroyable name="Right Flag" owner="red">
+        <cuboid min="74,35,-91" max="76,48,-99"/>
+    </destroyable>
+    <destroyable name="Center Flag" owner="red">
+        <cuboid min="34,47,-63" max="36,34,-71"/>
+    </destroyable>
+    <destroyable name="Left Flag" owner="red">
+        <cuboid min="73,76,-46" max="71,33,-38"/>
+    </destroyable>
+    <destroyable name="Left Flag" owner="blue">
+        <cuboid min="-69,33,-61" max="-71,46,-53"/>
+    </destroyable>
+    <destroyable name="Center Flag" owner="blue">
+        <cuboid min="-34,47,-36" max="-32,34,-28"/>
+    </destroyable>
+    <destroyable name="Right Flag" owner="blue">
+        <cuboid min="-74,48,-8" max="-72,35,-0"/>
+    </destroyable>
+</destroyables>
+<maxbuildheight>60</maxbuildheight>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <blockdamage>off</blockdamage>
+</tnt>
+<tutorial>
+    <stage title="Destroy the Flag">
+        <message>
+            <line>`rThis map is a `a`lDestroy the Flag `r(DTF) map</line>
+            <line>The objective is to destroy the other team's monuments on their side.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="45">-10,109,-106</point>
+        </teleport>
+    </stage>
+    <stage title="The Monuments">
+        <message>
+            <line>`rThis flag is a `bmonument`r. You must destroy all of the enemy flags to win.</line>
+            <line>`cFire `rand `cTNT `rwill not work. Shears are a good way to quickly destroy them.</line>
+        </message>
+        <teleport>
+            <point yaw="-90" pitch="0">26,42,-67.5</point>
+        </teleport>
+    </stage>
+    <stage title="Iron">
+        <message>
+            <line>`bIron blocks `rcan be found by digging underneath the rocks.</line>
+            <line>You can use the `biron blocks `rto craft `aarmor`r.</line>
+        </message>
+        <teleport>
+            <point yaw="145" pitch="45">67,42,-42</point>
+        </teleport>
+    </stage>
+    <stage title="Extra Supplies">
+        <message>
+            <line>There are `bchests `rscattered around the map that contain `bextra supplies`r.</line>
+            <line>The ships contain chests filled with `cTNT`r.</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="25">79,46,-6.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

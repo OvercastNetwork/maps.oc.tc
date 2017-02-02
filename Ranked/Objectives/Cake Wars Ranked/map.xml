@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Cake Wars Ranked</name>
+<version>3.1</version>
+<objective>Leak lava from the enemy's gold core below the cakeline.</objective>
+<authors>
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+</authors>
+<time>30m</time>
+<contributors>
+    <contributor uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/>
+</contributors>
+<teams>
+    <team id="red" color="dark red" min="8" max="10">Red</team>
+    <team id="blue" color="blue" min="8" max="10">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="teams" yaw="90">
+        <regions>
+            <region id="blue-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="teams" yaw="-90">
+        <regions>
+            <region id="red-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="teams">
+        <regions>
+            <cylinder base="0.5,102,-47.5" radius="2" height="1"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="teams" force="true" potion-particles="false">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<regions>
+    <union id="spawns">
+        <block id="blue-spawn" location="78.5,64,10.5"/>
+        <block id="red-spawn" location="-77.5,64,10.5"/>
+    </union>
+    <negative id="play">
+        <rectangle min="-37,-30" max="38,51"/>
+    </negative>
+    <union id="tunnels">
+        <rectangle id="red-tunnel" min="-81,7" max="-37,14"/>
+        <rectangle id="blue-tunnel" min="38,7" max="82,14"/>
+    </union>
+    <cuboid id="height-limit" min="-oo,100,-oo" max="oo,oo,oo"/>
+    <apply block="never" region="height-limit" message="You cannot build above y=100!"/>
+    <apply block="never" region="play" message="You cannot build outside of the map!"/>
+    <apply enter="never" region="tunnels" message="You may not enter the spawn tunnel"/>
+</regions>
+<cores material="gold block" leak="5">
+    <core team="blue">
+        <region>
+            <cuboid min="19,64,8" max="24,70,13"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <cuboid min="-23,64,8" max="-18,70,13"/>
+        </region>
+    </core>
+</cores>
+<itemremove>
+    <item>gold block</item>
+    <item>obsidian</item>
+</itemremove>
+<renewables>
+    <renewable interval="240s" particles="true" sound="true">
+        <region><cuboid min="-19,84,-23" max="-17,87,-21"/></region>
+        <renew-filter><any><material>iron block</material></any></renew-filter>
+    </renewable>
+    <renewable interval="240s" particles="true" sound="true">
+        <region><cuboid min="-19,84,42" max="-17,87,44"/></region>
+        <renew-filter><any><material>iron block</material></any></renew-filter>
+    </renewable>
+    <renewable interval="240s" particles="true" sound="true">
+        <region><cuboid min="18,84,42" max="20,87,44"/></region>
+        <renew-filter><any><material>iron block</material></any></renew-filter>
+    </renewable>
+    <renewable interval="240s" particles="true" sound="true">
+        <region><cuboid min="18,84,-23" max="20,87,-21"/></region>
+        <renew-filter><any><material>iron block</material></any></renew-filter>
+    </renewable>
+</renewables>
+</map>

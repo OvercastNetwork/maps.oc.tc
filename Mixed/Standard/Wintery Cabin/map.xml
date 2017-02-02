@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Wintery Cabin</name>
+<version>1.1.0</version>
+<objective>Destroy the enemy's monument and core.</objective>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
+    <author uuid="af9c1942-af66-42d1-89f9-9b677c281e03"/> <!-- _IQ -->
+</authors>
+<teams>
+   <team id="red" color="dark red" max="42" max-overfill="50">Red</team>
+   <team id="blue" color="blue" max="42" max-overfill="50">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="3">stone axe</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="4" amount="32">golden carrot</item>
+        <item slot="5" amount="64" damage="2">log</item>
+        <item slot="6">water bucket</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="3">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-24">
+        <point>79,4,-545</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-158">
+        <point>79,4,-236</point>
+    </spawn>
+    <default yaw="0">
+        <cuboid min="54,90,-391" max="54,90,-390"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="1">
+    <core team="blue">
+        <cuboid min="32,8,-236" max="28,16,-232"/>
+    </core>
+    <core team="red">
+        <cuboid min="28,8,-549" max="32,16,-545"/>
+    </core>
+</cores>
+<destroyables name="Monument" materials="obsidian" completion="100%" mode-changes="true">
+    <destroyable owner="blue">
+       <cuboid min="28,5,-276" max="24,10,-272"/>
+    </destroyable>
+    <destroyable owner="red">
+       <cuboid min="28,5,-509" max="24,10,-505"/>
+    </destroyable>
+</destroyables>
+<renewables>
+    <renewable rate="2.5" particles="true" sound="true" avoid-entities="true">
+        <region>
+            <cuboid name="iron1" min="86,0,-281" max="72,6,-291"/>
+            <cuboid name="iron2" min="86,0,-501" max="72,6,-491"/>
+        </region>
+        <renew>iron block</renew>
+    </renewable>
+</renewables>
+<modes>
+    <mode after="15m" material="beacon"/>
+    <mode after="25m" material="gold block"/>
+</modes>
+<regions>
+    <rectangle name="redspawn" min="74,-551" max="89,-534"/>
+    <rectangle name="bluespawn" min="89,-231" max="74,-248"/>
+    <rectangle name="map" min="3,-622" max="102,-160"/>
+    <apply block="deny-all" message="You may not build in spawns!">
+        <region name="redspawn"/>
+        <region name="bluespawn"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside the map boundries!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+</regions>
+<itemremove>
+    <item>carpet</item>
+    <item>golden carrot</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>arrow</item>
+    <item>apple</item>
+    <item>crops</item>
+    <item>sapling</item>
+    <item>grass</item>
+    <item>red rose</item>
+    <item>stained clay</item>
+    <item>obsidian</item>
+    <item>wool</item>
+    <item>bucket</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond pickaxe</tool>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<maxbuildheight>31</maxbuildheight>
+<timelock>on</timelock>
+</map> 

@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Sands of Life</name>
+<version>2.1</version>
+<objective>Amass the most amount of points before time runs out!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+    <author uuid="a348a860-8c8b-475f-b793-d556d45252a7"/> <!-- i2 -->
+</authors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<score>
+    <time>9m</time>
+</score>
+<rage/>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true" enchantment="damage all:10" lore="`aOne hit slice!">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10" lore="`aOne shot pierce!">bow</item>
+        <item slot="8" amount="4">arrow</item>
+        <leggings>chainmail leggings</leggings>
+        <boots enchantment="protection fall:2">chainmail boots</boots>
+        <potion duration="10" amplifier="100">damage resistance</potion>
+        <potion duration="5" amplifier="20">regeneration</potion>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="1">speed</potion>
+        <potion duration="oo" amplifier="2">jump</potion>
+    </kit>
+    <kit name="team-blue" parents="spawn">
+        <helmet color="253193">leather helmet</helmet>
+        <chestplate color="253193">leather chestplate</chestplate>
+    </kit>
+    <kit name="team-red" parents="spawn">
+        <helmet color="9e2b27">leather helmet</helmet>
+        <chestplate color="9e2b27">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="0" kit="observers">
+        <cuboid min="2143,61,-560" max="2145,61,-558"/>
+    </default>
+    <spawns team="red" kit="team-red">
+        <spawn yaw="179">
+            <cuboid min="2097,5,-484" max="2098,5,-483"/>
+        </spawn>
+        <spawn yaw="0">
+            <cuboid min="2191,5,-634" max="2190,5,-635"/>
+        </spawn>
+    </spawns>
+    <spawns team="blue" kit="team-blue">
+        <spawn yaw="90">
+            <cuboid min="2219,5,-513" max="2220,5,-512"/>
+        </spawn>
+        <spawn yaw="-90">
+            <cuboid min="2068,5,-605" max="2069,5,-606"/>
+        </spawn>
+    </spawns>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<filters>
+    <filter name="only-cobwebs">
+        <block>web</block>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-cobwebs">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>stick</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+</itemremove>
+</map>

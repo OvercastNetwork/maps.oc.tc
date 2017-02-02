@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Solitude</name>
+<version>1.0.1</version>
+<objective>Leak lava from the enemy's two cores.</objective>
+<authors>
+    <author uuid="82d03646-d1a1-4383-a533-9509b130f751"/> <!-- iLifting -->
+    <author uuid="15101f54-cdbc-4cb2-8ed7-51e876824b71"/> <!-- duckagent007 -->
+    <author uuid="d4d9add2-3890-4150-b565-806385cea8e8"/> <!-- XetCos -->
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25"/> <!-- matic0basle -->
+    <author uuid="62b6d081-8df8-4c09-aa15-71141ca7df76"/> <!-- Arzanex -->
+</authors>
+<contributors>
+    <contributor contribution="Feedback and some Building help">* Rest of Simple Plan</contributor>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Suggestions, Moral Support, and Feedback"/> <!-- Plastix -->
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Suggestions, Moral Support, and Feedback"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="6968cbde-c2b7-479c-a8da-f33f109f013b" contribution="Moral Support and Feedback"/> <!-- Brottweiler -->
+    <contributor uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Moral Support and Feedback"/> <!-- xXFracXx -->
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Minor Building and Moral Support"/> <!-- lonelyhornet -->
+    <contributor uuid="b0c7d805-ee93-4b59-be4f-2438a9db418e" contribution="Build Slave"/> <!-- RainoBoy97 -->
+    <contributor uuid="b34f6de7-8f74-4d4b-a8dc-85e20018fb68" contribution="Build Slave"/> <!-- Schemetrical -->
+    <contributor uuid="6fe9c9fe-b2dd-448c-b9f4-42b2f8c14836" contribution="Build Slave"/> <!-- brummy97 -->
+    <contributor uuid="c6293ee3-87ab-4a01-95bb-1f68a01c1e3a" contribution="Overall Detail"/> <!-- 9grenier -->
+</contributors>
+<teams>
+    <team color="dark purple" max="40">Purple</team>
+    <team color="gold" max="40">Orange</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" amount="32">log</item>
+        <item slot="4" amount="64">glass</item>
+        <item slot="5" amount="32">torch</item>
+        <item slot="6" amount="32">ladder</item>
+        <item slot="7">golden apple</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="29" amount="64">arrow</item>
+        <item slot="8" amount="16">cooked beef</item>
+        <chestplate>gold chestplate</chestplate>
+        <leggings>chainmail leggings</leggings>
+    </kit>
+    <kit name="purple" parents="teams">
+        <helmet color="7F3FB2">leather helmet</helmet>
+        <boots color="7F3FB2">leather boots</boots>
+    </kit>
+    <kit name="orange" parents="teams">
+        <helmet color="D87F33">leather helmet</helmet>
+        <boots color="D87F33">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <negative name="outside-map">
+        <rectangle name="map" min="26,-367" max="-110,82"/>
+    </negative>
+    <cuboid name="purple-core-left" min="-69,31,17" max="-64,42,12"/>
+    <cuboid name="purple-core-right" min="-14,31,17" max="-9,42,12"/>
+    <cuboid name="orange-core-left" min="-15,31,-302" max="-20,42,-297"/>
+    <cuboid name="orange-core-right" min="-69,31,-302" max="-75,42,-297"/>
+    <cuboid name="purple-base" min="-16,46,47" max="-30,oo,56"/>
+    <cuboid name="orange-base" min="-68,46,-332" max="-54,oo,-341"/>
+    <apply block="no-fire-a">
+        <region name="outside-map"/>
+    </apply>
+    <apply block="no-fire-a" message="Don't modify the bases!">
+        <region name="purple-base"/>
+        <region name="orange-base"/>
+    </apply>
+    <apply block="no-fire-b">
+        <region name="map"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="no-fire-a">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+    <filter name="no-fire-b">
+        <deny>
+            <block>fire</block>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<spawns>
+    <spawn team="purple" kit="purple" yaw="90">
+        <cuboid name="purple-spawn-point" min="-21,60,52" max="-19,61,50"/>
+    </spawn>
+    <spawn team="orange" kit="orange" yaw="-90">
+        <cuboid name="orange-spawn-point" min="-63,60,-337" max="-65,61,-335"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder name="observer-spawn" base="49.5,31,-142.5" radius="3" height="0"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="4">
+    <core name="Left Core" team="purple">
+        <region name="purple-core-left"/>
+    </core>
+    <core name="Left Core" team="orange">
+        <region name="orange-core-left"/>
+    </core>
+    <core name="Right Core" team="purple">
+        <region name="purple-core-right"/>
+    </core>
+    <core name="Right Core" team="orange">
+        <region name="orange-core-right"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>torch</item>
+    <item>ladder</item>
+    <item>cooked beef</item>
+</itemremove>
+</map>

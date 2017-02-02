@@ -1,0 +1,3893 @@
+<map proto="1.4.0">
+<name>The Grand Dueling Tournament</name>
+<version>0.3.0</version>
+<objective>Win the tournament.</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
+</authors>
+<contributors>
+    <contributor contribution="Helped design the arena" uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <contributor contribution="Helped design the arena" uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
+</contributors>
+<structures>
+    <structure id="empty-arena-structure-1" air="true">
+        <region>
+            <region id="empty1-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-2" air="true">
+        <region>
+            <region id="empty2-arena"/> 
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-3" air="true">
+        <region> 
+            <region id="empty3-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-4" air="true">
+        <region>
+            <region id="empty4-arena"/>
+        </region>
+    </structure>
+    <!--
+    <structure id="empty-arena-structure-5" air="true">
+        <region>
+            <region id="empty5-arena"/>
+        </region>
+    </structure>
+    -->
+    <structure id="empty-arena-structure-6" air="true">
+        <region>
+            <region id="empty6-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-7" air="true">
+        <region>
+            <region id="empty7-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-8" air="true">
+        <region>
+            <region id="empty8-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-9" air="true">
+        <region>
+            <region id="empty9-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-arena-structure-10" air="true">
+        <region>
+            <region id="empty10-arena"/>
+        </region>
+    </structure>
+    <structure id="empty-spawn" air="true">
+        <region>
+            <region id="clear-spawn"/>
+        </region>
+    </structure>
+    
+    <!-- arena 1 -->
+    <structures offset="0,0,-270">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena1-round1</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena1-round1-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena1-round1-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena1-round1-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena1-round1-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena1-round1-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena1-round1-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena1-round1-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena1-round1-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena1-round1-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- arena 2 -->
+    <structures offset="-92,0,-270">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena2-round1</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena2-round1-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena2-round1-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena2-round1-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena2-round1-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena2-round1-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena2-round1-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena2-round1-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena2-round1-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena2-round1-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 3 -->
+    <structures offset="-185,0,-270">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena3-round1</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena3-round1-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena3-round1-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena3-round1-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena3-round1-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena3-round1-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena3-round1-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena3-round1-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena3-round1-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena3-round1-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 4 -->
+    <structures offset="-278,0,-270">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena4-round1</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena4-round1-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena4-round1-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena4-round1-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena4-round1-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena4-round1-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena4-round1-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena4-round1-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena4-round1-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena4-round1-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+    
+    <structures offset="0,0,-373">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena1-round2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena1-round2-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena1-round2-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena1-round2-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena1-round2-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena1-round2-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena1-round2-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena1-round2-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena1-round2-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena1-round2-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 2 -->
+    <structures offset="-92,0,-373">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena2-round2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena2-round2-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena2-round2-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena2-round2-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena2-round2-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena2-round2-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena2-round2-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena2-round2-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena2-round2-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena2-round2-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 3 -->
+    <structures offset="-185,0,-373">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena3-round2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena3-round2-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena3-round2-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena3-round2-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena3-round2-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena3-round2-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena3-round2-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena3-round2-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena3-round2-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena3-round2-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 4 -->
+    <structures offset="-278,0,-373">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena4-round2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena4-round2-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena4-round2-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena4-round2-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena4-round2-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena4-round2-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena4-round2-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena4-round2-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena4-round2-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena4-round2-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+    
+    <structures offset="0,0,-476">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena1-round3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena1-round3-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena1-round3-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena1-round3-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena1-round3-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena1-round3-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena1-round3-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena1-round3-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena1-round3-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena1-round3-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 2 -->
+    <structures offset="-92,0,-476">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena2-round3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena2-round3-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena2-round3-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena2-round3-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena2-round3-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena2-round3-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena2-round3-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena2-round3-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena2-round3-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena2-round3-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 3 -->
+    <structures offset="-185,0,-476">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena3-round3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena3-round3-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena3-round3-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena3-round3-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena3-round3-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena3-round3-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena3-round3-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena3-round3-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena3-round3-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena3-round3-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+        <!-- arena 4 -->
+    <structures offset="-278,0,-476">
+        <dynamic structure="empty-arena-structure-1">
+            <filter>
+                <objective any="true">arena4-round3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-2">
+            <filter>
+                <objective any="true">arena4-round3-remove2</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-3">
+            <filter>
+                <objective any="true">arena4-round3-remove3</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-4">
+            <filter>
+                <objective any="true">arena4-round3-remove4</objective>
+            </filter>
+        </dynamic>
+        <!--
+        <dynamic structure="empty-arena-structure-5">
+            <filter>
+                <objective any="true">arena4-round3-remove5</objective>
+            </filter>
+        </dynamic>
+        -->
+        <dynamic structure="empty-arena-structure-6">
+            <filter>
+                <objective any="true">arena4-round3-remove6</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-7">
+            <filter>
+                <objective any="true">arena4-round3-remove7</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-8">
+            <filter>
+                <objective any="true">arena4-round3-remove8</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-9">
+            <filter>
+                <objective any="true">arena4-round3-remove9</objective>
+            </filter>
+        </dynamic>
+        <dynamic structure="empty-arena-structure-10">
+            <filter>
+                <objective any="true">arena4-round3-remove10</objective>
+            </filter>
+        </dynamic>
+    </structures>
+    
+    <structures offset="0,0,-50">
+        <dynamic structure="empty-spawn">
+            <filter>
+                <any>
+                    <all>
+                        <time>10s</time>
+                        <not>
+                            <time>12s</time>
+                        </not>
+                    </all>
+                    <all>
+                        <objective any="true">round1-end</objective>
+                        <not>
+                            <objective any="true">arena2-round2</objective>
+                        </not>
+                    </all>
+                    <all>
+                        <objective any="true">round2-end</objective>
+                        <not>
+                            <objective any="true">arena2-round3</objective>
+                        </not>
+                    </all>
+                </any>
+            </filter>
+        </dynamic>
+    </structures> 
+</structures>
+<teams>
+    <team id="red-team" color="dark red" max="2" min="2">Red Team</team>
+    <team id="blue-team" color="blue" max="2" min="2">Blue Team</team>
+    <team id="green-team" color="dark green" max="2" min="2">Green Team</team>
+    <team id="purple-team" color="dark purple" max="2" min="2">Purple Team</team>
+    <team id="yellow-team" color="yellow" max="2" min="2">Yellow Team</team>
+    <team id="white-team" color="white" max="2" min="2">White Team</team>
+    <team id="pink-team" color="light purple" max="2" min="2">Pink Team</team>
+    <team id="brown-team" color="gray" max="2" min="2">Grey Team</team>
+</teams>
+
+<filters>
+    <!-- idFormat="team-wins-round" hillFormat="arena-round" -->
+   
+    <!--- round1 -->
+    <all id="blue.red-1win-round1">
+        <objective>arena1-round1</objective>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="blue.red-0win-round1">
+        <not>
+            <objective>arena1-round1</objective>
+        </not>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <any>
+            <team>red-team</team>
+            <team>blue-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="green.purple-1win-round1">
+        <objective>arena2-round1</objective>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="green.purple-0win-round1">
+        <not>
+            <objective>arena2-round1</objective>
+        </not>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <any>
+            <team>green-team</team>
+            <team>purple-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="yellow.white-1win-round1">
+        <objective>arena3-round1</objective>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="yellow.white-0win-round1">
+        <not>
+            <objective>arena3-round1</objective>
+        </not>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <any>
+            <team>yellow-team</team>
+            <team>white-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="pink.brown-1win-round1">
+        <objective>arena4-round1</objective>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <objective team="red-team">round1-end</objective>
+    </all>
+    <all id="pink.brown-0win-round1">
+        <not>
+            <objective>arena4-round1</objective>
+        </not>
+        <not>
+            <objective team="red-team">round2-start</objective>
+        </not>
+        <any>
+            <team>pink-team</team>
+            <team>brown-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+    </all>
+   
+    <!-- round2 -->
+    <all id="blue.red.green.purple-2wins-round2">
+        <objective>arena1-round2</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+    </all>
+    <all id="blue.red-1win-round2(first)">
+        <objective>arena1-round1</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <any>
+                <objective team="red-team">round3-start</objective>
+                <objective>arena1-round2</objective>
+            </any>
+        </not>
+        <any>
+            <team>blue-team</team>
+            <team>red-team</team>
+        </any>
+    </all>
+    <all id="blue.red-1win-round2(not.first)">
+        <objective>arena3-round2</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+        <any>
+            <team>blue-team</team>
+            <team>red-team</team>
+        </any>
+    </all>
+      <all id="green.purple-1win-round2(first)">
+        <objective>arena2-round1</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <any>
+                <objective team="red-team">round3-start</objective>
+                <objective>arena1-round2</objective>
+            </any>
+        </not>
+        <any>
+            <team>green-team</team>
+            <team>purple-team</team>
+        </any>
+    </all>
+   <all id="green.purple-1win-round2(not.first)">
+        <objective>arena4-round2</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+        <any>
+            <team>green-team</team>
+            <team>purple-team</team>
+        </any>
+    </all>
+    <all id="yellow.white.pink.brown-2wins-round2">
+        <objective>arena2-round2</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+    </all>
+    <all id="yellow.white-1win-round2(not.first)">
+        <objective>arena3-round2</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+        <any>
+            <team>yellow-team</team>
+            <team>white-team</team>
+        </any>
+    </all>
+    <all id="yellow.white-1win-round2(first)">
+        <objective>arena3-round1</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <any>
+                <objective team="red-team">round3-start</objective>
+                <objective>arena2-round2</objective>
+            </any>
+        </not>
+        <any>
+            <team>yellow-team</team>
+            <team>white-team</team>
+        </any>
+    </all>
+    <all id="blue.red.yellow.white-0win-round2">
+        <not>
+            <any>
+                <objective>arena3-round1</objective>
+                <objective>arena3-round2</objective>
+                <objective>arena1-round1</objective>
+            </any>
+        </not>
+        <any>
+            <team>yellow-team</team>
+            <team>white-team</team>
+            <team>red-team</team>
+            <team>blue-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+    </all>
+   <all id="pink.brown-1win-round2(first)">
+        <objective>arena4-round1</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <any>
+                <objective team="red-team">round3-start</objective>
+                <objective>arena2-round2</objective>
+            </any>
+        </not>
+        <any>
+            <team>pink-team</team>
+            <team>brown-team</team>
+        </any>
+    </all>
+    <all id="pink.brown-1win-round2(not.first)">
+        <objective>arena4-round2</objective>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+        <any>
+            <team>pink-team</team>
+            <team>brown-team</team>
+        </any>
+    </all>
+    <all id="green.purple.pink.brown-0win-round2">
+        <not>
+            <any>
+                <objective>arena4-round1</objective>
+                <objective>arena4-round2</objective>
+                <objective>arena2-round1</objective>
+            </any>
+        </not>
+        <any>
+            <team>pink-team</team>
+            <team>brown-team</team>
+            <team>green-team</team>
+            <team>purple-team</team>
+        </any>
+        <objective team="red-team">round1-end</objective>
+        <objective team="red-team">round2-end</objective>
+        <not>
+            <objective team="red-team">round3-start</objective>
+        </not>
+    </all>
+    
+    <!-- round3 -->
+    <objective id="all.teams-3wins-round3">arena1-round3</objective>
+    <any id="all.teams-2wins-round3">
+        <all>
+            <objective>arena1-round1</objective>
+            <objective>arena1-round2</objective>
+        </all>
+        <all>
+            <objective>arena2-round1</objective>
+            <objective>arena1-round2</objective>
+        </all>
+        <all>
+            <objective>arena3-round1</objective>
+            <objective>arena2-round2</objective>
+        </all>
+        <all>
+            <objective>arena4-round1</objective>
+            <objective>arena2-round2</objective>
+        </all>
+        <all>
+            <objective>arena1-round1</objective>
+            <objective>arena2-round3</objective>
+        </all>
+        <all>
+            <objective>arena2-round1</objective>
+            <objective>arena2-round3</objective>
+        </all>
+        <all>
+            <objective>arena3-round1</objective>
+            <objective>arena3-round3</objective>
+        </all>
+        <all>
+            <objective>arena4-round1</objective>
+            <objective>arena2-round3</objective>
+        </all>
+        <all>
+            <objective>arena3-round2</objective>
+            <objective>arena3-round3</objective>
+        </all>
+        <all>
+            <objective>arena4-round2</objective>
+            <objective>arena3-round3</objective>
+        </all>
+    </any>
+    <any id="all.teams-1win-round3">
+        <objective>arena1-round1</objective>
+        <objective>arena2-round1</objective>
+        <objective>arena3-round1</objective>
+        <objective>arena4-round1</objective>
+        <objective>arena1-round2</objective>
+        <objective>arena2-round2</objective>
+        <objective>arena3-round2</objective>
+        <objective>arena4-round2</objective>
+        <objective>arena1-round3</objective>
+        <objective>arena2-round3</objective>
+        <objective>arena3-round3</objective>
+        <objective>arena4-round3</objective>
+    </any>
+    <not id="all.teams-0win-round3">
+        <any>
+            <objective>arena1-round1</objective>
+            <objective>arena2-round1</objective>
+            <objective>arena3-round1</objective>
+            <objective>arena4-round1</objective>
+            <objective>arena1-round2</objective>
+            <objective>arena2-round2</objective>
+            <objective>arena3-round2</objective>
+            <objective>arena4-round2</objective>
+            <objective>arena1-round3</objective>
+            <objective>arena2-round3</objective>
+            <objective>arena3-round3</objective>
+            <objective>arena4-round3</objective>
+        </any>
+    </not>
+    <!-- working++ -->
+    
+    <!-- arena 1-->
+    <any id="arena1->2">
+        <not> 
+            <objective any="true">arena2-round1</objective>
+        </not>
+        <all>
+            <not>
+                <objective any="true">arena2-round2</objective>
+            </not>
+            <objective any="true">round1-end</objective>
+        </all>
+        <all>
+            <not>
+                <objective any="true">arena2-round3</objective>
+            </not>
+            <objective any="true">round2-end</objective>
+        </all>
+    </any>
+    <any id="arena1->3">
+        <all>
+            <objective any="true">arena2-round1</objective>
+            <not>
+                <objective any="true">arena3-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena2-round2</objective>
+            <not>
+                <objective any="true">arena3-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena2-round3</objective>
+            <not>
+                <objective any="true">arena3-round3</objective>
+            </not>
+        </all>
+    </any>
+    <any id="arena1->4">
+        <all>
+            <objective any="true">arena2-round1</objective>
+            <objective any="true">arena3-round1</objective>
+            <not>
+                <objective any="true">arena4-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena2-round2</objective>
+            <objective any="true">arena3-round2</objective>
+            <not>
+                <objective any="true">arena4-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena2-round3</objective>
+            <objective any="true">arena3-round3</objective>
+            <not>
+                <objective any="true">arena4-round3</objective>
+            </not>
+        </all>
+    </any>
+    
+    
+    <!-- arena 2-->
+    
+    <any id="arena2->3">
+        <not> 
+            <objective any="true">arena3-round1</objective>
+        </not>
+        <all>
+            <not>
+                <objective any="true">arena3-round2</objective>
+            </not>
+            <objective any="true">round1-end</objective>
+        </all>
+        <all>
+            <not>
+                <objective any="true">arena3-round3</objective>
+            </not>
+            <objective any="true">round2-end</objective>
+        </all>
+    </any>
+    <any id="arena2->4">
+        <all>
+            <objective any="true">arena3-round1</objective>
+            <not>
+                <objective any="true">arena4-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena3-round2</objective>
+            <not>
+                <objective any="true">arena4-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena3-round3</objective>
+            <not>
+                <objective any="true">arena4-round3</objective>
+            </not>
+        </all>
+    </any>
+    <any id="arena2->1">
+        <all>
+            <objective any="true">arena3-round1</objective>
+            <objective any="true">arena4-round1</objective>
+            <not>
+                <objective any="true">arena1-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena3-round2</objective>
+            <objective any="true">arena4-round2</objective>
+            <not>
+                <objective any="true">arena1-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena3-round3</objective>
+            <objective any="true">arena4-round3</objective>
+            <not>
+                <objective any="true">arena1-round3</objective>
+            </not>
+        </all>
+    </any>
+    
+    <!-- arena 3-->
+    
+    <any id="arena3->4">
+        <not> 
+            <objective any="true">arena4-round1</objective>
+        </not>
+        <all>
+            <not>
+                <objective any="true">arena4-round2</objective>
+            </not>
+            <objective any="true">round1-end</objective>
+        </all>
+        <all>
+            <not>
+                <objective any="true">arena4-round3</objective>
+            </not>
+            <objective any="true">round2-end</objective>
+        </all>
+    </any>
+    <any id="arena3->1">
+        <all>
+            <objective any="true">arena4-round1</objective>
+            <not>
+                <objective any="true">arena1-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena4-round2</objective>
+            <not>
+                <objective any="true">arena1-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena4-round3</objective>
+            <not>
+                <objective any="true">arena1-round3</objective>
+            </not>
+        </all>
+    </any>
+    <any id="arena3->2">
+        <all>
+            <objective any="true">arena4-round1</objective>
+            <objective any="true">arena1-round1</objective>
+            <not>
+                <objective any="true">arena2-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena4-round2</objective>
+            <objective any="true">arena1-round2</objective>
+            <not>
+                <objective any="true">arena2-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena4-round3</objective>
+            <objective any="true">arena1-round3</objective>
+            <not>
+                <objective any="true">arena2-round3</objective>
+            </not>
+        </all>
+    </any>
+    
+    <!-- arena 4-->
+    
+    <any id="arena4->1">
+        <not> 
+            <objective any="true">arena1-round1</objective>
+        </not>
+        <all>
+            <not>
+                <objective any="true">arena1-round2</objective>
+            </not>
+            <objective any="true">round1-end</objective>
+        </all>
+        <all>
+            <not>
+                <objective any="true">arena1-round3</objective>
+            </not>
+            <objective any="true">round2-end</objective>
+        </all>
+    </any>
+    <any id="arena4->2">
+        <all>
+            <objective any="true">arena1-round1</objective>
+            <not>
+                <objective any="true">arena2-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round2</objective>
+            <not>
+                <objective any="true">arena2-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round3</objective>
+            <not>
+                <objective any="true">arena2-round3</objective>
+            </not>
+        </all>
+    </any>
+    <any id="arena4->3">
+        <all>
+            <objective any="true">arena1-round1</objective>
+            <objective any="true">arena2-round1</objective>
+            <not>
+                <objective any="true">arena3-round1</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round2</objective>
+            <objective any="true">arena2-round2</objective>
+            <not>
+                <objective any="true">arena3-round2</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round3</objective>
+            <objective any="true">arena2-round3</objective>
+            <not>
+                <objective any="true">arena3-round3</objective>
+            </not>
+        </all>
+    </any>
+    
+    <all id="arena1-round1-ongoing">
+        <not>
+            <objective any="true">arena1-round1</objective>
+        </not>
+        <objective any="true">round1-start</objective>
+    </all>
+    <all id="arena2-round1-ongoing">
+        <not>
+            <objective any="true">arena2-round1</objective>
+        </not>
+        <objective any="true">round1-start</objective>
+    </all>
+    <all id="arena3-round1-ongoing">
+        <not>
+            <objective any="true">arena3-round1</objective>
+        </not>
+        <objective any="true">round1-start</objective>
+    </all>
+    <all id="arena4-round1-ongoing">
+        <not>
+            <objective any="true">arena4-round1</objective>
+        </not>
+        <objective any="true">round1-start</objective>
+    </all>
+    <all id="arena1-round2-ongoing">
+        <not>
+            <objective any="true">arena1-round2</objective>
+        </not>
+        <objective any="true">round2-start</objective>
+    </all>
+    <all id="arena2-round2-ongoing">
+        <not>
+            <objective any="true">arena2-round2</objective>
+        </not>
+        <objective any="true">round2-start</objective>
+    </all>
+    <all id="arena3-round2-ongoing">
+        <not>
+            <objective any="true">arena3-round2</objective>
+        </not>
+        <objective any="true">round2-start</objective>
+    </all>
+    <all id="arena4-round2-ongoing">
+        <not>
+            <objective any="true">arena4-round2</objective>
+        </not>
+        <objective any="true">round2-start</objective>
+    </all>
+    <all id="arena1-round3-ongoing">
+        <not>
+            <objective any="true">arena1-round3</objective>
+        </not>
+        <objective any="true">round3-start</objective>
+    </all>
+    <all id="arena2-round3-ongoing">
+        <not>
+            <objective any="true">arena2-round3</objective>
+        </not>
+        <objective any="true">round3-start</objective>
+    </all>
+    <all id="arena3-round3-ongoing">
+        <not>
+            <objective any="true">arena3-round3</objective>
+        </not>
+        <objective any="true">round3-start</objective>
+    </all>
+    <all id="arena4-round3-ongoing">
+        <not>
+            <objective any="true">arena4-round3</objective>
+        </not>
+        <objective any="true">round3-start</objective>
+    </all>
+    
+    
+    <!--
+    <not id="arena1-round1-ongoing">
+        <objective any="true">arena1-round1</objective>
+    </not>
+    <not id="arena2-round1-ongoing">
+        <objective any="true">arena2-round1</objective>
+    </not>
+    <not id="arena3-round1-ongoing">
+        <objective any="true">arena3-round1</objective>
+    </not>
+    <not id="arena4-round1-ongoing">
+        <objective any="true">arena4-round1</objective>
+    </not>
+    <not id="arena1-round2-ongoing">
+        <objective any="true">arena1-round2</objective>
+    </not>
+    <not id="arena2-round2-ongoing">
+        <objective any="true">arena2-round2</objective>
+    </not>
+    <not id="arena3-round2-ongoing">
+        <objective any="true">arena3-round2</objective>
+    </not>
+    <not id="arena4-round2-ongoing">
+        <objective any="true">arena4-round2</objective>
+    </not>
+    <not id="arena1-round3-ongoing">
+        <objective any="true">arena1-round3</objective>
+    </not>
+    <not id="arena2-round3-ongoing">
+        <objective any="true">arena2-round3</objective>
+    </not>
+    <not id="arena3-round3-ongoing">
+        <objective any="true">arena3-round3</objective>
+    </not>
+    <not id="arena4-round3-ongoing">
+        <objective any="true">arena4-round3</objective>
+    </not>
+    -->
+    
+    <team id="red">red-team</team>
+    <objective id="arena-capture-1" any="true">round1-start</objective>
+    <objective id="arena-capture-2" any="true">round2-start</objective>
+    <objective id="arena-capture-3" any="true">round3-start</objective>
+    
+    
+    <!-- working here -->
+    
+    <objective id="arena1-round1-remove-filter">arena1-round1</objective>
+    <objective id="arena1-round2-remove-filter">arena1-round2</objective>
+    <objective id="arena1-round3-remove-filter">arena1-round3</objective>
+    
+    <objective id="arena2-round1-remove-filter">arena2-round1</objective>
+    <objective id="arena2-round2-remove-filter">arena2-round2</objective>
+    <objective id="arena2-round3-remove-filter">arena2-round3</objective>
+    
+    <objective id="arena3-round1-remove-filter">arena3-round1</objective>
+    <objective id="arena3-round2-remove-filter">arena3-round2</objective>
+    <objective id="arena3-round3-remove-filter">arena3-round3</objective>
+    
+    <objective id="arena4-round1-remove-filter">arena4-round1</objective>
+    <objective id="arena4-round2-remove-filter">arena4-round2</objective>
+    <objective id="arena4-round3-remove-filter">arena4-round3</objective>
+    
+    
+    
+    
+    
+    
+    <!-- working+ here+ -->
+    
+    <all id="regen-filter-round1">
+        <objective any="true">arena1-round1</objective>
+        <objective any="true">arena2-round1</objective>
+        <objective any="true">arena3-round1</objective>
+        <objective any="true">arena4-round1</objective>
+        <team>red-team</team>
+    </all>
+    <all id="regen-filter-round2">
+        <objective any="true">arena1-round2</objective>
+        <objective any="true">arena2-round2</objective>
+        <objective any="true">arena3-round2</objective>
+        <objective any="true">arena4-round2</objective>
+        <team>red-team</team>
+    </all>
+        
+    <!-- need to do it per arena, so they don't conflict
+    
+    <any id="arena1-round1-capture"
+    
+        <any id="arena-capture-1-after">
+        <objective>arena1-round1</objective>
+        <objective>arena2-round1</objective>
+        <objective>arena3-round1</objective>
+        <objective>arena4-round1</objective>
+    </any>
+    <any id="arena-capture-2-after">
+        <objective>arena1-round2</objective>
+        <objective>arena2-round2</objective>
+        <objective>arena3-round2</objective>
+        <objective>arena4-round2</objective>
+    </any>
+    <any id="arena-capture-3-after">
+        <objective>arena1-round3</objective>
+        <objective>arena2-round3</objective>
+        <objective>arena3-round3</objective>
+        <objective>arena4-round3</objective>
+    </any> 
+    -->
+    
+    <all id="round-starts-2">
+        <objective any="true">round1-end</objective>
+        <team>red-team</team>
+    </all>
+    <all id="round-starts-3">
+        <objective any="true">round2-end</objective>
+        <team>red-team</team>
+    </all>
+    <all id="end1">
+        <objective any="true">arena1-round1</objective>
+        <objective any="true">arena2-round1</objective>
+        <objective any="true">arena3-round1</objective>
+        <objective any="true">arena4-round1</objective>
+        <team>red-team</team>
+    </all>
+    <all id="end2">
+        <objective any="true">arena1-round2</objective>
+        <objective any="true">arena2-round2</objective>
+        <objective any="true">arena3-round2</objective>
+        <objective any="true">arena4-round2</objective>
+        <team>red-team</team>
+    </all>
+    <all id="end3">
+        <objective any="true">arena1-round3</objective>
+        <objective any="true">arena2-round3</objective>
+        <objective any="true">arena3-round3</objective>
+        <objective any="true">arena4-round3</objective>
+        <team>red-team</team>
+    </all>
+    <all id="end3-notgold">
+        <objective any="true">arena1-round3</objective>
+        <objective any="true">arena2-round3</objective>
+        <objective any="true">arena3-round3</objective>
+        <objective any="true">arena4-round3</objective>
+        <not>
+            <objective>arena1-round3</objective>
+        </not>
+    </all>
+    <all id="end3-gold">
+        <objective>arena1-round3</objective>
+        <objective any="true">arena2-round3</objective>
+        <objective any="true">arena3-round3</objective>
+        <objective any="true">arena4-round3</objective>
+    </all>
+    <all id="message-round1-red(1win)">
+        <!--<objective any="true">round1-end-score</objective>-->
+        <team>red-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-red(0win)">
+        <!--<objective any="true">round1-end-score</objective>-->
+        <team>red-team</team>
+        <objective team="blue-team">arena1-round1</objective>
+    </all>
+    <!-- not being used in version 0.0.0
+    <all id="message-round1-red(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>red-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-red(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>red-team</team>
+        <objective team="blue-team">arena1-round1</objective>
+    </all>
+    <all id="message-round1-green(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>green-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-green(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>green-team</team>
+        <objective team="purple-team">arena1-round1</objective>
+    </all>
+    <all id="message-round1-purple(1win)">
+        <objective id="message-round1-purple">round1-end-score</objective>
+        <team>purple-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-purple(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>purple-team</team>
+        <objective team="green-team">arena1-round1</objective>
+    </all>
+        <all id="message-round1-yellow(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>yellow-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-yellow(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>yellow-team</team>
+        <objective team="white-team">arena1-round1</objective>
+    </all>
+    <all id="message-round1-white(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>white-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-white(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>white-team</team>
+        <objective team="yellow-team">arena1-round1</objective>
+    </all>
+    <all id="message-round1-pink(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>pink-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-pink(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>pink-team</team>
+        <objective team="brown-team">arena1-round1</objective>
+    </all>
+    <all id="message-round1-brown(1win)">
+        <objective any="true">round1-end-score</objective>
+        <team>brown-team</team>
+        <objective>arena1-round1</objective>
+    </all>
+    <all id="message-round1-brown(0win)">
+        <objective any="true">round1-end-score</objective>
+        <team>brown-team</team>
+        <objective team="pink-team">arena1-round1</objective>
+        
+    </all>
+    -->
+    
+    <objective id="message-round2" any="true">round2-end-score</objective>
+    <objective id="message-round3" any="true">round3-end-score</objective>
+    <any id="round-end-filter">
+        <all>
+            <objective any="true">arena1-round1</objective>
+            <objective any="true">arena2-round1</objective>
+            <objective any="true">arena3-round1</objective>
+            <objective any="true">arena4-round1</objective>
+            <not>
+                <objective any="true">round1-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round2</objective>
+            <objective any="true">arena2-round2</objective>
+            <objective any="true">arena3-round2</objective>
+            <objective any="true">arena4-round2</objective>
+            <not>
+                <objective any="true">round2-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round3</objective>
+            <objective any="true">arena2-round3</objective>
+            <objective any="true">arena3-round3</objective>
+            <objective any="true">arena4-round3</objective>
+            <not>
+                <objective any="true">round3-end</objective>
+            </not>
+        </all>
+    </any>
+    <not id="10secs">
+        <time>10s</time>
+    </not>
+    <any id="can-scorebox">
+        <all>
+            <objective any="true">arena1-round1</objective>
+            <objective any="true">arena2-round1</objective>
+            <objective any="true">arena3-round1</objective>
+            <objective any="true">arena4-round1</objective>
+            <any>
+                <objective>arena1-round1</objective>
+                <objective>arena2-round1</objective>
+                <objective>arena3-round1</objective>
+                <objective>arena4-round1</objective>
+            </any>
+            <not>
+                <objective any="true">round1-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round2</objective>
+            <objective any="true">arena2-round2</objective>
+            <objective any="true">arena3-round2</objective>
+            <objective any="true">arena4-round2</objective>
+            <any>
+                <objective>arena1-round2</objective>
+                <objective>arena2-round2</objective>
+                <objective>arena3-round2</objective>
+                <objective>arena4-round2</objective>
+            </any>
+            <not>
+                <objective any="true">round2-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">arena1-round3</objective>
+            <objective any="true">arena2-round3</objective>
+            <objective any="true">arena3-round3</objective>
+            <objective any="true">arena4-round3</objective>
+            <any>
+                <objective>arena1-round3</objective>
+                <objective>arena2-round3</objective>
+                <objective>arena3-round3</objective>
+                <objective>arena4-round3</objective>
+            </any>
+            <not>
+                <objective any="true">round3-end</objective>
+            </not>
+        </all>
+    </any>
+    
+    <any id="matches-in-progress">
+        <all>
+            <objective any="true">round1-start</objective>
+            <not>
+                <objective any="true">round1-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">round2-start</objective>
+            <not>
+                <objective any="true">round2-end</objective>
+            </not>
+        </all>
+        <all>
+            <objective any="true">round3-start</objective>
+            <not>
+                <objective any="true">round3-end</objective>
+            </not>
+        </all>
+    </any>
+    
+    <objective id="end-3-gold">arena1-round3</objective>
+    <all id="end-3-notgold">
+        <not>
+            <objective>arena1-round3</objective>
+        </not>
+        <objective any="true">round3-end</objective>
+    </all>
+    
+    <!--found it-->
+    <all id="red-filter">
+        <team>red-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="blue-filter">
+        <team>blue-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="green-filter">
+        <team>green-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="purple-filter">
+        <team>purple-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="yellow-filter">
+        <team>yellow-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="white-filter">
+        <team>white-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="pink-filter">
+        <team>pink-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <all id="brown-filter">
+        <team>brown-team</team>
+        <not>
+            <objective any="true">round1-start</objective>
+        </not>
+    </all>
+    <!--
+    <objective id="can-win">arena1-round3</objective>
+    -->
+    <all id="can-win">
+        <objective>arena1-round3</objective>
+        <objective any="true">arena2-round3</objective>
+        <objective any="true">arena3-round3</objective>
+        <objective any="true">arena4-round3</objective>
+    </all>
+    
+    
+    <!--update-->
+    <!--announce-round1-->
+    <all id="announce-round1">
+        <time>10s</time>
+        <not>
+            <time>11s</time>
+        </not>
+    </all>
+    
+    <all id="announce-round2">
+        <objective any="true">round1-end</objective>
+        <not>
+            <objective any="true">stop-announce-round2-hill</objective>
+        </not>
+    </all>
+    
+    <all id="announce-round3">
+        <objective any="true">round2-end</objective>
+        <not>
+            <objective any="true">stop-announce-round3-hill</objective>
+        </not>
+    </all>
+    
+    <objective id="stop-announce-round2">round1-end</objective>
+    <objective id="stop-announce-round3">round2-end</objective>
+    
+    
+    <!-- end of filters for next arena selection -->
+</filters>
+
+<king>
+    <hills>
+        <hill id="arena1-round1" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-1"> 
+            <capture><region id="arena1"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-2">
+            <capture><region id="arena1"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-3">
+            <capture><region id="arena1"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-1">
+            <capture><region id="arena2"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-2">
+            <capture><region id="arena2"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-3">
+            <capture><region id="arena2"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-1">
+            <capture><region id="arena3"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-2">
+            <capture><region id="arena3"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-3">
+            <capture><region id="arena3"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-1">
+            <capture><region id="arena4"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-2">
+            <capture><region id="arena4"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3" show="false" capture-time="0s" points="0" permanent="true" player-filter="arena-capture-3">
+            <capture><region id="arena4"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- working here -->
+        
+        <hill id="arena1-round1-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena1-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena2-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena3-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena4-round1-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena1-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena2-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena3-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena4-round2-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena1-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena2-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena3-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove2" show="false" capture-time="1s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove3" show="false" capture-time="3s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove4" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove5" show="false" capture-time="5s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove6" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove7" show="false" capture-time="7s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove8" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove9" show="false" capture-time="9s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-remove10" show="false" capture-time="10s" points="0" permanent="true" player-filter="arena4-round3-remove-filter"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        
+        <!-- working here -->
+        
+        <!-- arena 1-->
+        
+        <hill id="arena1-round1-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round1-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 2 -->
+        
+        <hill id="arena1-round2-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round2-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 3 
+        
+        <hill id="arena1-round3-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="arena1-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena1-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena1-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena1-round3-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena1-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        -->
+        
+        <!-- arena 2-->
+        
+        <hill id="arena2-round1-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round1-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 2 -->
+        
+        <hill id="arena2-round2-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round2-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 3 
+        
+        <hill id="arena2-round3-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="arena2-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena2-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena2-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena2-round3-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena2-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        -->
+        
+        <!-- arena 3-->
+        
+        <hill id="arena3-round1-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round1-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 2 -->
+        
+        <hill id="arena3-round2-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round2-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 3 
+        
+        <hill id="arena3-round3-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="arena3-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena3-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena3-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena3-round3-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena3-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        -->
+        <!-- arena 4 -->
+        
+        <hill id="arena4-round1-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round1-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round1"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 2 -->
+        
+        <hill id="arena4-round2-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round2-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="regen-filter-round2"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        
+        <!-- round 3 
+        
+        <hill id="arena4-round3-part1" show="false" capture-time="2s" points="0" permanent="true" player-filter="arena4-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-part2" show="false" capture-time="4s" points="0" permanent="true" player-filter="arena4-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-part3" show="false" capture-time="6s" points="0" permanent="true" player-filter="arena4-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="arena4-round3-part4" show="false" capture-time="8s" points="0" permanent="true" player-filter="arena4-capture3"> 
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        -->
+        
+        <!-- all arenas done -->
+        
+        <hill id="round1-start" show="false" capture-time="2s" points="0" permanent="true" player-filter="red">
+            <capture><region id="arenas"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round2-start" show="false" capture-time="2s" points="0" permanent="true" player-filter="round-starts-2">
+            <capture><region id="arenas"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round3-start" show="false" capture-time="2s" points="0" permanent="true" player-filter="round-starts-3">
+            <capture><region id="arenas"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round1-end" show="false" capture-time="12s" points="0" permanent="true" player-filter="end1">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round2-end" show="false" capture-time="12s" points="0" permanent="true" player-filter="end2">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round3-end" show="false" capture-time="12s" points="0" permanent="true" player-filter="end3">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round1-end-score" show="false" capture-time="2s" points="0" permanent="true" player-filter="end1">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round2-end-score" show="false" capture-time="2s" points="0" permanent="true" player-filter="end2">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="round3-end-score" show="false" capture-time="2s" points="0" permanent="true" player-filter="end3">
+            <capture><region id="spawn-region"/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="win-hill" show="false" points="100" capture-time="5s" player-filter="can-win">
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="stop-announce-round2-hill" show="false" capture-time="1s" points="0" permanent="true" player-filter="stop-announce-round2">
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+        <hill id="stop-announce-round3-hill" show="false" capture-time="1s" points="0" permanent="true" player-filter="stop-announce-round3">
+            <capture><everywhere/></capture>
+            <progress><nowhere/></progress>
+            <captured><nowhere/></captured>
+        </hill>
+    </hills>
+</king>
+<control-points show-progress="false">
+    <control-point show="false" id="win" name="Champion's Trophy" capture-time="5s" player-filter="can-win">
+        <capture><everywhere/></capture>
+        <progress><nowhere/></progress>
+        <captured><nowhere/></captured>
+    </control-point>
+</control-points>
+
+<portals>
+    <portal filter="red-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn1"/>
+        </destination>
+    </portal>
+    <portal filter="blue-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn2"/>
+        </destination>
+    </portal>
+    
+    <portal filter="green-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn1"/>
+        </destination>
+    </portal>
+    <portal filter="brown-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn2"/>
+        </destination>
+    </portal>
+    
+    <portal filter="yellow-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn1"/>
+        </destination>
+    </portal>
+    <portal filter="white-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn2"/>
+        </destination>
+    </portal>
+    
+    <portal filter="pink-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn1"/>
+        </destination>
+    </portal>
+    <portal filter="purple-filter">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn2"/>
+        </destination>
+    </portal>
+    
+    <!--working+++-->
+    <portal filter="blue.red-1win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn1-round2"/>
+        </destination>
+    </portal>
+    <portal filter="green.purple-1win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn2-round2"/>
+        </destination>
+    </portal>
+    <portal filter="blue.red-0win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn1-round2"/>
+        </destination>
+    </portal>
+    <portal filter="green.purple-0win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn1-round2"/>
+        </destination>
+    </portal>
+    
+    <portal filter="yellow.white-1win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn1-round2"/>
+        </destination>
+    </portal>
+    <portal filter="pink.brown-1win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn2-round2"/>
+        </destination>
+    </portal>
+    <portal filter="yellow.white-0win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn2-round2"/>
+        </destination>
+    </portal>
+    <portal filter="pink.brown-0win-round1">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn2-round2"/>
+        </destination>
+    </portal>
+    
+    <!-- portals for tping people to final round -->
+    
+    <portal filter="blue.red.green.purple-2wins-round2">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="yellow.white.pink.brown-2wins-round2">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena1-spawn2-round3"/>
+        </destination>
+    </portal>
+    <portal filter="blue.red-1win-round2(first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="blue.red-1win-round2(not.first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="green.purple-1win-round2(not.first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn2-round3"/>
+        </destination>
+    </portal>
+    <portal filter="green.purple-1win-round2(first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="green.purple.pink.brown-0win-round2">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn2-round3"/>
+        </destination>
+    </portal>
+    <portal filter="blue.red.yellow.white-0win-round2">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena4-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="yellow.white-1win-round2(first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn2-round3"/>
+        </destination>
+    </portal>
+    <portal filter="yellow.white-1win-round2(not.first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn1-round3"/>
+        </destination>
+    </portal>
+    <portal filter="pink.brown-1win-round2(first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena2-spawn2-round3"/>
+        </destination>
+    </portal>
+    <portal filter="pink.brown-1win-round2(not.first)">
+        <region>
+            <region id="portal-region"/>
+        </region>
+        <destination>
+            <region id="arena3-spawn2-round3"/>
+        </destination>
+    </portal>
+    
+    <!-- finished portals for cycling to next match bar the first cycle -->
+    
+    <portal filter="round-end-filter">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="spawn"/>
+        </destination>
+    </portal>
+    
+    <!-- working + -->
+    <!-- arena 1-->
+    
+    <portal filter="arena1->2">
+        <region>
+            <region id="arena1-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena2-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->3">
+        <region>
+            <region id="arena1-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena3-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->4">
+        <region>
+            <region id="arena1-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena4-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->3">
+        <region>
+            <region id="arena2-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena3-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->4">
+        <region>
+            <region id="arena2-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena4-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->1">
+        <region>
+            <region id="arena2-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena1-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->4">
+        <region>
+            <region id="arena3-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena4-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->1">
+        <region>
+            <region id="arena3-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena1-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->2">
+        <region>
+            <region id="arena3-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena2-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->1">
+        <region>
+            <region id="arena4-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena1-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->2">
+        <region>
+            <region id="arena4-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena2-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->3">
+        <region>
+            <region id="arena4-to-obs-round1"/>
+        </region>
+        <destination>
+            <region id="arena3-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->2">
+        <region>
+            <region id="arena1-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->3">
+        <region>
+            <region id="arena1-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->4">
+        <region>
+            <region id="arena1-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->3">
+        <region>
+            <region id="arena2-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->4">
+        <region>
+            <region id="arena2-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->1">
+        <region>
+            <region id="arena2-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->4">
+        <region>
+            <region id="arena3-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->1">
+        <region>
+            <region id="arena3-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->2">
+        <region>
+            <region id="arena3-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->1">
+        <region>
+            <region id="arena4-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->2">
+        <region>
+            <region id="arena4-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->3">
+        <region>
+            <region id="arena4-to-obs-round2"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->2">
+        <region>
+            <region id="arena1-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->3">
+        <region>
+            <region id="arena1-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena1->4">
+        <region>
+            <region id="arena1-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->3">
+        <region>
+            <region id="arena2-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->4">
+        <region>
+            <region id="arena2-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena2->1">
+        <region>
+            <region id="arena2-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->4">
+        <region>
+            <region id="arena3-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->1">
+        <region>
+            <region id="arena3-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena3->2">
+        <region>
+            <region id="arena3-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->1">
+        <region>
+            <region id="arena4-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->2">
+        <region>
+            <region id="arena4-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena4->3">
+        <region>
+            <region id="arena4-to-obs-round3"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round3"/>
+        </destination>
+    </portal>
+    
+    
+    
+    
+    
+    
+    
+    <portal filter="end-3-gold">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="gold"/>
+        </destination>
+    </portal>
+    <portal filter="end-3-notgold">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="medals"/>
+        </destination>
+    </portal>
+    <portal filter="arena1-round1-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena1-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena2-round1-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena2-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena3-round1-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena3-obs"/>
+        </destination>
+    </portal>
+    <portal filter="arena4-round1-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena4-obs"/>
+        </destination>
+    </portal>
+     <portal filter="arena1-round2-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena2-round2-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena3-round2-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round2"/>
+        </destination>
+    </portal>
+    <portal filter="arena4-round2-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round2"/>
+        </destination>
+    </portal>
+     <portal filter="arena1-round3-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena1-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena2-round3-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena2-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena3-round3-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena3-obs-round3"/>
+        </destination>
+    </portal>
+    <portal filter="arena4-round3-ongoing">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+        <destination>
+            <region id="arena4-obs-round3"/>
+        </destination>
+    </portal>
+</portals>
+
+<!-- temp-->
+
+<regions>
+    <union id="arenas-old">
+        <cuboid id="arena1-original" min="36,17,71" max="-37,0,-33"/>
+        <cuboid id="arena2-original" min="-57,17,71" max="-130,0,-33"/>
+        <cuboid id="arena3-original" min="-150,17,71" max="-223,0,-33"/>
+        <cuboid id="arena4-original" min="-243,17,71" max="-316,0,-33"/>
+        <region id="empty-arena"/>
+        <!--temp-->
+    </union>
+    <union id="arenas">
+        <region id="arenas-old"/>
+        <translate offset="0,0,-103"><region id="arenas-old"/></translate>
+        <translate offset="0,0,-206"><region id="arenas-old"/></translate>
+    </union>
+    <negative id="not-arenas">
+        <region id="arenas"/>
+    </negative>
+    <region id="empty-arena"/>
+    <union id="arena1">
+        <region id="arena1-original"/>
+        <translate offset="0,0,-103"><region id="arena1-original"/></translate>
+        <translate offset="0,0,-206"><region id="arena1-original"/></translate>
+    </union>
+    <union id="arena2">
+        <region id="arena2-original"/>
+        <translate offset="0,0,-103"><region id="arena2-original"/></translate>
+        <translate offset="0,0,-206"><region id="arena2-original"/></translate>
+    </union>
+    <union id="arena3">
+        <region id="arena3-original"/>
+        <translate offset="0,0,-103"><region id="arena3-original"/></translate>
+        <translate offset="0,0,-206"><region id="arena3-original"/></translate>
+    </union>
+    <union id="arena4">
+        <region id="arena4-original"/>
+        <translate offset="0,0,-103"><region id="arena4-original"/></translate>
+        <translate offset="0,0,-206"><region id="arena4-original"/></translate>
+    </union>
+    <union id="empty-arena">
+        <!--  id="full-arena" min="19,10,-16" max="-20,8,53" (not including stone structures) [1-3]-->
+        
+        <cuboid id="empty1-arena" min="-18,11,248" max="17,8,277"/>
+        <cuboid id="empty2-arena" min="-18,11,277" max="17,7,300"/>
+        <cuboid id="empty3-arena" min="-18,11,300" max="17,8,329"/>
+        <cuboid id="empty4-arena" min="15,11,321" max="-16,16,256"/>
+        <!--
+        <union id="empty5-arena"> ( ends of arena)
+            <translate id="empty5-arena-a" offset="0,0,270"><cuboid min="-11,15,53" max="9,8,59"/></translate>
+            <translate id="empty5-arena-b" offset="0,0,270"><cuboid min="-11,15,-16" max="9,8,-22"/></translate>
+        </union>
+        -->
+        <cuboid id="empty6-arena" min="22,22,327" max="-23,19,250"/> <!--where people are standing-->
+        <cuboid id="empty7-arena" min="13,19,253" max="20,8,324"/> <!-- east-->
+        <cuboid id="empty8-arena" min="-13,19,253" max="-22,8,324"/> <!-- west wall-->
+        <cuboid id="empty9-arena" min="-15,19,256" max="15,8,247"/> <!-- north-->
+        <cuboid id="empty10-arena" min="-15,19,321" max="15,8,329"/> <!-- south-->
+        
+        
+    </union>
+    <cuboid id="above-arenas" min="36,18,71" max="-316,35,-252"/>
+    <cuboid id="spawn-region" min="-67,3,111" max="-267,49,164"/>
+    <cuboid id="clear-spawn" min="-210,3,205" max="-253,16,170"/>
+    <cuboid id="portal-region" min="-67,10,166" max="-272,0,109"/>
+    <cuboid id="portal-out-of-arenas" min="-327,0,84" max="46,5,-252"/>
+    <union id="scoreboxes">
+        <region id="portal-out-of-arenas"/>
+        <!--don't think this one is needed, just in case will add back in
+        <cuboid id="above-spawn-scorebox" min="-67,19,111" max="-267,49,164"/>
+        -->
+    </union>
+    <point id="spawn" yaw="180">-230.5,15,137</point>
+    <!--don't think this is needed, will add if needed
+    <point id="spawn-scorebox" yaw="180">-230,25,137</point>
+    -->
+    <point id="medals" yaw="90">-104.5,15,136.5</point>
+    <point id="gold" yaw="180">-110.5,18,136.5</point>
+    <union id="arena-spawns">
+        <point id="arena1-spawn1" yaw="180">-0.5,10,56.5</point>
+        <point id="arena1-spawn2" yaw="0">-0.5,10,-19.5</point>
+        <point id="arena2-spawn1" yaw="180">-93.5,10,56.5</point>
+        <point id="arena2-spawn2" yaw="0">-93.5,10,-19.5</point>
+        <point id="arena3-spawn1" yaw="180">-186.5,10,56.5</point>
+        <point id="arena3-spawn2" yaw="0">-186.5,10,-19.5</point>
+        <point id="arena4-spawn1" yaw="180">-279.5,10,56.5</point>
+        <point id="arena4-spawn2" yaw="0">-279.5,10,-19.5</point>
+        <point id="arena1-obs" yaw="180">-0.5,20,54.5</point>
+        <point id="arena2-obs" yaw="180">-93.5,20,54.5</point>
+        <point id="arena3-obs" yaw="180">-186.5,20,54.5</point>
+        <point id="arena4-obs" yaw="180">-279.5,20,54.5</point>
+        <!--round2-->
+        <point id="arena1-spawn1-round2" yaw="180">-0.5,10,-47.5</point>
+        <point id="arena1-spawn2-round2" yaw="0">-0.5,10,-122.5</point>
+        <point id="arena2-spawn1-round2" yaw="180">-93.5,10,-47.5</point>
+        <point id="arena2-spawn2-round2" yaw="0">-93.5,10,-122.5</point>
+        <point id="arena3-spawn1-round2" yaw="180">-186.5,10,-47.5</point>
+        <point id="arena3-spawn2-round2" yaw="0">-186.5,10,-122.5</point>
+        <point id="arena4-spawn1-round2" yaw="180">-279.5,10,-47.5</point>
+        <point id="arena4-spawn2-round2" yaw="0">-279.5,10,-122.5</point>
+        <point id="arena1-obs-round2" yaw="180">-0.5,20,-49.5</point>
+        <point id="arena2-obs-round2" yaw="180">-93.5,20,-49.5</point>
+        <point id="arena3-obs-round2" yaw="180">-186.5,20,-49.5</point>
+        <point id="arena4-obs-round2" yaw="180">-279.5,20,-49.5</point>
+        <!--round3-->
+        <point id="arena1-spawn1-round3" yaw="180">-0.5,10,-150.5</point>
+        <point id="arena1-spawn2-round3" yaw="0">-0.5,10,-225.5</point>
+        <point id="arena2-spawn1-round3" yaw="180">-93.5,10,-150.5</point>
+        <point id="arena2-spawn2-round3" yaw="0">-93.5,10,-225.5</point>
+        <point id="arena3-spawn1-round3" yaw="180">-186.5,10,-150.5</point>
+        <point id="arena3-spawn2-round3" yaw="0">-186.5,10,-225.5</point>
+        <point id="arena4-spawn1-round3" yaw="180">-279.5,10,-150.5</point>
+        <point id="arena4-spawn2-round3" yaw="0">-279.5,10,-225.5</point>
+        <point id="arena1-obs-round3" yaw="180">-0.5,20,-152.5</point>
+        <point id="arena2-obs-round3" yaw="180">-93.5,20,-152.5</point>
+        <point id="arena3-obs-round3" yaw="180">-186.5,20,-152.5</point>
+        <point id="arena4-obs-round3" yaw="180">-279.5,20,-152.5</point>
+    </union>
+    <union id="portals-union">
+        <region id="portal-out-of-arenas"/>
+        <region id="portal-region"/>
+    </union>
+    <union id="arena4-to-obs-round1">
+        <block>-279.5,20,56.5</block>
+        <block>-301.5,20,18.5</block>
+        <block>-279.5,20,-19.5</block>
+        <block>-257.5,20,18.5</block>
+    </union>
+    <union id="arena4-to-obs">
+        <region id="arena4-to-obs-round1"/>
+        <translate id="arena4-to-obs-round2" offset="0,0,-103"><region id="arena4-to-obs-round1"/></translate>
+        <translate id="arena4-to-obs-round3" offset="0,0,-206"><region id="arena4-to-obs-round1"/></translate>
+    </union>
+    <union id="arena1-to-obs-round1">
+        <block>-0.5,20,56.5</block>
+        <block>-22.5,20,18.5</block>
+        <block>-0.5,20,-19.5</block>
+        <block>-21.5,20,18.5</block>
+    </union>
+    <union id="arena1-to-obs">
+        <region id="arena1-to-obs-round1"/>
+        <translate id="arena1-to-obs-round2" offset="0,0,-103"><region id="arena1-to-obs-round1"/></translate>
+        <translate id="arena1-to-obs-round3" offset="0,0,-206"><region id="arena1-to-obs-round1"/></translate>
+    </union>
+    <union id="arena2-to-obs-round1">
+        <block>-93.5,20,56.5</block>
+        <block>-115.5,20,18.5</block>
+        <block>-93.5,20,-19.5</block>
+        <block>-71.5,20,18.5</block>
+    </union>
+    <union id="arena2-to-obs">
+        <region id="arena2-to-obs-round1"/>
+        <translate id="arena2-to-obs-round2" offset="0,0,-103"><region id="arena2-to-obs-round1"/></translate>
+        <translate id="arena2-to-obs-round3" offset="0,0,-206"><region id="arena2-to-obs-round1"/></translate>
+    </union>
+    <union id="arena3-to-obs-round1">
+        <block>-186.5,20,56.5</block>
+        <block>-208.5,20,18.5</block>
+        <block>-186.5,20,-19.5</block>
+        <block>-164.5,20,18.5</block>
+    </union>
+    <union id="arena3-to-obs">
+        <region id="arena3-to-obs-round1"/>
+        <translate id="arena3-to-obs-round2" offset="0,0,-103"><region id="arena3-to-obs-round1"/></translate>
+        <translate id="arena3-to-obs-round3" offset="0,0,-206"><region id="arena3-to-obs-round1"/></translate>
+    </union>
+    <apply kit="default">
+        <region>
+            <region id="arenas"/>
+        </region>
+    </apply>
+    <apply kit="clear">
+        <region>
+            <region id="portals-union"/>
+        </region>
+    </apply>
+    <apply kit="obs-matches">
+        <region>
+            <region id="above-arenas"/>
+        </region>
+    </apply>
+    <apply kit="spawn-kit">
+        <region>
+            <region id="spawn-region"/>
+        </region>
+    </apply>
+    <apply kit="obs-matches">
+        <region>
+            <region id="portal-out-of-arenas"/>
+        </region>
+    </apply>
+</regions>
+<kits>
+    <kit id="default" force="true">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <helmet material="iron helmet"/>
+        <chestplate material="iron chestplate"/>
+        <leggings material="iron leggings"/>
+        <boots material="iron boots"/>
+        <item slot="28" amount="32">arrow</item>
+        <game-mode>adventure</game-mode>
+        <health>20</health>
+        <potion duration="0" amplifier="1">heal</potion>
+    </kit>
+    <kit id="obs-matches" force="true">
+        <game-mode>adventure</game-mode>
+        <potion duration="oo" amplifier="1">heal</potion>
+        <!--<helmet material="gold helmet" locked="true" unbreakable="true">
+            <attribute amount="1">generic.knockbackResistance</attribute>
+        </helmet>-->
+        <clear/>
+    </kit>
+    <kit id="spawn-kit" force="true">
+        <game-mode>adventure</game-mode>
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="oo" amplifier="1">heal</potion>
+        <!--<helmet material="gold helmet" locked="true" unbreakable="true">
+            <attribute amount="1">generic.knockbackResistance</attribute>
+        </helmet>-->
+    </kit>
+    <kit id="clear" force="true">
+        <clear/>
+    </kit>
+</kits>
+
+<broadcasts>
+    <tip after="2s" every="90s">`7[`6Arena Master`7]`f:`7 This is a 2v2 tournament, you will fight with your partner against other teams with the same number of wins.</tip>
+    <tip after="5s">`7[`6Arena Master`7]`f:`7 Good luck.</tip>
+    
+    <alert filter="announce-round1" every="1s" after="5s">`4--&gt; Round 1 is starting &lt;--</alert>
+    <alert filter="announce-round2" every="1s" after="5s">`4--&gt; Round 2 is starting &lt;--</alert>
+    <alert filter="announce-round3" every="1s" after="5s">`4--&gt; Round 3 is starting &lt;--</alert>
+    
+    
+    <!--<tip after="10s" filter="message-round1-red(1win)" every="1s" count="1">`7[`6Arenas Master`7]`f:`7 You have 1 win, great work challenger!
+    I expect a lot from you.</tip>
+    <tip after="10s" every="1s" filter="message-round1-red(1win)">`7[`6Arenas Master`7]`f:`7 You lost your first game, but never fear! 
+    It takes a true man to learn from his defeats.</tip> this one spammed-->
+    
+</broadcasts>
+<spawns>
+    <!-- Not sure if the team="" is needed, going to do it just incase -->
+    <spawn team="red-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="purple-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="white-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="pink-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="brown-team" kit="spawn-kit" filter="10secs">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="red-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="purple-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="yellow-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="white-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="pink-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="brown-team" kit="spawn-kit" filter="round-end-filter">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena1-round1-ongoing">
+        <regions>
+            <region id="arena1-obs"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena2-round1-ongoing">
+        <regions>
+            <region id="arena2-obs"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena3-round1-ongoing">
+        <regions>
+            <region id="arena3-obs"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena4-round1-ongoing">
+        <regions>
+            <region id="arena4-obs"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena1-round2-ongoing">
+        <regions>
+            <region id="arena1-obs-round2"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena2-round2-ongoing">
+        <regions>
+            <region id="arena2-obs-round2"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena3-round2-ongoing">
+        <regions>
+            <region id="arena3-obs-round2"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena4-round2-ongoing">
+        <regions>
+            <region id="arena4-obs-round2"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena1-round3-ongoing">
+        <regions>
+            <region id="arena1-obs-round3"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena2-round3-ongoing">
+        <regions>
+            <region id="arena2-obs-round3"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena3-round3-ongoing">
+        <regions>
+            <region id="arena3-obs-round3"/>
+        </regions>
+    </spawn>
+    <spawn kit="obs-matches" filter="arena4-round3-ongoing">
+        <regions>
+            <region id="arena4-obs-round3"/>
+        </regions>
+    </spawn>
+    <default kit="spawn-kit">
+        <regions>
+            <region id="spawn"/>
+        </regions>
+    </default>
+</spawns>
+<score>
+    <box filter="can-scorebox" region="portal-out-of-arenas" points='5'/>
+    <limit>30</limit>
+</score>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<mutations chance="0.0"/>
+<damage>
+    <deny>
+        <not>
+            <region id="arenas"/>
+        </not>
+    </deny>
+</damage>
+<!--test-->
+</map>

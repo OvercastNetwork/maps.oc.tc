@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Baroque Gardens</name>
+<version>1.0.1</version>
+<objective>Break the gold blocks from both of the enemy team's monuments.</objective>
+<authors>
+    <author uuid="378536b9-a953-4971-8046-96de3278afdb"/> <!-- Emosnail -->
+    <author uuid="45530013-4f20-4ae0-a2a8-226fd2e603f6"/> <!-- Sogfin -->
+</authors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<maxbuildheight>45</maxbuildheight>
+<timelock>on</timelock>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cylinder base="575,10,-951" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cylinder base="575,10,-743" radius="1" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="498,42,-847" radius="2" height="0"/>
+    </default>
+</spawns>
+<destroyables completion="100%" materials="gold block">
+    <destroyable name="Left Monument" owner="blue">
+        <cuboid min="614,18,-765" max="613,16,-767"/>
+    </destroyable>
+     <destroyable name="Right Monument" owner="blue">
+        <cuboid min="538,18,-766" max="537,16,-767"/>
+    </destroyable>
+    <destroyable name="Left Monument" owner="red">
+        <cuboid min="538,18,-926" max="537,16,-927"/>
+    </destroyable>
+    <destroyable name="Right Monument" owner="red">
+        <cuboid min="614,18,-926" max="613,16,-927"/>
+    </destroyable>
+</destroyables>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not build in the void!">
+        <complement>
+            <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+            <union>
+                <!-- Middle --> 
+                <rectangle min="554,-868" max="597,-825"/>
+                <!-- Sides -->
+                <circle center="546,-847" radius="10"/>
+                <circle center="604,-847" radius="10"/>
+            </union>
+        </complement>
+    </apply>
+    <apply block="only-iron" message="You may only break iron in the base!">
+        <!-- Red Base -->
+        <rectangle min="547,-940" max="604,-961"/>
+        <!-- Blue Base -->
+        <rectangle min="604,-753" max="547,-733"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="581,-940" max="570,-929"/>
+        <rectangle min="581,-764" max="570,-753"/>
+    </apply>
+</regions>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" amount="64" damage="2">log</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6" amount="64">cooked chicken</item>
+        <item slot="7" amount="3">golden apple</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather chestplate</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>cooked chicken</item>
+    <item>obsidian</item>
+    <item>string</item>
+    <item>ladder</item>
+    <item>gold block</item>
+</itemremove>
+</map>

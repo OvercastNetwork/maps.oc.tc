@@ -1,0 +1,113 @@
+<map proto="1.3.6">
+<include src="blitz-global.xml" />
+<name>Relaxation</name>
+<version>1.0.4</version>
+<objective>Eliminate the other team within 8 minutes</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="f70b7a8f-93b2-480f-9d54-88e21485a042" />
+    <!--   Diamyx   -->
+</authors>
+<blitz>
+    <time>8m</time>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Blitz</title>
+</blitz>
+<teams>
+    <team color="dark red" max="12">Red</team>
+    <team color="blue" max="12">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:1">shears</item>
+        <item slot="3" amount="16" damage="0">wool</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="9" damage="4">ink sack</item>
+        <potion duration="3" amplifier="10">heal</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet locked="false" unbreakable="true" color="658FB8">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection projectile:1">iron chestplate</chestplate>
+        <leggings locked="false" unbreakable="true" color="658FB8">leather leggings</leggings>
+        <boots locked="false" unbreakable="true" color="658FB8">leather boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet locked="false" unbreakable="true" color="9C4245">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" enchantment="protection projectile:2">iron chestplate</chestplate>
+        <leggings locked="false" unbreakable="true" color="9C4245">leather leggings</leggings>
+        <boots locked="false" unbreakable="true" color="9C4245">leather boots</boots>
+    </kit>
+</kits>
+<killreward>
+    <item amount="3">exp bottle</item>
+    <item amount="8">arrow</item>
+    <item amount="8" damage="0">wool</item>
+    <item damage="8261" name="`cHealth Kit">potion</item>
+    <item damage="4">ink sack</item>
+</killreward>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <cuboid min="-88,14,-771" max="-86,14,-774" />
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <cuboid min="-86,14,-903" max="-88,14,-900" />
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <cuboid min="-126,31,-839" max="-123,31,-835" />
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <filter name="allow-some">
+        <any>
+            <block>wool:0</block>
+            <block>leaves</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not modify the spawns">
+        <cuboid min="-80,19,-779" max="-93,12,-767" />
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawns">
+        <cuboid min="-93,19,-894" max="-80,12,-906" />
+    </apply>
+    <apply block="allow-some">
+        <rectangle min="-114,-906" max="-60,-768" />
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<timelock>on</timelock>
+<maxbuildheight>24</maxbuildheight>
+<toolrepair>
+    <item>iron sword</item>
+    <item>bow</item>
+</toolrepair>
+<itemremove>
+    <item>potion</item>
+    <item>shears</item>
+    <item>golden carrot</item>
+    <item>wool</item>
+    <item>leaves</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>exp bottle</item>
+    <item>glass bottle</item>
+    <item>ink sack</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

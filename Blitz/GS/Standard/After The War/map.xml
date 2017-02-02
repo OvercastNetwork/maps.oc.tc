@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>After the War</name>
+<version>1.1.2</version> 
+<objective>Kill the enemy's squadron!</objective>
+<gamemode>gs</gamemode>
+<include src="gs.xml"/>
+<authors>
+    <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9" contribution="Creator of the map and XML."/> <!-- Timothee38 -->
+</authors>
+<contributors>
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="Feedback"/> <!-- pepsidawg00 -->
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="Feedback"/> <!-- ajtag5 -->
+</contributors>
+<teams>
+    <team color="gold" max="8">Orange</team>
+    <team color="green" max="8">Green</team>
+</teams>
+<spawns>
+    <spawn team="orange" yaw="-90">
+        <cuboid min="21,6,45" max="22,6,44"/>
+    </spawn>
+    <spawn team="green" yaw="90">
+        <cuboid min="94,6,42" max="93,6,43"/>
+    </spawn>
+    <default yaw="-180">
+        <cuboid min="58,25,44" max="57,25,43"/>
+    </default>
+</spawns>
+</map>

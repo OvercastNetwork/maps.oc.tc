@@ -1,0 +1,419 @@
+<map proto="1.4.1">
+<name>Lunar Crescent</name>
+<version>1.0.0</version>
+<objective>Destroy the enemy monuments and capture their wool!</objective>
+<authors>
+    <author uuid="7ab24d14-0801-48ba-8fea-147ddf400067"/>
+    <!--samthecat43-->
+</authors>
+<contributors>
+    <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="Original XML"/> <!--DoomRobotBoy-->
+    <contributor uuid="6e347123-c684-4d7e-996c-44d4924ff172" contribution="XML Repairing"/> <!-- SheriffSoco -->
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML Repairing"/> <!-- Anthonny -->
+    <contributor uuid="060baa18-2852-40d8-afcb-e61607c04be3" contribution="XML Repairing"/> <!-- PepsiDog -->
+</contributors>
+<broadcasts>
+    <tip after="1s">You can only break the monuments with TNT, not with your pickaxe/fist.</tip>
+    <tip after="2s">`3The `6`lGolden Blocks`o `3in middle drop `e`l3`o `eGolden Apples`o`3!</tip>
+    <tip after="5s">`3`oEvery 3 minutes `7`o`lCoal Blocks`3`o will drop on the little islands. Break them to receive `2`ogrenades`3`o.</tip>
+    <tip after="10s">`3`oEvery 6 minutes `b`o`lDiamond Blocks`3`o will drop on the center island. Break them to receive `b`oarmor`3`o, and  a `d`oregeneration potion.</tip>
+    <tip after="1m30s">Hold the wool to gain a speed boost!</tip>
+    <alert after="15s">`ePlayers have been released!</alert>
+    <alert after="3m" count="oo">`a`oCoal Blocks`3`o have dropped!</alert>
+    <alert after="6m" count="oo">`a`oDiamond Blocks`3`o have dropped!</alert>
+</broadcasts>
+<teams>
+    <team id="orange" color="gold" max="24" max-overfill="26">Orange</team>
+    <team id="magenta" color="light purple" max="24" max-overfill="26">Magenta</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0">diamond pickaxe</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="64">nether fence</item>
+        <item slot="4" amount="64">redstone</item>
+        <item slot="5" amount="64">vine</item>
+        <item slot="6" amount="16">stone button</item>
+        <item slot="7">water bucket</item>
+        <item slot="8" amount="64">tnt</item>
+        <item slot="9">workbench</item>
+        <item slot="10">shears</item>
+        <item slot="13" amount="16">trap door</item>
+        <item slot="15">water bucket</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="24">water bucket</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="28" amount="16">arrow</item>s
+        <item slot="29" amount="64">vine</item>
+        <item slot="31" amount="64" damage="6">step</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="33">water bucket</item>
+        <item slot="34" amount="16">redstone block</item>
+        <item slot="35" amount="64">tnt</item>
+        <chestplate unbreakable="true" enchantment="protection explosions:1" locked="true">diamond chestplate</chestplate>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="orangeKit" parents="spawn">
+        <item slot="3" amount="64" damage="1">stained clay</item>
+        <item slot="30" amount="64" damage="1">stained clay</item>
+        <item slot="21" amount="64" damage="1">stained clay</item>
+        <item slot="12" amount="64" damage="1">stained clay</item>
+        <helmet color="D87F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="D87F33" unbreakable="true">leather leggings</leggings>
+        <boots color="D87F33" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="magentaKit" parents="spawn">
+        <item slot="3" amount="64" damage="2">stained clay</item>
+        <item slot="30" amount="64" damage="2">stained clay</item>
+        <item slot="21" amount="64" damage="2">stained clay</item>
+        <item slot="12" amount="64" damage="2">stained clay</item>
+        <helmet color="B24CD8" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="B24CD8" unbreakable="true">leather leggings</leggings>
+        <boots color="B24CD8" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="fall-kit">
+        <potion duration="4" amplifier="127">damage resistance</potion>
+        <potion duration="6" amplifier="3">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="orange" kit="orangeKit">
+        <regions yaw="-135">
+            <cuboid min="-60,103,-34" max="-57,103,-31"/>
+        </regions>
+    </spawn>
+    <spawn team="magenta" kit="magentaKit">
+        <regions yaw="45">
+            <cuboid min="75,103,-168" max="72,103,-165"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="136">
+            <block>60.5,96,-45.5</block>
+        </regions>
+    </default>
+</spawns>
+<destroyables>
+    <destroyables owner="orange" show-progress="true">
+        <destroyable name="Right Monument" materials="packed ice" completion="100%">
+            <region>
+                <region id="orange-right-mon"/>
+            </region>
+        </destroyable>
+        <destroyable name="Left Monument" materials="packed ice" completion="100%">
+            <region>
+                <region id="orange-left-mon"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="magenta" show-progress="true">
+        <destroyable name="Right Monument" materials="packed ice" completion="100%">
+            <region>
+                <region id="magenta-right-mon"/>
+            </region>
+        </destroyable>
+        <destroyable name="Left Monument" materials="packed ice" completion="100%">
+            <region>
+                <region id="magenta-left-mon"/>
+            </region>
+        </destroyable>
+    </destroyables>
+    <destroyables name="Spawn Drops" show="false" materials="stained clay">
+        <destroyable owner="orange" mode-changes="true">
+            <region>
+                <cuboid min="-61,102,-35" max="-56,103,-30"/>
+            </region>
+        </destroyable>
+        <destroyable owner="magenta" mode-changes="true">
+            <region>
+                <cuboid min="71,102,-169" max="76,103,-164"/>
+            </region>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<modes>
+    <mode after="15s" material="air" name="Players are released!"/>
+</modes>
+<wools>
+    <wool team="orange" location="60.5,24,-153.5" color="magenta">
+        <monument><block>-62.5,30,-28.5</block></monument>
+    </wool>
+    <wool team="magenta" location="-45.5,24,-45.5" color="orange">
+        <monument><block>77.5,30,-170.5</block></monument>
+    </wool>
+</wools>
+<regions>
+    <!-- Region Defining -->
+    <union id="map">
+        <rectangle min="-71,-20" max="-7,-83"/>
+        <rectangle min="86,-179" max="22,-115"/>
+        <rectangle min="-41,-83" max="56,-121"/>
+        <rectangle min="-17,-148" max="32,-50"/>
+        <rectangle min="-8,-37" max="12,-52"/>
+        <rectangle min="31,-61" max="40,-80"/>
+        <rectangle min="55,-91" max="69,-116"/>
+        <rectangle min="23,-162" max="3,-147"/>
+        <rectangle min="-16,-138" max="-28,-120"/>
+        <rectangle min="-40,-108" max="-54,-83"/>
+    </union>
+    <complement id="playable">
+        <region id="map"/>
+        <above y="68"/>
+        <below y="20"/>
+        <cuboid min="4,62,-102" max="9,68,-97"/>
+    </complement>
+    
+    <!-- orange objectives -->
+    <cuboid id="orange-right-mon" min="-16,36,-32" max="-10,51,-26"/>
+    <cuboid id="orange-left-mon" min="-65,36,-81" max="-59,51,-75"/>
+    <union id="orange-wool-room">
+        <cuboid id="orange-wool" min="-49,21,-46" max="-45,25,-42"/>
+        <cuboid min="-32,20,-47" max="-24,29,-39"/>
+        <cuboid min="-51,20,-38" max="-45,29,-32"/>
+        <cuboid min="-59,20,-46" max="-53,29,-40"/>
+        <cuboid min="-52,20,-67" max="-44,29,-59"/>
+    </union>
+    
+    
+    <!-- magenta objectives -->
+    <cuboid id="magenta-right-mon" min="25,36,-173" max="31,51,-167"/>
+    <cuboid id="magenta-left-mon" min="74,36,-124" max="80,51,-117"/>
+    <union id="magenta-wool-room">
+        <cuboid id="magenta-wool" min="60,21,-157" max="64,25,-153"/>
+        <cuboid min="39,20,-160" max="47,29,-152"/>
+        <cuboid min="60,20,-167" max="66,29,-161"/>
+        <cuboid min="68,20,-159" max="74,29,-153"/>
+        <cuboid min="59,20,-140" max="67,29,-132"/>
+    </union>
+    
+    <!-- Portal Regions -->
+    <cuboid id="magenta-left-spawn-top" min="71,29,-157" max="72,31,-155"/>
+    <cuboid id="magenta-left-spawn-bottom" min="71,21,-157" max="72,23,-155"/>
+    <cuboid id="magenta-left-far-top" min="62,29,-137" max="64,31,-135"/>
+    <cuboid id="magenta-left-far-bottom" min="62,21,-137" max="64,23,-135"/>
+    <cuboid id="magenta-right-spawn-top" min="62,29,-165" max="64,31,-164"/>
+    <cuboid id="magenta-right-spawn-bottom" min="62,21,-165" max="64,23,-164"/>
+    <cuboid id="magenta-right-far-top" min="42,29,-157" max="44,31,-155"/>
+    <cuboid id="magenta-right-far-bottom" min="42,21,-157" max="44,23,-155"/>
+    <cuboid id="orange-left-spawn-top" min="-57,29,-44" max="-56,31,-42"/>
+    <cuboid id="orange-left-spawn-bottom" min="-57,21,-44" max="-56,23,-42"/>
+    <cuboid id="orange-left-far-top" min="-49,29,-64" max="-47,31,-62"/>
+    <cuboid id="orange-left-far-bottom" min="-49,21,-64" max="-47,23,-62"/>
+    <cuboid id="orange-right-spawn-top" min="-49,29,-35" max="-47,31,-34"/>
+    <cuboid id="orange-right-spawn-bottom" min="-49,21,-35" max="-47,23,-34"/>
+    <cuboid id="orange-right-far-top" min="-29,29,-44" max="-27,31,-42"/>
+    <cuboid id="orange-right-far-bottom" min="-29,21,-44" max="-27,23,-42"/>
+    
+    <!-- Applying Filters -->
+    <apply block="only-orange-wool-break" region="magenta-wool-room"/>
+    <apply block="only-magenta-wool-break" region="orange-wool-room"/>
+    <apply block="never">
+        <region>
+            <rectangle id="orange-spawn-prot" min="-64,-36" max="-55,-27"/>
+            <rectangle id="magenta-spawn-prot" min="70,-172" max="79,-163"/>
+        </region>
+    </apply>
+    <apply kit="fall-kit">
+        <region>
+            <cuboid id="orange-no-fall" min="-62,100,-36" max="-55,101,-29"/>
+            <cuboid id="magenta-no-fall" min="70,100,-170" max="77,101,-163"/>
+        </region>
+    </apply>
+    <apply block="mon-break">
+        <region>
+            <region id="orange-right-mon"/>
+            <region id="orange-left-mon"/>
+            <region id="magenta-right-mon"/>
+            <region id="magenta-left-mon"/>
+        </region>
+    </apply>
+    <apply block="only-some" region="playable"/>
+    <apply block="never"/>
+    
+    
+    <apply velocity="0,1.12,0">
+        <region>
+            <cuboid min="-8,31,-130" max="-6,32,-128"/>
+            <cuboid min="19,31,-71" max="21,32,-69"/>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <not id="only-some">
+        <any>
+            <material>stained glass</material>
+            <material>quartz block</material>
+            <material>quartz stairs</material>
+            <material>step:0</material>
+            <material>step:7</material>
+            <material>step:8</material>
+            <material>step:15</material>
+            <material>iron plate</material>
+            <material>beacon</material>
+            <material>stained glass pane</material>
+        </any>
+    </not>
+    <any id="mon-break">
+        <all>
+            <material>packed ice</material>
+            <cause>explosion</cause>
+        </all>
+        <not>
+            <material>packed ice</material>
+        </not>
+    </any>
+    <all id="only-orange-wool-break">
+        <filter id="only-orange"/>
+        <material>wool</material>
+    </all>
+    <all id="only-magenta-wool-break">
+        <filter id="only-magenta"/>
+        <material>wool</material>
+    </all>
+    <any id="only-some-mon">
+        <material>packed ice</material>
+        <material>stained glass pane</material>
+        <material>stained clay</material>
+    </any>
+    <team id="only-orange">orange</team>
+    <team id="only-magenta">magenta</team>
+</filters>
+<portals>
+    <!-- Magenta -->
+    <portal filter="only-orange" bidirectional="true" region="magenta-left-spawn-top">
+        <destination><region id="magenta-left-spawn-bottom"/></destination>
+    </portal>
+    <portal filter="only-orange" bidirectional="true" region="magenta-left-far-top">
+        <destination><region id="magenta-left-far-bottom"/></destination>
+    </portal>
+    <portal filter="only-orange" bidirectional="true" region="magenta-right-spawn-top">
+        <destination><region id="magenta-right-spawn-bottom"/></destination>
+    </portal>
+    <portal filter="only-orange" bidirectional="true" region="magenta-right-far-top">
+        <destination><region id="magenta-right-far-bottom"/></destination>
+    </portal>
+    <!-- Orange -->
+    <portal filter="only-magenta" bidirectional="true" region="orange-left-spawn-top">
+        <destination><region id="orange-left-spawn-bottom"/></destination>
+    </portal>
+    <portal filter="only-magenta" bidirectional="true" region="orange-left-far-top">
+        <destination><region id="orange-left-far-bottom"/></destination>
+    </portal>
+    <portal filter="only-magenta" bidirectional="true" region="orange-right-spawn-top">
+        <destination><region id="orange-right-spawn-bottom"/></destination>
+    </portal>
+    <portal filter="only-magenta" bidirectional="true" region="orange-right-far-top">
+        <destination><region id="orange-right-far-bottom"/></destination>
+    </portal>
+</portals>
+<renewables>
+    <renewable interval="5" grow="true" particles="false" sound="false" avoid-entities="true">
+        <renew-filter>
+            <any>
+                <material>ender stone</material>
+                <material>stained clay</material>
+                <material>wool</material>
+            </any>
+        </renew-filter>
+        <replace-filter>
+            <material>air</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<killreward>
+    <item>dispenser</item>
+</killreward>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond chestplate</item>
+    <item>ender stone</item>
+    <item>packed ice</item>
+    <item>quartz block</item>
+</itemremove>
+<blockdrops>
+    <rule>
+        <filter>
+            <material>coal block</material>
+        </filter>
+        <drops>
+            <item amount="2" grenade="true" grenade-power="2" grenade-destroy="false" id="`e`lGrenade">snow ball</item>
+        </drops>
+        <wrongtool>false</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <material>gold block</material>
+        </filter>
+        <drops>
+            <item amount="3">golden apple</item>
+        </drops>
+        <wrongtool>false</wrongtool>
+    </rule>
+    <rule>
+        <filter>
+            <material>diamond block</material>
+        </filter>
+        <drops>
+            <item damage="470" enchantment="protection_explosions:2">diamond leggings</item>
+            <item damage="8193" material="potion"><potion duration="15">regeneration</potion></item>
+        </drops>
+    </rule>
+</blockdrops>
+<item-mods>
+    <rule>
+        <match>
+            <material>wool</material>
+        </match>
+        <modify>
+            <attribute operation="multiply" amount=".2">generic.movementSpeed</attribute>
+        </modify>
+    </rule>
+</item-mods>
+<crafting>
+    <disable>diamond leggings</disable>
+</crafting>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<respawn delay="3s"/>
+<maxbuildheight>68</maxbuildheight>
+</map>

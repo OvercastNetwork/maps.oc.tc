@@ -1,0 +1,104 @@
+<map proto="1.3.2">
+<include src="blitz-global.xml"/>
+<name>Air Arena</name>
+<version>1.2.0</version>
+<objective>Kill an enemy 2 times to eliminate them; eliminate all enemies to win the match.</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
+    <!--  Stealth5061  -->
+</authors>
+<contributors>
+    <contributor contribution="Original map design and modeling">Hi-Rez Studios</contributor>
+</contributors>
+<teams>
+    <team color="dark red" max="12">Blood Eagle</team>
+    <team color="dark blue" max="12">Diamond Sword</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage_all:1">iron sword</item>
+        <item slot="1" name="`b`lSpinfusor" enchantment="durability:3;arrow_knockback:1">bow</item>
+        <item slot="2" amount="16">cooked fish</item>
+        <item slot="3" damage="16428" name="`8Frag Grenade `7XL" attributes="generic.movementSpeed:base:-0.15">potion</item>
+        <item slot="28" amount="32">arrow</item>
+        <helmet>diamond helmet</helmet>
+        <boots enchantment="protection fall:4" lore="`7You will not take fall damage.">iron boots</boots>
+        <potion duration="5" amplifier="2">heal</potion>
+        <potion duration="oo" amplifier="1">jump</potion>
+        <double-jump power="3" recharge-time="5s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="bloodspawn" parents="spawn">
+        <chestplate enchantment="protection_projectile:2;durability:3" attributes="generic.movementSpeed:base:0.20" color="2d2d2d">leather chestplate</chestplate>
+        <leggings color="c42d2d">leather leggings</leggings>
+    </kit>
+    <kit name="diamondspawn" parents="spawn">
+        <chestplate enchantment="protection_projectile:2;durability:3" attributes="generic.movementSpeed:base:0.20" color="2d2d2d">leather chestplate</chestplate>
+        <leggings color="22418e">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blood eagle" kit="bloodspawn" yaw="90">
+        <cuboid min="36,49,-37" max="40,49,-32"/>
+    </spawn>
+    <spawn team="diamond sword" kit="diamondspawn" yaw="-90">
+        <cuboid min="-25,49,-37" max="-21,49,-32"/>
+    </spawn>
+    <default>
+        <cuboid min="5,59,-86" max="10,59,-82"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="no-beacons">
+        <not>
+            <block>beacon</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" use="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Jump Pads -->
+    <apply velocity="@-0.02,1.5,0.02">
+        <cuboid min="39.5,49,-63.5" max="41,51,-65"/>
+    </apply>
+    <apply velocity="@0.02,1.5,-0.02">
+        <cuboid min="-24.5,49,-5.5" max="-26,51,-4"/>
+    </apply>
+    <apply velocity="@0.02,1.5,0.02">
+        <cuboid min="-24.5,49,-63.5" max="-26,51,-65"/>
+    </apply>
+    <apply velocity="@-0.02,1.5,-0.02">
+        <cuboid min="39.5,49,-5.5" max="41,51,-4"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>diamond helmet</item>
+    <item>leather chestplate</item>
+    <item>potion</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+</itemremove>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<blitz>
+    <title>Blitz</title>
+    <time>5m</time>
+    <lives>2</lives>
+</blitz>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suicide</damage>
+</disabledamage>
+<killreward>
+    <item amount="4">arrow</item>
+    <item damage="16428" name="`8Frag Grenade `7XL" attributes="generic.movementSpeed:base:-0.15">potion</item>
+    <item>golden apple</item>
+</killreward>
+</map>

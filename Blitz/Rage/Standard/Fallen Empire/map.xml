@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" title="Blitz: Rage">
+<name>Fallen Empire</name>
+<version>2.0.0</version>
+<objective>Eliminate the opposing team!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="e4b99cb2-9d7a-49a5-9743-f5b107d21053"/> <!-- TheAAG -->
+    <author uuid="399e61af-2bbc-455c-9415-db2dd382c98b"/> <!-- LastPepsiMax -->
+    <author uuid="c3380cc1-9b82-41be-ac21-cf82cfde5bea"/> <!-- TheFallenGods -->
+</authors>
+<contributors>
+    <contributor uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b" contribution="XML"/> <!-- Anthonny -->
+    <contributor uuid="e4abaa28-c5b1-4163-9505-db193442b532" contribution="Support"/> <!-- SergioRivas3 -->
+    <contributor uuid="408916f8-bedf-48a4-a841-d19ea0ed1a87" contribution="Support"/> <!-- bibblettuce -->
+</contributors>
+<blitz>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<include src="blitz-global.xml"/>
+<rage/>
+<teams>
+    <team id="red"
+          color="red"
+          max="20" max-overfill="22">Red</team>
+    <team id="blue"
+          color="blue"
+          max="20" max-overfill="22">Blue</team>
+</teams>
+<kits>
+    <kit id="kitSpawn">
+        <item slot="0" name="Soulblade" enchantment="damage all:10">iron sword</item>
+        <item slot="1" name="Wooden Bow" enchantment="arrow damage:10">bow</item>
+        <item slot="2">arrow</item>
+        <item slot="3" amount="5">cooked fish</item>
+        <boots locked="true">iron boots</boots>
+        <potion duration="2" amplifier="10">damage resistance</potion>
+    </kit>
+    <kit id="kitRed" parents="kitSpawn">
+        <chestplate locked="true" color="aa0000">leather chestplate</chestplate>
+        <leggings locked="true" color="aa0000">leather leggings</leggings>
+    </kit>
+    <kit id="kitBlue" parents="kitSpawn">
+        <chestplate locked="true" color="0000aa">leather chestplate</chestplate>
+        <leggings locked="true" color="0000aa">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="kitRed">
+        <regions yaw="0">
+            <cuboid min="-523,86,104" max="-521,86,106"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="kitBlue">
+        <regions yaw="180">
+            <cuboid min="-523,86,216" max="-521,86,218"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <block>-608.5,119,161.5</block>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="never">
+        <region><everywhere/></region>
+    </apply>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+</itemremove>
+</map>

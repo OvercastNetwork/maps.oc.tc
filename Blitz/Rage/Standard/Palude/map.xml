@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="blitz-global.xml"/>
+<name>Palude</name>
+<version>1.0.1</version>
+<objective>Eliminate everyone on the other team within 5 minutes!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor contribution="pikpikmerchant">XML</contributor>
+</contributors>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<rage/>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<teams>
+    <team color="dark red" max="16">Red</team>
+    <team color="blue" max="16">Blue</team>
+</teams>
+<timelock>on</timelock>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`a`l1-Hit kill!">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`a`l1-Shot Kill!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <item slot="3" amount="8">water lily</item>
+        <potion duration="3">heal</potion>
+        <potion duration="3">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="F62817" locked="true">leather helmet</helmet>
+        <chestplate color="F62817" locked="true">leather chestplate</chestplate>
+        <leggings color="F62817" locked="true">leather leggings</leggings>
+        <boots color="F62817" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0000A0" locked="true">leather helmet</helmet>
+        <chestplate color="0000A0" locked="true">leather chestplate</chestplate>
+        <leggings color="0000A0" locked="true">leather leggings</leggings>
+        <boots color="0000A0" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder base="1.5,6,61.5" radius="1" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="-0.5,6,-30.5" radius="1" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="0.5,24,15.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-lily">
+        <block>water lily</block>
+    </filter>
+</filters>
+<regions>
+    <apply block="only-lily">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>water lily</item>
+</itemremove>
+</map>

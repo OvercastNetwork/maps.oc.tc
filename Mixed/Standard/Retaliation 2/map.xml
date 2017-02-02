@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Retaliation 2</name>
+<version>1.3</version>
+<objective>Destroy the enemy team's core to win!</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Map Support and Assistance"/> <!-- HardstyleRaver2 -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<kits>
+    <kit name="obs" force="true">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams">
+        <item slot="0">diamond sword</item>
+        <item slot="1" enchantment="arrow infinite">bow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">diamond axe</item>
+        <item slot="4" amount="48">wood</item>
+        <item slot="5" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="993333" enchantment="protection explosions:3">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="334CB2" enchantment="protection explosions:3">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-87.5,46,0.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <point>108.5,46,0.5</point>
+    </spawn>
+    <default kit="obs" yaw="180">
+        <point>10.5,45,46.5</point>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<itemremove>
+    <item>cobblestone</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>shears</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>golden carrot</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>diamond axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>stone</block>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>cobblestone</block>
+        </filter>
+        <drops>
+            <item>stone</item>
+        </drops>
+    </rule>
+</blockdrops>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="30m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="red">
+        <cuboid min="-33,53,-3" max="-26,60,4"/>
+    </core>
+    <core team="blue">
+        <cuboid min="54,53,-3" max="47,60,4"/>
+    </core>
+</cores>
+<destroyables completion="100%" materials="gold block" show-progress="true" sparks="true">
+    <destroyables owner="blue">
+        <destroyable name="South Monument">
+            <cylinder base="57.5,54,27.5" radius="3" height="9"/>
+        </destroyable>
+        <destroyable name="North Monument">
+            <cylinder base="57.5,54,-26.5" radius="3" height="9"/>
+        </destroyable>
+    </destroyables>
+    <destroyables owner="red">
+        <destroyable name="North Monument">
+            <cylinder base="-36.5,54,-26.5" radius="3" height="9"/>
+        </destroyable>
+        <destroyable name="South Monument">
+            <cylinder base="-36.5,54,27.5" radius="3" height="9"/>
+        </destroyable>
+    </destroyables>
+</destroyables>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <rectangle min="83,-3" max="113,4"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <rectangle min="-62,-3" max="-92,4"/>
+    </apply>
+    <apply block="deny-all" message="You have reached the height limit above the map!">
+        <cuboid min="-oo,77,-oo" max="oo,oo,oo"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit this area!">
+        <negative>
+            <rectangle min="-63,-35" max="84,36"/>
+        </negative>
+        <cuboid min="-63,40,-3" max="-58,60,4"/>
+        <cuboid min="84,40,-3" max="79,60,3"/>
+    </apply>
+    <apply use="deny-beacon" message="Beacons are not enabled on this map!">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply block="deny-blocks" message="You may not under bridge!">
+-       <cuboid min="-oo,-oo,-oo" max="oo,40,oo"/>
+-   </apply>
+</regions>
+</map>

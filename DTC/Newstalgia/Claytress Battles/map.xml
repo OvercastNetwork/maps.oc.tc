@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Claytress Battles</name>
+<version>3.0.4</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<phase>development</phase>
+<include src="newstalgia.xml"/>
+<authors>
+    <author uuid="3a549b18-08ed-4756-a78c-b34d29a4fd87"/> <!-- Torn_Ares -->
+    <author uuid="98a4a81e-4393-4041-8d43-40a0196b5832"/> <!-- Thungon -->
+    <author uuid="0ae466ff-d3a1-4307-a323-89043643ace5"/> <!-- GammaRay_89 -->
+</authors>
+<teams>
+    <team color="blue" max="24">Blue</team>
+    <team color="dark red" max="24">Red</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="tnt-inventory" yaw="90">
+        <point>1249,27,519</point>
+    </spawn>
+    <spawn team="blue" kit="tnt-inventory" yaw="270">
+        <point>1286,27,519</point>
+    </spawn>
+    <default yaw="180" kit="nv">
+        <cylinder base="1267,27,518" radius="7" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-quartz">
+        <deny>
+            <block>quartz block</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" message="You may not build outside the playable region">
+        <negative name="map-inverse">
+            <rectangle name="map" min="1336,549" max="1199,637"/>
+        </negative>
+    </apply>
+    <apply block="deny-quartz">
+        <region name="map"/>
+    </apply>
+    <apply enter="deny-all" message="You may not enter spawns">
+        <rectangle min="1301,547" max="1234,517"/>
+    </apply>
+</regions>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="25m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="7" mode-changes="true">
+    <core team="red">
+        <cuboid min="1233,22,597" max="1227,30,589"/>
+    </core>
+    <core team="blue">
+        <cuboid min="1302,22,589" max="1307,30,597"/>
+    </core>
+</cores>
+<maxbuildheight>72</maxbuildheight>
+<itemremove>
+    <item>obsidian</item>
+    <item>shears</item>
+</itemremove>
+</map>

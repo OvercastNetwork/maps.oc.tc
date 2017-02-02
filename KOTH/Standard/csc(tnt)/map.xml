@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="continuity-tnt.xml"/>
+<name>csc(tnt)</name>
+<version>0.23</version>
+<objective>Get the most amount of points after 25 minutes! Points double about every 8 minutes.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<rules>
+    <rule>Spawn killing and camping is allowed</rule>
+    <rule>Players take no knockback on the black boxes</rule>
+</rules>
+<teams>
+    <team id="red" color="dark red" max="12">Red</team>
+    <team id="blue" color="blue" max="12">Blue</team>
+    <team id="yellow" color="yellow" max="12">Yellow</team>
+    <team id="green" color="dark green" max="12">Green</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="5,62,64" max="10,63,66"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="5,67,64" max="10,68,66"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="5,72,64" max="10,73,66"/>
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="0">
+        <cuboid min="5,77,64" max="10,78,66"/>
+    </spawn>
+    <default angle="5.5,83,70.5">
+        <point yaw="0">8,81,65</point>
+        <point yaw="-180">8,81,75</point>
+    </default>
+</spawns>
+<portals filter="only-blue">
+    <portal x="@-22.5" y="@7.5" z="@7.5" yaw="@-45">
+        <region name="blue-north-portal"/>
+    </portal>
+    <portal x="@127.5" y="@7.5" z="@117.5" yaw="@135">
+        <region name="blue-east-portal"/>
+    </portal>
+    <portal x="@8" y="@62.5" z="@65" yaw="@0">
+        <region name="back-to-blue"/>
+    </portal>
+</portals>
+<portals filter="only-red">
+    <portal x="@37.5" y="@7.5" z="@132.5" yaw="@135">
+        <region name="red-south-portal"/>
+    </portal>
+    <portal x="@-112.5" y="@7.5" z="@22.5" yaw="@-45">
+        <region name="red-west-portal"/>
+    </portal>
+    <portal x="@8" y="@67.5" z="@65" yaw="@0">
+        <region name="back-to-red"/>
+    </portal>
+</portals>
+<portals filter="only-green">
+    <portal x="@-52.5" y="@7.5" z="@147.5" yaw="@-180">
+        <region name="green-south-portal"/>
+    </portal>
+    <portal x="@67.5" y="@7.5" z="@-7.5" yaw="@0">
+        <region name="green-north-portal"/>
+    </portal>
+    <portal x="@8" y="@72.5" z="@65" yaw="@0">
+        <region name="back-to-green"/>
+    </portal>
+</portals>
+<portals filter="only-yellow">
+    <portal x="@127.5" y="@7.5" z="@37.5" yaw="@45">
+        <region name="yellow-east-portal"/>
+    </portal>
+    <portal x="@-112.5" y="@7.5" z="@102.5" yaw="@-135">
+        <region name="yellow-west-portal"/>
+    </portal>
+    <portal x="@8" y="@77.5" z="@65" yaw="@0">
+        <region name="back-to-yellow"/>
+    </portal>
+</portals>
+<kits>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="obs,tnt-inventory">
+        <chestplate name="`bSuper Chestplate" unbreakable="true" enchantment="protection explosions:1;oxygen:1;water worker:1;protection fall:4;protection projectile:1" attributes="generic.movementSpeed:base:0.1" locked="true">diamond chestplate</chestplate>
+        <potion duration="oo">saturation</potion>
+        <potion duration="5" amplifier="5">heal</potion>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="13" damage="11" amount="64">stained glass</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <item slot="30" damage="11" amount="64">stained clay</item>
+        <item slot="21" damage="11" amount="64">stained clay</item>
+        <item slot="11" damage="11" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="red" parents="teams">
+        <item slot="13" damage="14" amount="64">stained glass</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="30" damage="14" amount="64">stained clay</item>
+        <item slot="21" damage="14" amount="64">stained clay</item>
+        <item slot="11" damage="14" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="dd5566">leather helmet</helmet>
+        <leggings unbreakable="true" color="dd5566">leather leggings</leggings>
+        <boots unbreakable="true" color="dd5566">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <item slot="13" damage="4" amount="64">stained glass</item>
+        <item slot="3" damage="4" amount="64">stained clay</item>
+        <item slot="30" damage="4" amount="64">stained clay</item>
+        <item slot="21" damage="4" amount="64">stained clay</item>
+        <item slot="11" damage="4" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="E5E533">leather helmet</helmet>
+        <leggings unbreakable="true" color="E5E533">leather leggings</leggings>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="green" parents="teams">
+        <item slot="13" damage="5" amount="64">stained glass</item>
+        <item slot="3" damage="5" amount="64">stained clay</item>
+        <item slot="30" damage="5" amount="64">stained clay</item>
+        <item slot="21" damage="5" amount="64">stained clay</item>
+        <item slot="11" damage="5" amount="64">stained clay</item>
+        <helmet unbreakable="true" color="667F33">leather helmet</helmet>
+        <leggings unbreakable="true" color="667F33">leather leggings</leggings>
+        <boots unbreakable="true" color="667F33">leather boots</boots>
+    </kit>
+    <kit name="give-regen" force="true">
+        <potion duration="oo" amplifier="3">regeneration</potion>
+        <knockback-reduction>1</knockback-reduction>
+        <walk-speed>1.5</walk-speed>
+    </kit>
+    <kit name="take-regen" force="true">
+        <potion duration="0" amplifier="0">regeneration</potion>
+        <knockback-reduction>0</knockback-reduction>
+        <walk-speed>1.0</walk-speed>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+</filters>
+<regions>
+    <!-- Almost all regions are translated from "origin" -->
+    <!-- When translating get the the corner of the 15 x 15 square at North-West -->
+    <rectangle name="origin" min="0,0" max="15,15"/>
+    <cuboid name="origin-cuboid" min="0,0,0" max="15,7,15"/>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="map" min="135,140" max="-120,0"/>
+    <cuboid name="renewables" min="135,0,140" max="-120,25,0"/>
+    <cuboid name="above-25" min="-oo,25,-oo" max="oo,oo,oo"/>
+    <union name="spawns">
+        <union name="red-spawns">
+            <translate name="red-spawn-south" offset="30,0,125">
+                <region name="origin"/>
+            </translate>
+            <translate name="red-spawn-west" offset="-120,0,15">
+                <region name="origin"/>
+            </translate>
+        </union>
+        <union name="blue-spawns">
+            <translate name="blue-spawn-north" offset="-30,0,0">
+                <region name="origin"/>
+            </translate>
+            <translate name="blue-spawn-east" offset="120,0,110">
+                <region name="origin"/>
+            </translate>
+        </union>
+        <union name="yellow-spawns">
+            <translate name="yellow-spawn-west" offset="-120,0,95">
+                <region name="origin"/>
+            </translate>
+            <translate name="yellow-spawn-east" offset="120,0,30">
+                <region name="origin"/>
+            </translate>
+        </union>
+        <union name="green-spawns">
+            <translate name="green-spawn-north" offset="60,0,-15">
+                <region name="origin"/>
+            </translate>
+            <translate name="green-spawn-south" offset="-60,0,140">
+                <region name="origin"/>
+            </translate>
+        </union>
+    </union>
+    <union name="regen-platforms">
+        <translate name="platform-north" offset="-30,0,45">
+            <region name="origin"/>
+        </translate>
+        <translate name="platform-south" offset="30,0,80">
+            <region name="origin"/>
+        </translate>
+    </union>
+    <union name="points">
+        <cuboid min="-15,0,110" max="-30,7,80"/>
+        <cuboid min="-75,0,75" max="-90,7,45"/>
+        <cuboid min="30,0,60" max="45,7,30"/>
+        <cuboid min="90,0,65" max="105,7,95"/>
+    </union>
+    <union name="plaforms">
+        <translate offset="-30,0,45">
+            <region name="origin-cuboid"/>
+        </translate>
+        <translate offset="30,0,80">
+            <region name="origin-cuboid"/>
+        </translate>
+    </union>
+    <complement name="obs-spawn"> <!-- Allows portals to take teams back into the region -->
+        <cuboid name="obs-spawn-outer" min="14,71,78" max="2,oo,62"/>
+        <cuboid name="obs-spawn-inner" min="13,72,77" max="3,81,63"/>
+    </complement>
+    <union name="blue-portals">
+        <cuboid name="blue-north-portal" min="4,62,75" max="3,65,67"/>
+        <cuboid name="blue-east-portal" min="12,62,67" max="13,65,75"/>
+        <union name="back-to-blue">
+            <block>-27.5,7,2.5</block>
+            <block>132.5,7,122.5</block>
+        </union>
+    </union>
+    <union name="red-portals">
+        <cuboid name="red-west-portal" min="4,67,75" max="3,70,67"/>
+        <cuboid name="red-south-portal" min="12,67,67" max="13,70,75"/>
+        <union name="back-to-red">
+            <block>-117.5,7,17.5</block>
+            <block>42.5,7,137.5</block>
+        </union>
+    </union>
+    <union name="green-portals">
+        <cuboid name="green-south-portal" min="4,72,75" max="3,75,67"/>
+        <cuboid name="green-north-portal" min="12,72,67" max="13,75,75"/>
+        <union name="back-to-green">
+            <block>62.5,7,-12.5</block>
+            <block>-47.5,7,152.5</block>
+        </union>
+    </union>
+    <union name="yellow-portals">
+        <cuboid name="yellow-west-portal" min="4,77,75" max="3,80,67"/>
+        <cuboid name="yellow-east-portal" min="12,77,67" max="13,80,75"/>
+        <union name="back-to-yellow">
+            <block>132.5,7,32.5</block>
+            <block>-117.5,7,107.5</block>
+        </union>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not edit the spawn island!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the capture point!">
+        <region name="points"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit the regen platform!">
+        <region name="plaforms"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit above the height limit! (`725 Blocks`c)">
+        <region name="above-25"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit outside the map!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn island!">
+        <region name="blue-spawns"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy spawn island!">
+        <region name="red-spawns"/>
+    </apply>
+    <apply enter="only-yellow" message="You may not enter the enemy spawn island!">
+        <region name="yellow-spawns"/>
+    </apply>
+    <apply enter="only-green" message="You may not enter the enemy spawn island!">
+        <region name="green-spawns"/>
+    </apply>
+    <apply enter="deny-all" message="You may not enter the observer spawn area!">
+        <region name="obs-spawn"/>
+    </apply>
+    <apply kit="give-regen">
+        <region name="regen-platforms"/>
+    </apply>
+    <apply kit="take-regen">
+        <negative>
+            <region name="regen-platforms"/>
+        </negative>
+    </apply>
+</regions>
+<king>
+    <hills capture-time="20s" capture-rule="lead" neutral-state="false" scaled-time="true" points-growth="540">
+        <hill id="north-point" name="North" points="0.5">
+            <capture>
+                <cuboid min="30,7,60" max="45,20,30"/>
+            </capture>
+            <progress>
+                <cuboid min="30,0,60" max="45,7,30"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+        <hill id="west-point" name="West" points="0.5">
+            <capture>
+                <cuboid min="-75,7,75" max="-90,20,45"/>
+            </capture>
+            <progress>
+                <cuboid min="-75,0,75" max="-90,7,45"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+        <hill id="east-point" name="East" points="0.5">
+            <capture>
+                <cuboid min="90,7,65" max="105,20,95"/>
+            </capture>
+            <progress>
+                <cuboid min="90,0,65" max="105,7,95"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+        <hill id="south-point" name="South" points="0.5">
+            <capture>
+                <cuboid min="-15,7,110" max="-30,20,80"/>
+            </capture>
+            <progress>
+                <cuboid min="-15,0,110" max="-30,7,80"/>
+            </progress>
+            <captured>
+                <cuboid min="0,0,0" max="0,0,0"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<score>
+    <time>25m</time>
+</score>
+<king/>
+<armorkeep>
+    <item>iron helmet</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>diamond boots</item>
+</armorkeep>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>iron block</block>
+        </filter>
+        <drops>
+            <item damage="-100">iron helmet</item>
+            <item damage="-100">iron leggings</item>
+            <item attributes="generic.movementSpeed:base:0.10">iron boots</item>
+        </drops>
+    </rule>
+    <rule>
+        <filter>
+            <block>diamond block</block>
+        </filter>
+        <drops>
+            <item damage="359" attributes="generic.movementSpeed:base:0.20;generic.knockbackResistance:add:1" enchantment="protection explosions:2">diamond boots</item>
+            <item name="`6Grenade" amount="16" grenade="true" grenade-power="1.2">snow ball</item>
+        </drops>
+    </rule>
+</blockdrops>
+<renewables>
+    <renewable rate="35" grow="true" avoid-entities="true" particles="false" sound="false">
+        <region>
+            <!-- Avoids renewables from changing the hill indicators -->
+            <complement>
+                <region name="renewables"/>
+                <region name="points"/>
+                <region name="plaforms"/>
+            </complement>
+        </region>
+        <replace>air</replace>
+        <replace>water</replace>
+    </renewable>
+</renewables>
+<disabledamage>
+    <damage ally="true" enemy="false" self="false">block explosion</damage>
+</disabledamage>
+<modes boss-bar="false">
+    <!-- Drop Zone Modes -->
+    <mode after="1s" material="stained clay:9" name="`aEvery `65 `aminutes there is an iron supply drop"/>
+    <mode after="2s" material="stained clay:9" name="`aEvery `610 `aminutes there is a diamond supply drop"/>
+    <mode after="5m" material="iron block" name="`aA supply drop of `6iron `ahas been spotted"/>
+    <mode after="10m" material="diamond block" name="`aA supply drop of `6diamond/iron `ahas been spotted"/>
+    <mode after="15m" material="iron block" name="`aA supply drop of `6iron `ahas been spotted"/>
+    <mode after="20m" material="diamond block" name="`aA supply drop of `6diamond/iron `ahas been spotted"/>
+    <mode after="25m" material="iron block" name="`aA supply drop of `6iron `ahas been spotted"/>
+    <!-- Point Growth Modes -->
+    <mode after="8m" material="iron block" name="`cAll hills now gain points `62x `cfaster than originally"/>
+    <mode after="16m" material="iron block" name="`cAll hills now gain points `64x `cfaster than originally"/>
+    <mode after="24m" material="diamond block" name="`cAll hills now gain points `68x `cfaster than originally"/>
+</modes>
+<destroyables show="false">
+    <destroyable id="drop-zones" name="drop-zones" materials="stained clay:9" owner="green" completion="0%" mode-changes="true">
+        <cuboid min="-21,32,134" max="-24,36,131"/>
+        <cuboid min="39,32,6" max="36,36,9"/>
+    </destroyable>
+</destroyables>
+<killreward>
+    <item amount="32">tnt</item>
+    <item>dispenser</item>
+</killreward>
+</map>

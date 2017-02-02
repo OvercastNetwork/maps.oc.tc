@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Amazing Race">
+<name>Gingerbread Land 2</name>
+<version>1.0.1</version>
+<objective>Get to the finish line!</objective>
+<gamemode>Arcade</gamemode>
+<slug>amazing_race_gingerbread_land_2</slug>
+<authors>
+    <author uuid="657b93a7-3f50-4e94-ae3b-189506124836"/> <!-- Tjandra -->
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<players min="4" max="8" colors="true"/>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="-90"><cuboid min="64,2,16" max="64,2,26"/></regions>
+    </spawn>
+    <default>
+        <regions yaw="90"><cuboid min="72,26,102" max="67,26,96"/></regions>
+    </default>    
+</spawns>
+<blitz>
+    <lives>3</lives>    
+</blitz>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="boat-kit">
+        <item slot="0" unbreakable="true">boat</item>
+        <item slot="1" unbreakable="true">boat</item>
+    </kit>
+    <kit id="observers">
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+</kits>
+<portals>
+    <!-- Teleport the player from portal-entrance to a random point inside portal-exit -->
+    <portal region="portal-entrance">
+        <destination><region id="portal-exit"/></destination>
+    </portal>
+</portals>
+<regions>
+	<union id="checkpoints">
+		<cuboid id="checkpoint-1" min="101,12,6" max="110,0,35"/>
+		<cuboid id="checkpoint-2" min="163,25,0" max="177,0,38"/>
+		<cuboid id="checkpoint-3" min="347,42,-7" max="370,0,-79"/>
+		<cuboid id="checkpoint-4" min="440,44,129" max="442,0,37"/>
+        <cuboid id="checkpoint-5" min="380,40,294" max="402,0,373"/>
+		<cuboid id="checkpoint-6" min="372,30,157" max="360,0,232"/>
+		<cuboid id="checkpoint-7" min="256,30,286" max="284,0,358"/>
+		<cuboid id="checkpoint-8" min="347,10,171" max="323,0,158"/>
+		<cuboid id="checkpoint-9" min="208,14,65" max="193,0,117"/>		
+	</union>
+    <cuboid id="portal-entrance" min="180.5,7,20.5" max="182.5,9,22.5"/>
+    <cuboid id="portal-exit" min="229,19,31" max="228,22,11"/>
+    <apply kit="boat-kit">
+        <region>
+            <cuboid min="234,18,37" max="239,22,6"/>
+        </region>
+    </apply>
+</regions>
+<filters>
+    <score id="score-0">0</score>
+    <score id="score-1">1</score>
+    <score id="score-2">2</score>
+    <score id="score-3">3</score>
+    <score id="score-4">4</score>
+    <score id="score-5">5</score>
+    <score id="score-6">6</score>
+    <score id="score-7">7</score>
+    <score id="score-8">8</score>
+    <score id="score-9">9</score>
+</filters>
+<score>
+    <box points="1" filter="score-0" region="checkpoint-1" silent="true"/>
+    <box points="1" filter="score-1" region="checkpoint-2" silent="true"/>
+    <box points="1" filter="score-2" region="checkpoint-3" silent="true"/>
+    <box points="1" filter="score-3" region="checkpoint-4" silent="true"/>
+    <box points="1" filter="score-4" region="checkpoint-5" silent="true"/>
+    <box points="1" filter="score-5" region="checkpoint-6" silent="true"/>
+    <box points="1" filter="score-6" region="checkpoint-7" silent="true"/>
+    <box points="1" filter="score-7" region="checkpoint-8" silent="true"/>
+    <box points="1" filter="score-8" region="checkpoint-9" silent="true"/>
+    <box points="1">
+        <region><cuboid id="FinishLine" min="98,0,116" max="93,8,81"/></region>
+    </box>
+    <limit>10</limit>
+</score>
+<time>5m</time>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+    <damage>entity attack</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

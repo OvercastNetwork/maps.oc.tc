@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Ghostwind Mountain</name>
+<version>1.0.3</version>
+<objective>Destroy the enemy's monument while protecting your own.</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+    <author uuid="36dc036a-dfbc-4627-b66a-501223f08075"/> <!-- ieatboulders2 -->
+</authors>
+<contributors>
+    <contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807" contribution="Obs spawn and slight aesthetics"/> <!-- xannallax33 -->
+    <contributor uuid="22ba442b-cf26-4d09-b290-8d4e50a551b2" contribution="XML"/> <!-- Dinner1111 -->
+</contributors>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Ghostwind Mountain - Mini-Destroy the Monument (DTM)">
+        <message>
+            <line>This map is a `aDestroy the Monument`r type map.</line>
+            <line>The objective is to destroy the other team's `bobsidian monument.</line>
+        </message>
+        <teleport>
+            <point yaw="140" pitch="45">17,37,17</point>
+        </teleport>
+    </stage>
+    <stage title="The Monument">
+        <message>
+            <line>This is `agreen's monument`r.</line>
+            <line>The `9blue team's`r objective is to break the two `bobsidian`r blocks.</line>
+        </message>
+        <teleport>
+            <point yaw="-135" pitch="0">14,21,18</point>
+        </teleport>
+    </stage>
+    <stage title="Entrance to the catacombs">
+        <message>
+            <line>Enter into the winding tunnel, and discover the secret `4enchanting room.</line>
+        </message>
+        <teleport>
+            <point yaw="130" pitch="0">20,11,0</point>
+        </teleport>
+    </stage>
+    <stage title="The Enchanting Table">
+        <message>
+            <line>Use `aEXP bottles`r gained from `4killing players`r to enchant your items here!</line>
+            <line>You will be `4unable`r to break the `aenchanting table`r or build around it.</line>
+        </message>
+        <teleport>
+            <point yaw="-65" pitch="10">-7,4,-2</point>
+        </teleport>
+    </stage>
+</tutorial>
+<teams>
+    <team color="green" max="14">Green</team>
+    <team color="blue" max="14">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" amount="24">bread</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6" amount="16">log</item>
+        <item slot="7" amount="64">glass</item>
+        <item slot="8">golden apple</item>
+        <item slot="28">arrow</item>
+        <potion amplifier="4" duration="5">damage resistance</potion>
+    </kit>
+    <kit name="g-spawn" parents="spawn">
+        <helmet color="7FCC19">leather helmet</helmet>
+        <chestplate color="7FCC19">leather chestplate</chestplate>
+        <leggings color="7FCC19">leather leggings</leggings>
+        <boots color="7FCC19">leather boots</boots>
+    </kit>
+    <kit name="b-spawn" parents="spawn">
+        <helmet color="334CB2">leather helmet</helmet>
+        <chestplate color="334CB2">leather chestplate</chestplate>
+        <leggings color="334CB2">leather leggings</leggings>
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="green" yaw="45" kit="g-spawn">
+        <cuboid min="31,37,-20" max="33,37,-22"/>
+    </spawn>
+    <spawn team="blue" yaw="-130" kit="b-spawn">
+        <cuboid min="-30,37,21" max="-32,37,23"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-0,63,-0" max="1,63,1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-green" enter="deny-all">
+        <allow>
+            <team>green</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" enter="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all">
+        <negative>
+            <rectangle name="sides" min="-35,26" max="36,-25"/>
+        </negative>
+    </apply>
+    <apply block="deny-all">
+        <cylinder base="0,5,0" height="5" radius="2"/>
+    </apply>
+    <apply block="deny-all" enter="only-green">
+        <cuboid min="27,34,-16" max="35,oo,-24"/>
+    </apply>
+    <apply block="deny-all" enter="only-blue">
+        <cuboid min="-26,34,17" max="-34,38,25"/>
+    </apply>
+</regions>
+<destroyables name="Monument" completion="100%" materials="obsidian">
+    <destroyable owner="green">
+        <cuboid min="21,22,12" max="21,24,12"/>
+    </destroyable>
+    <destroyable owner="blue">
+        <cuboid min="-21,24,-12" max="-21,22,-12"/>
+    </destroyable>
+</destroyables>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>arrow</tool>
+    <tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+    <item>exp bottle</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>obsidian</item>
+    <item>bread</item>
+    <item>glass</item>
+    <item>log</item>
+    <item>ladder</item>
+</itemremove>
+<killreward>
+    <item>exp bottle</item>
+</killreward>
+<maxbuildheight>40</maxbuildheight>
+</map>

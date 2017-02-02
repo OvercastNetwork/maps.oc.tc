@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Ozone: Elytra</name>
+<version>1.0.2</version>
+<objective>Be the team with the least amount of deaths after 15 minutes.</objective>
+<authors>
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="Overall Map Design and XML code"/> <!-- Plastix -->
+    <author uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="Map Design"/> <!-- MonsieurApple -->
+    <author uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="*crunch* *crunch* *crunch*"/> <!-- IM_A_H0B0 -->
+    <author uuid="90e029a3-6873-46a7-8430-0ec3dbc42aba" contribution="Map Design and Aestethics"/> <!-- SajinZero -->
+</authors>
+<contributors>
+    <contributor uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff" contribution="Feedback and Aesthetics"/> <!-- Khazhyk -->
+    <contributor uuid="3ce426cd-2ded-4f83-a9bb-46a57d68d9a5" contribution="Various Aesthethics"/> <!-- McYukon -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<players max="150"/>
+<regions>
+    <circle name="map-all" center="0.5,0.5" radius="175.5"/>
+    <apply block-break="explosions" block-place="deny-all">
+        <region name="map-all"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="explosions">
+        <cause>explosion</cause>
+    </filter>
+</filters>
+<playable>
+    <region name="map-all"/>
+</playable>
+<rage/>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all">iron sword</item>
+        <item slot="1" enchantment="arrow infinite;arrow damage">bow</item>
+        <item slot="28">arrow</item>
+        <helmet enchantment="durability">diamond helmet</helmet>
+        <chestplate enchantment="protection fall:3" unbreakable="true">elytra</chestplate>
+        <potion duration="oo" amplifier="3">speed</potion>
+        <!-- <potion duration="oo">glowing</potion> -->
+        <double-jump power="20" recharge-time="30s" recharge-before-landing="true"/>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="1">jump</potion>
+        <potion duration="oo" amplifier="3">speed</potion>
+        <chestplate>elytra</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn kit="spawn" spread="true" safe="true" outdoors="true" angle="0.5,5,0.5">
+        <cylinder base="0.5,2,0.5" radius="170" height="15"/>
+        <cylinder base="-102.5,69,103.5" radius="4" height="0"/>
+        <cylinder base="103.5,69,-102.5" radius="4" height="0"/>
+        <cylinder base="103.5,69,103.5" radius="4" height="0"/>
+        <cylinder base="-102.5,69,-102.5" radius="4" height="0"/>
+    </spawn>
+    <default yaw="90" kit="observers">
+        <cylinder base="0,30,0" radius="3" height="0"/>
+    </default>
+</spawns>
+<score>
+    <time>15m</time>
+</score>
+<mobs>
+    <filter>
+        <filter name="allow-all"/>
+    </filter>
+</mobs>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>diamond helmet</item>
+    <item>elytra</item>
+</itemremove>
+</map>

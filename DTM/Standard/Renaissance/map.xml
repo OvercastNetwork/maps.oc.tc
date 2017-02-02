@@ -1,0 +1,338 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Renaissance</name>
+<version>0.11</version>
+<objective>The attackers must destroy the endstone pillar. The defenders must stop them before 15 minutes runs out.</objective>
+<gamemode>ad</gamemode>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team id="attackers" color="yellow" max="20" max-overfill="24" plural="true">Attackers</team>
+    <team id="defenders" color="blue" max="20" max-overfill="24" plural="true">Defenders</team>
+</teams>
+<spawns>
+    <default kit="all" yaw="70">
+        <cuboid min="163,31,-11" max="155,32,-1"/>
+    </default>
+    <spawn team="attackers" kit="attackers" yaw="0">
+        <cylinder base="57.5,7,-14.5" radius="3" height="1"/>
+    </spawn>
+    <spawn safe="true" sequential="true" team="defenders" kit="defenders" yaw="90">
+        <cylinder base="152.5,15,10.5" radius="1.5" height="1"/>
+        <cylinder base="152.5,9,10.5" radius="1.5" height="1"/>
+        <point yaw="180">153.5,24,29</point>
+    </spawn>
+</spawns>
+<destroyables owner="defenders" show-progress="true" repairable="true" sparks="true">
+    <destroyable name="Endstone Pillar" id="pillar" materials="ender stone" completion="100%">
+        <region name="pillar"/> 
+    </destroyable>
+</destroyables>
+<kits>
+    <kit name="all" force="true">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="team" parents="all">
+        <item slot="9">workbench</item>
+        <item slot="10">shears</item>
+        <item slot="29" amount="64">vine</item>
+        <item slot="2" amount="64">vine</item>
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="64">step</item>
+        <item slot="4" amount="64">nether fence</item>
+        <item slot="14" amount="16">piston base</item>
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="64">redstone</item>
+        <item slot="7" amount="16">redstone block</item>
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+    </kit>
+    <kit name="attackers" parents="team">
+        <item slot="0" attributes="generic.attackDamage:add:6" name="Sharpened Diamond Pickaxe">diamond pickaxe</item>
+        <item slot="28" amount="32">arrow</item>
+        <item slot="1">bow</item>
+        <item slot="11" name="Blade of Icarus">wood sword</item>
+        <item slot="12" damage="1" amount="64">stained clay</item>
+        <item slot="21" damage="1" amount="64">stained clay</item>
+        <item slot="30" damage="1" amount="64">stained clay</item>
+        <item slot="3" damage="1" amount="64">stained clay</item>
+        <helmet locked="true" color="222222" enchantment="protection explosions:3;water worker:3" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="E5E533" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="E5E533" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="E5E533" enchantment="protection fall:1" durability="-3000">leather boots</boots>
+    </kit>
+
+    <kit name="defenders" parents="team">
+        <item slot="0" attributes="generic.attackDamage:add:8" name="Sharpened Diamond Pickaxe">diamond pickaxe</item>
+        <item slot="1" amount="48">snow ball</item>
+        <item slot="18" amount="3" name="Auto Dispensing Machine">dispenser</item>
+        <item slot="12" damage="10" amount="64">stained clay</item>
+        <item slot="21" damage="10" amount="64">stained clay</item>
+        <item slot="30" damage="10" amount="64">stained clay</item>
+        <item slot="3" damage="10" amount="64">stained clay</item>
+        <helmet locked="true" enchantment="protection explosions:3" unbreakable="true">iron helmet</helmet>
+        <chestplate locked="true" color="5e55dd" unbreakable="true">leather chestplate</chestplate>
+        <leggings locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>
+        <boots locked="true" color="5e55dd" enchantment="protection fall:3" durability="-3000">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-defenders">
+        <team>defenders</team>
+    </filter>
+    <filter name="only-attackers">
+        <team>attackers</team>
+    </filter>
+    <filter name="deny-water">
+        <deny>
+            <any>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="unbreakable-blocks">
+        <deny>
+            <any>
+                <block>stained glass:15</block>
+                <block>stained glass:0</block>
+                <block>diamond block</block>
+                <block>beacon</block>
+                <block>quartz block</block>
+                <block>stained glass:8</block>
+                <block>quartz stairs</block>
+            </any>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="only-endstone-explosion">
+        <not>
+            <all>
+                <block>ender stone</block>
+                <cause>player</cause>
+            </all>
+        </not>
+    </filter>
+    <filter name="sticky-blocks">
+        <any>
+            <block>stained glass:15</block>
+            <block>stained glass:0</block>
+            <block>diamond block</block>
+            <block>beacon</block>
+            <block>quartz block</block>
+            <block>stained glass:8</block>
+            <block>quartz stairs</block>
+        </any>
+    </filter>
+    <filter name="neutral-falling-blocks">
+        <any>
+            <block>step</block>
+            <block>double step</block>
+            <block>nether fence</block>
+            <block>dispenser</block>
+            <block>redstone wire</block>
+            <block>redstone torch off</block>
+            <block>redstone torch on</block>
+            <block>fence gate</block>
+            <block>nether fence</block>
+            <block>piston base</block>
+            <block>redstone block</block>
+            <block>water</block>
+            <block>stationary water</block>
+        </any>
+    </filter>
+    <filter name="defenders-falling-blocks">
+        <any>
+            <filter name="neutral-falling-blocks"/>
+            <block>stained clay:10</block>
+        </any>
+    </filter>
+    <filter name="attackers-falling-blocks">
+        <any>
+            <filter name="neutral-falling-blocks"/>
+            <block>stained clay:1</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <rectangle name="around-endstone" min="139,-10" max="155,5"/>
+    <cylinder name="pillar" base="146.5,8,-2.5" radius="3" height="20"/>
+    <negative name="outside-map">
+        <union name="map">
+            <cuboid name="factory" min="165,0,-29" max="116,44,38"/>
+            <cuboid name="left-side-corridor" min="160,0,-52" max="95,25,-61"/>
+            <cuboid name="left-side-across" min="104,0,-61" max="95,25,-31"/>
+            <cuboid name="left-side-upstream" min="104,0,-40" max="77,25,-31"/>
+            <cuboid name="right-side-corridor" min="148,0,70" max="98,25,61"/>
+            <cuboid name="right-side-across" min="107,0,70" max="98,25,38"/>
+            <cuboid name="right-side-upstream" min="107,0,38" max="77,25,47"/>
+            <cuboid name="horizontal-attacker-corridor" min="77,0,-40" max="86,25,29"/>
+            <cuboid name="attacker-backboard" min="74,0,-22" max="77,25,-3"/>
+            <cuboid name="vertical-attacker-corridor" min="50,0,-3" max="84,25,10"/>
+            <cuboid name="attacker-to-vertical" min="50,0,-7" max="65,25,-3"/>
+            <cuboid name="attacker-to-factory" min="160,0,-52" max="118,25,70"/>
+            <cuboid name="attacker-to-left" min="86,0,29" max="77,25,47"/>
+        </union>
+    </negative>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not edit outside of the map area">
+        <region name="outside-map"/>
+    </apply>
+    <apply block-break="unbreakable-blocks" message="This block is not breakable">
+        <region name="map"/>
+    </apply>
+    <apply block-place="deny-water" message="Water is not allowed to be placed around the monument">
+        <region name="around-endstone"/>
+    </apply>
+    <apply block-break="only-endstone-explosion" message="You may only break the endstone with TNT">
+        <region name="pillar"/>
+    </apply>
+    <apply use="deny-beacon">
+        <region name="map"/>
+    </apply>
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<blockdrops>
+    <rule>
+        <filter>
+            <not>
+                <any>
+                    <block>ender stone</block>
+                    <block>ladder</block>
+                    <block>quartz block</block>
+                    <block>coal block</block>
+                    <block>tnt</block>
+                </any>
+            </not>
+        </filter>
+        <fall-chance>0.4</fall-chance>
+        <land-chance>0.5</land-chance>
+        <fall-speed>0.8</fall-speed>
+        <drops/>
+    </rule>
+</blockdrops>
+<falling-blocks>
+    <rule>
+        <filter>
+            <all>
+                <region name="map"/>
+                <filter name="attackers-falling-blocks"/>
+            </all>
+        </filter>
+        <sticky>
+            <any>
+                <filter name="sticky-blocks"/>
+                <filter name="attackers-falling-blocks"/>
+            </any>
+        </sticky>
+    </rule>
+    <rule>
+        <filter>
+            <all>
+                <region name="map"/>
+                <filter name="defenders-falling-blocks"/>
+            </all>
+        </filter>
+        <sticky>
+            <any>
+                <filter name="sticky-blocks"/>
+                <filter name="defenders-falling-blocks"/>
+            </any>
+        </sticky>
+    </rule>
+</falling-blocks>
+<renewables avoid-entities="true" sound="false" particles="false">
+    <renewable rate="30">
+        <region>
+            <region name="factory"/>
+        </region>
+        <renew-filter>
+            <not>
+                <block>ender stone</block>
+            </not>
+        </renew-filter>
+        <replace-filter>
+            <any>
+                <block>air</block>
+                <block>water</block>
+                <block>stationary water</block>
+            </any>
+        </replace-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>diamond pickaxe</item>
+    <item>workbench</item>
+    <item>dispenser</item>
+    <item>shears</item>
+    <item>wood sword</item>
+    <item>bow</item>
+    <item>snow ball</item>
+    <item>arrow</item>
+    <item>vine</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>ender stone</item>
+</itemremove>
+<killreward>
+    <filter>
+        <filter name="only-attackers"/>
+    </filter>
+    <item amount="16">arrow</item>
+</killreward>
+<killreward>
+    <filter>
+        <filter name="only-defenders"/>
+    </filter>
+    <item amount="16">snow ball</item>
+</killreward>
+<time result="defenders">15m</time>
+<broadcasts>
+    <tip after="2s" every="5m">Blocks will collapse if not anchored to quartz or stained glass.</tip>
+    <tip after="4s" every="5m">Try to blow up the attackers bridges to stop their progress!</tip>
+    <tip after="6s" every="5m">The attackers must destroy 100% of the pillar before time runs out.</tip>
+    <tip after="8s" every="5m">You can only break the monument with TNT!</tip>
+</broadcasts>
+</map>

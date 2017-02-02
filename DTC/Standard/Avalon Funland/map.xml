@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Avalon Funland</name>
+<version>1.2.4</version>
+<objective>Destroy the enemy team's core in the center of their Ferris Wheel</objective>
+<authors>
+    <author uuid="445da9ac-d32f-4874-86e5-4846d61e02d0"/> <!-- 911chandler -->
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<teams>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:2">iron axe</item>
+        <item slot="4" amount="64" damage="1">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="7" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="8" amount="64">cooked chicken</item>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="blue" yaw="180">
+            <cylinder base="49.5,22,88.5" radius="3.5" height="0"/>
+        </spawn>
+        <spawn team="red" yaw="0">
+            <cylinder base="49.5,22,-89.5" radius="3.5" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="270">
+        <cylinder base="0.5,30,-0.5" radius="5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-some" parents="deny-all">
+        <allow>
+            <block>diamond block</block>
+            <block>iron block</block>
+            <block>glass</block>
+            <block>glowstone</block>
+        </allow>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="deny-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+    <filter name="anti-grief-red">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="anti-grief-blue">
+        <not>
+            <all>
+                <block>tnt</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all">
+        <negative>
+            <rectangle name="map" min="15,-158" max="84,157"/>
+        </negative>
+    </apply>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="37,21,-100" max="61,33,-75"/>
+        <cuboid name="blue-spawn" min="37,21,77" max="61,33,99"/>
+    </union>
+    <apply block-break="only-some" block-place="deny-all" message="You may not modify the base area!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter enemy's base!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter enemy's base!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply block-place="anti-grief-red" message="You are not allowed to place TNT here!">
+        <complement>
+            <rectangle name="red-castle" min="36,-79" max="63,-124"/>
+            <region name="red-spawn"/>
+        </complement>
+    </apply>
+    <apply block-place="anti-grief-blue" message="You are not allowed to place TNT here!">
+        <complement>
+            <rectangle name="blue-castle" min="62,77" max="35,122"/>
+            <region name="blue-spawn"/>
+        </complement>
+    </apply>
+    <apply block-place="deny-dispenser" message="Dispensers are disabled on this map!">
+        <region name="map"/>
+        <region name="red-castle"/>
+        <region name="blue-castle"/>
+    </apply>
+</regions>
+<maxbuildheight>76</maxbuildheight>
+<cores material="obsidian" leak="5">
+    <core team="blue">
+        <cuboid min="47,48,139" max="52,53,150"/>
+    </core>
+    <core team="red">
+        <cuboid min="47,48,-151" max="52,53,-140"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>glowstone dust</item>
+    <item>gold block</item>
+    <item>obsidian</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>cooked chicken</item>
+    <item>shears</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+    <item>golden apple</item>
+</killreward>
+</map>

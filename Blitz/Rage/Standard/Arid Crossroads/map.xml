@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Arid Crossroads</name>
+<version>1.0.3</version>
+<objective>Eliminate the other team before 5 minutes is up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="e82504ac-8c95-4895-9dca-222f924d697c"/> <!-- TiggyLi -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor contribution="Beta testing and initial feedback">(Team) Starfish</contributor>
+</contributors>
+<teams>
+    <team color="gold" max="20">Orange</team>
+    <team color="blue" max="20">Blue</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="180">
+        <cylinder base="-0.5,15,12.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="-0.5,15,-93.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="270">
+        <cylinder base="50.5,20,-40.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`9Swoosh!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`9Pew pew!">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="ff6600" locked="true">leather helmet</helmet>
+        <chestplate color="ff6600" locked="true">leather chestplate</chestplate>
+        <leggings color="ff6600" locked="true">leather leggings</leggings>
+        <boots color="ff6600" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" locked="true">leather chestplate</chestplate>
+        <leggings color="0066cc" locked="true">leather leggings</leggings>
+        <boots color="0066cc" locked="true">leather boots</boots>
+    </kit>
+    <kit name="wither">
+        <potion duration="oo" amplifier="5">wither</potion>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+
+    <apply kit="wither">
+        <cylinder base="-8,6,12" radius="5" height="4"/>
+        <cylinder base="7,6,-93" radius="5" height="4"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

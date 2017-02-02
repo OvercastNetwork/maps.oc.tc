@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Runes of Ruin</name>
+<version>1.1.2</version>
+<objective>Leak lava from the enemy's obsidian core</objective>
+<authors>
+    <author uuid="00c06fa6-1c53-4634-931a-929efd8a52df"/> <!-- Nadastorm -->
+</authors>
+<contributors>
+    <contributor uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8" contribution="XML Coding"/> <!-- Plastix -->
+    <contributor uuid="445da9ac-d32f-4874-86e5-4846d61e02d0" contribution="Map Design"/> <!-- 911chandler -->
+    <contributor uuid="900b844e-747c-4d5b-b9e3-afa714ec9bd5" contribution="Team Spawns"/> <!-- Unphair -->
+    <contributor uuid="c46af832-71b5-4b3a-829c-837509d9f3eb" contribution="Cave Design"/> <!-- Umopaplsdn -->
+</contributors>
+<teams>
+    <team color="blue" max="38">Blue</team>
+    <team color="dark red" max="38">Red</team>
+</teams>
+<spawns>
+    <spawns kit="teams">
+        <spawn team="blue" yaw="180">
+            <cylinder base="422,11,685" radius="3" height="0"/>
+        </spawn>
+        <spawn team="red" yaw="180">
+            <cylinder base="314,11,685" radius="3" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="180">
+        <cylinder base="368,14,726" radius="3" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="35" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <potion duration="10" amplifier="2">heal</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+</filters>
+<maxbuildheight>70</maxbuildheight>
+<itemremove>
+    <item>shears</item>
+</itemremove>
+<regions>
+    <apply enter="only-blue" message="You are not allowed in the enemy team's supply room!">
+        <cuboid min="415,10,675" max="430,16,697"/>
+    </apply>
+    <apply enter="only-red" message="You are not allowed in the enemy team's supply room!">
+        <cuboid min="322,10,675" max="307,16,697"/>
+    </apply>
+    <apply block="deny-all" message="You may not place or break blocks in the supply rooms!">
+        <cuboid min="415,10,674" max="430,18,697"/>>
+        <cuboid min="322,10,674" max="307,18,697"/>
+    </apply>
+    <apply block="deny-all" message="You may not build outside the playable region!">
+        <negative>
+            <rectangle min="305,701" max="432,600"/>
+        </negative>
+    </apply>
+</regions>
+<cores material="obsidian" leak="4">
+    <core team="red">
+        <cuboid min="315,23,634" max="311,19,630"/>
+    </core>
+    <core team="blue">
+        <cuboid min="426,19,634" max="422,23,630"/>
+    </core>
+</cores>
+</map>

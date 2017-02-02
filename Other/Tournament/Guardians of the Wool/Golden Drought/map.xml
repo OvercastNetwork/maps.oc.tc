@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<autorespawn/>
+<time result="objectives">45m</time>
+<name>Golden Drought</name>
+<version>1.2.1</version>
+<objective>Take the wool from the enemy wool rooms and place it on your victory monument while defending your own wool.</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<contributors>
+    <contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Beautificationalist and consultant"/> <!-- IM_A_H0B0 -->
+    <contributor uuid="7e424329-5f61-4f8e-9b85-eaad59ae2a50" contribution="Mindless slave"/> <!-- magnussvoge -->
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="135">
+        <cylinder base="136,16,-346" radius="1" height="0"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="315">
+        <cylinder base="2,16,-481" radius="1" height="0"/>
+    </spawn>
+    <default yaw="225">
+        <cylinder base="116,12,-461" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="durability:1;dig speed:1">iron pickaxe</item>
+        <item slot="3" amount="64">sandstone</item>
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <item slot="7" amount="2">golden apple</item>
+        <item slot="6" amount="64">ladder</item>
+        <item slot="5" amount="4">web</item>
+        <item slot="35">bucket</item>
+        <item slot="28">arrow</item>
+        <item slot="21" amount="64">sandstone</item>
+        <item slot="30" amount="64">sandstone</item>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- block Filters -->
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+    <filter name="only-gold">
+        <block>gold block</block>
+    </filter>
+    <!-- Usage Filters -->
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <block>chest</block>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitons -->
+    <union name="spawns">
+        <rectangle name="red-spawn" min="20,-463" max="-15,-498"/>
+        <mirror name="blue-spawn" region="red-spawn" origin="69.5,0,-413.5" normal="1,0,1"/>
+    </union>
+    <union name="wool-rooms">
+        <union name="blue-rooms">
+            <rectangle name="purple-room" min="-42,-481" max="-27,-496"/>
+            <mirror name="pink-room" region="purple-room" origin="-19.5,0,-502.5" normal="1,0,-1"/>
+        </union>
+        <mirror name="red-rooms" region="blue-rooms" origin="69.5,0,-413.5" normal="1,0,1"/>
+    </union>
+    <union name="void-exceptions">
+        <rectangle name="center" min="92,-391" max="47,-436"/>
+        <rectangle name="red-east" min="47,-464" max="102,-435"/>
+        <mirror name="blue-west" region="red-east" origin="69.5,0,-413.5" normal="0,0,1"/>
+        <rectangle name="blue-north" min="120,-391" max="91,-446"/>
+        <mirror name="red-south" region="blue-north" origin="69.5,0,-413.5" normal="-1,0,0"/>
+    </union>
+    <!-- Block Rules -->
+    <apply block="only-gold" message="You may only edit gold blocks in the spawn area!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="only-red" message="You may not edit the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply block="only-blue" message="You may not edit the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <apply block="no-void" message="You may not edit outside of the main area!">
+        <negative>
+            <region name="void-exceptions"/>
+        </negative>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-red" message="You may not enter the enemy spawn area!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn area!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+    <!-- Usage Rules -->
+    <apply use="only-red-usage" message="You may not interact with the enemy wool room!">
+        <region name="red-rooms"/>
+    </apply>
+    <apply use="only-blue-usage" message="You may not interact with the enemy wool room!">
+        <region name="blue-rooms"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="red" color="lime" location="173.5,16,-338.5">
+        <block location="17,14,-467"/>
+    </wool>
+    <wool team="red" color="green" location="144.5,16,-309.5">
+        <block location="16,14,-466"/>
+    </wool>
+    <wool team="blue" color="pink" location="-5.5,16,-517.5">
+        <block location="122,14,-362"/>
+    </wool>
+    <wool team="blue" color="purple" location="-34.5,16,-488.5">
+        <block location="121,14,-361"/>
+    </wool>
+</wools>
+<maxbuildheight>30</maxbuildheight>
+<blockdrops>
+    <rule>
+        <filter>
+            <block>iron block</block>
+        </filter>
+        <drops>
+            <item damage="8226" potions="speed:2000:0:false;jump:2000:1:false">potion</item>
+        </drops>
+    </rule>
+</blockdrops>
+<itemremove>
+    <item>golden carrot</item>
+    <item>golden apple</item>
+    <item>sandstone</item>
+    <item>wood</item>
+    <item>ladder</item>
+    <item>web</item>
+    <item>string</item>
+    <item>arrow</item>
+    <item>bucket</item>
+    <item>glass bottle</item>
+    <item>string</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<timelock>on</timelock>
+</map>

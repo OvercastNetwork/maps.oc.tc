@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<include src="tutorial.xml"/>
+<name>Lindorm</name>
+<version>1.4</version>
+<objective>Capture or Defend the Wool</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="dark red" max="10" max-overfill="11">Red</team>
+    <team color="blue" max="12" max-overfill="13">Blue</team>
+</teams>
+<rules>
+    <rule>Block glitching will not be tolerated.</rule>
+</rules>
+
+<kits>
+    <kit name="teams">
+        <item slot="0" damage="-3000">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:1">iron axe</item>
+        <item slot="4" amount="18" damage="2">wood</item>
+        <item slot="6" amount="40">arrow</item>
+        <leggings damage="-3000">chainmail leggings</leggings>
+        <boots damage="-3000" enchantment="protection fall:3">iron boots</boots>
+        <potion duration="4">heal</potion>
+        <potion duration="4" amplifier="2">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <item slot="5" amount="14" damage="2">stained glass</item>
+        <helmet damage="-3000" color="cd0000">leather helmet</helmet>
+        <chestplate damage="-3000" color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="5" amount="14" damage="3">stained glass</item>
+        <helmet damage="-3000" color="0066cc">leather helmet</helmet>
+        <chestplate damage="-3000" color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<respawn delay="5s"/>
+
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-4.5,10,0.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <point>-8.5,4,-69.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="-8.5,17,-69.5" radius="4" height="0"/>
+    </default>
+</spawns>
+
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-20" min="-oo,23,-oo" max="oo,oo,oo"/>
+    <union name="spawns">
+        <cylinder name="red-spawn" base="-4.5,0,0.5" radius="20" height="30"/>
+        <cylinder name="blue-spawn" base="-8.5,4,-69.5" radius="9" height="7"/>
+    </union>
+    <union name="entering spawns">
+        <cylinder name="rse" base="-4.5,0,0.5" radius="9" height="30"/>
+        <cylinder name="bse" base="-8.5,3,-69.5" radius="9" height="4"/>
+    </union>
+    <union name="wool-rooms-b"> <!-- Apply block scope -->
+        <cylinder name="red-wool-room-b" base="20.5,17,77.5" radius="9" height="20"/>
+    </union>
+    <union name="wool-rooms-e"> <!-- Apply enter scope -->
+        <sphere name="red-wool-room-e" origin="20.5,17,77.5" radius="8"/>
+    </union>
+    <union name="portals arrivals">
+        <cuboid name="p1" min="38.5,15,-37.5" max="37.5,17,-36.5"/>
+        <cuboid name="p2" min="54.5,9,1.5" max="53.5,12,-0.5"/>
+        <cuboid name="p3" min="43.5,15,35.5" max="44.5,17,36.55"/>
+    </union>
+
+    <union name="wool-placement">
+        <!-- Blue monument -->
+        <block>-16.5,5,-69.5</block><!-- red -->
+    </union>
+    <complement name="no-wool-placement">
+        <region name="all"/>
+        <region name="wool-placement"/>
+    </complement>
+    <!-- Applied -->
+    <apply use="deny-beacon" block="deny-obsidian deny-beacon deny-sign" message="`7This block is disabled on this map!">
+        <region name="all"/>
+        <region name="wool-rooms-e"/>
+        <region name="wool-rooms-b"/>
+        <region name="spawns"/>
+        <region name="above-20"/>
+    </apply>
+    <apply block="deny-void" message="`7You may not edit the void area.">
+        <region name="all"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not build above the height limit. (`c23 Blocks`7)">
+        <region name="above-20"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not edit the spawn.">
+        <region name="spawns"/>
+    </apply>
+    <apply block="deny-all" message="`7You may not block portals.">
+        <region name="portals arrivals"/>
+    </apply>
+    <!-- red -->
+    <apply enter="deny-red" message="`7You may not enter your own wool room!">
+        <region name="red-wool-room-e"/>
+    </apply>
+    <apply block="deny-all" use="deny-red">
+        <region name="red-wool-room-b"/>
+    </apply>
+    <!-- safety -->
+    <apply block="deny-wool" message="`7No safety wool allowed!">
+        <region name="no-wool-placement"/>
+    </apply>
+    <apply enter="only-blue" message="`7You may not enter the enemy spawn!">
+        <region name="bse"/>
+    </apply>
+    <apply enter="only-red" message="`7You may not enter the enemy spawn!">
+        <region name="rse"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="allow-break" parents="deny-all">
+        <allow>
+            <block>web</block>
+        </allow>
+    </filter>
+    <filter name="deny-red">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="deny-blue">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="deny-obsidian">
+        <deny>
+            <block>obsidian</block>
+        </deny>
+    </filter>
+    <filter name="deny-sign"> 
+        <deny>
+            <block>wall sign</block>
+            <block>sign post</block>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-wool">
+        <deny>
+            <block>wool</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+
+<wools team="blue">
+    <wool color="red">
+        <block>-16.5,5,-69.5</block><!-- red -->
+    </wool>
+</wools>
+<time result="Red">22m</time>
+
+<!-- ATTEMPT AT TEAM TOKENS - UNCOMPLETE
+<score>
+    <limit>50</limit>
+</score>
+-->
+
+<portals>
+    <!-- Moves the player to exactly X:10 Y:8 Z:45, pitch & yaw remain unchanged -->
+    <portal x="@37.5" y="@15" z="@-36.5">
+        <cuboid min="6.5,10,-5.5" max="6.5,11,-5.5"/>
+    </portal>
+    <portal x="@53.5" y="@9.5" z="@0.5">
+        <cuboid min="9.5,10,-0.5" max="9.5,11,1.5"/>
+    </portal>
+    <portal x="@43.5" y="@15" z="@35.5">
+        <cuboid min="6.5,10,6.5" max="6.5,11,6.5"/>
+    </portal>
+</portals>
+
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>wood</item>
+    <item>wool</item>
+    <item>stained glass</item>
+    <item>glass</item>
+    <item>string</item>
+    <item>web</item>
+    <item>cooked beef</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>iron boots</item>
+    <item>golden apple</item>
+    <item>redstone</item>
+    <item>glowstone dust</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+    <item>sapling</item>
+    <item>quartz block</item>
+</itemremove>
+
+<killreward>
+    <filter>
+        <team>red</team>
+    </filter>
+    <item amount="1">golden apple</item>
+    <item amount="1">web</item>
+</killreward>
+<killreward>
+    <filter>
+        <team>blue</team>
+    </filter>
+    <item amount="1">golden apple</item>
+    <item amount="1">iron ingot</item>
+    <item amount="4" damage="2">wood</item>
+</killreward>
+
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool (CTW) `rmap.</line>
+            <line>Blue must capture the Red Wool.</line>
+            <line>Red must prevent it.</line>
+        </message>
+    </stage>
+    <stage title="The Base">
+        <message>
+            <line>`rThis is the `9Blue Team's Base`r.</line>
+            <line>`rThis is where the `9Blue Team `rspawns. You spawn with gear ready to go into battle!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="20">-8.5,4,-69.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Room">
+        <message>
+            <line>`rThis is the a `fWool Room`r.</line>
+            <line>`rThe other three teams need to get the wool from the chests back to their base to win.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="0">19.5,21,59.5</point>
+        </teleport>
+    </stage>
+    <stage title="Wool Monument">
+        <message>
+            <line>`rThis is the Wool Monument`r.</line>
+            <line>`r¨Place the Red wool here to win.</line>
+        </message>
+        <teleport>
+            <point yaw="90">-8.5,4,-69.5</point>
+        </teleport>
+    </stage>
+</tutorial>
+<broadcasts>
+    <tip after="3s" every="90s">`fThis is an Attack / Defense map.</tip>
+    <tip after="4s" every="90s">`9Blue `6must capture the Red wool, and `cRed defend.</tip>
+</broadcasts>
+</map>

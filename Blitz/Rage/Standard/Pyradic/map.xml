@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<map game="Blitz: Rage" proto="1.4.0">
+<name>Pyradic</name>
+<version>1.0</version>
+<objective>Eliminate the opposing team!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="bb628049-e368-4b1c-b8aa-d4557ae9416b"/> <!-- Anthonny -->
+</authors>
+<broadcasts>
+    <alert after="30s">There was a crashing sound coming from the enchantment room! Be careful!</alert>
+</broadcasts>
+<teams> 
+    <team id="blue"
+          color="blue"
+          show-name-tags="false"
+          max="10" max-overfill="12">Blue</team>
+    <team id="red"
+          color="dark red"
+          show-name-tags="false"
+          max="10" max-overfill="12">Red</team>
+</teams>
+<time>5m</time>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<include src="blitz-global.xml"/>
+<rage/>
+<spawns>
+    <spawn team="blue" kit="kitBlue">
+        <regions yaw="180">
+            <block>22.5,39,-138.5</block>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="kitRed">
+        <regions yaw="70">
+            <block>28.5,3,-136.5</block>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="45">
+            <block>22.5,49,-147.5</block>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="kitSpawn">
+        <leggings locked="true">chainmail leggings</leggings>
+        <item slot="0" unbreakable="true" enchantment="damage all:10">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow damage:10">bow</item>
+        <item slot="2">arrow</item>
+    </kit>
+    <kit id="kitBlue" parents="kitSpawn">
+        <helmet locked="true" color="0000aa">leather helmet</helmet>
+        <chestplate locked="true" color="0000aa">leather chestplate</chestplate>
+        <boots locked="true" color="0000aa">leather boots</boots>
+    </kit>
+    <kit id="kitRed" parents="kitSpawn">
+        <helmet locked="true" color="aa0000">leather helmet</helmet>
+        <chestplate locked="true" color="aa0000">leather chestplate</chestplate>
+        <boots locked="true" color="aa0000">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block-break="never"/>
+</regions>
+<destroyables name="Monument" materials="sandstone:2;sandstone stairs" mode-changes="true">
+    <destroyable owner="blue" show="false">
+        <region><cuboid min="25,31,-153" max="36,32,-142"/></region>
+    </destroyable>
+</destroyables>
+<modes>
+    <mode after="30s" material="air" show-before="0s"/>
+</modes>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

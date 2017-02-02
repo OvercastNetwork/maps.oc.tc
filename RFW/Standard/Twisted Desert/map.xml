@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+<name>Twisted Desert</name>
+<version>1.0.7</version>
+<objective>Secure the three wools and place them in your team's victory monument.</objective>
+<phase>development</phase>
+<authors>
+    <author>FellLock</author>
+</authors>
+<rules>
+    <rule>Stay in your own lane</rule>
+    <rule>Don't build in the void lane</rule>
+    <rule>The wools must be obtained from chests (except last wool; you may use the 4 near the chest)</rule>
+    <rule>Don't use means of instant teleportation to skip wool dungeons</rule>
+    <rule>Don't place beds in wool dungeons (pre-placed ones are ok)</rule>
+</rules>
+<teams>
+    <team color="blue" max="4">Blue</team>
+    <team color="dark red" max="4">Red</team>
+</teams>
+<friendlyfire>on</friendlyfire>
+<timelock>off</timelock>
+<mobs>
+    <filter>
+        <deny><mob>slime</mob></deny>
+    </filter>
+</mobs>
+<spawns bedspawn="on">
+    <spawn team="blue">
+        <point yaw="  0">42,190,19</point>
+        <point yaw=" 90">49,190,26</point>
+        <point yaw="180">42,190,33</point>
+        <point yaw="270">35,190,26</point>
+    </spawn>
+    <spawn team="red">
+        <point yaw="  0">-26,190,-17</point>
+        <point yaw=" 90">-19,190,-10</point>
+        <point yaw="180">-26,190, -3</point>
+        <point yaw="270">-33,190,-10</point>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="22.5,188,-112.5" max="28.5,188,-106.5"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-liquids" parents="deny-players">
+        <allow>
+            <block>water</block><block>stationary water</block>
+            <block>lava</block><block>stationary lava</block>
+        </allow>
+    </filter>
+    <filter name="protect-monuments">
+        <deny>
+            <block>obsidian</block>
+            <block>wall sign</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- spawn protection -->
+    <apply block="deny-all" message="You may not break blocks at spawn">
+        <cuboid name="playable" min="-oo,180,-oo" max="oo,oo,oo"/>
+    </apply>
+
+    <!-- team lanes -->
+    <union name="blue-lane">
+        <rectangle min="  0, 16" max=" 48, 32"/>
+        <rectangle min=" 32,-48" max=" 48, 32"/>
+        <rectangle min="-64,-48" max=" 48,-32"/>
+        <rectangle min="-64,-48" max="-48, 96"/>
+        <rectangle min="-64, 80" max=" 80, 96"/>
+    </union>
+    <union name="red-lane">
+        <rectangle min="-32,-16" max=" 16,  0"/>
+        <rectangle min="-32,-16" max="-16, 64"/>
+        <rectangle min="-32, 48" max=" 80, 64"/>
+        <rectangle min=" 64,-80" max=" 80, 64"/>
+        <rectangle min="-64,-80" max=" 80,-64"/>
+    </union>
+
+    <!-- protect monuments -->
+    <apply block="protect-monuments">
+        <cuboid name="blue-monument" min="40,86,-13" max="42,89,-8"/>
+        <cuboid name="red-monument" min="-26,86,24" max="-24,89,29"/>
+    </apply>
+
+    <!-- prevent blocks from being placed / destroyed in the lane -->
+    <apply block="only-liquids" message="You may not place or break blocks outside of your lane">
+        <negative>
+            <region name="blue-lane"/>
+            <region name="red-lane"/>
+        </negative>
+    </apply>
+</regions>
+<lanes>
+    <lane team="blue">
+        <cuboid name="blue-spawn" min="32,188,16" max="52,oo,36"/>
+        <region name="blue-lane"/>
+    </lane>
+    <lane team="red">
+        <cuboid name="red-spawn" min="-36,188,-20" max="-16,oo,0"/>
+        <region name="red-lane"/>
+    </lane>
+</lanes>
+<wools team="blue">
+    <wool color="green"><block>41,87,-12</block></wool>
+    <wool color="cyan" ><block>41,87,-11</block></wool>
+    <wool color="black"><block>41,87,-10</block></wool>
+</wools>
+<wools team="red">
+    <wool color="green"><block>-26,87,27</block></wool>
+    <wool color="cyan" ><block>-26,87,26</block></wool>
+    <wool color="black"><block>-26,87,25</block></wool>
+</wools>
+</map>

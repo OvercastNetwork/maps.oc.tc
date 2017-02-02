@@ -1,0 +1,118 @@
+<map proto="1.4.0">
+<name>Thin Ice</name>
+<version>1.0.1</version>
+<objective>Cross the enemy line to score points.</objective>
+<gamemode>arcade</gamemode>
+<authors>
+    <author uuid="75fd93dd-8e48-4698-81a2-97dae2ec5b5f"/> <!-- Pugzy -->
+</authors>
+<broadcasts>
+    <tip after="2s">Punch the snowblocks to get more snowballs.</tip>
+    <tip after="3s">Score by crossing the enemy teams line.</tip>
+</broadcasts>
+<teams>
+    <team id="red-team" color="dark red" min="2" max="4">Red</team>
+    <team id="blue-team" color="blue" min="2" max="4">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <region yaw="180">
+            <cuboid id="red-spawn" min="-5,4,24" max="6,4,26"/>
+        </region>
+    </spawn>
+    <spawn team="blue-team" kit="blue-kit">
+        <region yaw="0">
+            <cuboid id="blue-spawn" min="6,4,-23" max="-5,4,-25"/>
+        </region>
+    </spawn>
+    <default>
+        <region yaw="90">
+            <cylinder base="23.5,14,0.5" radius="1.5" height="0"/>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn-kit">
+        <!-- Hotbar -->
+        <item slot="0" enchantment="knockback:1">stick</item>
+        <item slot="8" amount="16">snow ball</item>
+        <effect duration="1" amplifier="10">regeneration</effect>
+        <game-mode>adventure</game-mode>
+        <!--  Effects Null -->
+    </kit>
+    <kit id="blue-kit" parents="spawn-kit">
+        <helmet color="334CB2" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">chainmail chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" locked="true">chainmail boots</boots>
+    </kit>
+    <!-- Red Kit -->
+    <kit id="red-kit" parents="spawn-kit">
+        <helmet color="993333" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate unbreakable="true" locked="true">chainmail chestplate</chestplate>
+        <leggings color="993333" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots unbreakable="true" locked="true">chainmail boots</boots>
+    </kit>
+</kits>
+<crafting>
+    <disabled>snow block</disabled>
+</crafting>
+<filters>
+    <team id="only-red">red-team</team>
+    <team id="only-blue">blue-team</team>
+</filters>
+<regions>
+    <apply block-break="never">
+        <region><everywhere/></region>
+    </apply>
+    <apply kit="spawn-kit" region="below-map"/>
+    <cuboid id="blue-scorebox" min="8,4,-20" max="-7,7,-22"/>
+    <cuboid id="red-scorebox" min="-7,4,21" max="8,7,23"/>
+    <cuboid id="ice-area" min="-7,4,21" max="8,3,-20"/>
+    <below id="below-map" y="-50"/>
+</regions>
+<renewables>
+    <renewable rate="5">
+        <region id="ice-area"/>
+        <renew>packed ice</renew>
+        <renew>snow ball</renew>
+        <renew>ice</renew>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<time>2m</time>
+<score>
+    <box points="1" filter="only-red" region="blue-scorebox"/>
+    <box points="1" filter="only-blue" region="red-scorebox"/>
+</score>
+<portals>
+    <portal z="46" filter="only-red" region="blue-scorebox"/>
+    <portal z="-46" filter="only-blue" region="red-scorebox"/>
+    <portal region="below-map" destination="blue-spawn" filter="only-blue" yaw="@0"/>
+    <portal region="below-map" destination="red-spawn" filter="only-red" yaw="@-180"/>
+</portals>
+<blockdrops>
+    <rule punch="true">
+        <filter>
+            <any>
+                <material>snow block</material>
+                <material>snow</material>
+            </any>
+        </filter>
+        <drops>
+            <item chance="0.5" material="snow ball"/>
+        </drops>
+        <wrongtool>true</wrongtool>
+    </rule>
+</blockdrops>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>leather leggings</item>
+    <item>chainmail boots</item>
+    <item>stick</item>
+</itemremove>
+</map>

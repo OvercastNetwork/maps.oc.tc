@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Hyperspace</name>
+<version>1.0</version>
+<objective>Destroy the other team's monument</objective>
+<authors>
+    <author uuid="df5fd9f4-4840-4293-9346-5c77bf7bc08f"/> <!-- kalikakitty -->
+</authors>
+<contributors>
+    <contributor uuid="c65e66b3-e932-4b33-b907-fe4916806076" contribution="Did Stuff"/> <!-- Draco_Rogue -->
+    <contributor uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Cool Cat"/> <!-- Stealth5061 -->
+</contributors>
+<teams>
+    <team color="dark green" max="24">Green</team>
+    <team color="blue" max="24">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" yaw="90">
+        <point>79.5,42,-17.5</point>
+    </spawn>
+    <spawn team="green" yaw="90">
+        <point>79.5,42,-77.5</point>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="100.5,55,-47.5" radius="4" height="0"/>
+    </default>
+</spawns>
+<destroyables name="Monument" materials="gold block" sparks="true" show-progress="true">
+    <destroyable owner="green">
+        <cuboid min="27,37,-76" max="24,45,-79"/>
+    </destroyable>
+    <destroyable owner="blue">
+        <cuboid min="27,37,-19" max="24,45,-16"/>
+    </destroyable>
+</destroyables>
+<filters>
+    <filter name="only-green" parents="deny-all">
+        <allow>
+            <team>green</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map-b" min="65,-113" max="-11,18"/>
+    <rectangle name="map-l" min="67,-115" max="-13,20"/>
+    <cuboid name="above-75" min="-oo,76,-oo" max="oo,oo,oo"/>
+    <apply block="deny-all" message="`7You may not edit outside of the main area!">
+        <negative>
+            <region name="map-b"/>
+        </negative>
+    </apply>
+    <apply enter="deny-all" message="`7You may not leave the main area!">
+        <negative>
+            <region name="map-l"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="`7You may not edit above the height limit! (`c75 Blocks`7)">
+        <region name="above-75"/>
+    </apply>
+</regions>
+<itemremove>
+    <item>carpet</item>
+    <item>stained clay</item>
+    <item>gold block</item>
+    <item>step</item>
+    <item>glowstone dust</item>
+</itemremove>
+<timelock>on</timelock>
+</map>

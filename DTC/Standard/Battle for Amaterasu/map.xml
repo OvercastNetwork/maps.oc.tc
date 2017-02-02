@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Battle for Amaterasu</name>
+<version>1.0</version>
+<objective>Break and leak the opposing team's core.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<teams>
+    <team color="blue" max="35">Blue</team>
+    <team color="dark red" max="35">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">stone axe</item>
+        <item slot="4" damage="2" amount="48">log</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="6" amount="2">golden apple</item>
+        <item slot="7" amount="64">cooked fish</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="ff0000" unbreakable="true">leather helmet</helmet>
+        <chestplate color="ff0000" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" color="ff0000" unbreakable="true">leather leggings</leggings>
+        <boots color="ff0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots color="0066cc" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cuboid min="-70,18,-20" max="-72,18,-22"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="271,18,-20" max="273,18,-22"/>
+    </spawn>
+    <default yaw="-90">
+        <cylinder base="100,3,-121" radius="3" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- red base -->
+    <cuboid name="red-base" min="258,0,-35" max="280,50,-8"/>
+    <!-- blue base -->
+    <cuboid name="blue-base" min="-57,0,-8" max="-80,50,-35"/>
+    <!-- red base unbreakable -->
+    <cuboid name="red-unbreak" min="258,0,-35" max="280,23,-8"/>
+    <!-- blue base unbreakable-->
+    <cuboid name="blue-unbreak" min="-57,0,-8" max="-80,23,-35"/>
+
+    <!-- Prevent base entering -->
+    <apply enter="only-red" message="You may not enter the enemy base">
+        <region name="red-base"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base">
+        <region name="blue-base"/>
+    </apply>
+
+    <!-- Prevent base break -->
+    <apply block-break="only-iron" block-place="deny-all" message="You may only break iron blocks in your base">
+        <region name="red-unbreak"/>
+        <region name="blue-unbreak"/>
+    </apply>
+    <!-- Prevent building on the side -->
+    <apply block="deny-void" message="You may not build in the void">
+        <negative>
+            <rectangle min="0,-84" max="200,41"/>
+        </negative>
+    </apply>
+</regions>
+<maxbuildheight>38</maxbuildheight>
+<timelock>on</timelock>
+<cores material="obsidian" leak="3">
+    <core team="red">
+        <cuboid min="219,28,-17" max="211,33,-25"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-18,28,-17" max="-10,33,-25"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>stone axe</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>iron pickaxe</item>
+    <item>wood</item>
+    <item>cooked fish</item>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold block</item>
+    <item>arrow</item>
+</itemremove>
+</map>

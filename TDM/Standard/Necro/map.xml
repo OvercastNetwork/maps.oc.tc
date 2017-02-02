@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Necro</name>
+<version>2.0.1</version>
+<objective>Earn your team points by killing opponents, or scoring into scoreboxes in 25 minutes! Reach a score of 350 to end the game!</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="afb49ef2-888e-4280-857a-04cfac39e25d" contribution="Helpful Map Feedback"/> <!-- Pr0tatoe -->
+    <contributor uuid="8e5b106b-f0af-4be1-b199-7b9205ec8af6" contribution="Support and Feedback"/> <!-- dragonsrule9 -->
+    <contributor uuid="42e8ae66-8ab3-4983-9443-4002c4a5d66c" contribution="Helping Fix a Spawner Problem"/> <!-- Orange1095 -->
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Showing Parkour Issues"/> <!-- HardStyleRaver2 -->
+    <contributor uuid="d6a1fd40-7d66-4180-a6d7-47f1ba6e14ee" contribution="XML and feedback"/> <!-- AtomicScientist2 -->
+    <contributor uuid="3c7db14d-ac4b-4e35-b2c6-3b2237f382be" contribution="XML Fixing"/> <!-- MonsieurApple -->
+</contributors>
+<teams>
+    <team color="dark purple" max="50" max-overfill="60">Purple</team>
+    <team color="gold" max="50" max-overfill="60">Orange</team>
+</teams>
+<kits>
+    <kit name="heal">
+        <potion duration="8" amplifier="5">heal</potion>
+        <potion duration="8" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="spawn" parents="heal">
+        <item slot="0" damage="-32000">stone sword</item>
+        <item slot="1" amount="24">grilled pork</item>
+        <item slot="2" amount="1">Emerald</item>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <chestplate color="7F3FB2" damage="-32000">leather chestplate</chestplate>
+        <helmet color="7F3FB2" damage="-32000" enchantment="protection fall:1;protection projectile:1">leather helmet</helmet>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <chestplate color="D87F33" damage="-32000">leather chestplate</chestplate>
+        <helmet color="D87F33" damage="-32000" enchantment="protection fall:1;protection projectile:1">leather helmet</helmet>
+    </kit>
+</kits>
+<tnt>
+    <instantignite>on</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+    <yield>0</yield>
+</tnt>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<timelock>on</timelock>
+
+<killreward>
+    <item amount="2">emerald</item>
+</killreward>
+<multitrade/>
+<itemremove>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>grilled pork</item>
+    <item>gold chestplate</item>
+    <item>iron chestplate</item>
+    <item>stone sword</item>
+    <item>gold sword</item>
+    <item>iron axe</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>leather leggings</item>
+    <item>iron leggings</item>
+    <item>diamond leggings</item>
+    <item>wood pickaxe</item>
+    <item>stone pickaxe</item>
+    <item>iron pickaxe</item>
+    <item>stick</item>
+    <item>blaze rod</item>
+    <item>bone</item>
+    <item>rotten flesh</item>
+    <item>glass bottle</item>
+    <item>diamond</item>
+    <item>potato</item>
+    <item>carrot</item>
+    <item>iron ingot</item>
+    <item>iron spade</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>iron sword</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<spawns>
+    <spawn team="purple" kit="purple" yaw="0">
+        <region name="purple-spawn-room"/>
+    </spawn>
+    <spawn team="orange" kit="orange" yaw="180">
+        <region name="orange-spawn-room"/>
+    </spawn>
+    <default yaw="90">
+        <cylinder base="0.5,65.5,0.5" radius="3" height="1"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-purple">
+        <team>purple</team>
+    </filter>
+    <filter name="breakable-blocks" parents="deny-all">
+        <allow>
+            <block>diamond ore</block>
+            <block>tnt</block>
+        </allow>
+    </filter>
+    <filter name="no-orange" parents="breakable-blocks">
+        <deny>
+            <team>orange</team>
+        </deny>
+    </filter>
+    <filter name="no-purple" parents="breakable-blocks">
+        <deny>
+            <team>purple</team>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cylinder name="orange-spawn-room" base="112,21,145" radius="3" height="0"/>
+    <circle name="orange-base" center="112,145" radius="13"/>
+    <cuboid name="orange-teleport-1" min="112,24,80" max="113,27,81"/>
+    <cuboid name="orange-teleport-2" min="144,24,43" max="145,27,44"/>
+    <cuboid name="orange-teleport-3" min="80,24,43" max="81,27,44"/>
+    <cuboid name="orange-teleport-4" min="185,23,50" max="186,27,51"/>
+    <cuboid name="orange-teleport-5" min="39,23,50" max="40,27,51"/>
+    <cuboid name="orange-tower-1" min="107,15,75" max="117,29,85"/>
+    <cuboid name="orange-tower-2" min="149,15,48" max="139,29,38"/>
+    <cuboid name="orange-tower-3" min="85,15,38" max="75,29,48"/>
+    <cuboid name="orange-tower-4" min="180,14,55" max="191,29,46"/>
+    <cuboid name="orange-tower-5" min="34,14,45" max="45,29,56"/>
+    <cuboid name="orange-boss-entry" min="202,15,50" max="205,20,47"/>
+    <cuboid name="orange-pit-escape" min="114,7,65" max="111,11,66"/>
+    <cuboid name="orange-score-zone-1" min="66,20,-137" max="69,18,-133"/>
+    <cuboid name="orange-score-zone-2" min="158,20,-133" max="156,18,-138"/>
+    <cylinder name="purple-spawn-room" base="112,21,-145" radius="3" height="0"/>
+    <circle name="purple-base" center="112,-145" radius="13"/>
+    <cuboid name="purple-teleport-1" min="112,24,-80" max="113,27,-79"/>
+    <cuboid name="purple-teleport-2" min="144,24,-43" max="145,27,-42"/>
+    <cuboid name="purple-teleport-3" min="80,24,-43" max="81,27,-42"/>
+    <cuboid name="purple-teleport-4" min="39,23,-50" max="40,27,-49"/>
+    <cuboid name="purple-teleport-5" min="185,23,-50" max="186,27,-49"/>
+    <cuboid name="purple-tower-1" min="117,15,-85" max="107,29,-75"/>
+    <cuboid name="purple-tower-2" min="149,15,-48" max="139,29,-38"/>
+    <cuboid name="purple-tower-3" min="85,15,-48" max="75,29,-38"/>
+    <cuboid name="purple-tower-4" min="34,29,-44" max="45,14,-55"/>
+    <cuboid name="purple-tower-5" min="180,29,-44" max="191,14,-55"/>
+    <cuboid name="purple-boss-entry" min="20,20,-47" max="23,15,-50"/>
+    <cuboid name="purple-pit-escape" min="111,7,-65" max="114,11,-64"/>
+    <cuboid name="purple-score-zone-1" min="66,20,133" max="69,18,138"/>
+    <cuboid name="purple-score-zone-2" min="158,20,133" max="156,18,138"/>
+    <union name="orange-portals">
+        <region name="orange-teleport-1"/>
+        <region name="orange-teleport-2"/>
+        <region name="orange-teleport-3"/>
+        <region name="orange-teleport-4"/>
+        <region name="orange-teleport-5"/>
+    </union>
+    <union name="orange-score-zone">
+        <region name="orange-score-zone-1"/>
+        <region name="orange-score-zone-2"/>
+    </union>
+    <union name="purple-portals">
+        <region name="purple-teleport-1"/>
+        <region name="purple-teleport-2"/>
+        <region name="purple-teleport-3"/>
+        <region name="purple-teleport-4"/>
+        <region name="purple-teleport-5"/>
+    </union>
+    <union name="purple-score-zone">
+        <region name="purple-score-zone-1"/>
+        <region name="purple-score-zone-2"/>
+    </union>
+    <apply enter="only-orange" message="You may not enter the enemy team's base!">
+        <region name="orange-base"/>
+        <region name="orange-portals"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy team's score box!">
+        <region name="orange-score-zone"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy team's boss pit!">
+        <region name="orange-boss-entry"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter the enemy team's base!">
+        <region name="purple-base"/>
+        <region name="purple-portals"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter the enemy team's score box!">
+        <region name="purple-score-zone"/>
+    </apply>
+    <apply enter="only-purple" message="You may not enter the enemy team's boss pit!">
+        <region name="purple-boss-entry"/>
+    </apply>
+    <apply block="breakable-blocks">
+        <region name="all"/>
+    </apply>
+    <apply kit="heal">
+        <region name="orange-portals"/>
+        <region name="orange-pit-escape"/>
+        <region name="orange-score-zone"/>
+        <region name="purple-portals"/>
+        <region name="purple-pit-escape"/>
+        <region name="purple-score-zone"/>
+    </apply>
+    <apply block="no-orange">
+        <region name="orange-tower-1"/>
+        <region name="orange-tower-2"/>
+        <region name="orange-tower-3"/>
+        <region name="orange-tower-4"/>
+        <region name="orange-tower-5"/>
+    </apply>
+    <apply block="no-purple">
+        <region name="purple-tower-1"/>
+        <region name="purple-tower-2"/>
+        <region name="purple-tower-3"/>
+        <region name="purple-tower-4"/>
+        <region name="purple-tower-5"/>
+    </apply>
+    <apply block="allow-world">
+        <region name="orange-tower-1"/>
+        <region name="orange-tower-2"/>
+        <region name="orange-tower-3"/>
+        <region name="orange-tower-4"/>
+        <region name="orange-tower-5"/>
+        <region name="purple-tower-1"/>
+        <region name="purple-tower-2"/>
+        <region name="purple-tower-3"/>
+        <region name="purple-tower-4"/>
+        <region name="purple-tower-5"/>
+    </apply>
+    <apply block="deny-all">
+        <region name="purple-base"/>
+        <region name="orange-base"/>
+    </apply>
+</regions>
+<portals>
+    <portal x="@112" y="@21" z="@143" yaw="@180" filter="only-orange">
+        <region name="orange-portals"/>
+        <region name="orange-pit-escape"/>
+        <region name="orange-score-zone"/>
+    </portal>
+    <portal x="@112" y="@7" z="@96" yaw="@180" filter="only-orange">
+        <region name="orange-boss-entry"/>
+    </portal>
+    <portal x="@112" y="@21" z="@-143" yaw="@0" filter="only-purple">
+        <region name="purple-portals"/>
+        <region name="purple-pit-escape"/>
+        <region name="purple-score-zone"/>
+    </portal>
+    <portal x="@112" y="@7" z="@-96" yaw="@0" filter="only-purple">
+        <region name="purple-boss-entry"/>
+    </portal>
+</portals>
+<score>
+    <time>25m</time>
+    <box value="10" filter="only-orange" cooldown="2">
+        <region name="orange-score-zone"/>
+    </box>
+    <box value="10" filter="only-purple" cooldown="2">
+        <region name="purple-score-zone"/>
+    </box>
+    <limit>350</limit>
+</score>
+</map>

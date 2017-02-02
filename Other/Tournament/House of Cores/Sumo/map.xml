@@ -1,0 +1,62 @@
+<map proto="1.4.0">
+<name>Sumo</name>
+<version>1.0.0</version>
+<objective>Knock the other player off of the platform</objective>
+<authors>
+    <author uuid="6e347123-c684-4d7e-996c-44d4924ff172"/> <!-- SheriffSoco -->
+</authors>
+<broadcasts>
+    <alert after="1s">Start in...</alert>
+    <alert after="2s">3</alert>
+    <alert after="3s">2</alert>
+    <alert after="4s">1</alert>
+</broadcasts>
+<destroyables name="Spawn-Tubes" materials="95:11; 95:14" show="false" mode-changes="true">
+    <destroyable owner="red-team">
+        <region><region id="red-glass"/></region>
+    </destroyable>
+    <destroyable owner="blue-team">
+        <region><region id="blue-glass"/></region>
+    </destroyable>
+</destroyables>
+<blitz>
+    <lives>1</lives>
+    <broadcastLives>true</broadcastLives>
+    <map game="Sumo"/>
+</blitz>
+<include src="blitz-global.xml"/>
+<teams>
+    <team id="red-team" color="dark red" max="1" max-overfill="1">Red Player</team>
+    <team id="blue-team" color="blue" max="1" max-overfill="1">Blue Player</team>
+</teams>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<filters>
+</filters>
+<regions>
+    <cuboid id="red-glass" min="-171,2,-158" max="-168,5,-155"/>
+    <cuboid id="blue-glass" min="-166,2,-153" max="-163,5,-149"/>
+    <apply block="never"/>
+</regions>
+<spawns>
+    <spawn team="red-team">
+        <regions yaw="-45">
+            <point>-169.5,2,-156.5</point>
+        </regions>
+    </spawn>
+    <spawn team="blue-team">
+        <regions yaw="135">
+            <point>-164.5,2,-151.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <point>-167,2,-154</point>
+        </regions>
+    </default>
+</spawns>
+<modes>
+    <mode after="5s" material="air"/>
+</modes>
+</map>

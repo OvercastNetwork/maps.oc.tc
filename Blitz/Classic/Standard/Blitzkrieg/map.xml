@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Blitzkrieg</name>
+<version>1.4.5</version>
+<objective>Eliminate the other team before the 10 minutes is up</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="1c74c430-29a0-471f-b30b-cc2d9031ebcb" contribution="XML Code"/> <!-- MrTazz4077 -->
+    <contributor uuid="b3c3aaa7-5f6e-4549-b7c7-5e73815d89d0" contribution="XML Check"/> <!-- RiceOpenOrange -->
+</contributors>
+<teams>
+   <team color="gold" max="20">Orange</team>
+   <team color="blue" max="20">Blue</team>
+</teams>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="0">
+        <point>-784.5,27.5,-957.5</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <point>-784.5,27.5,-833.5</point>
+    </spawn>
+    <default yaw="-90">
+        <point>-724.5,99,-895.5</point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+         <item slot="0" enchantment="durability:2" name="Topaz Axe">gold axe</item>
+         <item slot="1" name="Deer Horn Bow">bow</item>
+         <item slot="3" amount="16">arrow</item>
+         <item slot="4" amount="16">cooked beef</item>
+         <potion duration="oo" amplifier="1">speed</potion>
+         <potion duration="3" amplifier="20">regeneration</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <helmet color="FF7F00">leather helmet</helmet>
+        <boots color="FF7F00" enchantement="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <boots color="0066cc" enchantement="protection projectile:1;protection environmental:1">leather boots</boots>
+    </kit>
+</kits>
+<blitz>
+    <time>10m</time>
+    <lives>3</lives>
+</blitz>
+<timelock>on</timelock>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-833.5" radius="3" height="5"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter the enemy base!">
+        <cylinder base="-784.5,27,-957.5" radius="3" height="5"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<toolrepair>
+    <tool>gold axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+</itemremove>
+<include src="blitz-global.xml"/>
+</map>

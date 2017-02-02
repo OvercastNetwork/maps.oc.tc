@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Deschutes</name>
+<version>1.0.0</version>
+<objective>Kill the enemy team before the time is up!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="d3635173-3f67-447b-b079-d4f772f560a6" contribution="Main idea, building and decoration"/> <!-- PixelRanch -->
+</authors>
+<contributors>
+    <contributor uuid="2a2c4c30-ecf6-4e4a-b5bc-be8cf033563e" contribution="Xml"/> <!-- felipu_feliu -->
+</contributors>
+<rage />
+<teams>
+    <team color="blue" max="12" max-overfill="14">Blue</team>
+    <team color="dark red" max="12" max-overfill="14">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10">bow</item>
+        <item slot="2" amount="8">golden carrot</item>
+        <item slot="27" amount="1">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <helmet locked="true">chainmail helmet</helmet>
+        <boots locked="true">iron boots</boots>
+    </kit>
+    <kit name="red" parents="spawn">
+        <leggings locked="true" color="993333">leather leggings</leggings>
+        <chestplate locked="true" color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <leggings locked="true" color="334CB2">leather leggings</leggings>
+        <chestplate locked="true" color="334CB2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <block>-241.5,13,-341.5</block>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <block>-345.5,13,-296.5</block>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="-293,44,-376" max="-294,45,-375" />
+    </default>
+</spawns>
+<itemremove>
+    <item>chainmail helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>golden carrot</item>
+</itemremove>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <broadcastLives>false</broadcastLives>
+</blitz>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<include src="blitz-global.xml" />
+</map>

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>BipBeta Halloween</name>
+<version>1.1.3</version>
+<objective>Blitz: Eliminate the other team before 5 minutes are up</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="714ff88f-25d9-4754-9caa-d0f3cf24f230"/> <!-- thegoodguy -->
+</authors>
+<contributors>
+    <contributor uuid="fe19a0fe-5961-46e1-b98e-b2b6658f8ba2" contribution="Map Cleanup"/> <!-- YukonAppleGeek -->
+    <contributor uuid="b3c3aaa7-5f6e-4549-b7c7-5e73815d89d0" contribution="XML Fixing"/> <!-- RiceOpenOrange -->
+    <contributor uuid="aad7dc7b-5b2b-4eb5-bf14-cfa6c1d09eef" contribution="Map Testing"/> <!-- neseril -->
+    <contributor uuid="2adb8902-9a06-4983-a3fe-a61fccc39f06" contribution="XML"/> <!-- pat2424 -->
+</contributors>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<teams>
+    <team color="dark green" max="20">Zombies</team>
+    <team color="dark gray" max="20">Withers</team>
+</teams>
+<rage/>
+<blitz>
+    <time>5m</time>
+    <lives>1</lives>
+    <title>Blitz: Rage</title>
+</blitz>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" lore="`5One hit kill!" name="`5`lSword">diamond sword</item>
+        <item slot="1" enchantment="arrow damage:10" lore="`5One shot kill!" name="`5`lInsta-Gun">bow</item>
+        <item slot="2" amount="1">arrow</item>
+        <boots enchantment="protection fall:10">diamond boots</boots>
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+    <kit name="dark gray" parents="spawn">
+        <chestplate color="4C4C4C" name="Tunic" locked="true">leather chestplate</chestplate>
+        <helmet damage="1" locked="true">skull item</helmet>
+    </kit>
+    <kit name="dark green" parents="spawn">
+        <chestplate color="667F33" name="Tunic" locked="true">leather chestplate</chestplate>
+        <helmet damage="2" locked="true">skull item</helmet>
+    </kit>
+    <kit name="observer">
+        <potion duration="oo" amplifier="2">speed</potion>
+    </kit>
+</kits>
+<itemremove>
+    <item>golden apple</item>
+    <item>diamond boots</item>
+    <item>leather chestplate</item>
+    <item damage="2">skull item</item>
+    <item damage="1">skull item</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<killreward>
+    <item amount="1">arrow</item>
+</killreward>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<regions>
+    <apply velocity="@0,1.3,-0.3">
+        <cuboid name="jumppad-1" min="325,22,-684" max="328,25,-681"/>
+    </apply>
+    <apply velocity="@0.2,1.8,0">
+        <cuboid name="jumppad-2" min="318,11,-671" max="321,14,-668"/>
+    </apply>
+    <apply velocity="@0,1.8,0.2">
+        <cuboid name="jumppad-3" min="303,2,-699" max="306,5,-701"/>
+        <cuboid name="jumppad-4" min="313,16,-701" max="316,19,-698.5"/>
+        <cuboid name="jumppad-5" min="338,11,-689" max="341,14,-686"/>
+    </apply>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="Zombies" kit="dark green" yaw="90">
+        <cylinder base="350,8,-686" radius="1.5" height="0"/>
+    </spawn>
+    <spawn team="Withers" kit="dark gray" yaw="-90">
+        <cylinder base="291,14,-687" radius="1.5" height="0"/>
+    </spawn>
+    <default yaw="180" kit="observer">
+        <cylinder base="319,36,-683" radius="2" height="0"/>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<include src="blitz-global.xml"/>
+</map>

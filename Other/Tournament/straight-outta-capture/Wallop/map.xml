@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+    <name>Wallop</name>
+    <version>1.2</version>
+    <objective>Capture the enemy's wool in order to win!</objective>
+    <authors>
+        <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- Claf -->
+        <author uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042"/> <!-- triplezko -->
+    </authors>
+    <contributors>
+        <contributor uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23"/> <!-- McCola_ -->
+    </contributors>
+    <teams>
+        <team id="red-team" color="dark red" max="5" max-overfill="5">Red</team>
+        <team id="blue-team" color="blue" max="5" max-overfill="5">Blue</team>
+    </teams>
+    <time result="objectives">20m</time>
+    <respawn delay="5s"/>
+    <kits>
+        <kit id="spawn-kit" force="true">
+            <item slot="0" unbreakable="true" show-attributes="false">iron sword</item>
+            <item slot="1" unbreakable="true" show-attributes="false">bow</item>
+            <item slot="2" enchantment="efficiency:1" unbreakable="true" show-attributes="false">diamond pickaxe</item>
+            <item slot="3" enchantment="efficiency:3" unbreakable="true" show-attributes="false">wood axe</item>
+            <item slot="4" amount="24">grilled pork</item>
+            <item slot="5" amount="32" damage="1">wood</item>
+            <item slot="6" amount="16" damage="1">leaves 2</item>
+            <item slot="8" amount="32">arrow</item>
+            <leggings unbreakable="true" enchantment="protection projectile:2" material="chainmail leggings" show-attributes="false"/>
+            <potion duration="5" amplifier="3">heal</potion>
+            <potion duration="5" amplifier="3">damage resistance</potion>
+            <potion duration="oo" amplifier="1">night vision</potion>
+        </kit>
+        <kit id="night-vision">
+            <potion duration="oo" amplifier="1">night vision</potion>
+        </kit>
+        <kit id="red-kit" parents="spawn-kit">
+            <helmet unbreakable="true" enchantment="protection projectile:1" color="993333" material="leather helmet" show-attributes="false"/>
+            <chestplate unbreakable="true" enchantment="protection projectile:2" color="993333" material="leather chestplate" show-attributes="false"/>
+            <boots unbreakable="true" enchantment="protection projectile:1" color="993333" material="leather boots" show-attributes="false"/>
+        </kit>
+        <kit id="blue-kit" parents="spawn-kit">
+            <helmet unbreakable="true" enchantment="protection projectile:1" color="334CB2" material="leather helmet" show-attributes="false"/>
+            <chestplate unbreakable="true" color="334CB2" enchantment="protection projectile:2" material="leather chestplate" show-attributes="false"/>
+            <boots unbreakable="true" enchantment="protection projectile:1" color="334CB2" material="leather boots" show-attributes="false"/>
+        </kit>
+    </kits>
+    <spawns>
+        <spawn team="blue-team" kit="blue-kit">
+            <regions yaw="-45">
+                <point>33.5,6,20.5</point>
+            </regions>
+        </spawn>
+        <spawn team="red-team" kit="red-kit">
+            <regions yaw="135">
+                <point>108.5,6,95.5</point>
+            </regions>
+        </spawn>
+        <default kit="night-vision">
+            <regions yaw="180">
+                <point>71,41,58.5</point>
+            </regions>
+        </default>
+    </spawns>
+    <filters>
+        <team id="only-red">red-team</team>
+        <team id="only-blue">blue-team</team>
+        <all id="only-wool-red">
+            <team>red-team</team>
+            <any>
+                <material>web</material>
+                <material>stained glass</material>
+            </any>
+        </all>
+        <all id="only-wool-blue">
+            <team>blue-team</team>
+            <any>
+                <material>web</material>
+                <material>stained glass</material>
+            </any>
+        </all>
+        <not id="no-void">
+            <void/>
+        </not>
+        <not id="no-explosion">
+            <cause>explosion</cause>
+        </not>
+    </filters>
+    <regions>
+        <apply block="never" message="You may not build around the spawners!">
+            <region>
+                <cuboid min="73,13,56" max="69,19,60"/>
+            </region>
+        </apply>
+        <apply block="never" message="You may not modify the spawn!">
+            <region>
+                <cuboid min="39,5,26" max="30,12,17"/>
+                <cuboid min="103,5,90" max="112,12,99"/>
+            </region>
+        </apply>
+        <apply block="only-wool-red" message="You may not modify the wool room!">
+            <region>
+                <union id="wool-red">
+                    <rectangle min="47,34" max="55,41"/>
+                    <rectangle min="47,34" max="54,42"/>
+                </union>
+            </region>
+        </apply>
+        <apply enter="only-red" message="You may not enter your own wool room!">
+            <region>
+                <region id="wool-red"/>
+            </region>
+        </apply>
+        <apply block="only-wool-blue" message="You may not modify the wool room!">
+            <region>
+                <union id="wool-blue">
+                    <rectangle min="95,82" max="88,74"/>
+                    <rectangle min="95,82" max="87,75"/>
+                </union>
+            </region>
+        </apply>
+        <apply enter="only-blue" message="You may not enter your own wool room!">
+            <region>
+                <region id="wool-blue"/>
+            </region>
+        </apply>
+        <apply block="no-void">
+            <region>
+                <negative>
+                    <union id="void">
+                        <rectangle min="87,94" max="65,82"/>
+                        <rectangle min="73,83" max="46,75"/>
+                        <rectangle min="54,56" max="46,75"/>
+                        <rectangle min="54,56" max="73,66"/>
+                        <rectangle min="35,42" max="47,64"/>
+                        <rectangle min="63,83" max="73,66"/>
+                        <rectangle min="55,22" max="77,34"/>
+                        <rectangle min="88,60" max="96,41"/>
+                        <rectangle min="69,33" max="96,41"/>
+                        <rectangle min="88,60" max="69,50"/>
+                        <rectangle min="79,33" max="69,50"/>
+                        <rectangle min="107,74" max="95,52"/>
+                    </union>
+                </negative>
+            </region>
+        </apply>
+        <apply block="no-explosion">
+            <region>
+                <union id="pieces-of-shit">
+                    <block>56.5,20.5,25.5</block>
+                    <block>38.5,20.5,43.5</block>
+                    <block>85.5,20.5,90.5</block>
+                    <block>103.5,20.5,72.5</block>
+                </union>
+            </region>
+        </apply>
+    </regions>
+    <wools>
+        <wool team="blue-team" color="green" location="90.5,13.5,77.5">
+            <monument>
+                <block>37,7,24</block>
+            </monument>
+        </wool>
+        <wool team="red-team" color="orange" location="52.5,13.5,39.5">
+            <monument>
+                <block>104,7,91</block>
+            </monument>
+        </wool>
+    </wools>
+    <maxbuildheight>25</maxbuildheight>
+    <itemremove>
+        <item damage="3">smooth brick</item>
+        <item>seeds</item>
+        <item>red rose</item>
+        <item>wood</item>
+        <item>leaves 2</item>
+        <item>arrow</item>
+        <item>string</item>
+        <item>grilled pork</item>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>chainmail leggings</item>
+        <item>leather boots</item>
+        <item>obsidian</item>
+    </itemremove>
+    <toolrepair>
+        <tool>iron sword</tool>
+        <tool>bow</tool>
+        <tool>diamond pickaxe</tool>
+        <tool>wood axe</tool>
+    </toolrepair>
+    <kill-rewards>
+        <kill-reward>
+            <item amount="8" damage="1">wood</item>
+            <item amount="4" damage="1">leaves 2</item>
+            <item amount="1">golden apple</item>
+            <item amount="12">arrow</item>
+        </kill-reward>
+    </kill-rewards>
+</map>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Bliss TDM</name>
+<version>1.0.4</version>
+<objective>Be the team with the least deaths after 12 minutes!</objective>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Map layout, aesthetics, and XML"/> <!-- Stealth5061 -->
+    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Assorted help, aesthetics"/> <!-- Zelocksurian -->
+</authors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="blue" max="8">Blue</team>
+</teams>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="64">cooked fish</item>
+        <item slot="3" amount="32" damage="3">leaves</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="17" amount="64" damage="4">ink sack</item>
+        <potion duration="5" amplifier="2">heal</potion>
+        <chestplate enchantment="protection projectile:3">iron chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="C40000">leather helmet</helmet>
+        <leggings color="C40000">leather leggings</leggings>
+        <boots color="C40000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="000099">leather helmet</helmet>
+        <leggings color="000099">leather leggings</leggings>
+        <boots color="000099">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="allow-some" parents="deny-players">
+        <allow>
+            <block>leaves</block>
+            <block>water lily</block>
+        </allow>
+    </filter>
+</filters>
+<spawns>
+    <spawn team="red" kit="red" yaw="45">
+        <cylinder base="39,8,-94" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-135">
+        <cylinder base="-51,8,-4" radius="2" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="-6,21,16" radius="1" height="0"/>
+    </default>
+</spawns>
+<regions>
+    <rectangle min="-56,-99" max="45,2" name="playable"/>
+    <apply block="allow-some">
+        <region name="playable"/>
+    </apply>
+    <apply block="deny-all">
+        <negative>
+            <region name="playable"/>
+        </negative>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leaves</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>sapling</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>ink sack</item>
+</itemremove>
+<killreward>
+    <item amount="2">exp bottle</item>
+    <item amount="12">arrow</item>
+    <item amount="8" damage="3">leaves</item>
+</killreward>
+<score>
+    <time>12m</time>
+</score>
+<maxbuildheight>17</maxbuildheight>
+<respawn delay="7s"/>
+<autorespawn/>
+</map>

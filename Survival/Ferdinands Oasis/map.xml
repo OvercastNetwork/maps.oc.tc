@@ -1,0 +1,138 @@
+<map proto="1.4.0" game="Survival Games">
+<include src="survival-games.xml"/>
+<name>Ferdinand's Oasis</name>
+<version>1.0.1</version>
+<world-borders center="41.5,-6.5">
+    <world-border size="450"/>
+    <world-border size="40" after="2m" duration="10m"/>
+</world-borders>
+<spawns>
+    <spawns exclusive="true" spread="true">
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>41.5,27.0,8.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>45.5,27.0,7.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>49.5,27.0,6.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>52.5,27.0,4.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>54.5,27.0,1.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>55.5,27.0,-2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>56.5,27.0,-6.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>55.5,27.0,-10.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>54.5,27.0,-14.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>52.5,27.0,-17.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>49.5,27.0,-19.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>45.5,27.0,-20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>41.5,27.0,-21.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>37.5,27.0,-20.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>33.5,27.0,-19.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>30.5,27.0,-17.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>28.5,27.0,-14.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>27.5,27.0,-10.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>26.5,27.0,-6.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>27.5,27.0,-2.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>28.5,27.0,1.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>30.5,27.0,4.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>33.5,27.0,6.5</point>
+            </regions>
+        </spawn>
+        <spawn>
+            <regions angle="41.5,27.0,-6.5">
+                <point>37.5,27.0,7.5</point>
+            </regions>
+        </spawn>
+    </spawns>
+    <default>
+        <regions angle="41.5,27.0,-6.5">
+            <point>41.5,27.0,8.5</point>
+        </regions>
+    </default>
+</spawns>
+</map>

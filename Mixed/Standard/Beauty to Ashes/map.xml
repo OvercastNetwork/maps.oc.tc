@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<include src="tutorial.xml"/>
+<name>Beauty to Ashes</name>
+<version>1.1.0</version>
+<objective>Destroy the enemy's monument and leak their core!</objective>
+<authors>
+    <author uuid="ed1fe2bd-0431-4a56-8c5c-d4657389dd1f"/> <!-- artur1197 -->
+    <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
+    <author uuid="8eb34538-a6e0-4bc0-b695-b993f3f14aaa"/> <!-- Puyi2912 -->
+    <author uuid="06c2f980-d6b1-4908-b578-a9cf42a1418a"/> <!-- hanchulonXD1 -->
+</authors>
+<contributors>
+    <contributor uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+    <contributor uuid="5df77c0e-1bc5-4fff-b41b-6763f29d4125"/> <!-- G_Marturet -->
+    <contributor uuid="76cf5483-a7ea-4b5d-8830-385f768c4807"/> <!-- xannallax33 -->
+    <contributor uuid="8053ed38-89d9-4096-b265-a0fcce3a1c33"/> <!-- JETUB1 -->
+</contributors>
+<teams>
+    <team color="gold" max="36">Orange</team>
+    <team color="light purple" max="36">Magenta</team>
+</teams>
+<spawns>
+    <spawn team="orange" kit="orange" yaw="180">
+        <point>-49.5,82,78.5</point>
+    </spawn>
+    <spawn team="magenta" kit="magenta" yaw="0">
+        <point>-49.5,82,-225.5</point>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="10.5,50,-72.5" radius="3" height="2"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed">iron axe</item>
+        <item slot="4" damage="1" amount="48">log</item>
+        <item slot="5" amount="8">torch</item>
+        <item slot="7" amount="16">ladder</item>
+        <item slot="8" damage="1" amount="48">cooked fish</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <potion duration="4">heal</potion>
+        <potion duration="5" amplifier="2">damage resistance</potion>
+    </kit>
+    <kit name="orange" parents="teams">
+        <helmet unbreakable="true" color="D87F33">leather helmet</helmet>
+        <chestplate unbreakable="true" color="D87F33">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="D87F33">leather leggings</leggings>
+        <boots unbreakable="true" color="D87F33">leather boots</boots>
+    </kit>
+    <kit name="magenta" parents="teams">
+        <helmet unbreakable="true" color="B24CD8">leather helmet</helmet>
+        <chestplate unbreakable="true" color="B24CD8">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="B24CD8">leather leggings</leggings>
+        <boots unbreakable="true" color="B24CD8">leather boots</boots>
+    </kit>
+    <kit name="heal" force="true">
+        <potion duration="6">heal</potion>
+        <potion duration="7" amplifier="5">damage resistance</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-orange">
+        <team>orange</team>
+    </filter>
+    <filter name="only-magenta">
+        <team>magenta</team>
+    </filter>
+    <filter name="not-spawners">
+        <deny>
+            <block>mob spawner</block>
+            <block>gold plate</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="map" min="-8,62" max="-103,-209"/>
+    <cuboid name="above-river" min="-8,35,-93" max="-103,oo,-53"/>
+    <union name="velocity-pads">
+        <cuboid name="orange-pad" min="-45,82,63" max="-54,84,60"/>
+        <cuboid name="magenta-pad" min="-45,81,-209" max="-54,84,-210"/>
+    </union>
+    <union name="spawns">
+        <cuboid name="orange-spawn" min="-36,44,-10" max="-19,56,19"/>
+        <cuboid name="magenta-spawn" min="-19,44,-137" max="-35,56,-166"/>
+    </union>
+    <union name="monuments">
+        <cuboid name="magenta-monument" min="-89,29,-116" max="-88,32,-117"/>
+        <cuboid name="orange-monument" min="-89,29,-31" max="-88,32,-30"/>
+    </union>
+    <union name="cores">
+        <cuboid name="magenta-core" min="-87,56,-169" max="-92,61,-164"/>
+        <cuboid name="orange-core" min="-92,56,22" max="-87,62,17"/>
+    </union>
+    <union name="spawn-water">
+        <rectangle min="-8,62" max="-103,52"/>
+        <rectangle min="-103,-209" max="-8,-199"/>
+    </union>
+    <!-- Applied -->
+    <apply block="deny-all" message="You may not edit outside the main area!">
+        <negative>
+            <region name="map"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You have reach the maximum build height above the river! (`735 Blocks`c)">
+        <region name="above-river"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify this house!">
+        <region name="spawns"/>
+    </apply>
+    <apply block="not-spawners" message="You may not break the iron spawner!">
+        <region name="map"/>
+    </apply>
+    <apply block="deny-all" message="You may not edit this area!">
+        <region name="spawn-water"/>
+    </apply>
+    <apply velocity="@0,2,0.5" kit="heal" filter="only-magenta">
+        <region name="magenta-pad"/>
+    </apply>
+    <apply velocity="@0,2,-0.5" kit="heal" filter="only-orange">
+        <region name="orange-pad"/>
+    </apply>
+</regions>
+<modes>
+    <mode after="15m" material="gold block" name="GOLD CORE MODE"/>
+    <mode after="25m" material="glass" name="GLASS CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="7" mode-changes="true">
+    <core team="orange">
+        <region name="orange-core"/>
+    </core>
+    <core team="magenta">
+        <region name="magenta-core"/>
+    </core>
+</cores>
+<destroyables name="Monument" materials="obsidian" completion="100%" repairable="false">
+    <destroyable owner="orange">
+        <region name="orange-monument"/>
+    </destroyable>
+    <destroyable owner="magenta">
+        <region name="magenta-monument"/>
+    </destroyable>
+</destroyables>
+<maxbuildheight>68</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>log</item>
+    <item>wood</item>
+    <item>cooked fish</item>
+    <item>ladder</item>
+    <item>torch</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+</map>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map proto="1.4.1">
+<name>Crenel</name>
+<version>1.1.1</version>
+<objective>Be the team with the least amount of deaths after 5 minutes</objective>
+<authors>
+    <author uuid="48924ea3-3aad-4e16-838c-368d8d9e0a25" />
+    <!-- Matic0B -->
+</authors>
+<contributors>
+    <contributor contribution="Building Style">TheMadnes64</contributor>
+</contributors>
+<gamemode>tdm</gamemode>
+<teams>
+    <team id="blue" color="blue" max="10">Blue</team>
+    <team id="red" color="dark red" max="10">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="6" amount="32">cooked beef</item>
+        <item slot="7">golden apple</item>
+    </kit>
+    <kit id="blue-kit" parents="spawn">
+        <helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="180">
+            <point>32.5,10,56.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="0">
+            <point>18.5,10,-27.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>-19.5,30,14.5</point>
+        </regions>
+    </default>
+</spawns>
+<time>5m</time>
+<score>
+    <kills>1</kills>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>chainmail leggings</item>
+    <item>leather boots</item>
+    <item>golden apple</item>
+    <item>cooked beef</item>
+    <item>arrow</item>
+    <item>iron sword</item>
+</itemremove>
+<kill-rewards>
+    <kill-reward>
+        <item amount="16">arrow</item>
+        <item>golden apple</item>
+        <effect amplifier="1" duration="5s">regeneration</effect>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="5" />
+        </filter>
+        <kit>
+            <item slot="0" material="iron sword" />
+        </kit>
+    </kill-reward>
+    <kill-reward>
+        <filter>
+            <kill-streak count="8" />
+        </filter>
+        <kit>
+            <item slot="slot.weapon.offhand" material="shield" />
+        </kit>
+    </kill-reward>
+</kill-rewards>
+<regions>
+    <apply block="never" region="everywhere" />
+</regions>
+<broadcasts>
+    <tip after="20s">There is hidden loot in some chests! It includes better armor, upgraded bow and a shield!</tip>
+    <tip after="40s">There are extra arrows for archers on the towers!</tip>
+</broadcasts>
+</map>

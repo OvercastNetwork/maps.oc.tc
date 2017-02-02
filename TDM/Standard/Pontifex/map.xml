@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Pontifex</name>
+<version>0.15</version>
+<objective>Be the first team to score 500 points. Kills are 1 point, the scorebox is 10.</objective>
+<authors>
+    <author uuid="3fbec7dd-0a5f-40bf-9d11-885a54507112"/> <!-- last_username -->
+</authors>
+<rules>
+    <rule>Team colored blocks fall down if not connected to quartz</rule>
+    <rule>Quartz and glass are indestructible</rule>
+    <rule>You can't blow up your own team's colored blocks</rule>
+    <rule>Your teammates will not be hurt by your TNT</rule>
+    <rule>Spawn camping/killing/cannoning/bombing is ALLOWED</rule>
+</rules>
+
+<broadcasts>
+    <tip after="20s">Bridges will collapse if they are not connected to quartz</tip>
+    <tip after="30s">Enter the portals to build cannons</tip>
+    <tip after="40s">Chaos cannons are disabled (sorry)</tip>
+    <tip after="50s">Your TNT will NOT damage blocks of your own team's color</tip>
+</broadcasts>
+
+<teams>
+    <team color="dark red" max="16" max-overfill="18">Red</team>
+    <team color="blue" max="16" max-overfill="18">Blue</team>
+</teams>
+
+<disabledamage>
+    <damage self="false" ally="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+
+<score>
+    <limit>300</limit>
+    <box points="10" filter="red-only" region="red-scorebox"/>
+    <box points="10" filter="blue-only" region="blue-scorebox"/>
+</score>
+
+<kits>
+    <!-- kit given to everyone, including observers -->
+    <kit name="all">
+        <potion duration="oo">night vision</potion>
+        <potion duration="oo">saturation</potion>
+    </kit>
+
+    <!-- kit given to players inside the arena -->
+    <kit name="bridge">
+        <clear-items/>
+        <item slot="0" unbreakable="true">iron pickaxe</item>
+        <item slot="1" amount="64">vine</item>
+    </kit>
+
+    <kit name="bridge-red" parents="bridge">
+        <item slot="2" damage="14" amount="64">stained clay</item>
+        <item slot="3" damage="14" amount="64">stained clay</item>
+        <item slot="4" damage="14" amount="64">stained clay</item>
+        <item slot="5" damage="14" amount="64">stained clay</item>
+        <item slot="6" damage="14" amount="64">stained clay</item>
+        <item slot="7" damage="14" amount="64">stained clay</item>
+        <item slot="8" damage="14" amount="64">stained clay</item>
+    </kit>
+
+    <kit name="bridge-blue" parents="bridge">
+        <item slot="2" damage="11" amount="64">stained clay</item>
+        <item slot="3" damage="11" amount="64">stained clay</item>
+        <item slot="4" damage="11" amount="64">stained clay</item>
+        <item slot="5" damage="11" amount="64">stained clay</item>
+        <item slot="6" damage="11" amount="64">stained clay</item>
+        <item slot="7" damage="11" amount="64">stained clay</item>
+        <item slot="8" damage="11" amount="64">stained clay</item>
+    </kit>
+
+    <!-- kit given to players on the cannon platforms -->
+    <kit name="cannon">
+        <clear-items/>
+
+        <item slot="9" amount="64">tnt</item>
+        <item slot="18" amount="64">tnt</item>
+        <item slot="27" amount="64">tnt</item>
+        <item slot="0" unbreakable="true">diamond pickaxe</item>
+        
+        <!-- slot="10" -->
+        <!-- slot="19" -->
+        <!-- slot="28" -->
+        <item slot="1" amount="16">redstone torch on</item>
+        
+        <!-- slot="11" -->
+        <!-- slot="20" -->
+        <!-- slot="29" -->
+        <item slot="2" amount="16">step</item>
+        
+        <item slot="12" damage="6" amount="64">stone</item>
+        <item slot="21" damage="6" amount="64">stone</item>
+        <item slot="30" damage="6" amount="64">stone</item>
+        <item slot="3"  damage="6" amount="64">stone</item>
+        
+        <item slot="13" amount="16">trap door</item>
+        <item slot="22" amount="16">ladder</item>
+        <item slot="31" amount="16">step</item>
+        <item slot="4" amount="16">nether fence</item>
+        
+        <!-- slot="14" -->
+        <item slot="23" amount="16">lever</item>
+        <item slot="32" amount="16">stone plate</item>
+        <item slot="5" amount="16">stone button</item>
+        
+        <item slot="15">water bucket</item>
+        <item slot="24">water bucket</item>
+        <item slot="33">water bucket</item>
+        <item slot="6">water bucket</item>
+        
+        <item slot="16" amount="16">diode</item>
+        <item slot="25" amount="16">redstone torch on</item>
+        <item slot="34" amount="16">redstone block</item>
+        <item slot="7" amount="64">redstone</item>
+
+        <item slot="17" amount="64">tnt</item>
+        <item slot="26" amount="64">tnt</item>
+        <item slot="35" amount="64">tnt</item>
+        <item slot="8" amount="64">tnt</item>
+    </kit>
+
+    <!-- team kits -->
+    <kit name="red" parents="all,bridge-red">
+        <helmet     locked="true" color="dd5566" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="dd5566" unbreakable="true">leather chestplate</chestplate>
+        <leggings   locked="true" color="dd5566" unbreakable="true">leather leggings</leggings>
+        <boots      locked="true" color="dd5566" unbreakable="true">leather boots</boots>
+    </kit>
+
+    <kit name="blue" parents="all,bridge-blue">
+        <helmet     locked="true" color="5e55dd" unbreakable="true">leather helmet</helmet>
+        <chestplate locked="true" color="5e55dd" unbreakable="true">leather chestplate</chestplate>
+        <leggings   locked="true" color="5e55dd" unbreakable="true">leather leggings</leggings>
+        <boots      locked="true" color="5e55dd" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+
+<blockdrops>
+    <rule>
+        <filter>
+            <not>
+                <any>
+                    <block>tnt</block>
+                    <block>dispenser</block>
+                </any>
+            </not>
+        </filter>
+        <fall-chance>0.5</fall-chance>
+        <land-chance>0.5</land-chance>
+        <drops/>
+    </rule>
+</blockdrops>
+
+<itemremove>
+    <item>iron pickaxe</item>
+    <item>diamond pickaxe</item>
+    <item>vine</item>
+    <item>dispenser</item>
+    <item>stained clay</item>
+    <item>stone</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>water bucket</item>
+    <item>bucket</item>
+    <item>tnt</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+
+<filters>
+    <filter name="red-only">
+        <team>red</team>
+    </filter>
+
+    <filter name="blue-only">
+        <team>blue</team>
+    </filter>
+
+    <filter name="allow-red">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+
+    <filter name="allow-blue">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+
+    <filter name="protect-permanent-blocks">
+        <deny>
+            <any>
+                <block>quartz block</block>
+                <block>quartz stairs</block>
+                <block>stained clay:2</block>
+                <block>stained clay:3</block>
+                <block>stained clay:6</block>
+                <block>stained clay:9</block>
+                <block>stained glass:7</block>
+                <block>stained glass:8</block>
+                <block>stained glass:11</block>
+                <block>stained glass:14</block>
+                <block>stained glass:15</block>
+                <block>stained glass pane:8</block>
+                <block>stained glass pane:15</block>
+                <block>portal</block>
+            </any>
+        </deny>
+    </filter>
+
+    <filter name="red-blocks">
+        <block>stained clay:14</block>
+    </filter>
+
+    <filter name="blue-blocks">
+        <block>stained clay:11</block>
+    </filter>
+
+    <filter name="team-blocks">
+        <any>
+            <filter name="red-blocks"/>
+            <filter name="blue-blocks"/>
+        </any>
+    </filter>
+
+    <filter name="bridge-blocks">
+        <any>
+            <block>vine</block>
+            <filter name="team-blocks"/>
+        </any>
+    </filter>
+
+    <filter name="friendly-blocks">
+        <any>
+            <all>
+                <team>red</team>
+                <filter name="red-blocks"/>
+                <filter name="deny-world"/>
+            </all>
+            <all>
+                <team>blue</team>
+                <filter name="blue-blocks"/>
+                <filter name="deny-world"/>
+            </all>
+        </any>
+    </filter>
+
+    <filter name="deny-team-blocks">
+        <not>
+            <any>
+                <!-- deny blowing up of friendly blocks -->
+                <all>
+                    <cause>explosion</cause>
+                    <any>
+                        <block>vine</block>
+                        <block>tnt</block>
+                        <filter name="friendly-blocks"/>
+                    </any>
+                </all>
+
+                <!-- deny breaking team bridges longer than 3m -->
+                <all>
+                    <cause>player</cause>
+                    <filter name="friendly-blocks"/>
+                    <structural-load>3</structural-load>
+                </all>
+            </any>
+        </not>
+    </filter>
+
+    <!--                -->
+    <!-- Falling Blocks -->
+    <!--                -->
+
+    <filter name="sticky-blocks">
+        <any>
+            <block>quartz block</block>
+            <block>quartz stairs</block>
+        </any>
+    </filter>
+</filters>
+
+<falling-blocks>
+    <rule>
+        <filter>
+            <all>
+                <region name="bridge-build"/>
+                <filter name="blue-blocks"/>
+            </all>
+        </filter>
+        <sticky>
+            <any>
+                <filter name="blue-blocks"/>
+                <filter name="sticky-blocks"/>
+            </any>
+        </sticky>
+    </rule>
+
+    <rule>
+        <filter>
+            <all>
+                <region name="bridge-build"/>
+                <filter name="red-blocks"/>
+            </all>
+        </filter>
+        <sticky>
+            <any>
+                <filter name="red-blocks"/>
+                <filter name="sticky-blocks"/>
+            </any>
+        </sticky>
+    </rule>
+</falling-blocks>
+
+<spawns pitch="0">
+    <default kit="all">
+        <regions yaw="-45">
+            <region name="obs-spawn"/>
+        </regions>
+    </default>
+
+    <spawn team="red" kit="red" region="red-spawn">
+        <regions yaw="0">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+
+    <spawn team="blue" kit="blue" region="blue-spawn">
+        <regions yaw="-90">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+</spawns>
+
+<portals>
+    <!--                  -->
+    <!-- Scorebox Portals -->
+    <!--                  -->
+
+    <portal x="@187.5" y="@1" z="@110" yaw="@0" region="red-scorebox" filter="red-only"/>
+    <portal x="@110" y="@1" z="@187.5" yaw="@-90" region="blue-scorebox" filter="blue-only"/>
+
+    <!--                -->
+    <!-- Cannon Portals -->
+    <!--                -->
+
+    <portals bidirectional="true">
+        <portals filter="red-only">
+            <portal region="red-early-lower" x="-19" y="9" z="39"/>
+            <portal region="red-early-upper" x="-13" y="19" z="39"/>
+            <portal region="red-late-lower" x="4" y="9" z="39"/>
+            <portal region="red-late-upper" x="-2" y="19" z="39"/>
+        </portals>
+        <portals filter="blue-only">
+            <portal region="blue-early-lower" z="-19" y="9" x="39"/>
+            <portal region="blue-early-upper" z="-13" y="19" x="39"/>
+            <portal region="blue-late-lower" z="4" y="9" x="39"/>
+            <portal region="blue-late-upper" z="-2" y="19" x="39"/>
+        </portals>
+    </portals>
+</portals>
+
+<regions>
+
+    <!--                    -->
+    <!-- Region Definitions -->
+    <!--                    -->
+
+    <!-- spawns -->
+    <cylinder name="obs-spawn" base="184.5,12,184.5" radius="0" height="0"/>
+
+    <cuboid name="red-spawn" min="175,1,110" max="200,1,110"/>
+    <mirror name="blue-spawn" normal="1,0,-1">
+        <region name="red-spawn"/>
+    </mirror>
+
+    <!-- cannon portals -->
+    <cuboid name="red-portal" min="0,0,0" max="3,4,1"/>
+
+    <translate name="red-early-lower" offset="165,3,115"><region name="red-portal"/></translate>
+    <translate name="red-early-upper" offset="159,5,115"><region name="red-portal"/></translate>
+    <translate name="red-late-lower" offset="207,3,115"><region name="red-portal"/></translate>
+    <translate name="red-late-upper" offset="213,5,115"><region name="red-portal"/></translate>
+
+    <mirror name="blue-early-lower" normal="1,0,-1"><region name="red-early-lower"/></mirror>
+    <mirror name="blue-early-upper" normal="1,0,-1"><region name="red-early-upper"/></mirror>
+    <mirror name="blue-late-lower" normal="1,0,-1"><region name="red-late-lower"/></mirror>
+    <mirror name="blue-late-upper" normal="1,0,-1"><region name="red-late-upper"/></mirror>
+
+    <cuboid name="blue-portal" min="0,0,0" max="1,4,3"/>
+
+    <!-- scoreboxes -->
+    <cuboid name="red-scorebox" min="172,13,260" max="203,22,265"/>
+    <mirror name="blue-scorebox" normal="1,0,-1">
+        <region name="red-scorebox"/>
+    </mirror>
+
+    <!-- global buildable region -->
+    <cuboid name="height-limit" min="-oo,-oo,-oo" max="oo,32,oo"/>
+    <rectangle name="build" min="115,115" max="260,260"/>
+
+    <!-- bridging lanes -->
+    <rectangle name="red-lane" min="170,115" max="205,260"/>
+    <!-- region before lane start (including portals) -->
+    <rectangle name="red-launch" min="158,105" max="217,116"/>
+
+    <mirror name="blue-lane" normal="1,0,-1">
+        <region name="red-lane"/>
+    </mirror>
+    <mirror name="blue-launch" normal="1,0,-1">
+        <region name="red-launch"/>
+    </mirror>
+
+    <union name="bridge-build">
+        <region name="red-lane"/>
+        <region name="blue-lane"/>
+    </union>
+
+    <!-- kit application regions -->
+    <union name="red-bridge-kit">
+        <region name="red-lane"/>
+        <region name="red-launch"/>
+        <region name="red-scorebox"/>
+    </union>
+
+    <negative name="red-cannon-kit">
+        <region name="red-bridge-kit"/>
+    </negative>
+
+    <union name="blue-bridge-kit">
+        <region name="blue-lane"/>
+        <region name="blue-launch"/>
+        <region name="blue-scorebox"/>
+    </union>
+
+    <negative name="blue-cannon-kit">
+        <region name="blue-bridge-kit"/>
+    </negative>
+
+    <!-- cannoning building region -->
+    <intersect name="cannon-build">
+        <region name="build"/>
+        <cuboid min="-oo,11,-oo" max="oo,oo,oo"/>
+        <union>
+            <union name="red-cannons">
+                <rectangle name="red-early-cannons" min="125,154" max="159,165"/>
+                <rectangle name="red-late-cannons" min="210,154" max="255,165"/>
+            </union>
+            <mirror name="blue-cannons" normal="1,0,-1">
+                <region name="red-cannons"/>
+            </mirror>
+        </union>
+    </intersect>
+
+    <!--             -->
+    <!-- Block Rules -->
+    <!--             -->
+    <apply block-place="deny-all" message="You may not place blocks at this height">
+        <negative>
+            <region name="height-limit"/>
+        </negative>
+    </apply>
+
+    <!-- deny building outside the playing area -->
+    <apply block="deny-all" message="You may not place or break blocks outside the playing area">
+        <negative>
+            <union>
+                <region name="bridge-build"/>
+                <region name="cannon-build"/>
+            </union>
+        </negative>
+    </apply>
+
+    <!-- only allow bridging blocks in the inner region -->
+    <apply block-place="bridge-blocks" message="You may not place that material in the central region">
+        <region name="bridge-build"/>
+    </apply>
+
+    <!-- protect the quartz -->
+    <apply block="protect-permanent-blocks" block-physics="protect-permanent-blocks" message="This material is indestructible">
+        <negative><empty/></negative>
+    </apply>
+
+    <!-- prevent destruction of team structures -->
+    <apply block="deny-team-blocks" message="You may not destroy your own team's bridges">
+        <negative><empty/></negative>
+    </apply>
+
+    <!--               -->
+    <!-- Regional Kits -->
+    <!--               -->
+
+    <apply enter="blue-only" message="You must stay in the `4RED`c lane">
+        <negative>
+            <union>
+                <region name="red-launch"/>
+                <region name="red-lane"/>
+                <region name="red-scorebox"/>
+                <region name="red-cannons"/>
+            </union>
+        </negative>
+    </apply>
+
+    <apply enter="red-only" message="You must stay in the `9BLUE`c lane">
+        <negative>
+            <union>
+                <region name="blue-launch"/>
+                <region name="blue-lane"/>
+                <region name="blue-scorebox"/>
+                <region name="blue-cannons"/>
+            </union>
+        </negative>
+    </apply>
+
+    <apply kit="cannon" filter="red-only">
+        <region name="red-cannon-kit"/>
+    </apply>
+
+    <apply kit="cannon" filter="blue-only">
+        <region name="blue-cannon-kit"/>
+    </apply>
+
+    <apply kit="bridge-red" filter="red-only">
+        <region name="red-bridge-kit"/>
+    </apply>
+
+    <apply kit="bridge-blue" filter="blue-only">
+        <region name="blue-bridge-kit"/>
+    </apply>
+</regions>
+</map>

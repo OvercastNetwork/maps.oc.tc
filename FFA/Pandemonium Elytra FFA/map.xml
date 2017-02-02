@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Pandemonium Elytra FFA</name>
+<version>1.0</version>
+<objective>Get the most kills in 8 minutes!</objective>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+</score>
+<time>8m</time>
+<players min="6" max="32" max-overfill="48" show-name-tags="false" colors="true"/>
+<spawns>
+    <spawn kit="spawn" spread="true" safe="false">
+        <cylinder base="0.5,130,0.5" radius="80" height="3"/>
+    </spawn>
+    <default kit="obs">
+        <point yaw="-90">
+            <region name="yellow-spawn"/>
+        </point>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="2">golden apple</item>
+        <item slot="8" amount="16">arrow</item>
+        <chestplate locked="true" enchantment="protection environmental:1" unbreakable="true">elytra</chestplate>
+    </kit>
+    <kit name="obs">
+        <chestplate locked="true" enchantment="protection environmental:1" unbreakable="true">elytra</chestplate>
+    </kit>
+</kits>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<filters>
+    <filter name="not-player">
+        <not>
+            <cause>player</cause>
+        </not>
+    </filter>
+    <filter name="deny-dispenser">
+        <not>
+            <block>dispenser</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+	<apply use="deny-dispenser">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+	<!-- Cause is not player -->
+	<apply block="not-player">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+	<!-- Jump pads -->
+    <union name="jump-pads">
+        <cuboid name="blue-jump-pad" min="-2,3,-70" max="2,4,-72"/>
+        <cuboid name="green-jump-pad" min="70,3,-2" max="72,4,2"/>
+        <cuboid name="red-jump-pad" min="2,3,70" max="-2,4,72"/>
+        <cuboid name="yellow-jump-pad" min="-70,3,2" max="-72,4,-2"/>
+    </union>
+    <apply velocity="@0.9,5.0,0.0">
+        <region name="green-jump-pad"/>
+    </apply>
+    <apply velocity="@0.0,5.0,0.9">
+        <region name="red-jump-pad"/>
+    </apply>
+    <apply velocity="@-0.9,5.0,0.0">
+        <region name="yellow-jump-pad"/>
+    </apply>
+    <apply velocity="@0.0,5.0,-0.9">
+        <region name="blue-jump-pad"/>
+    </apply>
+    <cylinder name="yellow-spawn" base="-115,41,0.5" radius="1" height="0"/>
+</regions>
+
+<disabledamage>
+    <damage>fall</damage>
+    <damage>fly into wall</damage>
+</disabledamage>
+<killreward>
+    <item amount="10">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked beef</item>
+    <item>arrow</item>
+</itemremove>
+</map>

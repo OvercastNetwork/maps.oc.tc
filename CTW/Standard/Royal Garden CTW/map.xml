@@ -1,0 +1,174 @@
+<map proto="1.3.2">
+<name>Royal Garden CTW</name>
+<version>1.5.1</version>
+<objective>Capture the opposing team's wool and place it at your victory monument.</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<teams>
+    <team color="dark red" max="40">Red</team>
+    <team color="blue" max="40">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" enchantment="dig speed:3;durability:3">iron pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:3">iron axe</item>
+        <item slot="4" amount="64" damage="2">wood</item>
+        <item slot="5" amount="32">glass</item>
+        <item slot="7">golden apple</item>
+        <item slot="8" amount="64">golden carrot</item>
+        <item slot="28">arrow</item>
+        <item slot="31">diamond spade</item>
+        <item slot="34" amount="32">ladder</item>
+        <potion duration="8" amplifier="1">heal</potion>
+        <potion duration="8" amplifier="1">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" enchantment="protection projectile:2">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc" enchantment="protection projectile:2">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cylinder base="179.5,18,25.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <cylinder base="-148.5,18,25.5" radius="3" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="15.5,43,75.5" radius="1" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="no-void" parents="allow-all">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-iron">
+        <block>iron block</block>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red-web">
+        <block>web</block>
+        <team>red</team>
+    </filter>
+    <filter name="only-blue-web">
+        <block>web</block>
+        <team>blue</team>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not build in the void!">
+        <negative>
+            <rectangle min="30,54" max="1,-3"/>
+        </negative>
+    </apply>
+    <union name="red-spawn">
+        <rectangle min="133,14" max="215,37"/>
+        <rectangle min="215,59" max="150,-8"/>
+    </union>    
+    <union name="blue-spawn">
+        <rectangle min="-102,37" max="-183,14"/>
+        <rectangle min="-184,-8" max="-119,59"/>
+    </union>
+    <apply block-break="only-iron" block="deny-all" message="You may not modify the base!">
+        <region name="red-spawn"/>
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the enemy base!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy base!">
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-blue" block="only-blue-web" use="only-blue-usage">
+        <rectangle name="purple" min="80,-32" max="95,-45"/>
+        <rectangle name="orange" min="80,96" max="95,83"/>
+    </apply>
+    <apply enter="only-red" block="only-red-web" use="only-red-usage">														
+        <rectangle name="pink" min="-64,96" max="-49,83"/>
+        <rectangle name="yellow" min="-64,-32" max="-49,-45"/>
+    </apply>
+</regions>
+<wools team="red" craftable="false">
+    <wool color="pink">
+        <block>185,18,27</block>
+    </wool>
+    <wool color="yellow">
+        <block>185,18,23</block>
+    </wool>
+</wools>
+<wools team="blue" craftable="false">
+    <wool color="purple">
+        <block>-155,18,23</block>
+    </wool>
+    <wool color="orange">
+        <block>-155,18,27</block>
+    </wool>
+</wools>
+<maxbuildheight>43</maxbuildheight>
+<killreward>
+    <item amount="1">golden apple</item>
+    <item amount="16" damage="2">wood</item>
+</killreward>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>diamond spade</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>red rose</item>
+    <item>sugar cane block</item>
+    <item>clay ball</item>
+    <item>smooth stairs</item>
+    <item>smooth brick</item>
+    <item>wood</item>
+    <item>sign</item>
+    <item>brown mushroom</item>
+    <item>stained clay</item>
+    <item>glass</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+    <item>ladder</item>
+</itemremove>
+</map>

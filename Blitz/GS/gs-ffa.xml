@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<map proto="1.4.0" game="Ghost Squadron">
+<objective>Be the last ghost alive!</objective>
+<players max="12" max-overfill="14" show-name-tags="true"/>
+</map>

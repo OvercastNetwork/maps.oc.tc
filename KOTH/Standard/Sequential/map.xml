@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Sequential</name>
+<version>0.12</version>
+<objective>Be the team with the most amount of points after 8 minutes.</objective>
+<authors>
+    <author uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0"/> <!-- ElectroidFilms -->
+</authors>
+<teams>
+    <team color="dark red" max="8">Red</team>
+    <team color="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="before">
+        <regions>
+            <point>100,100,100</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="before">
+        <regions>
+            <point>100,100,100</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="45" pitch="20">
+            <point>4.5,34,8.5</point>
+        </regions>
+    </default>
+</spawns>
+<portals sound="false" region="portal">
+    <portal filter="only-red"  x="@-13.5" y="@26" z="@203.5" yaw="@180"/>
+    <portal filter="only-blue" x="@-13.5" y="@26" z="@-36.5" yaw="@0"/>
+</portals>
+<classes family="sequential" restrict="false" sticky="false">
+    <class name="Soldier" description="Medium armor and mostly melee based"  icon="iron sword" default="true"/>
+    <class name="Ranger"  description="Speedy and agile with a powerful bow" icon="bow"/>
+    <class name="Tank"    description="Strong armor but slow"                icon="anvil"/>
+    <class name="Demo"    description="Array of tools and explosives"        icon="tnt"/>
+    <class name="Sentry"  description="Mob gaurdians to assist in battle"    icon="monster egg"/>
+    <class name="Spy"     description="Look like the enemy"                  icon="potion"/>
+    <class name="Pyro"    description="Fire and flame to burn enemies"       icon="flint and steel"/>
+    <class name="Medic"   description="Heal teammates that are around you"   icon="golden apple"/>
+</classes>
+<kits>
+    <kit name="before">
+        <potion duration="oo">blindness</potion>
+    </kit>
+    <kit name="global" force="true">
+        <potion duration="0" amplifier="0">blindness</potion>
+    </kit>
+    <kit name="soldier" parents="global">
+        <chestplate locked="true" unbreakable="true">iron chestplate</chestplate>
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" amount="20">wood</item>
+        <item slot="2" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+    </kit>
+    <kit name="soldier-red" parents="soldier">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="soldier-blue" parents="soldier">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="ranger" parents="global">
+        <potion duration="oo">speed</potion>
+        <chestplate locked="true" unbreakable="true">chainmail chestplate</chestplate>
+        <item slot="0" unbreakable="true" enchantment="arrow infinite;arrow damage;knockback">bow</item>
+        <item slot="1" unbreakable="true">wood axe</item>
+        <item slot="2" amount="20">wood</item>
+        <item slot="3" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+        <item slot="8">arrow</item>
+    </kit>
+    <kit name="ranger-red" parents="ranger">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="ranger-blue" parents="ranger">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="tank" parents="global">
+        <potion duration="oo" amplifier="3">slow</potion>
+        <potion duration="oo" amplifier="3">health boost</potion>
+        <potion duration="oo">regeneration</potion>
+        <potion duration="3" amplifier="10">heal</potion>
+        <chestplate locked="true" unbreakable="true">diamond chestplate</chestplate>
+        <item slot="0" unbreakable="true" attributes="generic.attackDamage:add:6.5">diamond axe</item>
+        <item slot="1" amount="32" name="`rGrenade" grenade="true" grenade-destroy="false">snow ball</item>
+        <item slot="2" amount="20">wood</item>
+        <item slot="3" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.15">feather</item>
+    </kit>
+    <kit name="tank-red" parents="tank">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="tank-blue" parents="tank">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="demo" parents="global">
+        <potion duration="oo" amplifier="-1">health boost</potion>
+        <chestplate locked="true" unbreakable="true">gold chestplate</chestplate>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">iron pickaxe</item>
+        <item slot="2" unbreakable="true">iron axe</item>
+        <item slot="3" unbreakable="true">iron spade</item>          
+        <item slot="4" amount="12" name="`rRocket" grenade="true" grenade-power="1.5">snow ball</item>
+        <item slot="5" amount="4" name="`rExplosive">tnt</item>
+        <item slot="6" amount="40">wood</item>
+        <item slot="7" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+    </kit>
+    <kit name="demo-red" parents="demo">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="demo-blue" parents="demo">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="sentry" parents="global">
+        <chestplate locked="true" unbreakable="true">chainmail chestplate</chestplate>
+        <item slot="0" unbreakable="true">stone sword</item>         
+        <item slot="1" amount="3" name="`rZombie Sentry" damage="54">monster egg</item>
+        <item slot="2" amount="2" name="`rRanged Sentry" damage="51">monster egg</item>
+        <item slot="3" amount="1" name="`rPotion Sentry" damage="66">monster egg</item>
+        <item slot="4" amount="1" name="`rAerial Sentry" damage="56">monster egg</item>
+        <item slot="5" amount="20">wood</item>
+        <item slot="6" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+    </kit>
+    <kit name="sentry-red" parents="sentry">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="sentry-blue" parents="sentry">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="spy" parents="global">
+        <potion duration="oo">speed</potion>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">stone pickaxe</item>
+        <item slot="3" unbreakable="true">stone spade</item>
+        <item slot="4" amount="20">wood</item>
+        <item slot="5" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+        <item slot="8" amount="12">arrow</item>
+    </kit>
+    <!-- Armor is inversed intentionally -->
+    <kit name="spy-red" parents="spy">
+        <helmet     locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="spy-blue" parents="spy">
+        <helmet     locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="993333">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="pyro" parents="global">
+        <potion duration="oo">fire resistance</potion>
+        <chestplate locked="true" unbreakable="true">chainmail chestplate</chestplate>
+        <item slot="0" unbreakable="true" enchantment="fire aspect">flint and steel</item>         
+        <item slot="1" unbreakable="true">stone axe</item>
+        <item slot="2" amount="20">wood</item>
+        <item slot="3" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+    </kit>
+    <kit name="pyro-red" parents="pyro">
+        <helmet   locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="pyro-blue" parents="pyro">
+        <helmet   locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <leggings locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots    locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+    <kit name="medic" parents="global">
+        <potion duration="oo" amplifier="-2">health boost</potion>
+        <potion duration="oo">absorption</potion>
+        <item slot="0" unbreakable="true">gold axe</item>
+        <item slot="1" damage="16385" name="`rMedigun `o(Infinite)" potions="regeneration:160:2:true" amount="10000">potion</item>
+        <item slot="2" amount="20">wood</item>
+        <item slot="3" name="`rSuper Sandals" attributes="generic.movementSpeed:base:0.25">feather</item>
+    </kit>
+    <kit name="medic-red" parents="medic">
+        <helmet     locked="true" unbreakable="true" color="993333">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="993333">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="993333">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="993333">leather boots</boots>
+    </kit>
+    <kit name="medic-blue" parents="medic">
+        <helmet     locked="true" unbreakable="true" color="334CB2">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="334CB2">leather chestplate</chestplate>
+        <leggings   locked="true" unbreakable="true" color="334CB2">leather leggings</leggings>
+        <boots      locked="true" unbreakable="true" color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <!-- Class Filters -->
+    <filter name="soldier-red">
+        <all>
+            <class>Soldier</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="soldier-blue">
+        <all>
+            <class>Soldier</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="ranger-red">
+        <all>
+            <class>Ranger</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="ranger-blue">
+        <all>
+            <class>Ranger</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="tank-red">
+        <all>
+            <class>Tank</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="tank-blue">
+        <all>
+            <class>Tank</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="demo-red">
+        <all>
+            <class>Demo</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="demo-blue">
+        <all>
+            <class>Demo</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="sentry-red">
+        <all>
+            <class>Sentry</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="sentry-blue">
+        <all>
+            <class>Sentry</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="spy-red">
+        <all>
+            <class>Spy</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="spy-blue">
+        <all>
+            <class>Spy</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="pyro-red">
+        <all>
+            <class>Pyro</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="pyro-blue">
+        <all>
+            <class>Pyro</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="medic-red">
+        <all>
+            <class>Medic</class>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="medic-blue">
+        <all>
+            <class>Medic</class>
+            <team>blue</team>
+        </all>
+    </filter>
+    <!-- Block Filters -->
+    <filter name="not-clay">
+        <not>
+            <block>stained clay</block>
+        </not>
+    </filter>
+    <filter name="not-fire">
+        <not>
+            <block>fire</block>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <block name="portal" location="100,99.5,100"/>
+    <negative name="outisde-map">
+        <rectangle name="map" min="-20,-42" max="10,209"/>
+    </negative>
+    <union name="spawns">
+        <cuboid name="blue-spawn" min="-18,25,-41" max="-9,32,-31"/>
+        <cuboid name="red-spawn"  min="-9,25,208"  max="-18,32,198"/>
+    </union>
+    <union name="points">
+        <cuboid name="blue-back"  min="-20,0,0"   max="10,40,21"/>
+        <cuboid name="blue-mid"   min="-20,0,42"  max="10,40,21"/>
+        <cuboid name="blue-front" min="-20,0,42"  max="10,40,63"/>
+        <cuboid name="center"     min="10,0,63"   max="-20,40,104"/>
+        <cuboid name="red-front"  min="-20,0,104" max="10,40,125"/>
+        <cuboid name="red-mid"    min="-20,0,146" max="10,40,125"/>
+        <cuboid name="red-back"   min="-20,0,146" max="10,40,167"/>
+    </union>
+    <!-- Block Applications -->
+    <apply block="deny-all"       region="outisde-map" message="You may not edit outside the map"/>
+    <apply block-break="not-clay" region="all"         message="This block is not destructable"/>
+    <apply block-place="not-fire" region="all"         message="You may not place fire"/>
+    <!-- Class Applications -->
+    <apply region="portal" kit="soldier-red"  filter="soldier-red"/>
+    <apply region="portal" kit="soldier-blue" filter="soldier-blue"/>
+    <apply region="portal" kit="ranger-red"   filter="ranger-red"/>
+    <apply region="portal" kit="ranger-blue"  filter="ranger-blue"/>
+    <apply region="portal" kit="tank-red"     filter="tank-red"/>
+    <apply region="portal" kit="tank-blue"    filter="tank-blue"/>
+    <apply region="portal" kit="demo-red"     filter="demo-red"/>
+    <apply region="portal" kit="demo-blue"    filter="demo-blue"/>
+    <apply region="portal" kit="sentry-red"   filter="sentry-red"/>
+    <apply region="portal" kit="sentry-blue"  filter="sentry-blue"/>
+    <apply region="portal" kit="spy-red"      filter="spy-red"/>
+    <apply region="portal" kit="spy-blue"     filter="spy-blue"/>
+    <apply region="portal" kit="pyro-red"     filter="pyro-red"/>
+    <apply region="portal" kit="pyro-blue"    filter="pyro-blue"/>
+    <apply region="portal" kit="medic-red"    filter="medic-red"/>
+    <apply region="portal" kit="medic-blue"   filter="medic-blue"/>
+</regions>
+<score>
+    <time>8m</time>
+    <kills>5</kills>
+    <deaths>0</deaths>
+</score>
+<control-points capture-time="15s" capture-players="lead" time-multiplier="0.5" incremental="true" show-progress="true" points-growth="420">
+    <control-point name="Blue Back"  id="blue-back"  capture-region="blue-back"  progress-display-region="blue-back"/>
+    <control-point name="Blue Mid"   id="blue-mid"   capture-region="blue-mid"   progress-display-region="blue-mid"/>
+    <control-point name="Blue Front" id="blue-front" capture-region="blue-front" progress-display-region="blue-front"/>
+    <control-point name="Center"     id="center"     capture-region="center"     progress-display-region="center"/>
+    <control-point name="Red Front"  id="red-front"  capture-region="red-front"  progress-display-region="red-front"/>
+    <control-point name="Red Mid"    id="red-mid"    capture-region="red-mid"    progress-display-region="red-mid"/>
+    <control-point name="Red Back"   id="red-back"   capture-region="red-back"   progress-display-region="red-back"/>
+</control-points>
+<itemremove>
+    <!-- All -->
+    <item>wood</item>
+    <item>arrow</item>
+    <item>feather</item>
+    <item>leather helmet</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <!-- Soldier -->
+    <item>iron chestplate</item>
+    <item>iron sword</item>
+    <!-- Ranger -->
+    <item>wood axe</item>
+    <item>bow</item>
+    <!-- Tank -->
+    <item>diamond chestplate</item>
+    <item>diamond axe</item>
+    <item>snow ball</item>
+    <!-- Demo -->
+    <item>gold chestplate</item>
+    <item>stone sword</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron spade</item>
+    <item>snow ball</item>
+    <item>tnt</item>
+    <!-- Sentry -->
+    <item>chainmail chestplate</item>
+    <item>stone sword</item>
+    <item>monster egg</item>
+    <!-- Spy -->
+    <item>leather chestplate</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>stone pickaxe</item>
+    <item>stone spade</item>
+    <!-- Pyro -->
+    <item>chainmail chestplate</item>
+    <item>flint and steel</item>
+    <item>stone axe</item>
+    <!-- Medic -->
+    <item>gold axe</item>
+    <item>potion</item>
+</itemremove>
+<disabledamage>
+    <damage ally="true" self="false" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<tnt>
+    <power>2</power>
+    <fuse>2s</fuse>
+    <instantignite>true</instantignite>
+    <licensing>off</licensing>
+    <friendly-defuse>off</friendly-defuse>
+</tnt>
+<killreward>
+    <item name="`6Health Kit">golden apple</item>
+</killreward>
+<maxbuildheight>35</maxbuildheight>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<mobs>
+    <filter>
+        <spawn>spawner egg</spawn>
+    </filter>
+</mobs>
+<blockdrops>
+    <rule>
+        <drops/>
+    </rule>
+</blockdrops>
+<autorespawn/>
+</map>

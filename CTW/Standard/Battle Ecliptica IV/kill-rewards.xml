@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+
+
+<kill-rewards>
+    <kill-reward>
+        <item amount="2">golden apple</item>
+    </kill-reward>
+
+
+    <kill-reward>
+        <filter>
+            <team>red-team</team>
+        </filter>
+        <item amount="8" damage="14">stained clay</item>
+        <item amount="2" damage="14">stained glass</item>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <team>blue-team</team>
+        </filter>
+        <item amount="8" damage="11">stained clay</item>
+        <item amount="2" damage="11">stained glass</item>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <team>green-team</team>
+        </filter>
+        <item amount="8" damage="5">stained clay</item>
+        <item amount="2" damage="5">stained glass</item>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <team>yellow-team</team>
+        </filter>
+        <item amount="8" damage="4">stained clay</item>
+        <item amount="2" damage="4">stained glass</item>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <kill-streak count="5"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:1" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <kill-streak count="10"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" enchantment="damage all:1" material="stone sword">
+                <attribute amount="6">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <kill-streak count="15"/>
+        </filter>
+        <kit force="true">
+            <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow damage:2" material="bow"/>
+        </kit>
+    </kill-reward>
+
+    <kill-reward>
+        <filter>
+            <kill-streak count="20"/>
+        </filter>
+        <kit force="true">
+            <item slot="0" unbreakable="true" material="iron sword">
+                <attribute amount="7">generic.attackDamage</attribute>
+            </item>
+        </kit>
+    </kill-reward>
+</kill-rewards>
+
+</map>

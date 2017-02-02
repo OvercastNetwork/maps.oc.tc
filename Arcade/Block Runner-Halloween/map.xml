@@ -1,0 +1,37 @@
+<map proto="1.4.0" game="`eProgress">
+<name>BR: Halloween</name>
+<version>1.0.0</version>
+<slug>block_runner_halloween</slug>
+<include src="void-death.xml"/>
+<include src="block-runner.xml"/> <!-- Required by all Block Runner maps -->
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f"/> <!-- GoldenOre -->
+    <author uuid="d3814d5a-3d37-42f2-9db8-916846bb70ad"/> <!-- breadandcinnamon -->
+    <author uuid="cbd5c47c-1137-4f02-93dd-626a46bdd779"/> <!-- Kaskito -->
+    <author uuid="9225421c-3c09-4d97-bb80-f6a77c1f360b"/> <!-- Jexel -->
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b"/> <!-- _3each -->
+</authors>
+<contributors>
+    <contributor uuid="e79fbdc9-627e-4dac-97a6-81a3046220d7" contribution="Concept and XML"/> <!-- AtlasGames -->
+</contributors>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="-90">
+            <region id="spawn-location"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="-90">
+            <point>-17,7,-11</point>
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <block id="spawn-location">-17,7,-11</block>
+    <cuboid id="mon" min="-19,4,-10" size="1,1,1"/>
+    <above id="checkpoint1" x="27"/>
+    <above id="checkpoint2" x="72"/>
+    <above id="checkpoint3" x="117"/>
+    <cuboid id="box-win" min="164,9,-10" max="161,7,-7"/>
+</regions>
+</map>

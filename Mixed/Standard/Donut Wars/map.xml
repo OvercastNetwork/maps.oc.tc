@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Donut Wars</name>
+<version>1.1</version>
+<objective>Leak the enemy team's core and destroy their two monuments!</objective>
+<rules>
+	<rule>Dispensers are disabled</rule>
+</rules>
+<authors>
+	<author uuid="1935c8bf-3fdc-44d6-b358-85a7206ad8ac" contribution="Map Creator"/> <!-- Without_Regret -->
+	<author uuid="a907ac3b-bb19-4ba0-872f-d2cc9472fd7f" contribution="Builder, Feedback"/> <!-- 0scavenger0 -->
+</authors>
+<contributors>
+	<contributor uuid="39ca4219-d439-479c-bf22-8388c6d98e33" contribution="Ideas, Feedback"/> <!-- Matsuzen -->
+	<contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
+	<contributor uuid="82c796a5-c033-43be-af30-fa06496995f9" contribution="Admin Bias"/> <!-- IM_A_H0B0 -->
+	<contributor uuid="60177c3c-8c10-41c1-959c-1c0744d299e3" contribution="Chest Filling Slave"/> <!-- latiku3 -->
+	<contributor uuid="5d4204a6-a197-4da7-a6b1-0fc5f46dcc13" contribution="Looked Good, Built Good"/> <!-- Emma7_ -->
+	<contributor uuid="f5099105-0d7f-42fe-aa16-b6de22861ef6" contribution="Minor Detailing, Feedback"/> <!-- kingoros -->
+	<contributor uuid="b46e4238-a0be-4876-b064-30ab35f19d61" contribution="Observers Spawn"/> <!-- mdog_95 -->
+</contributors>
+<teams>
+	<team color="blue" max="20">Blue</team>
+	<team color="dark red" max="20">Red</team>
+</teams>
+<cores material="obsidian" leak="3">
+	<core id="blue-core" team="blue">
+		<sphere origin="-98.5,60,-17.5" radius="3"/>
+	</core>
+	<core id="red-core" team="red">
+		<sphere origin="-31.5,60,-17.5" radius="3"/>
+	</core>
+</cores>
+<destroyables materials="ender stone" completion="100%" sparks="true" show-progress="true">
+	<destroyables owner="red">
+		<destroyable name="Left Monument">
+			<cylinder base="-17.5,64,-38.5" radius="3" height="7"/>
+		</destroyable>
+		<destroyable name="Right Monument">
+			<cylinder base="-17.5,64,3.5" radius="3" height="7"/>
+		</destroyable>
+	</destroyables>
+	<destroyables owner="blue">
+		<destroyable name="Left Monument">
+			<cylinder base="-112.5,64,3.5" radius="3" height="7"/>
+		</destroyable>
+		<destroyable name="Right Monument">
+			<cylinder base="-112.5,64,-38.5" radius="3" height="7"/>
+		</destroyable>
+	</destroyables>
+</destroyables>
+<filters>
+	<filter name="no-dispensers">
+		<deny>
+			<block>dispenser</block>
+		</deny>
+	</filter>
+</filters>
+<regions>
+	<rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+	<negative name="outside-map">
+		<rectangle name="map" min="-4,-89" max="-126,54"/>
+	</negative>
+	<union name="spawns">
+		<cuboid name="red-drop" min="-16,46,-14" max="-10,oo,-21"/>
+		<cuboid name="blue-drop" min="-120,46,-14" max="-114,oo,-21"/>
+		<cuboid name="tunnel" min="-168,147,-14" max="38,oo,-21"/>
+	</union>
+	<!-- Applied -->
+	<apply block="no-dispensers" message="You may not use dispensers on this map!">
+		<region name="all"/>
+	</apply>
+	<apply block="deny-all" message="You may not edit outside the main area!">
+		<complement>
+			<negative>
+				<region name="map"/>
+			</negative>
+			<region name="spawns"/>
+		</complement>
+	</apply>
+	<apply block="deny-all" message="You may not edit the spawn!">
+		<region name="spawns"/>
+	</apply>
+	<apply enter="deny-all" message="You may not re-enter the spawn tunnel!">
+		<region name="tunnel"/>
+	</apply>
+</regions>
+<spawns>
+	<spawn team="red" yaw="90">
+		<point>34.5,150,-17.5</point>
+	</spawn>
+	<spawn team="blue" yaw="-90">
+		<point>-164.5,150,-17.5</point>
+	</spawn>
+	<default yaw="0">
+		<cylinder base="-64.5,89,-126.5" radius="3" height="0"/>
+	</default>
+</spawns>
+<itemremove>
+	<item>obsidian</item>
+	<item>clay ball</item>
+	<item>glowstone dust</item>
+	<item>carpet</item>
+	<item>clay ball</item>
+	<item>cobble wall</item>
+	<item>step</item>
+	<item>iron fence</item>
+	<item>wool</item>
+	<item>sign</item>
+	<item>redstone lamp on</item>
+	<item>redstone lamp off</item>
+	<item>step</item>
+	<item>ender stone</item>
+</itemremove>
+<maxbuildheight>78</maxbuildheight>
+</map>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<map proto="1.2.0">
+<name>Test Map Please Ignore</name>
+<version>0.1a</version>
+<objective>Test things.</objective>
+<authors>
+    <author uuid="2553e6f2-3a2c-440b-a6a3-39e3df7fe3ff"/> <!-- khazhyk -->
+</authors>
+<rules>
+    <rule>This isn't a map</rule>
+</rules>
+<teams>
+    <team color="dark red" max="100">Red</team>
+    <team color="blue" max="100">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="knockback:1">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" amount="3">golden apple</item>
+        <item slot="3" amount="32">cooked fish</item>
+        <helmet>gold helmet</helmet>
+        <chestplate enchantment="protection fall:4;protection projectile:6">iron chestplate</chestplate>
+        <potion duration="10" amplifier="1">heal</potion>
+        <potion duration="900" amplifier="5">speed</potion>
+    </kit>
+</kits>
+<modifybowprojectile>
+    <projectile>EnderPearl</projectile>
+    <velocityMod>2.5</velocityMod>
+</modifybowprojectile>
+<spawns>
+    <default>0.5,10,0.5</default>
+    <spawn team="red" kit="spawn"><cylinder base="0,15,0" radius="75" height="10"/></spawn>
+    <spawn team="blue" kit="spawn"><cylinder base="0,15,0" radius="75" height="10"/></spawn>
+</spawns>
+<regions>
+    <apply velocity="@0,1.5,0">
+        <cylinder base="0,0,0" radius="100" height="8"/>
+    </apply>
+</regions>
+</map>
+

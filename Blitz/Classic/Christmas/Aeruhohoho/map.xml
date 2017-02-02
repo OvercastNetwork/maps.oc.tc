@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>Aeruhohoho</name>
+<version>1.0.0</version>
+<objective>Eliminate the other team in under 10 minutes. Also, have some holiday spirit!</objective>
+<include src="blitz-global.xml"/>
+<gamemode>blitz</gamemode>
+<authors>
+    <author uuid="e3fdaea1-8a19-4378-8ad7-41cf63f5d141"/> <!-- Avaleer -->
+</authors>
+<teams>
+    <team color="green" max="10">Lime</team>
+    <team color="blue" max="10">Blue</team>
+</teams>
+<blitz>
+    <time>10m</time>
+    <lives>2</lives>
+    <broadcastLives>true</broadcastLives>
+    <title>Blitz</title>
+</blitz>
+<spawns>
+    <spawn team="lime" kit="lime" yaw="-179">
+        <cylinder base="-337,5,-614" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder base="-338,5,-657" radius="2" height="0"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-316,23,-637" max="-314,24,-635"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" amount="1">golden apple</item>
+        <item slot="3" amount="16">golden carrot</item>
+        <item slot="28" amount="32">arrow</item>
+        <potion duration="5" amplifier="1">heal</potion>
+        <potion duration="5" amplifier="4">damage resistance</potion>
+    </kit>
+    <kit name="lime" parents="spawn">
+        <helmet color="55FF55">leather helmet</helmet>
+        <chestplate color="55FF55">leather chestplate</chestplate>
+        <leggings>gold leggings</leggings>
+        <boots color="55FF55">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings>gold leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>gold leggings</item>
+    <item>leather boots</item>
+    <item>stone sword</item>
+    <item>bow</item>
+</itemremove>
+</map>

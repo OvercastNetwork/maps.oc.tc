@@ -1,0 +1,266 @@
+<map proto="1.3.6">
+<name>Cubefield</name>
+<version>1.5.0</version>
+<objective>Score by controlling hills and jumping into scoreboxes; be the team with the most points after 12 minutes!</objective>
+<authors><author uuid="904bf23f-67c5-484a-ae60-61f4ec150b48"/></authors><!--  oib5  -->
+<contributors><contributor uuid="36e46b32-80ef-4fa5-b1e2-6c777736d888"/></contributors><!--  E0C  -->
+<teams>
+    <team color="dark red" max="16" max-overfill="20" id="red">Red</team>
+    <team color="blue" max="16" max-overfill="20" id="blue">Blue</team>
+</teams>
+<spawns>
+    <default kit="all">
+        <regions yaw="-90">
+            <cuboid min="-54,12,-33" max="-51,12,-29"/>
+        </regions>
+    </default>
+    <spawn team="Red" kit="redKit">
+        <regions yaw="-90">
+            <cuboid min="29.5,13,-48.5" max="33.5,13,-44.5"/>
+        </regions>
+    </spawn>
+    <spawn team="Blue" kit="blueKit">
+        <regions yaw="90">
+            <cuboid min="-52.5,13,5.5" max="-56.5,13,1.5"/>
+        </regions>
+    </spawn>
+</spawns>
+<kits>
+    <!--  kit given to everyone, including observers  -->
+    <kit name="all" potion-particles="false">
+        <potion duration="oo" ambient="true">night vision</potion>
+        <potion duration="oo" ambient="true">saturation</potion>
+        <potion duration="oo" amplifier="1" ambient="true">speed</potion>
+        <potion duration="oo" amplifier="2" ambient="true">jump</potion>
+    </kit>
+    <!--  kit given to both teams  -->
+    <kit name="team" parents="all">
+        <helmet unbreakable="true">iron helmet</helmet>
+        <boots unbreakable="true" enchantment="protection environmental:2;protection fall:2">gold boots</boots>
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1;arrow knockback:1">bow</item>
+        <item slot="2" damage="8229" potions="heal:1:1:false">potion</item>
+        <item slot="3">golden apple</item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="5" ambient="true">damage resistance</potion>
+    </kit>
+    <kit name="redKit" parents="team">
+        <chestplate unbreakable="true" color="cd0000">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="cd0000">leather leggings</leggings>
+    </kit>
+    <kit name="blueKit" parents="team">
+        <chestplate unbreakable="true" color="0066cc">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="0066cc">leather leggings</leggings>
+    </kit>
+</kits>
+<itemremove>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>gold boots</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>glass_bottle</item>
+    <item>potion</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item slot="2" damage="8229" potions="heal:1:1:false">potion</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <kill-streak count="3" repeat="true"/>
+        </all>
+    </filter>
+    <item name="`6`oBomb `0: `cInsta-Ignite `0: `eFuse 3s">TNT</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <kill-streak count="5"/>
+        </all>
+    </filter>
+    <item enchantment="protection projectile:1" attributes="generic.maxHealth:add:2" name="`6`oTank Chestplate">iron chestplate</item>
+</killreward>
+<killreward>
+    <filter>
+        <all>
+            <kill-streak count="7"/>
+        </all>
+    </filter>
+    <item name="`8`o50-Cal Bow" unbreakable="true" enchantment="arrow infinite:1;arrow knockback:1;arrow damage:1">bow</item>
+</killreward>
+<filters>
+    <filter name="red-only">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="blue-only">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="allow-some">
+		<any>
+			<block>tnt</block>
+		</any>
+	</filter>
+</filters>
+<regions>
+	<!-- from bedrock to sky -->
+    <union name="scoreboxes-vert">
+        <union name="blue-scoreboxes-vert">
+            <rectangle name="blue-1-vert" min="-34,-56" max="-29,-51"/>
+            <rectangle name="blue-3-vert" min="-14,-60" max="-9,-55"/>
+            <rectangle name="blue-5-vert" min="8,-65" max="13,-60"/>
+        </union>
+        <union name="red-scoreboxes-vert">
+            <rectangle name="red-1-vert" min="11,13" max="6,8"/>
+            <rectangle name="red-3-vert" min="-9,17" max="-14,12"/>
+            <rectangle name="red-5-vert" min="-31,22" max="-36,17"/>
+        </union>
+    </union>
+    <!-- the actual scoring part -->
+    <union name="scoreboxes">
+        <union name="blue-scoreboxes">
+            <cuboid name="blue-1" min="-34,0,-56" max="-29,1,-51"/>
+            <cuboid name="blue-3" min="-14,0,-60" max="-9,1,-55"/>
+            <cuboid name="blue-5" min="8,0,-65" max="13,1,-60"/>
+        </union>
+        <union name="red-scoreboxes">
+            <cuboid name="red-1" min="11,0,13" max="6,1,8"/>
+            <cuboid name="red-3" min="-9,0,17" max="-14,1,12"/>
+            <cuboid name="red-5" min="-31,0,22" max="-36,1,17"/>
+        </union>
+    </union>
+    <union name="center">
+    	<cuboid min="-7,7,-17" max="-16,10,-19"/>
+    	<cuboid min="-16,7,-19" max="-14,10,-26"/>
+    	<cuboid min="-14,7,-26" max="-7,10,-24"/>
+    	<cuboid min="-7,7,-24" max="-9,10,-19"/> 
+    </union>
+    <apply block="allow-some">
+        <rectangle name="map" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply velocity="9,1,0">
+        <!-- blue horizontal launcher -->
+        <cuboid min="-45,5,9" max="-43,7,7"/>
+    </apply>
+    <apply velocity="0,1.9,-0.3">
+        <!-- blue vertical launcher -->
+        <cuboid min="-26,0,-1" max="-24,3,-2"/>
+    </apply>
+    <apply velocity="-9,1,0">
+        <!-- red horizontal launcher -->
+        <cuboid min="22,5,-52" max="20,7,-50"/>
+    </apply>
+    <apply velocity="0,1.9,0.3">
+        <!-- red vertical launcher -->
+        <cuboid min="1,0,-42" max="3,3,-41"/>
+    </apply>
+    <apply velocity="-7,2,0">
+        <!-- hill launch blue side -->
+        <cuboid min="24,8,-21" max="25,10,-23"/>
+    </apply>
+    <apply velocity="7,2,0">
+        <!-- hill launch red side -->
+        <cuboid min="-47,8,-20" max="-48,10,-22"/>
+    </apply>
+    <apply enter="blue-only" message="You may not use the enemy team's tunnels!">
+        <union>
+            <cuboid min="-44,5,14" max="-42,7,15"/>
+            <cuboid min="-28,10,25" max="-26,12,26"/>
+            <cuboid min="-20,10,24" max="-3,12,26"/>
+            <cuboid min="4,11,20" max="22,13,22"/>
+            <cuboid min="21,6,-32" max="23,9,-34"/>
+            <cuboid min="29,11,-30" max="31,14,-32"/>
+            <cuboid min="6,3,-62" max="-4,8,-66"/>
+            <cuboid min="-5,6,-66" max="-7,9,-70"/>
+            <cuboid min="-22,3,-60" max="-24,5,-61"/>
+            <cuboid min="-40,4,-62" max="-42,6,-63"/>
+        </union>
+    </apply>
+    <apply enter="red-only" message="You may not use the enemy team's tunnels!">
+        <union>
+            <cuboid min="21,5,-57" max="19,7,-58"/>
+            <cuboid min="5,10,-68" max="3,12,-69"/>
+            <cuboid min="-3,10,-67" max="-20,12,-69"/>
+            <cuboid min="-26,11,-63" max="-45,13,-65"/>
+            <cuboid min="-29,3,19" max="-19,8,23"/>
+            <cuboid min="-16,6,27" max="-18,9,23"/>
+            <cuboid min="-1,3,17" max="1,5,18"/>
+            <cuboid min="17,4,19" max="19,6,20"/>
+            <cuboid min="-46,6,-9" max="-44,9,-11"/>
+            <cuboid min="-52,11,-11" max="-54,14,-13"/>
+        </union>
+    </apply>
+    <apply enter="blue-only" message="You may not enter the enemy team's scorebox!">
+        <region name="blue-scoreboxes-vert"/>
+    </apply>
+    <apply enter="red-only" message="You may not enter the enemy team's scorebox!">
+        <region name="red-scoreboxes-vert"/>
+    </apply>
+</regions>
+<portals>
+    <portal x="@42.5" y="@7" z="@-58.5" yaw="@0" region="red-scoreboxes"/>
+    <portal x="@-65.5" y="@7" z="@15.5" yaw="@180" region="blue-scoreboxes"/>
+</portals>
+<score>
+    <time>12m</time>
+    <kills>0</kills>
+    <deaths>0</deaths>
+    <box value="10" filter="red-only" region="red-1">
+    </box>
+    <box value="30" filter="red-only" region="red-3">
+    </box>
+    <box value="50" filter="red-only" region="red-5">
+    </box>
+    <box value="10" filter="blue-only" region="blue-1">
+    </box>
+    <box value="30" filter="blue-only" region="blue-3">
+    </box>
+    <box value="50" filter="blue-only" region="blue-5">
+    </box>
+</score>
+<king>
+    <hills>
+        <hill name="North" capture-time="5s" points="1" id="North" capture-rule="majority">
+            <capture><cuboid min="-37,5,-39" max="-42,8,-44"/></capture>
+            <progress><cuboid min="-36,0,-38" max="-43,5,-45"/></progress>
+            <captured><cuboid min="0,0,0" max="0,0,0"/></captured>
+        </hill>
+        <hill name="Center" capture-time="7s" points="2" id="Center" capture-rule="majority">
+            <capture><region name="center"/></capture>
+            <progress><cuboid min="-7,2,-17" max="-16,7,-26"/></progress>
+            <captured><cuboid min="0,0,0" max="0,0,0"/></captured>
+        </hill>
+        <hill name="South" capture-time="5s" points="1" id="South" capture-rule="majority">
+            <capture><cuboid min="14,5,-4" max="19,8,1"/></capture>
+            <progress><cuboid min="13,0,-5" max="20,5,2"/></progress>
+            <captured><cuboid min="0,0,0" max="0,0,0"/></captured>
+        </hill>
+    </hills>
+</king>
+<disabledamage>
+    <damage>fall</damage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>3s</fuse>
+    <power>4</power>
+    <licensing>off</licensing>
+	<friendly-defuse>off</friendly-defuse>
+</tnt>
+<broadcasts>
+    <alert after="5s" every="80s" count="oo">`d`lIn addition to controlling hills, you can jump into the large glass scoreboxes to score points for your team!</alert>
+    <tip after="25s" every="80s" count="oo">`dThe center hill gives twice as many points per second as the outer hills!</tip>
+    <tip after="45s" every="80s" count="oo">`dSpecial items are rewarded at killstreaks of 3, 5, and 7!</tip>
+    <tip after="65s" every="80s" count="oo">`dTNT will not damage you or your teammates! It also won't knock you back.</tip>
+</broadcasts>
+<respawn delay="2s"/>
+<timelock>on</timelock>
+</map>

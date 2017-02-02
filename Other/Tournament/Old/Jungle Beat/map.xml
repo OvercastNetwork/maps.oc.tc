@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Jungle Beat:TD</name>
+<version>1.5-tourney</version>
+<objective>Capture the wool from the enemies wool rooms and return them to your spawn</objective>
+<authors>
+    <author uuid="e8d1ad63-bd9e-4d0e-9a6c-27f2b047d924" contribution="Map design"/> <!-- Mikeg542 -->
+    <author uuid="4402100d-8f9e-4d23-9a51-5e17dde415d5" contribution="Wool rooms and feedback"/> <!-- miniman9499 -->
+</authors>
+<contributors>
+    <contributor uuid="e3975634-baf6-433a-9575-b46415201019" contribution="Moral support"/> <!-- alexproductionx2 -->
+    <contributor uuid="5b8e44a6-b523-4399-be8f-ed169ad3a742" contribution="Moral support"/> <!-- Magic_Mat -->
+    <contributor uuid="8e0b87e1-2369-4c3e-9819-c9e93cd4f8eb" contribution="Eye candy"/> <!-- theDrewGuy -->
+</contributors>
+<teams>
+    <team color="dark purple" max="32">Purple</team>
+    <team color="gold" max="32">Orange</team>
+</teams>
+<spawns>
+    <spawns kit="spawn">
+        <spawn team="orange" yaw="-90">
+            <cylinder name="orangespawn" base="96,7,53" radius="3" height="0"/>
+        </spawn>
+        <spawn team="purple" yaw="90">
+            <cylinder name="purplespawn" base="-96,7,53" radius="3" height="0"/>
+        </spawn>
+    </spawns>
+    <default yaw="0">
+        <cylinder name="observerspawn" base="77,64,-28" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="durability:3;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:3;dig speed:1">iron axe</item>
+        <item slot="4" amount="2">golden apple</item>
+        <item slot="5" amount="64">cooked fish</item>
+        <item slot="6" amount="64" damage="2">log</item>
+        <item slot="7" amount="32">glass</item>
+        <item slot="8" amount="12">vine</item>
+        <potion duration="10" amplifier="4">damage resistance</potion>
+        <potion duration="10" amplifier="1">heal</potion>
+    </kit>
+</kits>
+<maxbuildheight>48</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <!-- remove flowers so nothing can be dyed -->
+    <item>37</item>
+    <item>38</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>cooked fish</item>
+    <item>seeds</item>
+    <item>string</item>
+    <item>arrow</item>
+</itemremove>
+<filters>
+    <filter name="no-void" parents="allow-all">
+        <deny><void/></deny>
+    </filter>
+    <filter name="only-orange" parents="deny-players deny-world">
+        <allow><team>orange</team></allow>
+    </filter>
+    <filter name="only-purple" parents="deny-players deny-world">
+        <allow><team>purple</team></allow>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not build in the void!">
+        <complement>
+            <rectangle min="184,118" max="-183,-11"/>
+            <union>
+                <rectangle min="-63,-10" max="64,117"/>
+                <rectangle min="63,80" max="86,27"/>
+                <rectangle min="-62,27" max="-85,80"/>
+            </union>
+        </complement>
+    </apply>
+    <apply enter="only-purple" block="only-purple" message="You may not enter or modify your own wool rooms!">
+        <!--  Blue Room  -->
+        <circle center="175,28" radius="8"/>
+        <!--  Green Room  -->
+        <circle center="175, 78" radius="8"/>
+    </apply>
+    <apply enter="only-orange" block="only-orange" message="You may not enter or modify your own wool rooms!">
+        <!--  Lime Room  -->
+        <circle center="-175,78" radius="8"/>
+        <!--  Red Room  -->
+        <circle center="-175,28" radius="8"/>
+    </apply>
+    <!--  supply room protection  -->
+    <apply block="deny-all" message="You may not break or place blocks in the storage room!">
+        <cuboid name="purple-storage-room" min="-89,6,60" max="-107,14,43"/>
+        <cuboid name="orange-storage-room" min="89,6,46" max="107,14,63"/>
+    </apply>
+    <!--  prevent teams from entering each other's spawns  -->
+    <apply enter="only-purple" message="You may not enter purple's storage room!">
+        <region name="purple-storage-room"/>
+    </apply>
+    <apply enter="only-orange" message="You may not enter orange's storage room!">
+        <region name="orange-storage-room"/>
+    </apply>
+</regions>
+<wools>
+    <wool team="purple" color="blue">
+        <block location="-107,10,54"/>
+    </wool>
+    <wool team="purple" color="green">
+        <block location="-107,10,52"/>
+    </wool>
+    <wool team="orange" color="red">
+        <block location="107,10,54"/>
+    </wool>
+    <wool team="orange" color="lime">
+        <block location="107,10,52"/>
+    </wool>
+</wools>
+</map>
+    

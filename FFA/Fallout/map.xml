@@ -1,0 +1,80 @@
+<map proto="1.4.0" game="Fallout FFA">
+<name>Fallout</name>
+<gamemode>ffa</gamemode>
+<authors>
+    <author uuid="07fa10c6-f564-4630-861e-fe134ae27527"/>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+</authors>
+<version>1.0.0</version>
+<objective>Kill as many players as possible in 8 minutes</objective>
+<time>8m</time>
+<players min="2" max="18"/>
+<score>
+    <kills>1</kills>
+</score>
+<kits>
+    <kit id="players-kit">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="32">arrow</item>
+        <item slot="2" amount="8">wood/</item>
+        <helmet unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true">chainmail chestplate</chestplate>
+        <leggings unbreakable="true">chainmail leggings</leggings>
+        <boots unbreakable="true">chainmail boots</boots>
+        <potion duration="2" amplifier="10">resistance</potion>
+    </kit>
+    <kit id="kill-reward">
+        <item slot="3">golden apple</item>
+        <potion duration="3" amplifier="4">regeneration</potion>
+        <item amount="12">arrow</item>
+        <item amount="4">wood</item>
+    </kit>
+</kits>
+<regions>
+    <cuboid id="block-region" min="-101,17,172" max="24,30,10"/>
+    <apply block="wood-filter">
+        <region>
+            <region id="block-region"/>
+        </region>
+    </apply>
+    <apply block="never" region="everywhere" message="You may not modify blocks outside of the map"/>
+</regions>
+<filters>
+    <material id="wood-filter">wood</material>
+</filters>
+<itemremove>
+    <item>arrow</item>
+    <item>apple</item>
+    <item>sapling</item>
+    <item>long grass</item>
+    <item>leather helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+</itemremove>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<kill-rewards>
+    <kill-reward kit="kill-reward"/>
+</kill-rewards>
+<spawns>
+    <spawn kit="players-kit" spread="true" safe="true">
+        <regions angle="-34.5,24,84.5">
+            <cuboid min="-101,18,172" max="24,22,10"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>-37.5,22,125.5</point>
+        </regions>
+    </default>
+</spawns>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>

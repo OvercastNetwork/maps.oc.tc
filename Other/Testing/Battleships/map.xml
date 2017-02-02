@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<map proto="1.1.0">
+<name>Battleships</name>
+<version>1.1</version>
+<objective>Leak lava from the each of the enemy's obsidian cores on the boats</objective>
+<authors>
+    <author uuid="2e28d256-4656-4f37-bcdc-5fab21b0f70f"/> <!-- D347HxD -->
+</authors>
+<contributors>
+    <contributor uuid="7c82303d-c517-46b4-8507-5e9f5682090b" contribution="Aircraft Carrier Help"/> <!-- champwamp -->
+    <contributor uuid="ccb7a66f-ed6c-4f8d-953e-78205c33abba" contribution="General Help"/> <!-- GabeIsAwesome199 -->
+    <contributor uuid="77ccc855-94d6-4c59-9ad6-56a1c81fc2cf" contribution="General Help"/> <!-- skipp2kill -->
+</contributors>
+<rules>
+    <rule>No entering opposing team's spawn</rule>
+    <rule>No camping the spawn</rule>
+    <rule>Blowing up spawn supply chests</rule>
+    <rule>No damaging your own core</rule>
+    <rule>No leaving the sea (unless going onto a ship)</rule>
+    <rule>No building houses</rule>
+</rules>
+<timelock>off</timelock>
+<teams>
+    <team color="blue" max="100">Blue</team>
+    <team color="dark red" max="100">Red</team>
+</teams>
+<filters>
+    <filter name="only-blue" parents="deny-all">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-all">
+        <allow><team>red</team></allow>
+    </filter>
+</filters>
+<regions>
+    <apply enter="only-blue" message="You are not allowed in blue's spawning area.">
+        <cuboid name="blue-storage-room" min="401,137,-96" max="413,132,-122"/>
+    </apply>
+    <apply enter="only-red" message="You are not allowed in red's spawning area."> 
+        <cuboid name="red-storage-room" min="401,132,274" max="414,138,247"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not place or break blocks in the spawn rooms.">
+        <region name="blue-storage-room"/>
+        <region name="red-storage-room"/>
+    </apply>
+
+    <apply block="deny-all" message="You may not interfere with the spawn.">
+        <cuboid name="blue-spawn-protect" min="408,134,-245" max="406,133,-263"/>
+        <cuboid name="red-spawn-protect" min="401,132,246" max="413,139,275"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" yaw="90"><cuboid min="405,132,-100" max="409,132,-117"/></spawn>
+    <spawn team="red" yaw="180"><cuboid min="405,132,270" max="410,132,251"/></spawn>
+    <default>
+        <point yaw="270"><cuboid min="61,141,67" max="74,141,86"/></point>
+        <point yaw="90"><cuboid min="79,141,67" max="92,141,86"/></point>
+    </default>
+</spawns>
+<playable>
+    <rectangle min="521,-182" max="116,334"/> <!-- Main area -->
+</playable>
+<cores material="obsidian" leak="3">
+    <cores name="Aircraft Carrier">
+        <core team="blue"><cuboid min="203,131,-104" max="215,141,-103"/></core>
+        <core team="red"><cuboid min="204,131,265" max="214,140,256"/></core>
+    </cores>
+    <cores name="Battleship">
+        <core team="blue"><cuboid min="295,125,23" max="302,131,30"/></core>
+        <core team="red"><cuboid min="295,125,122" max="302,131,129"/></core>
+    </cores>
+    <cores name="Submarine" leak="-1">
+        <core team="blue"><cuboid min="157,114,-9" max="161,121,-1"/></core>
+        <core team="red"><cuboid min="157,114,153" max="161,121,161"/></core>
+    </cores>
+</cores>
+</map>
+

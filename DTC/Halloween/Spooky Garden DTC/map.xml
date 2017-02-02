@@ -1,0 +1,124 @@
+<map proto="1.3.2">
+<name>Spooky Garden DTC</name>
+<version>1.2.1</version>
+<objective>Leak the enemy team's core!</objective>
+<authors>
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- Strangey -->
+</authors>
+<contributors>
+    <contributor uuid="e5eea785-51c1-40fe-a2d0-f83d4c035cd9" contribution="XML"/> <!-- pikpikmerchant -->
+</contributors>
+<teams>
+    <team color="dark purple" max="32">Trick</team>
+    <team color="gold" max="32">Treat</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" unbreakable="true">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:3" unbreakable="true">iron axe</item>
+        <item slot="4" amount="24" damage="2">log</item>
+        <item slot="6" amount="64">ladder</item>
+        <item slot="7" amount="64">pumpkin pie</item>
+        <item slot="8">golden apple</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="17" amount="16">jack o lantern</item>
+        <helmet>jack o lantern</helmet>
+        <potion duration="5" amplifier="8">increase damage</potion>
+        <potion duration="7" amplifier="8">damage resistance</potion>
+        <potion duration="5" amplifier="4">heal</potion>
+        <potion duration="6" amplifier="2">speed</potion>
+    </kit>
+    <kit name="orange" parents="spawn">
+        <item slot="5" amount="64" damage="1">stained clay</item>
+        <chestplate color="D87F33" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+    <kit name="purple" parents="spawn">
+        <item slot="5" amount="64" damage="10">stained clay</item>
+        <chestplate color="7F3FB2" unbreakable="true">leather chestplate</chestplate>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item damage="7">step</item>
+    <item damage="2">quartz block</item>
+    <item damage="3">step</item>
+    <item>cobblestone stairs</item>
+    <item>seeds</item>
+    <item damage="2">long grass</item>
+    <item>brown mushroom</item>
+    <item>obsidian</item>
+    <item>pumpkin pie</item>
+    <item>ladder</item>
+    <item>stained clay</item>
+    <item>golden apple</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>jack o lantern</item>
+    <item>372</item>
+    <item>38</item>
+</itemremove>
+<spawns>
+    <default yaw="-90">
+        <cylinder base="-48.5,50,12.5" radius="1" height="0"/>
+    </default>
+    <spawn team="trick" kit="purple" yaw="0">
+        <cylinder base="-48.5,11,-150.5" radius="0" height="0"/>
+    </spawn>
+    <spawn team="treat" kit="orange" yaw="180">
+        <cylinder base="-48.5,11,173.5" radius="0" height="0"/>
+    </spawn>
+</spawns>
+<filters>
+    <filter name="only-purple">
+        <team>trick</team>
+    </filter>
+    <filter name="only-orange">
+        <team>treat</team>
+    </filter>
+    <filter name="no-void">
+        <not>
+            <void/>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void">
+        <negative>
+            <rectangle min="-23,-1" max="-74,26"/>
+        </negative>
+    </apply>
+    <apply enter="only-orange" block="deny-all">
+        <cuboid min="-39,18,177" max="-58,10,118"/>
+    </apply>
+    <apply enter="only-purple" block="deny-all">
+        <cuboid min="-58,18,-152" max="-39,10,-93"/>
+    </apply>
+</regions>
+<modes>
+    <mode after="20m" material="gold block" name="GOLD CORE MODE"/>
+</modes>
+<cores material="obsidian" leak="5" mode-changes="true">
+    <core team="trick">
+        <cuboid min="-46,28,-72" max="-51,23,-67"/>
+    </core>
+    <core team="treat">
+        <cuboid min="-51,28,92" max="-46,23,97"/>
+    </core>
+</cores>
+<killreward>
+    <item>golden apple</item>
+    <item amount="8" damage="2">log</item>
+</killreward>
+<maxbuildheight>38</maxbuildheight>
+</map>

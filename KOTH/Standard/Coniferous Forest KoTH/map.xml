@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Coniferous Forest KoTH</name>
+<version>1.0.1</version>
+<objective>Control the hills until you reach 3000 points!</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6"/> <!-- rockymine -->
+</authors>
+<contributors>
+    <contributor contribution="Feedback" uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b"/> <!-- ollyj -->
+    <contributor contribution="Feedback" uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- StealthMedia -->
+    <contributor contribution="Feedback" uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+</contributors>
+<teams>
+    <team id="red-team" color="dark red" max="20" max-overfill="22">Red</team>
+    <team id="green-team" color="green" max="20" max-overfill="22">Green</team>
+</teams>
+<spawns>
+    <spawn team="red-team" kit="red-kit">
+        <regions yaw="-90">
+            <cylinder base="-2.5,16.5,-76.5" radius="1" height="0"/>
+            <cylinder base="-2.5,16.5,17.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <spawn team="green-team" kit="green-kit">
+        <regions yaw="90">
+            <cylinder base="-110.5,16.5,-76.5" radius="1" height="0"/>
+            <cylinder base="-110.5,16.5,17.5" radius="1" height="0"/>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="179">
+            <cylinder base="-56.5,13,27.5" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="7" amount="1">golden apple</item>
+        <item slot="8" amount="32">arrow</item>
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <leggings color="ff0000" unbreakable="true">leather leggings</leggings>
+        <boots color="ff0000" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="green-kit" parents="spawn">
+        <leggings color="667F33" unbreakable="true">leather leggings</leggings>
+        <boots color="667F33" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="never">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <cylinder id="middle-hill" base="-56.5,7,-29.5" radius="6" height="5"/>
+    <cylinder id="north-hill" base="-56.5,8,-75.5" radius="6" height="5"/>
+    <cylinder id="east-hill" base="-15.5,7,-29.5" radius="4" height="5"/>
+    <cylinder id="south-hill" base="-56.5,8,16.5" radius="6" height="5"/>
+    <cylinder id="west-hill" base="-97.5,7,-29.5" radius="4" height="5"/>
+</regions>
+<score>
+    <limit>3000</limit>
+    <kills>0</kills>
+    <deaths>0</deaths>
+</score>
+<king>
+    <hills>
+        <hill name="Middle" capture-time="15s" points="3">
+            <capture><region id="middle-hill"/></capture>
+            <progress><region id="middle-hill"/></progress>
+            <captured><region id="middle-hill"/></captured>
+        </hill>
+        <hill name="North" capture-time="10s" points="2">
+            <capture><region id="north-hill"/></capture>
+            <progress><region id="north-hill"/></progress>
+            <captured><region id="north-hill"/></captured>            
+        </hill>
+        <hill name="East" capture-time="5s" points="1">
+            <capture><region id="east-hill"/></capture>
+            <progress><region id="east-hill"/></progress>
+            <captured><region id="east-hill"/></captured>            
+        </hill>
+        <hill name="South" capture-time="10s" points="2">
+            <capture><region id="south-hill"/></capture>
+            <progress><region id="south-hill"/></progress>
+            <captured><region id="south-hill"/></captured>            
+        </hill>
+        <hill name="West" capture-time="5s" points="1">
+            <capture><region id="west-hill"/></capture>
+            <progress><region id="west-hill"/></progress>
+            <captured><region id="west-hill"/></captured>            
+        </hill>
+    </hills>
+</king>
+<king/>
+<killreward>
+    <item amount="8">arrow</item>
+    <item>golden apple</item>
+</killreward>
+<itemremove>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+</itemremove>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+</map>

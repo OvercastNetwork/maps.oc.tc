@@ -1,0 +1,111 @@
+<map proto="1.4.0">
+<name>Versatile</name>
+<version>1.0.3</version>
+<objective>Capture the enemy flag 3 times.</objective>
+<edition>tournament</edition>
+<gamemode>ctf</gamemode>
+<authors>
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!-- LArrowHead -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!-- DoomRobotBoy -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="5">Red</team>
+    <team id="blue" color="blue" max="5">Blue</team>
+</teams>
+<filters>
+    <team id="red-only">red</team>
+    <team id="blue-only">blue</team>
+    <time id="flag-respawns">0</time>
+</filters>
+<spawns>
+    <default kit="obsKit">
+        <regions yaw="180">
+            <cylinder base="-16.5,13,23.5" radius="1" height="2"/>
+        </regions>
+    </default>
+    <spawn team="red" kit="red-kit"><regions yaw="90"><cylinder base="57.5,3,6.5" radius="1" height="1"/></regions></spawn>
+    <spawn team="blue" kit="blue-kit"><regions yaw="-90"><cylinder base="-90.5,3,-13.5" radius="1" height="1"/></regions></spawn>
+</spawns>
+<respawn delay="5s" auto="true" blackout="true"/>
+<kits>
+    <kit id="spawnKit">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true" material="stone sword"/>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <potion duration="oo">night vision</potion>
+        <potion duration="3s">resistance</potion>
+    </kit>
+    <kit id="blue-kit" parents="spawnKit">
+        <helmet color="0066cc" enchantment="protection projectile:1" unbreakable="true">leather helmet</helmet>
+        <chestplate color="0066cc" enchantment="protection projectile:2" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" unbreakable="true">iron leggings</leggings>
+        <boots color="0066cc" enchantment="protection projectile:1" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-kit" parents="spawnKit">
+        <helmet color="cd0000" enchantment="protection projectile:1" unbreakable="true">leather helmet</helmet>
+        <chestplate color="cd0000" enchantment="protection projectile:2" unbreakable="true">leather chestplate</chestplate>
+        <leggings enchantment="protection projectile:1" unbreakable="true">iron leggings</leggings>
+        <boots color="cd0000" enchantment="protection projectile:1" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit id="red-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="blue-flag-kit">
+        <potion duration="oo">slowness</potion>
+    </kit>
+    <kit id="obsKit">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="reset-kit" force="true">
+        <potion duration="0" amplifier="10">slowness</potion>
+    </kit>
+</kits>
+<regions>
+    <cylinder id="blue-net" base="-57.5,10,-13.5" radius="2" height="2" />
+    <cylinder id="red-net" base="24.5,10,6.5" radius="2" height="2" />
+</regions>
+
+<flags flag-proximity-metric="closest player">
+    <flag id="red-flag" name="Red Flag" owner="red" pickup-kit="red-flag-kit" drop-kit="reset-kit">
+        <post pickup-filter="blue-only" recover-time="20s" respawn-time="10s">24.5,10,6.5</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" pickup-kit="blue-flag-kit" drop-kit="reset-kit">>
+        <post pickup-filter="red-only" recover-time="20s" respawn-time="10s">-57.5,10,-13.5</post>
+    </flag>
+    <flags points="1">
+        <net region="red-net" flag="blue-flag" respawn-filter="flag-respawns"/>
+        <net region="blue-net" flag="red-flag" respawn-filter="flag-respawns"/>
+    </flags>
+</flags>
+<time>12m</time>
+<score>
+    <limit>3</limit>
+</score>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<kill-rewards>
+    <kill-reward>
+        <item amount="8">arrow</item>
+        <item material="golden apple"/>
+    </kill-reward>
+</kill-rewards>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>bread</item>
+</itemremove>
+<timelock>on</timelock>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

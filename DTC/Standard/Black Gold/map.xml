@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Black Gold</name>
+<version>1.0.3</version>
+<objective>Leak lava from the enemy core into the void</objective>
+<authors>
+    <author uuid="ed1fe2bd-0431-4a56-8c5c-d4657389dd1f"/> <!-- artur1197 -->
+    <author uuid="06c2f980-d6b1-4908-b578-a9cf42a1418a"/> <!-- hanchulonXD1 -->
+    <author uuid="8eb34538-a6e0-4bc0-b695-b993f3f14aaa"/> <!-- Puyi2912 -->
+    <author uuid="f845d896-45f4-4a96-93ca-faf22f675993"/> <!-- GGranchelli16 -->
+    <author uuid="c14862ba-058a-44a2-a1c3-bfb0b462e198"/> <!-- roro28gutier -->
+    <author uuid="5df77c0e-1bc5-4fff-b41b-6763f29d4125"/> <!-- G_Marturet --> 
+</authors>
+<contributors>
+    <contributor uuid="ef259cb1-4d48-4196-8923-669ead918a93" contribution="XML Coding"/> <!-- Calvinator1717 -->
+</contributors>
+<teams>
+    <team color="dark red" max="35">Red</team>
+    <team color="blue" max="35">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" amount="1">iron sword</item>
+        <item slot="1" amount="1">bow</item>
+        <item slot="2" amount="1">diamond pickaxe</item>
+        <item slot="3" amount="1" enchantament="efficiency:2 unbreaking:2">iron axe</item>
+        <item slot="4" amount="16" damage="1">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="32">grilled pork</item>
+        <item slot="7" amount="64">arrow</item>
+        <item slot="8" amount="64">arrow</item>
+        <helmet>gold helmet</helmet>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="90">
+        <cylinder base="-199,11,274" radius="1" height="0"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="-90">
+        <cylinder base="-466,11,274" radius="1" height="0"/>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="-188,50,207" radius="5" height="0"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-void" message="You may not build outside of the map.">
+        <complement>
+            <rectangle min="-481,236" max="-188,321"/>
+            <rectangle min="-351,241" max="-314,307"/>
+        </complement>
+    </apply>
+    <apply enter="only-blue" message="You may not enter blue's spawn room!">
+        <cuboid min="-215,9,267" max="-196,15,282"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter red's spawn room!">
+        <cuboid min="-449,9,282" max="-469,18,266"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn room/roof!">
+        <cuboid min="-228,18,292" max="-196,9,256"/>
+        <cuboid min="-228,22,293" max="-220,9,280"/>
+        <cuboid min="-228,22,255" max="-220,9,268"/>
+        <cuboid min="-445,18,292" max="-469,9,256"/>
+        <cuboid min="-445,22,293" max="-437,9,280"/>
+        <cuboid min="-445,22,255" max="-437,9,268"/>
+    </apply>
+</regions>
+<cores name="Core" material="obsidian" leak="6">
+    <core team="blue">
+        <cuboid min="-210,42,271" max="-204,48,277"/>
+    </core>
+    <core team="red">
+        <cuboid min="-461,42,271" max="-455,48,277"/>
+    </core>
+</cores>
+<maxbuildheight>65</maxbuildheight>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>sand</item>
+    <item>arrow</item>
+    <item>glass</item>
+    <item>log</item>
+    <item>grilled pork</item>
+    <item>gold helmet</item>
+</itemremove>
+</map>

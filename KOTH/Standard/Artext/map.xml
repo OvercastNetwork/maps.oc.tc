@@ -1,0 +1,175 @@
+<map proto="1.4.0">
+<name>Artext</name>
+<version>1.0.5</version>
+<objective>
+    Hold the hills for points, kills count as well!
+</objective>
+<authors>
+    <author uuid="a4266139-34f3-46c5-a730-f8828376a15a"/> <!--     LArrowHead   -->
+    <author uuid="dff980ed-9f69-491e-b79c-30c21350baf2"/> <!--     DoomRobotBoy    -->
+</authors>
+<teams>
+    <team id="red" color="Dark Red" max="14" max-overfill="16">Red</team>
+    <team id="blue" color="Blue" max="14" max-overfill="16">Blue</team>
+</teams>
+<score>
+    <limit>1250</limit>
+    <kills>3</kills>
+    <deaths>1</deaths>
+</score>
+<king>
+<!--
+ Must be more players of one team on hill to be capping
+ Must go through a full percentage cycle twice to capture it from other team
+-->
+    <hills capture-rule="lead" neutral-state="true" visual-materials="hill-materials" required="false">
+        <hill id="blue-point" name="Blue Tower Hill" capture-time="12s" points="1.4" initial-owner="blue">
+            <capture>
+                <cuboid min="646,16,-78" max="641,17,-71"/>
+            </capture>
+            <progress>
+                <cuboid min="646,15,-78" max="641,16,-71"/>
+            </progress>
+            <captured>
+                <cuboid min="646,15,-78" max="641,16,-71"/>
+            </captured>
+        </hill>
+        <hill id="middle-point" name="Middle Hill" capture-time="8s" points="2">
+            <capture>
+                <cuboid min="703,10,-69" max="682,12,-80"/>
+            </capture>
+            <progress>
+                <cuboid min="690,9,-77" max="695,11,-72"/>
+            </progress>
+            <captured>
+                <cuboid min="690,9,-77" max="695,11,-72"/>
+            </captured>
+        </hill>
+        <hill id="red-point" name="Red Tower Hill" capture-time="12s" points="1.4" initial-owner="red">
+            <capture>
+                <cuboid min="739,16,-71" max="744,17,-78"/>
+            </capture>
+            <progress>
+                <cuboid min="739,15,-71" max="744,16,-78"/>
+            </progress>
+            <captured>
+                <cuboid min="739,15,-71" max="744,16,-78"/>
+            </captured>
+        </hill>
+    </hills>
+</king>
+<filters>
+<!-- Denies Beacon use/break -->
+    <not id="deny-beacon">
+        <material>beacon</material>
+    </not>
+<!-- Materials for hill color change -->
+    <any id="hill-materials">
+        <material>stained clay</material>
+        <material>stained glass</material>
+    </any>
+<!-- Only red can enter/pick this and that -->
+    <team id="only-red">red</team>
+<!-- Only blue can enter/pick this and that -->
+    <team id="only-blue">blue</team>
+</filters>
+<regions>
+    <cuboid id="red-net" min="645,6,-72" max="642,8,-77"/>
+    <cuboid id="blue-net" min="743,6,-72" max="740,8,-77"/>
+<!-- Denies blocks anywhere -->
+    <apply block="never" use="deny-beacon">
+        <region>
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </region>
+    </apply>
+<!--  Blue Team Base -->
+    <apply enter="only-blue" message="You may not enter the other teams spawn area!">
+        <region>
+            <union>
+                <cuboid min="633,6,-58" max="620,14,-91"/>
+            </union>
+        </region>
+    </apply>
+<!-- Red Team Base -->
+    <apply enter="only-red" message="You may not enter the other teams spawn area!">
+        <region>
+            <union>
+                <cuboid min="763,14,-92" max="751,6,-58"/>
+            </union>
+        </region>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="90">
+            <point>637.4,4.5,-74.5</point>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="-90">
+            <point>747.4,4.5,-74.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <point>750.5,17,-101.0</point>
+        </regions>
+    </default>
+</spawns>
+<kits>
+<!--
+All Armor is locked and unbreakable,tools are also unbreakable
+-->
+    <kit id="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="2" amount="1">golden apple</item>
+        <leggings unbreakable="true" locked="true">iron leggings</leggings>
+        <potion duration="oo">night vision</potion>
+        <potion duration="13" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <helmet color="cd0000" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <helmet color="0066cc" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<!-- No Hunger Loss -->
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>iron leggings</item>
+    <item>leather chestplate</item>
+    <item>leather helmet</item>
+    <item>leather boots</item>
+</itemremove>
+<killreward>
+    <item amount="1">golden apple</item>
+</killreward>
+<broadcasts>
+    <tip after="3s" every="5m">
+        `3`oThere are `6twelve spawners`3`o around the map for use. Which include `6arrows, health potions, and golden apples.
+    </tip>
+    <tip after="7s" every="5m">
+        `3`oEvery control point is indicated with a beacon.
+    </tip>
+    <tip after="9s" every="5m">
+        `3`oThe Middle `6capture point `3`ogives your team `62 points per second.
+    </tip>
+    <tip after="12s" every="5m">
+        `3`oNext to each spawn there are the `6Tower control points`3, which reward the team holding them each `61.4 point per second.
+    </tip>
+    <tip after="14s" every="5m">
+        `3`oEach kill gives your team `63 points`3`o, which add up to your total score.
+    </tip>
+</broadcasts>
+</map>

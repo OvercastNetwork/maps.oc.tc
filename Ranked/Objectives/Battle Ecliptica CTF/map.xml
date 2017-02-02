@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Battle Ecliptica CTF</name>
+<genre>Objectives</genre>
+<time>15m</time>
+<respawn delay="5s"/>
+<version>4.0</version>
+<objective>Capture the other team's flags to win the game!</objective>
+<score/>
+<rules>
+    <rule>Creating alliances with another team is allowed.</rule>
+</rules>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Map Feedback and Aesthetics"/> <!-- moo88888888 -->
+    <contributor uuid="c2a4c847-653e-482a-b62e-d7f8b64330cb" contribution="Map Feedback"/> <!-- NathanTheBook -->
+    <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Tourney Feedback"/> <!-- BrettOgden -->
+    <contributor uuid="90d4c2a3-137b-4965-b9e5-963ab5a23fa1" contribution="Tourney Feedback"/> <!-- Aceman1998 -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Metadata"/> <!-- ElectroidFilms -->
+</contributors>
+<teams>
+    <team id="yellow" color="yellow"     min="4" max="5">Yellow</team>
+    <team id="green"  color="dark green" min="4" max="5">Green</team>
+    <team id="red"    color="dark red"   min="4" max="5">Red</team>
+    <team id="blue"   color="blue"       min="4" max="5">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red-kit">
+        <regions yaw="180">
+            <point>0.5,8,93</point>
+        </regions>
+    </spawn>
+    <spawn team="green" kit="green-kit">
+        <regions yaw="90">
+            <point>93,8,0.5</point>
+        </regions>
+    </spawn>
+    <spawn team="yellow" kit="yellow-kit">
+        <regions yaw="0">
+            <point>0.5,8,-92</point>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue-kit">
+        <regions yaw="-90">
+            <point>-92,8,0.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0">
+            <cylinder base="0.5,54,0.5" radius="2" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<flags points="-1">
+    <flag id="red-flag" name="Red Flag" owner="red" color="red">
+        <post yaw="-180" respawn-time="30s" recover-time="20s" pickup-filter="deny-red">0.5,7,68.5</post>
+    </flag>
+    <flag id="yellow-flag" name="Yellow Flag" owner="yellow" color="yellow">
+        <post yaw="0" respawn-time="30s" recover-time="20s" pickup-filter="deny-yellow">0.5,7,-67.5</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" owner="blue" color="light blue">
+        <post yaw="-90" respawn-time="30s" recover-time="20s" pickup-filter="deny-blue">-67.5, 7, 0.5</post>
+    </flag>
+    <flag id="green-flag" name="Green Flag" owner="green" color="green">
+        <post yaw="90" respawn-time="30s" recover-time="20s" pickup-filter="deny-green">68.5, 7, 0.5</post>
+    </flag>
+    <net points="1" capture-filter="only-red"    region="red-net"    flags="blue-flag green-flag"/>
+    <net points="2" capture-filter="only-red"    region="red-net"    flags="yellow-flag"/>
+    <net points="1" capture-filter="only-blue"   region="blue-net"   flags="red-flag yellow-flag"/>
+    <net points="2" capture-filter="only-blue"   region="blue-net"   flags="green-flag"/>
+    <net points="1" capture-filter="only-green"  region="green-net"  flags="red-flag yellow-flag"/>
+    <net points="2" capture-filter="only-green"  region="green-net"  flags="blue-flag"/>
+    <net points="1" capture-filter="only-yellow" region="yellow-net" flags="blue-flag green-flag"/>
+    <net points="2" capture-filter="only-yellow" region="yellow-net" flags="red-flag"/>
+</flags>
+<kits>
+    <kit id="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="2" enchantment="dig speed:5">iron pickaxe</item>
+        <leggings locked="true" unbreakable="true">iron leggings</leggings>
+        <potion duration="oo">saturation</potion>
+    </kit>
+    <kit id="red-kit" parents="teams">
+        <item slot="3" amount="24" damage="14">stained clay</item>
+        <item slot="4" amount="4" damage="14">stained glass</item>
+        <helmet     locked="true" unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="cd0000" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots      locked="true" unbreakable="true" color="cd0000">leather boots</boots>
+    </kit>
+    <kit id="blue-kit" parents="teams">
+        <item slot="3" amount="24" damage="11">stained clay</item>
+        <item slot="4" amount="4" damage="11">stained glass</item>
+        <helmet     locked="true" unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="0066cc" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots      locked="true" unbreakable="true" color="0066cc">leather boots</boots>
+    </kit>
+    <kit id="green-kit" parents="teams">
+        <item slot="3" amount="24" damage="5">stained clay</item>
+        <item slot="4" amount="4" damage="5">stained glass</item>
+        <helmet     locked="true" unbreakable="true" color="667F33">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="667F33" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots      locked="true" unbreakable="true" color="667F33">leather boots</boots>
+    </kit>
+    <kit id="yellow-kit" parents="teams">
+        <item slot="3" amount="24" damage="4">stained clay</item>
+        <item slot="4" amount="4" damage="4">stained glass</item>
+        <helmet     locked="true" unbreakable="true" color="E5E533">leather helmet</helmet>
+        <chestplate locked="true" unbreakable="true" color="E5E533" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots      locked="true" unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <above id="above-20" y="20"/>
+    <union id="spawns">
+        <rectangle id="red-spawn"    min="-9,87"  max="5,98"/>
+        <rectangle id="green-spawn"  min="87,-4"  max="98,5"/>
+        <rectangle id="yellow-spawn" min="-4,-97" max="5,-86"/>
+        <rectangle id="blue-spawn"   min="-86,5"  max="-97,-4"/>
+    </union>
+    <union id="wool-rooms">
+        <cuboid id="red-wool-room"    min="-6,0,75"  max="7,oo,62"/>
+        <cuboid id="green-wool-room"  min="62,0,-6"  max="75,oo,7"/>
+        <cuboid id="yellow-wool-room" min="-6,0,-74" max="7,oo,-61"/>
+        <cuboid id="blue-wool-room"   min="-61,0,-6" max="-74,oo,7"/>
+    </union>
+    <union id="net-zones">
+        <cuboid id="red-net"    min="-3,0,81"  max="4,20,86"/>
+        <cuboid id="blue-net"   min="-85,0,-3" max="-80,20,4"/>
+        <cuboid id="green-net"  min="81,0,-3"  max="86,20,4"/>
+        <cuboid id="yellow-net" min="-3,0,-85" max="4,20,-80"/>
+    </union>
+    <negative id="no-void-areas">
+        <union id="void-areas">
+            <complement>
+                <union>
+                    <rectangle min="-63, -18" max="64, 19"/>
+                    <rectangle min="-18, -63" max="19, 64"/>
+                    <rectangle min="-21, -21" max="22, 22"/>
+                </union>
+                <union>
+                    <circle center="0.5, 68.5"  radius="11.5"/>
+                    <circle center="68.5, 0.5"  radius="11.5"/>
+                    <circle center="0.5, -67.5" radius="11.5"/>
+                    <circle center="-67.5, 0.5" radius="11.5"/>
+                </union>
+            </complement>
+        </union>
+    </negative>
+    <apply block="deny-void"     region="no-void-areas"    message="You may not edit the void area!"/>
+    <apply block="never"         region="above-20"         message="You may not edit above the height limit! `7(`c20 Blocks`7)"/>
+    <apply block="never"         region="spawns"           message="You may not edit the spawn!"/>
+    <apply block="never"         region="net-zones"        message="You may not edit the flag net!"/>
+    <apply block="never"         region="wool-rooms"       message="You may not edit the wool room!"/>
+    <apply block="deny-precious" region="everywhere"       message="You may not edit this block!"/>
+    <apply enter="only-red"      region="red-spawn"        message="You may not enter enemy base!"/>
+    <apply enter="only-blue"     region="blue-spawn"       message="You may not enter enemy base!"/>
+    <apply enter="only-green"    region="green-spawn"      message="You may not enter enemy base!"/>
+    <apply enter="only-yellow"   region="yellow-spawn"     message="You may not enter enemy base!"/>
+    <apply enter="deny-red"      region="red-wool-room"    message="You may not enter your own wool room!"/>
+    <apply enter="deny-blue"     region="blue-wool-room"   message="You may not enter your own wool room!"/>
+    <apply enter="deny-green"    region="green-wool-room"  message="You may not enter your own wool room!"/>
+    <apply enter="deny-yellow"   region="yellow-wool-room" message="You may not enter your own wool room!"/>
+</regions>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <team id="only-green">green</team>
+    <team id="only-yellow">yellow</team>
+    <deny id="deny-red">
+        <filter id="only-red"/>
+    </deny>
+    <deny id="deny-blue">
+        <filter id="only-blue"/>
+    </deny>
+    <deny id="deny-green">
+        <filter id="only-green"/>
+    </deny>
+    <deny id="deny-yellow">
+        <filter id="only-yellow"/>
+    </deny>
+    <deny id="deny-precious">
+        <any>
+            <material>beacon</material>
+            <material>obsidian</material>
+            <material>sea lantern</material>
+        </any>
+    </deny>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+    <deny id="deny-wool">
+        <any>
+            <material>wool</material>
+            <material>carpet</material>
+        </any>
+    </deny>
+</filters>
+<renewables>
+    <renewable interval="1m" grow="false" particles="false" sound="false" avoid-players="3">
+        <region>
+            <cylinder base="0.5,1,0.5" radius="100" height="10"/>
+        </region>
+        <replace>air</replace>
+    </renewable>
+</renewables>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>string</item>
+    <item>cooked chicken</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>beacon</item>
+    <item>redstone</item>
+    <item>glowstone dust</item>
+    <item>clay ball</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+    <item>sapling</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>step</item>
+    <item>apple</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item amount="16">arrow</item>
+</killreward>
+</map>

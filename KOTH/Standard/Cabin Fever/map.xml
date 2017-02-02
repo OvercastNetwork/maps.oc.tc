@@ -1,0 +1,139 @@
+<map proto="1.3.0">
+<name>Cabin Fever</name>
+<version>1.4</version>
+<objective>Capture and hold the Control Points!</objective>
+<authors>
+	<author uuid="e82504ac-8c95-4895-9dca-222f924d697c"/> <!-- TiggyLi -->
+	<author uuid="3143b9d9-cea7-465f-97fc-8de59fbbb3a4"/> <!-- DiamondAx -->
+</authors>
+<teams>
+	<team color="yellow" max="32">Yellow</team>
+	<team color="dark green" max="32">Green</team>
+</teams>
+<filters>
+	<filter name="deny-usable">
+		<deny>
+			<block>beacon</block>
+		</deny>
+	</filter>
+</filters>
+<kits>
+	<kit name="spawn">
+		<item slot="0">stone sword</item>
+		<item slot="1" enchantment="arrow infinite:1">bow</item>
+		<item slot="28" amount="1">arrow</item>
+		<item slot="2" amount="32">cooked beef</item>
+		<item slot="3" amount="3">golden apple</item>
+		<leggings unbreakable="true">iron leggings</leggings>
+	</kit>
+	<kit name="yellow" parents="spawn">
+		<helmet color="E5E533" unbreakable="true">leather helmet</helmet>
+		<chestplate color="E5E533" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+		<boots color="E5E533" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+	</kit>
+	<kit name="green" parents="spawn">
+		<helmet color="667F33" unbreakable="true">leather helmet</helmet>
+		<chestplate color="667F33" enchantment="protection projectile:1" unbreakable="true">leather chestplate</chestplate>
+		<boots color="667F33" enchantment="protection fall:1" unbreakable="true">leather boots</boots>
+	</kit>
+</kits>
+<regions>
+	<rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+	<apply block="deny-all">
+		<region name="playable"/>
+	</apply>
+</regions>
+<toolrepair>
+	<tool>stone sword</tool>
+	<tool>bow</tool>
+</toolrepair>
+<itemremove>
+	<item>374</item>
+	<item>leather helmet</item>
+	<item>leather chestplate</item>
+	<item>iron leggings</item>
+	<item>leather boots</item>
+	<item>cooked beef</item>
+	<item>arrow</item>
+	<item>golden apple</item>
+</itemremove>
+<spawns>
+	<spawns team="yellow" kit="yellow">
+		<spawn yaw="-45">
+			<cylinder base="129.5,11,9.5" radius="3" height="1"/>
+		</spawn>
+		<spawn yaw="-130">
+			<cylinder base="129.5,11,43.5" radius="3" height="1"/>
+		</spawn>
+	</spawns>
+	<spawns team="green" kit="green">
+		<spawn yaw="135">
+			<cylinder base="-83.5,11,43.5" radius="3" height="1"/>
+		</spawn>
+		<spawn yaw="45">
+			<cylinder base="-83.5,11,9.5" radius="3" height="1"/>
+		</spawn>
+	</spawns>
+	<default angle="22,77,113">
+		<cuboid min="26,76,112" max="19,76,108"/>
+	</default>
+</spawns>
+<portals>
+	<portal x="@37.5" y="@23" z="@36.5" yaw="@180">
+		<cuboid min="95,8,38" max="96,9,39"/>
+	</portal>
+	<portal x="@95.5" y="@7" z="@36.5" yaw="@180">
+		<cuboid min="37,24,38" max="38,25,39"/>
+	</portal>
+	<portal x="@8.5" y="@23" z="@36.5" yaw="@180">
+		<cuboid min="-49,8,38" max="-50,9,39"/>
+	</portal>
+	<portal x="@-49.5" y="@7" z="@36.5" yaw="@180">
+		<cuboid min="8,24,38" max="9,25,39"/>
+	</portal>
+</portals>
+<king>
+	<hills>
+		<hill name="Residential" capture-time="10s" ratio="1">
+			<capture>
+				<cylinder base="23,6,95" radius="5.5" height="3"/>
+			</capture>
+			<progress>
+				<cuboid min="18,5,90" max="27,5,99"/>
+			</progress>
+			<captured>
+				<!--  Hacky Hack  -->
+				<cuboid min="0,0,0" max="0,0,0"/>
+			</captured>
+		</hill>
+		<hill name="Mountain" capture-time="10s" ratio="1">
+			<capture>
+				<cylinder base="23,38,28" radius="5.5" height="3"/>
+			</capture>
+			<progress>
+				<cuboid min="18,37,23" max="27,37,32"/>
+			</progress>
+			<captured>
+				<!--  Hacky Hack  -->
+				<cuboid min="0,0,0" max="0,0,0"/>
+			</captured>
+		</hill>
+		<hill name="Forest" capture-time="10s" ratio="1">
+			<capture>
+				<cylinder base="23,9,-42" radius="5.5" height="3"/>
+			</capture>
+			<progress>
+				<cuboid min="18,8,-47" max="27,8,-38"/>
+			</progress>
+			<captured>
+				<!--  Hacky Hack  -->
+				<cuboid min="0,0,0" max="0,0,0"/>
+			</captured>
+		</hill>
+	</hills>
+</king>
+<score>
+	<limit>750</limit>
+	<king/>
+</score>
+</map>

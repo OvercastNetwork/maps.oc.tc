@@ -1,0 +1,133 @@
+<map proto="1.3.2">
+<name>Tree of Life: Mini</name>
+<version>1.0.1</version>
+<objective>Leak the enemy team's core to win the match!</objective>
+<authors>
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/>
+    <!--  Stealth5061  -->
+</authors>
+<contributors>
+    <contributor uuid="00c06fa6-1c53-4634-931a-929efd8a52df" contribution="Original Map-to-Mini Map Concept"/>
+    <!--  Nadastorm  -->
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Pointing out that the lake is on the wrong side"/>
+    <!--  lonelyhornet  -->
+</contributors>
+<teams>
+    <team color="dark red" max="18" max-overfill="20">Red</team>
+    <team color="blue" max="18" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3" enchantment="dig speed:2;durability:3">iron axe</item>
+        <item slot="4" amount="16">leaves</item>
+        <item slot="5" amount="32">wood</item>
+        <item slot="6" amount="24">apple</item>
+        <item slot="7" amount="4">torch</item>
+        <item slot="28" amount="64">arrow</item>
+        <leggings>iron leggings</leggings>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="BF0606">leather helmet</helmet>
+        <chestplate color="000000">leather chestplate</chestplate>
+        <boots color="BF0606">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="020FBB">leather helmet</helmet>
+        <chestplate color="FFFFFF">leather chestplate</chestplate>
+        <boots color="020FBB">leather boots</boots>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<spawns>
+    <default kit="observers" yaw="180">
+        <cylinder base="-47.5,63.2,58.5" radius="1.5" height="0"/>
+    </default>
+    <spawn team="blue" yaw="90" kit="blue">
+        <cylinder base="-95.5,23.2,0.5" radius="3.5" height="0"/>
+    </spawn>
+    <spawn team="red" yaw="-90" kit="red">
+        <cylinder base="0.5,23.2,0.5" radius="3.5" height="0"/>
+    </spawn>
+</spawns>
+<tnt>
+    <instantignite>on</instantignite>
+</tnt>
+<filters>
+    <filter name="play" parents="allow-all">
+        <deny>
+            <block>fire</block>
+        </deny>
+    </filter>
+</filters>
+<maxbuildheight>63</maxbuildheight>
+<regions>
+    <apply block="play">
+        <rectangle min="29,32" max="-124,-31"/>
+    </apply>
+    <apply block-place="deny-all" message="`0`l[`e`l!`0`l] `7You may not build outside of the playing field.">
+        <negative>
+            <rectangle min="29,32" max="-124,-31"/>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="`0`l[`e`l!`0`l] `7You may not modify team spawns!">
+        <!-- Blue Team -->
+        <union>
+            <cylinder base="-95.5,22,0.5" radius="10.5" height="6"/>
+            <cuboid min="-103,23,-2" max="-113,30,3"/>
+            <cuboid min="-113,30,3" max="-107,35,-2"/>
+            <cylinder base="-115.5,29,0.5" radius="4.5" height="6"/>
+        </union>
+        <!-- Red Team -->
+        <union>
+            <cylinder base="0.5,22,0.5" radius="10.5" height="6"/>
+            <cuboid min="8,23,3" max="18,30,-2"/>
+            <cuboid min="18,30,-2" max="12,35,3"/>
+            <cylinder base="20.5,29,0.5" radius="4.5" height="6"/>
+        </union>
+    </apply>
+</regions>
+<modes>
+    <mode after="20m" material="gold block"/>
+    <mode after="30m" material="glass"/>
+</modes>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core team="red">
+        <cuboid min="-1,49,-2" max="2,52,3"/>
+    </core>
+    <core team="blue">
+        <cuboid min="-94,49,3" max="-97,52,-2"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>sapling</item>
+    <item>wool</item>
+    <item>leaves</item>
+    <item>44</item>
+    <item>fence</item>
+    <item>glowstone dust</item>
+    <item>carpet</item>
+    <item>seeds</item>
+    <item>apple</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>flint</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+</itemremove>
+<killreward>
+    <item amount="16">leaves</item>
+</killreward>
+</map>

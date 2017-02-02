@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map proto="1.0.0">
+<name>Train Wars</name>
+<version>1.0</version>
+<objective>Capture the enemy's 2 wools, bring them back to your base, and destroy their core</objective>
+<authors>
+    <author uuid="445da9ac-d32f-4874-86e5-4846d61e02d0" contribution="Map Design"/> <!-- 911chandler -->
+    <author uuid="9d87acbf-81f0-4c18-b2aa-67a8900d6d08" contribution="Map Design"/> <!-- redalex457 -->
+    <author uuid="b8e37008-a61d-4452-9375-fb9872f5bfea" contribution="Aesthetics Help"/> <!-- daeshik -->
+    <author uuid="dcbb0dda-6b4c-4f07-b439-ac429e06e41f" contribution="Aesthetics Help"/> <!-- jboyd22 -->
+</authors>
+<rules>
+    <rule>No Team Griefing</rule>
+    <rule>No hacking</rule>
+</rules>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue">
+            <point type="random" yaw="180"><cylinder base="22,8,79" radius="3" height="1"/></point>
+    </spawn>
+    <spawn team="red">
+        <point type="random" yaw="0"><cylinder base="22,8,-109" radius="3" height="1"/></point>
+    </spawn>
+        <!-- default / lobby -->
+    <default><point type="random" yaw="270"><cylinder base="-38,36,-14" radius="3" height="1"/></point></default>
+</spawns>
+<filters>
+   <filter name="only-blue" parents="deny-players deny-world">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-players deny-world">
+        <allow><team>red</team></allow>
+    </filter>
+</filters>
+<regions>
+    <!-- blue wool room protection (these are the wools blue has to get) -->
+    <union name="blue-wool-rooms">
+        <cuboid name="magenta-room" min="32,4,60" max="43,9,68"/>
+        <cuboid name="orange-room" min="2,4,-97" max="13,9,-89"/>
+    </union>
+    <apply block="only-blue">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+
+    <!-- red wool room protection (these are the wools red has to get) -->
+    <union name="red-wool-rooms">
+        <cuboid name="cyan-room" min="2,4,60" max="13,9,68"/>
+        <cuboid name="lime-room" min="32,4,60" max="43,9,68"/>
+    </union>
+    <apply block="only-red">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <cuboid name="main" min="-6,0,-136" max="52,31,107"/>
+</regions>
+<playable>
+    <region name="main"/>
+</playable>
+<cores material="obsidian" leak="6">
+    <core team="blue"><cuboid min="20,8,26" max="34,13,27"/></core>
+    <core team="red"><cuboid min="20,8,-60" max="25,13,-55"/></core>
+</cores>
+<wools>
+    <wool team="red" color="cyan">
+        <block location="21,14,-129"/>
+    </wool>
+    <wool team="red" color="lime">
+        <block location="23,14,-129"/>
+    </wool>
+    <wool team="blue" color="magenta">
+        <block location="23,14,99"/>
+    </wool>
+    <wool team="blue" color="orange">
+        <block location="21,14,99"/>
+    </wool>
+</wools>
+</map>

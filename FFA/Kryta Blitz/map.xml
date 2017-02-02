@@ -1,0 +1,256 @@
+<map proto="1.4.0" game="`f`lFFA: Blitz">
+<name>Kryta: Blitz</name>
+<version>1.0.5</version>
+<authors>
+    <author uuid="10c1b730-49b9-4f75-9212-91facc371477" />
+    <!--  Qixit  -->
+</authors>
+<contributors>
+    <contributor uuid="f690a591-348b-482e-a18d-7779d0c0a28c" />
+    <!--  mitchiii_  -->
+</contributors>
+<objective>Kill and survive. There are no teams, so watch your back!</objective>
+<phase>development</phase>
+<time>8m</time>
+<blitz>
+    <lives>3</lives>
+    <broadcastLives>true</broadcastLives>
+</blitz>
+<include src="blitz-global.xml" />
+<players min="2" max="24" max-overfill="28"/>
+<spawns>
+    <spawn kit="spawn" spread="true">
+        <regions>
+            <point yaw="160">2.5,31,362.5</point>
+            <point yaw="-120">-28.5,22,341.5</point>
+            <point yaw="-48">-5.5,31,329.5</point>
+            <point yaw="-22">-27.5,35,328.5</point>
+            <point yaw="-78">14.5,46,363.5</point>
+            <point yaw="-124">39.5,48,349.5</point>
+            <point yaw="139">28.5,51,330.5</point>
+            <point yaw="-135">-5.5,65,290.5</point>
+            <point yaw="24">-20.5,56,289.5</point>
+            <point yaw="26">-15.5,57.5,301.5</point>
+            <point yaw="-137">46.5,48,328.5</point>
+            <point yaw="165">46.5,51,306.5</point>
+            <point yaw="-48">39.5,49,282.5</point>
+            <point yaw="-99">16.5,57,276.5</point>
+            <point yaw="89">-4.5,57,283.5</point>
+            <point yaw="19">-21.5,56,287.5</point>
+            <point yaw="20">-16.5,58,299.5</point>
+            <point yaw="-170">-25.5,48,315.5</point>
+            <point yaw="-53">-8.5,48,312.5</point>
+            <point yaw="23">22.5,31,296.5</point>
+            <point yaw="129">37.5,35,319.5</point>
+            <point yaw="-167">15.5,35,330.5</point>
+            <point yaw="128">24.5,62,338.5</point>
+            <point yaw="55">36.5,42,304.5</point>
+            <point yaw="-37">8.5,35,297.5</point>
+            <point yaw="-136">-7.5,29,342.5</point>
+            <point yaw="-161">-4.5,23,359.5</point>
+            <point yaw="-154">31.5,63,339.5</point>
+            <point yaw="-22">-4.5,63,281.5</point>
+            <point yaw="71">38.5,47,311.5</point>
+            <point yaw="-90">46.5,46,330.5</point>
+            <point yaw="0">54.5,49,289.5</point>
+            <point yaw="-128">45.300,49,319.700</point>
+            <point yaw="-145">41.5,52,345.5</point>
+            <point yaw="133">-9.5,22,359.5</point>
+            <point yaw="-25">-21.624,29,334.500</point>
+            <point yaw="-124">-25,27,348.800</point>
+            <point yaw="25">-6.5,57,254.5</point>
+            <point yaw="-180">0.5,62,277.700</point>
+            <point yaw="158">-11.300,60,287.700</point>
+            <point yaw="95">35.5,42,258.59</point>
+            <point yaw="-32">9.300,43,244.300</point>
+            <point yaw="124">38.700,49,262.700</point>
+            <point yaw="-101">19.5,50,269.5</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="-50">-7.5,63,294.5</point>
+        </regions>
+    </default>
+</spawns>
+<respawn auto="true" delay="2.5s" spectate="false" blackout="true" />
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+<kits>
+    <kit id="spawn">
+        <game-mode>adventure</game-mode>
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="27" amount="16">arrow</item>
+        <item slot="8" amount="2">golden apple</item>
+        <helmet color="667F33" unbreakable="true" locked="true" enchantment="depth strider:5">leather helmet</helmet>
+        <chestplate unbreakable="true" color="667F33" locked="true">leather chestplate</chestplate>
+        <leggings color="667F33" locked="true" unbreakable="true">leather leggings</leggings>
+        <boots color="667F33" locked="true" unbreakable="true">leather boots</boots>
+        <potion duration="4" amplifier="20">damage resistance</potion>
+    </kit>
+</kits>
+<killreward>
+    <item amount="8" slot="28">arrow</item>
+    <item amount="1">golden apple</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<itemremove>
+    <item>chainmail chestplate</item>
+    <item>iron helmet</item>
+    <item>iron ingot</item>
+    <item>diamond boots</item>
+    <item>chest</item>
+    <item>seeds</item>
+    <item>sapling</item>
+    <item>apple</item>
+    <item>arrow</item>
+    <item>red mushroom</item>
+    <item>diamond sword</item>
+    <item>red rose</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+</disabledamage>
+<filters>
+    <any id="breakable-blocks">
+        <material>melon block</material>
+        <material>chest</material>
+        <material>long grass</material>
+        <material>leaves</material>
+        <material>leaves 2</material>
+        <material>double plant</material>
+        <material>red rose</material>
+    </any>
+    <deny id="use">
+        <material>trap door</material>
+    </deny>
+</filters>
+<regions>
+    <apply use="use">
+        <everywhere />
+    </apply>
+    <apply block-physics="never">
+        <everywhere />
+    </apply>
+    <rectangle id="map" min="-oo,-oo" max="oo,oo" />
+    <apply block="breakable-blocks" message="`f`lYou may not destroy this block!">
+        <everywhere /> </apply>
+    <!--  2.5,51,256  -->
+    <apply velocity="-1, 1.8, 1">
+        <region>
+            <cuboid id="jumpad-1" min="3,48.5,256" max="1,49.5,254" /> </region>
+    </apply>
+    <!--  10,49,240  -->
+    <apply velocity="10, 1.5, 10">
+        <region>
+            <cuboid id="jumpad-2" min="13,48.5,242" max="11,49.5,240" /> </region>
+    </apply>
+    <!--  33,51,325  -->
+    <apply velocity="-10, 2.5, -10">
+        <region>
+            <cuboid id="jumpad-4" min="34,50.5,326" max="32,51.5,324" /> </region>
+    </apply>
+    <!--  -2, 48, 302  -->
+    <apply velocity="3, 2, 3">
+        <region>
+            <cuboid id="jumpad-5" min="1,48.5,305" max="-1,47.5,303" /> </region>
+    </apply>
+    <!--  13,31,306  -->
+    <apply velocity="-1.5, 3, -1.5">
+        <region>
+            <cuboid id="jumpad-6" min="11,30.5,303" max="13,31.5,305" /> </region>
+    </apply>
+    <!--  -22,10,354  -->
+    <apply velocity="2, 4, -2">
+        <region>
+            <cuboid id="jumpad-7" min="-20,8.5,354" max="-22,9.5,356" /> </region>
+    </apply>
+    <!--  -12,56,279  -->
+    <apply velocity="2, 1, 2">
+        <region>
+            <cuboid id="jumpad-8" min="-13,55.5,278" max="-11,56.5,280" /> </region>
+    </apply>
+    <!--  24,56.5,293  -->
+    <apply velocity="-3, 2, 3">
+        <region>
+            <cuboid id="jumpad-9" min="24,56.5,293" max="26,57.5,291" /> </region>
+    </apply>
+</regions>
+<portals smooth="true" sound="true">
+    <portal x="@0.5" y="@22" z="@340.5" yaw="@90">
+        <region>
+            <cuboid min="-2,14,344" max="-1,15,345" /> </region>
+    </portal>
+    <portal x="@-4.5" y="@14" z="@344.5" yaw="@90">
+        <region>
+            <cuboid min="2,22,340" max="3,23,341" /> </region>
+    </portal>
+    <portal x="@4.5" y="@31" z="@358.5" yaw="@90">
+        <region>
+            <cuboid min="18,47,359" max="19,48,360" /> </region>
+    </portal>
+    <portal x="@18.5" y="@47" z="@361.5" yaw="@0">
+        <region>
+            <cuboid min="6,31,358" max="7,32,359" /> </region>
+    </portal>
+    <portal x="@26.5" y="@57" z="@280.5" yaw="@180">
+        <region>
+            <cuboid min="37,49,281" max="38,50,282" /> </region>
+    </portal>
+    <portal x="@39.5" y="@49" z="@281.5" yaw="@-90">
+        <region>
+            <cuboid min="26,57,282" max="27,58,283" /> </region>
+    </portal>
+    <portal x="@-25.5" y="@35" z="@328.5" yaw="@0">
+        <region>
+            <cuboid min="-26,48,308" max="-25,49,309" /> </region>
+    </portal>
+    <portal x="@-25.5" y="@48" z="@311.5" yaw="@0">
+        <region>
+            <cuboid min="-23,35,325" max="-22,36,326" /> </region>
+    </portal>
+    <portal x="@28.5" y="@51" z="@330.5" yaw="@-180">
+        <region>
+            <cuboid min="12.5,35,333.5" max="11.5,36,333.5" /> </region>
+    </portal>
+    <portal x="@12.5" y="@35" z="@331.5" yaw="@-180">
+        <region>
+            <cuboid min="28.5,51,332.5" max="27.5,52,332.5" /> </region>
+    </portal>
+    <portal x="@-9.5" y="@22" z="@334.5" yaw="@-180">
+        <region>
+            <cuboid min="-8.5,25,333" max="-9.5,22,333.5" /> </region>
+    </portal>
+    <portal x="@19.5" y="@42" z="@263.5" yaw="@-180">
+        <region>
+            <cuboid min="25.5,48,271.5" max="25.5,51,271.5" /> </region>
+    </portal>
+    <portal x="@25.5" y="@49" z="@269.5" yaw="@-180">
+        <region>
+            <cuboid min="19.5,40,265.5" max="19.5,44,265.5" /> </region>
+    </portal>
+    <portal x="@-6.5" y="@49" z="@271.5" yaw="@90">
+        <region>
+            <cuboid min="37.5,31,317.5" max="38.5,33,317.5" /> </region>
+    </portal>
+</portals>
+<block-drops>
+    <rule>
+        <region>
+            <everywhere />
+        </region>
+        <filter>
+            <material>melon block</material>
+        </filter>
+        <drops>
+            <item material="melon" amount="3"/>
+        </drops>
+        <replacement>air</replacement>
+    </rule>
+</block-drops>
+</map>

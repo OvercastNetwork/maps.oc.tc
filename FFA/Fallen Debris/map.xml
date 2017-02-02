@@ -1,0 +1,542 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Fallen Debris</name>
+<version>4.2.1</version>
+<authors>
+    <author uuid="77912861-9fc0-45fa-aac5-aa455614edbf" />
+    <!--   Nanu   -->
+</authors>
+<objective>Get the most kills before the time is up!</objective>
+<score>
+    <kills>1</kills>
+</score>
+<time>8m</time>
+<players min="2" max="20" max-overfill="24" show-name-tags="false" />
+<spawns>
+    <spawn spread="true">
+        <regions>
+            <point yaw="180">18,7,47</point>
+            <point yaw="90">-15,8,46</point>
+            <point yaw="-118">-45.5,8,59.5</point>
+            <point yaw="0">-54.5,7,35.5</point>
+            <point yaw="-180">-45,8,37</point>
+            <point yaw="-143">-45,20,35</point>
+            <point yaw="-179">-16,7,21</point>
+            <point yaw="-176">-41,7,15</point>
+            <point yaw="-55">-43,12,9</point>
+            <point yaw="-90">-18,4,20</point>
+            <point yaw="139">-7,11,21</point>
+            <point yaw="-18">-47,7,-10</point>
+            <point yaw="41">-38,7,-12</point>
+            <point yaw="-56">-43,15,-29</point>
+            <point yaw="-120">-31,23,-50</point>
+            <point yaw="-26">-14,16,-76</point>
+            <point yaw="-141">-1,5,-43</point>
+            <point yaw="-131">-32,8,-44</point>
+            <point yaw="0">-13,7,-16</point>
+            <point yaw="-38">-21,11,-21</point>
+            <point yaw="-143">13,12,-29</point>
+            <point yaw="-143">13,12,-29</point>
+            <point yaw="90">13,7,-25</point>
+            <point yaw="0">22,7,-19</point>
+            <point yaw="130">23,11,-8</point>
+            <point yaw="-20">46,7,-19</point>
+            <point yaw="-4">38,11,-16</point>
+            <point yaw="113">48,7,5</point>
+            <point yaw="-90">31,15,16</point>
+            <point yaw="10">33,7,16</point>
+            <point yaw="140">11,7,23</point>
+        </regions>
+    </spawn>
+    <default>
+        <regions>
+            <point yaw="138">41.5,31,71.5</point>
+        </regions>
+    </default>
+</spawns>
+<classes family="debris">
+    <class name="Soldier" description="Default class" icon="iron sword" default="true">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="iron sword" />
+            <item slot="1" unbreakable="true" material="bow" />
+            <item slot="8" amount="12"  material="arrow" />
+            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet" />
+            <chestplate locked="true" unbreakable="true" material="iron chestplate" />
+            <leggings locked="true" unbreakable="true" material="iron leggings" />
+            <boots locked="true" unbreakable="true" material="diamond boots" />
+        </kit>
+    </class>
+    <class name="Archer" description="Ranged specialist!" icon="bow">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="stone axe" />
+            <item slot="1" unbreakable="true" material="bow">
+                <enchantment level="2">power</enchantment>
+                <enchantment level="1">infinity</enchantment>
+            </item>
+            <item slot="8" material="arrow" />
+            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet" />
+            <chestplate locked="true" unbreakable="true" material="iron chestplate">
+                <enchantment level="3">protection projectile</enchantment>
+            </chestplate>
+            <leggings locked="true" unbreakable="true" material="gold leggings" />
+            <boots locked="true" color="000000" unbreakable="true" material="leather boots" />
+            <effect>speed</effect>
+        </kit>
+    </class>
+    <class name="Assassin" description="Tipped arrows and swiftness!" icon="stone axe">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="iron sword" />
+            <item slot="1" unbreakable="true" material="bow" />
+            <item slot="2" unbreakable="true" material="stone axe" />
+            <item slot="3" amount="3" name="`rLingering Potion of Harming and Weakness" material="lingering potion">
+                <effect>harm</effect>
+                <effect duration="3">weakness</effect>
+            </item>
+            <item slot="8" amount="8" material="tipped arrow">
+                <effect duration="3" amplifier="2">slowness</effect>
+                <effect duration="3">weakness</effect>
+            </item>
+            <helmet locked="true" unbreakable="true" material="gold helmet" />
+            <chestplate locked="true" color="000000" unbreakable="true" material="leather chestplate">
+                <enchantment level="1">protection</enchantment>
+            </chestplate>
+            <leggings locked="true" unbreakable="true" material="chainmail leggings" />
+            <boots locked="true" color="000000" unbreakable="true" material="leather boots" />
+            <effect amplifier="2">speed</effect>
+        </kit>
+    </class>
+    <class name="Blocker" description="Tough and heavy!" icon="shield">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="iron axe" />
+            <item slot="1" name="`rPotion of Rage" material="potion">
+                <effect level="1" duration="4">strength</effect>
+                <effect level="2" duration="4">regeneration</effect>
+            </item>
+            <item slot="slot.weapon.offhand" unbreakable="true" material="shield" />
+            <helmet locked="true" unbreakable="true" material="diamond helmet" />
+            <chestplate locked="true" unbreakable="true" material="diamond chestplate" />
+            <leggings locked="true" unbreakable="true" material="iron leggings" />
+            <boots locked="true" unbreakable="true" material="iron boots" />
+            <effect amplifier="-1">health boost</effect>
+            <effect>absorption</effect>
+            <effect>slowness</effect>
+        </kit>
+    </class>
+    <class name="Pyro" description="Set foes on fire!" icon="fireball">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="stone sword">
+                <enchantment level="1">fire aspect</enchantment>
+            </item>
+            <item slot="1" unbreakable="true" material="bow">
+                <enchantment level="1">flame</enchantment>
+            </item>
+            <item slot="8" amount="8" material="arrow" />
+            <helmet locked="true" unbreakable="true" material="iron helmet" />
+            <chestplate locked="true" color="000000" unbreakable="true" material="leather chestplate">
+                <enchantment level="1">protection</enchantment>
+            </chestplate>
+            <boots locked="true" unbreakable="true" material="gold boots" />
+            <effect>fire resistance</effect>
+        </kit>
+    </class>
+    <class name="Scientist" description="Lingering effects and experiments!" icon="lingering potion">
+        <kit parents="global-kit">
+            <item slot="0" unbreakable="true" material="gold axe" />
+            <item slot="1" unbreakable="true" material="bow" />
+            <item slot="2" name="`rLingering Potion of Poison" material="lingering potion">
+                <effect duration="3" amplifier="2">poison</effect>
+            </item>
+            <item slot="3" amount="2" name="`rLingering Potion of Harming" material="lingering potion">
+                <effect amplifier="2">harm</effect>
+            </item>
+            <item slot="4" amount="3" name="`rLingering Potion of Slowness" material="lingering potion">
+                <effect duration="11">slowness</effect>
+            </item>
+            <item slot="5" amount="3" name="`rSplash Potion of Healing" material="splash potion">
+                <effect amplifier="2">heal</effect>
+            </item>
+            <item slot="6" material="milk bucket" />
+            <item slot="8" amount="12" material="spectral arrow" />
+            <helmet locked="true" color="000000" unbreakable="true" material="leather helmet" />
+            <chestplate locked="true" unbreakable="true" material="chainmail chestplate">
+                <enchantment level="1">protection projectile</enchantment>
+            </chestplate>
+            <boots locked="true" color="000000" unbreakable="true" material="leather boots" />
+            <effect amplifier="2">speed</effect>
+            <effect>absorption</effect>
+        </kit>
+    </class>
+    <class name="Necromancer" description="Blood trails and flaming skulls!" icon="bone">
+        <kit parents="global-kit">
+            <item slot="0" projectile="shulker-gun" name="`rShrieking Bone (`aRight-click`r)" material="bone">
+                <attribute slot="weapon.mainhand" operation="add" amount="4">generic.attackDamage</attribute>
+            </item>
+            <item slot="1" amount="24" material="chorus fruit" />
+            <helmet locked="true" unbreakable="true" material="gold helmet" />
+            <chestplate locked="true" unbreakable="true" material="gold chestplate">
+                <enchantment level="1">thorns</enchantment>
+            </chestplate>
+            <leggings locked="true" unbreakable="true" material="chainmail leggings" />
+            <boots color="993333" locked="true" unbreakable="true" material="leather boots" />
+        </kit>
+    </class><!-- Summer Class-->
+    <class name="Vicious Rabbit" description="Vicious bites and levitation - Summer Special!" icon="rabbit foot">
+        <kit parents="global-kit">
+            <item slot="0" material="rabbit foot">
+                <attribute slot="weapon.mainhand" operation="add" amount="3">generic.attackDamage</attribute>
+            </item>
+            <item slot="1" grenade="true" grenade-power="1" amount="24" material="egg" />
+            <item slot="2" amount="3" name="`rLingering Potion of Levitation" material="lingering potion">
+                <effect duration="1" amplifier="9">levitation</effect>
+            </item>
+            <helmet locked="true" color="C0CCCB" unbreakable="true" material="leather helmet" />
+            <chestplate locked="true" unbreakable="true" material="chainmail chestplate" />
+            <leggings locked="true" color="C0CCCB" unbreakable="true" material="leather leggings" />
+            <boots locked="true" color="C0CCCB" unbreakable="true" material="leather boots">
+                <enchantment level="5">protection fall</enchantment>
+            </boots>
+            <double-jump />
+        </kit>
+    </class><!-- Winter Class
+    <class name="Santa" description="Exploding gifts and levitation - Christmas Special!" icon="snow ball">
+        <kit parents="global-kit">
+            <head slot="0" projectile="tnt-gun" uuid="6d46f5a1-a833-414c-ba0d-9842cb59316e">
+                <skin>eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU2MTJkYzdiODZkNzFhZmMxMTk3MzAxYzE1ZmQ5NzllOWYzOWU3YjFmNDFkOGYxZWJkZjgxMTU1NzZlMmUifX19</skin>
+            </head>
+            <item slot="1" projectile="snowball-gun" amount="24" material="snow ball" />
+            <item slot="2" amount="3" name="`rLingering Potion of Levitation" material="lingering potion">
+                <effect duration="5">levitation</effect>
+            </item>
+            <helmet locked="true" color="993333" unbreakable="true" material="leather helmet" />
+            <chestplate locked="true" unbreakable="true" material="gold chestplate" />
+            <leggings locked="true" color="993333" unbreakable="true" material="leather leggings" />
+            <boots locked="true" color="993333" unbreakable="true" material="leather boots" />
+        </kit>
+    </class> -->
+</classes>
+<kits>
+    <kit id="global-kit">
+        <game-mode>adventure</game-mode>
+        <potion duration="3" amplifier="5">resistance</potion>
+    </kit>
+    <kit id="kill-reward">
+        <item material="golden apple" />
+        <potion duration="3" amplifier="3">regeneration</potion>
+        <item amount="12">arrow</item>
+    </kit>
+    <kit id="witch-effects">
+        <effect duration="3">wither</effect>
+        <effect duration="5" level="2">weakness</effect>
+    </kit>
+</kits>
+<projectiles>
+    <projectile id="tnt-gun" name="exploding gift" projectile="TNTPrimed" velocity="1" damage="8" throwable="false" cooldown="3s" />
+    <projectile id="snowball-gun" name="snowball" projectile="Snowball" velocity="1" damage="8" throwable="true" cooldown="0s" />
+    <projectile id="shulker-gun" name="flaming skull" projectile="WitherSkull" velocity="1" damage="6" throwable="false" cooldown="1s" click="right">
+        <effect duration="-1" amplifier="10">wither</effect>
+    </projectile>
+</projectiles>
+<kill-rewards>
+    <kill-reward kit="kill-reward" />
+</kill-rewards>
+<!-- Soldier Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Soldier</class>
+    </filter>
+    <item amount="2" material="arrow" />
+</kill-rewards>
+<!-- Archer Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Archer</class>
+    </filter>
+    <item amount="8" material="arrow" />
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Archer</class>
+            <kill-streak count="3" repeat="true" />
+        </all>
+    </filter>
+    <item amount="3" material="tipped arrow">
+        <effect>harm</effect>
+    </item>
+</kill-rewards>
+<!-- Assassin Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Assassin</class>
+    </filter>
+    <item amount="2" material="tipped arrow">
+        <effect duration="3" amplifier="2">slowness</effect>
+        <effect duration="3">weakness</effect>
+    </item>
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Assassin</class>
+            <kill-streak count="3" repeat="true" />
+        </all>
+    </filter>
+    <item amount="1" name="`rLingering Potion of Harming and Weakness" material="lingering potion">
+        <effect>harm</effect>
+        <effect duration="3">weakness</effect>
+    </item>
+</kill-rewards>
+<!-- Blocker Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Blocker</class>
+            <kill-streak count="4" repeat="true" />
+        </all>
+    </filter>
+    <item name="`rPotion of Rage" material="potion">
+        <effect level="1" duration="4">strength</effect>
+        <effect level="2" duration="4">regeneration</effect>
+    </item>
+</kill-rewards>
+<!-- Pyro Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Pyro</class>
+    </filter>
+    <item amount="6" material="arrow" />
+</kill-rewards>
+<!-- Scientist Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Scientist</class>
+    </filter>
+    <item amount="3" material="spectral arrow" />
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Scientist</class>
+            <kill-streak count="2" repeat="true" />
+        </all>
+    </filter>
+    <item amount="2" name="`rLingering Potion of Harming" material="lingering potion">
+        <effect amplifier="2">harm</effect>
+    </item>
+</kill-rewards>
+<!-- Necromancer Kill Rewards -->
+<kill-rewards>
+    <filter>
+        <class>Necromancer</class>
+    </filter>
+    <item amount="6" material="chorus fruit" />
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Necromancer</class>
+            <kill-streak count="3" repeat="true" />
+        </all>
+    </filter>
+    <item amount="3" name="`rLingering Potion of Levitation" material="lingering potion">
+        <effect duration="1" amplifier="6">levitation</effect>
+    </item>
+</kill-rewards>
+<!-- Rabbit Kill Rewards (Summer only) -->
+<kill-rewards>
+    <filter>
+        <class>Vicious Rabbit</class>
+    </filter>
+    <item grenade="true" grenade-power="1" amount="6" material="egg" />
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+        <class>Vicious Rabbit</class>
+            <kill-streak count="3" repeat="true" />
+        </all>
+    </filter>
+    <item amount="1" name="`rLingering Potion of Levitation" material="lingering potion">
+        <effect duration="1" amplifier="9">levitation</effect>
+    </item>
+</kill-rewards>
+<!-- Santa Kill Rewards (Winter only)
+<kill-rewards>
+    <filter>
+        <class>Santa</class>
+    </filter>
+    <item projectile="snowball-gun" amount="6" material="snow ball" />
+</kill-rewards>
+<kill-rewards>
+    <filter>
+        <all>
+            <class>Santa</class>
+            <kill-streak count="3" repeat="true" />
+        </all>
+    </filter>
+    <item amount="1" name="`rLingering Potion of Levitation" material="lingering potion">
+        <effect duration="5">levitation</effect>
+    </item>
+</kill-rewards> -->
+<item-mods>
+    <rule>
+        <match>
+            <material>skull item</material>
+        </match>
+        <modify name="`rExploding Gift" />
+    </rule>
+</item-mods>
+<regions>
+    <apply block="allowed-blocks" use="use" />
+</regions>
+<block-drops trample="true">
+    <rule trample="true">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <class>Necromancer</class>
+                <any>
+                    <all>
+                        <sprinting />
+                        <random>0.6</random>
+                    </all>
+                    <all>
+                        <walking />
+                        <random>0.4</random>
+                    </all>
+                    <all>
+                        <crouching />
+                        <random>0.2</random>
+                    </all>
+                </any>
+                <any>
+                    <material>grass</material>
+                    <material>smooth brick</material>
+                    <material>gravel</material>
+                    <material>stone</material>
+                    <material>double step</material>
+                    <material>wood</material>
+                    <material>stained clay</material>
+                    <material>cobblestone</material>
+                </any>
+            </all>
+        </filter>
+        <replacement>redstone block</replacement>
+    </rule>
+    <rule trample="true" kit="witch-effects">
+        <filter>
+            <all>
+                <cause>trample</cause>
+                <material>redstone block</material>
+                <not>
+                    <class>Necromancer</class>
+                </not>
+            </all>
+        </filter>
+    </rule>
+</block-drops>
+<renewables>
+    <renewable interval="6s" grow="true" particles="true">
+        <renew-filer>
+            <any>
+                <material>grass</material>
+                <material>smooth brick</material>
+                <material>gravel</material>
+                <material>stone</material>
+                <material>double step</material>
+                <material>wood</material>
+                <material>stained clay</material>
+                <material>cobblestone</material>
+            </any>
+        </renew-filer>
+        <replace-filter>
+            <material>redstone block</material>
+        </replace-filter>
+    </renewable>
+</renewables>
+<itemremove>
+    <item>stone sword</item>
+    <item>stone axe</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>iron sword</item>
+    <item>iron axe</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>gold sword</item>
+    <item>gold axe</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>diamond sword</item>
+    <item>diamond axe</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>tipped arrow</item>
+    <item>spectral arrow</item>
+    <item>shield</item>
+    <item>potion</item>
+    <item>splash potion</item>
+    <item>lingering potion</item>
+    <item>glass bottle</item>
+    <item>bucket</item>
+    <item>milk bucket</item>
+    <item>skull item</item>
+    <item>snow ball</item>
+    <item>seeds</item>
+    <item>bone</item>
+    <item>chorus fruit</item>
+    <item>rabbit foot</item>
+    <item>egg</item>
+    <item>stone button</item>
+    <item>wood button</item>
+</itemremove>
+<filters>
+    <not id="use">
+        <any>
+            <material>trap door</material>
+            <material>armor stand</material>
+            <material>dropper</material>
+            <material>hopper</material>
+            <material>dispenser</material>
+        </any>
+    </not>
+    <any id="allowed-blocks">
+        <material>redstone block</material>
+        <material>grass</material>
+        <material>smooth brick</material>
+        <material>gravel</material>
+        <material>stone</material>
+        <material>double step</material>
+        <material>wood</material>
+        <material>stained clay</material>
+        <material>cobblestone</material>
+    </any>
+</filters>
+<disabledamage>
+    <damage>suffocation</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<tnt>
+    <instantignite>on</instantignite>
+    <blockdamage>off</blockdamage>
+    <fuse>2s</fuse>
+    <power>4</power>
+    <licensing>false</licensing>
+</tnt>
+</map>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Aerst Grove</name>
+<version>1.0</version>
+<objective>Be the team with the most kills after 10 minutes!</objective>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<teams>
+    <team color="blue" max="30">Blue</team>
+    <team color="dark red" max="30">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="50">
+        <cuboid min="-47,5,-17" max="-43,5,-13"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="140">
+        <cuboid min="-47,5,130" max="-43,5,126"/>
+    </spawn>
+    <default angle="-57.5,24,56.5">
+        <cylinder base="-60.5,22,56.5" radius="3" height="1"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0">stone sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" amount="32">cooked fish</item>
+        <item slot="3">golden apple</item>
+        <leggings unbreakable="true" locked="true">iron leggings</leggings>
+        <potion duration="oo">speed</potion>
+        <potion duration="3">heal</potion>
+        <potion duration="5">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <chestplate color="A54C4C" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <helmet color="A54C4C" unbreakable="true" locked="true">leather helmet</helmet>
+        <boots color="A54C4C" unbreakable="true" enchantment="protection fall:4" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <chestplate color="6678C5" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <helmet color="6678C5" unbreakable="true" locked="true">leather helmet</helmet>
+        <boots color="6678C5" unbreakable="true" enchantment="protection fall:4" locked="true">leather boots</boots>
+    </kit>
+    <kit name="kill-heal" force="true">
+        <potion duration="4" amplifier="3">regeneration</potion>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-break-natural">
+        <any>
+            <block>leaves</block>
+            <block>long grass</block>
+            <block>red rose</block>
+            <block>yellow flower</block>
+            <block>double plant</block>
+            <block>vine</block>
+            <block>crops</block>
+            <block>potato</block>
+            <block>carrot</block>
+            <block>sugar cane block</block>
+            <block>water lily</block>
+            <block>pumpkin</block>
+            <block>pumpkin stem</block>
+            <block>melon block</block>
+            <block>melon stem</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <apply block-break="only-break-natural" block-place="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+</regions>
+<score>
+    <time>10m</time>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>arrow</item>
+    <item>cooked fish</item>
+    <item>glass bottle</item>
+    <item>seeds</item>
+    <item>wheat</item>
+    <item>potato item</item>
+    <item>poisonous potato</item>
+    <item>golden carrot</item>
+    <item>yellow flower</item>
+    <item>red rose</item>
+    <item>apple</item>
+    <item>melon</item>
+    <item>melon seeds</item>
+    <item>sapling</item>
+    <item>sugar cane</item>
+    <item>water lily</item>
+    <item>pumpkin</item>
+    <item>pumpkin seeds</item>
+</itemremove>
+<killreward>
+    <filter>
+        <kill-streak count="1" repeat="true"/>
+    </filter>
+    <kit name="kill-heal"/>
+</killreward>
+</map>

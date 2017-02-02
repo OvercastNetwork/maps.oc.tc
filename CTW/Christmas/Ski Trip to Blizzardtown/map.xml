@@ -1,0 +1,337 @@
+<map proto="1.4.1">
+<name>Ski Trip to Blizzardtown</name>
+<version>1.2.0</version>
+<objective>Capture the other team's two wools.</objective>
+<authors>
+    <author uuid="f876b863-1ccd-4ae2-acad-8a09e2209e81"/>
+    <!--  _DISTRACTION_  -->
+    <author uuid="af56fc4a-51d2-4a6e-b020-2c6d272b9cbf"/>
+    <!--  Ale  -->
+</authors>
+<contributors>
+    <contributor contribution="Providing a ton of feedback, and essentially helping make this map look its best." uuid="fe3608b7-d105-4029-8800-34b3147065b6"/>
+    <!-- rockymine -->
+    <contributor contribution="Minor help building the middle." uuid="ea04a2d6-e903-4563-9241-586d89cafb06"/>
+    <!-- zacd56 -->
+</contributors>
+<teams>
+    <team id="orange" color="gold" max="32">Orange</team>
+    <team id="purple" color="dark purple" max="32">Purple</team>
+</teams>
+<spawns>
+    <spawn team="orange" kit="orange-kit">
+        <region yaw="-90">
+            <cylinder base="-154,36,0" height="0" radius="0"/>
+        </region>
+    </spawn>
+    <spawn team="purple" kit="purple-kit">
+        <region yaw="90">
+            <cylinder base="154,36,0" height="0" radius="0"/>
+        </region>
+    </spawn>
+    <default yaw="0">
+        <region>
+            <cuboid min="0,78,-1" max="0,78,-1"/>
+        </region>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:2">stone axe</item>
+        <item slot="4" amount="32">cooked fish</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" amount="32">log</item>
+        <item slot="7" amount="32">glass</item>
+        <item slot="8" unbreakable="true">stone spade</item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="5">regeneration</potion>
+    </kit>
+    <kit id="orange-kit" parents="spawn">
+        <helmet unbreakable="true" color="ffa500" material="leather helmet"><enchantment level="1">protection explosions</enchantment></helmet>
+        <chestplate unbreakable="true" color="ffa500" material="leather chestplate"><enchantment level="1">protection explosions</enchantment></chestplate>
+        <leggings unbreakable="true" color="ffa500" material="leather leggings"><enchantment level="1">protection explosions</enchantment></leggings>
+        <boots unbreakable="true" color="ffa500" material="leather boots"><enchantment level="1">protection explosions</enchantment></boots>
+    </kit>
+    <kit id="purple-kit" parents="spawn">
+        <helmet unbreakable="true" color="551a8b" material="leather helmet"><enchantment level="1">protection explosions</enchantment></helmet>
+        <chestplate unbreakable="true" color="551a8b" material="leather chestplate"><enchantment level="1">protection explosions</enchantment></chestplate>
+        <leggings unbreakable="true" color="551a8b" material="leather leggings"><enchantment level="1">protection explosions</enchantment></leggings>
+        <boots unbreakable="true" color="551a8b" material="leather boots"><enchantment level="1">protection explosions</enchantment></boots>
+    </kit>
+    <kit id="guest-kit">
+        <potion duration="oo" amplifier="1">glowing</potion>
+    </kit>
+</kits>
+<wools>
+    <wools team="orange" location="110,30,0">
+        <wool color="blue">
+            <monument><block>-129,36,-4</block></monument>
+        </wool>
+        <wool color="green">
+            <monument><block>-129,36,3</block></monument>
+        </wool>
+    </wools>
+    <wools team="purple" location="-110,30,0">
+        <wool color="red">
+            <monument><block>128,36,3</block></monument>
+        </wool>
+        <wool color="yellow">
+            <monument><block>128,36,-4</block></monument>
+        </wool>
+    </wools>
+</wools>
+<block-drops>
+    <rule wrong-tool="true">
+        <region>
+            <everywhere/>
+        </region>
+        <filter>
+            <material>snow block</material>
+        </filter>
+        <drops>
+            <item material="snow block"/>
+        </drops>
+    </rule>
+</block-drops>
+<kill-reward>
+    <item>golden apple</item>
+</kill-reward>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>stone axe</tool>
+    <tool>stone spade</tool>
+</toolrepair>
+<itemremove>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>log</item>
+    <item>wood</item>
+    <item>glass</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>redstone</item>
+    <item>map</item>
+    <item>item frame</item>
+    <item>snow ball</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<disabledamage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <team id="only-orange">orange</team>
+    <team id="only-purple">purple</team>
+    <all id="only-orange-wr">
+        <team>orange</team>
+        <filter id="wool-room-break"/>
+    </all>
+    <all id="only-purple-wr">
+        <team>purple</team>
+        <filter id="wool-room-break"/>
+    </all>
+    <material id="only-iron">iron block</material>
+    <not id="wool-room-break">
+        <any>
+            <material>chest</material>
+            <material>beacon</material>
+            <material>stained glass</material>
+            <material>iron block</material>
+            <material>snow block</material>
+        </any>
+    </not>
+    <any id="allow-certain-blocks">
+        <material>cooked fish</material>
+        <material>golden apple</material>
+        <material>log</material>
+        <material>wood</material>
+        <material>glass</material>
+        <material>chest</material>
+        <material>beacon</material>
+        <material>stained glass</material>
+        <material>iron block</material>
+        <material>snow block</material>
+        <material>snow</material>
+    </any>
+</filters>
+<tnt>
+    <instantignite>on</instantignite>
+    <fuse>1s</fuse>
+    <licensing>false</licensing>
+    <blockdamage>true</blockdamage>
+</tnt>
+<regions>
+    <intersect id="yellow-wool-room">
+        <half origin="-148,0,-79" normal="-1,0,-1"/>
+    </intersect>
+    <intersect id="red-wool-room">
+        <half origin="-148,0,79" normal="-1,0,1"/>
+    </intersect>
+    <intersect id="green-wool-room">
+        <half origin="148,0,79" normal="1,0,1"/>
+    </intersect>
+    <intersect id="blue-wool-room">
+        <half origin="148,0,-79" normal="1,0,-1"/>
+    </intersect>
+    <union id="orange-side-rooms">
+        <region id="yellow-wool-room"/>
+        <region id="red-wool-room"/>
+    </union>
+    <union id="purple-side-rooms">
+        <region id="green-wool-room"/>
+        <region id="blue-wool-room"/>
+    </union>
+    <union id="all-wool-rooms">
+        <region id="orange-side-rooms"/>
+        <region id="purple-side-rooms"/>
+    </union><!--
+    <apply filter="only-orange" lend-kit="guest-kit">
+        <region>
+            <rectangle min="oo,-oo" max="31,oo"/>
+        </region>
+    </apply>
+    <apply filter="only-purple" lend-kit="guest-kit">
+        <region>
+            <rectangle min="-31,-oo" max="-oo,oo"/>
+        </region>
+    </apply>-->
+    <apply block="allow-certain-blocks" use="never">
+        <region>
+            <union>
+                <cuboid min="81,30,1" max="80,32,-1"/>
+                <cuboid min="79,30,1" max="78,32,-1"/>
+                <cuboid min="80,30,1" max="79,32,2"/>
+                <cuboid min="80,30,-1" max="79,32,-2"/>
+                <cuboid min="-81,30,1" max="-80,32,-1"/>
+                <cuboid min="-79,30,1" max="-78,32,-1"/>
+                <cuboid min="-80,30,1" max="-79,32,2"/>
+                <cuboid min="-80,30,-1" max="-79,32,-2"/>
+                
+                <cuboid min="87,33,8" max="86,32,6"/>
+                <cuboid min="87,33,-8" max="86,32,-6"/>
+                
+                <cuboid min="-87,33,8" max="-86,32,6"/>
+                <cuboid min="-87,33,-8" max="-86,32,-6"/>
+                
+                <cuboid min="35,25,6" max="33,24,5"/>
+                <cuboid min="35,25,-6" max="33,24,-5"/>
+                
+                <cuboid min="-35,25,6" max="-33,24,5"/>
+                <cuboid min="-35,25,-6" max="-33,24,-5"/>
+            </union>
+        </region>
+    </apply>
+    <apply use="never">
+        <region>
+            <union>
+                <cuboid min="132,39,1" max="150,38,-1"/>
+                <cuboid min="-132,39,1" max="-150,38,-1"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="never" message="You have reached the build height limit over this area.">
+        <region>
+            <cuboid min="-73,34,-oo" max="73,oo,oo"/>
+        </region>
+    </apply>
+    <apply block="never" message="You have reached the build height limit over this area.">
+        <region>
+            <cuboid min="-31,26,-oo" max="31,oo,oo"/>
+        </region>
+    </apply>
+    <apply block="never" message="You may not build there!">
+        <region>
+            <union>
+                <cuboid min="60,18,1" max="oo,0,-1"/>
+                <cuboid min="63,19,2" max="oo,0,-2"/>
+                <cuboid min="65,19,3" max="oo,0,-3"/>
+                <cuboid min="66,19,4" max="oo,0,-4"/>
+                <cuboid min="67,19,5" max="oo,0,-5"/>
+                <cuboid min="68,19,6" max="oo,0,-6"/>
+                <cuboid min="71,20,6" max="oo,0,-6"/>
+                <!--divider-->
+                <cuboid min="-60,18,1" max="-oo,0,-1"/>
+                <cuboid min="-63,19,2" max="-oo,0,-2"/>
+                <cuboid min="-65,19,3" max="-oo,0,-3"/>
+                <cuboid min="-66,19,4" max="-oo,0,-4"/>
+                <cuboid min="-67,19,5" max="-oo,0,-5"/>
+                <cuboid min="-68,19,6" max="-oo,0,-6"/>
+                <cuboid min="-71,20,6" max="-oo,0,-6"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="always">
+        <region>
+            <union>
+                <rectangle min="-31,-47" max="31,-22"/>
+                <rectangle min="-31,47" max="31,22"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="only-purple-wr" enter="only-purple" message="`7You may not do that!">
+        <region>
+            <region id="orange-side-rooms"/>
+        </region>
+    </apply>
+    <apply block="only-orange-wr" enter="only-orange" message="`7You may not do that!">
+        <region>
+            <region id="purple-side-rooms"/>
+        </region>
+    </apply>
+    <apply block-break="wool-room-break" message="`7You may not destroy `snow`7, `6chests`7, `fbeacons`7, or `astained glass `7within the wool rooms!">
+        <region>
+            <region id="all-wool-rooms"/>
+        </region>
+    </apply>
+    <apply block-place="never" block-break="only-iron" message="`7You may only break the `fIron Blocks `7at spawn!">
+        <region>
+            <union>
+                <circle center="-141,0" radius="16"/>
+                <circle center="141,0" radius="16"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="never" message="You may not edit this area!">
+        <region>
+            <union>
+                <rectangle min="-89,4" max="-128,-4"/>
+                <rectangle min="89,4" max="128,-4"/>
+            </union>
+        </region>
+    </apply>
+    <apply enter="only-purple" message="`7You may not enter the `5Purple Team`7's spawn bridge or spawn lodge!">
+        <region>
+            <union>
+                <circle center="141,0" radius="16"/>
+                <rectangle min="89,4" max="128,-4"/>
+            </union>
+        </region>
+    </apply>
+    <apply enter="only-orange" message="`7You may not enter the `6Orange Team`7's spawn bridge or spawn lodge!">
+        <region>
+            <union>
+                <circle center="-141,0" radius="16"/>
+                <rectangle min="-89,4" max="-128,-4"/>
+            </union>
+        </region>
+    </apply>
+    <apply block="no-void" message="You may not build or destroy blocks outside the map!" region="everywhere"/>
+</regions>
+<crafting>
+    <disable>flint and steel</disable>
+    <disable>boat</disable>
+</crafting>
+<timelock>on</timelock>
+<maxbuildheight>66</maxbuildheight>
+</map>

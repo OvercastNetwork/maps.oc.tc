@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Arcane Sanctuary</name>
+<version>1.0.4</version>
+<objective>Be the team with the most kills after 10 minutes</objective>
+<phase>development</phase>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<contributors>
+    <contributor uuid="9929437a-9b7d-4d7a-b05d-e22fe93ac042" contribution="XML Coding"/> <!-- triplezko -->
+    <contributor uuid="aad7dc7b-5b2b-4eb5-bf14-cfa6c1d09eef" contribution="Trade system"/> <!-- neseril -->
+</contributors>
+<teams>
+    <team color="blue" max="40">Blue</team>
+    <team color="dark red" max="40">Red</team>
+</teams>
+<kits>
+    <kit name="scorebox-pre">
+        <potion duration="5" amplifier="4">heal</potion>
+        <item slot="8" amount="5">ghast tear</item>
+    </kit>
+    <kit name="scorebox-post" parents="scorebox-pre"/>
+    <kit name="heal">
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="main" parents="heal">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="3">ghast tear</item>
+        <item slot="4" amount="16">apple</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="8" amount="64">arrow</item>
+        <potion duration="10" amplifier="2">speed</potion>
+    </kit>
+    <kit name="red" parents="main">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>    
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="main">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="no-dispenser">
+        <deny>
+            <block>dispenser</block>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all" use="no-dispenser">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the red base!">
+        <intersect>
+            <cuboid min="-297,37,-913" max="-293,67,-894"/>
+            <cuboid min="-315,37,-909" max="-260,67,-901"/>
+        </intersect>
+        <cuboid min="-259,39,-898" max="-237,68,-912"/>
+        <cuboid min="-292,38,-893" max="-302,66,-848"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the blue base!">
+        <intersect>
+            <cuboid min="-293,37,-1025" max="-297,67,-1044"/>
+            <cuboid min="-315,38,-1028" max="-260,67,-1037"/>
+        </intersect>
+        <cuboid min="-298,38,-1045" max="-288,66,-1098"/>
+        <cuboid min="-259,39,-1026" max="-237,69,-1040"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own scorebox!">
+        <cuboid name="blue-scorebox-outer" min="-452,26,-967" max="-457,oo,-962"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own scorebox!">
+        <cuboid name="red-scorebox-outer" min="-452,26,-970" max="-457,oo,-975"/>
+    </apply>
+    <apply kit="scorebox-post">
+        <cuboid name="blue-scorebox-inner" min="-453,27,-963" max="-456,28,-966"/>
+        <cuboid name="red-scorebox-inner" min="-453,27,-971" max="-456,28,-974"/>
+    </apply>
+</regions>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cylinder name="bluespawn" base="-294.5,39,-1080.5" radius="3" height="0"/>
+    </spawn>
+    <spawn team="red" kit="red" yaw="180">
+        <cylinder name="redspawn" base="-294.5,39,-856.5" radius="3" height="0"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="-190,62,-971" max="-186,62,-967"/>
+    </default>
+</spawns>
+<portals>
+    <portal x="@-317" y="@24" z="@-969" yaw="@-90" pitch="@0">
+        <block>-339.5,48,-968.5</block>
+    </portal>
+    <portal x="@-336" y="@48" z="@-969" yaw="@-90" pitch="@0">
+        <block>-327.5,26,-968.5</block>
+    </portal>
+    <portal x="@-294" y="@39" z="@-856" yaw="-180" pitch="@0">
+        <region name="red-scorebox-inner"/>
+    </portal>
+    <portal x="@-294" y="@39" z="@-1080" yaw="0" pitch="@0">
+        <region name="blue-scorebox-inner"/>
+    </portal>
+</portals>
+<mobs>
+    <filter>
+        <spawn>spawner</spawn>
+    </filter>
+</mobs>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>potion</item>
+    <item>arrow</item>
+    <item>golden apple</item>
+</itemremove>
+<score>
+    <time>10m</time>
+    <box value="5" filter="only-red" cooldown="5">
+        <region name="red-scorebox-inner"/>
+    </box>
+    <box value="5" filter="only-blue" cooldown="5">
+        <region name="blue-scorebox-inner"/>
+    </box>
+</score>
+<killreward>
+    <item amount="4">ghast tear</item>
+</killreward>
+<multitrade/>
+</map>

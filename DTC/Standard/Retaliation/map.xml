@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Retaliation</name>
+<version>1.0.7</version>
+<objective>Destroy the enemy team's core to win!</objective>
+<authors>
+    <author uuid="c65e66b3-e932-4b33-b907-fe4916806076"/> <!-- Draco_Rogue -->
+</authors>
+<contributors>
+    <contributor uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f" contribution="Map Support and Minor Help"/> <!-- Veiyl -->
+    <contributor uuid="8d812ffa-e5f1-4658-bb47-a18b785ccd27" contribution="Feedback and Support"/> <!-- HardstyleRaver2 -->
+</contributors>
+<teams>
+    <team color="blue" max="30">Blue</team>
+    <team color="dark red" max="30">Red</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">diamond sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">cooked fish</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64">ladder</item>
+        <item slot="7" amount="64">log</item>
+        <item slot="8" amount="3">golden apple</item>
+        <item slot="27" amount="64">arrow</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="29" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <chestplate enchantment="protection explosions:2;protection projectile:1">chainmail chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <boots color="993333">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <boots color="334CB2">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="-90">
+        <point>-104,28,0</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <point>124,28,0</point>
+    </spawn>
+    <default yaw="180">
+        <cuboid min="9,5,45" max="11,5,47"/>
+    </default>
+</spawns>
+<timelock>on</timelock>
+<maxbuildheight>55</maxbuildheight>
+<itemremove>
+    <item>leather boots</item>
+    <item>chainmail chestplate</item>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>ladder</item>
+    <item>cooked fish</item>
+    <item>golden apple</item>
+    <item>shears</item>
+</itemremove>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>diamond pickaxe</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<cores material="obsidian" leak="3">
+    <core team="red">
+        <cuboid min="-26,10,-3" max="-33,16,4"/>
+    </core>
+    <core team="blue">
+        <cuboid min="54,10,4" max="47,16,-3"/>
+    </core>
+</cores>
+<filters>
+    <filter name="only-red" parents="deny-all">
+        <allow>
+            <team>red</team>
+        </allow>
+    </filter>
+    <filter name="only-blue" parents="deny-all">
+        <allow>
+            <team>blue</team>
+        </allow>
+    </filter>
+    <filter name="allow-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+        </allow>
+    </filter>
+</filters>
+<regions>
+    <apply enter="deny-all" message="You may not enter this area">
+        <rectangle min="17,53" max="4,40"/>
+    </apply>
+    <apply block-place="deny-all" block-break="allow-iron" message="You can only break iron block in the spawn!">
+        <rectangle min="-107,-34" max="-53,35"/>
+        <rectangle min="74,-35" max="128,35"/>
+    </apply>
+    <apply enter="only-red" message="You cannot enter the enemy spawn!">
+        <rectangle min="-107,-34" max="-53,35"/>
+    </apply>
+    <apply enter="only-blue" message="You cannot enter the enemy spawn!">
+        <rectangle min="74,-35" max="128,35"/>
+    </apply>
+    <apply block="deny-all" message="You cannot build outside the map!">
+        <negative>
+            <rectangle min="127.5,35.5" max="-107.5,-34.5"/>
+        </negative>
+    </apply>
+</regions>
+<tutorial>
+    <stage title="Destroy the Core">
+        <message>
+            <line>`rThe objective is to destroy the enemy's `cobsidian core`r.</line>
+            <line>`rUse the items at spawn-such as `cTNT`r-to use against the enemy.</line>
+            <line>`rGet them while they're hot, because they will run out quick!</line>
+        </message>
+        <teleport>
+            <point yaw="-160" pitch="5">95,7,7</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Supplies">
+        <message>
+            <line>`rBoth in-front of the spawn and above the stairs, you will find iron.</line>
+            <line>`rBut be careful, the `cenemy team `rcan blow up your supplies!</line>
+        </message>
+        <teleport>
+            <point yaw="155" pitch="30">82,26,21</point>
+        </teleport>
+    </stage>
+    <stage title="Diamond Supplies">
+        <message>
+            <line>`rIn the top and bottom layers of your base, `adiamonds `rare near the front lines!</line>
+            <line>`rThey run out quickly, so hurry!</line>
+        </message>
+        <teleport>
+            <point yaw="30" pitch="10">1,17,-42</point>
+        </teleport>
+    </stage>
+    <stage title="Core">
+        <message>
+            <line>`rIn the center of your base is the `cobsidian core`r.</line>
+            <line>`rProtect yours, and leak the enemy's!</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="45">-18,31,1</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

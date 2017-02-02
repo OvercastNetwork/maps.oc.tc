@@ -1,0 +1,112 @@
+<map proto="1.4.0">
+    <name>Paradiso</name>
+    <version>1.1.2</version>
+    <authors>
+        <author uuid="c26e7a7f-b4ce-4ebc-ac4d-f60691915d23" />
+        <!--  KRo_oOH  -->
+        <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" />
+        <!--  GoldenOre  -->
+    </authors>
+    <contributors>
+        <contributor uuid="dff980ed-9f69-491e-b79c-30c21350baf2" contribution="the trees" />
+        <!--  DoomRobotBoy  -->
+    </contributors>
+    <objective>Be the player with the most kills after 8 minutes. There are no teams, so watch your back!</objective>
+    <score>
+        <kills>1</kills>
+    </score>
+    <time>8m</time>
+    <rage />
+    <respawn spectate="true" />
+    <players min="2" max="40" max-overfill="44" show-name-tags="false" />
+    <spawns>
+        <spawn kit="players" spread="true">
+            <regions>
+                <point yaw="-30">-56.7,20,-69.5</point>
+                <point yaw="-129">-70.5,11,-39.5</point>
+                <point yaw="-90">-89.5,26,-12.5</point>
+                <point yaw="-107">-101.5,23,33.5</point>
+                <point yaw="-129">-75.5,9,57.5</point>
+                <point yaw="-160">-48.5,17,68.5</point>
+                <point yaw="159">56.5,20,70.5</point>
+                <point yaw="55">72.5,11,39.5</point>
+                <point yaw="90">91.5,26,13.5</point>
+                <point yaw="70">102.5,23,-32.5</point>
+                <point yaw="48">75.5,9,-55.5</point>
+                <point yaw="25">49.5,17,-67.5</point>
+                <point yaw="55">3.5,26,-1.5</point>
+                <point yaw="-180">-2.5,12,37.5</point>
+                <point yaw="-3">1.5,14,-37.5</point>
+            </regions>
+        </spawn>
+        <default>
+            <regions>
+                <cylinder base="0.5,32,0.5" radius="2" height="0" />
+            </regions>
+        </default>
+    </spawns>
+    <kits>
+        <kit id="players" force="true">
+            <item slot="0" enchantment="damage all:10">iron sword</item>
+            <item slot="1" enchantment="arrow damage:10">bow</item>
+            <item slot="2">arrow</item>
+            <item slot="3" amount="3">water lily</item>
+            <potion duration="2" amplifier="20">damage resistance</potion>
+            <potion duration="oo" amplifier="1">speed</potion>
+            <potion duration="oo" amplifier="1">jump</potion>
+            <helmet locked="true" unbreakable="true" damage="0">leaves</helmet>
+            <chestplate locked="true" unbreakable="true" color="667F33">leather chestplate</chestplate>
+            <double-jump power="3" recharge-before-landing="true" />
+        </kit>
+    </kits>
+    <killreward>
+        <item>arrow</item>
+    </killreward>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+    <itemremove>
+        <item>chainmail chestplate</item>
+        <item>iron helmet</item>
+        <item>iron ingot</item>
+        <item>diamond boots</item>
+        <item>water lily</item>
+        <item>chest</item>
+        <item>seeds</item>
+        <item>sapling</item>
+        <item>apple</item>
+        <item>arrow</item>
+        <item>red mushroom</item>
+        <item>diamond sword</item>
+        <item>leather chestplate</item>
+        <item>leaves</item>
+    </itemremove>
+    <toolrepair>
+        <tool>iron sword</tool>
+        <tool>bow</tool>
+    </toolrepair>
+    <disabledamage>
+        <damage>fall</damage>
+        <damage>suffocation</damage>
+    </disabledamage>
+    <filters>
+        <any id="lily">
+            <material>water lily</material>
+        </any>
+    </filters>
+    <regions>
+        <apply block="lily">
+            <everywhere />
+        </apply>
+        <apply velocity="-6, 2, 0">
+            <region>
+                <cylinder base="83.5,22,13.5" radius="2" height="3" />
+            </region>
+        </apply>
+        <apply velocity="6, 2, 0">
+            <region>
+                <cylinder base="-82.5,22,-12.5" radius="2" height="3" />
+            </region>
+        </apply>
+    </regions>
+</map>

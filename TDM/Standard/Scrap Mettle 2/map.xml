@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Scrap Mettle 2</name>
+<version>1.0</version>
+<objective>Score by killing enemies and running into the score boxes</objective>
+<authors>
+    <author uuid="4a0780d3-d9c4-41c4-a816-e077a36f27c9"/> <!-- KasiCrafter -->
+</authors>
+<teams>
+    <team color="dark red" max="50">Red</team>
+    <team color="blue" max="50">Blue</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="180">
+            <region name="red-spawn"/>
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="0">
+            <region name="blue-spawn"/>
+        </regions>
+    </spawn>
+    <default kit="all">
+        <regions angle="0.5,40,0.5">
+            <region name="observer-spawn"/>
+        </regions>
+    </default>            
+</spawns>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<regions>
+    <cuboid name="playable" min="-37,0,-193" max="38,37,194"/>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-23,17,-181" max="24,18,-175"/>
+        <cuboid name="blue-spawn" min="-23,17,176" max="24,18,182"/>
+        <cuboid name="observer-spawn" min="-10,38,-6" max="-2,39,7"/>
+    </union>
+    <union name="red-regions">
+        <cuboid name="red-under-score-box" min="-34,2,168" max="35,3,174"/>
+        <cuboid name="red-escape-ceiling" min="-34,30,1" max="34,32,172"/>
+        <union name="red-scoreboxes">
+            <cuboid name="red-left-scorebox" min="5,9,170" max="25,12,175"/>
+            <cuboid name="red-right-scorebox" min="-24,9,170" max="-4,12,175"/>
+        </union>
+        <cuboid name="red-center-scorebox" min="-3,9,170" max="4,12,175"/>
+        <union name="red-score-box-portals">
+            <cuboid name="red-top-score-box-portal" min="-24,9,171" max="25,11,175"/>
+            <cuboid name="red-bottom-score-box-portal" min="-34,2,168" max="35,4,174"/>
+        </union>
+        <union name="red-emergency-exits">
+            <cuboid name="red-left-emergency-exit" min="-33,12,-173" max="-29,14,-172"/>
+            <cuboid name="red-right-emergency-exit" min="30,12,-173" max="34,14,-172"/>
+        </union>
+        <union name="red-roach-motels">
+            <cuboid name="red-front-left-roach-motel" min="19,8,69" max="26,10,80"/>
+            <cuboid name="red-front-right-roach-motel" min="-25,8,69" max="-18,10,80"/>
+            <cuboid name="red-back-right-roach-motel" min="-23,12,127" max="-16,13,138"/>
+            <cuboid name="red-back-left-roach-motel" min="17,13,127" max="24,14,138"/>
+        </union>
+    </union>
+    <union name="blue-regions">
+        <cuboid name="blue-under-score-box" min="-34,2,-173" max="35,3,-167"/>
+        <cuboid name="blue-escape-ceiling" min="-34,30,-172" max="34,32,-1"/>
+        <union name="blue-scoreboxes">
+            <cuboid name="blue-left-scorebox" min="-24,9,-171" max="-4,14,-175"/>
+            <cuboid name="blue-right-scorebox" min="5,9,-171" max="25,14,-175"/>
+        </union>
+        <cuboid name="blue-center-scorebox" min="-3,9,-171" max="4,14,-175"/>
+        <union name="blue-scorebox-portals">
+            <cuboid name="blue-top-score-box-portal" min="-24,9,-174" max="25,11,-169"/>
+            <cuboid name="blue-bottom-score-box-portal" min="-34,2,-173" max="35,4,-167"/>
+        </union>
+        <union name="blue-emergency-exits">
+            <cuboid name="blue-left-emergency-exit" min="30,12,173" max="34,14,174"/>
+            <cuboid name="blue-right-emergency-exit" min="-33,12,173" max="-29,14,174"/>
+        </union>
+        <union name="blue-roach-motels">
+            <cuboid name="blue-front-right-roach-motel" min="19,8,-79" max="25,9,-69"/>
+            <cuboid name="blue-front-left-roach-motel" min="-25,8,-79" max="-18,10,-68"/>
+            <cuboid name="blue-back-right-roach-motel" min="17,12,-137" max="24,14,-126"/>
+            <cuboid name="blue-back-left-roach-motel" min="-23,12,-137" max="-16,14,-126"/>
+        </union>
+    </union>
+    <apply enter="only-red" message="You may not enter this area" region="red-regions"/>
+    <apply enter="only-blue" message="You may not enter this area" region="blue-regions"/>
+    <apply block="deny-all" region="playable"/>
+    <apply kit="iron" region="red-center-scorebox"/>      
+    <apply kit="iron" region="blue-center-scorebox"/>      
+</regions>
+<portals sound="false">
+    <portals filter="only-red">
+        <portal region="red-top-score-box-portal"     destination="red-spawn"/>
+        <portal region="red-left-emergency-exit"      destination="red-spawn"/>
+        <portal region="red-bottom-score-box-portal"  destination="red-spawn"/>
+        <portal region="red-right-emergency-exit"     destination="red-spawn"/>
+        <portal region="red-escape-ceiling"           destination="red-spawn"/>
+    </portals>
+    <portals filter="only-blue">
+        <portal region="blue-bottom-score-box-portal" destination="blue-spawn"/>
+        <portal region="blue-top-score-box-portal"    destination="blue-spawn"/>
+        <portal region="blue-left-emergency-exit"     destination="blue-spawn"/>
+        <portal region="blue-right-emergency-exit"    destination="blue-spawn"/>
+        <portal region="blue-escape-ceiling"          destination="blue-spawn"/>
+    </portals>
+</portals>
+<kits>
+    <kit name="all" potion-particles="false">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="teams" parents="all">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="8" amount="16">arrow</item>
+        <item slot="2" amount="64">cooked beef</item>
+        <item slot="3" damage="8229">potion</item>
+        <item slot="4" damage="8229">potion</item>
+        <item slot="7" amount="1">iron ingot</item>
+        <item slot="35" amount="1">stick</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+        <potion duration="15" amplifier="2">speed</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="cd0000">leather leggings</leggings>
+        <boots unbreakable="true" color="cd0000" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate unbreakable="true" color="0066cc" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <leggings unbreakable="true" color="0066cc">leather leggings</leggings>
+        <boots unbreakable="true" color="0066cc" enchantment="protection fall:2">leather boots</boots>
+    </kit>
+    <kit name="iron" force="true">
+        <helmet unbreakable="true" enchantment="protection environmental">iron helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection environmental">iron chestplate</chestplate>
+        <leggings unbreakable="true" enchantment="protection environmental">iron leggings</leggings>
+        <boots unbreakable="true" enchantment="protection environmental">iron boots</boots>
+    </kit>
+</kits>
+<score>
+    <time>10m</time>
+    <kills>1</kills>
+    <box points="10" filter="only-red" region="red-scoreboxes"/>
+    <box points="10" filter="only-red" region="red-under-score-box"/>
+    <box points="20" filter="only-red" region="red-center-scorebox"/>
+    <box points="10" filter="only-blue" region="blue-scoreboxes"/>
+    <box points="10" filter="only-blue" region="blue-under-score-box"/>
+    <box points="20" filter="only-blue" region="blue-center-scorebox"/>
+</score>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>iron sword</item>
+    <item>iron spade</item>
+    <item>iron pickaxe</item>
+    <item>iron axe</item>
+    <item>iron hoe</item>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>glass bottle</item>
+    <item>minecart</item>
+    <item>rails</item>
+    <item>cauldron</item>
+    <item>iron door</item>
+    <item>bucket</item>
+    <item>shears</item>
+    <item>iron fence</item>
+    <item>cooked beef</item>
+    <item>snow block</item>
+</itemremove>
+<killreward>
+    <item>iron ingot</item>
+</killreward>
+</map>

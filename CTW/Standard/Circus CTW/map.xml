@@ -1,0 +1,195 @@
+<map proto="1.3.3">
+<name>Circus CTW</name>
+<version>1.2.5</version>
+<objective>Capture the wools before the other team does!</objective>
+<authors>
+    <author uuid="cf1b2da8-3718-45a9-8836-bb70b0628773"/> <!-- Andruew -->
+    <author uuid="2fb11a11-1a1d-4b31-a7ba-2707a9ca9906"/> <!-- elego123 -->
+    <author uuid="6bec5c3a-4934-4b19-9aa8-c7c569820f7d"/> <!-- xCLAFx -->
+    <author uuid="621b2aa8-4e5f-4ed8-bd36-0ae2f8952a06"/> <!-- thestrangeboy1 -->
+</authors>
+<contributors>
+    <contributor uuid="2a38bb11-63f6-4a89-941c-adb7c596c69a"/> <!-- BebardishXD -->
+    <contributor uuid="1317ca04-983e-4c88-8849-265e0d3ae4b7"/> <!-- xKingOfAllx -->
+    <contributor uuid="f991e21b-1fec-40e5-84fc-e7c29da97d4e"/> <!-- goldbolts -->
+    <contributor uuid="5519d739-24ff-42a1-8f0e-cbe9830cb0fc"/> <!-- BigBadLoser -->
+</contributors>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1" unbreakable="true">bow</item>
+        <item slot="2" enchantment="dig speed:1" unbreakable="true">iron pickaxe</item>
+        <item slot="3" unbreakable="true">gold axe</item>
+        <item slot="4" amount="64" name="Funnel Cake">pumpkin pie</item>
+        <item slot="5" amount="64" damage="1">wood</item>
+        <item slot="32" amount="32" damage="1">wood</item>
+        <item slot="6" amount="32">glass</item>
+        <item slot="28">arrow</item>
+        <potion duration="5" amplifier="3">heal</potion>
+        <potion duration="5" amplifier="3">damage resistance</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="spawn" yaw="-180">
+        <cylinder base="1260.5,6.5,556.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="0">
+        <cylinder base="1260.5,6.5,463.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="spawn" yaw="180">
+        <cylinder base="1372.5,6.5,556.5" radius="2" height="0"/>
+    </spawn>
+    <spawn team="blue" kit="spawn" yaw="0">
+        <cylinder base="1372.5,6.5,463.5" radius="2" height="0"/>
+    </spawn>
+    <default yaw="180">
+        <cuboid name="defaultspawn" min="1315,58,558" max="1317,58,556"/>
+    </default>
+</spawns>
+<regions>
+    <union name="redspawntents">
+        <rectangle name="redspawntent1" min="1251,532" max="1270,566"/>
+        <rectangle name="redspawntent2" min="1251,454" max="1270,488"/>
+    </union>
+    <union name="bluespawntents">
+        <rectangle name="bluespawntent1" min="1363,532" max="1382,566"/>
+        <rectangle name="bluespawntent2" min="1363,454" max="1382,488"/>
+    </union>
+    <!-- Red Wool Rooms (Wools red need to get) -->
+    <union name="redwoolrooms">
+        <rectangle name="orangewool" min="1448,490" max="1466,468"/>
+        <rectangle name="yellowwool" min="1448,552" max="1466,529"/>
+    </union>
+    <!-- Blue Wool Rooms (Wools blue need to get) -->
+    <union name="bluewoolrooms">
+        <rectangle name="purplewool" min="1185,529" max="1167,551"/>
+        <rectangle name="cyanwool" min="1185,468" max="1167,490"/>
+    </union>
+    <apply block="deny-void" message="You may not build in the void!">
+        <negative>
+            <rectangle min="1303,536" max="1330,519"/>
+            <rectangle min="1303,501" max="1330,484"/>
+        </negative>
+    </apply>
+    <apply block="only-red-w" use="only-red-usage">
+        <region name="redwoolrooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+        <region name="redwoolrooms"/>
+    </apply>
+    <apply block="only-blue-w" use="only-blue-usage">
+        <region name="bluewoolrooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+        <region name="bluewoolrooms"/>
+    </apply>
+    <apply block="deny-all" message="You may not modify the spawn!">
+        <region name="bluespawntents"/>
+        <region name="redspawntents"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-some">
+        <deny>
+            <block>wool</block>
+            <block>redstone wire</block>
+            <block>chest</block>
+            <block>iron plate</block>
+            <block>step</block>
+            <block>smooth stairs</block>
+            <block>torch</block>
+            <block>fence</block>
+            <block>mob spawner</block>
+        </deny>
+    </filter>
+    <filter name="only-red-w">
+        <team>red</team>
+        <filter name="only-some"/>
+    </filter>
+    <filter name="only-blue-w">
+        <team>blue</team>
+        <filter name="only-some"/>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>fence</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                    <block>fence</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<timelock>on</timelock>
+<wools team="red">
+    <wool color="orange">
+        <block>1282,7,509</block>
+    </wool>
+    <wool color="yellow">
+        <block>1282,7,510</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="purple">
+        <block>1350,7,510</block>
+    </wool>
+    <wool color="cyan">
+        <block>1350,7,509</block>
+    </wool>
+</wools>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>iron pickaxe</item>
+    <item>gold axe</item>
+    <item>iron spade</item>
+    <item>glass</item>
+    <item>pumpkin pie</item>
+    <item>arrow</item>
+    <item>dirt</item>
+    <item>113</item>
+    <item>126</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>golden apple</item>
+    <item>cactus</item>
+    <item>sugar cane</item>
+</itemremove>
+<killreward>
+    <item amount="16" damage="1">wood</item>
+    <item amount="1">golden apple</item>
+    <item amount="16">arrow</item>
+</killreward>
+<maxbuildheight>25</maxbuildheight>
+<respawn delay="4s"/>
+</map> 

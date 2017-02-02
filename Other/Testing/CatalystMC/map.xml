@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>CatalystMC</name>
+<version>1.2.1</version>
+<objective>Get the most kills after 5 minutes!</objective>
+<score>
+    <time>5m</time>
+</score>
+<rules>
+    <rule>Fall damage is disabled!</rule>
+</rules>
+<authors>
+    <author uuid="ba4a93aa-4935-4a71-bab2-a58f9a124e7b" contribution="Main Design, Building and XML"/> <!-- ItsMiiOlly -->
+    <author uuid="8e8340b2-d315-4d26-9178-d2145b59850c" contribution="Design, Building and Aesthetics"/> <!-- oX_W1LL_G_Xo -->
+    <author uuid="06078e7e-6a7b-4d31-8f74-853072b182bb" contribution="Design and spawner magic"/> <!-- xXFracXx -->
+    <author uuid="9909505b-1f0f-4af1-ae21-afbee92427ce" contribution="Design and Aesthetics"/> <!-- Winarve -->
+</authors>
+<contributors>
+    <contributor uuid="a59dce2e-79e2-4229-ab83-98c885fceb23" contribution="Aesthetics"/> <!-- XxNarwhalexX -->
+    <contributor uuid="dee1cc51-66d2-4c5e-a8d4-403dcd1d8c83" contribution="Feedback and Testing"/> <!-- lonelyhornet -->
+    <contributor uuid="374988d6-4569-444e-885a-409c2f55e310" contribution="Design and Feedback"/> <!-- Articray -->
+    <contributor uuid="939a9a1c-f735-467a-bfd7-ae77cafd6693" contribution="Aesthetics"/> <!-- PlasmaCross -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Server hosting and XML"/> <!-- ElectroidFilms -->
+</contributors>
+<teams>
+    <team color="green" max="18" max-overfill="24">Green</team>
+    <team color="blue" max="18" max-overfill="24">Blue</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="18,1,776" max="22,2,772"/>
+    </spawn>
+    <spawn team="green" kit="green" yaw="0">
+        <cuboid min="94,2,732" max="98,1,728"/>
+    </spawn>
+    <default kit="observers" yaw="-90">
+        <cylinder base="106,17,740" radius="1" height="2"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" name="`e`lSplatbat" enchantment="damage all:1" unbreakable="true">gold sword</item>
+        <item slot="1" name="`c`lSniper Rifle" unbreakable="true">bow</item>
+        <item slot="2" amount="16">arrow</item>
+        <item slot="8">golden apple</item>
+        <potion duration="oo" amplifier="1">speed</potion>
+        <potion duration="oo" amplifier="1">jump</potion>
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <potion duration="5" amplifier="15">heal</potion>
+        <potion duration="5" amplifier="15">increase damage</potion>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="6699D8">leather chestplate</chestplate>
+        <helmet>glass</helmet>
+    </kit>
+    <kit name="green" parents="spawn">
+        <chestplate color="667F33">leather chestplate</chestplate>
+        <helmet>glass</helmet>
+    </kit>
+    <kit name="observers">
+        <potion duration="oo" amplifier="1">speed</potion>
+        <potion duration="oo" amplifier="1">night vision</potion>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle name="playable" min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Jumpad (Small) -->
+    <apply velocity="@0,1.25,0">
+        <block name="green-1">106,2,758"</block>
+        <block name="green-2">90,7,767"</block>
+        <block name="green-3">90,7,726"</block>
+        <block name="blue-1">10,2,746"</block>
+        <block name="blue-2">26,7,737"</block>
+        <block name="blue-3">26,7,778"</block>
+    </apply>
+    <!-- Jumpad (Big) -->
+    <apply velocity="@0,1.75,-0.50">
+        <block name="green-a">40,2,739"</block>
+        <block name="center-b">58,2,739"</block>
+    </apply>
+    <!-- Jumpad (Big) -->
+    <apply velocity="@0,1.75,0.50">
+        <block name="blue-a">76,2,765"</block>
+        <block name="center-a">58,2,765"</block>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>gold sword</tool>
+    <tool>bow</tool>
+    <tool>gold chestplate</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>nether star</item>
+    <item>glass</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<timelock>on</timelock>
+<friendlyfirerefund>on</friendlyfirerefund>
+<include src="tutorial.xml"/>
+<tutorial>
+    <stage title="Team Death Match">
+        <message>
+            <line>This is a `9Team Death Match`r based off the map "`2SCatalyst`r" from `aUberstrike`r.</line>
+            <line>In order to win, your team must get the `nmost points`r after `45 minutes`r.</line>
+            <line>`nHowever`r, you can `4kill/die`r with `l4 hits`r, so be careful!</line>
+        </message>
+        <teleport>
+            <point yaw="-24" pitch="0">88,17,729</point>
+        </teleport>
+    </stage>
+    <stage title="Team Spawns">
+        <message>
+            <line>This is where your team will spawn when the game starts.</line>
+        </message>
+        <teleport>
+            <point yaw="45" pitch="0">23,2,769</point>
+        </teleport>
+    </stage>
+    <stage title="Jump pads">
+        <message>
+            <line>These are the `9jump pads`r. When you step on them, they will 'boost' you up to the next floor.</line>
+            <line>`nRemember`r! Fall damage is `4`ldisabled`r.</line>
+        </message>
+        <teleport>
+            <point yaw="46" pitch="0">79,3,762</point>
+        </teleport>
+    </stage>
+    <stage title="Health Stations">
+        <message>
+            <line>These are the `4health stations`r.</line>
+            <line>Simply stand on the pressure plate and they will 'top you up' a couple of hearts.</line>
+        </message>
+        <teleport>
+            <point yaw="27" pitch="0">77,11,779</point>
+        </teleport>
+    </stage>
+    <stage title="Item Spawner">
+        <message>
+            <line>This is the `9Item Spawner`r.</line>
+            <line>Every `c30 seconds`r, they will spawn special items in the center of the map.</line>
+            <line>Items include: `7Iron Sword`r, `7Iron Chestplate`r, `7Strength Pot`r, `7Golden Apple`r and `7TNT`r.</line>
+        </message>
+        <teleport>
+            <point yaw="133" pitch="0">61,18,755</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

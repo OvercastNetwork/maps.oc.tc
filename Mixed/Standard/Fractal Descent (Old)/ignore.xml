@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<include src="tutorial.xml"/>
+<name>Fractal Descent</name>
+<version>1.0.5</version>
+<objective>Leak lava from the enemy's obsidian cores and destroy their two endstone monuments.</objective>
+<authors>
+    <author contribution="Design and building">teheggy</author>
+    <author contribution="Design, building, and XML">Reshif</author>
+</authors>
+<timelock>on</timelock>
+<teams>
+    <team color="dark red" max="32">Red</team>
+    <team color="blue" max="32">Blue</team>
+</teams>
+<regions>
+    <cuboid name="main" min="-42,12,-92" max="42,60,92"/>
+    <cuboid name="center" min="-42,-oo,-37" max="42,60,37"/>
+    <circle name="red-spawn" center="0,84" radius="10"/>
+    <circle name="blue-spawn" center="0,-84" radius="10"/>
+    <apply block="deny-all" message="You may not interact with blocks outside the playing field.">
+        <negative>
+            <union>
+                <region name="main"/>
+                <region name="center"/>
+            </union>
+        </negative>
+    </apply>
+    <apply block="deny-all" message="You may not destroy the spawn area!">
+        <region name="red-spawn"/>
+        <region name="blue-spawn"/>
+    </apply>
+    <apply enter="only-red" message="Don't enter the enemy spawn!">
+        <region name="red-spawn"/>
+    </apply>
+   <apply enter="only-blue" message="Don't enter the enemy spawn!">
+        <region name="blue-spawn"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+</filters>
+<kits>
+    <kit name="spawn">
+        <item slot="0">diamond sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="29" name="`6TNT Defuser" lore="`7Right click to defuse teammate's TNT|`7Does not work in `9water`7!">shears</item>
+        <item slot="2" enchantment="durability:3;dig speed:2">iron pickaxe</item>
+        <item slot="3" amount="64">smooth brick</item>
+        <item slot="4" amount="64">smooth brick</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="6" amount="64" damage="1">wood</item>
+        <item slot="7" amount="32">ladder</item>
+        <item slot="8" amount="32">golden carrot</item>
+        <potion duration="3" amplifier="3">damage resistance</potion>
+        <potion duration="3" amplifier="3">heal</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="blue" kit="spawn" yaw="0">
+        <cuboid min="-1,18,-102" max="1,18,-100"/>
+    </spawn>
+    <spawn team="red" kit="spawn" yaw="180">
+        <cuboid min="-1,18,100" max="1,18,102"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="-58,29,-2" max="-54,29,2"/>
+    </default>
+</spawns>
+<cores material="obsidian" leak="4">
+    <cores team="blue">
+        <core name="Left Core">
+            <cuboid min="-32,37,-86" max="-28,41,-82"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="28,37,-86" max="32,41,-82"/>
+        </core>
+    </cores>
+    <cores team="red">
+        <core name="Left Core">
+            <cuboid min="28,37,82" max="32,41,86"/>
+        </core>
+        <core name="Right Core">
+            <cuboid min="-32,37,82" max="-28,41,86"/>
+        </core>
+    </cores>
+</cores>
+<destroyables owner="blue" materials="ender stone">
+    <destroyable name="Left Monument">
+        <cuboid min="-26,11,-31" max="-22,15,-27"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <cuboid min="22,11,-31" max="26,15,-27"/>
+    </destroyable>
+</destroyables>
+<destroyables owner="red" materials="ender stone">
+    <destroyable name="Left Monument">
+        <cuboid min="22,11,27" max="26,15,31"/>
+    </destroyable>
+    <destroyable name="Right Monument">
+        <cuboid min="-26,11,27" max="-22,15,31"/>
+    </destroyable>
+</destroyables>
+<toolrepair>
+    <tool>diamond sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>gold block</item>
+    <item>smooth brick</item>
+    <item>glass</item>
+    <item>ladder</item>
+    <item>ender stone</item>
+    <item>arrow</item>
+    <item>golden carrot</item>
+    <item>wood</item>
+    <item>shears</item>
+</itemremove>
+<tutorial>
+    <stage title="Destroy The Core">
+        <message>
+            <line>`rThis map is a `6Destroy The Core `r(DTC) map.</line>
+            <line>`rThe objective is to break the `atwo cores `ron the other team's side and leak lava out of it.</line>
+            <line>`rThere is a core in each of the `ctwo `rtowers and is made up of obsidian.</line>
+        </message>
+        <teleport>
+            <point yaw="135" pitch="15">42,42,110</point>
+        </teleport>
+    </stage>
+    <stage title="Destroy The Monument">
+        <message>
+            <line>`rThis map is also a `6Destroy The Monument `r(DTM) map.</line>
+            <line>`rThe objective is also to break the `atwo endstone monuments `ron the other team's front lines.</line>
+            <line>`rTThe monuments are in the front lines between the lanes.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="10">0,21,-6</point>
+        </teleport>
+    </stage>
+    <stage title="Diamond Supplies">
+        <message>
+            <line>`rFind the diamonds on the front lines on the slope.</line>
+            <line>`rGet them quick, the enemy will try to blow them up.</line>
+        </message>
+        <teleport>
+            <point yaw="55" pitch="10">53,20,0</point>
+        </teleport>
+    </stage>
+    <stage title="TNT Supplies">
+        <message>
+            <line>`rIn these chests you will find TNT and other redstone and water supplies.</line>
+            <line>`rWith the you can make cannons and other TNT devices to attack the enemy with.</line>
+            <line>`rTeam Griefing with TNT is `c`lILLEGAL `rand you will be `c`lBANNED`r.</line>
+        </message>
+        <teleport>
+            <point yaw="-50" pitch="10">-33,20,-55</point>
+        </teleport>
+    </stage>
+</tutorial>
+</map>

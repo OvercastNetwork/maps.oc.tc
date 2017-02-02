@@ -1,0 +1,176 @@
+<map proto="1.4.0">
+<name>Retro KoTF</name>
+<slug>retro_kotf_5x5</slug>
+<version>1.0.1</version>
+<objective>Hold the Flag to gain points</objective>
+<gamemode>FFA</gamemode>
+<authors>
+    <author uuid="38ab65dd-95f9-406f-917c-6accc995421f" />
+    <!-- GoldenOre -->
+    <author uuid="105f6a09-f533-412b-93cb-501601763c11" />
+    <!-- JTr -->
+</authors>
+<broadcasts>
+    <alert after="1s">This is a Elytra King of the Flag Map</alert>
+    <alert after="2s">Hold the flag to get points.</alert>
+    <alert after="3s">Flag Carriers can not use the portal.</alert>
+    <alert after="4s">Person with most points after 5 minutes wins.</alert>
+</broadcasts>
+<score>
+    <kills>1</kills>
+</score>
+<time>5m</time>
+<respawn delay="2s" blackout="false" />
+<players min="3" max="5" max-overfill="5" show-name-tags="false" colors="true" />
+<rage />
+<projectiles>
+    <projectile id="grenade" name="Arrow Launcher" projectile="Arrow" velocity="5.5" damage="17" throwable="false" click="both" cooldown="0.01" />
+</projectiles>
+<kits>
+    <kit id="default-kit">
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+    </kit>
+    <kit id="spawn-kit">
+        <item slot="slot.armor.chest" amount="1" material="elytra" />
+        <item slot="0" name="Sword" lore="One Hit Kill" enchantment="damage all:10">iron sword</item>
+        <item slot="1" projectile="grenade" name="`eArrowLauncher" material="iron hoe" />
+        <potion duration="oo" amplifier="1">night vision</potion>
+        <helmet color="993333" unbreakable="true" locked="true">leather helmet</helmet>
+        <leggings color="993333" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="993333" unbreakable="true" locked="true">leather boots</boots>
+        <effect duration="2" amplifier="4">resistance</effect>
+        <effect duration="oo" amplifier="4">speed</effect>
+        <game-mode>adventure</game-mode>
+    </kit>
+    <kit id="flag-kit">
+        <potion duration="oo">glowing</potion>
+    </kit>
+    <kit id="levitation-kit">
+        <effect duration="1" amplifier="80">levitation</effect>
+    </kit>
+</kits>
+​
+<flags>
+    <post id="post" return-time="10s" respawn-time="5s">
+        <block>630,98,-147</block>
+        <block>598,97,-196</block>
+        <block>597,61,-126</block>
+        <block>562,98,-154</block>
+        <block>514,97,-129</block>
+        <block>540,95,-208</block>
+        <block>509,98,-244</block>
+        <block>578,72,-250</block>
+        <block>626,92,-248</block>
+        <block>566,120,-183</block>
+    </post>
+    <flag id="flag" name="Flag" color="red" shared="true" post="post" points-rate="1" pickup-kit="flag-kit" />
+</flags>
+<spawns>
+    <spawn kit="spawn-kit" spread="true">
+        <regions>
+            <point yaw="-135">561.5,160,-175.5</point>
+            <point yaw="-55">560.5,160,-187.5</point>
+            <point yaw="25">571.5,160,-192.5</point>
+            <point yaw="90">578.5,160,-182.5</point>
+            <point yaw="160">571.5,160,-172.5</point>
+        </regions>
+    </spawn>
+    <default kit="default-kit">
+        <regions>
+            <point yaw="60">568.5,120,-183.5</point>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <carrying id="carrying-flag">
+        <item material="banner" />
+    </carrying>
+</filters>
+<regions>
+    <apply velocity="0.0,10,0.0" kit="levitation-kit" force="true">
+        <region>
+            <block>630,98,-147</block>
+            <block>598,97,-196</block>
+            <block>597,61,-126</block>
+            <block>562,98,-154</block>
+            <block>514,97,-129</block>
+            <block>540,95,-208</block>
+            <block>509,98,-244</block>
+            <block>578,72,-250</block>
+            <block>626,92,-248</block>
+        </region>
+    </apply>
+    <apply velocity="0.0,1.25,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="600,56,-132" max="595,55,-133" />
+        </region>
+    </apply>
+    <apply velocity="0.0,1.75,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="576,65,-243" max="581,64,-242" />
+            <cuboid min="572,62,-252" max="571,61,-247" />
+        </region>
+    </apply>
+    <apply velocity="0.0,2.25,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="547,77,-205" max="548,76,-210" />
+            <cuboid min="538,74,-201" max="543,73,-200" />
+        </region>
+    </apply>
+    <apply velocity="0.0,2.75,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="517,71,-135" max="512,70,-136" />
+            <cuboid min="521,75,-126" max="522,74,-131" />
+        </region>
+    </apply>
+    <apply velocity="0.0,3.0,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="633,59,-153" max="628,58,-154" />
+            <cuboid min="624,65,-149" max="623,64,-144" />
+            <cuboid min="601,63,-188" max="596,62,-189" />
+            <cuboid min="591,63,-193" max="592,62,-198" />
+            <cuboid min="596,63,-203" max="601,62,-202" />
+            <cuboid min="606,63,-198" max="605,62,-194" />
+            <cuboid min="502,63,-180" max="503,62,-185" />
+            <cuboid min="507,63,-237" max="512,62,-236" />
+            <cuboid min="516,70,-241" max="517,69,-246" />
+        </region>
+    </apply>
+    <apply velocity="0.0,3.2,0.0" kit="levitation-kit" force="true">
+        <region>
+            <cuboid min="633,59,-153" max="628,58,-154" />
+            <cuboid min="624,65,-149" max="623,64,-144" />
+        </region>
+    </apply>
+</regions>
+<world-borders center="569,-186">
+    <world-border size="140" />
+</world-borders>
+<broadcasts>
+    <tip after="10s">Arrow Launcher and swords are one hit kills</tip>
+</broadcasts>
+<regions>
+    <apply block="never" region="everywhere" message="You may not edit the map!" />
+</regions>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage>fly into wall</damage>
+</disabledamage>
+<timelock>on</timelock>
+<itemremove>
+    <item>iron sword</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>443</item>
+    <item>iron hoe</item>
+    <item damage="7">carpet</item>
+</itemremove>
+</map>

@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Hydrolock</name>
+<version>1.2.2</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author uuid="5986da63-a546-49c5-812d-d5c41a42510a"/> <!-- Lyzak -->
+    <author uuid="ef4ea031-998f-4ec9-b7b6-1bdd428bcef8"/> <!-- Plastix -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Did stuff"/> <!-- Zelocksurian -->
+</contributors>
+<teams>
+    <team color="blue" max="50">Blue</team>
+    <team color="dark red" max="50">Red</team>
+</teams>
+<spawns>
+    <spawn team="blue" kit="blue" yaw="90"><cuboid min="-67,26,3" max="-62,26,-2"/></spawn>
+    <spawn team="red" kit="red" yaw="-90"><cuboid min="68,26,-2" max="63,26,3"/></spawn>
+    <default yaw="180"><cylinder base="0,41,-65" radius="2" height="0"/></default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28" amount="1">arrow</item>
+        <item slot="2" enchantment="dig speed:1;durability:3">iron pickaxe</item>
+        <item slot="3" amount="16">glass</item>
+        <item slot="4" amount="64" name="Water-Melon" enchantment="water worker:1">melon</item>
+        <item slot="5" amount="1">golden apple</item>
+        <potion duration="5">heal</potion>
+        <potion duration="10">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>cobblestone</item>
+    <item>golden apple</item>
+    <item>melon</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>string</item>
+    <item>wood</item>
+    <item>log</item>
+    <item>fence</item>
+    <item>sign</item>
+    <item>ladder</item>
+    <item>rails</item>
+</itemremove>
+<filters>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="break-iron" parents="deny-all">
+        <allow>
+            <block>iron block</block>
+            <block>ladder</block>
+            <block>rails</block>
+        </allow>
+    </filter>
+    <filter name="only-red-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>blue</team>
+            </all>
+        </not>
+    </filter>
+    <filter name="only-blue-usage">
+        <not>
+            <all>
+                <any>
+                    <block>chest</block>
+                    <block>workbench</block>
+                </any>
+                <team>red</team>
+            </all>
+        </not>
+    </filter>
+</filters>
+<regions>
+    <apply block="deny-all">
+        <negative name="playable-inverse">
+            <circle center="0,0" radius="60"/>
+        </negative>
+    </apply>
+    <apply block="break-iron" enter="only-red">
+        <rectangle min="59,-22" max="92,23"/>
+    </apply>
+    <apply block="break-iron" enter="only-blue">
+        <rectangle min="-58,23" max="-92,-22"/>
+    </apply>
+    <apply enter="only-blue" block="only-blue" use="only-blue-usage">
+        <!-- Orange Room -->
+        <circle center="41,25" radius="7"/>
+        <!-- Pink Room -->
+        <circle center="41,-25" radius="7"/>
+    </apply>
+    <apply enter="only-red" block="only-red" use="only-red-usage">
+        <!-- Cyan Room -->
+        <circle center="-41,-25" radius="7"/>
+        <!-- Blue Room -->
+        <circle center="-41,25" radius="7"/>
+    </apply>
+</regions>
+<maxbuildheight>30</maxbuildheight>
+<wools>
+    <wool team="blue" color="orange">
+        <block location="-62,26,17"/>
+    </wool>
+    <wool team="blue" color="pink">
+        <block location="-62,26,-17"/>
+    </wool>
+    <wool team="red" color="cyan">
+        <block location="62,26,-17"/>
+    </wool>
+    <wool team="red" color="light blue">
+        <block location="62,26,17"/>
+    </wool>
+</wools>
+</map>

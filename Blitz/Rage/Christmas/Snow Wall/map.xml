@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<include src="blitz-global.xml" />
+<name>Snow Wall</name>
+<version>1.0.0</version>
+<objective>Eliminate the enemy team!</objective>
+<gamemode>rage</gamemode>
+<authors>
+    <author uuid="5198dc37-537f-4ea5-8ee8-1e0952d4a36b" />
+    <!--  _3Each  -->
+</authors>
+<contributors>
+    <contributor uuid="a23a1d91-7e97-40b4-8f5e-1ab82d8f5ade" contribution="XML" />
+    <!--  chle_  -->
+</contributors>
+<rules>
+    <rule>Do not prolong the match by hiding!</rule>
+</rules>
+<title>Blitz: Rage</title>
+<time>5m</time>
+<timelock>on</timelock>
+<teams>
+    <team color="dark red" max="12" max-overfill="15">Red</team>
+    <team color="green" max="12" max-overfill="15">Green</team>
+</teams>
+<spawns>
+    <spawn team="Red" kit="RedKit">
+        <regions yaw="180">
+            <cylinder base="-1229.5,32,-79.5" radius="1" height="1" />
+        </regions>
+    </spawn>
+    <spawn team="Green" kit="GreenKit">
+        <regions yaw="0">
+            <cylinder base="-1229.5,32,-179.5" radius="1" height="1" />
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="90">
+            <cylinder base="-1282.5,61,-132.5" radius="1" height="1" />
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit name="spawn">
+        <item slot="0" enchantment="damage all:10" name="`bOne hit kill!">iron sword</item>
+        <item slot="1" enchantment="arrow damage:10" name="`bOne shot kill!">bow</item>
+        <item slot="8" amount="1">arrow</item>
+    </kit>
+    <kit name="RedKit" parents="spawn">
+        <helmet color="cd0000" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="cd0000" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit name="GreenKit" parents="spawn">
+        <helmet color="667F33" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="667F33" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <leggings color="667F33" unbreakable="true" locked="true">leather leggings</leggings>
+        <boots color="667F33" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+</kits>
+<regions>
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo" />
+    </apply>
+</regions>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+</itemremove>
+<rage />
+<blitz>
+    <lives>1</lives>
+    <broadcastlives>true</broadcastlives>
+</blitz>
+<killreward>
+    <item>arrow</item>
+</killreward>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+</map>

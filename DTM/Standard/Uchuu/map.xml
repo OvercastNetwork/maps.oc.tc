@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Uchuu</name>
+<version>1.1</version>
+<objective>Break 85% of the two Catalysts on the enemy side!</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af" /> <!-- Tywnis -->
+</authors>
+<rules>
+    <rule>Fall damage is disabled</rule>
+</rules>
+<teams>
+    <team id="blue" color="blue" max="30" max-overfill="40">Blue</team>
+    <team id="red" color="dark red" max="30" max-overfill="40">Red</team>
+</teams>
+<spawns safe="true">
+    <spawn team="blue" kit="blue-spawn">.
+        <regions yaw="-45">
+            <cuboid min="-68.5,51,-68.5" max="-66.5,51,-66.5"/>
+        </regions>
+    </spawn>
+    <spawn team="red" kit="red-spawn">
+        <regions yaw="135">
+            <cuboid min="67.5,51,67.5" max="69.5,52,69.5"/>
+        </regions>
+    </spawn>
+    <default> <!-- random yaw -->
+        <regions yaw="45">
+            <cuboid min="-60,80,61" max="-61,80,62"/>
+        </regions>
+    </default>
+</spawns>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">iron sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite;arrow damage">bow</item>
+        <item slot="2" enchantment="durability:1;dig speed:1">iron pickaxe</item>
+        <item slot="3" enchantment="durability:1;dig speed:1">iron axe</item>
+        <item slot="4" amount="64">grilled pork</item>
+        <item slot="5" amount="2">golden apple</item>
+        <item slot="6" amount="64">wood</item>
+        <item slot="8" unbreakable="true" name="`rTNT Defuser - `o(Right Click)">shears</item>
+        <item slot="9" amount="8">redstone comparator</item>
+        <item slot="10" amount="16">diode</item>
+        <item slot="11" amount="8">redstone block</item>
+        <item slot="12" amount="16">nether fence</item>
+        <item slot="13" amount="16">ladder</item>
+        <item slot="14" amount="16" damage="7">step</item>
+        <item slot="15" amount="16">trap door</item>
+        <item slot="16" amount="32">redstone</item>
+        <item slot="17" amount="24">stone plate</item>
+        <item slot="18" amount="24">redstone torch on</item>
+        <item slot="19" amount="24">stone button</item>
+        <item slot="20" amount="64">tnt</item>
+        <item slot="21" amount="64">tnt</item>
+        <item slot="22" amount="64">tnt</item>
+        <item slot="23" amount="1">arrow</item>
+        <item slot="24" amount="1">water bucket</item>
+        <item slot="25" amount="1">water bucket</item>
+        <knockback-reduction>1</knockback-reduction>
+        <potion duration="4" amplifier="10">heal</potion>
+        <potion duration="4" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit id="blue-spawn" parents="spawn">
+        <helmet color="0066cc" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker;oxygen" locked="true">iron chestplate</chestplate>
+        <leggings color="0066cc" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+        <item slot="7" damage="3" amount="64">stained glass</item>
+    </kit>
+    <kit id="red-spawn" parents="spawn">
+        <helmet color="cd0000" unbreakable="true">leather helmet</helmet>
+        <chestplate unbreakable="true" enchantment="protection explosions:4;water worker;oxygen" locked="true">iron chestplate</chestplate>
+        <leggings color="cd0000" unbreakable="true">leather leggings</leggings>
+        <boots unbreakable="true">iron boots</boots>
+        <item slot="7" damage="6" amount="64">stained glass</item>
+    </kit>
+</kits>
+<regions>
+    <cuboid name="red_catalyst_left" min="-55,106,-9" max="-59,71,-5"/>
+    <cuboid name="red_catalyst_right" min="-9,106,-55" max="-5,71,-59"/>
+    <cuboid name="blue_catalyst_left" min="64,110,0" max="50,69,14"/>
+    <cuboid name="blue_catalyst_right" min="9,106,55" max="5,71,59"/>
+    <cuboid name="map" min="-75,0,-75" max="75,115,75"/>
+  <!-- Blue -->
+    <apply velocity="0.2,2.6,0">
+        <region>
+            <cuboid min="-57,51,-74" max="-53,52,-70"/>
+        </region>
+    </apply>
+    <apply velocity="0,2.6,0.2">
+        <region>
+            <cuboid min="-74,51,-57" max="-70,52,-53"/>
+        </region>
+    </apply>
+  <!-- Red -->
+    <apply velocity="-0.2,2.6,0">
+        <region>
+            <cuboid min="57,51,74" max="53,52,70"/>
+        </region>
+    </apply>
+    <apply velocity="0,2.6,-0.2">
+        <region>
+            <cuboid min="74,51,57" max="70,52,53"/>
+        </region>
+    </apply>
+    
+    <apply block="never" message="You may not place or break blocks in this area.">
+        <region>
+            <negative>
+                <cuboid min="-75,0,-75" max="76,115,76"/>
+            </negative>
+            <cuboid min="-75.5,0,-75.5" max="-64.5,116,-64.5"/>
+            <cuboid min="75.5,0,75.5" max="65.5,116,65.5"/>
+        </region>
+    </apply>
+</regions>
+
+<destroyables>
+    <!-- Blue Obj -->
+    <destroyable id="red_catalyst_left" name="Left Catalyst" owner="blue" show-progress="true" materials="stained glass:14" sparks="false" required="true" completion="85%">
+        <region><cuboid min="-63,109,0" max="-49,69,-13"/></region>
+    </destroyable>
+    <destroyable id="red_catalyst_right" name="Right Catalyst" owner="blue" show-progress="true" materials="stained glass:14" sparks="false" required="true" completion="85%">
+        <region><cuboid min="0,109,-63" max="-13,69,-49"/></region>
+    </destroyable>
+  <!-- Red Obj -->
+    <destroyable id="blue_catalyst_left" name="Left Catalyst" owner="red" show-progress="true" materials="stained glass:11" sparks="false" required="true" completion="85%">
+        <region><cuboid min="64,109,0" max="50,69,14"/></region>
+    </destroyable>
+    <destroyable id="blue_catalyst_right" name="Right Catalyst" owner="red" show-progress="true" materials="stained glass:11" sparks="false" required="true" completion="85%">
+        <region><cuboid min="0,109,64" max="14,69,50"/></region>
+    </destroyable>
+</destroyables>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron axe</tool> 
+</toolrepair>
+<itemremove>
+    <item>grilled pork</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>iron boots</item>
+    <item>arrow</item>
+    <item>wood</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>nether fence</item>
+    <item>step</item>
+    <item>ladder</item>
+    <item>trap door</item>
+    <item>stone plate</item>
+    <item>piston base</item>
+    <item>redstone block</item>
+    <item>redstone</item>
+    <item>stone button</item>
+    <item>lever</item>
+    <item>redstone torch on</item>
+    <item>diode</item>
+    <item>tnt</item>
+    <item>redstone comparator</item>
+    <item>dispenser</item>
+    <item>slime ball</item>
+    <item>fence gate</item>
+    <item>piston sticky base</item>
+    <item>chainmail chestplate</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>shears</item>
+</itemremove>
+<killreward>
+    <item amount="2">golden apple</item>
+</killreward>
+<hunger>
+    <depletion>on</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>suffocation</damage>
+    <damage ally="true" self="true" enemy="false" other="false">block explosion</damage>
+</disabledamage>
+<timelock>
+  on
+</timelock>
+</map>

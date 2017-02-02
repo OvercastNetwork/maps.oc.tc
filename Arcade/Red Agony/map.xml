@@ -1,0 +1,64 @@
+<map proto="1.4.0">
+<name>Red Agony</name>
+<version>1.0.1</version>
+<objective>Be the first to the end!</objective>
+<gamemode>Arcade</gamemode>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+<players min="4" max="8" colors="true"/>
+<time>1m</time>
+<spawns>
+    <spawn kit="spawn">
+        <regions yaw="90"><region id="StartTunnel"/></regions>
+    </spawn>
+    <default>
+        <regions yaw="90"><point>8,7,0</point></regions>
+    </default>    
+</spawns>
+<kits>
+    <kit id="spawn">
+        <health>1</health>
+        <game-mode>adventure</game-mode>
+        <potion duration="oo" amplifier="1">invisibility</potion>
+        <potion duration="oo" amplifier="-4">health boost</potion>
+        <walk-speed>4</walk-speed>
+        <boots unbreakable="true" locked="true">gold boots</boots>
+    </kit>
+</kits>
+<score>
+    <limit>1</limit>
+    <box points="1">
+        <region><cuboid id="FinishTunnel" min="-603,0,-5" max="-608,5,5"/></region>
+    </box>
+</score>
+<blitz>
+    <lives>1</lives>    
+</blitz>
+<itemremove>
+    <item>gold boots</item>
+</itemremove>
+<regions>
+    <block id="StartTunnel">17,1,0</block>  
+</regions>
+<!-- Typical time-based shrinking border. Starts at 200 meters when the match loads. -->
+<!-- After 5 minutes, it starts shrinking, until it is 20 meters wide at 15 minutes. -->
+<!--
+<world-borders center="-605,0" warning-distance="5">
+    <world-border size="1250"/>
+    <world-border size="20" after="5s" duration="2m"/>
+</wold-borders>
+-->
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<disabledamage>
+    <damage>fall</damage>
+    <damage>entity attack</damage>
+</disabledamage>
+<broadcasts>
+    <alert after="0s">`6`lBe the first to the end!</alert>
+    <alert after="1s">`6`lRUN!!!</alert>
+    <alert after="5s">`6`lThe World Border has started to move!</alert>
+</broadcasts>
+</map>

@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Blocks II</name>
+<version>1.0.1</version>
+<objective>Leak lava from the enemy's obsidian core into the void.</objective>
+<authors>
+    <author uuid="060baa18-2852-40d8-afcb-e61607c04be3"/> <!-- pepsidawg00 -->
+    <author uuid="d341db34-f1ab-406e-b290-da6a6703565e"/> <!-- MlgCheetoPuff -->
+    <author uuid="130be12a-f3b9-4b7d-ad39-7b45e84d3d0f"/> <!-- Veiyl -->
+</authors>
+<teams>
+    <team id="blue" color="blue" max="50">Blue</team>
+    <team id="red" color="dark red" max="50">Red</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="2">diamond pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">golden carrot</item>
+        <item slot="5" amount="64" damage="2">log</item>
+        <item slot="28">arrow</item>
+    </kit>
+    <kit id="red-kit" parents="spawn">
+        <helmet color="993333">leather helmet</helmet>
+        <chestplate color="993333">leather chestplate</chestplate>
+    </kit>
+        <kit id="blue-kit" parents="spawn">
+        <helmet color="334cb2">leather helmet</helmet>
+        <chestplate color="334cb2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawns team="red" kit="red-kit">
+        <spawn yaw="90">
+            <regions>
+                <cylinder base="-87,29,-73" radius="2" height="0"/>
+            </regions>
+        </spawn>
+        <spawn yaw="-90">
+            <regions>
+                <cylinder base="-183,29,-73" radius="2" height="0"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <spawns team="blue" kit="blue-kit">
+        <spawn yaw="90">
+            <regions>
+                <cylinder base="-87,29,-271" radius="2" height="0"/>
+            </regions>
+        </spawn>
+        <spawn yaw="-90">
+            <regions>
+                <cylinder base="-183,29,-271" radius="2" height="0"/>
+            </regions>
+        </spawn>
+    </spawns>
+    <default yaw="-90">
+        <regions>
+            <cylinder base="-216,54,-172" radius="1" height="0"/>
+        </regions>
+    </default>
+</spawns>
+<filters>
+    <team id="only-red">red</team>
+    <team id="only-blue">blue</team>
+    <any id="only-water">
+        <material>water</material>
+        <material>stationary water</material>
+    </any>
+    <any id="allow-some">
+        <material>iron block</material>
+        <material>diamond block</material>
+    </any>
+    
+    <all id="red-change">
+        <team>red</team>
+        <material>stained glass</material>
+    </all>
+    <all id="blue-change">
+        <team>blue</team>
+        <material>stained glass</material>
+    </all>
+    <not id="not-blue">
+        <all>
+            <team>blue</team>
+            <any>
+                <material>stained glass</material>
+                <material>obsidian</material>
+            </any>
+        </all>
+    </not>
+    <not id="not-red">
+        <all>
+            <team>red</team>
+            <any>
+                <material>stained glass</material>
+                <material>obsidian</material>
+            </any>
+        </all>
+    </not>
+</filters>
+<regions>
+    <!-- Red side --> 
+    <cuboid id="east-redspawn-area" min="-111,28,-97" max="-79,44,-49"/>
+    <cuboid id="east-redspawn-chest" min="-79,28,-81" max="-95,42,-65"/>
+    <cuboid id="west-redspawn-area" min="-159,28,-97" max="-191,44,-49"/>
+    <cuboid id="west-redspawn-chest" min="-191,28,-81" max="-175,42,-65"/>
+    <cuboid id="redcake" min="-128,28,-52" max="-142,36,-66"/>
+    <!-- Blue side -->
+    <cuboid id="east-bluespawn-area" min="-111,28,-247" max="-79,44,-295"/>
+    <cuboid id="east-bluespawn-chest" min="-79,28,-263" max="-95,42,-278"/>
+    <cuboid id="west-bluespawn-area" min="-159,28,-247" max="-191,44,-295"/>
+    <cuboid id="west-bluespawn-chest" min="-191,28,-263" max="-175,42,-279"/>
+    <cuboid id="bluecake" min="-142,28,-292" max="-128,36,-278"/>
+    
+    <cuboid id="red-core" min="-139,43,-93" max="-131,51,-85"/>
+    <cuboid id="blue-core" min="-131,43,-251" max="-139,51,-259"/>
+    
+    <apply block="allow-some" block-break="only-water">
+        <region>
+            <region id="east-bluespawn-area"/>
+            <region id="east-redspawn-area"/>
+            <region id="west-bluespawn-area"/>
+            <region id="west-redspawn-area"/>
+        </region>
+    </apply>
+    <apply enter="only-red" message="You may not enter the red spawn!">
+        <region>
+            <region id="east-redspawn-chest"/>
+            <region id="west-redspawn-chest"/>
+        </region>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the blue spawn!">
+        <region>
+            <region id="east-bluespawn-chest"/>
+            <region id="west-bluespawn-chest"/>
+        </region>
+    </apply>
+    <apply block="never">
+        <region>
+            <region id="redcake"/>
+            <region id="bluecake"/>
+            <negative><rectangle id="map" min="-191,-295" max="-79,-49"/></negative>
+        </region>
+    </apply>
+    
+    <apply block="not-blue" region="blue-core"/>
+    <apply block="not-red" region="red-core"/>
+</regions>
+<cores name="Potion Bottle" material="obsidian" leak="4" mode-changes="true">
+    <core team="blue">
+        <region>
+            <region id="blue-core"/>
+        </region>
+    </core>
+    <core team="red">
+        <region>
+            <region id="red-core"/>
+        </region>
+    </core>
+</cores>
+<modes>
+    <mode after="15m" material="gold block"/>    
+</modes>
+<maxbuildheight>71</maxbuildheight>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>golden carrot</item>
+    <item>log</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+</itemremove>
+<mobs>
+    <filter>
+        <all>
+            <spawn>spawner</spawn>
+            <any>
+                <entity>dropped item</entity>
+                <entity>falling block</entity>
+            </any>
+        </all>
+    </filter>
+</mobs>
+<blockdrops>
+    <rule region="red-core">
+        <filter>
+            <all>
+                <filter id="blue-change"/>
+                <not><time>15m</time></not>
+            </all>
+        </filter>
+        <replacement>obsidian</replacement>
+    </rule>
+    <rule region="blue-core">
+        <filter>
+            <all>
+                <filter id="red-change"/>
+                <not><time>15m</time></not>
+            </all>
+        </filter>
+        <replacement>obsidian</replacement>
+    </rule>
+    
+    <rule region="red-core">
+        <filter>
+            <all>
+                <filter id="blue-change"/>
+                <time>15m</time>
+            </all>
+        </filter>
+        <replacement>gold block</replacement>
+    </rule>
+    <rule region="blue-core">
+        <filter>
+            <all>
+                <filter id="red-change"/>
+                <time>15m</time>
+            </all>
+        </filter>
+        <replacement>gold block</replacement>
+    </rule>
+</blockdrops>
+</map>

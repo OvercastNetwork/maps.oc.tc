@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<map proto="1.3.1">
+<name>Battle Ecliptica II: Blitz</name>
+<version>2.3.2</version>
+<objective>Capture the other team's wools to win the game!</objective>
+<gamemode>blitz</gamemode>
+<gamemode>ctw</gamemode>
+<authors>
+    <author uuid="e37f18f1-117b-47db-8806-6d3a0854b518"/> <!-- chickolympics -->
+</authors>
+<contributors>
+    <contributor uuid="15dc7f7a-40cd-4389-ad45-f8a33a09a394" contribution="Map Feedback and Aesthetics"/> <!-- moo88888888 -->
+    <contributor uuid="c2a4c847-653e-482a-b62e-d7f8b64330cb" contribution="Map Feedback"/> <!-- NathanTheBook -->
+    <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Tourney Feedback"/> <!-- BrettOgden -->
+    <contributor uuid="90d4c2a3-137b-4965-b9e5-963ab5a23fa1" contribution="Tourney Feedback"/> <!-- Aceman1998 -->
+    <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Metadata"/> <!-- ElectroidFilms -->
+</contributors>
+<teams>
+    <team color="yellow" max="15">Yellow</team>
+    <team color="dark green" max="15">Green</team>
+    <team color="dark red" max="15">Red</team>
+    <team color="blue" max="15">Blue</team>
+</teams>
+<!--<teams>
+    <team color="yellow" max="15" respawn-limit="150">Yellow</team>
+    <team color="dark green" max="15" respawn-limit="150">Green</team>
+    <team color="dark red" max="15" respawn-limit="150">Red</team>
+    <team color="blue" max="15" respawn-limit="150">Blue</team>
+</teams>-->
+<blitz>
+    <lives>3</lives>
+</blitz>
+<rules>
+    <rule>Creating alliances with another team(s) is allowed.</rule>
+</rules>
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <point>0.5,8,93</point>
+    </spawn>
+    <spawn team="green" kit="green" yaw="90">
+        <point>93,8,0.5</point>
+    </spawn>
+    <spawn team="yellow" kit="yellow" yaw="0">
+        <point>0.5,8,-92</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="-90">
+        <point>-92,8,0.5</point>
+    </spawn>
+    <default yaw="0">
+        <cylinder base="0.5,54,0.5" radius="2" height="0"/>
+    </default>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="8" amount="24">arrow</item>
+        <item slot="2" enchantment="durability:1;dig speed:3">iron pickaxe</item>
+        <leggings unbreakable="true">iron leggings</leggings>
+        <potion duration="oo">saturation</potion>
+        <potion amplifier="10" duration="3s">damage resistance</potion>
+        <knockback-reduction>1</knockback-reduction>
+    </kit>
+    <kit name="red" parents="teams">
+        <item slot="3" amount="32" damage="14">stained clay</item>
+        <item slot="4" amount="16" damage="14">stained glass</item>
+        <helmet unbreakable="true" color="cd0000">leather helmet</helmet>
+        <chestplate unbreakable="true" color="cd0000" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <item slot="3" amount="32" damage="11">stained clay</item>
+        <item slot="4" amount="16" damage="11">stained glass</item>
+        <helmet unbreakable="true" color="0066cc">leather helmet</helmet>
+        <chestplate unbreakable="true" color="0066cc" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="0066cc">leather boots</boots>
+    </kit>
+    <kit name="green" parents="teams">
+        <item slot="3" amount="32" damage="5">stained clay</item>
+        <item slot="4" amount="16" damage="5">stained glass</item>
+        <helmet unbreakable="true" color="667F33">leather helmet</helmet>
+        <chestplate unbreakable="true" color="667F33" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="667F33">leather boots</boots>
+    </kit>
+    <kit name="yellow" parents="teams">
+        <item slot="3" amount="32" damage="4">stained clay</item>
+        <item slot="4" amount="16" damage="4">stained glass</item>
+        <helmet unbreakable="true" color="E5E533">leather helmet</helmet>
+        <chestplate unbreakable="true" color="E5E533" enchantment="protection projectile:2">leather chestplate</chestplate>
+        <boots unbreakable="true" color="E5E533">leather boots</boots>
+    </kit>
+    <kit name="remove-spawn-protection">
+        <knockback-reduction>0</knockback-reduction>
+    </kit>
+</kits>
+<regions>
+    <rectangle name="all" min="-oo,-oo" max="oo,oo"/>
+    <cuboid name="above-20" min="-oo,20,-oo" max="oo,oo,oo"/>
+    <union name="spawns">
+        <rectangle name="red-spawn" min="-9,87" max="5,98"/>
+        <rectangle name="green-spawn" min="87,-4" max="98,5"/>
+        <rectangle name="yellow-spawn" min="-4,-97" max="5,-86"/>
+        <rectangle name="blue-spawn" min="-86,5" max="-97,-4"/>
+    </union>
+    <union name="wool-rooms">
+        <cuboid name="red-wool-room" min="-6,0,75" max="7,oo,62"/>
+        <cuboid name="green-wool-room" min="62,0,-6" max="75,oo,7"/>
+        <cuboid name="yellow-wool-room" min="-6,0,-74" max="7,oo,-61"/>
+        <cuboid name="blue-wool-room" min="-61,0,-6" max="-74,oo,7"/>
+    </union>
+    <negative name="no-void-areas">
+        <union name="void-areas"> <!-- Negate this and apply deny-void -->
+            <complement name="center">
+                <circle name="radius-25" center="0.5,0.5" radius="25.5"/>
+                <circle name="radius-15" center="0.5,0.5" radius="15.5"/>
+            </complement>
+            <union name="center-directed-bridges">
+                <rectangle name="blue-bridge-cd" min="-37,4" max="-31,-3"/>
+                <rectangle name="green-bridge-cd" min="38,-3" max="32,4"/>
+                <rectangle name="red-bridge-cd" min="4,38" max="-3,32"/>
+                <rectangle name="yellow-bridge-cd" min="-3,-37" max="4,-31"/>
+            </union>
+            <union name="horizontal-bridges">
+                <rectangle name="blue-bridge-h" min="-29,-9" max="-44,10"/>
+                <rectangle name="green-bridge-h" min="30,10" max="45,-9"/>
+                <rectangle name="red-bridge-h" min="-9,45" max="10,30"/>
+                <rectangle name="yellow-bridge-h" min="10,-44" max="-9,-29"/>
+            </union>
+        </union>
+    </negative>
+    <union name="wool-placement">
+        <block>-1,9,81</block>
+        <block>0,9,81</block>
+        <block>1,9,81</block>
+        <block>81,9,1</block>
+        <block>81,9,0</block>
+        <block>81,9,-1</block>
+        <block>-1,9,-81</block>
+        <block>0,9,-81</block>
+        <block>1,9,-81</block>
+        <block>-81,9,-1</block>
+        <block>-81,9,0</block>
+        <block>-81,9,1</block>
+    </union>
+    <complement name="no-wool-placement">
+        <region name="all"/>
+        <region name="wool-placement"/>
+    </complement>
+    <!-- Applied -->
+    <apply use="deny-beacon" block="deny-obsidian deny-beacon" message="`aThis block is disabled on this map!">
+        <region name="all"/>
+        <region name="wool-rooms"/>
+        <region name="spawns"/>
+        <region name="above-20"/>
+    </apply>
+    <apply block="deny-void" message="`aYou may not edit the void area!">
+        <region name="no-void-areas"/>
+    </apply>
+    <apply block="deny-all" message="`aYou may not edit above the height limit! (`720 Blocks`a)">
+        <region name="above-20"/>
+    </apply>
+    <apply block="deny-all" message="`aYou may not edit the spawn!">
+        <region name="spawns"/>
+    </apply>
+    <apply kit="remove-spawn-protection">
+        <negative>
+            <region name="spawns"/>
+        </negative>
+    </apply>
+    <apply enter="deny-red" message="`aYou may not enter your own wool room!">
+        <region name="red-wool-room"/>
+    </apply>
+    <apply block="deny-all" use="deny-red">
+        <region name="red-wool-room"/>
+    </apply>
+    <apply enter="deny-blue" message="`aYou may not enter your own wool room!">
+        <region name="blue-wool-room"/>
+    </apply>
+    <apply block="deny-all" use="deny-blue">
+        <region name="blue-wool-room"/>
+    </apply>
+    <apply block="deny-all" use="deny-blue">
+        <region name="red-wool-room"/>
+    </apply>
+    <apply enter="deny-green" message="`aYou may not enter your own wool room!">
+        <region name="green-wool-room"/>
+    </apply>
+    <apply block="deny-all" use="deny-green">
+        <region name="green-wool-room"/>
+    </apply>
+    <apply enter="deny-yellow" message="`aYou may not enter your own wool room!">
+        <region name="yellow-wool-room"/>
+    </apply>
+    <apply block="deny-all" use="deny-yellow">
+        <region name="yellow-wool-room"/>
+    </apply>
+    <apply block="deny-wool" message="`aNo safety wools allowed!">
+        <region name="no-wool-placement"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="deny-red">
+        <deny>
+            <team>red</team>
+        </deny>
+    </filter>
+    <filter name="deny-blue">
+        <deny>
+            <team>blue</team>
+        </deny>
+    </filter>
+    <filter name="deny-green">
+        <deny>
+            <team>green</team>
+        </deny>
+    </filter>
+    <filter name="deny-yellow">
+        <deny>
+            <team>yellow</team>
+        </deny>
+    </filter>
+    <filter name="deny-beacon">
+        <deny>
+            <block>beacon</block>
+        </deny>
+    </filter>
+    <filter name="deny-obsidian">
+        <deny>
+            <block>obsidian</block>
+        </deny>
+    </filter>
+    <filter name="deny-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+    <filter name="deny-wool">
+        <deny>
+            <block>wool</block>
+        </deny>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-yellow">
+        <team>yellow</team>
+    </filter>
+    <filter name="only-green">
+        <team>green</team>
+    </filter>
+</filters>
+<renewables>
+    <renewable rate="1" grow="false" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cylinder name="red-renew" base="0.5,1,68.5" radius="60" height="10"/>
+        </region>
+        <renew>glowstone</renew>
+        <renew>leaves</renew>
+        <renew>redstone block</renew>
+        <renew>redstone lamp on</renew>
+        <renew>redstone lamp off</renew>
+        <renew>clay</renew>
+        <renew>quartz block</renew>
+        <renew>double step</renew>
+        <renew>stained clay</renew>
+        <renew>step</renew>
+        <replace>air</replace>
+    </renewable>
+    <renewable rate="2" grow="false" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cylinder name="blue-renew" base="-67.5,1,0.5" radius="60" height="10"/>
+        </region>
+        <renew>glowstone</renew>
+        <renew>leaves</renew>
+        <renew>redstone block</renew>
+        <renew>redstone lamp on</renew>
+        <renew>redstone lamp off</renew>
+        <renew>clay</renew>
+        <renew>quartz block</renew>
+        <renew>double step</renew>
+        <renew>stained clay</renew>
+        <renew>step</renew>
+        <replace>air</replace>
+    </renewable>
+    <renewable rate="2" grow="false" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cylinder name="yellow-renew" base="0.5,1,-67.5" radius="60" height="10"/>
+        </region>
+        <renew>glowstone</renew>
+        <renew>leaves</renew>
+        <renew>redstone block</renew>
+        <renew>redstone lamp on</renew>
+        <renew>redstone lamp off</renew>
+        <renew>clay</renew>
+        <renew>quartz block</renew>
+        <renew>double step</renew>
+        <renew>stained clay</renew>
+        <renew>step</renew>
+        <replace>air</replace>
+    </renewable>
+    <renewable rate="2" grow="false" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cylinder name="green-renew" base="68.5,1,0.5" radius="60" height="10"/>
+        </region>
+        <renew>glowstone</renew>
+        <renew>leaves</renew>
+        <renew>redstone block</renew>
+        <renew>redstone lamp on</renew>
+        <renew>redstone lamp off</renew>
+        <renew>clay</renew>
+        <renew>quartz block</renew>
+        <renew>double step</renew>
+        <renew>stained clay</renew>
+        <renew>step</renew>
+        <replace>air</replace>
+    </renewable>
+    <renewable rate="3" grow="false" particles="false" sound="false" avoid-entities="true">
+        <region>
+            <cylinder name="stairs-renew" base="0.5,1,0.5" radius="50" height="10"/>
+        </region>
+        <renew>quartz stairs:0</renew>
+        <renew>quartz stairs:1</renew>
+        <renew>quartz stairs:2</renew>
+        <renew>quartz stairs:3</renew>
+    </renewable>
+</renewables>
+<wools team="red">
+    <wool color="blue">
+        <block>-1,9,81</block>
+    </wool>
+    <wool color="yellow">
+        <block>0,9,81</block>
+    </wool>
+    <wool color="green">
+        <block>1,9,81</block>
+    </wool>
+</wools>
+<wools team="green">
+    <wool color="red">
+        <block>81,9,1</block>
+    </wool>
+    <wool color="blue">
+        <block>81,9,0</block>
+    </wool>
+    <wool color="yellow">
+        <block>81,9,-1</block>
+    </wool>
+</wools>
+<wools team="yellow">
+    <wool color="blue">
+        <block>-1,9,-81</block>
+    </wool>
+    <wool color="red">
+        <block>0,9,-81</block>
+    </wool>
+    <wool color="green">
+        <block>1,9,-81</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="yellow">
+        <block>-81,9,-1</block>
+    </wool>
+    <wool color="green">
+        <block>-81,9,0</block>
+    </wool>
+    <wool color="red">
+        <block>-81,9,1</block>
+    </wool>
+</wools>
+<timelock>on</timelock>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+    <tool>iron spade</tool>
+</toolrepair>
+<itemremove>
+    <item>obsidian</item>
+    <item>stained clay</item>
+    <item>stained glass</item>
+    <item>string</item>
+    <item>cooked chicken</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>iron leggings</item>
+    <item>leather boots</item>
+    <item>beacon</item>
+    <item>redstone</item>
+    <item>glowstone dust</item>
+    <item>clay ball</item>
+    <item>redstone block</item>
+    <item>redstone lamp off</item>
+    <item>sapling</item>
+    <item>quartz block</item>
+    <item>quartz stairs</item>
+    <item>step</item>
+    <item>apple</item>
+    <item>arrow</item>
+</itemremove>
+<killreward>
+    <item damage="8224" potions="regeneration:100:1:true">potion</item>
+    <item amount="16">arrow</item>
+</killreward>
+<gamerules>
+    <naturalRegeneration>false</naturalRegeneration>
+</gamerules>
+</map>

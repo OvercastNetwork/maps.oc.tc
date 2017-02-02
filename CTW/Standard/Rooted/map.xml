@@ -1,0 +1,170 @@
+<map proto="1.4.1">
+<name>Rooted</name>
+<version>2.1.2</version>
+<objective>Capture the enemy team's two wools and place them on your victory monument!</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
+    <!--  rockymine  -->
+</authors>
+<teams>
+    <team id="red-team" color="dark red" max="16" max-overfill="20">Red</team>
+    <team id="blue-team" color="blue" max="16" max-overfill="20">Blue</team>
+</teams>
+<kits>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:1;durability:1">iron pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:1">stone axe</item>
+        <item slot="4" unbreakable="true">iron spade</item>
+        <item slot="5" amount="16" damage="1">162</item>
+        <item slot="6" amount="32">leaves</item>
+        <item slot="7" unbreakable="true" enchantment="dig speed:1">shears</item>
+        <item slot="8" amount="32">golden carrot</item>
+		<item slot="17" amount="4">web</item>
+        <chestplate unbreakable="true">iron chestplate</chestplate>
+        <helmet unbreakable="true">gold helmet</helmet>
+        <boots unbreakable="true">gold boots</boots>
+        <effect duration="5" amplifier="25">heal</effect>
+        <effect duration="5" amplifier="25">damage resistance</effect>
+    </kit>
+    <kit id="red-spawn-kit" parents="spawn">
+        <leggings color="ff0000" unbreakable="true">leather leggings</leggings>
+    </kit>
+    <kit id="blue-spawn-kit" parents="spawn">
+        <leggings color="0000ff" unbreakable="true">leather leggings</leggings>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red-team" kit="red-spawn-kit">
+	    <regions yaw="180">
+            <block>178.5,8,-96.5</block>  
+		</regions>	
+    </spawn>
+    <spawn team="blue-team" kit="blue-spawn-kit">
+	    <regions yaw="0">	    
+            <block>178.5,8,-286.5</block>
+		</regions>	
+    </spawn>
+    <default yaw="90">
+	    <regions>
+            <block>178.5,8,-191.5</block>
+		</regions>
+    </default>
+</spawns>
+<filters>
+    <not id="no-void">
+        <void/>
+    </not>
+    <not id="deny-red">
+        <team>red-team</team>
+    </not>
+    <not id="deny-blue">
+        <team>blue-team</team>
+    </not>
+    <any id="only-some">
+        <material>web</material>
+        <material>leaves</material>
+    </any>
+	<allow id="leaves">
+	    <material>leaves</material>
+	</allow>
+    <allow id="logs">
+        <material>162</material>
+    </allow>
+</filters>
+<regions>
+    <union id="spawns">
+        <rectangle id="red-spawn" min="184,-129" max="173,-89"/>
+        <rectangle id="blue-spawn" min="184,-254" max="173,-294"/>
+    </union>
+    <union id="wool-rooms">
+        <union id="red-wool-rooms">
+            <!--  the wool rooms red have to enter  -->
+            <rectangle id="lime-wool-room" min="186,-281" max="199,-292"/>
+            <rectangle id="green-wool-room" min="158,-281" max="171,-292" />
+        </union>
+        <union id="blue-wool-rooms">
+            <!--  the wool rooms blue have to enter  -->
+            <rectangle id="light-grey-wool-room" min="158,-91" max="171,-102"/>
+            <rectangle id="light-blue-wool-room" min="186,-91" max="199,-102"/>
+        </union>
+    </union>
+	<negative id="non-bridge">
+		<rectangle min="159,-245" max="198,-138"/>
+	</negative>	
+	<union id="only-red-zones">
+	    <region id="red-wool-rooms"/>
+		<region id="red-spawn"/>
+	</union>	
+	<union id="only-blue-zones">
+        <region id="blue-wool-rooms"/>
+        <region id="blue-spawn"/>
+	</union>			    
+    <!--  block and use regions  -->
+	<apply block-break="only-some" block-place="never" region="wool-rooms"/>
+	<apply block="never" region="spawns" message="You may not modify this area!"/>
+	<apply block-break="leaves" region="non-bridge"/> 
+	<apply block-break="logs" region="non-bridge"/> 
+	<apply block="no-void" region="non-bridge" message="You may not modify the void area!"/>
+	<apply enter="deny-red" message="Only blue team may enter this region!" region="only-blue-zones"/>
+    <apply enter="deny-blue" message="Only red team may enter this region!" region="only-red-zones"/>
+</regions>
+<wools>
+    <wools team="red-team">
+        <wool color="green" location="162.5,5,-286.5">
+		    <monument>
+                <block>176.5,6,-113.5</block>
+			</monument>
+        </wool>
+        <wool color="lime" location="194.5,5,-286.5">
+		    <monument>
+                <block>180.5,6,-113.5</block>
+			</monument>
+        </wool>
+    </wools>
+    <wools team="blue-team">
+        <wool color="silver" location="162.5,5,-96.5">
+		    <monument>
+                <block>176.5,6,-269.5</block>
+			</monument>
+        </wool>
+        <wool color="light blue" location="194.5,5,-96.5">
+		    <monument>
+                <block>180.5,6,-269.5</block>
+			</monument>
+        </wool>
+    </wools>
+</wools>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+	<tool>shears</tool>
+	<tool>arrow</tool>
+	<tool>iron axe</tool>
+	<tool>iron pickaxe</tool>
+	<tool>iron spade</tool>
+	<tool>stone axe</tool>
+</toolrepair>
+<itemremove>
+	<item>stone</item>
+	<item>dirt</item>
+	<item>red rose</item>
+    <item>seeds</item>
+    <item>sapling</item>
+	<item>long grass</item>
+    <item>golden carrot</item>
+    <item>gold helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>gold boots</item>
+    <item>apple</item>
+	<item>flint</item>
+</itemremove>
+<killreward>
+    <item>golden apple</item>
+</killreward>
+<timelock>on</timelock>
+<maxbuildheight>20</maxbuildheight>
+</map> 

@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<map proto="1.3.5">
+<name>Ascendance</name>
+<version>1.3.1</version>
+<objective>You must capture all 5 points sequentially before 12 minutes!</objective>
+<authors>
+    <author uuid="459fd919-0d58-401a-9601-6cab1eb721ab"/> <!-- Reshif -->
+</authors>
+<teams>
+    <team id="red" color="dark red" max="8">Red</team>
+    <team id="blue" color="blue" max="8">Blue</team>
+</teams>
+<spawns>
+    <default kit="obs" yaw="-90">
+        <cylinder base="-24,16,0" radius="1.5" height="1"/>
+    </default>
+    <spawn team="red" kit="red" yaw="0">
+         <point>0,248,88</point>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <point>0,248,-88</point>
+    </spawn>
+</spawns>
+<kits>
+    <kit name="teams">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <item slot="2" damage="8225" potions="regeneration:120:1:false;heal:1:0:false">potion</item>
+        <item slot="3" amount="32">cooked beef</item>
+        <item slot="8" amount="24">arrow</item>
+        <leggings unbreakable="true" enchantment="protection fire:2" locked="true">iron leggings</leggings>
+        <potion duration="oo">night vision</potion>
+        <potion duration="13" amplifier="5">damage resistance</potion>
+    </kit>
+    <kit name="red" parents="teams">
+        <helmet color="cd0000" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="cd0000" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <boots color="cd0000" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="teams">
+        <helmet color="0066cc" unbreakable="true" locked="true">leather helmet</helmet>
+        <chestplate color="0066cc" unbreakable="true" locked="true">leather chestplate</chestplate>
+        <boots color="0066cc" unbreakable="true" locked="true">leather boots</boots>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+</kits>
+<filters>
+    <!-- Team Filters -->
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <!-- Point Based Filters -->
+    <filter name="blue-has-mid">
+        <all>
+            <objective id="blue">mid</objective>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="blue-has-blue-2nd">
+        <all>
+            <objective id="blue">blue-2nd</objective>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="blue-has-red-2nd">
+        <all>
+            <objective id="blue">red-2nd</objective>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="blue-has-red-last">
+        <all>
+            <objective id="blue">red-last</objective>
+            <team>blue</team>
+        </all>
+    </filter>
+    <filter name="red-has-mid">
+        <all>
+            <objective id="red">mid</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="red-has-red-2nd">
+        <all>
+            <objective id="red">red-2nd</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="red-has-blue-2nd">
+        <all>
+            <objective id="red">blue-2nd</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <filter name="red-has-blue-last">
+        <all>
+            <objective id="red">blue-last</objective>
+            <team>red</team>
+        </all>
+    </filter>
+    <!-- Sequential Point Filters -->
+    <filter name="to-capture-red-last">
+        <all>
+            <team>blue</team>
+            <objective>red-2nd</objective>
+        </all>
+    </filter>
+    <filter name="to-capture-red-2nd">
+        <any>
+            <objective>red-last</objective>
+            <objective>mid</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-mid">
+        <any>
+            <objective>red-2nd</objective>
+            <objective>blue-2nd</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-blue-2nd">
+        <any>
+            <objective>blue-last</objective>
+            <objective>mid</objective>
+        </any>
+    </filter>
+    <filter name="to-capture-blue-last">
+        <all>
+            <team>red</team>
+            <objective>blue-2nd</objective>
+        </all>
+    </filter>
+</filters>
+<regions>
+    <!-- Region Definitions -->
+    <union name="points">
+        <cuboid name="mid-point" min="-5,1,-5" max="5,6,5"/>
+        <union name="red-points">
+            <cuboid name="red-last-point" min="-5,5,58" max="5,9,68"/>
+            <translate name="red-2nd-point" offset="0,2,-30">
+                <region name="red-last-point"/>
+            </translate>
+        </union>
+        <union name="blue-points">
+            <mirror name="blue-last-point" origin="0,0,0" normal="0,0,-1">
+                <region name="red-last-point"/>
+            </mirror>
+            <mirror name="blue-2nd-point" origin="0,0,0" normal="0,0,-1">
+                <region name="red-2nd-point"/>
+            </mirror>
+        </union>
+    </union>
+    <union name="portals">
+        <union name="red-portals">
+            <cuboid name="red-to-red-2nd" min="3,1,92" max="5,4,93"/>
+            <translate name="red-to-mid" offset="-4,0,0">
+                <region name="red-to-red-2nd"/>
+            </translate>
+            <translate name="red-to-blue-2nd" offset="-4,0,0">
+                <region name="red-to-mid"/>
+            </translate>
+        </union>
+        <union name="blue-portals">
+            <mirror name="blue-to-red-2nd" origin="0,0,0" normal="0,0,-1">
+                <region name="red-to-red-2nd"/>
+            </mirror>
+            <mirror name="blue-to-mid" origin="0,0,0" normal="0,0,-1">
+                <region name="red-to-mid"/>
+            </mirror>
+            <mirror name="blue-to-blue-2nd" origin="0,0,0" normal="0,0,-1">
+                <region name="red-to-blue-2nd"/>
+            </mirror>
+        </union>
+    </union>
+    <union name="spawn-closures">
+        <cuboid name="red-spawn-closure" min="-12,1,85" max="12,5,86"/>
+        <mirror name="blue-spawn-closure" origin="0,0,0" normal="0,0,-1">
+            <region name="red-spawn-closure"/>
+        </mirror>
+    </union>
+    <!-- Block Rules -->
+    <apply block="deny-all">
+        <rectangle min="-oo,-oo" max="oo,oo"/>
+    </apply>
+    <!-- Entry Rules -->
+    <apply enter="only-red" message="You may not enter the enemy spawn!">
+        <rectangle name="red-spawn" min="-13,85" max="13,93"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the enemy spawn!">
+        <rectangle name="blue-spawn" min="-13,-85" max="13,-93"/>
+    </apply>
+</regions>
+<portals>
+    <!-- Red Portals -->
+    <portal x="@0" y="@6" z="@55" yaw="180" filter="red-has-red-2nd">
+        <region name="red-to-red-2nd"/>
+    </portal>
+    <portal x="@0" y="@6" z="@23" yaw="180" filter="red-has-mid">
+        <region name="red-to-mid"/>
+    </portal>
+    <portal x="@0" y="@6" z="@-18" yaw="180" filter="red-has-blue-2nd">
+        <region name="red-to-blue-2nd"/>
+    </portal>
+    <!-- Blue Portals -->
+    <portal x="@0" y="@6" z="@-55" yaw="180" filter="blue-has-blue-2nd">
+        <region name="blue-to-blue-2nd"/>
+    </portal>
+    <portal x="@0" y="@6" z="@-23" yaw="180" filter="blue-has-mid">
+        <region name="blue-to-mid"/>
+    </portal>
+    <portal x="@0" y="@6" z="@18" yaw="180" filter="blue-has-red-2nd">
+        <region name="blue-to-red-2nd"/>
+    </portal>
+</portals>
+<control-points incremental="true" neutral-state="false" show-progress="true" scaled-time="true" time-multiplier="0.25">
+    <control-point initial-owner="red" id="red-last" name="Red Last" capture-time="6s">
+        <capture-region>
+            <region name="red-last-point"/>
+        </capture-region>
+        <progress-display-region>
+            <region name="red-last-point"/>
+        </progress-display-region>
+        <player-filter>
+            <filter name="to-capture-red-last"/>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="red" id="red-2nd" name="Red 2nd" capture-time="8s">
+        <capture-region>
+            <region name="red-2nd-point"/>
+        </capture-region>
+        <progress-display-region>
+            <region name="red-2nd-point"/>
+        </progress-display-region>
+        <owner-display-region>
+            <region name="red-to-red-2nd"/>
+            <region name="blue-to-red-2nd"/>
+        </owner-display-region>
+        <player-filter>
+            <filter name="to-capture-red-2nd"/>
+        </player-filter>
+    </control-point>
+    <control-point id="mid" name="Mid" capture-time="10s">
+        <capture-region>
+            <region name="mid-point"/>
+        </capture-region>
+        <progress-display-region>
+            <region name="mid-point"/>
+        </progress-display-region>
+        <owner-display-region>
+            <region name="red-to-mid"/>
+            <region name="blue-to-mid"/>
+        </owner-display-region>
+        <player-filter>
+            <filter name="to-capture-mid"/>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-2nd" name="Blue 2nd" capture-time="8s">
+        <capture-region>
+            <region name="blue-2nd-point"/>
+        </capture-region>
+        <progress-display-region>
+            <region name="blue-2nd-point"/>
+        </progress-display-region>
+        <owner-display-region>
+            <region name="blue-to-blue-2nd"/>
+            <region name="red-to-blue-2nd"/>
+        </owner-display-region>
+        <player-filter>
+            <filter name="to-capture-blue-2nd"/>
+        </player-filter>
+    </control-point>
+    <control-point initial-owner="blue" id="blue-last" name="Blue Last" capture-time="6s">
+        <capture-region>
+            <region name="blue-last-point"/>
+        </capture-region>
+        <progress-display-region>
+            <region name="blue-last-point"/>
+        </progress-display-region>
+        <player-filter>
+            <filter name="to-capture-blue-last"/>
+        </player-filter>
+    </control-point>
+</control-points>
+<destroyables>
+    <destroyable id="closure-of-spawn-exits" name="Spawn Closure" completion="0%" materials="air" mode-changes="true" owner="blue" show="false">
+        <region name="spawn-closures"/>
+    </destroyable>
+</destroyables>
+<modes show-before="90s">
+    <mode name="`3Spawns are blocked" after="8m" material="stained glass"/>
+</modes>
+<toolrepair>
+    <tool>stone sword</tool>
+    <tool>bow</tool>
+</toolrepair>
+<itemremove>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather boots</item>
+    <item>iron leggings</item>
+    <item>cooked beef</item>
+    <item>glass bottle</item>
+    <item>arrow</item>
+    <item>potion</item>
+</itemremove>
+<killreward>
+    <item amount="12">arrow</item>
+    <item damage="8225" potions="regeneration:120:1:false;heal:1:0:false">potion</item>
+</killreward>
+<time result="objectives">12m</time>
+</map>

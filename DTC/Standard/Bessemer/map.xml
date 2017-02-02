@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Bessemer's Process</name>
+<version>1.0.3</version>
+<objective>Leak lava from the enemy's obsidian core.</objective>
+<authors>
+    <author uuid="c7afcff7-72ea-4029-9048-d03aae9fcfdb" contribution="Overall design, major building, coding"/> <!-- Zelocksurian -->
+    <author uuid="2a289d2a-d970-49c5-9a6c-01fc0264e317" contribution="Details, consistency, minor design"/> <!-- Stealth5061 -->
+</authors>
+<contributors>
+    <contributor contribution="Sewers">SH4DOW_HAWK</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="32">Blue</team>
+    <team color="dark red" max="32">Red</team>
+</teams> 
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:1">iron pickaxe</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="3" amount="32">cooked fish</item>
+        <item slot="4" amount="64">brick</item>
+        <item slot="5" amount="64">wood</item>
+        <chestplate>chainmail chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <default yaw="90">
+        <cuboid min="111,51,-8" max="106,51,-13"/>
+    </default>
+    <spawns kit="spawn">
+        <spawn team="red" yaw="0">
+            <cuboid min="8,8,-103" max="12,8,-98"/>
+        </spawn>
+        <spawn team="blue" yaw="180">
+            <cuboid min="55,8,81" max="51,8,75"/>
+        </spawn>
+    </spawns>
+</spawns>
+<filters>
+    <filter name="no-void">
+        <deny>
+            <void/>
+        </deny>
+    </filter>
+</filters>
+<regions>
+    <!-- Main build region -->
+    <apply block="no-void" message="You may not build outside of the map!">
+        <complement>
+            <rectangle name="main-area" min="0,-121" max="64,99"/> <!-- Main region -->
+            <rectangle min="0,-54" max="64,32"/> <!-- Buildable region in middle of map -->
+        </complement>
+    </apply>
+    <apply block="deny-all" message="You may not build outside of the map!">
+        <negative><region name="main-area"/></negative>
+    </apply>
+    <!-- Spawn protection -->
+    <apply block="deny-all" message="Stop messing with the spawn and fight">
+        <cuboid min="18,6,-94" max="2,20,-108"/>
+        <cuboid min="45,6,71" max="61,20,85"/>
+    </apply>
+</regions>
+<cores material="obsidian" leak="2">
+    <core team="red">
+        <cuboid min="43,11,-105" max="39,17,-109"/>
+    </core>
+    <core team="blue">
+        <cuboid min="20,11,82" max="24,17,86"/>
+    </core>
+</cores>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron pickaxe</tool>
+</toolrepair>
+<itemremove>
+    <item>brick</item>
+    <item>wood</item>
+    <item>chainmail chestplate</item>
+    <item>cooked fish</item>
+    <item>arrow</item>
+</itemremove>
+<maxbuildheight>39</maxbuildheight>
+</map>

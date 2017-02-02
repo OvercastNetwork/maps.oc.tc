@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<map proto="1.3.6">
+<name>Coniferous Forest</name>
+<version>1.2.0</version>
+<objective>To win score 400 points by killing, capturing and holding flags.</objective>
+<authors>
+    <author uuid="fe3608b7-d105-4029-8800-34b3147065b6" />
+    <!--  rockymine  -->
+</authors>
+<broadcasts>
+    <alert after="1s">Capturing the enemy team's flag will obtain 50 points!</alert>
+    <alert after="3s">Holding the King Flag inside your net will obtain 1 point per second!</alert>
+    <tip after="10s">Killing players will give you a potion effect!</tip>
+    <tip after="2m">To capture the flag step in your net. It's marked by a beacon!</tip>
+</broadcasts>
+<teams>
+    <team id="red-team" color="dark red" max="24" max-overfill="28">Red</team>
+    <team id="blue-team" color="blue" max="24" max-overfill="28">Blue</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow infinite:1">bow</item>
+        <item slot="27">arrow</item>
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <potion duration="5" amplifier="25">heal</potion>
+        <potion duration="5" amplifier="25">damage resistance</potion>
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <leggings color="ff0000" unbreakable="true">leather leggings</leggings>
+        <boots color="ff0000" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <leggings color="0000ff" unbreakable="true">leather leggings</leggings>
+        <boots color="0000ff" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit name="flag-pickup" force="true">
+        <chestplate unbreakable="true" enchantment="protection environmental:1" locked="true">gold chestplate</chestplate>
+        <potion duration="10" amplifier="2">slow</potion>
+        <potion duration="5">confusion</potion>
+        <health>16</health>
+    </kit>
+    <kit name="flag-drop" force="true">
+        <chestplate unbreakable="true" locked="true">iron chestplate</chestplate>
+        <potion duration="3">slow</potion>
+        <potion duration="0">speed</potion>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red">
+        <regions yaw="135">
+            <cuboid min="-490.5,50,76.5" max="-491.5,50,75.5" />
+            <cuboid min="-494.5,48,134.5" max="-493.5,48,133.5" />
+        </regions>
+    </spawn>
+    <spawn team="blue" kit="blue">
+        <regions yaw="-135">
+            <cuboid min="-668.5,50,76.5" max="-667.5,50,75.5" />
+            <cuboid min="-665.5,48,134.5" max="-664.5,48,133.5" />
+        </regions>
+    </spawn>
+    <default>
+        <regions yaw="0" kit="obs">
+            <cuboid min="-578.5,62,10.5" max="-580.5,62,10.5" />
+        </regions>
+    </default>
+</spawns>
+<regions>
+    <apply block="deny-blocks">
+        <rectangle min="oo,oo" max="-oo,-oo" />
+    </apply>
+    <apply enter="only-red">
+        <region name="red-spawn" />
+    </apply>
+    <apply enter="only-blue">
+        <region name="blue-spawn" />
+    </apply>
+    <apply enter="deny-all">
+        <cuboid min="-578,55,131" max="-578,57,132" />
+    </apply>
+    <union name="spawns">
+        <cuboid name="red-spawn" min="-502.5,53,72.5" max="-501.5,59,79.5" />
+        <cuboid name="blue-spawn" min="-656.5,53,72.5" max="-657.5,59,79.5" />
+    </union>
+    <union name="nets">
+        <cylinder name="red-net" base="-527.5,49,117.5" radius="4" height="4" />
+        <cylinder name="blue-net" base="-631.5,49,117.5" radius="4" height="4" />
+    </union>
+</regions>
+<filters>
+    <filter name="only-red">
+        <not>
+            <team>blue</team>
+        </not>
+    </filter>
+    <filter name="only-blue">
+        <not>
+            <team>red</team>
+        </not>
+    </filter>
+</filters>
+<!--  flags  -->
+<flags pickup-kit="flag-pickup" drop-kit="flag-drop">
+    <flag id="red-flag" name="Red Flag" color="red">
+        <post return-time="30" owner="red-team" pickup-filter="only-blue" yaw="179">-504.5,48,145.5</post>
+    </flag>
+    <flag id="blue-flag" name="Blue Flag" color="light blue">
+        <post return-time="30" owner="blue-team" pickup-filter="only-red" yaw="179">-654.5,48,145.5</post>
+    </flag>
+    <net points="50" region="blue-net" flag="red-flag" return="blue-flag">
+        <capture-filter>
+            <all>
+                <team>blue</team>
+                <not>
+                    <flag-carried>blue-flag</flag-carried>
+                </not>
+            </all>
+        </capture-filter>
+    </net>
+    <net points="50" region="red-net" flag="blue-flag" return="red-flag">
+        <capture-filter>
+            <all>
+                <team>red</team>
+                <not>
+                    <flag-carried>red-flag</flag-carried>
+                </not>
+            </all>
+        </capture-filter>
+    </net>
+    <post id="king-post">-579.5,35,32.5</post>
+    <post id="red-post" respawn-time="5" owner="red-team" yaw="90" points-rate="1" pickup-filter="only-blue">-527.5,49,117.5</post>
+    <post id="blue-post" respawn-time="5" owner="blue-team" yaw="-90" points-rate="1" pickup-filter="only-red">-631.5,49,117.5</post>
+    <flag name="King Flag" color="silver" shared="true" post="king-post">
+        <net owner="red-team" region="red-net" post="red-post" capture-filter="only-red" />
+        <net owner="blue-team" region="blue-net" post="blue-post" capture-filter="only-blue" />
+    </flag>
+</flags>
+<!--  flags  -->
+<score>
+    <limit>400</limit>
+    <kills>2</kills>
+</score>
+<hunger>
+    <depletion>off</depletion>
+</hunger>
+<killreward>
+    <potion duration="2">regeneration:2</potion>
+</killreward>
+<itemremove>
+    <item>stone sword</item>
+    <item>bow</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>gold chestplate</item>
+</itemremove>
+<disabledamage>
+    <damage>fall</damage>
+</disabledamage>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+    <tool>arrow</tool>
+</toolrepair>
+<timelock>on</timelock>
+</map>

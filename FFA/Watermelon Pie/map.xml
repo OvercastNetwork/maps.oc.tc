@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Watermelon Pie</name>
+<version>1.1</version>
+<objective>Survive and get the most points.</objective>
+<authors>
+    <author uuid="2ca8072f-74be-4798-85b8-bbce03aa91af"/> <!-- Tywnis -->
+</authors>
+
+<score>
+   <kills>1</kills>
+   <deaths>1</deaths>
+</score>
+<time>15m</time>
+<players min="6" max="12" max-overfill="12" show-name-tags="false"/>
+
+<spawns>
+    <spawn kit="spawn" spread="true">
+        <regions yaw="0"><point>-4,2,-63</point></regions>
+        <regions yaw="0"><point>-42,2,-63</point></regions>
+        <regions yaw="45"><point>19,2,-26</point></regions>
+        <regions yaw="90"><point>56,2,35</point></regions>
+        <regions yaw="90"><point>56,2,-3</point></regions>
+        <regions yaw="135"><point>19,2,58</point></regions>
+        <regions yaw="180"><point>-42,2,95</point></regions>
+        <regions yaw="180"><point>-4,2,95</point></regions>
+        <regions yaw="-45"><point>-65,2,-26</point></regions>
+        <regions yaw="-90"><point>-102,2,-3</point></regions>
+        <regions yaw="-90"><point>-102,2,35</point></regions>
+        <regions yaw="-135"><point>-65,2,58</point></regions>
+    </spawn>
+    <default>
+        <regions yaw="-90"><point>-23,32,16</point></regions>
+    </default>    
+</spawns>
+
+<kits>
+    <kit id="obs">
+        <potion duration="oo">night vision</potion>
+    </kit>
+    <kit id="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true">bow</item>
+        <potion duration="9" amplifier="2">heal</potion>
+        <potion duration="9" amplifier="2">damage resistance</potion>
+        <shield health="6" delay="6s"/>
+    </kit>
+    <kit id="firework">
+        <item amount="3" name="Locator" lore="`8Place holder - actual Locator not ready.">firework</item>
+    </kit>
+</kits>
+
+<block-drops>
+    <rule>
+        <filter>
+            <material>melon block</material>
+        </filter>
+        <drops>
+            <item chance="0.1" damage="220" material="iron sword"/>
+            <item chance="0.2" damage="61" material="stone axe"/>
+            <item amount="3" material="wood"/>
+            <item amount="5" material="arrow"/>
+            <item amount="2" material="melon"/>
+            <item chance="0.5" amount="2" material="melon"/>
+            <item chance="0.2" amount="1" material="stick"/>
+            <item chance="0.6" amount="1" material="iron ingot"/>
+            <item chance="0.8" amount="1" material="gold ingot"/>
+            <item chance="0.05" amount="1" damage="100" material="chainmail helmet"/>
+            <item chance="0.05" amount="1" damage="100" material="chainmail chestplate"/>
+            <item chance="0.05" amount="1" damage="100" material="chainmail leggings"/>
+            <item chance="0.05" amount="1" damage="100" material="chainmail boots" enchantment="protection fall:2"/>
+            <item chance="0.04" amount="1" damage="100" material="iron helmet"/>
+            <item chance="0.04" amount="1" damage="100" material="iron chestplate"/>
+            <item chance="0.04" amount="1" damage="100" material="iron leggings"/>
+            <item chance="0.04" amount="1" damage="100" material="iron boots"/>
+            <item chance="0.9" amount="3" material="cooked beef"/>
+            <item chance="0.09" amount="1" material="golden apple"/>
+            <item chance="0.2" amount="5" material="wood"/>
+            <item chance="0.05" amount="1" material="flint and steel"/>
+            <item chance="0.4" amount="5" material="torch"/>
+            <item chance="0.1" amount="1" material="water bucket"/>
+            <item chance="0.03" amount="1" material="elytra"/>
+        </drops>
+    </rule>
+</block-drops>
+
+<crafting>
+    <shaped override="true">
+        <result material="leather helmet" unbreakable="true" color="32cd32">
+        </result>
+        <shape>
+            <row>MMM</row>
+            <row>M.M</row>
+        </shape>
+        <ingredient symbol="M">melon</ingredient>
+    </shaped>
+    <shaped override="true">
+        <result material="leather chestplate" unbreakable="true" color="32cd32">
+            <enchantment level="2">protection projectile</enchantment>
+        </result>
+        <shape>
+            <row>M.M</row>
+            <row>MMM</row>
+            <row>MMM</row>
+        </shape>
+        <ingredient symbol="M">melon</ingredient>
+    </shaped>
+    <shaped override="true">
+        <result material="leather leggings" unbreakable="true" color="32cd32">
+            <enchantment level="2">protection projectile</enchantment>
+        </result>
+        <shape>
+            <row>MMM</row>
+            <row>M.M</row>
+            <row>M.M</row>
+        </shape>
+        <ingredient symbol="M">melon</ingredient>
+    </shaped>
+    <shaped override="true">
+        <result material="leather boots" unbreakable="true" color="32cd32">
+            <enchantment level="3">protection fall</enchantment>
+        </result>
+        <shape>
+            <row>M.M</row>
+            <row>M.M</row>
+        </shape>
+        <ingredient symbol="M">melon</ingredient>
+    </shaped>
+    <shapeless>
+        <result material="arrow"/>
+        <ingredient amount="1">melon</ingredient>
+    </shapeless>
+    <shapeless>
+        <result material="beetroot soup" name="`fMelon Soup"/>
+        <ingredient amount="3">seeds</ingredient>
+    </shapeless>
+    <shaped override="true">
+        <result material="melon block" unbreakable="true">
+        </result>
+        <shape>
+            <row>MMM</row>
+            <row>MMM</row>
+            <row>MMM</row>
+        </shape>
+        <ingredient symbol="M">melon</ingredient>
+    </shaped>
+</crafting>
+<maxbuildheight>35</maxbuildheight>
+<filters>
+    <deny id="deny-void">
+        <void/>
+    </deny>
+</filters>
+<regions>
+    <union id="grid">
+        <cylinder base="-23,0,16" radius="92" height="1"/>
+        <cylinder base="-23,2,16" radius="92" height="1"/>
+        <cylinder base="-23,4,16" radius="92" height="1"/>
+        <cylinder base="-23,6,16" radius="92" height="1"/>
+        <cylinder base="-23,8,16" radius="92" height="1"/>
+        <cylinder base="-23,10,16" radius="92" height="1"/>
+        <cylinder base="-23,12,16" radius="92" height="1"/>
+        <cylinder base="-23,14,16" radius="92" height="1"/>
+        <cylinder base="-23,16,16" radius="92" height="1"/>
+        <cylinder base="-23,18,16" radius="92" height="1"/>
+        <cylinder base="-23,20,16" radius="92" height="1"/>
+        <cylinder base="-23,22,16" radius="92" height="1"/>
+        <cylinder base="-23,24,16" radius="92" height="1"/>
+        <cylinder base="-23,26,16" radius="92" height="1"/>
+        <cylinder base="-23,28,16" radius="92" height="1"/>
+        <cylinder base="-23,30,16" radius="92" height="1"/>
+        <cylinder base="-23,32,16" radius="92" height="1"/>
+        <cylinder base="-23,34,16" radius="92" height="1"/>
+        <cylinder base="-23,36,16" radius="92" height="1"/>
+    </union>
+    <apply block="deny-void" message="You may not build in the void.">
+        <region>
+            <negative>
+                <cylinder id="map" base="-23,0,16" radius="90" height="50"/> 
+            </negative>
+        </region>
+    </apply>
+    <apply kit="firework">
+        <region>
+            <region id="grid"/>
+        </region>
+        <filter>
+            <time>10m</time>
+        </filter>
+    </apply>
+</regions>
+<toolrepair>
+    <tool>bow</tool>
+    <tool>stone sword</tool>
+</toolrepair>
+<itemremove>
+    <item>wood axe</item>
+    <item>leather helmet</item>
+    <item>leather chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>cooked beef</item>
+    <item>sign</item>
+    <item>red rose</item>
+    <item>yellow flower</item>
+</itemremove>
+<armorkeep>
+    <item>iron helmet</item>
+    <item>iron chestplate</item>
+    <item>iron leggings</item>
+    <item>iron boots</item>
+    <item>gold helmet</item>
+    <item>gold chestplate</item>
+    <item>gold leggings</item>
+    <item>gold boots</item>
+    <item>chainmail helmet</item>
+    <item>chainmail chestplate</item>
+    <item>chainmail leggings</item>
+    <item>chainmail boots</item>
+    <item>diamond helmet</item>
+    <item>diamond chestplate</item>
+    <item>diamond leggings</item>
+    <item>diamond boots</item>
+</armorkeep>
+<itemkeep>
+    <item>melon</item>
+    <item>iron sword</item>
+    <item>stone axe</item>
+    <item>stone pickaxe</item>
+    <item>iron axe</item>
+    <item>iron pickaxe</item>
+    <item>diamond axe</item>
+    <item>diamond pickaxe</item>
+    <item>tnt</item>
+    <item>flint and steel</item>
+</itemkeep>
+<timelock>off</timelock>
+</map>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<map proto="1.3.2">
+<name>War Wars: Baby's First Build</name>
+<include src="warwars.xml" />
+<spawns>
+    <spawn team="blue" yaw="90">29.5,22,29.5</spawn>
+    <spawn team="red" yaw="-90">17.5,22,29.5</spawn>
+    <default yaw="180">24,22,37</default>
+</spawns>
+<cores material="obsidian" leak="3" mode-changes="true">
+    <core team="blue"><cuboid min="31,27,28" max="34,30,31"/></core>
+    <core team="red"><cuboid min="14,27,28" max="17,30,31"/></core>
+</cores>
+</map>

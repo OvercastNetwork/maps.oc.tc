@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<map proto="1.3.3">
+<name>Whiteout</name>
+<version>1.0.2</version>
+<objective>Have the most kills after 10 minutes to win.</objective>
+<authors>
+   <author uuid="9bfbc560-244a-4e28-ab70-185f39740ec1"/> <!-- TheZaner -->
+   <author uuid="8f9344cf-7367-4e28-9f24-5c66422f28c9"/> <!-- Timothee38 -->
+</authors>
+<contributors>
+   <contributor uuid="dad8b95c-cf6a-44df-982e-8c8dd70201e0" contribution="Fire Engine based Criticism"/> <!-- ElectroidFilms -->
+   <contributor uuid="1987fc00-a5b2-43b5-b94b-e3c0d25776e9" contribution="Crane based Criticism"/> <!-- BrettOgden -->
+   <contributor uuid="205d1aad-c619-499b-9885-b91c372b1c13" contribution="Spawner Idea"/> <!-- lord_creeper01 -->
+   <contributor uuid="af9c1942-af66-42d1-89f9-9b677c281e03" contribution="Christmas Tree"/> <!-- _IQ -->
+</contributors>
+<score>
+    <time>10m</time>
+</score>
+<teams>
+   <team id="red" color="dark red" max="30" max-overfill="50">Reindeer</team>
+   <team id="green" color="green" max="30" max-overfill="50">Elf</team>
+</teams>
+<kits>
+    <kit name="spawn" force="true">
+        <item slot="0" damage="-30000">iron sword</item>
+        <item slot="1" damage="-30000">bow</item>
+        <item slot="2" name="Snow Shovel" enchantment="durability:1">iron spade</item>
+        <item slot="3">golden apple</item>
+        <item slot="4" amount="64">golden carrot</item>
+        <item slot="6" amount="16">snow block</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <potion duration="8" amplifier="25">damage resistance</potion>
+        <potion duration="8" amplifier="25">heal</potion>
+        <potion duration="oo" amplifier="1">speed</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000" damage="-30000">leather helmet</helmet>
+        <chestplate>iron chestplate</chestplate>
+        <leggings color="cd0000" damage="-30000">leather leggings</leggings>
+        <boots color="cd0000" damage="-30000">leather boots</boots>
+    </kit>
+    <kit name="green" parents="spawn">
+        <helmet color="7FCC19" damage="-30000">leather helmet</helmet>
+        <chestplate>iron chestplate</chestplate>
+        <leggings color="7FCC19" damage="-30000">leather leggings</leggings>
+        <boots color="7FCC19" damage="-30000">leather boots</boots>
+    </kit>
+</kits><!-- Disable until fixed
+<modifybowprojectile>
+    <projectile>Snowball</projectile>
+</modifybowprojectile>-->
+<itemremove>
+    <item>iron sword</item>
+    <item>iron spade</item>
+    <item>bow</item>
+    <item>arrow</item>
+    <item>leather helmet</item>
+    <item>iron chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>golden carrot</item>
+    <item>gold block</item>
+    <item>snow ball</item>
+    <item>snow block</item>
+</itemremove>
+<killreward>
+   <item amount="8">snow block</item>
+   <item>golden apple</item>
+</killreward>
+<timelock>on</timelock>
+<regions>
+    <rectangle name="main" min="oo,oo" max="-oo,-oo"/>
+    <apply world="deny-world">
+        <region name="main"/>
+    </apply>
+    <apply block="allow-certain-blocks">
+    	<region name="main"/>
+    </apply>
+</regions>
+<filters>
+    <filter name="allow-certain-blocks" parents="deny-blocks">
+        <allow>
+	        <block>glass</block>
+	        <block>thin glass</block>
+	        <block>leaves</block>
+	        <block>ice</block>
+	        <block>snow</block>
+	        <block>snow block</block>
+        </allow>
+    </filter>
+</filters>
+<spawns>
+    <spawns safe="true">
+        <spawn team="red" kit="red" yaw="-90">
+            <block>5,16,225</block>
+            <block>3,15,207</block>
+            <block>5,16,189</block>
+            <block>5,16,171</block>
+        </spawn>
+        <spawn team="red" kit="red" yaw="90">
+            <block>-38,16,171</block>
+            <block>-38,16,189</block>
+            <block>-38,16,207</block>
+            <block>-38,16,225</block>
+        </spawn>
+        <spawn team="red" kit="red" yaw="0">
+            <block>-67,16,142</block>
+            <block>-85,16,142</block>
+            <block>-103,16,142</block>
+            <block>-121,16,142</block>
+        </spawn>
+        <spawn team="red" kit="red" yaw="180">
+            <block>-121,16,98</block>
+            <block>-103,16,98</block>
+            <block>-85,16,98</block>
+            <block>-67,16,98</block>
+        </spawn>
+        <spawn team="green" kit="green" yaw="0">
+            <block>34,16,142</block>
+            <block>52,16,142</block>
+            <block>70,16,142</block>
+            <block>88,16,142</block>
+        </spawn>
+        <spawn team="green" kit="green" yaw="180">
+            <block>88,16,98</block>
+            <block>69,16,100</block>
+            <block>52,16,98</block>
+            <block>34,16,98</block>
+        </spawn>
+        <spawn team="green" kit="green" yaw="-90">
+            <block>5,16,69</block>
+            <block>5,16,51</block>
+            <block>5,16,33</block>
+            <block>5,16,15</block>
+        </spawn>
+        <spawn team="green" kit="green" yaw="90">
+            <block>-38,16,15</block>
+            <block>-35,16,31</block>
+            <block>-38,16,51</block>
+            <block>-38,16,69</block>
+        </spawn>
+    </spawns>
+    <default yaw="90">
+        <block>103.5,20,120</block>
+    </default>
+</spawns>
+<maxbuildheight>30</maxbuildheight>
+</map>
