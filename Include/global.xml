@@ -11,19 +11,7 @@
     </deny>
 </damage>
 
-<mutations chance="0" amount="2">
-    <blitz        weight="0.00"/>
-    <uhc          weight="1.00"/>
-    <explosives   weight="0.00"/>
-    <no_fall      weight="0.80"/>
-    <mobs         weight="0.75"/>
-    <strength     weight="1.00"/>
-    <double_jump  weight="1.00"/>
-	<elytra       weight="1.00"/>
-    <invisibility weight="0.05"/>
-    <lightning    weight="0.50"/>
-    <rage         weight="0.01"/>
-</mutations>
+<mutations chance="0.01" amount="2"/>
 
 <spawns>
     <player-kit>
